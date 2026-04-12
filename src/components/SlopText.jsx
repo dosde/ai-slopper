@@ -277,8 +277,8 @@ export default function SlopText({
                   boxShadow: '0 0 8px rgba(56,189,248,0.6)',
                   animation: 'radar-pulse 0.5s ease-in-out infinite alternate',
                 } : {}),
-                ...(!isFound && !showRadar && doublePoints ? {
-                  borderBottom: `2px solid rgba(${isInverse ? '56,189,248' : '251,191,36'},0.5)`,
+                ...(!isFound && !showRadar && doublePoints && !isInverse ? {
+                  borderBottom: `2px solid rgba(251,191,36,0.5)`,
                 } : {}),
               }}
             >
