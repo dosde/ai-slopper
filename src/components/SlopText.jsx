@@ -102,6 +102,7 @@ export default function SlopText({
   onWrongClick,
   radarActive = false, doublePoints = false,
   brainrot = false,
+  lang = 'en',
   onTypingComplete,
   onCorruptionChange,
 }) {
@@ -189,7 +190,7 @@ export default function SlopText({
     newFound.add(token.id);
     onFoundChange(newFound);
 
-    const commentary = getRandomCommentary(token.phraseData.type);
+    const commentary = getRandomCommentary(token.phraseData.type, lang);
     const newCombo = (combo || 0) + 1;
     const multiplier = Math.min(newCombo, 5);
     const baseScore = token.phraseData.score * multiplier;

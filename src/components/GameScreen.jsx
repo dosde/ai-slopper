@@ -3,6 +3,7 @@ import SlopText from './SlopText';
 import PowerUps from './PowerUps';
 import { PopupLayer, usePopups } from './ScorePopup';
 import { playRoundComplete, playMiss, setMusicTempo } from '../utils/audio';
+import { t } from '../i18n/index';
 
 const ROUND_TIME_NORMAL = 45;
 const ROUND_TIME_CHAOS = 25;
@@ -93,7 +94,7 @@ function SlopMeter({ found, total }) {
   );
 }
 
-export default function GameScreen({ round, roundIdx, totalRounds, totalScore, onRoundEnd, difficulty = 'normal', onPowerUpUsed, usedPowerUps = [] }) {
+export default function GameScreen({ round, roundIdx, totalRounds, totalScore, onRoundEnd, difficulty = 'normal', lang = 'en', onPowerUpUsed, usedPowerUps = [] }) {
   const isBrainrot = difficulty === 'brainrot';
   const ROUND_TIME = difficulty === 'chaos' ? ROUND_TIME_CHAOS : isBrainrot ? ROUND_TIME_BRAINROT : ROUND_TIME_NORMAL;
   const [timeLeft, setTimeLeft] = useState(ROUND_TIME);
@@ -307,7 +308,7 @@ export default function GameScreen({ round, roundIdx, totalRounds, totalScore, o
         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
           <div>
             <div style={{ fontSize: '0.6rem', color: '#64748b', fontFamily: "'Orbitron', sans-serif" }}>
-              ROUND {roundIdx + 1}/{totalRounds}
+              {t('round', lang)} {roundIdx + 1}/{totalRounds}
               {difficulty === 'chaos' && (
                 <span style={{ color: '#ef4444', marginLeft: 6 }}>⚡ CHAOS</span>
               )}
@@ -321,7 +322,7 @@ export default function GameScreen({ round, roundIdx, totalRounds, totalScore, o
           </div>
 
           <div style={{ textAlign: 'right' }}>
-            <div style={{ fontSize: '0.55rem', color: '#64748b', fontFamily: "'Orbitron', sans-serif" }}>TOTAL</div>
+            <div style={{ fontSize: '0.55rem', color: '#64748b', fontFamily: "'Orbitron', sans-serif" }}>{t('total', lang)}</div>
             <div style={{
               fontFamily: "'Orbitron', sans-serif",
               fontWeight: 900,
@@ -542,7 +543,7 @@ export default function GameScreen({ round, roundIdx, totalRounds, totalScore, o
             textAlign: 'center',
             animation: 'slide-in-up 0.4s ease',
           }}>
-            ⚠️ INVERSE ROUND — Click the HUMAN phrases, not the AI slop! · 2x POINTS
+            {t('inverse_header', lang)} — {t('inverse_body', lang)}
           </div>
         )}
 
@@ -557,6 +558,7 @@ export default function GameScreen({ round, roundIdx, totalRounds, totalScore, o
           radarActive={radarActive}
           doublePoints={isDoubleActive}
           brainrot={isBrainrot}
+          lang={lang}
           onCorruptionChange={setCorruptionCount}
           onTypingComplete={() => setTypingDone(true)}
         />
@@ -585,7 +587,7 @@ export default function GameScreen({ round, roundIdx, totalRounds, totalScore, o
           onClick={handleFinishEarly}
           style={{ padding: '7px 14px', fontSize: '0.72rem' }}
         >
-          DONE ⏱→
+          {t('done', lang)} ⏱→
         </button>
       </div>
     </div>

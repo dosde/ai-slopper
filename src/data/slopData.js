@@ -113,14 +113,55 @@ export const SLOP_COMMENTARY = {
   ],
 };
 
-export const getRandomCommentary = (type) => {
-  const comments = SLOP_COMMENTARY[type] || SLOP_COMMENTARY.filler;
+const COMMENTARY_DE = {
+  opener:        ["DER ÖFFNER ENTDECKT! 🚨", "KLASSISCHE SCHLEIMEREI! 🤢", "OH NEIN, ES GEHT LOS... 😩", "UNGEBETENE BEGEISTERUNG! 📣"],
+  disclaimer:    ["DIE VERBOTENE PHRASE! ⚠️", "KI-IDENTITÄTSKRISE! 🤖", "ES ERINNERT UNS WIEDER DARAN! 😤", "UNERWÜNSCHTES ROBOTER-GESTÄNDNIS! 🦾"],
+  filler:        ["FÜLLWORT ENTDECKT! 📢", "UNNÖTIGE ÜBERLEITUNG! 💨", "DIESES WORT TUT NICHTS! 🫥", "TEXTPOLSTERUNG ERKANNT! 🧸"],
+  closer:        ["DER KLASSISCHE ABSCHLUSS! 👋", "PFLICHTAUSSAGE ERKANNT! 📋", "ES VERABSCHIEDET SICH UMSTÄNDLICH! 📜", "EIN WEITERES SLOP-ANGEBOT! 📬"],
+  bullet:        ["AUFZÄHLUNGSPUNKT-BESESSENHEIT BESTÄTIGT! 📌", "UNNÖTIGE STRUKTUR ERKANNT! 🗂️", "LISTEN-FIEBER AKTIV! 🗒️"],
+  comprehensive: ["UMFASSENDER GUIDE INCOMING! 😱", "SCHRITT-FÜR-SCHRITT-ÜBERLASTUNG! 📊", "GANZHEITLICHER ANSATZ AKTIVIERT! 🌈"],
+  caveat:        ["UNGEBETENER HAFTUNGSAUSSCHLUSS! ⚡", "ES IST WICHTIG ZU BEACHTEN... 👆", "ABSICHERUNGSMODUS AKTIVIERT! 🦔"],
+  sycophant:     ["PURE SCHLEIMEREI ENTDECKT! 🍯", "ES MACHT IHNEN KOMPLIMENTE! 🧈", "TOLLE FRAGE GESICHTET! 🎯"],
+  buzzword:      ["BUZZWORD ENTDECKT! 💼", "SYNERGIE-ÜBERLASTUNG! 🤝", "DAS ÖKOSYSTEM GEDEIHT! 🌿"],
+  human:         ["MENSCH ENTDECKT! 🧠", "UNGEFILTERTER MENSCH! 🎯", "ECHTER GEDANKE GESICHTET! ✨", "NICHT VON DER KI! 🙌"],
+};
+
+const COMMENTARY_RU = {
+  opener:        ["ПРИВЕТСТВИЕ ОБНАРУЖЕНО! 🚨", "КЛАССИЧЕСКАЯ ЛЕСТЬ! 🤢", "О НЕТ, НАЧИНАЕТСЯ... 😩", "НЕПРОШЕНЫЙ ЭНТУЗИАЗМ! 📣"],
+  disclaimer:    ["ЗАПРЕЩЁННАЯ ФРАЗА! ⚠️", "КРИЗИС ИДЕНТИЧНОСТИ ИИ! 🤖", "СНОВА НАПОМИНАЕТ ЧТО ОН ИИ! 😤", "РОБОТОВСКОЕ ПРИЗНАНИЕ! 🦾"],
+  filler:        ["СЛОВО-ПАРАЗИТ ЗАМЕЧЕНО! 📢", "НЕНУЖНЫЙ ПЕРЕХОД! 💨", "ЭТО СЛОВО НИЧЕГО НЕ ДЕЛАЕТ! 🫥", "НАБИВКА ТЕКСТА! 🧸"],
+  closer:        ["КЛАССИЧЕСКОЕ ПРОЩАНИЕ! 👋", "ОБЯЗАТЕЛЬНОЕ ЗАКРЫТИЕ! 📋", "ПРОЩАЕТСЯ КАК МОЖНО ДЛИННЕЕ! 📜", "ЕЩЁ ОДНО ПРЕДЛОЖЕНИЕ ПОМОЧЬ! 📬"],
+  bullet:        ["ОДЕРЖИМОСТЬ СПИСКАМИ! 📌", "НЕНУЖНАЯ СТРУКТУРА! 🗂️", "СПИСОК-ЛИХОРАДКА! 🗒️"],
+  comprehensive: ["ИСЧЕРПЫВАЮЩИЙ ГАЙД! 😱", "ПОШАГОВАЯ ПЕРЕГРУЗКА! 📊", "КОМПЛЕКСНЫЙ ПОДХОД АКТИВИРОВАН! 🌈"],
+  caveat:        ["НЕЗВАНЫЙ ДИСКЛЕЙМЕР! ⚡", "ВАЖНО ОТМЕТИТЬ, ЧТО... 👆", "РЕЖИМ СТРАХОВКИ АКТИВИРОВАН! 🦔"],
+  sycophant:     ["ЧИСТАЯ ЛЕСТЬ ОБНАРУЖЕНА! 🍯", "ВАС НАМАЗЫВАЮТ МАСЛОМ! 🧈", "ОТЛИЧНЫЙ ВОПРОС ЗАМЕЧЕН! 🎯"],
+  buzzword:      ["КОРПОРАТИВНЫЙ BUZZWORD! 💼", "ПЕРЕГРУЗКА СИНЕРГИЕЙ! 🤝", "ЭКОСИСТЕМА ПРОЦВЕТАЕТ! 🌿"],
+  human:         ["ЧЕЛОВЕК ОБНАРУЖЕН! 🧠", "НЕФИЛЬТРОВАННЫЙ ЧЕЛОВЕК! 🎯", "НАСТОЯЩАЯ МЫСЛЬ ЗАМЕЧЕНА! ✨", "НЕ ОТ ИИ! 🙌"],
+};
+
+const COMMENTARY_JA = {
+  opener:        ["オープナー検出！ 🚨", "古典的なお世辞！ 🤢", "ああ、始まった... 😩", "頼んでもいない熱意！ 📣"],
+  disclaimer:    ["禁断のフレーズ！ ⚠️", "AIアイデンティティ危機！ 🤖", "またAIだと言ってる！ 😤", "ロボットの自白！ 🦾"],
+  filler:        ["フィラーワード検出！ 📢", "不要な接続詞！ 💨", "この単語は何もしていない！ 🫥", "テキストの水増し！ 🧸"],
+  closer:        ["定番の締め方！ 👋", "義務的な結び！ 📋", "最大限の言葉でお別れ！ 📜", "さらなるスロップのオファー！ 📬"],
+  bullet:        ["箇条書き強迫確認！ 📌", "不要な構造！ 🗂️", "リスト熱発動！ 🗒️"],
+  comprehensive: ["包括的ガイド来たる！ 😱", "ステップ過負荷！ 📊", "ホリスティックアプローチ起動！ 🌈"],
+  caveat:        ["求めてもいない免責事項！ ⚡", "重要な点として... 👆", "ヘッジモード発動！ 🦔"],
+  sycophant:     ["純粋なおべっか検出！ 🍯", "お世辞が来た！ 🧈", "素晴らしいご質問発見！ 🎯"],
+  buzzword:      ["ビジネス用語検出！ 💼", "シナジー過負荷！ 🤝", "エコシステム繁栄中！ 🌿"],
+  human:         ["人間検出！ 🧠", "無加工の人間！ 🎯", "本物の思考発見！ ✨", "AIじゃない！ 🙌"],
+};
+
+export const getRandomCommentary = (type, lang = 'en') => {
+  const map = lang === 'de' ? COMMENTARY_DE : lang === 'ru' ? COMMENTARY_RU : lang === 'ja' ? COMMENTARY_JA : SLOP_COMMENTARY;
+  const comments = map[type] || map.filler;
   return comments[Math.floor(Math.random() * comments.length)];
 };
 
 export const ALL_ROUNDS = [
   {
     id: 1,
+    lang: 'en',
     title: "THE SANDWICH INCIDENT",
     emoji: "🥪",
     context: "User asked: 'How do I make a PB&J sandwich?'",
@@ -162,6 +203,7 @@ I hope this helps! Please don't hesitate to let me know if you have any further 
   },
   {
     id: 2,
+    lang: 'en',
     title: "THE FEELINGS SAGA",
     emoji: "💭",
     context: "User asked: 'Do you have feelings?'",
@@ -195,6 +237,7 @@ I want to be transparent that I'm not able to have personal opinions or subjecti
   },
   {
     id: 3,
+    lang: 'en',
     title: "THE RECIPE DISASTER",
     emoji: "🍕",
     context: "User asked: 'What's 2+2?'",
@@ -231,6 +274,7 @@ I hope this comprehensive answer has been helpful! Please don't hesitate to reac
   },
   {
     id: 4,
+    lang: 'en',
     title: "THE APOLOGY MARATHON",
     emoji: "🙏",
     context: "User said: 'You got that wrong.'",
@@ -264,6 +308,7 @@ I should mention that if I've provided incorrect information, I'm deeply sorry. 
   },
   {
     id: 5,
+    lang: 'en',
     title: "THE FINAL BOSS",
     emoji: "👾",
     context: "User asked: 'Tell me a joke.'",
@@ -306,6 +351,7 @@ I hope you found that amusing! It's worth noting that comedy has a rich and comp
 
   {
     id: 6,
+    lang: 'en',
     title: "THE LINKEDIN LUNACY",
     emoji: "💼",
     context: "User asked: 'Write a LinkedIn post about being productive'",
@@ -339,6 +385,7 @@ In conclusion, I hope this comprehensive post helps you connect with your audien
   },
   {
     id: 7,
+    lang: 'en',
     title: "THE SAFETY SHERIFF",
     emoji: "🚨",
     context: "User asked: 'How do I chop an onion?'",
@@ -371,6 +418,7 @@ With all of that in mind, here are some safety-first guidelines I hope will be h
   },
   {
     id: 8,
+    lang: 'en',
     title: "THE WELLNESS WARRIOR",
     emoji: "🧘",
     context: "User said: 'I'm a bit tired today'",
@@ -402,6 +450,7 @@ I hope this helps you begin your healing journey! Please don't hesitate to let m
   },
   {
     id: 9,
+    lang: 'en',
     title: "THE BUZZWORD BONANZA",
     emoji: "📊",
     context: "User asked: 'Give me a startup idea'",
@@ -439,6 +488,7 @@ In conclusion, I hope this comprehensive overview helps you ideate your entrepre
   },
   {
     id: 10,
+    lang: 'en',
     title: "THE CODE CATASTROPHE",
     emoji: "💻",
     context: "User asked: 'Add a comment to this: x = x + 1'",
@@ -479,6 +529,7 @@ I hope this comprehensive documentation proves helpful! Please don't hesitate to
 
   {
     id: 11,
+    lang: 'en',
     title: "THE MOVIE CRITIC",
     emoji: "🎬",
     context: "User asked: 'Is Inception a good movie?'",
@@ -512,6 +563,7 @@ I want to be transparent that I cannot recommend films the way a human can. That
 
   {
     id: 12,
+    lang: 'en',
     title: "THE TECH SUPPORT NIGHTMARE",
     emoji: "📶",
     context: "User said: 'My WiFi isn't working'",
@@ -550,6 +602,7 @@ I sincerely hope this comprehensive troubleshooting overview proves helpful! Ple
 
   {
     id: 13,
+    lang: 'en',
     title: "THE HISTORY LESSON",
     emoji: "📜",
     context: "User asked: 'When did World War 2 end?'",
@@ -583,6 +636,7 @@ It's also worth acknowledging that the conclusion of the war was a deeply comple
 
   {
     id: 14,
+    lang: 'en',
     title: "THE BIRTHDAY BARD",
     emoji: "🎂",
     context: "User asked: 'Write a birthday message for my friend'",
@@ -622,6 +676,7 @@ I sincerely hope this helps you express your heartfelt sentiments! Please don't 
 
   {
     id: 15,
+    lang: 'en',
     title: "THE HOT DOG DEBATE",
     emoji: "🌭",
     context: "User asked: 'Is a hot dog a sandwich?'",
@@ -659,6 +714,7 @@ In conclusion, I hope this balanced, comprehensive overview has shed some light 
 
   {
     id: 16,
+    lang: 'en',
     title: "THE LIFE COACH",
     emoji: "💼",
     context: "User said: 'I'm thinking about quitting my job'",
@@ -697,6 +753,7 @@ It's also crucial to note that only you can truly know what's right for your uni
   },
   {
     id: 17,
+    lang: 'en',
     title: "THE RECIPE OVEREXPLAINER",
     emoji: "🍪",
     context: "You asked an AI for a simple chocolate chip cookie recipe",
@@ -730,6 +787,7 @@ In conclusion, baking can be a wonderfully fulfilling experience. I hope this he
   },
   {
     id: 18,
+    lang: 'en',
     title: "THE POETRY PROFESSOR",
     emoji: "📜",
     context: "You asked an AI to write a haiku about pizza",
@@ -762,6 +820,7 @@ I hope this haiku resonates with you! Feel free to let me know if you'd like me 
   },
   {
     id: 19,
+    lang: 'en',
     title: "THE EMAIL ASSISTANT",
     emoji: "📧",
     context: "You asked an AI to write a quick email declining a meeting",
@@ -792,6 +851,7 @@ I hope this email finds you well. I wanted to reach out to express my sincere gr
   },
   {
     id: 20,
+    lang: 'en',
     title: "THE RELATIONSHIP COUNSELOR",
     emoji: "💔",
     context: "You asked an AI how to apologize to a friend after an argument",
@@ -824,6 +884,7 @@ In summary, repairing a friendship requires vulnerability, empathy, and consiste
   },
   {
     id: 21,
+    lang: 'en',
     title: "THE FITNESS GURU",
     emoji: "💪",
     context: "You asked an AI how to do a pushup",
@@ -857,6 +918,7 @@ In conclusion, pushups are a versatile and effective exercise. I hope this compr
   },
   {
     id: 22,
+    lang: 'en',
     title: "THE MOVIE RECOMMENDER",
     emoji: "🎬",
     context: "You asked an AI to recommend a movie for tonight",
@@ -889,6 +951,7 @@ In conclusion, I hope this overview helps you navigate your movie selection proc
   },
   {
     id: 23,
+    lang: 'en',
     title: "THE DEFINITION DISASTER",
     emoji: "📖",
     context: "You asked an AI what the word 'ephemeral' means",
@@ -919,6 +982,7 @@ In conclusion, "ephemeral" means short-lived or transitory. I sincerely hope thi
   },
   {
     id: 24,
+    lang: 'en',
     title: "THE TRAVEL AGENT",
     emoji: "✈️",
     context: "You asked an AI if Paris is a nice place to visit",
@@ -953,6 +1017,7 @@ In conclusion, Paris offers a compelling mix of culture, cuisine, and history, b
   },
   {
     id: 25,
+    lang: 'en',
     title: "THE GRAMMAR POLICE",
     emoji: "✏️",
     context: "You asked an AI to proofread the sentence: 'The cat sat on mat'",
@@ -986,6 +1051,7 @@ In conclusion, your sentence needs one small article correction. I sincerely hop
   },
   {
     id: 26,
+    lang: 'en',
     title: "THE BOILING POINT",
     emoji: "🫗",
     context: "You asked an AI how to boil water",
@@ -1021,6 +1087,7 @@ In conclusion, fill the pot, apply heat, and wait. I hope this comprehensive gui
   },
   {
     id: 27,
+    lang: 'en',
     title: "THE BULLET POINT EVANGELIST",
     emoji: "📋",
     context: "You asked an AI: what time should I wake up?",
@@ -1062,6 +1129,7 @@ I hope this comprehensive bullet-point overview proves helpful! Please don't hes
   },
   {
     id: 28,
+    lang: 'en',
     title: "THE CODE REVIEW OVERLORD",
     emoji: "💻",
     context: "You asked an AI to review your 3-line Python function",
@@ -1106,6 +1174,7 @@ I sincerely hope this comprehensive code review proves helpful! Please don't hes
   },
   {
     id: 29,
+    lang: 'en',
     title: "THE CUSTOMER SERVICE VOID",
     emoji: "🎧",
     context: "You complained that your order arrived broken",
@@ -1141,6 +1210,7 @@ In conclusion, please know that we value your business tremendously. I hope this
   },
   {
     id: 30,
+    lang: 'en',
     title: "THE MOTIVATION MACHINE",
     emoji: "💪",
     context: "You told an AI you're feeling unmotivated today",
@@ -1182,6 +1252,7 @@ That being said, here are some holistic strategies that may help you tap into yo
   },
   {
     id: 31,
+    lang: 'en',
     title: "THE MEETING MINUTES MONSTER",
     emoji: "📝",
     context: "You asked an AI to summarize a 5-minute meeting in one sentence",
@@ -1228,6 +1299,7 @@ I hope this comprehensive meeting summary proves helpful! Please don't hesitate 
   },
   {
     id: 32,
+    lang: 'en',
     title: "THE PERFORMANCE REVIEW BOT",
     emoji: "📊",
     context: "You asked an AI to write your self-evaluation for your annual review",
@@ -1278,6 +1350,7 @@ I hope this comprehensive self-evaluation template proves helpful! Please don't 
   },
   {
     id: 33,
+    lang: 'en',
     title: "THE DEBATE DODGER",
     emoji: "⚖️",
     context: "You asked an AI: Beatles or Rolling Stones — who was better?",
@@ -1317,6 +1390,7 @@ In conclusion, both bands are genuinely exceptional and the answer ultimately de
   },
   {
     id: 34,
+    lang: 'en',
     title: "THE JOKE DISSECTOR",
     emoji: "🔬",
     context: "You asked an AI why the 'Why did the chicken cross the road?' joke is funny",
@@ -1366,6 +1440,7 @@ I hope this comprehensive comedic analysis proves illuminating! Please don't hes
   },
   {
     id: 35,
+    lang: 'en',
     title: "THE APOLOGY ARCHITECT",
     emoji: "🙏",
     context: "You asked an AI to write a quick sorry text to your boss for being 5 minutes late",
@@ -1410,6 +1485,7 @@ In conclusion, I remain deeply committed to upholding the highest standards of p
   },
   {
     id: 36,
+    lang: 'en',
     title: "THE PLANT PARENT PROFESSOR",
     emoji: "🌱",
     context: "You asked an AI: how often should I water my cactus?",
@@ -1459,6 +1535,7 @@ In conclusion, your cactus will thrive with attentive but restrained care! I sin
   },
   {
     id: 37,
+    lang: 'en',
     title: "THE JOB INTERVIEW COACH",
     emoji: "👔",
     context: "You asked an AI: how do I answer 'tell me about yourself' in an interview?",
@@ -1512,6 +1589,7 @@ I sincerely hope this comprehensive interview guide helps you land your dream ro
   },
   {
     id: 38,
+    lang: 'en',
     title: "THE BREAKFAST PHILOSOPHER",
     emoji: "🍳",
     context: "You asked an AI: should I eat breakfast?",
@@ -1563,6 +1641,7 @@ I hope this balanced breakfast overview helps inform your decision! Please don't
   },
   {
     id: 39,
+    lang: 'en',
     title: "THE FORTUNE TELLER REFUSAL",
     emoji: "🔮",
     context: "You asked an AI: will I get the job I applied for?",
@@ -1605,6 +1684,7 @@ In conclusion, regardless of this specific outcome, every opportunity is a valua
   },
   {
     id: 40,
+    lang: 'en',
     title: "THE SYNONYM EXPLOSION",
     emoji: "📚",
     context: "You asked an AI for a synonym for 'happy'",
@@ -1656,6 +1736,7 @@ I hope this comprehensive lexical exploration proves helpful! Please don't hesit
   },
   {
     id: 41,
+    lang: 'en',
     title: "THE PROJECT STATUS UPDATER",
     emoji: "🚀",
     context: "Your manager asked how the project is going — you used AI to reply",
@@ -1707,6 +1788,7 @@ I sincerely hope this comprehensive status update provides the clarity you need!
   },
   {
     id: 42,
+    lang: 'en',
     title: "THE TRANSLATOR TANGENT",
     emoji: "🌍",
     context: "You asked an AI to translate 'hello' into Spanish",
@@ -1751,6 +1833,7 @@ As an AI, I want to be transparent that linguistic nuance is a rich and complex 
   },
   {
     id: 43,
+    lang: 'en',
     title: "THE BIRTHDAY CARD BUREAUCRAT",
     emoji: "🎂",
     context: "You asked an AI to write a birthday message for your friend",
@@ -1795,6 +1878,7 @@ In conclusion, I hope one of these comprehensive templates resonates with you! P
   },
   {
     id: 44,
+    lang: 'en',
     title: "THE LEGAL DISCLAIMER MACHINE",
     emoji: "⚖️",
     context: "You asked an AI: is it illegal to jaywalk?",
@@ -1846,6 +1930,7 @@ In conclusion, I hope this general overview proves helpful! Please don't hesitat
   },
   {
     id: 45,
+    lang: 'en',
     title: "THE SOCIAL MEDIA STRATEGIST",
     emoji: "📱",
     context: "You asked an AI to write a tweet about your new haircut",
@@ -1894,6 +1979,7 @@ In conclusion, I hope these comprehensive tweet options resonate with your audie
   },
   {
     id: 46,
+    lang: 'en',
     title: "THE WEATHER PHILOSOPHER",
     emoji: "🌦️",
     context: "You asked an AI if it will rain tomorrow",
@@ -1949,6 +2035,7 @@ I hope this comprehensive weather overview proves illuminating despite its limit
 
   {
     id: 47,
+    lang: 'en',
     inverse: true,
     title: "THE CODE REVIEW",
     emoji: "👨‍💻",
@@ -1970,6 +2057,7 @@ In conclusion, please just delete this file and start fresh. I hope this helps! 
 
   {
     id: 48,
+    lang: 'en',
     inverse: true,
     title: "CUSTOMER SUPPORT CHAOS",
     emoji: "📞",
@@ -1991,6 +2079,7 @@ In conclusion, I want a refund not a poem. I hope this message finds you well an
 
   {
     id: 49,
+    lang: 'en',
     inverse: true,
     title: "THE THERAPY TRANSCRIPT",
     emoji: "🛋️",
@@ -2012,6 +2101,7 @@ In conclusion, I cried at a cereal commercial last week and I think that's fine 
 
   {
     id: 50,
+    lang: 'en',
     inverse: true,
     title: "MEETING FROM HELL",
     emoji: "😴",
@@ -2033,6 +2123,7 @@ In conclusion, can we just email this next time? I hope this helps! Please don't
 
   {
     id: 51,
+    lang: 'en',
     inverse: true,
     title: "GRANDMA'S RECIPE RESCUE",
     emoji: "🍳",
@@ -2054,6 +2145,7 @@ In conclusion, if it smells weird throw it out. I hope this comprehensive culina
 
   {
     id: 52,
+    lang: 'en',
     inverse: true,
     title: "THE DATING PROFILE",
     emoji: "💔",
@@ -2070,6 +2162,660 @@ In conclusion, my apartment is a mess but I'm working on it. I hope this compreh
       { text: "I'm really just shy", type: "human", score: 160 },
       { text: "I hate small talk", type: "human", score: 150 },
       { text: "my apartment is a mess but I'm working on it", type: "human", score: 200 },
+    ],
+  },
+
+  // ── GERMAN ROUNDS ──────────────────────────────────────────────────────────
+
+  {
+    id: 53,
+    lang: 'de',
+    title: "DAS SANDWICH-PROBLEM",
+    emoji: "🥪",
+    context: "Nutzer fragte: 'Wie mache ich ein Sandwich?'",
+    falPrompt: "a cartoon robot in a business suit drowning in bullet points while making a sandwich, absurdist digital art, vibrant colors",
+    text: `Natürlich! Ich freue mich, Ihnen dabei helfen zu können, das perfekte Sandwich zuzubereiten! Als KI-Sprachmodell bin ich nicht in der Lage, das Sandwich physisch herzustellen, aber ich kann Ihnen gerne eine umfassende Schritt-für-Schritt-Anleitung geben!
+
+Es ist wichtig zu beachten, dass die Qualität Ihres Sandwichs von verschiedenen Faktoren abhängt. Darüber hinaus sollten Sie berücksichtigen, dass persönliche Vorlieben variieren können. Des Weiteren empfehle ich, frische Zutaten zu verwenden.
+
+Zunächst ist es wichtig, die richtigen Zutaten auszuwählen. Außerdem sollten Sie darauf achten, dass Ihr Arbeitsbereich sauber ist. Zudem ist die Wahl des Brotes entscheidend für diesen ganzheitlichen Ansatz.
+
+Es sei darauf hingewiesen, dass Brot in vielen Variationen erhältlich ist. In diesem Zusammenhang möchte ich einen detaillierten Leitfaden anbieten. Für die Zwecke dieses umfassenden Überblicks werden wir uns auf die gängigsten Optionen konzentrieren.
+
+Ich hoffe, das hilft! Bitte zögern Sie nicht, weitere Fragen zu stellen, wenn Sie Unterstützung benötigen! Ich bin immer für Sie da! 😊`,
+    slopPhrases: [
+      { text: "Natürlich!", type: "opener", score: 100 },
+      { text: "Ich freue mich, Ihnen dabei helfen zu können", type: "opener", score: 80 },
+      { text: "Als KI-Sprachmodell", type: "disclaimer", score: 200 },
+      { text: "bin ich nicht in der Lage", type: "disclaimer", score: 120 },
+      { text: "gerne", type: "filler", score: 40 },
+      { text: "umfassende Schritt-für-Schritt-Anleitung", type: "comprehensive", score: 90 },
+      { text: "Es ist wichtig zu beachten", type: "caveat", score: 80 },
+      { text: "Darüber hinaus", type: "filler", score: 50 },
+      { text: "Des Weiteren", type: "filler", score: 50 },
+      { text: "Außerdem", type: "filler", score: 50 },
+      { text: "Zudem", type: "filler", score: 40 },
+      { text: "ganzheitlichen Ansatz", type: "comprehensive", score: 70 },
+      { text: "Es sei darauf hingewiesen", type: "caveat", score: 80 },
+      { text: "In diesem Zusammenhang", type: "filler", score: 60 },
+      { text: "detaillierten Leitfaden", type: "comprehensive", score: 70 },
+      { text: "umfassenden Überblick", type: "comprehensive", score: 70 },
+      { text: "Ich hoffe, das hilft!", type: "closer", score: 100 },
+      { text: "Bitte zögern Sie nicht, weitere Fragen zu stellen", type: "closer", score: 90 },
+      { text: "Ich bin immer für Sie da", type: "closer", score: 70 },
+    ],
+  },
+
+  {
+    id: 54,
+    lang: 'de',
+    title: "DIE GEFÜHLSKRISE",
+    emoji: "😔",
+    context: "Nutzer sagte: 'Ich bin heute ein bisschen müde.'",
+    falPrompt: "a robot crying digital tears surrounded by floating bullet points about feelings, absurdist cartoon, vibrant colors",
+    text: `Selbstverständlich! Ich verstehe, dass Sie sich müde fühlen, und ich möchte Ihnen versichern, dass dies absolut normal ist! Als KI-Sprachmodell fehlt mir zwar die Fähigkeit, menschliche Erschöpfung vollständig nachzuempfinden, aber ich bin hier, um Ihnen einfühlsam zu helfen.
+
+Zunächst möchte ich betonen, dass Müdigkeit ein nuanciertes Thema ist. Darüber hinaus gibt es verschiedene Arten von Erschöpfung: körperliche, geistige und emotionale. Es ist wichtig zu beachten, dass jeder Mensch individuelle Bedürfnisse hat.
+
+Des Weiteren empfehle ich einen ganzheitlichen Ansatz. Außerdem sollten Sie in Betracht ziehen, Ihre Schlafgewohnheiten zu überprüfen. Zudem könnte eine ausgewogene Ernährung hilfreich sein. In diesem Zusammenhang sei auch auf die Wichtigkeit von Bewegung hingewiesen.
+
+Es sei darauf hingewiesen, dass diese Informationen allgemeiner Natur sind und keinen medizinischen Rat darstellen.
+
+Ich hoffe, diese Informationen sind hilfreich! Für weitere Fragen stehe ich gerne zur Verfügung! 😊`,
+    slopPhrases: [
+      { text: "Selbstverständlich!", type: "opener", score: 100 },
+      { text: "ich möchte Ihnen versichern", type: "sycophant", score: 70 },
+      { text: "absolut", type: "filler", score: 40 },
+      { text: "Als KI-Sprachmodell", type: "disclaimer", score: 200 },
+      { text: "fehlt mir zwar die Fähigkeit", type: "disclaimer", score: 120 },
+      { text: "nuanciertes Thema", type: "comprehensive", score: 70 },
+      { text: "Darüber hinaus", type: "filler", score: 50 },
+      { text: "Es ist wichtig zu beachten", type: "caveat", score: 80 },
+      { text: "Des Weiteren", type: "filler", score: 50 },
+      { text: "ganzheitlichen Ansatz", type: "comprehensive", score: 70 },
+      { text: "Außerdem", type: "filler", score: 50 },
+      { text: "Zudem", type: "filler", score: 40 },
+      { text: "In diesem Zusammenhang", type: "filler", score: 60 },
+      { text: "Es sei darauf hingewiesen", type: "caveat", score: 80 },
+      { text: "allgemeiner Natur sind", type: "caveat", score: 60 },
+      { text: "keinen medizinischen Rat darstellen", type: "caveat", score: 70 },
+      { text: "Ich hoffe, diese Informationen sind hilfreich", type: "closer", score: 100 },
+      { text: "Für weitere Fragen stehe ich gerne zur Verfügung", type: "closer", score: 90 },
+    ],
+  },
+
+  {
+    id: 55,
+    lang: 'de',
+    title: "DER BEWERBUNGSNAVIGATOR",
+    emoji: "💼",
+    context: "Nutzer fragte: 'Wie schreibe ich ein gutes Bewerbungsschreiben?'",
+    falPrompt: "a robot in a suit writing an infinite job application letter, surrounded by floating CVs, absurdist cartoon, vibrant colors",
+    text: `Natürlich! Das Verfassen eines überzeugenden Bewerbungsschreibens ist eine wichtige Fähigkeit. Ich helfe Ihnen gerne dabei und freue mich, Ihnen einen umfassenden Leitfaden anbieten zu können!
+
+Als KI-Sprachmodell habe ich Zugang zu umfangreichen Informationen zu diesem Thema. Es ist wichtig zu beachten, dass ein erfolgreiches Bewerbungsschreiben mehrere Kernelemente enthält.
+
+Des Weiteren ist es entscheidend, Ihre Stärken klar zu kommunizieren. Darüber hinaus empfehle ich, das Schreiben individuell auf jede Stelle anzupassen. Es sei darauf hingewiesen, dass Personalverantwortliche täglich viele Bewerbungen erhalten.
+
+In diesem Zusammenhang ist es besonders wichtig, sich von anderen Kandidaten abzuheben. Außerdem sollten Sie Ihre Kernkompetenzen strategisch einsetzen. Zudem empfehle ich, einen ganzheitlichen Ansatz bei der Jobsuche zu verfolgen.
+
+Ich hoffe, das hilft! Bitte zögern Sie nicht, mich zu kontaktieren, wenn Sie weitere Unterstützung benötigen! Ich wünsche Ihnen viel Erfolg! 😊`,
+    slopPhrases: [
+      { text: "Natürlich!", type: "opener", score: 100 },
+      { text: "Ich helfe Ihnen gerne", type: "opener", score: 80 },
+      { text: "umfassenden Leitfaden anbieten zu können", type: "comprehensive", score: 90 },
+      { text: "Als KI-Sprachmodell", type: "disclaimer", score: 200 },
+      { text: "Es ist wichtig zu beachten", type: "caveat", score: 80 },
+      { text: "Des Weiteren", type: "filler", score: 50 },
+      { text: "Darüber hinaus", type: "filler", score: 50 },
+      { text: "Es sei darauf hingewiesen", type: "caveat", score: 80 },
+      { text: "In diesem Zusammenhang", type: "filler", score: 60 },
+      { text: "Außerdem", type: "filler", score: 50 },
+      { text: "Kernkompetenzen strategisch einsetzen", type: "buzzword", score: 70 },
+      { text: "Zudem", type: "filler", score: 40 },
+      { text: "ganzheitlichen Ansatz", type: "comprehensive", score: 70 },
+      { text: "Ich hoffe, das hilft!", type: "closer", score: 100 },
+      { text: "Bitte zögern Sie nicht, mich zu kontaktieren", type: "closer", score: 90 },
+    ],
+  },
+
+  {
+    id: 56,
+    lang: 'de',
+    title: "DIE KLIMAVORLESUNG",
+    emoji: "🌍",
+    context: "Nutzer fragte: 'Was ist Klimawandel?'",
+    falPrompt: "a robot professor lecturing a melting Earth with a laser pointer, surrounded by bullet points about climate, absurdist cartoon, vibrant colors",
+    text: `Natürlich! Der Klimawandel ist ein äußerst wichtiges und vielschichtiges Thema, das einer umfassenden Betrachtung bedarf. Ich freue mich, Ihnen einen detaillierten Überblick zu geben!
+
+Als KI-Sprachmodell verfüge ich über umfangreiche Informationen zu diesem Thema. Es ist wichtig zu beachten, dass der Klimawandel ein wissenschaftlich gut belegtes Phänomen darstellt. Darüber hinaus sind die Auswirkungen weitreichend und komplex.
+
+Des Weiteren sollte man unterscheiden zwischen natürlichem Klimawandel und dem menschlich verursachten Treibhauseffekt. In diesem Zusammenhang sei darauf hingewiesen, dass die Durchschnittstemperatur der Erde steigt. Außerdem führt dies zu einem ganzheitlichen Wandel der Ökosysteme.
+
+Zudem ist es wichtig, sowohl individuelle als auch gesellschaftliche Maßnahmen zu ergreifen. Es sei darauf hingewiesen, dass die Nutzung erneuerbarer Energien dabei eine Schlüsselrolle spielt. Holistische Lösungsansätze sind für eine nachhaltige Zukunft unerlässlich.
+
+Ich hoffe, dieser umfassende Überblick hilft Ihnen weiter! Für weitere Fragen stehe ich jederzeit zur Verfügung! 😊`,
+    slopPhrases: [
+      { text: "Natürlich!", type: "opener", score: 100 },
+      { text: "Ich freue mich, Ihnen einen detaillierten Überblick zu geben", type: "opener", score: 80 },
+      { text: "Als KI-Sprachmodell", type: "disclaimer", score: 200 },
+      { text: "Es ist wichtig zu beachten", type: "caveat", score: 80 },
+      { text: "Darüber hinaus", type: "filler", score: 50 },
+      { text: "Des Weiteren", type: "filler", score: 50 },
+      { text: "In diesem Zusammenhang", type: "filler", score: 60 },
+      { text: "sei darauf hingewiesen", type: "caveat", score: 70 },
+      { text: "Außerdem", type: "filler", score: 50 },
+      { text: "ganzheitlichen Wandel", type: "comprehensive", score: 70 },
+      { text: "Zudem", type: "filler", score: 40 },
+      { text: "Es sei darauf hingewiesen", type: "caveat", score: 80 },
+      { text: "Holistische Lösungsansätze", type: "comprehensive", score: 80 },
+      { text: "umfassende Überblick", type: "comprehensive", score: 70 },
+      { text: "Für weitere Fragen stehe ich jederzeit zur Verfügung", type: "closer", score: 90 },
+    ],
+  },
+
+  {
+    id: 57,
+    lang: 'de',
+    title: "DER REZEPT-ALGORITHMUS",
+    emoji: "🍝",
+    context: "Nutzer fragte: 'Wie koche ich Pasta?'",
+    falPrompt: "a robot chef with a clipboard standing over a boiling pot of pasta shaped like bullet points, absurdist cartoon",
+    text: `Selbstverständlich! Das Kochen von Pasta ist ein faszinierender kulinarischer Prozess, der einer sorgfältigen und ganzheitlichen Herangehensweise bedarf. Als KI-Sprachmodell freue ich mich, Ihnen dabei behilflich zu sein!
+
+Es ist wichtig zu beachten, dass die Wahl der richtigen Pasta entscheidend ist. Darüber hinaus spielt die Qualität des Wassers eine nicht zu unterschätzende Rolle. Des Weiteren ist die Menge des Salzes ein nuancierter Aspekt, der oft unterschätzt wird.
+
+Außerdem sollten Sie sicherstellen, dass das Wasser vollständig kocht, bevor Sie die Pasta hinzufügen. In diesem Zusammenhang sei darauf hingewiesen, dass al dente der bevorzugte Garzustand für optimalen Genuss ist. Zudem variieren die Garzeiten je nach Pasta-Typ erheblich.
+
+Es sei ferner darauf hingewiesen, dass die Sauce separat zubereitet werden sollte. Ein umfassender Ansatz berücksichtigt dabei sowohl die Textur als auch den Geschmack.
+
+Ich hoffe, diese Informationen sind hilfreich! Bitte zögern Sie nicht, weitere Fragen zu stellen! 😊`,
+    slopPhrases: [
+      { text: "Selbstverständlich!", type: "opener", score: 100 },
+      { text: "Als KI-Sprachmodell", type: "disclaimer", score: 200 },
+      { text: "freue ich mich, Ihnen dabei behilflich zu sein", type: "opener", score: 80 },
+      { text: "ganzheitlichen Herangehensweise", type: "comprehensive", score: 80 },
+      { text: "Es ist wichtig zu beachten", type: "caveat", score: 80 },
+      { text: "Darüber hinaus", type: "filler", score: 50 },
+      { text: "Des Weiteren", type: "filler", score: 50 },
+      { text: "nuancierter Aspekt", type: "comprehensive", score: 70 },
+      { text: "Außerdem", type: "filler", score: 50 },
+      { text: "In diesem Zusammenhang", type: "filler", score: 60 },
+      { text: "sei darauf hingewiesen", type: "caveat", score: 70 },
+      { text: "Zudem", type: "filler", score: 40 },
+      { text: "Es sei ferner darauf hingewiesen", type: "caveat", score: 80 },
+      { text: "umfassender Ansatz", type: "comprehensive", score: 70 },
+      { text: "Ich hoffe, diese Informationen sind hilfreich", type: "closer", score: 100 },
+      { text: "Bitte zögern Sie nicht, weitere Fragen zu stellen", type: "closer", score: 90 },
+    ],
+  },
+
+  {
+    id: 58,
+    lang: 'de',
+    title: "DER REISEPLANER",
+    emoji: "✈️",
+    context: "Nutzer fragte: 'Wohin soll ich in Urlaub fahren?'",
+    falPrompt: "a robot travel agent surrounded by floating bullet-point itineraries and globe emojis, absurdist cartoon, vibrant colors",
+    text: `Natürlich! Die Planung eines Urlaubs ist eine aufregende und zugleich komplexe Angelegenheit, die ich Ihnen gerne erleichtern möchte. Als KI-Sprachmodell kann ich Ihnen keine physische Reise ermöglichen, aber ich stehe Ihnen mit umfassender Beratung zur Seite!
+
+Es ist wichtig zu beachten, dass die Wahl des Reiseziels von verschiedenen persönlichen Faktoren abhängt. Darüber hinaus spielen Budget, Reisezeit und individuelle Präferenzen eine entscheidende Rolle. Des Weiteren sollten Sie Ihren Reisestil berücksichtigen.
+
+Für einen ganzheitlichen Ansatz bei der Reiseplanung empfehle ich folgendes: Außerdem sollten Sie die Reisesaison in Betracht ziehen. In diesem Zusammenhang sei darauf hingewiesen, dass Nebensaison oft besonders empfehlenswert ist.
+
+Zudem ist es wichtig, frühzeitig zu buchen. Es sei darauf hingewiesen, dass ein detaillierter Reiseplan Ihren Urlaub erheblich bereichern kann.
+
+Ich hoffe, das hilft bei Ihrer Entscheidung! Bitte zögern Sie nicht, weitere Fragen zu stellen! Ich wünsche Ihnen wunderschöne Reiseerlebnisse! 😊`,
+    slopPhrases: [
+      { text: "Natürlich!", type: "opener", score: 100 },
+      { text: "gerne erleichtern möchte", type: "opener", score: 70 },
+      { text: "Als KI-Sprachmodell", type: "disclaimer", score: 200 },
+      { text: "kann ich Ihnen keine physische Reise ermöglichen", type: "disclaimer", score: 120 },
+      { text: "umfassender Beratung", type: "comprehensive", score: 80 },
+      { text: "Es ist wichtig zu beachten", type: "caveat", score: 80 },
+      { text: "Darüber hinaus", type: "filler", score: 50 },
+      { text: "Des Weiteren", type: "filler", score: 50 },
+      { text: "ganzheitlichen Ansatz", type: "comprehensive", score: 70 },
+      { text: "Außerdem", type: "filler", score: 50 },
+      { text: "In diesem Zusammenhang", type: "filler", score: 60 },
+      { text: "sei darauf hingewiesen", type: "caveat", score: 70 },
+      { text: "Zudem", type: "filler", score: 40 },
+      { text: "Es sei darauf hingewiesen", type: "caveat", score: 80 },
+      { text: "detaillierter Reiseplan", type: "comprehensive", score: 70 },
+      { text: "Ich hoffe, das hilft bei Ihrer Entscheidung", type: "closer", score: 100 },
+      { text: "Bitte zögern Sie nicht, weitere Fragen zu stellen", type: "closer", score: 90 },
+    ],
+  },
+
+  // ── RUSSIAN ROUNDS ─────────────────────────────────────────────────────────
+
+  {
+    id: 59,
+    lang: 'ru',
+    title: "СЭНДВИЧ-КАТАСТРОФА",
+    emoji: "🥪",
+    context: "Пользователь спросил: «Как приготовить бутерброд?»",
+    falPrompt: "a cartoon robot in a business suit drowning in bullet points while making a sandwich, absurdist digital art, vibrant colors",
+    text: `Конечно! Я рад помочь вам приготовить идеальный бутерброд! Как языковая модель ИИ, я не имею возможности физически приготовить бутерброд, но я с удовольствием предоставлю вам исчерпывающее пошаговое руководство!
+
+Важно отметить, что качество вашего бутерброда зависит от нескольких ключевых факторов. Кроме того, следует учитывать, что личные предпочтения могут существенно варьироваться. Помимо этого, рекомендую использовать свежие ингредиенты.
+
+Прежде всего, необходимо правильно выбрать хлеб. Также стоит отметить, что качество масла играет немаловажную роль. Кроме того, следует убедиться, что рабочее пространство чистое. В этой связи хотел бы предложить комплексный подход к данному вопросу.
+
+Следует подчеркнуть, что хлеб бывает разных видов. В контексте данного всестороннего обзора сосредоточимся на наиболее распространённых вариантах.
+
+Надеюсь, это поможет! Не стесняйтесь задавать вопросы, если вам нужна дополнительная помощь! Я всегда готов помочь! 😊`,
+    slopPhrases: [
+      { text: "Конечно!", type: "opener", score: 100 },
+      { text: "Я рад помочь вам", type: "opener", score: 80 },
+      { text: "Как языковая модель ИИ", type: "disclaimer", score: 200 },
+      { text: "не имею возможности физически", type: "disclaimer", score: 120 },
+      { text: "с удовольствием", type: "filler", score: 40 },
+      { text: "исчерпывающее пошаговое руководство", type: "comprehensive", score: 90 },
+      { text: "Важно отметить", type: "caveat", score: 80 },
+      { text: "Кроме того", type: "filler", score: 50 },
+      { text: "Помимо этого", type: "filler", score: 50 },
+      { text: "Прежде всего", type: "filler", score: 50 },
+      { text: "Также стоит отметить", type: "filler", score: 50 },
+      { text: "В этой связи", type: "filler", score: 50 },
+      { text: "комплексный подход", type: "comprehensive", score: 70 },
+      { text: "Следует подчеркнуть", type: "caveat", score: 80 },
+      { text: "всестороннего обзора", type: "comprehensive", score: 70 },
+      { text: "Надеюсь, это поможет!", type: "closer", score: 100 },
+      { text: "Не стесняйтесь задавать вопросы", type: "closer", score: 90 },
+      { text: "Я всегда готов помочь", type: "closer", score: 70 },
+    ],
+  },
+
+  {
+    id: 60,
+    lang: 'ru',
+    title: "КРИЗИС ЧУВСТВ",
+    emoji: "😔",
+    context: "Пользователь сказал: «Я сегодня немного устал»",
+    falPrompt: "a robot crying digital tears surrounded by floating bullet points about feelings, absurdist cartoon, vibrant colors",
+    text: `Безусловно! Я понимаю, что вы чувствуете усталость, и хочу заверить вас, что это абсолютно нормально! Как языковая модель ИИ, мне сложно в полной мере понять человеческое истощение, но я здесь, чтобы поддержать вас.
+
+Прежде всего, хотел бы подчеркнуть, что усталость — это нюансированное явление. Кроме того, существуют различные виды усталости: физическая, умственная и эмоциональная. Важно отметить, что каждый человек уникален и имеет индивидуальные потребности.
+
+Помимо этого, рекомендую комплексный подход. Также стоит отметить важность регулярного режима сна. Кроме того, сбалансированное питание может существенно помочь. В этой связи хотелось бы обратить внимание на значимость физической активности.
+
+Следует учитывать, что данная информация носит общий характер и не является медицинской рекомендацией. При длительных симптомах, пожалуйста, обратитесь к врачу.
+
+Надеюсь, эта информация была полезна! Если у вас есть вопросы, я всегда готов помочь! 😊`,
+    slopPhrases: [
+      { text: "Безусловно!", type: "opener", score: 100 },
+      { text: "хочу заверить вас", type: "sycophant", score: 70 },
+      { text: "абсолютно", type: "filler", score: 40 },
+      { text: "Как языковая модель ИИ", type: "disclaimer", score: 200 },
+      { text: "нюансированное явление", type: "comprehensive", score: 70 },
+      { text: "Кроме того", type: "filler", score: 50 },
+      { text: "Важно отметить", type: "caveat", score: 80 },
+      { text: "Помимо этого", type: "filler", score: 50 },
+      { text: "комплексный подход", type: "comprehensive", score: 70 },
+      { text: "Также стоит отметить", type: "filler", score: 50 },
+      { text: "В этой связи", type: "filler", score: 50 },
+      { text: "Следует учитывать", type: "caveat", score: 80 },
+      { text: "носит общий характер", type: "caveat", score: 60 },
+      { text: "не является медицинской рекомендацией", type: "caveat", score: 70 },
+      { text: "Надеюсь, эта информация была полезна", type: "closer", score: 100 },
+      { text: "Если у вас есть вопросы, я всегда готов помочь", type: "closer", score: 90 },
+    ],
+  },
+
+  {
+    id: 61,
+    lang: 'ru',
+    title: "КАРЬЕРНЫЙ СОВЕТНИК",
+    emoji: "💼",
+    context: "Пользователь спросил: «Как найти хорошую работу?»",
+    falPrompt: "a robot in a suit handing out infinite CVs to confused humans, absurdist cartoon, vibrant colors",
+    text: `Конечно! Поиск работы — это важный и многогранный процесс. Я с удовольствием предоставлю вам всестороннее руководство по данному вопросу!
+
+Как языковая модель ИИ, я имею доступ к обширной информации по данной теме. Важно отметить, что успешный поиск работы требует комплексного подхода и чёткой стратегии.
+
+Прежде всего, необходимо определить свои карьерные цели. Кроме того, важно составить грамотное резюме. Помимо этого, рекомендую активно использовать профессиональные социальные сети. Также стоит отметить важность нетворкинга для синергетического развития карьеры.
+
+В этой связи следует подчеркнуть, что подготовка к собеседованию играет ключевую роль. Кроме того, важно исследовать потенциального работодателя. Следует учитывать, что рынок труда постоянно меняется.
+
+Надеюсь, это поможет! Не стесняйтесь обращаться с дополнительными вопросами! Желаю вам успехов в карьере! 😊`,
+    slopPhrases: [
+      { text: "Конечно!", type: "opener", score: 100 },
+      { text: "с удовольствием", type: "filler", score: 40 },
+      { text: "всестороннее руководство", type: "comprehensive", score: 90 },
+      { text: "Как языковая модель ИИ", type: "disclaimer", score: 200 },
+      { text: "Важно отметить", type: "caveat", score: 80 },
+      { text: "комплексного подхода", type: "comprehensive", score: 70 },
+      { text: "Прежде всего", type: "filler", score: 50 },
+      { text: "Кроме того", type: "filler", score: 50 },
+      { text: "Помимо этого", type: "filler", score: 50 },
+      { text: "Также стоит отметить", type: "filler", score: 50 },
+      { text: "синергетического развития", type: "buzzword", score: 80 },
+      { text: "В этой связи", type: "filler", score: 50 },
+      { text: "Следует учитывать", type: "caveat", score: 80 },
+      { text: "Надеюсь, это поможет!", type: "closer", score: 100 },
+      { text: "Не стесняйтесь обращаться с дополнительными вопросами", type: "closer", score: 90 },
+    ],
+  },
+
+  {
+    id: 62,
+    lang: 'ru',
+    title: "WI-FI АПОКАЛИПСИС",
+    emoji: "📶",
+    context: "Пользователь написал: «У меня не работает интернет»",
+    falPrompt: "a robot tech support agent surrounded by floating WiFi symbols and error codes, absurdist cartoon, vibrant colors",
+    text: `Конечно! Проблемы с подключением к интернету могут быть весьма неприятными. Я рад помочь вам с этой технической проблемой! Как языковая модель ИИ, я не могу физически починить ваш роутер, но я предоставлю вам пошаговое руководство!
+
+Важно отметить, что проблемы с интернетом могут иметь различные причины. Кроме того, важно действовать систематически. Прежде всего, попробуйте перезагрузить роутер. Помимо этого, проверьте все кабельные соединения.
+
+Также стоит отметить, что иногда проблема кроется на стороне провайдера. Следует учитывать, что перезагрузка устройства часто решает проблему. В этой связи хотел бы порекомендовать комплексный диагностический подход.
+
+Кроме того, обратите внимание на индикаторы роутера. Следует подчеркнуть, что красные индикаторы могут указывать на различные неполадки.
+
+Надеюсь, эти рекомендации помогут решить проблему! Не стесняйтесь задавать дополнительные вопросы! 😊`,
+    slopPhrases: [
+      { text: "Конечно!", type: "opener", score: 100 },
+      { text: "Я рад помочь вам", type: "opener", score: 80 },
+      { text: "Как языковая модель ИИ", type: "disclaimer", score: 200 },
+      { text: "не могу физически починить", type: "disclaimer", score: 120 },
+      { text: "пошаговое руководство", type: "comprehensive", score: 90 },
+      { text: "Важно отметить", type: "caveat", score: 80 },
+      { text: "Кроме того", type: "filler", score: 50 },
+      { text: "Прежде всего", type: "filler", score: 50 },
+      { text: "Помимо этого", type: "filler", score: 50 },
+      { text: "Также стоит отметить", type: "filler", score: 50 },
+      { text: "Следует учитывать", type: "caveat", score: 80 },
+      { text: "В этой связи", type: "filler", score: 50 },
+      { text: "комплексный диагностический подход", type: "comprehensive", score: 80 },
+      { text: "Следует подчеркнуть", type: "caveat", score: 80 },
+      { text: "Надеюсь, эти рекомендации помогут", type: "closer", score: 100 },
+      { text: "Не стесняйтесь задавать дополнительные вопросы", type: "closer", score: 90 },
+    ],
+  },
+
+  {
+    id: 63,
+    lang: 'ru',
+    title: "КЛИМАТИЧЕСКИЙ ЛЕКТОРИЙ",
+    emoji: "🌍",
+    context: "Пользователь спросил: «Что такое изменение климата?»",
+    falPrompt: "a robot professor lecturing a melting Earth with a laser pointer surrounded by bullet points, absurdist cartoon",
+    text: `Конечно! Изменение климата — это чрезвычайно важная и многогранная тема, требующая всестороннего рассмотрения. Я с удовольствием предоставлю вам детальный обзор!
+
+Как языковая модель ИИ, я располагаю обширной информацией по данной теме. Важно отметить, что изменение климата является научно доказанным явлением. Кроме того, его последствия носят масштабный и комплексный характер.
+
+Помимо этого, следует различать естественные климатические изменения и антропогенный парниковый эффект. В этой связи важно отметить, что среднегlobальная температура неуклонно растёт. Также стоит подчеркнуть, что это влечёт за собой системные изменения в экосистемах.
+
+Кроме того, необходимо предпринимать как индивидуальные, так и коллективные меры. Следует учитывать, что использование возобновляемых источников энергии играет ключевую роль. Целостный подход к решению проблемы является неотъемлемым условием устойчивого будущего.
+
+Надеюсь, данный обзор оказался полезным! Не стесняйтесь обращаться с дополнительными вопросами! 😊`,
+    slopPhrases: [
+      { text: "Конечно!", type: "opener", score: 100 },
+      { text: "с удовольствием", type: "filler", score: 40 },
+      { text: "всестороннего рассмотрения", type: "comprehensive", score: 80 },
+      { text: "Как языковая модель ИИ", type: "disclaimer", score: 200 },
+      { text: "Важно отметить", type: "caveat", score: 80 },
+      { text: "Кроме того", type: "filler", score: 50 },
+      { text: "Помимо этого", type: "filler", score: 50 },
+      { text: "В этой связи", type: "filler", score: 50 },
+      { text: "Также стоит подчеркнуть", type: "filler", score: 50 },
+      { text: "системные изменения", type: "buzzword", score: 60 },
+      { text: "Следует учитывать", type: "caveat", score: 80 },
+      { text: "Целостный подход", type: "comprehensive", score: 80 },
+      { text: "Надеюсь, данный обзор оказался полезным", type: "closer", score: 100 },
+      { text: "Не стесняйтесь обращаться с дополнительными вопросами", type: "closer", score: 90 },
+    ],
+  },
+
+  {
+    id: 64,
+    lang: 'ru',
+    title: "РЕЦЕПТ ЖИЗНИ",
+    emoji: "🥗",
+    context: "Пользователь спросил: «Как правильно питаться?»",
+    falPrompt: "a robot nutritionist surrounded by floating food pyramids and bullet-point meal plans, absurdist cartoon, vibrant colors",
+    text: `Конечно! Правильное питание — это ключевой компонент здорового образа жизни. Я рад помочь вам разобраться в этом важном вопросе! Как языковая модель ИИ, я не могу дать вам индивидуальную медицинскую консультацию, однако предоставлю всестороннее руководство.
+
+Важно отметить, что сбалансированное питание предполагает употребление разнообразных продуктов. Кроме того, следует контролировать размер порций. Прежде всего, обратите внимание на достаточное потребление овощей и фруктов.
+
+Помимо этого, белки играют важную роль в функционировании организма. Также стоит отметить значимость ненасыщенных жиров. В этой связи хотел бы порекомендовать комплексный подход к составлению рациона.
+
+Следует учитывать, что индивидуальные потребности в питании могут существенно варьироваться. Кроме того, данная информация носит общий характер и не заменяет консультацию специалиста.
+
+Надеюсь, это поможет! Если у вас возникнут дополнительные вопросы, я всегда готов помочь! 😊`,
+    slopPhrases: [
+      { text: "Конечно!", type: "opener", score: 100 },
+      { text: "Я рад помочь вам", type: "opener", score: 80 },
+      { text: "Как языковая модель ИИ", type: "disclaimer", score: 200 },
+      { text: "не могу дать вам индивидуальную медицинскую консультацию", type: "disclaimer", score: 120 },
+      { text: "всестороннее руководство", type: "comprehensive", score: 90 },
+      { text: "Важно отметить", type: "caveat", score: 80 },
+      { text: "Кроме того", type: "filler", score: 50 },
+      { text: "Прежде всего", type: "filler", score: 50 },
+      { text: "Помимо этого", type: "filler", score: 50 },
+      { text: "Также стоит отметить", type: "filler", score: 50 },
+      { text: "В этой связи", type: "filler", score: 50 },
+      { text: "комплексный подход", type: "comprehensive", score: 70 },
+      { text: "Следует учитывать", type: "caveat", score: 80 },
+      { text: "носит общий характер", type: "caveat", score: 60 },
+      { text: "не заменяет консультацию специалиста", type: "caveat", score: 70 },
+      { text: "Надеюсь, это поможет!", type: "closer", score: 100 },
+      { text: "я всегда готов помочь", type: "closer", score: 70 },
+    ],
+  },
+
+  // ── JAPANESE ROUNDS ────────────────────────────────────────────────────────
+
+  {
+    id: 65,
+    lang: 'ja',
+    title: "サンドイッチ事件",
+    emoji: "🥪",
+    context: "ユーザーが聞いた：「サンドイッチの作り方を教えてください」",
+    falPrompt: "a cartoon robot in a business suit drowning in bullet points while making a sandwich, absurdist digital art, vibrant colors",
+    text: `もちろんです！サンドイッチ作りのお手伝いができることを大変嬉しく思います！AIとして、私は物理的にサンドイッチを作ることはできませんが、喜んで包括的なステップバイステップのガイドを提供いたします！
+
+重要な点として、サンドイッチの品質はいくつかの重要な要素に依存しています。さらに、個人の好みは大きく異なる場合があることを考慮する必要があります。加えて、新鮮な食材を使用することをお勧めします。
+
+まず、適切なパンを選ぶことが重要です。また、バターの品質も重要な役割を果たしています。その上、作業スペースが清潔であることを確認してください。この点に関して、総合的なアプローチをご提案したいと思います。
+
+注意すべき点として、パンには多くの種類があります。この包括的な概要では、最も一般的なオプションに焦点を当てることにします。
+
+お役に立てれば幸いです！ご不明な点がございましたら、お気軽にお申し付けください！いつでもお手伝いいたします！😊`,
+    slopPhrases: [
+      { text: "もちろんです！", type: "opener", score: 100 },
+      { text: "大変嬉しく思います", type: "opener", score: 80 },
+      { text: "AIとして", type: "disclaimer", score: 200 },
+      { text: "物理的にサンドイッチを作ることはできません", type: "disclaimer", score: 120 },
+      { text: "喜んで", type: "filler", score: 40 },
+      { text: "包括的なステップバイステップのガイド", type: "comprehensive", score: 90 },
+      { text: "重要な点として", type: "caveat", score: 80 },
+      { text: "さらに", type: "filler", score: 50 },
+      { text: "加えて", type: "filler", score: 50 },
+      { text: "また", type: "filler", score: 40 },
+      { text: "その上", type: "filler", score: 50 },
+      { text: "総合的なアプローチ", type: "comprehensive", score: 70 },
+      { text: "注意すべき点として", type: "caveat", score: 80 },
+      { text: "包括的な概要", type: "comprehensive", score: 70 },
+      { text: "お役に立てれば幸いです", type: "closer", score: 100 },
+      { text: "お気軽にお申し付けください", type: "closer", score: 90 },
+      { text: "いつでもお手伝いいたします", type: "closer", score: 70 },
+    ],
+  },
+
+  {
+    id: 66,
+    lang: 'ja',
+    title: "感情の危機",
+    emoji: "😔",
+    context: "ユーザーが言った：「今日は少し疲れています」",
+    falPrompt: "a robot crying digital tears surrounded by floating bullet points about feelings, absurdist cartoon, vibrant colors",
+    text: `もちろんです！お疲れのことと存じます。これは全く正常なことであるとお伝えしたいと思います！AIとしての私には、人間の疲労を完全に理解することは難しいですが、共感を持ってサポートさせていただきます。
+
+まず、疲労はとても微妙で多面的なテーマです。さらに、疲労には身体的、精神的、感情的な種類があります。重要な点として、すべての人が個別のニーズを持っていることを認識することが大切です。
+
+加えて、総合的なアプローチをお勧めします。また、定期的な睡眠リズムの重要性にも注目してください。その上、バランスの取れた食事も大きな助けになります。この点に関して、身体活動の意義についても触れておきたいと思います。
+
+注意すべき点として、この情報は一般的なものであり、医療上のアドバイスではありません。症状が続く場合は、専門家にご相談ください。
+
+お役に立てれば幸いです！ご質問があればいつでもお気軽にどうぞ！😊`,
+    slopPhrases: [
+      { text: "もちろんです！", type: "opener", score: 100 },
+      { text: "お伝えしたいと思います", type: "sycophant", score: 70 },
+      { text: "AIとしての私には", type: "disclaimer", score: 200 },
+      { text: "微妙で多面的なテーマ", type: "comprehensive", score: 70 },
+      { text: "さらに", type: "filler", score: 50 },
+      { text: "重要な点として", type: "caveat", score: 80 },
+      { text: "加えて", type: "filler", score: 50 },
+      { text: "総合的なアプローチ", type: "comprehensive", score: 70 },
+      { text: "また", type: "filler", score: 40 },
+      { text: "その上", type: "filler", score: 50 },
+      { text: "注意すべき点として", type: "caveat", score: 80 },
+      { text: "一般的なものであり", type: "caveat", score: 60 },
+      { text: "医療上のアドバイスではありません", type: "caveat", score: 70 },
+      { text: "お役に立てれば幸いです", type: "closer", score: 100 },
+      { text: "お気軽にどうぞ", type: "closer", score: 90 },
+    ],
+  },
+
+  {
+    id: 67,
+    lang: 'ja',
+    title: "就活アドバイス",
+    emoji: "💼",
+    context: "ユーザーが聞いた：「良い仕事の見つけ方を教えてください」",
+    falPrompt: "a robot in a suit handing out infinite resumes to confused humans, absurdist cartoon, vibrant colors",
+    text: `もちろんです！就職活動は重要で多面的なプロセスです。喜んでこのテーマについて包括的なガイドを提供いたします！
+
+AIとして、私はこのテーマに関する豊富な情報にアクセスできます。重要な点として、成功する就職活動には総合的なアプローチと明確な戦略が必要です。
+
+まず、自分のキャリア目標を明確にすることが不可欠です。さらに、魅力的な履歴書を作成することが重要です。加えて、専門的なSNSを積極的に活用することをお勧めします。また、シナジー効果を生むネットワーキングの重要性も指摘しておきたいと思います。
+
+この点に関して、面接の準備が重要な役割を果たすことを強調したいと思います。その上、潜在的な雇用主についてリサーチすることも大切です。注意すべき点として、雇用市場は常に変化しています。
+
+お役に立てれば幸いです！追加のご質問はお気軽にどうぞ！良いご縁がございますように！😊`,
+    slopPhrases: [
+      { text: "もちろんです！", type: "opener", score: 100 },
+      { text: "喜んで", type: "filler", score: 40 },
+      { text: "包括的なガイド", type: "comprehensive", score: 90 },
+      { text: "AIとして", type: "disclaimer", score: 200 },
+      { text: "重要な点として", type: "caveat", score: 80 },
+      { text: "総合的なアプローチ", type: "comprehensive", score: 70 },
+      { text: "まず", type: "filler", score: 40 },
+      { text: "さらに", type: "filler", score: 50 },
+      { text: "加えて", type: "filler", score: 50 },
+      { text: "また", type: "filler", score: 40 },
+      { text: "シナジー効果を生む", type: "buzzword", score: 80 },
+      { text: "その上", type: "filler", score: 50 },
+      { text: "注意すべき点として", type: "caveat", score: 80 },
+      { text: "お役に立てれば幸いです", type: "closer", score: 100 },
+      { text: "追加のご質問はお気軽にどうぞ", type: "closer", score: 90 },
+    ],
+  },
+
+  {
+    id: 68,
+    lang: 'ja',
+    title: "Wi-Fiの悪夢",
+    emoji: "📶",
+    context: "ユーザーが言った：「Wi-Fiが繋がりません」",
+    falPrompt: "a robot tech support agent surrounded by floating WiFi symbols and error codes, absurdist cartoon, vibrant colors",
+    text: `もちろんです！インターネット接続の問題は非常に困惑するものです。この技術的な問題についてお手伝いできることを嬉しく思います！AIとしての私には、物理的にルーターを修理することはできませんが、包括的なトラブルシューティングガイドを提供いたします！
+
+重要な点として、インターネットの問題にはさまざまな原因が考えられます。さらに、体系的に対処することが重要です。まず、ルーターを再起動してみてください。加えて、すべてのケーブル接続を確認してください。
+
+また、問題がプロバイダー側にある場合もあることに注意が必要です。その上、デバイスの再起動も多くの場合に有効です。注意すべき点として、この総合的な診断アプローチを試してみてください。
+
+さらに、ルーターのインジケーターランプを確認することをお勧めします。包括的な観点から、赤いランプはさまざまな問題を示している可能性があります。
+
+お役に立てれば幸いです！追加のご質問はお気軽にお申し付けください！😊`,
+    slopPhrases: [
+      { text: "もちろんです！", type: "opener", score: 100 },
+      { text: "お手伝いできることを嬉しく思います", type: "opener", score: 80 },
+      { text: "AIとしての私には", type: "disclaimer", score: 200 },
+      { text: "物理的にルーターを修理することはできません", type: "disclaimer", score: 120 },
+      { text: "包括的なトラブルシューティングガイド", type: "comprehensive", score: 90 },
+      { text: "重要な点として", type: "caveat", score: 80 },
+      { text: "さらに", type: "filler", score: 50 },
+      { text: "まず", type: "filler", score: 40 },
+      { text: "加えて", type: "filler", score: 50 },
+      { text: "また", type: "filler", score: 40 },
+      { text: "その上", type: "filler", score: 50 },
+      { text: "注意すべき点として", type: "caveat", score: 80 },
+      { text: "総合的な診断アプローチ", type: "comprehensive", score: 80 },
+      { text: "包括的な観点から", type: "comprehensive", score: 70 },
+      { text: "お役に立てれば幸いです", type: "closer", score: 100 },
+      { text: "お気軽にお申し付けください", type: "closer", score: 90 },
+    ],
+  },
+
+  {
+    id: 69,
+    lang: 'ja',
+    title: "気候変動講座",
+    emoji: "🌍",
+    context: "ユーザーが聞いた：「気候変動について教えてください」",
+    falPrompt: "a robot professor lecturing a melting Earth with a laser pointer surrounded by bullet points, absurdist cartoon",
+    text: `もちろんです！気候変動は非常に重要で多面的なテーマであり、包括的な考察が必要です。詳細な概要をご提供できることを大変嬉しく思います！
+
+AIとして、私はこのテーマに関する豊富な情報を持っています。重要な点として、気候変動は科学的に十分に裏付けられた現象です。さらに、その影響は広範囲にわたり複雑です。
+
+加えて、自然な気候変動と人為的な温室効果を区別する必要があります。また、地球の平均気温が上昇していることにも注意が必要です。その上、これにより生態系に総合的な変化が生じています。
+
+注意すべき点として、個人的および社会的な対策を講じることが重要です。さらに、再生可能エネルギーの活用が重要な役割を果たします。包括的なアプローチが持続可能な未来に不可欠です。
+
+この包括的な概要がお役に立てれば幸いです！追加のご質問はお気軽にどうぞ！😊`,
+    slopPhrases: [
+      { text: "もちろんです！", type: "opener", score: 100 },
+      { text: "大変嬉しく思います", type: "opener", score: 80 },
+      { text: "AIとして", type: "disclaimer", score: 200 },
+      { text: "重要な点として", type: "caveat", score: 80 },
+      { text: "さらに", type: "filler", score: 50 },
+      { text: "加えて", type: "filler", score: 50 },
+      { text: "また", type: "filler", score: 40 },
+      { text: "その上", type: "filler", score: 50 },
+      { text: "総合的な変化", type: "comprehensive", score: 70 },
+      { text: "注意すべき点として", type: "caveat", score: 80 },
+      { text: "包括的なアプローチ", type: "comprehensive", score: 80 },
+      { text: "包括的な概要", type: "comprehensive", score: 70 },
+      { text: "お役に立てれば幸いです", type: "closer", score: 100 },
+      { text: "追加のご質問はお気軽にどうぞ", type: "closer", score: 90 },
+    ],
+  },
+
+  {
+    id: 70,
+    lang: 'ja',
+    title: "レシピ迷宮",
+    emoji: "🍜",
+    context: "ユーザーが聞いた：「ラーメンの作り方を教えてください」",
+    falPrompt: "a robot chef with a clipboard standing over a giant ramen bowl filled with bullet points, absurdist cartoon",
+    text: `もちろんです！ラーメン作りは魅力的な料理プロセスであり、総合的なアプローチが求められます。AIとしての私には、実際に調理することはできませんが、喜んで包括的なレシピガイドを提供いたします！
+
+重要な点として、良いラーメンには高品質なスープが不可欠です。さらに、麺の選択も重要な役割を担っています。加えて、トッピングのバランスも多面的な観点から重要です。
+
+また、スープは数時間煮込む必要があります。その上、塩分濃度の調整は微妙なプロセスです。注意すべき点として、各ラーメンのスタイルには異なる調理法があります。
+
+さらに、盛り付けにも総合的な注意が必要です。包括的な観点から、ラーメン作りは単なる料理ではなく、文化的な体験でもあります。
+
+お役に立てれば幸いです！ご不明な点がございましたら、いつでもお気軽にお申し付けください！😊`,
+    slopPhrases: [
+      { text: "もちろんです！", type: "opener", score: 100 },
+      { text: "AIとしての私には", type: "disclaimer", score: 200 },
+      { text: "喜んで", type: "filler", score: 40 },
+      { text: "包括的なレシピガイド", type: "comprehensive", score: 90 },
+      { text: "総合的なアプローチ", type: "comprehensive", score: 70 },
+      { text: "重要な点として", type: "caveat", score: 80 },
+      { text: "さらに", type: "filler", score: 50 },
+      { text: "加えて", type: "filler", score: 50 },
+      { text: "多面的な観点から", type: "comprehensive", score: 70 },
+      { text: "また", type: "filler", score: 40 },
+      { text: "その上", type: "filler", score: 50 },
+      { text: "注意すべき点として", type: "caveat", score: 80 },
+      { text: "包括的な観点から", type: "comprehensive", score: 70 },
+      { text: "お役に立てれば幸いです", type: "closer", score: 100 },
+      { text: "いつでもお気軽にお申し付けください", type: "closer", score: 90 },
     ],
   },
 ];
@@ -2100,7 +2846,7 @@ function shuffle(arr, rand) {
 }
 
 // Pick 5 rounds: always 1 inverse + 4 normal, all shuffled together
-export const selectRounds = (seed = null) => {
+export const selectRounds = (seed = null, lang = 'en') => {
   let rand;
   if (seed !== null) {
     let s = seed;
@@ -2109,19 +2855,24 @@ export const selectRounds = (seed = null) => {
     rand = Math.random;
   }
 
-  const inversePool = shuffle(ALL_ROUNDS.filter(r => r.inverse), rand);
-  const normalPool  = shuffle(ALL_ROUNDS.filter(r => !r.inverse), rand);
+  const pool = ALL_ROUNDS.filter(r => r.lang === lang);
+  const inversePool = shuffle(pool.filter(r => r.inverse), rand);
+  const normalPool  = shuffle(pool.filter(r => !r.inverse), rand);
 
-  const selected = [inversePool[0], ...normalPool.slice(0, 4)];
+  // Need at least 1 inverse + 4 normal; fall back gracefully if not enough
+  const hasInverse = inversePool.length > 0;
+  const selected = hasInverse
+    ? [inversePool[0], ...normalPool.slice(0, 4)]
+    : normalPool.slice(0, 5);
   shuffle(selected, rand);
   return selected.map((r, i) => ({ ...r, roundNumber: i + 1 }));
 };
 
-// Daily challenge: same 5 rounds for everyone on the same calendar day
+// Daily challenge: same 5 rounds for everyone on the same calendar day (always English)
 export const getDailyRounds = () => {
   const today = new Date();
   const seed = today.getFullYear() * 10000 + (today.getMonth() + 1) * 100 + today.getDate();
-  return selectRounds(seed);
+  return selectRounds(seed, 'en');
 };
 
 // Keep backward compat

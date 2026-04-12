@@ -27,6 +27,7 @@ export default function App() {
   const [lastFoundIds, setLastFoundIds] = useState(new Set());
   const [lastWrongClicks, setLastWrongClicks] = useState(0);
   const [difficulty, setDifficulty] = useState('normal');
+  const [lang, setLang] = useState('en');
   const [newAchievements, setNewAchievements] = useState([]);
 
   const [isDaily, setIsDaily] = useState(false);
@@ -49,8 +50,9 @@ export default function App() {
     completedChaos: false,
   });
 
-  const handleStart = useCallback(({ difficulty: diff, mode, musicEnabled }) => {
-    const selectedRounds = mode === 'daily' ? getDailyRounds() : selectRounds();
+  const handleStart = useCallback(({ difficulty: diff, mode, musicEnabled, lang: l = 'en' }) => {
+    const selectedRounds = mode === 'daily' ? getDailyRounds() : selectRounds(null, l);
+    setLang(l);
     setRounds(selectedRounds);
     setRoundIdx(0);
     setTotalScore(0);
@@ -161,6 +163,7 @@ export default function App() {
             round={currentRound}
             totalRounds={rounds.length}
             difficulty={difficulty}
+            lang={lang}
             onReady={handleRoundReady}
           />
         )}
@@ -173,6 +176,7 @@ export default function App() {
             totalRounds={rounds.length}
             totalScore={totalScore}
             difficulty={difficulty}
+            lang={lang}
             onRoundEnd={handleRoundEnd}
             onPowerUpUsed={handlePowerUpUsed}
             usedPowerUps={usedPowerUps}
@@ -187,6 +191,7 @@ export default function App() {
             totalScore={totalScore}
             isLastRound={roundIdx >= rounds.length - 1}
             wrongClicks={lastWrongClicks}
+            lang={lang}
             onNext={handleNextRound}
           />
         )}

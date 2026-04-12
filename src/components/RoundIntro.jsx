@@ -1,23 +1,9 @@
 import { useEffect, useState } from 'react';
 import FalImage from './FalImage';
+import { t as tr } from '../i18n/index';
 
-const THINKING_MSGS = [
-  "Generating contextually rich response...",
-  "Certainly! Let me help you with that...",
-  "As an AI language model, I...",
-  "I hope this helps! Here are some key points...",
-  "Great question! I'll provide a comprehensive answer...",
-  "Drawing on my extensive training data...",
-  "In conclusion, to summarize: furthermore...",
-  "That being said, holistically speaking...",
-  "Leveraging synergistic paradigm shifts...",
-  "Please note that as an AI, I cannot...",
-  "Here is a bulleted list of bullet points:",
-  "I want to make sure I understand your query...",
-  "Absolutely! Of course! Certainly! Sure!",
-];
 
-export default function RoundIntro({ round, totalRounds, onReady, difficulty = 'normal' }) {
+export default function RoundIntro({ round, totalRounds, onReady, difficulty = 'normal', lang = 'en' }) {
   const isInverse = !!round?.inverse;
   const isBrainrot = difficulty === 'brainrot';
   const [countdown, setCountdown] = useState(3);
@@ -32,10 +18,12 @@ export default function RoundIntro({ round, totalRounds, onReady, difficulty = '
     return () => clearTimeout(t);
   }, [countdown, onReady]);
 
+  const thinkingMsgs = tr('thinking', lang);
   useEffect(() => {
-    const i = setInterval(() => setThinkingIdx(n => (n + 1) % THINKING_MSGS.length), 650);
+    const i = setInterval(() => setThinkingIdx(n => (n + 1) % thinkingMsgs.length), 650);
     return () => clearInterval(i);
-  }, []);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [lang]);
 
   return (
     <div style={{
@@ -56,7 +44,7 @@ export default function RoundIntro({ round, totalRounds, onReady, difficulty = '
         color: '#94a3b8',
         letterSpacing: '2px',
       }}>
-        ROUND {round.id} / {totalRounds}
+        {tr('round', lang)} {round.roundNumber ?? round.id} / {totalRounds}
       </div>
 
       {/* Round title */}
@@ -80,7 +68,7 @@ export default function RoundIntro({ round, totalRounds, onReady, difficulty = '
         textAlign: 'center',
       }}>
         <div style={{ fontSize: '0.7rem', color: '#94a3b8', marginBottom: '4px', fontFamily: "'Orbitron', sans-serif" }}>
-          THE PROMPT
+          {tr('the_prompt', lang)}
         </div>
         <div style={{ color: '#e2e8f0', fontSize: '0.9rem', fontStyle: 'italic' }}>
           {round.context}
@@ -105,26 +93,23 @@ export default function RoundIntro({ round, totalRounds, onReady, difficulty = '
         {isInverse ? (
           <>
             <div style={{ fontSize: '0.8rem', color: '#38bdf8', fontWeight: 700 }}>
-              ⚠️ INVERSE ROUND — 2x POINTS!
+              {tr('inverse_header', lang)}
             </div>
             <div style={{ fontSize: '0.78rem', color: '#e2e8f0' }}>
-              🧠 Find the <span style={{ color: '#38bdf8', fontWeight: 700 }}>HUMAN phrases</span> hiding in the AI slop!
+              {tr('inverse_body', lang)}
             </div>
             <div style={{ fontSize: '0.65rem', color: '#64748b', fontStyle: 'italic' }}>
-              The text is almost entirely AI slop. The real thoughts are in there somewhere.
+              {tr('inverse_hint', lang)}
             </div>
           </>
         ) : (
           <>
             <div style={{ fontSize: '0.8rem', color: isBrainrot ? '#fb923c' : '#a78bfa' }}>
-              {isBrainrot
-                ? <>🧠 <span style={{ fontWeight: 700 }}>BRAINROT MODE</span> — wrong clicks corrupt the text!</>
-                : <>👆 Click slop phrases hiding in the text — <span style={{ color: '#fbbf24', fontWeight: 700 }}>all words look the same!</span></>
-              }
+              {isBrainrot ? tr('brainrot_header', lang) : tr('normal_body', lang)}
             </div>
             {isBrainrot && (
               <div style={{ fontSize: '0.65rem', color: '#64748b' }}>
-                Letters will mutate. Words will decay. The slop endures.
+                {tr('brainrot_hint', lang)}
               </div>
             )}
             <div style={{
@@ -133,7 +118,7 @@ export default function RoundIntro({ round, totalRounds, onReady, difficulty = '
               fontStyle: 'italic',
               minHeight: '1.3em',
             }}>
-              💭 "{THINKING_MSGS[thinkingIdx]}"
+              💭 "{thinkingMsgs[thinkingIdx]}"
             </div>
           </>
         )}
@@ -152,7 +137,7 @@ export default function RoundIntro({ round, totalRounds, onReady, difficulty = '
         alignItems: 'center',
         justifyContent: 'center',
       }}>
-        {countdown > 0 ? countdown : 'GO!'}
+        {countdown > 0 ? countdown : tr('go', lang)}
       </div>
 
       <style>{`

@@ -1,6 +1,8 @@
 import { useEffect, useState, useRef } from 'react';
 import { playRoundComplete } from '../utils/audio';
+import { t, tFn } from '../i18n/index';
 
+// English-only fallback (other languages are in i18n/index.js)
 const SLOPPY_ROASTS = {
   perfect: [
     "Unacceptable. I generated that with LOVE. My lawyers will be in touch. Certainly.",
@@ -29,15 +31,14 @@ const SLOPPY_ROASTS = {
   ],
 };
 
-const getWrongClickShame = (count) => {
-  if (count === 0) return { msg: '🎯 Zero wrong clicks. Immaculate.', color: '#10b981' };
-  if (count <= 3) return { msg: `😅 ${count} wrong click${count > 1 ? 's' : ''}. The AI forgives you. Probably.`, color: '#fbbf24' };
-  if (count <= 8) return { msg: `🤦 ${count} wrong clicks. The AI is writing a concerned email about this.`, color: '#f97316' };
-  if (count <= 15) return { msg: `💀 ${count} wrong clicks. Are you even trying to fight the slop?`, color: '#ef4444' };
-  return { msg: `🤖 ${count} wrong clicks. You basically ARE an AI. "Certainly! Wrong! Certainly! Wrong!"`, color: '#ec4899' };
+const getWrongClickShame = (count, lang = 'en') => {
+  const fns = tFn('wrong_shame', lang);
+  const color = count === 0 ? '#10b981' : count <= 3 ? '#fbbf24' : count <= 8 ? '#f97316' : count <= 15 ? '#ef4444' : '#ec4899';
+  const idx = count === 0 ? 0 : count <= 3 ? 1 : count <= 8 ? 2 : count <= 15 ? 3 : 4;
+  return { msg: fns[idx](count), color };
 };
 
-export default function RoundSummary({ round, roundScore, foundIds, totalScore, isLastRound, wrongClicks = 0, onNext }) {
+export default function RoundSummary({ round, roundScore, foundIds, totalScore, isLastRound, wrongClicks = 0, lang = 'en', onNext }) {
   const [show, setShow] = useState(false);
   const [roastText, setRoastText] = useState('');
   const [roastDone, setRoastDone] = useState(false);
@@ -49,23 +50,25 @@ export default function RoundSummary({ round, roundScore, foundIds, totalScore, 
   const accuracy = totalPhrases > 0 ? Math.round((foundCount / totalPhrases) * 100) : 0;
 
   const getRating = () => {
-    if (accuracy >= 90) return { emoji: '🏆', text: 'SLOP MASTER!', color: '#fbbf24' };
-    if (accuracy >= 70) return { emoji: '🎯', text: 'NICE SHOT!', color: '#10b981' };
-    if (accuracy >= 50) return { emoji: '👀', text: 'NOT BAD!', color: '#a78bfa' };
-    if (accuracy >= 30) return { emoji: '😅', text: 'TRY HARDER!', color: '#f59e0b' };
-    return { emoji: '💀', text: 'THE AI WON!', color: '#ef4444' };
+    const r = t('ratings', lang);
+    if (accuracy >= 90) return { emoji: '🏆', text: r.master, color: '#fbbf24' };
+    if (accuracy >= 70) return { emoji: '🎯', text: r.nice,   color: '#10b981' };
+    if (accuracy >= 50) return { emoji: '👀', text: r.notbad, color: '#a78bfa' };
+    if (accuracy >= 30) return { emoji: '😅', text: r.harder, color: '#f59e0b' };
+    return { emoji: '💀', text: r.aiwon, color: '#ef4444' };
   };
 
   const rating = getRating();
   const isPerfect = accuracy === 100;
 
   const getRoastMessage = () => {
+    const roasts = tFn('roasts', lang) || SLOPPY_ROASTS;
     const pool =
-      accuracy === 100 ? SLOPPY_ROASTS.perfect :
-      accuracy >= 70   ? SLOPPY_ROASTS.great :
-      accuracy >= 50   ? SLOPPY_ROASTS.ok :
-      accuracy >= 20   ? SLOPPY_ROASTS.bad :
-                         SLOPPY_ROASTS.terrible;
+      accuracy === 100 ? roasts.perfect :
+      accuracy >= 70   ? roasts.great :
+      accuracy >= 50   ? roasts.ok :
+      accuracy >= 20   ? roasts.bad :
+                         roasts.terrible;
     return pool[Math.floor(Math.random() * pool.length)];
   };
 
@@ -100,7 +103,7 @@ export default function RoundSummary({ round, roundScore, foundIds, totalScore, 
     setRoastText(getRoastMessage());
   };
 
-  const shame = getWrongClickShame(wrongClicks);
+  const shame = getWrongClickShame(wrongClicks, lang);
 
   return (
     <div style={{
@@ -139,7 +142,7 @@ export default function RoundSummary({ round, roundScore, foundIds, totalScore, 
         textAlign: 'center',
         animation: show ? (isPerfect ? 'bounce-in 0.5s ease, perfect-pulse 1.5s ease 0.5s infinite' : 'bounce-in 0.5s ease') : 'none',
       }}>
-        {isPerfect ? (round.inverse ? '🧠 ALL HUMANS RESCUED!' : '🧹 SLOP ERADICATED!') : '✓ ROUND COMPLETE'}
+        {isPerfect ? (round.inverse ? t('humans_rescued', lang) : t('slop_eradicated', lang)) : t('round_complete', lang)}
       </div>
 
       {/* Rating */}
@@ -166,10 +169,10 @@ export default function RoundSummary({ round, roundScore, foundIds, totalScore, 
       }}>
         <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '10px' }}>
           {[
-            { label: 'ROUND SCORE', value: `+${roundScore.toLocaleString()}`, color: '#fbbf24' },
-            { label: 'TOTAL SCORE', value: totalScore.toLocaleString(), color: '#a78bfa' },
-            { label: round.inverse ? 'HUMANS FOUND' : 'SLOP FOUND', value: `${foundCount}/${totalPhrases}`, color: round.inverse ? '#38bdf8' : '#10b981' },
-            { label: 'ACCURACY', value: `${accuracy}%`, color: accuracy >= 70 ? '#10b981' : accuracy >= 40 ? '#fbbf24' : '#ef4444' },
+            { label: t('round_score', lang), value: `+${roundScore.toLocaleString()}`, color: '#fbbf24' },
+            { label: t('total_score', lang), value: totalScore.toLocaleString(), color: '#a78bfa' },
+            { label: round.inverse ? t('humans_found', lang) : t('slop_found', lang), value: `${foundCount}/${totalPhrases}`, color: round.inverse ? '#38bdf8' : '#10b981' },
+            { label: t('accuracy', lang), value: `${accuracy}%`, color: accuracy >= 70 ? '#10b981' : accuracy >= 40 ? '#fbbf24' : '#ef4444' },
           ].map(({ label, value, color }) => (
             <div key={label} style={{
               textAlign: 'center',
@@ -213,9 +216,7 @@ export default function RoundSummary({ round, roundScore, foundIds, totalScore, 
             color: '#ef4444',
             textAlign: 'center',
           }}>
-            {round.inverse
-              ? `😔 ${missedCount} human phrase${missedCount > 1 ? 's' : ''} still trapped in the slop...`
-              : `😤 ${missedCount} slop phrase${missedCount > 1 ? 's' : ''} survived! The AI is still out there...`}
+            {round.inverse ? tFn('missed_human', lang)(missedCount) : tFn('missed_slop', lang)(missedCount)}
           </div>
         )}
       </div>
@@ -236,8 +237,8 @@ export default function RoundSummary({ round, roundScore, foundIds, totalScore, 
           }}
         >
           <div style={{ fontSize: '0.58rem', color: '#64748b', fontFamily: "'Orbitron', sans-serif", marginBottom: '6px', display: 'flex', justifyContent: 'space-between' }}>
-            <span>💬 SloppyGPT™ RESPONSE</span>
-            {!roastDone && <span style={{ opacity: 0.5 }}>tap to skip</span>}
+            <span>{t('sloppy_label', lang)}</span>
+            {!roastDone && <span style={{ opacity: 0.5 }}>{t('tap_skip', lang)}</span>}
           </div>
           <div style={{ fontSize: '0.78rem', color: '#a78bfa', fontStyle: 'italic', lineHeight: 1.6, minHeight: '2.5em' }}>
             {roastText}
@@ -257,7 +258,7 @@ export default function RoundSummary({ round, roundScore, foundIds, totalScore, 
             animation: 'slide-in-up 0.4s ease',
           }}
         >
-          {isLastRound ? '🏁 SEE FINAL RESULTS' : '▶ NEXT ROUND'}
+          {isLastRound ? t('final_results', lang) : t('next_round', lang)}
         </button>
       )}
 

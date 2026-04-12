@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { initAudio, startMusic } from '../utils/audio';
 import Leaderboard from './Leaderboard';
 import { getLeaderboard, getUnlockedAchievements, ACHIEVEMENTS, getSlopDictSorted } from '../utils/storage';
+import { LANGS } from '../i18n/index';
 
 const TAGLINES = [
   "CAN YOU SPOT THE AI GARBAGE?",
@@ -52,6 +53,7 @@ export default function StartScreen({ onStart }) {
   const [musicEnabled, setMusicEnabled] = useState(true);
   const [difficulty, setDifficulty] = useState('normal');
   const [mode, setMode] = useState('random'); // 'random' | 'daily'
+  const [lang, setLang] = useState('en');
   const [tab, setTab] = useState('play'); // 'play' | 'scores' | 'badges'
   const [titlePulse, setTitlePulse] = useState(false);
 
@@ -81,7 +83,7 @@ export default function StartScreen({ onStart }) {
   const handleStart = () => {
     initAudio();
     if (musicEnabled) startMusic();
-    onStart({ difficulty, mode, musicEnabled });
+    onStart({ difficulty, mode, musicEnabled, lang });
   };
 
   return (
@@ -218,6 +220,34 @@ export default function StartScreen({ onStart }) {
 
         {tab === 'play' && (
           <>
+            {/* Language */}
+            <div className="card" style={{ padding: '14px' }}>
+              <div style={{ fontSize: '0.62rem', color: '#94a3b8', fontFamily: "'Orbitron', sans-serif", marginBottom: '10px', letterSpacing: '1px' }}>
+                LANGUAGE
+              </div>
+              <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: '8px' }}>
+                {LANGS.map(l => (
+                  <button
+                    key={l.code}
+                    onClick={() => setLang(l.code)}
+                    style={{
+                      padding: '10px 6px',
+                      borderRadius: '10px',
+                      border: `2px solid ${lang === l.code ? '#a78bfa' : 'rgba(124,58,237,0.2)'}`,
+                      background: lang === l.code ? 'rgba(167,139,250,0.15)' : 'transparent',
+                      color: lang === l.code ? '#a78bfa' : '#94a3b8',
+                      cursor: 'pointer',
+                      textAlign: 'center',
+                      transition: 'all 0.2s',
+                    }}
+                  >
+                    <div style={{ fontSize: '1.3rem' }}>{l.flag}</div>
+                    <div style={{ fontFamily: "'Orbitron', sans-serif", fontWeight: 700, fontSize: '0.68rem', marginTop: '3px' }}>{l.label}</div>
+                  </button>
+                ))}
+              </div>
+            </div>
+
             {/* Difficulty */}
             <div className="card" style={{ padding: '14px' }}>
               <div style={{ fontSize: '0.62rem', color: '#94a3b8', fontFamily: "'Orbitron', sans-serif", marginBottom: '10px', letterSpacing: '1px' }}>
