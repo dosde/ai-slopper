@@ -87,19 +87,6 @@ export default function FalImage({ prompt, roundId, size = 200 }) {
           GENERATING SLOP...
         </div>
       )}
-      {!loading && !isFalConfigured() && (
-        <div style={{
-          fontFamily: "'Orbitron', sans-serif",
-          fontSize: '0.55rem',
-          color: 'rgba(255,255,255,0.7)',
-          textAlign: 'center',
-          padding: '0 12px',
-          position: 'relative',
-          lineHeight: 1.4,
-        }}>
-          ADD VITE_FAL_KEY<br/>FOR AI IMAGES
-        </div>
-      )}
 
       <style>{`
         @keyframes spin-slow { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }

@@ -278,7 +278,7 @@ export default function ResultScreen({ totalScore, roundScores, newAchievements 
         </button>
         {showLeaderboard && (
           <div className="card" style={{ padding: '12px' }}>
-            <Leaderboard highlight={saved ? totalScore : null} maxRows={10} />
+            <Leaderboard key={String(saved)} highlight={saved ? totalScore : null} maxRows={10} />
           </div>
         )}
       </div>
