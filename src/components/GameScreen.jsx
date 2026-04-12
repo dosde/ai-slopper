@@ -27,6 +27,21 @@ const MISS_TAUNTS = [
   "Please note this is NOT slop.",
 ];
 
+const INVERSE_MISS_TAUNTS = [
+  "That's AI slop! Find the HUMAN! 🧠",
+  "Wrong direction — that's robot text.",
+  "Certainly! That phrase is pure AI. Keep looking.",
+  "The robot approves. That's bad.",
+  "That was generated, not felt.",
+  "SLOP DETECTED — but not what we want!",
+  "The machine is pleased you clicked its words.",
+  "Moreover, that was the wrong click.",
+  "No human wrote that. Trust your instincts.",
+  "That's boilerplate. The human is hiding deeper.",
+  "I hope this helps: it doesn't, that's AI.",
+  "Holistically speaking: robot wrote that part.",
+];
+
 const getComboStyle = (c) => {
   if (c >= 5) return { emoji: '🌈', color: '#a78bfa', rainbow: true };
   if (c >= 4) return { emoji: '💥', color: '#ec4899', rainbow: false };
@@ -135,14 +150,17 @@ export default function GameScreen({ round, roundIdx, totalRounds, totalScore, o
     comboTimeoutRef.current = setTimeout(() => setCombo(0), 3000);
   }, []);
 
+  const isInverse = !!round.inverse;
+
   const WRONG_PENALTY = 50;
   const handleWrongClick = useCallback((x, y) => {
     setRoundScore(prev => Math.max(0, prev - WRONG_PENALTY));
     setCombo(0);
     if (comboTimeoutRef.current) clearTimeout(comboTimeoutRef.current);
-    const taunt = MISS_TAUNTS[Math.floor(Math.random() * MISS_TAUNTS.length)];
+    const pool = isInverse ? INVERSE_MISS_TAUNTS : MISS_TAUNTS;
+    const taunt = pool[Math.floor(Math.random() * pool.length)];
     addPopup(x, y, WRONG_PENALTY, taunt, false, true);
-  }, [addPopup]);
+  }, [addPopup, isInverse]);
 
   const handleFinishEarly = () => {
     if (!timerRunning) return;
@@ -176,7 +194,9 @@ export default function GameScreen({ round, roundIdx, totalRounds, totalScore, o
   };
 
   const isUrgent = timeLeft <= 10;
-  const isDoubleActive = doublePoints;
+  const isDoubleActive = doublePoints || isInverse;
+  const accentColor = isInverse ? '#38bdf8' : '#fbbf24';
+  const accentGlow = isInverse ? 'rgba(56,189,248,0.5)' : 'rgba(251,191,36,0.5)';
 
   return (
     <div style={{
@@ -188,6 +208,8 @@ export default function GameScreen({ round, roundIdx, totalRounds, totalScore, o
       overflow: 'hidden',
       background: isUrgent
         ? 'rgba(239,68,68,0.04)'
+        : isInverse
+        ? 'rgba(56,189,248,0.03)'
         : isDoubleActive
         ? 'rgba(251,191,36,0.03)'
         : 'transparent',
@@ -231,7 +253,7 @@ export default function GameScreen({ round, roundIdx, totalRounds, totalScore, o
           display: 'flex',
           flexDirection: 'column',
           gap: '6px',
-          borderBottom: `1px solid ${isDoubleActive ? 'rgba(251,191,36,0.3)' : 'rgba(124,58,237,0.2)'}`,
+          borderBottom: `1px solid ${isInverse ? 'rgba(56,189,248,0.35)' : isDoubleActive ? 'rgba(251,191,36,0.3)' : 'rgba(124,58,237,0.2)'}`,
           background: 'rgba(15,15,26,0.97)',
           backdropFilter: 'blur(10px)',
           animation: shakeHeader ? 'shake 0.4s ease' : 'none',
@@ -346,6 +368,7 @@ export default function GameScreen({ round, roundIdx, totalRounds, totalScore, o
           @keyframes wiggle { 0%,100%{transform:rotate(0)} 25%{transform:rotate(-4deg)} 75%{transform:rotate(4deg)} }
           @keyframes rainbow-bg { 0%{filter:hue-rotate(0deg)} 100%{filter:hue-rotate(360deg)} }
           @keyframes meltdown-glitch { 0%,100%{transform:translate(0)} 20%{transform:translate(-4px,2px)} 40%{transform:translate(4px,-2px)} 60%{transform:translate(-2px,4px)} 80%{transform:translate(2px,-4px)} }
+          @keyframes slide-in-up { from{transform:translateY(12px);opacity:0} to{transform:translateY(0);opacity:1} }
         `}</style>
       </div>
 
@@ -413,20 +436,41 @@ export default function GameScreen({ round, roundIdx, totalRounds, totalScore, o
           </div>
           <div style={{
             marginLeft: 'auto',
-            background: doublePoints
-              ? 'rgba(251,191,36,0.15)'
-              : 'rgba(251,191,36,0.08)',
-            border: `1px solid ${doublePoints ? 'rgba(251,191,36,0.6)' : 'rgba(251,191,36,0.2)'}`,
+            background: isInverse
+              ? 'rgba(56,189,248,0.15)'
+              : doublePoints ? 'rgba(251,191,36,0.15)' : 'rgba(251,191,36,0.08)',
+            border: `1px solid ${isInverse
+              ? 'rgba(56,189,248,0.6)'
+              : doublePoints ? 'rgba(251,191,36,0.6)' : 'rgba(251,191,36,0.2)'}`,
             borderRadius: '6px',
             padding: '3px 8px',
             fontSize: '0.6rem',
-            color: '#fbbf24',
+            color: accentColor,
             fontFamily: "'Orbitron', sans-serif",
             whiteSpace: 'nowrap',
           }}>
-            {doublePoints ? '💥 2X!' : 'TAP SLOP!'}
+            {isInverse ? '🧠 FIND HUMANS!' : doublePoints ? '💥 2X!' : 'TAP SLOP!'}
           </div>
         </div>
+
+        {/* Inverse mode alert banner */}
+        {isInverse && (
+          <div style={{
+            marginBottom: '10px',
+            padding: '8px 14px',
+            background: 'rgba(56,189,248,0.1)',
+            border: '1px solid rgba(56,189,248,0.35)',
+            borderRadius: '10px',
+            fontSize: '0.7rem',
+            color: '#38bdf8',
+            fontFamily: "'Orbitron', sans-serif",
+            fontWeight: 700,
+            textAlign: 'center',
+            animation: 'slide-in-up 0.4s ease',
+          }}>
+            ⚠️ INVERSE ROUND — Click the HUMAN phrases, not the AI slop! · 2x POINTS
+          </div>
+        )}
 
         <SlopText
           round={round}
@@ -437,7 +481,7 @@ export default function GameScreen({ round, roundIdx, totalRounds, totalScore, o
           onFoundChange={setFoundIds}
           onWrongClick={handleWrongClick}
           radarActive={radarActive}
-          doublePoints={doublePoints}
+          doublePoints={isDoubleActive}
           onTypingComplete={() => setTypingDone(true)}
         />
       </div>

@@ -65,7 +65,7 @@ export default function RoundSummary({ round, roundScore, foundIds, totalScore, 
         textAlign: 'center',
         animation: show ? (isPerfect ? 'bounce-in 0.5s ease, perfect-pulse 1.5s ease 0.5s infinite' : 'bounce-in 0.5s ease') : 'none',
       }}>
-        {isPerfect ? '🧹 SLOP ERADICATED!' : '✓ ROUND COMPLETE'}
+        {isPerfect ? (round.inverse ? '🧠 ALL HUMANS RESCUED!' : '🧹 SLOP ERADICATED!') : '✓ ROUND COMPLETE'}
       </div>
 
       {/* Rating */}
@@ -97,7 +97,7 @@ export default function RoundSummary({ round, roundScore, foundIds, totalScore, 
           {[
             { label: 'ROUND SCORE', value: `+${roundScore.toLocaleString()}`, color: '#fbbf24' },
             { label: 'TOTAL SCORE', value: totalScore.toLocaleString(), color: '#a78bfa' },
-            { label: 'SLOP FOUND', value: `${foundCount}/${totalPhrases}`, color: '#10b981' },
+            { label: round.inverse ? 'HUMANS FOUND' : 'SLOP FOUND', value: `${foundCount}/${totalPhrases}`, color: round.inverse ? '#38bdf8' : '#10b981' },
             { label: 'ACCURACY', value: `${accuracy}%`, color: accuracy >= 70 ? '#10b981' : accuracy >= 40 ? '#fbbf24' : '#ef4444' },
           ].map(({ label, value, color }) => (
             <div key={label} style={{
@@ -128,7 +128,9 @@ export default function RoundSummary({ round, roundScore, foundIds, totalScore, 
             color: '#ef4444',
             textAlign: 'center',
           }}>
-            😤 You missed {missedCount} slop phrase{missedCount > 1 ? 's' : ''}! The AI is still out there slopping...
+            {round.inverse
+              ? `😔 You missed ${missedCount} human phrase${missedCount > 1 ? 's' : ''}! They're still trapped in the slop...`
+              : `😤 You missed ${missedCount} slop phrase${missedCount > 1 ? 's' : ''}! The AI is still out there slopping...`}
           </div>
         )}
       </div>

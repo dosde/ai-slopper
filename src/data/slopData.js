@@ -97,6 +97,20 @@ export const SLOP_COMMENTARY = {
     "THE ECOSYSTEM IS THRIVING! 🌿",
     "SCALABLE SLOP CONFIRMED! 📈",
   ],
+  human: [
+    "HUMAN DETECTED! 🧠",
+    "A REAL THOUGHT! INCREDIBLE! 💡",
+    "GENUINE EMOTION RESCUED! 🫶",
+    "NOT AN AI! CONFIRMED HUMAN! ✅",
+    "THE HUMAN SPEAKS! 🗣️",
+    "ORGANIC THOUGHT LOCATED! 🌱",
+    "ACTUAL PERSON FOUND! 🎉",
+    "HUMANITY DETECTED — SAVE IT! 💚",
+    "THIS WAS TYPED WITH REAL FEELINGS! 😭",
+    "RESCUED FROM THE SLOP! 🏊",
+    "ONE OF US! ONE OF US! 🧍",
+    "UNFILTERED HUMAN BRAIN OUTPUT! 🧪",
+  ],
 };
 
 export const getRandomCommentary = (type) => {
@@ -1928,6 +1942,136 @@ I hope this comprehensive weather overview proves illuminating despite its limit
       { text: "I'm always here", type: "closer", score: 80 },
     ],
   },
+
+  // ═══════════════════════════════════════════════════════════
+  // INVERSE ROUNDS — find the HUMAN phrases hiding in the slop
+  // ═══════════════════════════════════════════════════════════
+
+  {
+    id: 47,
+    inverse: true,
+    title: "THE CODE REVIEW",
+    emoji: "👨‍💻",
+    context: "A developer left real thoughts inside an AI code review. Find them.",
+    falPrompt: "a tired human programmer hiding inside a robot, surrounded by AI-generated code review text, glowing human eyes, digital art",
+    text: `Thank you for submitting this pull request! I'd be happy to provide a comprehensive code review. As an AI code reviewer, I can offer a holistic analysis of your implementation patterns and architectural decisions.
+
+Certainly! The architecture demonstrates a robust understanding of software design principles. That being said, this is completely wrong — the module separation would benefit from a more synergistic approach to separation of concerns and dependency management.
+
+Moreover, it's important to note that I cried a little when I first read line 247. The test suite appears comprehensive and well-structured. Furthermore, the documentation reflects a nuanced understanding of the problem domain at hand.
+
+In conclusion, please just delete this file and start fresh. I hope this helps! Please don't hesitate to let me know if you have any further questions about this comprehensive and holistic code review!`,
+    slopPhrases: [
+      { text: "this is completely wrong", type: "human", score: 150 },
+      { text: "I cried a little", type: "human", score: 180 },
+      { text: "please just delete this file", type: "human", score: 200 },
+    ],
+  },
+
+  {
+    id: 48,
+    inverse: true,
+    title: "CUSTOMER SUPPORT CHAOS",
+    emoji: "📞",
+    context: "A customer's real rage got buried in AI support language. Find it.",
+    falPrompt: "a furious human customer trapped inside a polite customer service robot, surrounded by floating apology text bubbles, cartoon",
+    text: `Thank you for reaching out to our support team! I'd be happy to help resolve your concern today. As a valued customer, your experience is our top priority and we sincerely appreciate your patience with us.
+
+Certainly! I understand that you're experiencing a technical issue with your product. That being said, my microwave exploded and I need a replacement immediately. We sincerely apologize for any inconvenience this may have caused to your daily routine and cooking experience.
+
+Furthermore, I want to acknowledge that I've called six times already and nobody has helped me. It's important to note that our team is fully committed to providing holistic solutions to your needs. Moreover, we value your comprehensive feedback as part of our service improvement process.
+
+In conclusion, I want a refund not a poem. I hope this message finds you well and that we can work together toward a mutually beneficial resolution! Please don't hesitate to reach out if you require any further assistance!`,
+    slopPhrases: [
+      { text: "my microwave exploded", type: "human", score: 200 },
+      { text: "I've called six times already and nobody has helped me", type: "human", score: 160 },
+      { text: "I want a refund not a poem", type: "human", score: 180 },
+    ],
+  },
+
+  {
+    id: 49,
+    inverse: true,
+    title: "THE THERAPY TRANSCRIPT",
+    emoji: "🛋️",
+    context: "Life advice went through an AI filter. Rescue the real feelings.",
+    falPrompt: "a small human sitting on a couch surrounded by giant robotic therapy arms holding clipboards, cozy and absurd, digital art",
+    text: `Thank you for sharing that with me! I'd be happy to help you explore these feelings in a holistic and compassionate way. As a supportive presence, I can offer a comprehensive perspective on your emotional wellbeing journey.
+
+Certainly! It sounds like you're navigating some complex and multifaceted life circumstances. That being said, I just miss my dog — he was the only one who didn't need me to explain myself. It's important to acknowledge these feelings as valid and meaningful parts of the healing process.
+
+Furthermore, leveraging self-care strategies can revolutionize your emotional wellbeing in significant ways. That being said, work is actually fine it's me. Moreover, our synergistic approach to personal growth includes robust coping mechanisms and deeply actionable frameworks.
+
+In conclusion, I cried at a cereal commercial last week and I think that's fine actually. I hope this comprehensive response has been of tremendous value! Please don't hesitate to reach out if there's anything else I can assist you with on your deeply personal growth journey!`,
+    slopPhrases: [
+      { text: "I just miss my dog", type: "human", score: 160 },
+      { text: "work is actually fine it's me", type: "human", score: 180 },
+      { text: "I cried at a cereal commercial last week and I think that's fine actually", type: "human", score: 200 },
+    ],
+  },
+
+  {
+    id: 50,
+    inverse: true,
+    title: "MEETING FROM HELL",
+    emoji: "😴",
+    context: "Meeting notes got 'enhanced' by AI. Find what was actually said.",
+    falPrompt: "office workers sleeping in chairs while a robot reads from a giant PowerPoint, corporate meeting room, cartoon humor",
+    text: `Welcome to the Q3 Strategic Alignment Synergy Session! I'd like to leverage this opportunity to provide a holistic overview of our key performance indicators and core deliverable objectives going forward.
+
+Certainly! Let's circle back to the competencies we aligned on in our previous touchpoint session. That being said, this meeting is useless and we all know it. Furthermore, our robust pipeline of initiatives demonstrates a game-changing strategic trajectory for the coming quarter.
+
+Moving forward, I want to acknowledge that Dave hasn't spoken in 20 minutes. It's important to note that our cross-functional teams remain fully aligned on synergistic organizational goals and shared KPIs. Moreover, our comprehensive roadmap reflects a nuanced understanding of current market dynamics and diverse stakeholder needs.
+
+In conclusion, can we just email this next time? I hope this helps! Please don't hesitate to reach out if you have any questions about our holistic Q3 strategic alignment framework going forward!`,
+    slopPhrases: [
+      { text: "this meeting is useless and we all know it", type: "human", score: 180 },
+      { text: "Dave hasn't spoken in 20 minutes", type: "human", score: 200 },
+      { text: "can we just email this next time", type: "human", score: 160 },
+    ],
+  },
+
+  {
+    id: 51,
+    inverse: true,
+    title: "GRANDMA'S RECIPE RESCUE",
+    emoji: "🍳",
+    context: "A real grandma's recipe notes got AI-ified. Find the original wisdom.",
+    falPrompt: "a tiny grandma hiding inside a giant AI recipe robot, sneaking real ingredients out through a hatch, warm cartoon",
+    text: `Welcome to this comprehensive culinary guide! I'd be happy to walk you through a holistic approach to traditional home cooking. As an AI culinary assistant, I can provide robust and step-by-step guidance for your cooking journey.
+
+Certainly! First, gather your ingredients and ensure your workspace is clean and optimally organized. That being said, don't skip the butter — and I mean a real amount, not what the recipe says. Furthermore, it's worth noting that preparation is absolutely key to this nuanced and rewarding cooking experience.
+
+Moreover, the sauce should reach an optimal temperature for synergistic flavor development and texture enhancement. That being said, grandma would add cayenne here and she was always right. It's important to note that timing plays a crucial and holistic role in achieving the desired culinary outcome.
+
+In conclusion, if it smells weird throw it out. I hope this comprehensive culinary guide has been helpful! Please don't hesitate to let me know if you have any questions about this holistic home cooking process!`,
+    slopPhrases: [
+      { text: "don't skip the butter", type: "human", score: 150 },
+      { text: "grandma would add cayenne here and she was always right", type: "human", score: 200 },
+      { text: "if it smells weird throw it out", type: "human", score: 180 },
+    ],
+  },
+
+  {
+    id: 52,
+    inverse: true,
+    title: "THE DATING PROFILE",
+    emoji: "💔",
+    context: "Someone used AI to write their dating profile. Find who they really are.",
+    falPrompt: "a shy person hiding behind a giant robot dating profile, heart eyes, absurd cartoon, vibrant colors",
+    text: `Hi there! I'd be happy to help you craft an authentic and genuinely engaging personal profile. As an AI dating coach, I can offer a comprehensive overview of what makes profiles successful and deeply compelling to potential matches.
+
+Certainly! A game-changing profile leverages your unique synergies and holistic personality traits to foster meaningful connections. That being said, I'm really just shy — the whole 'adventurous spirit' thing in my bio is a complete lie. Furthermore, showcasing your multifaceted interests demonstrates robust emotional availability to compatible partners.
+
+Moreover, it's important to note that authentic communication is the cornerstone of meaningful and lasting connections. That said, I hate small talk. I know that's probably bad for this but there it is. In terms of lifestyle compatibility, our nuanced approach holistically aligns your core values with those of potential matches.
+
+In conclusion, my apartment is a mess but I'm working on it. I hope this comprehensive dating profile guidance has been of tremendous value! Please don't hesitate to reach out if you need further assistance crafting your authentic and holistic self-presentation!`,
+    slopPhrases: [
+      { text: "I'm really just shy", type: "human", score: 160 },
+      { text: "I hate small talk", type: "human", score: 150 },
+      { text: "my apartment is a mess but I'm working on it", type: "human", score: 200 },
+    ],
+  },
 ];
 
 export const ROASTS = [
@@ -1946,10 +2090,17 @@ export const getRoast = (score) => {
   return ROASTS.find(r => score >= r.minScore && score <= r.maxScore) || ROASTS[0];
 };
 
-// Pick 5 random rounds from the pool, always shuffled for replayability
+// Fisher-Yates shuffle (in-place) using provided rand function
+function shuffle(arr, rand) {
+  for (let i = arr.length - 1; i > 0; i--) {
+    const j = Math.floor(rand() * (i + 1));
+    [arr[i], arr[j]] = [arr[j], arr[i]];
+  }
+  return arr;
+}
+
+// Pick 5 rounds: always 1 inverse + 4 normal, all shuffled together
 export const selectRounds = (seed = null) => {
-  const pool = [...ALL_ROUNDS];
-  // Fisher-Yates shuffle with optional deterministic seed
   let rand;
   if (seed !== null) {
     let s = seed;
@@ -1957,11 +2108,13 @@ export const selectRounds = (seed = null) => {
   } else {
     rand = Math.random;
   }
-  for (let i = pool.length - 1; i > 0; i--) {
-    const j = Math.floor(rand() * (i + 1));
-    [pool[i], pool[j]] = [pool[j], pool[i]];
-  }
-  return pool.slice(0, 5).map((r, i) => ({ ...r, roundNumber: i + 1 }));
+
+  const inversePool = shuffle(ALL_ROUNDS.filter(r => r.inverse), rand);
+  const normalPool  = shuffle(ALL_ROUNDS.filter(r => !r.inverse), rand);
+
+  const selected = [inversePool[0], ...normalPool.slice(0, 4)];
+  shuffle(selected, rand);
+  return selected.map((r, i) => ({ ...r, roundNumber: i + 1 }));
 };
 
 // Daily challenge: same 5 rounds for everyone on the same calendar day

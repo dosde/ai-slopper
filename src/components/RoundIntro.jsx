@@ -18,6 +18,7 @@ const THINKING_MSGS = [
 ];
 
 export default function RoundIntro({ round, totalRounds, onReady }) {
+  const isInverse = !!round?.inverse;
   const [countdown, setCountdown] = useState(3);
   const [thinkingIdx, setThinkingIdx] = useState(0);
 
@@ -90,35 +91,50 @@ export default function RoundIntro({ round, totalRounds, onReady }) {
 
       {/* Instructions */}
       <div style={{
-        background: 'rgba(124, 58, 237, 0.1)',
-        border: '1px solid rgba(124, 58, 237, 0.3)',
+        background: isInverse ? 'rgba(56,189,248,0.08)' : 'rgba(124, 58, 237, 0.1)',
+        border: `1px solid ${isInverse ? 'rgba(56,189,248,0.4)' : 'rgba(124, 58, 237, 0.3)'}`,
         borderRadius: '12px',
         padding: '10px 18px',
         textAlign: 'center',
-        maxWidth: '360px',
+        maxWidth: '380px',
         display: 'flex',
         flexDirection: 'column',
         gap: '6px',
       }}>
-        <div style={{ fontSize: '0.8rem', color: '#a78bfa' }}>
-          👆 Click slop phrases hiding in the text — <span style={{ color: '#fbbf24', fontWeight: 700 }}>all words look the same!</span>
-        </div>
-        <div style={{
-          fontSize: '0.62rem',
-          color: '#475569',
-          fontStyle: 'italic',
-          minHeight: '1.3em',
-          transition: 'opacity 0.3s',
-        }}>
-          💭 "{THINKING_MSGS[thinkingIdx]}"
-        </div>
+        {isInverse ? (
+          <>
+            <div style={{ fontSize: '0.8rem', color: '#38bdf8', fontWeight: 700 }}>
+              ⚠️ INVERSE ROUND — 2x POINTS!
+            </div>
+            <div style={{ fontSize: '0.78rem', color: '#e2e8f0' }}>
+              🧠 Find the <span style={{ color: '#38bdf8', fontWeight: 700 }}>HUMAN phrases</span> hiding in the AI slop!
+            </div>
+            <div style={{ fontSize: '0.65rem', color: '#64748b', fontStyle: 'italic' }}>
+              The text is almost entirely AI slop. The real thoughts are in there somewhere.
+            </div>
+          </>
+        ) : (
+          <>
+            <div style={{ fontSize: '0.8rem', color: '#a78bfa' }}>
+              👆 Click slop phrases hiding in the text — <span style={{ color: '#fbbf24', fontWeight: 700 }}>all words look the same!</span>
+            </div>
+            <div style={{
+              fontSize: '0.62rem',
+              color: '#475569',
+              fontStyle: 'italic',
+              minHeight: '1.3em',
+            }}>
+              💭 "{THINKING_MSGS[thinkingIdx]}"
+            </div>
+          </>
+        )}
       </div>
 
       {/* Countdown */}
       <div style={{
         fontFamily: "'Press Start 2P', monospace",
         fontSize: 'clamp(2.5rem, 10vw, 4rem)',
-        color: countdown <= 1 ? '#ef4444' : countdown <= 2 ? '#fbbf24' : '#10b981',
+        color: countdown <= 1 ? '#ef4444' : countdown <= 2 ? '#fbbf24' : (isInverse ? '#38bdf8' : '#10b981'),
         textShadow: `0 0 20px currentColor`,
         animation: 'bounce-in 0.3s ease',
         key: countdown,

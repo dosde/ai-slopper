@@ -156,20 +156,21 @@ export default function SlopText({
         if (token.isSlop) {
           const isFound = found.has(token.id);
           const showRadar = radarActive && !isFound;
+          const isInverse = !!round.inverse;
           return (
             <span
               key={token.id}
-              className={`slop-token${isFound ? ' found' : ' active'}`}
+              className={`slop-token${isFound ? (isInverse ? ' human-found' : ' found') : ' active'}`}
               onClick={!isFound ? (e) => handleSlopClick(e, token) : undefined}
               style={{
                 ...(showRadar ? {
-                  background: 'rgba(16,185,129,0.3)',
-                  borderBottom: '2px solid #10b981',
-                  boxShadow: '0 0 8px rgba(16,185,129,0.6)',
+                  background: 'rgba(56,189,248,0.3)',
+                  borderBottom: '2px solid #38bdf8',
+                  boxShadow: '0 0 8px rgba(56,189,248,0.6)',
                   animation: 'radar-pulse 0.5s ease-in-out infinite alternate',
                 } : {}),
-                ...(doublePoints && !isFound ? {
-                  borderBottom: '2px solid rgba(251,191,36,0.5)',
+                ...(!isFound && !showRadar && doublePoints ? {
+                  borderBottom: `2px solid rgba(${isInverse ? '56,189,248' : '251,191,36'},0.5)`,
                 } : {}),
               }}
             >
@@ -196,8 +197,18 @@ export default function SlopText({
       })}
       <style>{`
         @keyframes radar-pulse {
-          from { background: rgba(16,185,129,0.18); box-shadow: 0 0 4px rgba(16,185,129,0.3); }
-          to   { background: rgba(16,185,129,0.45); box-shadow: 0 0 14px rgba(16,185,129,0.8); }
+          from { background: rgba(56,189,248,0.18); box-shadow: 0 0 4px rgba(56,189,248,0.3); }
+          to   { background: rgba(56,189,248,0.45); box-shadow: 0 0 14px rgba(56,189,248,0.8); }
+        }
+        .slop-token.human-found {
+          background: rgba(56,189,248,0.22) !important;
+          color: #38bdf8 !important;
+          text-decoration: none !important;
+          font-weight: 700;
+          box-shadow: 0 0 10px rgba(56,189,248,0.4);
+          border-radius: 3px;
+          cursor: default;
+          animation: pop-in 0.25s ease;
         }
       `}</style>
     </div>
