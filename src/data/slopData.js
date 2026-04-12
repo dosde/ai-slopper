@@ -681,6 +681,330 @@ It's also crucial to note that only you can truly know what's right for your uni
       { text: "I'm always here!", type: "closer", score: 80 },
     ],
   },
+  {
+    id: 17,
+    title: "THE RECIPE OVEREXPLAINER",
+    emoji: "🍪",
+    context: "You asked an AI for a simple chocolate chip cookie recipe",
+    falPrompt: "a giant robot chef buried under mountains of safety warning signs and disclaimers, holding tiny cookies, surreal cartoon",
+    text: `Certainly! I'd be delighted to help you with this culinary endeavor. As an AI language model, I want to note that baking involves heat which can be dangerous. That being said, I'll do my best to guide you through this process comprehensively.
+
+Before we dive in, it's important to understand that individual results may vary based on your specific oven, altitude, and ingredient brands. I am not a licensed chef and this should not be taken as professional culinary advice.
+
+Without further ado, here is a comprehensive chocolate chip cookie recipe: First and foremost, preheat your oven. Please note that ovens can vary significantly. Furthermore, you'll need flour, butter, and sugar. It's also worth noting that sugar consumption should be done in moderation as part of a balanced diet.
+
+In conclusion, baking can be a wonderfully fulfilling experience. I hope this helps you on your cookie journey! Please don't hesitate to reach out if you need further clarification. I'm always here to support your baking adventures!`,
+    slopPhrases: [
+      { text: "Certainly!", type: "opener", score: 100 },
+      { text: "I'd be delighted to help", type: "opener", score: 90 },
+      { text: "As an AI language model", type: "disclaimer", score: 120 },
+      { text: "That being said", type: "filler", score: 50 },
+      { text: "comprehensively", type: "buzzword", score: 60 },
+      { text: "it's important to understand", type: "caveat", score: 70 },
+      { text: "individual results may vary", type: "disclaimer", score: 80 },
+      { text: "I am not a licensed chef", type: "disclaimer", score: 90 },
+      { text: "this should not be taken as professional", type: "disclaimer", score: 80 },
+      { text: "Without further ado", type: "opener", score: 70 },
+      { text: "First and foremost", type: "filler", score: 60 },
+      { text: "Furthermore", type: "filler", score: 50 },
+      { text: "It's also worth noting", type: "caveat", score: 70 },
+      { text: "In conclusion", type: "filler", score: 60 },
+      { text: "I hope this helps", type: "closer", score: 100 },
+      { text: "Please don't hesitate to reach out", type: "closer", score: 90 },
+      { text: "I'm always here", type: "closer", score: 80 },
+    ],
+  },
+  {
+    id: 18,
+    title: "THE POETRY PROFESSOR",
+    emoji: "📜",
+    context: "You asked an AI to write a haiku about pizza",
+    falPrompt: "a robot professor lecturing a tiny sad pizza in front of a huge chalkboard full of poetry theory, academic chaos, cartoon",
+    text: `Great question! Before I craft this haiku, let me provide some context that will help you appreciate it more fully. A haiku is a form of traditional Japanese poetry that follows a 5-7-5 syllable structure, originating in the 17th century.
+
+It's worth mentioning that haiku traditionally focus on nature and fleeting moments, so applying this form to pizza is a creative and interesting challenge! As an AI, I find this intersection of culinary culture and classical poetry to be a fascinating exploration.
+
+That said, I want to be upfront that poetry is deeply subjective and my interpretation may not align with your vision. I'd also like to note that I am not a professional poet. With all that in mind, here is your pizza haiku:
+
+Crispy crust glowing
+Cheese melts like golden sunlight
+Toppings sing as one
+
+I hope this haiku resonates with you! Feel free to let me know if you'd like me to explore further poetic variations. I'm always happy to help!`,
+    slopPhrases: [
+      { text: "Great question!", type: "sycophant", score: 100 },
+      { text: "let me provide some context", type: "opener", score: 80 },
+      { text: "It's worth mentioning", type: "caveat", score: 70 },
+      { text: "As an AI", type: "disclaimer", score: 110 },
+      { text: "fascinating exploration", type: "buzzword", score: 70 },
+      { text: "That said", type: "filler", score: 50 },
+      { text: "I want to be upfront", type: "caveat", score: 70 },
+      { text: "poetry is deeply subjective", type: "disclaimer", score: 80 },
+      { text: "I am not a professional poet", type: "disclaimer", score: 90 },
+      { text: "With all that in mind", type: "filler", score: 60 },
+      { text: "I hope this haiku resonates", type: "closer", score: 90 },
+      { text: "I'm always happy to help", type: "closer", score: 80 },
+    ],
+  },
+  {
+    id: 19,
+    title: "THE EMAIL ASSISTANT",
+    emoji: "📧",
+    context: "You asked an AI to write a quick email declining a meeting",
+    falPrompt: "a robot drowning in an avalanche of email envelopes, looking overwhelmed, cartoon chaos, vibrant colors",
+    text: `Absolutely! I'd be happy to help you craft a professional email declining a meeting invitation. Email communication is a crucial aspect of professional life, and it's important to strike the right tone.
+
+Before we proceed, I want to note that declining meetings should be done thoughtfully to maintain positive professional relationships. Furthermore, the tone of your email may need to be adjusted based on your relationship with the recipient and your company culture.
+
+With that context established, here is a comprehensive template. It's also important to note that you should customize this to your specific situation. Additionally, if you have a pre-existing relationship with this person, you may want to add a personal touch.
+
+I hope this email finds you well. I wanted to reach out to express my sincere gratitude for the invitation. I hope this helps clarify my availability. Please don't hesitate to reach out if you'd like to reschedule. I'm always open to future collaboration opportunities!`,
+    slopPhrases: [
+      { text: "Absolutely!", type: "opener", score: 100 },
+      { text: "I'd be happy to help", type: "opener", score: 90 },
+      { text: "crucial aspect", type: "buzzword", score: 60 },
+      { text: "it's important to strike", type: "caveat", score: 70 },
+      { text: "I want to note that", type: "caveat", score: 70 },
+      { text: "Furthermore", type: "filler", score: 50 },
+      { text: "With that context established", type: "filler", score: 60 },
+      { text: "It's also important to note", type: "caveat", score: 70 },
+      { text: "Additionally", type: "filler", score: 40 },
+      { text: "I hope this email finds you well", type: "opener", score: 110 },
+      { text: "sincere gratitude", type: "sycophant", score: 80 },
+      { text: "I hope this helps", type: "closer", score: 100 },
+      { text: "Please don't hesitate to reach out", type: "closer", score: 90 },
+      { text: "I'm always open", type: "closer", score: 70 },
+    ],
+  },
+  {
+    id: 20,
+    title: "THE RELATIONSHIP COUNSELOR",
+    emoji: "💔",
+    context: "You asked an AI how to apologize to a friend after an argument",
+    falPrompt: "a robot therapist with a clipboard surrounded by crying emojis and friendship symbols, dramatic therapy session, cartoon",
+    text: `Of course! I'm here to help you navigate this emotionally complex situation. Relationships are fundamental to human wellbeing, and I want to acknowledge that reaching out for guidance shows real emotional maturity.
+
+It's important to recognize that every relationship is unique and my advice should be tailored to your specific circumstances. As an AI, I don't have the full context of your friendship, so please take my suggestions as general guidelines rather than definitive solutions.
+
+That said, here are some comprehensive strategies to consider. First and foremost, acknowledge your role in the conflict. It's also worth noting that timing is crucial. Furthermore, active listening is an essential component of any reconciliation process.
+
+In summary, repairing a friendship requires vulnerability, empathy, and consistent effort over time. I hope this helps you on your journey toward healing and reconnection. Please don't hesitate to reach out if you need more guidance. I'm always here for you!`,
+    slopPhrases: [
+      { text: "Of course!", type: "opener", score: 100 },
+      { text: "I'm here to help", type: "opener", score: 80 },
+      { text: "emotionally complex", type: "buzzword", score: 70 },
+      { text: "It's important to recognize", type: "caveat", score: 70 },
+      { text: "As an AI", type: "disclaimer", score: 110 },
+      { text: "please take my suggestions as general guidelines", type: "disclaimer", score: 90 },
+      { text: "That said", type: "filler", score: 50 },
+      { text: "comprehensive strategies", type: "buzzword", score: 70 },
+      { text: "First and foremost", type: "filler", score: 60 },
+      { text: "It's also worth noting", type: "caveat", score: 70 },
+      { text: "Furthermore", type: "filler", score: 50 },
+      { text: "essential component", type: "buzzword", score: 60 },
+      { text: "In summary", type: "filler", score: 50 },
+      { text: "I hope this helps", type: "closer", score: 100 },
+      { text: "Please don't hesitate to reach out", type: "closer", score: 90 },
+      { text: "I'm always here for you", type: "closer", score: 80 },
+    ],
+  },
+  {
+    id: 21,
+    title: "THE FITNESS GURU",
+    emoji: "💪",
+    context: "You asked an AI how to do a pushup",
+    falPrompt: "a robot personal trainer surrounded by enormous fitness manuals and safety warning signs, tiny human doing pushup in background, cartoon",
+    text: `Certainly! I'm thrilled to help you embark on this fitness journey! Before we begin, I want to emphasize that exercise involves physical exertion, and it's always advisable to consult a healthcare professional before starting any new fitness routine.
+
+It's also important to understand that pushups are a compound movement engaging multiple muscle groups. As an AI, I'm not able to physically observe your form, so please proceed with appropriate caution. That said, here is a comprehensive guide.
+
+First and foremost, position yourself in a high plank. Additionally, it's worth noting that hand placement can significantly impact which muscles are targeted. Furthermore, breathing technique is an often-overlooked but absolutely essential component of proper pushup execution.
+
+In conclusion, pushups are a versatile and effective exercise. I hope this comprehensive guide helps you on your fitness journey! Feel free to reach out if you have any questions. I'm always here to support your wellness goals!`,
+    slopPhrases: [
+      { text: "Certainly!", type: "opener", score: 100 },
+      { text: "I'm thrilled to help", type: "opener", score: 90 },
+      { text: "fitness journey", type: "buzzword", score: 70 },
+      { text: "it's always advisable to consult a healthcare professional", type: "disclaimer", score: 100 },
+      { text: "It's also important to understand", type: "caveat", score: 70 },
+      { text: "As an AI", type: "disclaimer", score: 110 },
+      { text: "proceed with appropriate caution", type: "disclaimer", score: 80 },
+      { text: "That said", type: "filler", score: 50 },
+      { text: "comprehensive guide", type: "buzzword", score: 60 },
+      { text: "First and foremost", type: "filler", score: 60 },
+      { text: "Additionally", type: "filler", score: 40 },
+      { text: "it's worth noting", type: "caveat", score: 60 },
+      { text: "Furthermore", type: "filler", score: 50 },
+      { text: "absolutely essential component", type: "buzzword", score: 70 },
+      { text: "In conclusion", type: "filler", score: 60 },
+      { text: "I hope this comprehensive guide helps", type: "closer", score: 100 },
+      { text: "I'm always here to support", type: "closer", score: 80 },
+    ],
+  },
+  {
+    id: 22,
+    title: "THE MOVIE RECOMMENDER",
+    emoji: "🎬",
+    context: "You asked an AI to recommend a movie for tonight",
+    falPrompt: "a robot buried under towering stacks of movie DVDs and pros-cons lists, paralyzed with indecision, cartoon comedy",
+    text: `Great question! I'd be delighted to help you find the perfect movie! However, I want to note that movie preferences are deeply personal and subjective, and what resonates with one viewer may not resonate with another.
+
+That being said, without knowing your specific tastes, mood, available streaming services, and viewing companions, it's quite challenging to make a truly tailored recommendation. It's important to mention that I don't have real-time streaming data. Furthermore, cinema is a broad and multifaceted art form.
+
+It's also worth noting that different genres serve different emotional needs. With all of that context in mind, here are some considerations to help you decide. As an AI, I want to ensure that whatever recommendation I provide aligns with your values and preferences.
+
+In conclusion, I hope this overview helps you navigate your movie selection process! Please don't hesitate to share more details about your preferences. I'm always happy to provide more targeted suggestions!`,
+    slopPhrases: [
+      { text: "Great question!", type: "sycophant", score: 100 },
+      { text: "I'd be delighted to help", type: "opener", score: 90 },
+      { text: "deeply personal and subjective", type: "disclaimer", score: 80 },
+      { text: "That being said", type: "filler", score: 50 },
+      { text: "without knowing your specific", type: "caveat", score: 80 },
+      { text: "truly tailored recommendation", type: "buzzword", score: 70 },
+      { text: "It's important to mention", type: "caveat", score: 70 },
+      { text: "Furthermore", type: "filler", score: 50 },
+      { text: "multifaceted", type: "buzzword", score: 70 },
+      { text: "It's also worth noting", type: "caveat", score: 70 },
+      { text: "With all of that context in mind", type: "filler", score: 60 },
+      { text: "As an AI", type: "disclaimer", score: 110 },
+      { text: "In conclusion", type: "filler", score: 60 },
+      { text: "I hope this overview helps", type: "closer", score: 90 },
+      { text: "Please don't hesitate", type: "closer", score: 80 },
+      { text: "I'm always happy to provide", type: "closer", score: 80 },
+    ],
+  },
+  {
+    id: 23,
+    title: "THE DEFINITION DISASTER",
+    emoji: "📖",
+    context: "You asked an AI what the word 'ephemeral' means",
+    falPrompt: "a robot professor drowning in enormous dictionaries and etymology scrolls while a student falls asleep, cartoon academia",
+    text: `Certainly! What a wonderfully nuanced question! The word "ephemeral" has a rich and fascinating etymology that I think you'll find deeply illuminating. Allow me to provide a comprehensive exploration.
+
+The term derives from the Ancient Greek "ephemeros," combining "epi" (meaning "on" or "for") with "hemera" (meaning "day"). It's important to note that etymology can provide valuable context for understanding modern usage. As an AI language model, I find linguistic history to be a particularly fascinating area of study.
+
+That said, in modern usage, "ephemeral" typically refers to something lasting for only a short time. It's also worth noting that the word can be used across multiple domains including biology, digital media, and philosophy. Furthermore, usage context can significantly impact connotation.
+
+In conclusion, "ephemeral" means short-lived or transitory. I sincerely hope this comprehensive etymological and contextual overview has been helpful! Please don't hesitate to ask if you'd like me to explore any related vocabulary. I'm always here to enrich your linguistic journey!`,
+    slopPhrases: [
+      { text: "Certainly!", type: "opener", score: 100 },
+      { text: "What a wonderfully nuanced question", type: "sycophant", score: 100 },
+      { text: "rich and fascinating", type: "buzzword", score: 70 },
+      { text: "comprehensive exploration", type: "buzzword", score: 70 },
+      { text: "It's important to note", type: "caveat", score: 70 },
+      { text: "As an AI language model", type: "disclaimer", score: 120 },
+      { text: "particularly fascinating area of study", type: "buzzword", score: 70 },
+      { text: "That said", type: "filler", score: 50 },
+      { text: "It's also worth noting", type: "caveat", score: 70 },
+      { text: "Furthermore", type: "filler", score: 50 },
+      { text: "In conclusion", type: "filler", score: 60 },
+      { text: "I sincerely hope this comprehensive", type: "closer", score: 100 },
+      { text: "Please don't hesitate to ask", type: "closer", score: 90 },
+      { text: "I'm always here", type: "closer", score: 80 },
+    ],
+  },
+  {
+    id: 24,
+    title: "THE TRAVEL AGENT",
+    emoji: "✈️",
+    context: "You asked an AI if Paris is a nice place to visit",
+    falPrompt: "a robot tour guide buried under balanced pros-cons spreadsheets in front of the Eiffel Tower, looking confused, cartoon",
+    text: `Great question! Paris is certainly a city that evokes strong opinions! I want to provide a balanced and nuanced perspective, as travel preferences are highly subjective and depend on a wide range of personal factors.
+
+On one hand, Paris is widely celebrated for its rich cultural heritage, world-class museums, and iconic landmarks. That being said, it's also important to acknowledge some considerations. It's worth noting that Paris can be crowded during peak tourist seasons. Furthermore, the city has areas with varying safety levels.
+
+As an AI, I'm unable to personally experience travel, so my insights are based on aggregated information. It's also crucial to consider that your experience may vary significantly based on your budget, travel style, and specific neighborhood. Additionally, the weather in Paris can be variable.
+
+In conclusion, Paris offers a compelling mix of culture, cuisine, and history, but like any destination, it comes with trade-offs. I hope this balanced overview helps inform your travel decision! Please don't hesitate to reach out for more specific information. I'm always happy to help with your travel planning!`,
+    slopPhrases: [
+      { text: "Great question!", type: "sycophant", score: 100 },
+      { text: "balanced and nuanced perspective", type: "buzzword", score: 80 },
+      { text: "highly subjective", type: "disclaimer", score: 70 },
+      { text: "On one hand", type: "filler", score: 50 },
+      { text: "rich cultural heritage", type: "buzzword", score: 60 },
+      { text: "That being said", type: "filler", score: 50 },
+      { text: "it's also important to acknowledge", type: "caveat", score: 70 },
+      { text: "It's worth noting", type: "caveat", score: 60 },
+      { text: "Furthermore", type: "filler", score: 50 },
+      { text: "As an AI", type: "disclaimer", score: 110 },
+      { text: "It's also crucial to consider", type: "caveat", score: 70 },
+      { text: "your experience may vary significantly", type: "disclaimer", score: 80 },
+      { text: "Additionally", type: "filler", score: 40 },
+      { text: "In conclusion", type: "filler", score: 60 },
+      { text: "balanced overview", type: "buzzword", score: 60 },
+      { text: "I hope this balanced overview helps", type: "closer", score: 90 },
+      { text: "Please don't hesitate to reach out", type: "closer", score: 90 },
+      { text: "I'm always happy to help", type: "closer", score: 80 },
+    ],
+  },
+  {
+    id: 25,
+    title: "THE GRAMMAR POLICE",
+    emoji: "✏️",
+    context: "You asked an AI to proofread the sentence: 'The cat sat on mat'",
+    falPrompt: "a robot grammar teacher covered in red correction marks and style guides, pointing at a tiny sentence, cartoon chaos",
+    text: `Absolutely! I'd be happy to assist with your proofreading request. Before I dive in, I want to note that grammar and style can be somewhat subjective, and different style guides may offer different recommendations.
+
+That said, here is my comprehensive analysis of your sentence. It's important to note that the sentence appears to be missing a definite article. Specifically, "the mat" would typically include the article "the" before "mat." Furthermore, depending on your intended audience and context, you may also want to consider whether additional descriptive language would enhance clarity.
+
+It's also worth noting that sentence length and structure can significantly impact readability. Additionally, if this is for formal writing, I would recommend consulting the relevant style guide for your field. As an AI language model, I want to be transparent that my suggestions are guidelines rather than absolute rules.
+
+In conclusion, your sentence needs one small article correction. I sincerely hope this comprehensive grammatical overview proves helpful! Please don't hesitate to share more text if you'd like further assistance. I'm always here to support your writing journey!`,
+    slopPhrases: [
+      { text: "Absolutely!", type: "opener", score: 100 },
+      { text: "I'd be happy to assist", type: "opener", score: 90 },
+      { text: "somewhat subjective", type: "disclaimer", score: 70 },
+      { text: "That said", type: "filler", score: 50 },
+      { text: "comprehensive analysis", type: "buzzword", score: 70 },
+      { text: "It's important to note", type: "caveat", score: 70 },
+      { text: "Furthermore", type: "filler", score: 50 },
+      { text: "It's also worth noting", type: "caveat", score: 70 },
+      { text: "significantly impact readability", type: "buzzword", score: 70 },
+      { text: "Additionally", type: "filler", score: 40 },
+      { text: "As an AI language model", type: "disclaimer", score: 120 },
+      { text: "I want to be transparent", type: "caveat", score: 80 },
+      { text: "guidelines rather than absolute rules", type: "disclaimer", score: 80 },
+      { text: "In conclusion", type: "filler", score: 60 },
+      { text: "I sincerely hope this comprehensive", type: "closer", score: 100 },
+      { text: "Please don't hesitate to share", type: "closer", score: 80 },
+      { text: "I'm always here to support", type: "closer", score: 80 },
+    ],
+  },
+  {
+    id: 26,
+    title: "THE BOILING POINT",
+    emoji: "🫗",
+    context: "You asked an AI how to boil water",
+    falPrompt: "a robot safety inspector in full hazmat gear standing over a tiny pot of water with 50 warning labels, cartoon absurdity",
+    text: `Certainly! I want to begin by noting that boiling water involves high temperatures and steam, which can cause burns. It's always advisable to exercise appropriate caution and, if you have any concerns, consult a relevant safety professional.
+
+That being said, I'll do my best to guide you through this process comprehensively. First and foremost, it's important to ensure you have a suitable vessel — typically a pot or kettle. It's also worth noting that different altitudes affect the boiling point of water, which is a fascinating scientific consideration.
+
+Furthermore, the quality and mineral content of your water may affect the process. As an AI, I want to be transparent that I haven't personally boiled water, and your results may vary. Additionally, if you are using a gas stove, please ensure adequate ventilation and follow all applicable safety guidelines.
+
+In conclusion, fill the pot, apply heat, and wait. I hope this comprehensive guide to water boiling has been illuminating! Please don't hesitate to reach out if you encounter any difficulties. I'm always here to help with your culinary endeavors! Stay safe! 💧`,
+    slopPhrases: [
+      { text: "Certainly!", type: "opener", score: 100 },
+      { text: "I want to begin by noting", type: "caveat", score: 70 },
+      { text: "It's always advisable to exercise appropriate caution", type: "disclaimer", score: 90 },
+      { text: "consult a relevant safety professional", type: "disclaimer", score: 100 },
+      { text: "That being said", type: "filler", score: 50 },
+      { text: "comprehensively", type: "buzzword", score: 60 },
+      { text: "First and foremost", type: "filler", score: 60 },
+      { text: "it's important to ensure", type: "caveat", score: 70 },
+      { text: "It's also worth noting", type: "caveat", score: 70 },
+      { text: "fascinating scientific consideration", type: "buzzword", score: 80 },
+      { text: "Furthermore", type: "filler", score: 50 },
+      { text: "As an AI", type: "disclaimer", score: 110 },
+      { text: "I want to be transparent", type: "caveat", score: 80 },
+      { text: "your results may vary", type: "disclaimer", score: 80 },
+      { text: "Additionally", type: "filler", score: 40 },
+      { text: "In conclusion", type: "filler", score: 60 },
+      { text: "I hope this comprehensive guide", type: "closer", score: 100 },
+      { text: "Please don't hesitate to reach out", type: "closer", score: 90 },
+      { text: "I'm always here to help", type: "closer", score: 80 },
+    ],
+  },
 ];
 
 export const ROASTS = [
