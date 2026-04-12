@@ -215,10 +215,10 @@ export default function StartScreen({ onStart }) {
                 HOW TO PLAY
               </div>
               {[
-                ['👆', 'Tap the highlighted slop phrases to detect them'],
-                ['⚡', 'Chain detections for COMBO MULTIPLIER up to 5x'],
-                ['📡', 'Use power-ups: Radar, Time Boost, Double Points'],
-                ['🎲', 'Different 5 rounds every game from a pool of 10'],
+                ['👆', 'Click slop phrases hiding in plain text — all words look the same!'],
+                ['⚡', 'Chain detections for COMBO MULTIPLIER up to 5x (+1s per hit)'],
+                ['📡', 'Power-ups usable once per game: Radar, Time Boost, Double Points'],
+                ['🎲', '5 random rounds every game from a pool of 46'],
               ].map(([icon, text]) => (
                 <div key={icon} style={{ display: 'flex', gap: '10px', marginBottom: '8px', fontSize: '0.8rem', color: '#e2e8f0', alignItems: 'flex-start' }}>
                   <span style={{ flexShrink: 0 }}>{icon}</span>
@@ -251,7 +251,7 @@ export default function StartScreen({ onStart }) {
                 🎮 START DETECTING
               </button>
               <div style={{ color: '#334155', fontSize: '0.62rem', fontFamily: "'Orbitron', sans-serif" }}>
-                10 ROUNDS POOL • REAL AI SLOP™
+                46 ROUNDS POOL • REAL AI SLOP™
               </div>
             </div>
           </>

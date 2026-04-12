@@ -49,7 +49,7 @@ function SlopMeter({ found, total }) {
   );
 }
 
-export default function GameScreen({ round, roundIdx, totalRounds, totalScore, onRoundEnd, difficulty = 'normal', onPowerUpUsed }) {
+export default function GameScreen({ round, roundIdx, totalRounds, totalScore, onRoundEnd, difficulty = 'normal', onPowerUpUsed, usedPowerUps = [] }) {
   const ROUND_TIME = difficulty === 'chaos' ? ROUND_TIME_CHAOS : ROUND_TIME_NORMAL;
   const [timeLeft, setTimeLeft] = useState(ROUND_TIME);
   const [roundScore, setRoundScore] = useState(0);
@@ -59,8 +59,7 @@ export default function GameScreen({ round, roundIdx, totalRounds, totalScore, o
   const [shakeHeader, setShakeHeader] = useState(false);
   const [typingDone, setTypingDone] = useState(false);
 
-  // Power-ups
-  const [usedPowerUps, setUsedPowerUps] = useState([]);
+  // Power-ups (usedPowerUps comes from App so it persists across rounds)
   const [activePowerUp, setActivePowerUp] = useState(null);
   const [radarActive, setRadarActive] = useState(false);
   const [doublePoints, setDoublePoints] = useState(false);
@@ -97,8 +96,9 @@ export default function GameScreen({ round, roundIdx, totalRounds, totalScore, o
 
   const handleScore = useCallback((score, x, y, commentary, isDoubled) => {
     setRoundScore(prev => prev + score);
+    setTimeLeft(prev => Math.min(prev + 1, ROUND_TIME + 60)); // +1s per correct slop
     addPopup(x, y, score, commentary, isDoubled);
-  }, [addPopup]);
+  }, [addPopup, ROUND_TIME]);
 
   const handleCombo = useCallback((newCombo) => {
     setCombo(newCombo);
@@ -123,10 +123,9 @@ export default function GameScreen({ round, roundIdx, totalRounds, totalScore, o
 
   const handlePowerUp = (id) => {
     if (usedPowerUps.includes(id)) return;
-    setUsedPowerUps(prev => [...prev, id]);
     setActivePowerUp(id);
     if (powerUpTimerRef.current) clearTimeout(powerUpTimerRef.current);
-    onPowerUpUsed?.(id);
+    onPowerUpUsed?.(id); // App.jsx updates the persisted usedPowerUps
 
     if (id === 'radar') {
       setRadarActive(true);
