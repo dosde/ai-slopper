@@ -1,4 +1,4 @@
-import { useCallback, useRef, useState, useEffect } from 'react';
+import React, { useCallback, useRef, useState, useEffect } from 'react';
 import { getRandomCommentary } from '../data/slopData';
 import { playSlopDetected, playCombo, playMiss } from '../utils/audio';
 import { updateSlopDict } from '../utils/storage';
@@ -266,26 +266,39 @@ export default function SlopText({
           const isFound = found.has(token.id);
           const showRadar = radarActive && !isFound;
           const isInverse = !!round.inverse;
+          const className = `slop-token${isFound ? (isInverse ? ' human-found' : ' found') : ' active'}`;
+          const extraStyle = {
+            ...(isCorrupted && !isFound ? { color: '#fb923c', transition: 'color 0.3s' } : {}),
+            ...(showRadar ? {
+              background: 'rgba(56,189,248,0.3)',
+              borderBottom: '2px solid #38bdf8',
+              boxShadow: '0 0 8px rgba(56,189,248,0.6)',
+              animation: 'radar-pulse 0.5s ease-in-out infinite alternate',
+            } : {}),
+            ...(!isFound && !showRadar && doublePoints && !isInverse ? {
+              borderBottom: `2px solid rgba(251,191,36,0.5)`,
+            } : {}),
+          };
+          // Split multi-word phrases into individual word spans so hovering
+          // highlights one word at a time — indistinguishable from normal tokens.
+          const parts = displayText.split(/(\s+)/);
           return (
-            <span
-              key={token.id}
-              className={`slop-token${isFound ? (isInverse ? ' human-found' : ' found') : ' active'}`}
-              onClick={!isFound ? (e) => handleSlopClick(e, token) : undefined}
-              style={{
-                ...(isCorrupted && !isFound ? { color: '#fb923c', transition: 'color 0.3s' } : {}),
-                ...(showRadar ? {
-                  background: 'rgba(56,189,248,0.3)',
-                  borderBottom: '2px solid #38bdf8',
-                  boxShadow: '0 0 8px rgba(56,189,248,0.6)',
-                  animation: 'radar-pulse 0.5s ease-in-out infinite alternate',
-                } : {}),
-                ...(!isFound && !showRadar && doublePoints && !isInverse ? {
-                  borderBottom: `2px solid rgba(251,191,36,0.5)`,
-                } : {}),
-              }}
-            >
-              {displayText}
-            </span>
+            <React.Fragment key={token.id}>
+              {parts.map((part, pi) => {
+                if (!part) return null;
+                if (/^\s+$/.test(part)) return <span key={pi}>{part}</span>;
+                return (
+                  <span
+                    key={pi}
+                    className={className}
+                    onClick={!isFound ? (e) => handleSlopClick(e, token) : undefined}
+                    style={extraStyle}
+                  >
+                    {part}
+                  </span>
+                );
+              })}
+            </React.Fragment>
           );
         }
 

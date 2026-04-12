@@ -136,23 +136,6 @@ html, body {
   background: radial-gradient(ellipse at top, #1a0a2e 0%, #0f0f1a 60%);
 }
 
-/* Stars */
-.game-container::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background-image:
-    radial-gradient(1px 1px at 10% 15%, rgba(255,255,255,0.8) 1px, transparent 0),
-    radial-gradient(1px 1px at 30% 55%, rgba(255,255,255,0.6) 1px, transparent 0),
-    radial-gradient(1px 1px at 50% 25%, rgba(255,255,255,0.8) 1px, transparent 0),
-    radial-gradient(1px 1px at 70% 80%, rgba(255,255,255,0.5) 1px, transparent 0),
-    radial-gradient(1px 1px at 85% 40%, rgba(255,255,255,0.7) 1px, transparent 0),
-    radial-gradient(1px 1px at 20% 90%, rgba(255,255,255,0.4) 1px, transparent 0),
-    radial-gradient(1px 1px at 60% 10%, rgba(255,255,255,0.6) 1px, transparent 0),
-    radial-gradient(1px 1px at 95% 65%, rgba(255,255,255,0.5) 1px, transparent 0);
-  pointer-events: none;
-  z-index: 0;
-}
 
 /* ========== CARDS ========== */
 .card {

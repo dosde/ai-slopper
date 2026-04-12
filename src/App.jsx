@@ -1,4 +1,4 @@
-import { useState, useCallback, useRef } from 'react';
+import { useState, useCallback, useRef, useMemo } from 'react';
 import StartScreen from './components/StartScreen';
 import RoundIntro from './components/RoundIntro';
 import GameScreen from './components/GameScreen';
@@ -8,6 +8,33 @@ import AchievementToastLayer, { showAchievement } from './components/Achievement
 import { selectRounds, getDailyRounds } from './data/slopData';
 import { stopMusic } from './utils/audio';
 import { checkAndUnlockAchievements, updateStats } from './utils/storage';
+
+function Starfield() {
+  const stars = useMemo(() =>
+    Array.from({ length: 24 }, (_, i) => ({
+      id: i,
+      x: Math.random() * 100,
+      y: Math.random() * 100,
+      opacity: 0.08 + Math.random() * 0.12,
+      size: Math.random() < 0.75 ? 1 : 1.5,
+    }))
+  , []);
+  return (
+    <div aria-hidden="true" style={{ position: 'absolute', inset: 0, pointerEvents: 'none', zIndex: 0 }}>
+      {stars.map(s => (
+        <div key={s.id} style={{
+          position: 'absolute',
+          left: `${s.x}%`,
+          top: `${s.y}%`,
+          width: `${s.size}px`,
+          height: `${s.size}px`,
+          borderRadius: '50%',
+          background: `rgba(255,255,255,${s.opacity.toFixed(2)})`,
+        }} />
+      ))}
+    </div>
+  );
+}
 
 const STATE = {
   START: 'start',
@@ -176,6 +203,7 @@ export default function App() {
   return (
     <>
       <div className="game-container">
+        <Starfield />
         {gameState === STATE.START && (
           <StartScreen onStart={handleStart} />
         )}
