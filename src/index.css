@@ -1,0 +1,317 @@
+/* AI Slop Royale - Global Styles */
+
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Orbitron:wght@400;700;900&family=Inter:wght@400;600;700&display=swap');
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+  --purple: #7c3aed;
+  --purple-light: #a78bfa;
+  --purple-dark: #4c1d95;
+  --pink: #ec4899;
+  --pink-light: #f9a8d4;
+  --yellow: #fbbf24;
+  --green: #10b981;
+  --red: #ef4444;
+  --bg: #0f0f1a;
+  --bg-card: #1a1a2e;
+  --text: #f8fafc;
+  --text-muted: #94a3b8;
+}
+
+html, body {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'Inter', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
+}
+
+#root {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+/* ========== ANIMATIONS ========== */
+@keyframes pulse-glow {
+  0%, 100% { box-shadow: 0 0 20px var(--purple), 0 0 40px var(--purple); }
+  50% { box-shadow: 0 0 40px var(--purple-light), 0 0 80px var(--purple-light); }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  20% { transform: translateX(-8px); }
+  40% { transform: translateX(8px); }
+  60% { transform: translateX(-8px); }
+  80% { transform: translateX(8px); }
+}
+
+@keyframes rainbow {
+  0% { color: #ff0000; }
+  16% { color: #ff8800; }
+  33% { color: #ffff00; }
+  50% { color: #00ff00; }
+  66% { color: #0088ff; }
+  83% { color: #8800ff; }
+  100% { color: #ff0000; }
+}
+
+@keyframes pop-in {
+  0% { transform: scale(0.8); opacity: 0; }
+  60% { transform: scale(1.1); opacity: 1; }
+  100% { transform: scale(1); opacity: 1; }
+}
+
+@keyframes fly-up {
+  0% { transform: translateY(0) scale(1); opacity: 1; }
+  100% { transform: translateY(-80px) scale(0.8); opacity: 0; }
+}
+
+@keyframes glitch {
+  0% { text-shadow: 2px 0 #ec4899, -2px 0 #7c3aed; }
+  25% { text-shadow: -2px 0 #ec4899, 2px 0 #7c3aed; }
+  50% { text-shadow: 2px 2px #fbbf24, -2px -2px #10b981; }
+  75% { text-shadow: 0 0 #ec4899; }
+  100% { text-shadow: 2px 0 #ec4899, -2px 0 #7c3aed; }
+}
+
+@keyframes bounce-in {
+  0% { transform: scale(0); }
+  50% { transform: scale(1.15); }
+  70% { transform: scale(0.95); }
+  100% { transform: scale(1); }
+}
+
+@keyframes wiggle {
+  0%, 100% { transform: rotate(0deg); }
+  20% { transform: rotate(-5deg); }
+  40% { transform: rotate(5deg); }
+  60% { transform: rotate(-3deg); }
+  80% { transform: rotate(3deg); }
+}
+
+@keyframes slide-in-up {
+  from { transform: translateY(30px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+@keyframes slide-in-down {
+  from { transform: translateY(-30px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+@keyframes timer-warning {
+  0%, 100% { background: rgba(239, 68, 68, 0.1); }
+  50% { background: rgba(239, 68, 68, 0.3); }
+}
+
+/* ========== UTILITY CLASSES ========== */
+.font-pixel { font-family: 'Press Start 2P', monospace !important; }
+.font-orbitron { font-family: 'Orbitron', sans-serif !important; }
+
+/* ========== GAME CONTAINER ========== */
+.game-container {
+  width: 100%;
+  height: 100%;
+  max-width: 600px;
+  margin: 0 auto;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  background: radial-gradient(ellipse at top, #1a0a2e 0%, #0f0f1a 60%);
+}
+
+/* Stars */
+.game-container::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image:
+    radial-gradient(1px 1px at 10% 15%, rgba(255,255,255,0.8) 1px, transparent 0),
+    radial-gradient(1px 1px at 30% 55%, rgba(255,255,255,0.6) 1px, transparent 0),
+    radial-gradient(1px 1px at 50% 25%, rgba(255,255,255,0.8) 1px, transparent 0),
+    radial-gradient(1px 1px at 70% 80%, rgba(255,255,255,0.5) 1px, transparent 0),
+    radial-gradient(1px 1px at 85% 40%, rgba(255,255,255,0.7) 1px, transparent 0),
+    radial-gradient(1px 1px at 20% 90%, rgba(255,255,255,0.4) 1px, transparent 0),
+    radial-gradient(1px 1px at 60% 10%, rgba(255,255,255,0.6) 1px, transparent 0),
+    radial-gradient(1px 1px at 95% 65%, rgba(255,255,255,0.5) 1px, transparent 0);
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* ========== CARDS ========== */
+.card {
+  background: rgba(26, 26, 46, 0.95);
+  border: 1px solid rgba(124, 58, 237, 0.3);
+  border-radius: 16px;
+  box-shadow: 0 0 30px rgba(124, 58, 237, 0.15);
+}
+
+/* ========== BUTTONS ========== */
+.btn-primary {
+  background: linear-gradient(135deg, #7c3aed, #ec4899);
+  color: white;
+  border: none;
+  border-radius: 12px;
+  padding: 14px 28px;
+  font-family: 'Orbitron', sans-serif;
+  font-weight: 700;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: transform 0.1s, box-shadow 0.2s;
+  box-shadow: 0 4px 20px rgba(124, 58, 237, 0.5);
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.btn-primary:hover { transform: scale(1.05); box-shadow: 0 8px 30px rgba(124, 58, 237, 0.7); }
+.btn-primary:active { transform: scale(0.97); }
+
+.btn-secondary {
+  background: transparent;
+  color: #a78bfa;
+  border: 2px solid #7c3aed;
+  border-radius: 12px;
+  padding: 12px 24px;
+  font-family: 'Orbitron', sans-serif;
+  font-weight: 700;
+  font-size: 0.85rem;
+  cursor: pointer;
+  transition: all 0.2s;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+}
+
+.btn-secondary:hover { background: rgba(124, 58, 237, 0.2); }
+.btn-secondary:active { transform: scale(0.97); }
+
+/* ========== SLOP TEXT ========== */
+.slop-token {
+  cursor: pointer;
+  border-radius: 3px;
+  padding: 1px 2px;
+  transition: background 0.1s, transform 0.1s;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  display: inline;
+  line-height: 1.8;
+}
+
+.slop-token.active {
+  background: rgba(251, 191, 36, 0.15);
+  text-decoration: underline dotted rgba(251, 191, 36, 0.6);
+}
+
+.slop-token.active:hover,
+.slop-token.active:active {
+  background: rgba(251, 191, 36, 0.3);
+  transform: scale(1.03);
+}
+
+.slop-token.found {
+  background: rgba(16, 185, 129, 0.2) !important;
+  color: #10b981 !important;
+  text-decoration: line-through !important;
+  text-decoration-color: #10b981 !important;
+  cursor: default;
+  animation: pop-in 0.25s ease;
+}
+
+.slop-token.missed {
+  background: rgba(239, 68, 68, 0.2) !important;
+  color: #ef4444 !important;
+  cursor: default;
+}
+
+/* ========== SCORE POPUPS ========== */
+.score-popup {
+  position: fixed;
+  pointer-events: none;
+  font-family: 'Orbitron', sans-serif;
+  font-weight: 900;
+  color: #fbbf24;
+  text-shadow: 0 0 10px #fbbf24;
+  animation: fly-up 1.2s ease-out forwards;
+  z-index: 9999;
+  white-space: nowrap;
+}
+
+.commentary-popup {
+  position: fixed;
+  pointer-events: none;
+  background: rgba(0, 0, 0, 0.92);
+  border: 2px solid #fbbf24;
+  border-radius: 12px;
+  padding: 8px 16px;
+  font-family: 'Orbitron', sans-serif;
+  font-weight: 700;
+  font-size: 0.72rem;
+  color: #fbbf24;
+  z-index: 9999;
+  animation: fly-up 2.2s ease-out forwards;
+  white-space: nowrap;
+  max-width: 90vw;
+  text-align: center;
+}
+
+/* ========== TIMER ========== */
+.timer-bar-track {
+  width: 100%;
+  height: 8px;
+  background: rgba(255,255,255,0.1);
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.timer-bar-fill {
+  height: 100%;
+  border-radius: 4px;
+  transition: width 0.25s linear, background 0.5s;
+}
+
+/* ========== COMBO BADGE ========== */
+.combo-badge {
+  background: linear-gradient(135deg, #fbbf24, #f59e0b);
+  color: #0f0f1a;
+  font-family: 'Orbitron', sans-serif;
+  font-weight: 900;
+  border-radius: 8px;
+  padding: 4px 10px;
+  animation: wiggle 0.5s ease;
+  font-size: 0.85rem;
+}
+
+/* ========== FAL IMAGE ========== */
+.fal-image {
+  border-radius: 16px;
+  object-fit: cover;
+  border: 3px solid rgba(124, 58, 237, 0.5);
+  box-shadow: 0 0 30px rgba(124, 58, 237, 0.3);
+}
+
+/* ========== MOBILE SAFE AREA ========== */
+@supports (padding: max(0px)) {
+  .safe-top { padding-top: max(12px, env(safe-area-inset-top)); }
+  .safe-bottom { padding-bottom: max(12px, env(safe-area-inset-bottom)); }
+}
