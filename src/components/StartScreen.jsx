@@ -146,7 +146,7 @@ export default function StartScreen({ onStart }) {
           {TAGLINES[taglineIdx]}
         </div>
 
-        {/* Slop facts ticker — fixed height prevents layout jumps when text wraps */}
+        {/* Slop facts ticker — single line, truncated to prevent any layout jump */}
         <div style={{
           fontSize: '0.58rem',
           color: '#475569',
@@ -154,11 +154,10 @@ export default function StartScreen({ onStart }) {
           maxWidth: '340px',
           margin: '4px auto 0',
           lineHeight: 1.4,
-          height: '2.6em',
+          height: '1.3em',
           overflow: 'hidden',
-          display: '-webkit-box',
-          WebkitLineClamp: 2,
-          WebkitBoxOrient: 'vertical',
+          whiteSpace: 'nowrap',
+          textOverflow: 'ellipsis',
         }}>
           📊 {SLOP_FACTS[factIdx]}
         </div>
@@ -225,31 +224,77 @@ export default function StartScreen({ onStart }) {
 
         {tab === 'play' && (
           <>
-            {/* Language */}
-            <div className="card" style={{ padding: '14px' }}>
-              <div style={{ fontSize: '0.62rem', color: '#94a3b8', fontFamily: "'Orbitron', sans-serif", marginBottom: '10px', letterSpacing: '1px' }}>
-                LANGUAGE
-              </div>
-              <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: '8px' }}>
-                {LANGS.map(l => (
-                  <button
-                    key={l.code}
-                    onClick={() => setLang(l.code)}
+            {/* Language + Game mode (compact combined row) */}
+            <div className="card" style={{ padding: '10px 14px' }}>
+              <div style={{ display: 'flex', gap: '12px', alignItems: 'flex-end' }}>
+                {/* Language dropdown */}
+                <div style={{ flex: 1 }}>
+                  <div style={{ fontSize: '0.58rem', color: '#64748b', fontFamily: "'Orbitron', sans-serif", marginBottom: '5px', letterSpacing: '1px' }}>
+                    LANGUAGE
+                  </div>
+                  <select
+                    value={lang}
+                    onChange={e => setLang(e.target.value)}
                     style={{
-                      padding: '10px 6px',
+                      width: '100%',
+                      padding: '8px 10px',
                       borderRadius: '10px',
-                      border: `2px solid ${lang === l.code ? '#a78bfa' : 'rgba(124,58,237,0.2)'}`,
-                      background: lang === l.code ? 'rgba(167,139,250,0.15)' : 'transparent',
-                      color: lang === l.code ? '#a78bfa' : '#94a3b8',
+                      border: '2px solid rgba(124,58,237,0.4)',
+                      background: 'rgba(124,58,237,0.1)',
+                      color: '#a78bfa',
+                      fontFamily: "'Orbitron', sans-serif",
+                      fontWeight: 700,
+                      fontSize: '0.72rem',
                       cursor: 'pointer',
-                      textAlign: 'center',
-                      transition: 'all 0.2s',
+                      outline: 'none',
+                      appearance: 'none',
+                      WebkitAppearance: 'none',
+                      backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23a78bfa' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E")`,
+                      backgroundRepeat: 'no-repeat',
+                      backgroundPosition: 'right 10px center',
+                      paddingRight: '28px',
                     }}
                   >
-                    <div style={{ fontSize: '1.3rem' }}>{l.flag}</div>
-                    <div style={{ fontFamily: "'Orbitron', sans-serif", fontWeight: 700, fontSize: '0.68rem', marginTop: '3px' }}>{l.label}</div>
-                  </button>
-                ))}
+                    {LANGS.map(l => (
+                      <option key={l.code} value={l.code} style={{ background: '#1a1a2e', color: '#e2e8f0' }}>
+                        {l.flag} {l.label}
+                      </option>
+                    ))}
+                  </select>
+                </div>
+                {/* Game mode */}
+                <div style={{ flex: 1 }}>
+                  <div style={{ fontSize: '0.58rem', color: '#64748b', fontFamily: "'Orbitron', sans-serif", marginBottom: '5px', letterSpacing: '1px' }}>
+                    MODE
+                  </div>
+                  <div style={{ display: 'flex', gap: '5px' }}>
+                    {[
+                      { id: 'random', label: '🎲 RANDOM' },
+                      { id: 'daily',  label: '📅 DAILY'  },
+                    ].map(m => (
+                      <button
+                        key={m.id}
+                        onClick={() => setMode(m.id)}
+                        style={{
+                          flex: 1,
+                          padding: '8px 4px',
+                          borderRadius: '10px',
+                          border: `2px solid ${mode === m.id ? '#a78bfa' : 'rgba(124,58,237,0.2)'}`,
+                          background: mode === m.id ? 'rgba(124,58,237,0.15)' : 'transparent',
+                          color: mode === m.id ? '#a78bfa' : '#64748b',
+                          cursor: 'pointer',
+                          textAlign: 'center',
+                          fontFamily: "'Orbitron', sans-serif",
+                          fontWeight: 700,
+                          fontSize: '0.62rem',
+                          transition: 'all 0.2s',
+                        }}
+                      >
+                        {m.label}
+                      </button>
+                    ))}
+                  </div>
+                </div>
               </div>
             </div>
 
@@ -282,38 +327,6 @@ export default function StartScreen({ onStart }) {
                   >
                     <div style={{ fontFamily: "'Orbitron', sans-serif", fontWeight: 700, fontSize: '0.68rem' }}>{d.label}</div>
                     <div style={{ fontSize: '0.58rem', marginTop: '2px', opacity: 0.8 }}>{d.desc}</div>
-                  </button>
-                ))}
-              </div>
-            </div>
-
-            {/* Game mode */}
-            <div className="card" style={{ padding: '14px' }}>
-              <div style={{ fontSize: '0.62rem', color: '#94a3b8', fontFamily: "'Orbitron', sans-serif", marginBottom: '10px', letterSpacing: '1px' }}>
-                GAME MODE
-              </div>
-              <div style={{ display: 'flex', gap: '8px' }}>
-                {[
-                  { id: 'random', label: '🎲 RANDOM',  desc: '5 fresh rounds every game' },
-                  { id: 'daily',  label: '📅 DAILY',   desc: 'Same rounds for everyone today' },
-                ].map(m => (
-                  <button
-                    key={m.id}
-                    onClick={() => setMode(m.id)}
-                    style={{
-                      flex: 1,
-                      padding: '10px',
-                      borderRadius: '10px',
-                      border: `2px solid ${mode === m.id ? '#a78bfa' : 'rgba(124,58,237,0.2)'}`,
-                      background: mode === m.id ? 'rgba(124,58,237,0.15)' : 'transparent',
-                      color: mode === m.id ? '#a78bfa' : '#94a3b8',
-                      cursor: 'pointer',
-                      textAlign: 'center',
-                      transition: 'all 0.2s',
-                    }}
-                  >
-                    <div style={{ fontFamily: "'Orbitron', sans-serif", fontWeight: 700, fontSize: '0.72rem' }}>{m.label}</div>
-                    <div style={{ fontSize: '0.62rem', marginTop: '3px', opacity: 0.8 }}>{m.desc}</div>
                   </button>
                 ))}
               </div>
