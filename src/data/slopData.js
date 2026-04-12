@@ -1,4 +1,7 @@
 // The sacred tome of AI slop patterns
+import ROUNDS_DE from './rounds_de.js';
+import ROUNDS_RU from './rounds_ru.js';
+import ROUNDS_JA from './rounds_ja.js';
 
 export const SLOP_COMMENTARY = {
   opener: [
@@ -2818,6 +2821,9 @@ AIとして、私はこのテーマに関する豊富な情報を持っていま
       { text: "いつでもお気軽にお申し付けください", type: "closer", score: 90 },
     ],
   },
+  ...ROUNDS_DE,
+  ...ROUNDS_RU,
+  ...ROUNDS_JA,
 ];
 
 export const ROASTS = [
