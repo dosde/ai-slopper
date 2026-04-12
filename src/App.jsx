@@ -28,13 +28,18 @@ export default function App() {
   const [difficulty, setDifficulty] = useState('normal');
   const [newAchievements, setNewAchievements] = useState([]);
 
+  const [isDaily, setIsDaily] = useState(false);
+
   // Per-game stats for achievements
   const gameStatsRef = useRef({
     totalDetected: 0,
     certainlyCount: 0,
+    openerCount: 0,
+    disclaimerCount: 0,
     maxCombo: 0,
     perfectRounds: 0,
     bestTimeLeft: 0,
+    bestRoundScore: 0,
     totalScore: 0,
     roundsCompleted: 0,
     usedRadar: false,
@@ -52,11 +57,14 @@ export default function App() {
     setLastFoundIds(new Set());
     setDifficulty(diff);
     setNewAchievements([]);
+    const daily = mode === 'daily';
+    setIsDaily(daily);
     gameStatsRef.current = {
-      totalDetected: 0, certainlyCount: 0, maxCombo: 0,
-      perfectRounds: 0, bestTimeLeft: 0, totalScore: 0,
+      totalDetected: 0, certainlyCount: 0, openerCount: 0,
+      disclaimerCount: 0, maxCombo: 0, perfectRounds: 0,
+      bestTimeLeft: 0, bestRoundScore: 0, totalScore: 0,
       roundsCompleted: 0, usedRadar: false, powerUpsUsed: 0,
-      completedChaos: false,
+      completedChaos: false, isDaily: daily,
     };
     setGameState(STATE.ROUND_INTRO);
   }, []);
@@ -78,8 +86,18 @@ export default function App() {
     const stats = gameStatsRef.current;
     stats.totalDetected += foundInRound;
     stats.roundsCompleted += 1;
+    if (score > stats.bestRoundScore) stats.bestRoundScore = score;
     if (timeLeft > stats.bestTimeLeft) stats.bestTimeLeft = timeLeft;
     if (foundInRound >= totalPhrasesInRound && totalPhrasesInRound > 0) stats.perfectRounds += 1;
+    // Count phrase types for cross-game achievements
+    if (round?.slopPhrases) {
+      round.slopPhrases.forEach((p, i) => {
+        // token IDs are indices in tokenized array; we check foundIds loosely by count
+        if (p.type === 'opener') stats.openerCount = (stats.openerCount || 0) + 1;
+        if (p.type === 'disclaimer') stats.disclaimerCount = (stats.disclaimerCount || 0) + 1;
+        if (p.text === 'Certainly!') stats.certainlyCount = (stats.certainlyCount || 0) + 1;
+      });
+    }
 
     setGameState(STATE.ROUND_SUMMARY);
   }, [rounds, roundIdx]);

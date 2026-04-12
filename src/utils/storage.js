@@ -39,18 +39,26 @@ export const getPlayerRank = (score) => {
 // ========== ACHIEVEMENTS ==========
 
 export const ACHIEVEMENTS = [
-  { id: 'first_slop',    emoji: '🔍', name: 'SLOP SPOTTER',       desc: 'Detect your first slop phrase' },
-  { id: 'combo_3',       emoji: '🔥', name: 'ON FIRE',            desc: 'Get a 3x combo' },
-  { id: 'combo_5',       emoji: '⚡', name: 'COMBO KING',         desc: 'Get a 5x combo' },
-  { id: 'perfect_round', emoji: '💯', name: 'PERFECTIONIST',      desc: 'Find 100% of slop in a round' },
-  { id: 'speed_demon',   emoji: '🏃', name: 'SPEED DEMON',        desc: 'Finish a round with 25s left' },
-  { id: 'score_3000',    emoji: '💥', name: 'SLOP DESTROYER',     desc: 'Score 3000+ total points' },
-  { id: 'score_6000',    emoji: '🏆', name: 'SUPREME OVERLORD',   desc: 'Score 6000+ total points' },
-  { id: 'used_radar',    emoji: '📡', name: 'RADAR OPERATOR',     desc: 'Use the Slop Radar power-up' },
-  { id: 'all_powerups',  emoji: '🦾', name: 'POWER USER',         desc: 'Use all 3 power-ups in one game' },
-  { id: 'completionist', emoji: '🎓', name: 'COMPLETIONIST',      desc: 'Complete all 5 rounds' },
-  { id: 'chaos_clear',   emoji: '😈', name: 'CHAOS MASTER',       desc: 'Complete a game on CHAOS mode' },
-  { id: 'certainly',     emoji: '🗡️', name: 'CERTAINLY SLAYER',   desc: 'Detect 10 "Certainly!" phrases' },
+  { id: 'first_slop',      emoji: '🔍', name: 'SLOP SPOTTER',        desc: 'Detect your first slop phrase' },
+  { id: 'combo_3',         emoji: '🔥', name: 'ON FIRE',              desc: 'Get a 3x combo' },
+  { id: 'combo_5',         emoji: '⚡', name: 'COMBO KING',           desc: 'Get a 5x combo' },
+  { id: 'perfect_round',   emoji: '💯', name: 'PERFECTIONIST',        desc: 'Find 100% of slop in a round' },
+  { id: 'speed_demon',     emoji: '🏃', name: 'SPEED DEMON',          desc: 'Finish a round with 25s left' },
+  { id: 'score_3000',      emoji: '💥', name: 'SLOP DESTROYER',       desc: 'Score 3000+ total points' },
+  { id: 'score_6000',      emoji: '🏆', name: 'SUPREME OVERLORD',     desc: 'Score 6000+ total points' },
+  { id: 'score_10000',     emoji: '🌌', name: 'SLOP TRANSCENDENT',    desc: 'Score 10000+ total points' },
+  { id: 'used_radar',      emoji: '📡', name: 'RADAR OPERATOR',       desc: 'Use the Slop Radar power-up' },
+  { id: 'all_powerups',    emoji: '🦾', name: 'POWER USER',           desc: 'Use all 3 power-ups in one game' },
+  { id: 'completionist',   emoji: '🎓', name: 'COMPLETIONIST',        desc: 'Complete all 5 rounds' },
+  { id: 'chaos_clear',     emoji: '😈', name: 'CHAOS MASTER',         desc: 'Complete a game on CHAOS mode' },
+  { id: 'certainly',       emoji: '🗡️', name: 'CERTAINLY SLAYER',     desc: 'Detect 10 "Certainly!" phrases across all games' },
+  { id: 'no_powerups',     emoji: '🧘', name: 'PURIST',               desc: 'Complete a game without using any power-ups' },
+  { id: 'daily_done',      emoji: '📅', name: 'DAILY DEVOTEE',        desc: 'Complete a Daily Challenge' },
+  { id: 'two_perfect',     emoji: '🌟', name: 'DOUBLE PERFECT',       desc: 'Get 100% in 2 rounds in one game' },
+  { id: 'score_1000_round',emoji: '💎', name: 'BIG ROUND',            desc: 'Score 1000+ in a single round' },
+  { id: 'opener_hunter',   emoji: '🎯', name: 'OPENER HUNTER',        desc: 'Detect 20 opener phrases total' },
+  { id: 'disclaimer_slayer',emoji: '🤖', name: 'DISCLAIMER SLAYER',   desc: 'Detect 15 AI disclaimer phrases total' },
+  { id: 'five_games',      emoji: '🔁', name: 'FREQUENT SLOPPER',     desc: 'Complete 5 games total' },
 ];
 
 export const getUnlockedAchievements = () => {
@@ -79,18 +87,30 @@ export const checkAndUnlockAchievements = (gameStats) => {
     }
   };
 
-  check('first_slop',    gameStats.totalDetected >= 1);
-  check('combo_3',       gameStats.maxCombo >= 3);
-  check('combo_5',       gameStats.maxCombo >= 5);
-  check('perfect_round', gameStats.perfectRounds >= 1);
-  check('speed_demon',   gameStats.bestTimeLeft >= 25);
-  check('score_3000',    gameStats.totalScore >= 3000);
-  check('score_6000',    gameStats.totalScore >= 6000);
-  check('used_radar',    gameStats.usedRadar);
-  check('all_powerups',  gameStats.powerUpsUsed >= 3);
-  check('completionist', gameStats.roundsCompleted >= 5);
-  check('chaos_clear',   gameStats.completedChaos);
-  check('certainly',     gameStats.certainlyCount >= 10);
+  // Read cumulative stats for cross-game achievements
+  const cum = getStats();
+
+  check('first_slop',       gameStats.totalDetected >= 1);
+  check('combo_3',          gameStats.maxCombo >= 3);
+  check('combo_5',          gameStats.maxCombo >= 5);
+  check('perfect_round',    gameStats.perfectRounds >= 1);
+  check('two_perfect',      gameStats.perfectRounds >= 2);
+  check('speed_demon',      gameStats.bestTimeLeft >= 25);
+  check('score_3000',       gameStats.totalScore >= 3000);
+  check('score_6000',       gameStats.totalScore >= 6000);
+  check('score_10000',      gameStats.totalScore >= 10000);
+  check('score_1000_round', gameStats.bestRoundScore >= 1000);
+  check('used_radar',       gameStats.usedRadar);
+  check('all_powerups',     gameStats.powerUpsUsed >= 3);
+  check('no_powerups',      gameStats.powerUpsUsed === 0);
+  check('completionist',    gameStats.roundsCompleted >= 5);
+  check('chaos_clear',      gameStats.completedChaos);
+  check('daily_done',       gameStats.isDaily);
+  // Cumulative checks
+  check('certainly',        (cum.certainlyCount || 0) + gameStats.certainlyCount >= 10);
+  check('opener_hunter',    (cum.openerCount || 0) + gameStats.openerCount >= 20);
+  check('disclaimer_slayer',(cum.disclaimerCount || 0) + gameStats.disclaimerCount >= 15);
+  check('five_games',       (cum.gamesPlayed || 0) + 1 >= 5);
 
   return newlyUnlocked;
 };
@@ -109,11 +129,13 @@ export const updateStats = (delta) => {
   const stats = getStats();
   const merged = {
     ...stats,
-    gamesPlayed: (stats.gamesPlayed || 0) + (delta.gamesPlayed || 0),
-    totalDetected: (stats.totalDetected || 0) + (delta.totalDetected || 0),
-    certainlyCount: (stats.certainlyCount || 0) + (delta.certainlyCount || 0),
-    maxCombo: Math.max(stats.maxCombo || 0, delta.maxCombo || 0),
-    bestScore: Math.max(stats.bestScore || 0, delta.totalScore || 0),
+    gamesPlayed:      (stats.gamesPlayed || 0)      + (delta.gamesPlayed || 0),
+    totalDetected:    (stats.totalDetected || 0)    + (delta.totalDetected || 0),
+    certainlyCount:   (stats.certainlyCount || 0)   + (delta.certainlyCount || 0),
+    openerCount:      (stats.openerCount || 0)      + (delta.openerCount || 0),
+    disclaimerCount:  (stats.disclaimerCount || 0)  + (delta.disclaimerCount || 0),
+    maxCombo:         Math.max(stats.maxCombo || 0,  delta.maxCombo || 0),
+    bestScore:        Math.max(stats.bestScore || 0, delta.totalScore || 0),
   };
   localStorage.setItem(STATS_KEY, JSON.stringify(merged));
   return merged;
