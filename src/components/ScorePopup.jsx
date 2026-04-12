@@ -43,12 +43,13 @@ export const PopupLayer = ({ popups }) => (
             )
           }
         </div>
-        {p.commentary && !p.isMiss && (
+        {p.commentary && (
           <div
             className="commentary-popup"
             style={{
               left: Math.max(8, Math.min(p.x - 80, window.innerWidth - 310)),
               top: p.y + 30,
+              ...(p.isMiss ? { color: '#ef4444', borderColor: 'rgba(239,68,68,0.3)', background: 'rgba(239,68,68,0.08)' } : {}),
             }}
           >
             {p.commentary}
