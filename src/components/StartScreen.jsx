@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { initAudio, startMusic } from '../utils/audio';
+import { initAudio, startMusic, getMusicStyle, setMusicStyle } from '../utils/audio';
 import Leaderboard from './Leaderboard';
 import { getLeaderboard, getUnlockedAchievements, ACHIEVEMENTS, getSlopDictSorted } from '../utils/storage';
 import { LANGS } from '../i18n/index';
@@ -51,6 +51,7 @@ export default function StartScreen({ onStart }) {
   const [factIdx, setFactIdx] = useState(0);
   const [statusIdx, setStatusIdx] = useState(0);
   const [musicEnabled, setMusicEnabled] = useState(true);
+  const [musicStyle, setMusicStyleState] = useState(getMusicStyle);
   const [difficulty, setDifficulty] = useState('normal');
   const [mode, setMode] = useState('random'); // 'random' | 'daily'
   const [lang, setLang] = useState('en');
@@ -369,9 +370,24 @@ export default function StartScreen({ onStart }) {
 
             {/* Music + start */}
             <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '10px', paddingBottom: '8px' }}>
-              <button className="btn-secondary" onClick={() => setMusicEnabled(m => !m)} style={{ fontSize: '0.7rem', padding: '7px 14px' }}>
-                {musicEnabled ? '🎵 MUSIC: ON' : '🔇 MUSIC: OFF'}
-              </button>
+              <div style={{ display: 'flex', gap: '8px' }}>
+                <button className="btn-secondary" onClick={() => setMusicEnabled(m => !m)} style={{ fontSize: '0.7rem', padding: '7px 14px' }}>
+                  {musicEnabled ? '🎵 MUSIC: ON' : '🔇 MUSIC: OFF'}
+                </button>
+                {musicEnabled && (
+                  <button
+                    className="btn-secondary"
+                    onClick={() => {
+                      const next = musicStyle === 'sloppy' ? 'pleasant' : 'sloppy';
+                      setMusicStyle(next);
+                      setMusicStyleState(next);
+                    }}
+                    style={{ fontSize: '0.7rem', padding: '7px 14px' }}
+                  >
+                    {musicStyle === 'sloppy' ? '🎮 SLOPPY BEATS' : '🎶 CHILL TUNE'}
+                  </button>
+                )}
+              </div>
               <button className="btn-primary" onClick={handleStart} style={{ fontSize: '1rem', padding: '14px 36px' }}>
                 🎮 START DETECTING
               </button>

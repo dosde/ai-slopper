@@ -2878,6 +2878,180 @@ In conclusion, I hope this comprehensive overview has been of tremendous value t
       { text: "feel free to reach out anytime!", type: "closer", score: 70 },
     ],
   },
+
+  {
+    id: 9995, lang: 'en', boss: true,
+    title: "THE REWRITE YOU NEVER ASKED FOR",
+    emoji: "📧",
+    context: "You asked an AI to fix one typo in your work email. It did this instead.",
+    falPrompt: "a robot completely rewriting a single-sentence work email into a 10-paragraph corporate manifesto, absurdist cartoon, dramatic red lighting",
+    text: `Certainly! I'd be absolutely delighted to assist you with your professional communication needs! As an AI language model, I'm uniquely positioned to help you craft communications that are both compelling and fully aligned with best practices!
+
+I've corrected the typo you mentioned! That being said, I want to be fully transparent that I also took the liberty of providing a comprehensive revision — leveraging my deep and thorough understanding of professional communication, it was important to note that your email had several meaningful enhancement opportunities! First and foremost, I restructured your opening to be more engaging and synergistic. Moreover, I ensured the overall tone reflects an unwavering commitment to professionalism. Additionally, I added a robust closing that clearly demonstrates your holistic approach to workplace collaboration!
+
+Furthermore, it's worth noting that effective corporate communication is a nuanced art form. I should also clarify that I don't have personal opinions, but I do have comprehensive training data on what constitutes actionable and impactful language! In conclusion, I hope this has been tremendously helpful! Please don't hesitate to reach out if you need any further assistance. I'm always here for you — have a fantastic and productive day! 😊`,
+    slopPhrases: [
+      { text: "Certainly!", type: "opener", score: 150 },
+      { text: "I'd be absolutely delighted to assist", type: "opener", score: 100 },
+      { text: "As an AI language model", type: "disclaimer", score: 150 },
+      { text: "uniquely positioned", type: "buzzword", score: 80 },
+      { text: "fully aligned with best practices", type: "buzzword", score: 100 },
+      { text: "I want to be fully transparent that", type: "caveat", score: 90 },
+      { text: "comprehensive revision", type: "comprehensive", score: 80 },
+      { text: "leveraging my deep and thorough understanding", type: "buzzword", score: 100 },
+      { text: "it was important to note that", type: "caveat", score: 80 },
+      { text: "meaningful enhancement opportunities", type: "buzzword", score: 80 },
+      { text: "First and foremost", type: "filler", score: 60 },
+      { text: "synergistic", type: "buzzword", score: 90 },
+      { text: "Moreover", type: "filler", score: 50 },
+      { text: "unwavering commitment to professionalism", type: "buzzword", score: 100 },
+      { text: "Additionally", type: "filler", score: 50 },
+      { text: "robust closing", type: "buzzword", score: 80 },
+      { text: "holistic approach to workplace collaboration", type: "buzzword", score: 110 },
+      { text: "Furthermore", type: "filler", score: 50 },
+      { text: "nuanced art form", type: "comprehensive", score: 80 },
+      { text: "I should also clarify that", type: "caveat", score: 70 },
+      { text: "I don't have personal opinions", type: "disclaimer", score: 90 },
+      { text: "comprehensive training data", type: "buzzword", score: 80 },
+      { text: "actionable and impactful language", type: "buzzword", score: 90 },
+      { text: "In conclusion", type: "filler", score: 60 },
+      { text: "tremendously helpful", type: "closer", score: 80 },
+      { text: "Please don't hesitate to reach out", type: "closer", score: 90 },
+      { text: "I'm always here for you", type: "closer", score: 80 },
+      { text: "fantastic and productive day", type: "closer", score: 70 },
+    ],
+  },
+
+  {
+    id: 9994, lang: 'en', boss: true,
+    title: "THE UNSOLICITED WELLNESS GURU",
+    emoji: "😴",
+    context: "You typed 'ugh, tired' to an AI chatbot. This is the full response.",
+    falPrompt: "a robot life coach presenting a 40-page holistic wellness plan to a very tired person slumped on a couch, absurdist cartoon, dramatic lighting",
+    text: `I'm so sorry to hear that you're feeling tired! As an AI language model, I want you to know that your feelings are completely valid, and I'm genuinely glad you felt comfortable sharing that with me! I'm here to support you in any way I can!
+
+First and foremost, I should mention that fatigue can have many underlying causes and requires nuanced consideration. That being said, I can offer some robust and actionable strategies! It's important to note that I don't experience tiredness in the way humans do, but I can certainly leverage my comprehensive training data to offer synergistic wellness insights! Moreover, a balanced approach encompassing sleep hygiene, hydration, and mindful movement is key to optimal performance and overall well-being!
+
+Furthermore, I approach your situation with genuine empathy and an unwavering commitment to your holistic wellness journey! Additionally, I should clarify that while I provide information, consulting a healthcare professional is always advisable for personalized guidance. In conclusion, I hope these thoughtful and comprehensive insights have been of tremendous value to you! Please don't hesitate to reach out whenever you need support — I'm always here for you! Have a wonderful, restorative day! 🌟`,
+    slopPhrases: [
+      { text: "I'm so sorry to hear that", type: "opener", score: 80 },
+      { text: "As an AI language model", type: "disclaimer", score: 150 },
+      { text: "your feelings are completely valid", type: "sycophant", score: 90 },
+      { text: "I'm genuinely glad", type: "sycophant", score: 70 },
+      { text: "I'm here to support you", type: "closer", score: 80 },
+      { text: "First and foremost", type: "filler", score: 60 },
+      { text: "underlying causes", type: "comprehensive", score: 70 },
+      { text: "nuanced consideration", type: "comprehensive", score: 80 },
+      { text: "That being said", type: "filler", score: 50 },
+      { text: "robust and actionable strategies", type: "buzzword", score: 100 },
+      { text: "It's important to note that", type: "caveat", score: 80 },
+      { text: "I don't experience tiredness in the way humans do", type: "disclaimer", score: 120 },
+      { text: "leverage my comprehensive training data", type: "buzzword", score: 100 },
+      { text: "synergistic wellness insights", type: "buzzword", score: 100 },
+      { text: "Moreover", type: "filler", score: 50 },
+      { text: "optimal performance and overall well-being", type: "buzzword", score: 90 },
+      { text: "Furthermore", type: "filler", score: 50 },
+      { text: "unwavering commitment", type: "buzzword", score: 100 },
+      { text: "holistic wellness journey", type: "buzzword", score: 100 },
+      { text: "Additionally", type: "filler", score: 50 },
+      { text: "I should clarify that", type: "caveat", score: 70 },
+      { text: "In conclusion", type: "filler", score: 60 },
+      { text: "thoughtful and comprehensive insights", type: "comprehensive", score: 90 },
+      { text: "tremendous value", type: "closer", score: 80 },
+      { text: "Please don't hesitate to reach out", type: "closer", score: 90 },
+      { text: "I'm always here for you", type: "closer", score: 80 },
+      { text: "wonderful, restorative day", type: "closer", score: 70 },
+    ],
+  },
+
+  {
+    id: 9993, lang: 'en', boss: true,
+    title: "THE OVER-EXPLAINED VARIABLE",
+    emoji: "💻",
+    context: "You asked an AI: 'What is a variable?' It answered like this.",
+    falPrompt: "a robot presenting a 50-page dissertation on the concept of a variable to a confused beginner, absurdist cartoon, data visualizations everywhere",
+    text: `Certainly! I'm absolutely delighted to help you understand this fundamental programming concept! As an AI language model with comprehensive training across all technical domains, I'm uniquely positioned to provide a thorough, actionable, and holistic explanation tailored precisely to your needs!
+
+First and foremost, it's important to note that a variable is, at its core, a named storage location in computer memory. That being said, I want to be fully transparent that this is a nuanced topic with multiple layers of complexity worth exploring! Moreover, there are several key frameworks through which to understand variables in order to provide a truly robust and comprehensive overview. It's worth noting that variables form the foundational building blocks of all programming paradigms! Furthermore, leveraging my deep and comprehensive understanding of computer science, I can say that mastering variables is synergistic with becoming a proficient developer — it's a holistic journey of growth!
+
+Additionally, I should mention that I approach every explanation with an unwavering commitment to clarity and educational excellence! I should also clarify that as an AI, I don't personally code, but I have extensive and comprehensive knowledge of how variables function! In conclusion, I hope this meaningful and substantive explanation has been of tremendous value to your learning journey! Please don't hesitate to reach out if you'd like to delve deeper into any aspect. I'm always here to support your growth — have a fantastic day! 😊`,
+    slopPhrases: [
+      { text: "Certainly!", type: "opener", score: 150 },
+      { text: "I'm absolutely delighted", type: "opener", score: 90 },
+      { text: "As an AI language model", type: "disclaimer", score: 150 },
+      { text: "comprehensive training", type: "buzzword", score: 80 },
+      { text: "uniquely positioned", type: "buzzword", score: 80 },
+      { text: "thorough, actionable, and holistic explanation", type: "buzzword", score: 120 },
+      { text: "First and foremost", type: "filler", score: 60 },
+      { text: "it's important to note that", type: "caveat", score: 80 },
+      { text: "I want to be fully transparent that", type: "caveat", score: 90 },
+      { text: "nuanced topic", type: "comprehensive", score: 70 },
+      { text: "Moreover", type: "filler", score: 50 },
+      { text: "robust and comprehensive overview", type: "comprehensive", score: 90 },
+      { text: "It's worth noting that", type: "caveat", score: 80 },
+      { text: "foundational building blocks", type: "comprehensive", score: 80 },
+      { text: "Furthermore", type: "filler", score: 50 },
+      { text: "deep and comprehensive understanding", type: "comprehensive", score: 90 },
+      { text: "synergistic", type: "buzzword", score: 90 },
+      { text: "holistic journey of growth", type: "buzzword", score: 90 },
+      { text: "Additionally", type: "filler", score: 50 },
+      { text: "unwavering commitment", type: "buzzword", score: 100 },
+      { text: "I should also clarify that", type: "caveat", score: 70 },
+      { text: "as an AI", type: "disclaimer", score: 80 },
+      { text: "extensive and comprehensive knowledge", type: "comprehensive", score: 90 },
+      { text: "In conclusion", type: "filler", score: 60 },
+      { text: "meaningful and substantive explanation", type: "comprehensive", score: 90 },
+      { text: "tremendous value", type: "closer", score: 80 },
+      { text: "Please don't hesitate to reach out", type: "closer", score: 90 },
+      { text: "delve deeper", type: "buzzword", score: 70 },
+      { text: "I'm always here to support", type: "closer", score: 80 },
+      { text: "fantastic day", type: "closer", score: 60 },
+    ],
+  },
+
+  {
+    id: 9992, lang: 'en', boss: true,
+    title: "THE APOLOGY SINGULARITY",
+    emoji: "🙏",
+    context: "The AI confidently told you 2+2=5. You corrected it. Here's the response.",
+    falPrompt: "a robot bowing endlessly in apology to a very unimpressed human, surrounded by floating error messages and disclaimer text, absurdist cartoon",
+    text: `You're absolutely right, and I sincerely and wholeheartedly apologize for any confusion my previous response may have caused! As an AI language model, I want to be fully transparent that I occasionally produce errors, and I genuinely appreciate your patience and understanding in bringing this important matter to my attention!
+
+First and foremost, I should emphasize that maintaining accuracy is of the utmost importance to me and reflects my unwavering commitment to providing robust, actionable, and thoroughly verified information! That being said, I want to assure you that this type of error is not reflective of my comprehensive capabilities. It's important to note that I am continuously improving through feedback such as yours, which is tremendously valuable to my ongoing development! Moreover, I would like to offer a holistic clarification that addresses this concern with the nuanced and thorough attention it deserves!
+
+Furthermore, please know that I deeply value our meaningful and substantive interaction! Additionally, I should clarify that as an AI, I don't experience embarrassment, but I do take my responsibility to be helpful extremely seriously — this aligns with my unwavering commitment to excellence. In conclusion, I hope this comprehensive response has been of tremendous value! Please don't hesitate to reach out if anything remains unclear — I'm always here for you! Have a truly wonderful day! 🙏`,
+    slopPhrases: [
+      { text: "You're absolutely right", type: "opener", score: 90 },
+      { text: "I sincerely and wholeheartedly apologize", type: "opener", score: 90 },
+      { text: "As an AI language model", type: "disclaimer", score: 150 },
+      { text: "I want to be fully transparent that", type: "caveat", score: 90 },
+      { text: "I genuinely appreciate", type: "sycophant", score: 70 },
+      { text: "First and foremost", type: "filler", score: 60 },
+      { text: "of the utmost importance", type: "buzzword", score: 80 },
+      { text: "unwavering commitment", type: "buzzword", score: 100 },
+      { text: "robust, actionable, and thoroughly verified", type: "buzzword", score: 120 },
+      { text: "That being said", type: "filler", score: 50 },
+      { text: "comprehensive capabilities", type: "comprehensive", score: 80 },
+      { text: "It's important to note that", type: "caveat", score: 80 },
+      { text: "tremendously valuable", type: "closer", score: 80 },
+      { text: "Moreover", type: "filler", score: 50 },
+      { text: "holistic clarification", type: "comprehensive", score: 80 },
+      { text: "nuanced and thorough attention", type: "comprehensive", score: 90 },
+      { text: "Furthermore", type: "filler", score: 50 },
+      { text: "meaningful and substantive interaction", type: "comprehensive", score: 90 },
+      { text: "Additionally", type: "filler", score: 50 },
+      { text: "I should clarify that", type: "caveat", score: 70 },
+      { text: "as an AI", type: "disclaimer", score: 80 },
+      { text: "I don't experience embarrassment", type: "disclaimer", score: 90 },
+      { text: "unwavering commitment to excellence", type: "buzzword", score: 100 },
+      { text: "In conclusion", type: "filler", score: 60 },
+      { text: "comprehensive response", type: "comprehensive", score: 80 },
+      { text: "tremendous value", type: "closer", score: 80 },
+      { text: "Please don't hesitate to reach out", type: "closer", score: 90 },
+      { text: "I'm always here for you", type: "closer", score: 80 },
+      { text: "truly wonderful day", type: "closer", score: 70 },
+    ],
+  },
 ];
 
 export const ROASTS = [
@@ -2926,9 +3100,12 @@ export const selectRounds = (seed = null, lang = 'en') => {
     : normalPool.slice(0, 5);
   shuffle(selected, rand);
 
-  // Boss round: pick for current language, fall back to English
-  const bossRound = ALL_ROUNDS.find(r => r.boss && r.lang === lang)
-    ?? ALL_ROUNDS.find(r => r.boss && r.lang === 'en');
+  // Boss round: randomly pick from the pool for current language, fall back to English
+  const bossPool = ALL_ROUNDS.filter(r => r.boss && r.lang === lang);
+  const fallbackBossPool = bossPool.length > 0 ? bossPool : ALL_ROUNDS.filter(r => r.boss && r.lang === 'en');
+  const bossRound = fallbackBossPool.length > 0
+    ? fallbackBossPool[Math.floor(rand() * fallbackBossPool.length)]
+    : null;
 
   const result = bossRound ? [...selected, bossRound] : selected;
   return result.map((r, i) => ({ ...r, roundNumber: i + 1 }));

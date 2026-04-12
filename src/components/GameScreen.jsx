@@ -2,7 +2,7 @@ import { useState, useEffect, useCallback, useRef } from 'react';
 import SlopText, { getSlopStats } from './SlopText';
 import PowerUps from './PowerUps';
 import { PopupLayer, usePopups } from './ScorePopup';
-import { playRoundComplete, playMiss, setMusicTempo } from '../utils/audio';
+import { playRoundComplete, playMiss, setMusicTempo, startBossMusic } from '../utils/audio';
 import { t } from '../i18n/index';
 
 const ROUND_TIME_NORMAL = 45;
@@ -136,6 +136,12 @@ export default function GameScreen({ round, roundIdx, totalRounds, totalScore, o
 
   // Keep liveRef in sync every render so iron-mode effects always have fresh values
   liveRef.current = { roundScore, foundIds, timeLeft, wrongClickCount, onRoundEnd };
+
+  // Start boss music when boss round mounts
+  useEffect(() => {
+    if (isBoss) startBossMusic();
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   // Timer (count-down for normal modes, count-up for iron)
   useEffect(() => {
