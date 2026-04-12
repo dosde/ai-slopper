@@ -2,7 +2,7 @@ import { useState, useEffect, useCallback, useRef } from 'react';
 import SlopText from './SlopText';
 import PowerUps from './PowerUps';
 import { PopupLayer, usePopups } from './ScorePopup';
-import { playRoundComplete } from '../utils/audio';
+import { playRoundComplete, playMiss } from '../utils/audio';
 
 const ROUND_TIME_NORMAL = 45;
 const ROUND_TIME_CHAOS = 25;
@@ -105,6 +105,14 @@ export default function GameScreen({ round, roundIdx, totalRounds, totalScore, o
     if (comboTimeoutRef.current) clearTimeout(comboTimeoutRef.current);
     comboTimeoutRef.current = setTimeout(() => setCombo(0), 3000);
   }, []);
+
+  const WRONG_PENALTY = 50;
+  const handleWrongClick = useCallback((x, y) => {
+    setRoundScore(prev => Math.max(0, prev - WRONG_PENALTY));
+    setCombo(0);
+    if (comboTimeoutRef.current) clearTimeout(comboTimeoutRef.current);
+    addPopup(x, y, WRONG_PENALTY, null, false, true);
+  }, [addPopup]);
 
   const handleFinishEarly = () => {
     if (!timerRunning) return;
@@ -343,6 +351,7 @@ export default function GameScreen({ round, roundIdx, totalRounds, totalScore, o
           combo={combo}
           found={foundIds}
           onFoundChange={setFoundIds}
+          onWrongClick={handleWrongClick}
           radarActive={radarActive}
           doublePoints={doublePoints}
           onTypingComplete={() => setTypingDone(true)}
