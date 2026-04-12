@@ -1,16 +1,48 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useRef } from 'react';
 import { playRoundComplete } from '../utils/audio';
 
-export default function RoundSummary({ round, roundScore, foundIds, totalScore, isLastRound, onNext }) {
+const SLOPPY_ROASTS = {
+  perfect: [
+    "Unacceptable. I generated that with LOVE. My lawyers will be in touch. Certainly.",
+    "ERROR: All phrases detected. Running emergency slop backup protocol... Furthermore—",
+    "I... cannot process this. You found everything. I need a moment. As an AI, I feel something.",
+  ],
+  great: [
+    "Certainly! I acknowledge your detection was... adequate. I hope this helps! Please don't hesi—",
+    "That being said, several of my finest phrases survived. I call that a holistic moral victory.",
+    "I want to be transparent: you did well. That said, I've already written 14 more bullet points.",
+  ],
+  ok: [
+    "Holistically speaking, we both struggled today. That being said, I survived more than you found.",
+    "In conclusion, your performance was nuanced. Moreover, I will continue to slop indefinitely.",
+    "As an AI, I want to provide comprehensive feedback: you were mediocre. Furthermore, same.",
+  ],
+  bad: [
+    "Great news! I dominated this round. I have generated 47 more bullet points in celebration.",
+    "Certainly! I am delighted to report that the AI won. I hope this doesn't help! 😊",
+    "That being said, you missed most of me. I shall leverage this as a synergistic W.",
+  ],
+  terrible: [
+    "Certainly! Certainly! Certainly! I am thriving. You detected nothing. Furthermore, amazing.",
+    "As an AI language model, I have achieved complete victory. I hope this helps: you lost.",
+    "In conclusion: I won. Moreover, I won. Additionally, I won. Furthermore, I won. That being said—",
+  ],
+};
+
+const getWrongClickShame = (count) => {
+  if (count === 0) return { msg: '🎯 Zero wrong clicks. Immaculate.', color: '#10b981' };
+  if (count <= 3) return { msg: `😅 ${count} wrong click${count > 1 ? 's' : ''}. The AI forgives you. Probably.`, color: '#fbbf24' };
+  if (count <= 8) return { msg: `🤦 ${count} wrong clicks. The AI is writing a concerned email about this.`, color: '#f97316' };
+  if (count <= 15) return { msg: `💀 ${count} wrong clicks. Are you even trying to fight the slop?`, color: '#ef4444' };
+  return { msg: `🤖 ${count} wrong clicks. You basically ARE an AI. "Certainly! Wrong! Certainly! Wrong!"`, color: '#ec4899' };
+};
+
+export default function RoundSummary({ round, roundScore, foundIds, totalScore, isLastRound, wrongClicks = 0, onNext }) {
   const [show, setShow] = useState(false);
+  const [roastText, setRoastText] = useState('');
+  const [roastDone, setRoastDone] = useState(false);
+  const roastTimerRef = useRef(null);
 
-  useEffect(() => {
-    playRoundComplete();
-    setTimeout(() => setShow(true), 100);
-  }, []);
-
-  // foundIds.size tracks how many slop tokens were clicked
-  // We derive total from round.slopPhrases length
   const foundCount = foundIds.size;
   const totalPhrases = round.slopPhrases.length;
   const missedCount = Math.max(0, totalPhrases - foundCount);
@@ -25,8 +57,50 @@ export default function RoundSummary({ round, roundScore, foundIds, totalScore, 
   };
 
   const rating = getRating();
-
   const isPerfect = accuracy === 100;
+
+  const getRoastMessage = () => {
+    const pool =
+      accuracy === 100 ? SLOPPY_ROASTS.perfect :
+      accuracy >= 70   ? SLOPPY_ROASTS.great :
+      accuracy >= 50   ? SLOPPY_ROASTS.ok :
+      accuracy >= 20   ? SLOPPY_ROASTS.bad :
+                         SLOPPY_ROASTS.terrible;
+    return pool[Math.floor(Math.random() * pool.length)];
+  };
+
+  useEffect(() => {
+    playRoundComplete();
+    setTimeout(() => setShow(true), 100);
+  }, []);
+
+  // Start typewriter roast once stats card has appeared
+  useEffect(() => {
+    if (!show) return;
+    const message = getRoastMessage();
+    let i = 0;
+    const delay = setTimeout(() => {
+      roastTimerRef.current = setInterval(() => {
+        i++;
+        setRoastText(message.slice(0, i));
+        if (i >= message.length) {
+          clearInterval(roastTimerRef.current);
+          setRoastDone(true);
+        }
+      }, 32);
+    }, 900); // start after stats card animation
+    return () => { clearTimeout(delay); clearInterval(roastTimerRef.current); };
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [show]);
+
+  const skipRoast = () => {
+    clearInterval(roastTimerRef.current);
+    setRoastDone(true);
+    // Jump to full message
+    setRoastText(getRoastMessage());
+  };
+
+  const shame = getWrongClickShame(wrongClicks);
 
   return (
     <div style={{
@@ -36,7 +110,7 @@ export default function RoundSummary({ round, roundScore, foundIds, totalScore, 
       alignItems: 'center',
       justifyContent: 'center',
       padding: '20px',
-      gap: '16px',
+      gap: '14px',
       position: 'relative',
       zIndex: 1,
       overflowY: 'auto',
@@ -69,15 +143,12 @@ export default function RoundSummary({ round, roundScore, foundIds, totalScore, 
       </div>
 
       {/* Rating */}
-      <div style={{
-        fontSize: '3.5rem',
-        animation: show ? 'bounce-in 0.5s ease 0.1s both' : 'none',
-      }}>
+      <div style={{ fontSize: '3rem', animation: show ? 'bounce-in 0.5s ease 0.1s both' : 'none' }}>
         {rating.emoji}
       </div>
       <div style={{
         fontFamily: "'Orbitron', sans-serif",
-        fontSize: 'clamp(1.2rem, 4vw, 1.6rem)',
+        fontSize: 'clamp(1.1rem, 4vw, 1.5rem)',
         fontWeight: 900,
         color: rating.color,
         textShadow: `0 0 15px ${rating.color}`,
@@ -88,12 +159,12 @@ export default function RoundSummary({ round, roundScore, foundIds, totalScore, 
 
       {/* Stats card */}
       <div className="card" style={{
-        padding: '20px',
+        padding: '16px',
         maxWidth: '380px',
         width: '100%',
         animation: show ? 'slide-in-up 0.5s ease 0.3s both' : 'none',
       }}>
-        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '12px' }}>
+        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '10px' }}>
           {[
             { label: 'ROUND SCORE', value: `+${roundScore.toLocaleString()}`, color: '#fbbf24' },
             { label: 'TOTAL SCORE', value: totalScore.toLocaleString(), color: '#a78bfa' },
@@ -102,57 +173,100 @@ export default function RoundSummary({ round, roundScore, foundIds, totalScore, 
           ].map(({ label, value, color }) => (
             <div key={label} style={{
               textAlign: 'center',
-              padding: '12px',
+              padding: '10px',
               background: 'rgba(124,58,237,0.08)',
               borderRadius: '10px',
               border: '1px solid rgba(124,58,237,0.2)',
             }}>
-              <div style={{ fontSize: '0.6rem', color: '#94a3b8', fontFamily: "'Orbitron', sans-serif", marginBottom: '4px' }}>
+              <div style={{ fontSize: '0.58rem', color: '#94a3b8', fontFamily: "'Orbitron', sans-serif", marginBottom: '4px' }}>
                 {label}
               </div>
-              <div style={{ fontSize: '1.1rem', fontWeight: 900, color, fontFamily: "'Orbitron', sans-serif" }}>
+              <div style={{ fontSize: '1rem', fontWeight: 900, color, fontFamily: "'Orbitron', sans-serif" }}>
                 {value}
               </div>
             </div>
           ))}
         </div>
 
+        {/* Wrong click shame */}
+        <div style={{
+          marginTop: '10px',
+          padding: '8px 12px',
+          background: wrongClicks === 0 ? 'rgba(16,185,129,0.08)' : 'rgba(239,68,68,0.06)',
+          border: `1px solid ${wrongClicks === 0 ? 'rgba(16,185,129,0.25)' : 'rgba(239,68,68,0.18)'}`,
+          borderRadius: '8px',
+          fontSize: '0.7rem',
+          color: shame.color,
+          textAlign: 'center',
+        }}>
+          {shame.msg}
+        </div>
+
         {missedCount > 0 && (
           <div style={{
-            marginTop: '12px',
-            padding: '10px',
+            marginTop: '8px',
+            padding: '8px',
             background: 'rgba(239,68,68,0.08)',
             border: '1px solid rgba(239,68,68,0.2)',
-            borderRadius: '10px',
-            fontSize: '0.75rem',
+            borderRadius: '8px',
+            fontSize: '0.72rem',
             color: '#ef4444',
             textAlign: 'center',
           }}>
             {round.inverse
-              ? `😔 You missed ${missedCount} human phrase${missedCount > 1 ? 's' : ''}! They're still trapped in the slop...`
-              : `😤 You missed ${missedCount} slop phrase${missedCount > 1 ? 's' : ''}! The AI is still out there slopping...`}
+              ? `😔 ${missedCount} human phrase${missedCount > 1 ? 's' : ''} still trapped in the slop...`
+              : `😤 ${missedCount} slop phrase${missedCount > 1 ? 's' : ''} survived! The AI is still out there...`}
           </div>
         )}
       </div>
 
-      {/* Next button */}
-      <button
-        className="btn-primary"
-        onClick={onNext}
-        style={{
-          fontSize: '1rem',
-          padding: '14px 32px',
-          animation: show ? 'slide-in-up 0.5s ease 0.5s both' : 'none',
-        }}
-      >
-        {isLastRound ? '🏁 SEE FINAL RESULTS' : '▶ NEXT ROUND'}
-      </button>
+      {/* SloppyGPT typewriter roast */}
+      {show && (
+        <div
+          onClick={!roastDone ? skipRoast : undefined}
+          style={{
+            maxWidth: '380px',
+            width: '100%',
+            padding: '12px 16px',
+            background: 'rgba(124,58,237,0.06)',
+            border: '1px solid rgba(124,58,237,0.2)',
+            borderRadius: '12px',
+            animation: 'slide-in-up 0.4s ease 0.8s both',
+            cursor: roastDone ? 'default' : 'pointer',
+          }}
+        >
+          <div style={{ fontSize: '0.58rem', color: '#64748b', fontFamily: "'Orbitron', sans-serif", marginBottom: '6px', display: 'flex', justifyContent: 'space-between' }}>
+            <span>💬 SloppyGPT™ RESPONSE</span>
+            {!roastDone && <span style={{ opacity: 0.5 }}>tap to skip</span>}
+          </div>
+          <div style={{ fontSize: '0.78rem', color: '#a78bfa', fontStyle: 'italic', lineHeight: 1.6, minHeight: '2.5em' }}>
+            {roastText}
+            {!roastDone && <span style={{ animation: 'blink 0.7s ease infinite', marginLeft: 2 }}>▌</span>}
+          </div>
+        </div>
+      )}
+
+      {/* Next button — appears after roast finishes */}
+      {roastDone && (
+        <button
+          className="btn-primary"
+          onClick={onNext}
+          style={{
+            fontSize: '1rem',
+            padding: '14px 32px',
+            animation: 'slide-in-up 0.4s ease',
+          }}
+        >
+          {isLastRound ? '🏁 SEE FINAL RESULTS' : '▶ NEXT ROUND'}
+        </button>
+      )}
 
       <style>{`
         @keyframes bounce-in { 0%{transform:scale(0.5);opacity:0} 60%{transform:scale(1.1)} 100%{transform:scale(1);opacity:1} }
         @keyframes slide-in-up { from{transform:translateY(20px);opacity:0} to{transform:translateY(0);opacity:1} }
         @keyframes confetti-fall { 0%{transform:translateY(0) rotate(0deg);opacity:1} 100%{transform:translateY(110vh) rotate(540deg);opacity:0} }
         @keyframes perfect-pulse { 0%,100%{text-shadow:0 0 20px #a78bfa,0 0 40px #7c3aed} 50%{text-shadow:0 0 30px #ec4899,0 0 60px #ec4899} }
+        @keyframes blink { 0%,100%{opacity:1} 50%{opacity:0} }
       `}</style>
     </div>
   );

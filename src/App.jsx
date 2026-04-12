@@ -25,6 +25,7 @@ export default function App() {
   const [roundScores, setRoundScores] = useState([]);
   const [lastRoundScore, setLastRoundScore] = useState(0);
   const [lastFoundIds, setLastFoundIds] = useState(new Set());
+  const [lastWrongClicks, setLastWrongClicks] = useState(0);
   const [difficulty, setDifficulty] = useState('normal');
   const [newAchievements, setNewAchievements] = useState([]);
 
@@ -75,9 +76,10 @@ export default function App() {
     setGameState(STATE.PLAYING);
   }, []);
 
-  const handleRoundEnd = useCallback((score, foundIds, timeLeft = 0) => {
+  const handleRoundEnd = useCallback((score, foundIds, timeLeft = 0, wrongClicks = 0) => {
     setLastRoundScore(score);
     setLastFoundIds(foundIds);
+    setLastWrongClicks(wrongClicks);
     setTotalScore(prev => prev + score);
     setRoundScores(prev => [...prev, score]);
 
@@ -184,6 +186,7 @@ export default function App() {
             foundIds={lastFoundIds}
             totalScore={totalScore}
             isLastRound={roundIdx >= rounds.length - 1}
+            wrongClicks={lastWrongClicks}
             onNext={handleNextRound}
           />
         )}

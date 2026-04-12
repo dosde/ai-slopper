@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { initAudio, startMusic } from '../utils/audio';
 import Leaderboard from './Leaderboard';
-import { getLeaderboard, getUnlockedAchievements, ACHIEVEMENTS } from '../utils/storage';
+import { getLeaderboard, getUnlockedAchievements, ACHIEVEMENTS, getSlopDictSorted } from '../utils/storage';
 
 const TAGLINES = [
   "CAN YOU SPOT THE AI GARBAGE?",
@@ -9,6 +9,24 @@ const TAGLINES = [
   "HOW MUCH CRINGE CAN YOU FIND?",
   "5 RANDOM ROUNDS EVERY GAME!",
   "POWER-UPS! COMBOS! CHAOS MODE!",
+];
+
+const STATUS_UPDATES = [
+  "SloppyGPT is writing a 12-paragraph response to 'yes or no?'",
+  "SloppyGPT is adding 'As an AI language model' to a grocery list",
+  "SloppyGPT is generating 47 bullet points about sandwich making",
+  "SloppyGPT is reminding someone it cannot feel emotions (for the 8th time)",
+  "SloppyGPT is holistically approaching a request for the time",
+  "SloppyGPT is leveraging synergistic paradigm shifts (unknown purpose)",
+  "SloppyGPT is writing 'I hope this helps!' for the 4 billionth time",
+  "SloppyGPT is being transparent about its limitations again",
+  "SloppyGPT is generating a comprehensive overview of nothing",
+  "SloppyGPT is 'delighted' to assist (it cannot be delighted, it is a machine)",
+  "SloppyGPT is adding 'Furthermore' to a message that didn't need it",
+  "SloppyGPT is crafting a nuanced response to 'what's 2+2?'",
+  "SloppyGPT is asking if there's anything else it can help with (there is not)",
+  "SloppyGPT is providing actionable insights about boiling water",
+  "SloppyGPT is starting its response with 'Certainly!' for no reason",
 ];
 
 const SLOP_FACTS = [
@@ -30,6 +48,7 @@ const SLOP_FACTS = [
 export default function StartScreen({ onStart }) {
   const [taglineIdx, setTaglineIdx] = useState(0);
   const [factIdx, setFactIdx] = useState(0);
+  const [statusIdx, setStatusIdx] = useState(0);
   const [musicEnabled, setMusicEnabled] = useState(true);
   const [difficulty, setDifficulty] = useState('normal');
   const [mode, setMode] = useState('random'); // 'random' | 'daily'
@@ -46,6 +65,11 @@ export default function StartScreen({ onStart }) {
 
   useEffect(() => {
     const i = setInterval(() => setFactIdx(n => (n + 1) % SLOP_FACTS.length), 4200);
+    return () => clearInterval(i);
+  }, []);
+
+  useEffect(() => {
+    const i = setInterval(() => setStatusIdx(n => (n + 1) % STATUS_UPDATES.length), 3000);
     return () => clearInterval(i);
   }, []);
 
@@ -126,12 +150,25 @@ export default function StartScreen({ onStart }) {
           color: '#475569',
           fontStyle: 'italic',
           marginTop: '4px',
-          minHeight: '1.6em',
+          minHeight: '1.3em',
           maxWidth: '340px',
           margin: '4px auto 0',
           lineHeight: 1.5,
         }}>
           📊 {SLOP_FACTS[factIdx]}
+        </div>
+
+        {/* SloppyGPT live status */}
+        <div style={{
+          fontSize: '0.56rem',
+          color: '#334155',
+          marginTop: '3px',
+          minHeight: '1.3em',
+          maxWidth: '340px',
+          margin: '3px auto 0',
+          lineHeight: 1.5,
+        }}>
+          🔴 {STATUS_UPDATES[statusIdx]}
         </div>
       </div>
 
@@ -145,7 +182,7 @@ export default function StartScreen({ onStart }) {
         border: '1px solid rgba(124,58,237,0.2)',
         flexShrink: 0,
       }}>
-        {[['play', '🎮 PLAY'], ['scores', '🏆 SCORES'], ['badges', '🎖 BADGES']].map(([id, label]) => (
+        {[['play', '🎮 PLAY'], ['scores', '🏆 SCORES'], ['badges', '🎖 BADGES'], ['dict', '📖 DICT']].map(([id, label]) => (
           <button
             key={id}
             onClick={() => setTab(id)}
@@ -349,6 +386,75 @@ export default function StartScreen({ onStart }) {
             </div>
           </div>
         )}
+
+        {tab === 'dict' && (() => {
+          const dict = getSlopDictSorted();
+          const TYPE_COLORS = {
+            opener: '#ec4899', disclaimer: '#ef4444', filler: '#fbbf24',
+            closer: '#a78bfa', bullet: '#38bdf8', comprehensive: '#10b981',
+            caveat: '#f97316', sycophant: '#fb923c', buzzword: '#64748b', human: '#38bdf8',
+          };
+          return (
+            <div>
+              <div style={{ fontSize: '0.62rem', color: '#94a3b8', fontFamily: "'Orbitron', sans-serif", marginBottom: '10px', letterSpacing: '1px' }}>
+                SLOP DICTIONARY ({dict.length} phrases detected)
+              </div>
+              {dict.length === 0 ? (
+                <div style={{ textAlign: 'center', padding: '32px 16px', color: '#334155', fontSize: '0.8rem' }}>
+                  <div style={{ fontSize: '2rem', marginBottom: '8px' }}>📖</div>
+                  No slop detected yet.<br />
+                  <span style={{ fontSize: '0.7rem', color: '#1e293b' }}>Play a game to start building your dictionary.</span>
+                </div>
+              ) : (
+                <div style={{ display: 'flex', flexDirection: 'column', gap: '6px' }}>
+                  {dict.map((entry) => (
+                    <div key={entry.text} style={{
+                      display: 'flex',
+                      alignItems: 'center',
+                      gap: '10px',
+                      padding: '8px 12px',
+                      background: 'rgba(26,26,46,0.7)',
+                      borderRadius: '10px',
+                      border: '1px solid rgba(124,58,237,0.15)',
+                    }}>
+                      <div style={{
+                        fontSize: '0.58rem',
+                        fontFamily: "'Orbitron', sans-serif",
+                        fontWeight: 700,
+                        color: TYPE_COLORS[entry.type] || '#94a3b8',
+                        background: `${TYPE_COLORS[entry.type] || '#94a3b8'}18`,
+                        border: `1px solid ${TYPE_COLORS[entry.type] || '#94a3b8'}44`,
+                        borderRadius: '4px',
+                        padding: '2px 6px',
+                        whiteSpace: 'nowrap',
+                        flexShrink: 0,
+                      }}>
+                        {entry.type}
+                      </div>
+                      <div style={{ flex: 1, fontSize: '0.78rem', color: '#e2e8f0', fontStyle: 'italic', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
+                        "{entry.text}"
+                      </div>
+                      <div style={{
+                        fontFamily: "'Orbitron', sans-serif",
+                        fontWeight: 900,
+                        fontSize: '0.78rem',
+                        color: entry.count >= 10 ? '#fbbf24' : '#64748b',
+                        flexShrink: 0,
+                      }}>
+                        ×{entry.count}
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              )}
+              <div style={{ textAlign: 'center', marginTop: '14px', paddingBottom: '8px' }}>
+                <button className="btn-primary" onClick={handleStart} style={{ fontSize: '0.85rem', padding: '12px 28px' }}>
+                  🎮 DETECT MORE SLOP
+                </button>
+              </div>
+            </div>
+          );
+        })()}
       </div>
     </div>
   );

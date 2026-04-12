@@ -4,6 +4,7 @@ let audioCtx = null;
 let isMusicPlaying = false;
 let musicInterval = null;
 let masterGain = null;
+let tempoScale = 1.0;
 
 const getCtx = () => {
   if (!audioCtx) {
@@ -101,79 +102,93 @@ const BASS = [...BASS_A, ...BASS_B, ...BASS_C];
 
 const getArrayDuration = (arr) => arr.reduce((sum, [, d]) => sum + d, 0);
 
-const playMusicBar = () => {
+const playMusicBar = (scale = tempoScale) => {
   const ctx = getCtx();
   const now = ctx.currentTime;
-  const loopDuration = getArrayDuration(MELODY);
+  const s = scale;
+  const loopDuration = getArrayDuration(MELODY) / s;
 
   // Melody — square wave lead
   let t = now;
   for (const [freq, dur] of MELODY) {
-    if (freq > 0) playNote(freq, dur * 0.85, t, 'square', 0.11);
-    t += dur;
+    if (freq > 0) playNote(freq, (dur / s) * 0.85, t, 'square', 0.11);
+    t += dur / s;
   }
 
   // Bass — triangle wave
   t = now;
   for (const [freq, dur] of BASS) {
-    if (freq > 0) playNote(freq, dur * 0.78, t, 'triangle', 0.13);
-    t += dur;
+    if (freq > 0) playNote(freq, (dur / s) * 0.78, t, 'triangle', 0.13);
+    t += dur / s;
   }
 
   // Kick drum — sine sweep down every half-beat
-  for (let beat = 0; beat < loopDuration; beat += 0.5) {
+  for (let beat = 0; beat < loopDuration; beat += 0.5 / s) {
     const ko = ctx.createOscillator();
     const kg = ctx.createGain();
     ko.type = 'sine';
     ko.frequency.setValueAtTime(160, now + beat);
-    ko.frequency.exponentialRampToValueAtTime(0.01, now + beat + 0.18);
+    ko.frequency.exponentialRampToValueAtTime(0.01, now + beat + 0.18 / s);
     kg.gain.setValueAtTime(0.30, now + beat);
-    kg.gain.exponentialRampToValueAtTime(0.001, now + beat + 0.18);
+    kg.gain.exponentialRampToValueAtTime(0.001, now + beat + 0.18 / s);
     ko.connect(kg); kg.connect(masterGain);
-    ko.start(now + beat); ko.stop(now + beat + 0.20);
+    ko.start(now + beat); ko.stop(now + beat + 0.20 / s);
   }
 
   // Snare — sawtooth burst on every 2nd beat (off-beat feel)
-  for (let beat = 0.5; beat < loopDuration; beat += 1.0) {
+  for (let beat = 0.5 / s; beat < loopDuration; beat += 1.0 / s) {
     const so = ctx.createOscillator();
     const sg = ctx.createGain();
     so.type = 'sawtooth';
     so.frequency.value = 220;
     sg.gain.setValueAtTime(0.09, now + beat);
-    sg.gain.exponentialRampToValueAtTime(0.001, now + beat + 0.10);
+    sg.gain.exponentialRampToValueAtTime(0.001, now + beat + 0.10 / s);
     so.connect(sg); sg.connect(masterGain);
-    so.start(now + beat); so.stop(now + beat + 0.12);
+    so.start(now + beat); so.stop(now + beat + 0.12 / s);
   }
 
   // Hi-hat — crisp 16th-note ticks
-  for (let beat = 0; beat < loopDuration; beat += 0.25) {
+  for (let beat = 0; beat < loopDuration; beat += 0.25 / s) {
     const ho = ctx.createOscillator();
     const hg = ctx.createGain();
     ho.type = 'square';
     ho.frequency.value = 7200;
     hg.gain.setValueAtTime(0.022, now + beat);
-    hg.gain.exponentialRampToValueAtTime(0.001, now + beat + 0.04);
+    hg.gain.exponentialRampToValueAtTime(0.001, now + beat + 0.04 / s);
     ho.connect(hg); hg.connect(masterGain);
-    ho.start(now + beat); ho.stop(now + beat + 0.05);
+    ho.start(now + beat); ho.stop(now + beat + 0.05 / s);
   }
+};
+
+const restartMusicLoop = (scale) => {
+  if (musicInterval) { clearInterval(musicInterval); musicInterval = null; }
+  const loopMs = getArrayDuration(MELODY) * 1000 / scale;
+  playMusicBar(scale);
+  musicInterval = setInterval(() => {
+    if (isMusicPlaying) playMusicBar(tempoScale);
+  }, loopMs);
 };
 
 export const startMusic = () => {
   if (isMusicPlaying) return;
   isMusicPlaying = true;
+  tempoScale = 1.0;
   const ctx = getCtx();
   if (ctx.state === 'suspended') ctx.resume();
-
-  const loopMs = getArrayDuration(MELODY) * 1000;
-  playMusicBar();
-  musicInterval = setInterval(() => {
-    if (isMusicPlaying) playMusicBar();
-  }, loopMs);
+  restartMusicLoop(1.0);
 };
 
 export const stopMusic = () => {
   isMusicPlaying = false;
+  tempoScale = 1.0;
   if (musicInterval) { clearInterval(musicInterval); musicInterval = null; }
+};
+
+// Speed up / slow down music in real time (scale > 1 = faster)
+export const setMusicTempo = (scale) => {
+  if (Math.abs(tempoScale - scale) < 0.01 || !isMusicPlaying) return;
+  tempoScale = scale;
+  restartMusicLoop(scale);
 };
 
 export const setMusicVolume = (vol) => {

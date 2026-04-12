@@ -4,6 +4,7 @@
 const SCORES_KEY = 'slop_royale_scores_v2';
 const ACHIEVEMENTS_KEY = 'slop_royale_achievements_v2';
 const STATS_KEY = 'slop_royale_stats_v2';
+const DICT_KEY = 'slop_royale_dict_v1';
 
 const API_URL  = import.meta.env.VITE_SCORES_URL;  // e.g. https://xyz.supabase.co/rest/v1/scores
 const API_KEY  = import.meta.env.VITE_SCORES_KEY;  // Supabase anon key
@@ -184,3 +185,27 @@ export const updateStats = (delta) => {
   localStorage.setItem(STATS_KEY, JSON.stringify(merged));
   return merged;
 };
+
+// ========== SLOP DICTIONARY ==========
+// Tracks every unique slop phrase ever detected, with count and type.
+
+export const getSlopDict = () => {
+  try {
+    return JSON.parse(localStorage.getItem(DICT_KEY) || '{}');
+  } catch {
+    return {};
+  }
+};
+
+// Call whenever a slop phrase is correctly detected
+export const updateSlopDict = (text, type) => {
+  const dict = getSlopDict();
+  const key = text.toLowerCase().trim();
+  if (!dict[key]) dict[key] = { text, type, count: 0 };
+  dict[key].count += 1;
+  localStorage.setItem(DICT_KEY, JSON.stringify(dict));
+};
+
+// Returns entries sorted by detection count descending
+export const getSlopDictSorted = () =>
+  Object.values(getSlopDict()).sort((a, b) => b.count - a.count);

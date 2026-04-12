@@ -2,7 +2,7 @@ import { useState, useEffect, useCallback, useRef } from 'react';
 import SlopText from './SlopText';
 import PowerUps from './PowerUps';
 import { PopupLayer, usePopups } from './ScorePopup';
-import { playRoundComplete, playMiss } from '../utils/audio';
+import { playRoundComplete, playMiss, setMusicTempo } from '../utils/audio';
 
 const ROUND_TIME_NORMAL = 45;
 const ROUND_TIME_CHAOS = 25;
@@ -106,6 +106,8 @@ export default function GameScreen({ round, roundIdx, totalRounds, totalScore, o
   const [meltdownClicks, setMeltdownClicks] = useState(0);
   const [meltdownActive, setMeltdownActive] = useState(false);
   const [corruptionCount, setCorruptionCount] = useState(0);
+  const [wrongClickCount, setWrongClickCount] = useState(0);
+  const [comboDecaying, setComboDecaying] = useState(false);
 
   // Power-ups (usedPowerUps comes from App so it persists across rounds)
   const [activePowerUp, setActivePowerUp] = useState(null);
@@ -114,7 +116,7 @@ export default function GameScreen({ round, roundIdx, totalRounds, totalScore, o
   const powerUpTimerRef = useRef(null);
 
   const { popups, addPopup } = usePopups();
-  const comboTimeoutRef = useRef(null);
+  const comboDecayRef = useRef(null);
 
   // Slop meter stats
   const totalSlop = round.slopPhrases.length;
@@ -125,7 +127,7 @@ export default function GameScreen({ round, roundIdx, totalRounds, totalScore, o
     if (!timerRunning) return;
     if (timeLeft <= 0) {
       setTimerRunning(false);
-      setTimeout(() => onRoundEnd(roundScore, foundIds, timeLeft), 600);
+      setTimeout(() => onRoundEnd(roundScore, foundIds, 0, wrongClickCount), 600);
       return;
     }
     const t = setTimeout(() => {
@@ -142,6 +144,11 @@ export default function GameScreen({ round, roundIdx, totalRounds, totalScore, o
     }
   }, [shakeHeader]);
 
+  // Speed up music when timer hits danger zone, restore when time is added back
+  useEffect(() => {
+    setMusicTempo(isUrgent ? 1.4 : 1.0);
+  }, [isUrgent]);
+
   const handleScore = useCallback((score, x, y, commentary, isDoubled) => {
     setRoundScore(prev => prev + score);
     setTimeLeft(prev => Math.min(prev + 1, ROUND_TIME + 60)); // +1s per correct slop
@@ -150,8 +157,24 @@ export default function GameScreen({ round, roundIdx, totalRounds, totalScore, o
 
   const handleCombo = useCallback((newCombo) => {
     setCombo(newCombo);
-    if (comboTimeoutRef.current) clearTimeout(comboTimeoutRef.current);
-    comboTimeoutRef.current = setTimeout(() => setCombo(0), 3000);
+    setComboDecaying(false);
+    if (comboDecayRef.current) clearInterval(comboDecayRef.current);
+    // Start decay: after 2s of inactivity, reduce combo by 1 every 1.2s
+    const startDelay = setTimeout(() => {
+      setComboDecaying(true);
+      comboDecayRef.current = setInterval(() => {
+        setCombo(prev => {
+          if (prev <= 1) {
+            clearInterval(comboDecayRef.current);
+            setComboDecaying(false);
+            return 0;
+          }
+          return prev - 1;
+        });
+      }, 1200);
+    }, 2000);
+    // Store the outer timeout so we can cancel it too
+    comboDecayRef.current = startDelay;
   }, []);
 
   const isInverse = !!round.inverse;
@@ -160,7 +183,9 @@ export default function GameScreen({ round, roundIdx, totalRounds, totalScore, o
   const handleWrongClick = useCallback((x, y) => {
     setRoundScore(prev => Math.max(0, prev - WRONG_PENALTY));
     setCombo(0);
-    if (comboTimeoutRef.current) clearTimeout(comboTimeoutRef.current);
+    setComboDecaying(false);
+    setWrongClickCount(prev => prev + 1);
+    if (comboDecayRef.current) clearInterval(comboDecayRef.current);
     const pool = isInverse ? INVERSE_MISS_TAUNTS : MISS_TAUNTS;
     const taunt = pool[Math.floor(Math.random() * pool.length)];
     addPopup(x, y, WRONG_PENALTY, taunt, false, true);
@@ -180,9 +205,9 @@ export default function GameScreen({ round, roundIdx, totalRounds, totalScore, o
         false,
         false,
       );
-      setTimeout(() => onRoundEnd(roundScore + timeBonus, foundIds, timeLeft), 1600);
+      setTimeout(() => onRoundEnd(roundScore + timeBonus, foundIds, timeLeft, wrongClickCount), 1600);
     } else {
-      setTimeout(() => onRoundEnd(roundScore, foundIds, timeLeft), 400);
+      setTimeout(() => onRoundEnd(roundScore, foundIds, timeLeft, wrongClickCount), 400);
     }
   };
 
@@ -347,9 +372,12 @@ export default function GameScreen({ round, roundIdx, totalRounds, totalScore, o
                 color: cs.rainbow ? 'white' : '#0f0f1a',
                 textShadow: cs.rainbow ? '0 1px 3px rgba(0,0,0,0.5)' : 'none',
                 boxShadow: `0 0 14px ${cs.color}`,
-                animation: cs.rainbow ? 'wiggle 0.4s ease, rainbow-bg 1s linear infinite' : 'wiggle 0.5s ease',
+                opacity: comboDecaying ? 0.65 : 1,
+                animation: cs.rainbow
+                  ? 'wiggle 0.4s ease, rainbow-bg 1s linear infinite'
+                  : comboDecaying ? 'combo-decay-pulse 0.6s ease-in-out infinite' : 'wiggle 0.5s ease',
               }}>
-                {cs.emoji} {combo}x COMBO!
+                {cs.emoji} {combo}x COMBO!{comboDecaying ? ' ↓' : ''}
               </div>
               {isDoubleActive && (
                 <div style={{
@@ -389,6 +417,7 @@ export default function GameScreen({ round, roundIdx, totalRounds, totalScore, o
           @keyframes rainbow-bg { 0%{filter:hue-rotate(0deg)} 100%{filter:hue-rotate(360deg)} }
           @keyframes meltdown-glitch { 0%,100%{transform:translate(0)} 20%{transform:translate(-4px,2px)} 40%{transform:translate(4px,-2px)} 60%{transform:translate(-2px,4px)} 80%{transform:translate(2px,-4px)} }
           @keyframes slide-in-up { from{transform:translateY(12px);opacity:0} to{transform:translateY(0);opacity:1} }
+          @keyframes combo-decay-pulse { 0%,100%{opacity:0.65;transform:scale(1)} 50%{opacity:0.4;transform:scale(0.96)} }
         `}</style>
       </div>
 
