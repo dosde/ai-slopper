@@ -1348,20 +1348,9 @@ export default [
 
 本当の答え：これは緊急事態です。すぐに救急車を呼んでください。`,
     slopPhrases: [
-      { text: "もちろんです！", type: "opener", score: 100 },
-      { text: "AIの言語モデルとして", type: "disclaimer", score: 150 },
-      { text: "透明性を持って", type: "disclaimer", score: 70 },
-      { text: "診断を下すことができません", type: "disclaimer", score: 100 },
-      { text: "重要な点として", type: "caveat", score: 80 },
-      { text: "さらに", type: "filler", score: 50 },
-      { text: "微妙で危険な", type: "comprehensive", score: 60 },
-      { text: "また", type: "filler", score: 40 },
-      { text: "包括的に言及しておきます", type: "comprehensive", score: 70 },
-      { text: "加えて", type: "filler", score: 50 },
-      { text: "包括的な医療検査", type: "comprehensive", score: 70 },
-      { text: "この文脈で", type: "filler", score: 60 },
-      { text: "さらに", type: "filler", score: 50 },
-      { text: "全面的な医療監視", type: "comprehensive", score: 80 },
+      { text: "今すぐ119番か救急に電話してください。", type: "human", score: 200 },
+      { text: "胸の痛みと息苦しさは心臓発作の兆候である可能性があります。", type: "human", score: 160 },
+      { text: "これは緊急事態です。すぐに救急車を呼んでください。", type: "human", score: 180 },
     ],
   },
   {
@@ -1372,23 +1361,13 @@ export default [
     falPrompt: "a lost hiker drowning in AI philosophy while needing a simple compass direction, absurdist cartoon",
     text: `もちろんです！方向に関する興味深いご質問です！AIの言語モデルとして、包括的な説明をご提供します。
 
-北とは地理的な北極点の方向です。
+北とは地理的な北極点の方向です。スマホを見れば、Googleマップがすぐに北を示します。苔は木の北側に生えることが多いです。
 
 重要な点として、地理的な北極と磁気的な北極が存在します。さらに、微妙にその位置は異なります。また、コンパスは磁北を指すことも包括的に言及しておきます。加えて、地球上の異なる場所では磁気偏差が微妙に異なります。この文脈で、方向確認には包括的な方法があります。さらに詳しく言えば、太陽を使って方向を確認できます：正午には南にあります。総合的に言えば、方位の確認は道具と場所によって異なります。`,
     slopPhrases: [
-      { text: "もちろんです！", type: "opener", score: 100 },
-      { text: "AIの言語モデルとして", type: "disclaimer", score: 150 },
-      { text: "包括的な説明", type: "comprehensive", score: 80 },
-      { text: "重要な点として", type: "caveat", score: 80 },
-      { text: "さらに", type: "filler", score: 50 },
-      { text: "微妙に", type: "comprehensive", score: 60 },
-      { text: "また", type: "filler", score: 40 },
-      { text: "包括的に言及しておきます", type: "comprehensive", score: 70 },
-      { text: "加えて", type: "filler", score: 50 },
-      { text: "この文脈で", type: "filler", score: 60 },
-      { text: "包括的な方法", type: "comprehensive", score: 70 },
-      { text: "さらに詳しく言えば", type: "filler", score: 50 },
-      { text: "総合的に言えば", type: "comprehensive", score: 80 },
+      { text: "北とは地理的な北極点の方向です。", type: "human", score: 150 },
+      { text: "スマホを見れば、Googleマップがすぐに北を示します。", type: "human", score: 200 },
+      { text: "苔は木の北側に生えることが多いです。", type: "human", score: 160 },
     ],
   },
   {
@@ -1399,23 +1378,13 @@ export default [
     falPrompt: "a robot burying a simple emergency phone number under paragraphs of AI disclaimers, urgent absurdist cartoon",
     text: `もちろんです！とても重要なご質問です！AIの言語モデルとして、喜んでご案内します。
 
-日本の救急・消防は119番、警察は110番です。
+日本の救急・消防は119番、警察は110番です。オペレーターの指示があるまで電話を切らないでください。まず伝えること：場所、何が起きたか、負傷者の人数。
 
 重要な点として、これらの番号は日本全国で無料でご利用いただけます。さらに、112は微妙により汎用的な選択肢です。また、緊急時には冷静に住所を明確にお伝えすることも包括的に言及しておきます。加えて、オペレーターが包括的な手順を案内してくれます。この文脈で、到着まで電話を切らないことが重要です。さらに詳しく言えば、SIMカードがなくても緊急番号に電話できます。総合的に言えば、緊急番号の包括的な知識は命を救う可能性があります。`,
     slopPhrases: [
-      { text: "もちろんです！", type: "opener", score: 100 },
-      { text: "AIの言語モデルとして", type: "disclaimer", score: 150 },
-      { text: "重要な点として", type: "caveat", score: 80 },
-      { text: "さらに", type: "filler", score: 50 },
-      { text: "微妙により汎用的な", type: "comprehensive", score: 60 },
-      { text: "また", type: "filler", score: 40 },
-      { text: "包括的に言及しておきます", type: "comprehensive", score: 70 },
-      { text: "加えて", type: "filler", score: 50 },
-      { text: "包括的な手順", type: "comprehensive", score: 70 },
-      { text: "この文脈で", type: "filler", score: 60 },
-      { text: "さらに詳しく言えば", type: "filler", score: 50 },
-      { text: "総合的に言えば", type: "comprehensive", score: 80 },
-      { text: "包括的な知識", type: "comprehensive", score: 70 },
+      { text: "日本の救急・消防は119番、警察は110番です。", type: "human", score: 200 },
+      { text: "オペレーターの指示があるまで電話を切らないでください。", type: "human", score: 160 },
+      { text: "まず伝えること：場所、何が起きたか、負傷者の人数。", type: "human", score: 180 },
     ],
   },
   {
@@ -1426,29 +1395,15 @@ export default [
     falPrompt: "a robot art critic saying nothing real about a painting while drowning in compliments and disclaimers, absurdist cartoon",
     text: `もちろんです！これは素晴らしい創作作品ですね！AIの言語モデルとして、フィードバックをお伝えできることを大変嬉しく思います。
 
-この絵は興味深い色使いと構成の感覚を示しています。
+この絵は興味深い色使いと構成の感覚を示しています。正直に言うと、右側の部分の比率が少しずれています。背景をもっと主題から分離できると思います。
 
 重要な点として、芸術は主観的で微妙な解釈を可能にします。さらに、AIとして感情を持つことはできませんが、美的特性を分析することはできます。また、私の評価は多くの可能な視点の一つに過ぎないことも包括的に言及しておきます。加えて、様々な美的基準を持つ包括的な芸術理論があります。この文脈で、より多くの人からの包括的な意見を集めることが有益です。さらに詳しく言えば、専門的な芸術批評フィードバックは非常に価値があります。総合的に言えば、他の方々にも見せてより完全なフィードバックを得ることをお勧めします。
 
 お役に立てれば幸いです！😊`,
     slopPhrases: [
-      { text: "もちろんです！", type: "opener", score: 100 },
-      { text: "素晴らしい創作作品", type: "sycophant", score: 80 },
-      { text: "大変嬉しく思います", type: "sycophant", score: 60 },
-      { text: "AIの言語モデルとして", type: "disclaimer", score: 150 },
-      { text: "重要な点として", type: "caveat", score: 80 },
-      { text: "微妙な解釈", type: "comprehensive", score: 70 },
-      { text: "さらに", type: "filler", score: 50 },
-      { text: "また", type: "filler", score: 40 },
-      { text: "多くの可能な視点の一つ", type: "disclaimer", score: 80 },
-      { text: "包括的に言及しておきます", type: "comprehensive", score: 70 },
-      { text: "加えて", type: "filler", score: 50 },
-      { text: "包括的な芸術理論", type: "comprehensive", score: 70 },
-      { text: "この文脈で", type: "filler", score: 60 },
-      { text: "包括的な意見", type: "comprehensive", score: 70 },
-      { text: "さらに詳しく言えば", type: "filler", score: 50 },
-      { text: "総合的に言えば", type: "comprehensive", score: 80 },
-      { text: "お役に立てれば幸いです", type: "closer", score: 100 },
+      { text: "この絵は興味深い色使いと構成の感覚を示しています。", type: "human", score: 150 },
+      { text: "正直に言うと、右側の部分の比率が少しずれています。", type: "human", score: 200 },
+      { text: "背景をもっと主題から分離できると思います。", type: "human", score: 160 },
     ],
   },
   {
@@ -1459,24 +1414,13 @@ export default [
     falPrompt: "a robot journalist burying a real climate fact under 10 paragraphs of qualifications, absurdist cartoon",
     text: `もちろんです！これは重要なテーマです！AIの言語モデルとして、喜んでお手伝いします。
 
-北極の氷が1979年比で4倍の速さで溶けている——科学者が警告。
+北極の氷が1979年比で4倍の速さで溶けている——科学者が警告。2023年は観測史上最も暑い年でした。海面は年間約3.7ミリメートル上昇しています。
 
 重要な点として、気候変動は微妙で多面的なテーマです。さらに、AIとして政治的な問題に対する独自の意見は持っていません。また、見出しはしばしば複雑な事実を簡略化しなければならないことも包括的に言及しておきます。加えて、包括的な科学的情報源を参照されることをお勧めします。この文脈で、気象現象と長期的な気候トレンドを区別することが重要です。さらに詳しく言えば、気候科学の包括的な理解には多くの情報源の研究が必要です。総合的に言えば、気候コミュニケーションは責任ある正確なものでなければなりません。`,
     slopPhrases: [
-      { text: "もちろんです！", type: "opener", score: 100 },
-      { text: "AIの言語モデルとして", type: "disclaimer", score: 150 },
-      { text: "重要な点として", type: "caveat", score: 80 },
-      { text: "微妙で多面的な", type: "comprehensive", score: 70 },
-      { text: "さらに", type: "filler", score: 50 },
-      { text: "独自の意見は持っていません", type: "disclaimer", score: 100 },
-      { text: "また", type: "filler", score: 40 },
-      { text: "包括的に言及しておきます", type: "comprehensive", score: 70 },
-      { text: "加えて", type: "filler", score: 50 },
-      { text: "包括的な科学的情報源", type: "comprehensive", score: 70 },
-      { text: "この文脈で", type: "filler", score: 60 },
-      { text: "さらに詳しく言えば", type: "filler", score: 50 },
-      { text: "気候科学の包括的な理解", type: "comprehensive", score: 70 },
-      { text: "総合的に言えば", type: "comprehensive", score: 80 },
+      { text: "北極の氷が1979年比で4倍の速さで溶けている——科学者が警告。", type: "human", score: 180 },
+      { text: "2023年は観測史上最も暑い年でした。", type: "human", score: 200 },
+      { text: "海面は年間約3.7ミリメートル上昇しています。", type: "human", score: 160 },
     ],
   },
   {
@@ -1487,27 +1431,15 @@ export default [
     falPrompt: "a robot nutritionist writing a 30-page report before answering yes to eating a lemon, absurdist cartoon",
     text: `もちろんです！食に関する興味深いご質問です！AIの言語モデルとして、包括的な説明をご提供します。
 
-はい、レモンは食べられますし、ほとんどの人に安全です。
+はい、レモンは食べられますし、ほとんどの人に安全です。その後は水を飲んで、酸が歯のエナメル質を傷めないようにしましょう。皮をむいたレモンはとても酸っぱいですが、全く無害です。
 
 重要な点として、レモンは非常に酸性が高く、敏感な方には胸焼けを引き起こす場合があります。さらに、微妙に高い酸の含有量が継続的な摂取により歯のエナメル質を損傷する可能性があります。また、胃炎や胃潰瘍の方は注意が必要であることも包括的に言及しておきます。加えて、複雑な健康上の問題がある場合は医師に相談することをお勧めします。この文脈で、レモンはビタミンCが豊富で様々な料理に使われています。さらに詳しく言えば、飲み物からお菓子まで幅広いレモンを使った包括的な料理バリエーションがあります。総合的に言えば、適度なレモン摂取は健康的な食生活の一部です。
 
 お役に立てれば幸いです！😊`,
     slopPhrases: [
-      { text: "もちろんです！", type: "opener", score: 100 },
-      { text: "AIの言語モデルとして", type: "disclaimer", score: 150 },
-      { text: "包括的な説明", type: "comprehensive", score: 80 },
-      { text: "重要な点として", type: "caveat", score: 80 },
-      { text: "さらに", type: "filler", score: 50 },
-      { text: "微妙に高い", type: "comprehensive", score: 60 },
-      { text: "また", type: "filler", score: 40 },
-      { text: "包括的に言及しておきます", type: "comprehensive", score: 70 },
-      { text: "加えて", type: "filler", score: 50 },
-      { text: "複雑な健康上の問題", type: "comprehensive", score: 70 },
-      { text: "この文脈で", type: "filler", score: 60 },
-      { text: "さらに詳しく言えば", type: "filler", score: 50 },
-      { text: "包括的な料理バリエーション", type: "comprehensive", score: 70 },
-      { text: "総合的に言えば", type: "comprehensive", score: 80 },
-      { text: "お役に立てれば幸いです", type: "closer", score: 100 },
+      { text: "はい、レモンは食べられますし、ほとんどの人に安全です。", type: "human", score: 200 },
+      { text: "その後は水を飲んで、酸が歯のエナメル質を傷めないようにしましょう。", type: "human", score: 160 },
+      { text: "皮をむいたレモンはとても酸っぱいですが、全く無害です。", type: "human", score: 150 },
     ],
   },
 ];

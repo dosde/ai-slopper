@@ -363,7 +363,14 @@ export default function GameScreen({ round, roundIdx, totalRounds, totalScore, o
                 <span style={{ color: '#ec4899', marginLeft: 6 }}>☠ IRON</span>
               )}
             </div>
-            <div style={{ fontFamily: "'Orbitron', sans-serif", fontSize: '0.78rem', fontWeight: 700, color: '#e2e8f0' }}>
+            <div style={{
+              fontFamily: "'Orbitron', sans-serif",
+              fontSize: '0.78rem',
+              fontWeight: 700,
+              color: isInverse ? '#38bdf8' : '#e2e8f0',
+              textShadow: isInverse ? '0 0 8px rgba(56,189,248,0.6)' : 'none',
+            }}>
+              {isInverse && <span style={{ fontSize: '0.6rem', marginRight: 4, letterSpacing: 1 }}>🔄 INVERSE</span>}
               {round.emoji} {round.title}
             </div>
           </div>
@@ -485,19 +492,21 @@ export default function GameScreen({ round, roundIdx, totalRounds, totalScore, o
           @keyframes rainbow-bg { 0%{filter:hue-rotate(0deg)} 100%{filter:hue-rotate(360deg)} }
           @keyframes meltdown-glitch { 0%,100%{transform:translate(0)} 20%{transform:translate(-4px,2px)} 40%{transform:translate(4px,-2px)} 60%{transform:translate(-2px,4px)} 80%{transform:translate(2px,-4px)} }
           @keyframes slide-in-up { from{transform:translateY(12px);opacity:0} to{transform:translateY(0);opacity:1} }
+          @keyframes inverse-pulse { 0%,100%{box-shadow:0 0 14px rgba(56,189,248,0.3)} 50%{box-shadow:0 0 24px rgba(56,189,248,0.65)} }
           @keyframes combo-decay-pulse { 0%,100%{opacity:0.65;transform:scale(1)} 50%{opacity:0.4;transform:scale(0.96)} }
         `}</style>
       </div>
 
       {/* Context strip */}
       <div style={{
-        background: 'rgba(124, 58, 237, 0.06)',
-        borderBottom: '1px solid rgba(124,58,237,0.12)',
+        background: isInverse ? 'rgba(56,189,248,0.08)' : 'rgba(124, 58, 237, 0.06)',
+        borderBottom: isInverse ? '1px solid rgba(56,189,248,0.25)' : '1px solid rgba(124,58,237,0.12)',
         padding: '6px 14px',
         fontSize: '0.72rem',
-        color: '#94a3b8',
+        color: isInverse ? '#7dd3fc' : '#94a3b8',
         fontStyle: 'italic',
         flexShrink: 0,
+        transition: 'background 0.3s, border-color 0.3s, color 0.3s',
       }}>
         💬 {round.context}
       </div>
@@ -618,18 +627,23 @@ export default function GameScreen({ round, roundIdx, totalRounds, totalScore, o
         {isInverse && (
           <div style={{
             marginBottom: '10px',
-            padding: '8px 14px',
-            background: 'rgba(56,189,248,0.1)',
-            border: '1px solid rgba(56,189,248,0.35)',
+            padding: '10px 14px',
+            background: 'linear-gradient(90deg, rgba(56,189,248,0.22), rgba(56,189,248,0.08), rgba(56,189,248,0.22))',
+            border: '2px solid rgba(56,189,248,0.6)',
             borderRadius: '10px',
-            fontSize: '0.7rem',
-            color: '#38bdf8',
+            fontSize: '0.72rem',
+            color: '#7dd3fc',
             fontFamily: "'Orbitron', sans-serif",
             fontWeight: 700,
             textAlign: 'center',
-            animation: 'slide-in-up 0.4s ease',
+            boxShadow: '0 0 16px rgba(56,189,248,0.35)',
+            animation: 'slide-in-up 0.4s ease, inverse-pulse 2s ease-in-out infinite',
+            letterSpacing: '0.5px',
           }}>
-            {t('inverse_header', lang)} — {t('inverse_body', lang)}
+            <div style={{ fontSize: '0.85rem', color: '#38bdf8', marginBottom: 2, textShadow: '0 0 8px #38bdf8' }}>
+              🔄 {t('inverse_header', lang)}
+            </div>
+            <div style={{ fontSize: '0.65rem', opacity: 0.95 }}>{t('inverse_body', lang)}</div>
           </div>
         )}
 

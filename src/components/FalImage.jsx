@@ -44,7 +44,7 @@ export default function FalImage({ prompt, roundId, size = 200 }) {
         src={imageUrl}
         alt="AI Slop Monster"
         className="fal-image"
-        style={{ width: size, height: size }}
+        style={{ width: size, height: size, flexShrink: 0 }}
       />
     );
   }
@@ -53,6 +53,7 @@ export default function FalImage({ prompt, roundId, size = 200 }) {
     <div style={{
       width: size,
       height: size,
+      flexShrink: 0,
       borderRadius: 16,
       background: botColor,
       display: 'flex',

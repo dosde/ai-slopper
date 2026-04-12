@@ -59,7 +59,7 @@ export default function ResultScreen({ totalScore, roundScores, newAchievements 
   const isHighScore = getLeaderboard().length === 0 || totalScore > (getLeaderboard()[0]?.score ?? 0);
 
   return (
-    <div style={{
+    <div className="result-screen-root" style={{
       flex: 1,
       display: 'flex',
       flexDirection: 'column',
@@ -90,6 +90,7 @@ export default function ResultScreen({ totalScore, roundScores, newAchievements 
         @keyframes bounce-in{0%{transform:scale(0);opacity:0}60%{transform:scale(1.2)}100%{transform:scale(1);opacity:1}}
         @keyframes slide-in-up{from{transform:translateY(20px);opacity:0}to{transform:translateY(0);opacity:1}}
         @keyframes glow-pulse{0%,100%{text-shadow:0 0 20px #fbbf24,0 0 40px #fbbf24}50%{text-shadow:0 0 40px #fbbf24,0 0 80px #f59e0b}}
+        .result-screen-root > * { flex-shrink: 0; }
       `}</style>
 
       {/* Game Over + rank */}
@@ -203,35 +204,37 @@ export default function ResultScreen({ totalScore, roundScores, newAchievements 
           <div style={{ fontSize: '0.62rem', color: '#fbbf24', fontFamily: "'Orbitron', sans-serif", marginBottom: '10px' }}>
             {isGlobalEnabled() ? '🌍 SAVE TO GLOBAL LEADERBOARD' : '🏆 SAVE YOUR SCORE'}
           </div>
-          <div style={{ display: 'flex', gap: '8px' }}>
+          <div style={{ display: 'flex', gap: '8px', alignItems: 'stretch' }}>
             <input
               ref={inputRef}
               type="text"
-              maxLength={3}
-              placeholder="AAA"
+              maxLength={6}
+              placeholder="ABCDEF"
               value={initials}
-              onChange={e => setInitials(e.target.value.toUpperCase().replace(/[^A-Z]/g, ''))}
+              onChange={e => setInitials(e.target.value.toUpperCase().replace(/[^A-Z0-9]/g, ''))}
               onKeyDown={e => e.key === 'Enter' && handleSave()}
               style={{
                 flex: 1,
+                minWidth: 0,
                 background: 'rgba(124,58,237,0.1)',
                 border: '2px solid rgba(124,58,237,0.4)',
                 borderRadius: '10px',
-                padding: '10px 14px',
+                padding: '8px 10px',
                 color: '#f8fafc',
                 fontFamily: "'Orbitron', sans-serif",
                 fontWeight: 700,
-                fontSize: '1.1rem',
+                fontSize: '0.95rem',
                 textAlign: 'center',
-                letterSpacing: '6px',
+                letterSpacing: '2px',
                 outline: 'none',
+                boxSizing: 'border-box',
               }}
             />
             <button
               className="btn-primary"
               onClick={handleSave}
               disabled={initials.length === 0}
-              style={{ padding: '10px 18px', fontSize: '0.8rem', opacity: initials.length === 0 ? 0.5 : 1 }}
+              style={{ padding: '8px 14px', fontSize: '0.75rem', opacity: initials.length === 0 ? 0.5 : 1, flexShrink: 0 }}
             >
               SAVE
             </button>
