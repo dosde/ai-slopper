@@ -29,6 +29,7 @@ export default function App() {
   const [newAchievements, setNewAchievements] = useState([]);
 
   const [isDaily, setIsDaily] = useState(false);
+  const [usedPowerUps, setUsedPowerUps] = useState([]);
 
   // Per-game stats for achievements
   const gameStatsRef = useRef({
@@ -57,6 +58,7 @@ export default function App() {
     setLastFoundIds(new Set());
     setDifficulty(diff);
     setNewAchievements([]);
+    setUsedPowerUps([]);
     const daily = mode === 'daily';
     setIsDaily(daily);
     gameStatsRef.current = {
@@ -131,6 +133,7 @@ export default function App() {
   }, []);
 
   const handlePowerUpUsed = useCallback((id) => {
+    setUsedPowerUps(prev => [...prev, id]);
     const stats = gameStatsRef.current;
     stats.powerUpsUsed += 1;
     if (id === 'radar') stats.usedRadar = true;
@@ -169,6 +172,7 @@ export default function App() {
             difficulty={difficulty}
             onRoundEnd={handleRoundEnd}
             onPowerUpUsed={handlePowerUpUsed}
+            usedPowerUps={usedPowerUps}
           />
         )}
 

@@ -1,8 +1,17 @@
 // localStorage helpers for leaderboard, achievements, and stats
+// Optional global leaderboard: set VITE_SCORES_URL + VITE_SCORES_KEY (Supabase)
 
 const SCORES_KEY = 'slop_royale_scores_v2';
 const ACHIEVEMENTS_KEY = 'slop_royale_achievements_v2';
 const STATS_KEY = 'slop_royale_stats_v2';
+
+const API_URL  = import.meta.env.VITE_SCORES_URL;  // e.g. https://xyz.supabase.co/rest/v1/scores
+const API_KEY  = import.meta.env.VITE_SCORES_KEY;  // Supabase anon key
+
+const apiHeaders = () => ({
+  'Content-Type': 'application/json',
+  ...(API_KEY ? { apikey: API_KEY, Authorization: `Bearer ${API_KEY}` } : {}),
+});
 
 // ========== LEADERBOARD ==========
 
@@ -13,6 +22,21 @@ export const getLeaderboard = () => {
     return [];
   }
 };
+
+// Fetch global scores (async). Falls back to local on any error.
+export const getGlobalLeaderboard = async () => {
+  if (!API_URL) return getLeaderboard();
+  try {
+    const res = await fetch(`${API_URL}?order=score.desc&limit=20`, { headers: apiHeaders() });
+    if (!res.ok) throw new Error(res.status);
+    return await res.json();
+  } catch {
+    return getLeaderboard();
+  }
+};
+
+// Returns true if global scores are configured
+export const isGlobalEnabled = () => Boolean(API_URL);
 
 export const saveScore = (score, initials, rank) => {
   const board = getLeaderboard();
@@ -28,6 +52,26 @@ export const saveScore = (score, initials, rank) => {
   const top10 = board.slice(0, 10);
   localStorage.setItem(SCORES_KEY, JSON.stringify(top10));
   return top10.findIndex(e => e.timestamp === entry.timestamp) + 1;
+};
+
+// Save to global API and local. Returns position.
+export const saveScoreGlobal = async (score, initials, rank) => {
+  const localRank = saveScore(score, initials, rank);
+  if (!API_URL) return localRank;
+  try {
+    await fetch(API_URL, {
+      method: 'POST',
+      headers: apiHeaders(),
+      body: JSON.stringify({
+        score,
+        initials: initials.toUpperCase().slice(0, 3).padEnd(3, '·'),
+        rank,
+        date: new Date().toLocaleDateString(),
+        timestamp: Date.now(),
+      }),
+    });
+  } catch { /* non-fatal */ }
+  return localRank;
 };
 
 export const getPlayerRank = (score) => {

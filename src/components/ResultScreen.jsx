@@ -3,7 +3,7 @@ import { getRoast } from '../data/slopData';
 import { playGameOver, stopMusic } from '../utils/audio';
 import FalImage from './FalImage';
 import Leaderboard from './Leaderboard';
-import { saveScore, getLeaderboard, ACHIEVEMENTS, getUnlockedAchievements } from '../utils/storage';
+import { saveScoreGlobal, getLeaderboard, ACHIEVEMENTS, getUnlockedAchievements, isGlobalEnabled } from '../utils/storage';
 
 const SHARE_MESSAGES = [
   "I scored {score} pts destroying AI slop on AI Slop Royale! Can you beat me? 🤖💥",
@@ -37,9 +37,9 @@ export default function ResultScreen({ totalScore, roundScores, newAchievements 
     setParticles(newParticles);
   }, []);
 
-  const handleSave = () => {
+  const handleSave = async () => {
     if (initials.trim().length === 0) return;
-    const rank = saveScore(totalScore, initials.trim(), roast.title);
+    const rank = await saveScoreGlobal(totalScore, initials.trim(), roast.title);
     setSaved(true);
     setSavedRank(rank);
     setShowLeaderboard(true);
@@ -157,7 +157,7 @@ export default function ResultScreen({ totalScore, roundScores, newAchievements 
       {!saved ? (
         <div className="card" style={{ padding: '14px', maxWidth: '380px', width: '100%', animation: show ? 'slide-in-up 0.5s ease 0.4s both' : 'none' }}>
           <div style={{ fontSize: '0.62rem', color: '#fbbf24', fontFamily: "'Orbitron', sans-serif", marginBottom: '10px' }}>
-            🏆 SAVE YOUR SCORE
+            {isGlobalEnabled() ? '🌍 SAVE TO GLOBAL LEADERBOARD' : '🏆 SAVE YOUR SCORE'}
           </div>
           <div style={{ display: 'flex', gap: '8px' }}>
             <input

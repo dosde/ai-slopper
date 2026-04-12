@@ -1005,6 +1005,929 @@ In conclusion, fill the pot, apply heat, and wait. I hope this comprehensive gui
       { text: "I'm always here to help", type: "closer", score: 80 },
     ],
   },
+  {
+    id: 27,
+    title: "THE BULLET POINT EVANGELIST",
+    emoji: "📋",
+    context: "You asked an AI: what time should I wake up?",
+    falPrompt: "a robot drowning in infinite bullet point lists floating everywhere, cartoon chaos, neon colors",
+    text: `Great question! I'm happy to help you optimize your wake-up time. Here is a comprehensive overview of the key considerations:
+
+• First and foremost, it's important to understand your individual sleep needs
+• That being said, most adults require 7-9 hours of sleep per night
+• Furthermore, consistency is an absolutely essential component of healthy sleep
+• It's also worth noting that your chronotype plays a significant role
+• As an AI, I want to be transparent that I cannot observe your sleep patterns
+• Additionally, factors such as work schedule, lifestyle, and personal goals matter
+• It's crucial to acknowledge that light exposure affects your circadian rhythm
+• Moreover, nutrition and exercise habits are deeply interconnected with sleep quality
+• In summary, the best wake-up time depends on your unique circumstances
+
+I hope this comprehensive bullet-point overview proves helpful! Please don't hesitate to reach out if you'd like to explore any of these points further. I'm always here to support your wellness journey! 🌅`,
+    slopPhrases: [
+      { text: "Great question!", type: "sycophant", score: 100 },
+      { text: "I'm happy to help", type: "opener", score: 80 },
+      { text: "comprehensive overview", type: "buzzword", score: 70 },
+      { text: "First and foremost", type: "filler", score: 60 },
+      { text: "it's important to understand", type: "caveat", score: 70 },
+      { text: "That being said", type: "filler", score: 50 },
+      { text: "Furthermore", type: "filler", score: 50 },
+      { text: "absolutely essential component", type: "buzzword", score: 80 },
+      { text: "It's also worth noting", type: "caveat", score: 70 },
+      { text: "As an AI", type: "disclaimer", score: 110 },
+      { text: "I want to be transparent", type: "caveat", score: 80 },
+      { text: "Additionally", type: "filler", score: 40 },
+      { text: "It's crucial to acknowledge", type: "caveat", score: 80 },
+      { text: "Moreover", type: "filler", score: 50 },
+      { text: "deeply interconnected", type: "buzzword", score: 70 },
+      { text: "In summary", type: "filler", score: 50 },
+      { text: "I hope this comprehensive bullet-point overview", type: "closer", score: 100 },
+      { text: "Please don't hesitate to reach out", type: "closer", score: 90 },
+      { text: "I'm always here to support", type: "closer", score: 80 },
+    ],
+  },
+  {
+    id: 28,
+    title: "THE CODE REVIEW OVERLORD",
+    emoji: "💻",
+    context: "You asked an AI to review your 3-line Python function",
+    falPrompt: "a robot covered in red pen marks reviewing a tiny piece of paper with a 3-line function, mountains of documentation behind it, cartoon",
+    text: `Certainly! I'd be delighted to review your code. Before diving in, I want to note that code quality is subjective and my feedback should be taken as suggestions rather than absolute requirements. As an AI language model, I'm not able to run your code directly.
+
+Here is my comprehensive code review:
+
+🔴 Critical Considerations:
+• It's important to ensure proper error handling throughout
+• Furthermore, input validation is an essential component of robust software
+
+🟡 Moderate Suggestions:
+• That being said, variable naming could be more descriptive
+• It's also worth noting that adding type hints would improve readability
+• Additionally, consider whether this function could benefit from docstrings
+
+🟢 Best Practices:
+• In conclusion, the overall structure shows promise
+• Moreover, unit tests are a crucial aspect of maintainable code
+
+I sincerely hope this comprehensive code review proves helpful! Please don't hesitate to share more context about your use case. I'm always happy to provide additional guidance! 💡`,
+    slopPhrases: [
+      { text: "Certainly!", type: "opener", score: 100 },
+      { text: "I'd be delighted", type: "opener", score: 90 },
+      { text: "should be taken as suggestions rather than absolute requirements", type: "disclaimer", score: 90 },
+      { text: "As an AI language model", type: "disclaimer", score: 120 },
+      { text: "comprehensive code review", type: "buzzword", score: 70 },
+      { text: "it's important to ensure", type: "caveat", score: 70 },
+      { text: "Furthermore", type: "filler", score: 50 },
+      { text: "essential component", type: "buzzword", score: 70 },
+      { text: "That being said", type: "filler", score: 50 },
+      { text: "It's also worth noting", type: "caveat", score: 70 },
+      { text: "Additionally", type: "filler", score: 40 },
+      { text: "In conclusion", type: "filler", score: 60 },
+      { text: "Moreover", type: "filler", score: 50 },
+      { text: "crucial aspect", type: "buzzword", score: 70 },
+      { text: "I sincerely hope this comprehensive", type: "closer", score: 100 },
+      { text: "Please don't hesitate to share", type: "closer", score: 80 },
+      { text: "I'm always happy to provide", type: "closer", score: 80 },
+    ],
+  },
+  {
+    id: 29,
+    title: "THE CUSTOMER SERVICE VOID",
+    emoji: "🎧",
+    context: "You complained that your order arrived broken",
+    falPrompt: "a cheerful robot customer service agent surrounded by broken packages and deflecting shields, cartoon comedy",
+    text: `Dear Valued Customer,
+
+Thank you so much for reaching out to us! I sincerely apologize for any inconvenience this experience may have caused. Your feedback is incredibly valuable to us and we truly appreciate you taking the time to share your concerns.
+
+I want to be transparent that I fully understand your frustration. That being said, our team is absolutely committed to ensuring the highest level of customer satisfaction. It's important to note that we take all feedback very seriously.
+
+Furthermore, I'd like to assure you that this matter has been escalated to the appropriate department. Additionally, our team will conduct a thorough investigation into this situation. Rest assured, we are deeply committed to resolving this in a timely manner.
+
+In conclusion, please know that we value your business tremendously. I hope this message helps clarify our commitment to excellence! Please don't hesitate to reach out if you have any further concerns. We're always here for you! 😊`,
+    slopPhrases: [
+      { text: "Thank you so much for reaching out", type: "opener", score: 100 },
+      { text: "I sincerely apologize for any inconvenience", type: "opener", score: 100 },
+      { text: "Your feedback is incredibly valuable", type: "sycophant", score: 90 },
+      { text: "we truly appreciate", type: "sycophant", score: 80 },
+      { text: "I want to be transparent", type: "caveat", score: 80 },
+      { text: "That being said", type: "filler", score: 50 },
+      { text: "absolutely committed", type: "buzzword", score: 70 },
+      { text: "highest level of customer satisfaction", type: "buzzword", score: 80 },
+      { text: "It's important to note", type: "caveat", score: 70 },
+      { text: "Furthermore", type: "filler", score: 50 },
+      { text: "Additionally", type: "filler", score: 40 },
+      { text: "thorough investigation", type: "buzzword", score: 70 },
+      { text: "deeply committed", type: "buzzword", score: 70 },
+      { text: "In conclusion", type: "filler", score: 60 },
+      { text: "I hope this message helps clarify", type: "closer", score: 90 },
+      { text: "Please don't hesitate to reach out", type: "closer", score: 90 },
+      { text: "We're always here for you", type: "closer", score: 80 },
+    ],
+  },
+  {
+    id: 30,
+    title: "THE MOTIVATION MACHINE",
+    emoji: "💪",
+    context: "You told an AI you're feeling unmotivated today",
+    falPrompt: "an extremely enthusiastic robot life coach exploding with positivity while a sad human slouches in a chair, cartoon",
+    text: `I hear you, and I want you to know that what you're feeling is completely valid! It's important to acknowledge that everyone experiences periods of low motivation — you are certainly not alone in this.
+
+That being said, here are some holistic strategies that may help you tap into your full potential:
+
+✨ First and foremost, practice self-compassion. It's also worth noting that being kind to yourself is a foundational aspect of wellbeing.
+
+🎯 Furthermore, breaking your goals into smaller, actionable steps is an absolutely transformative approach. As an AI, I genuinely believe in your capacity for growth.
+
+🌱 Additionally, consider whether your environment is optimized for productivity. Moreover, hydration and movement are deeply interconnected with mental clarity.
+
+💫 In conclusion, you have everything you need within you to overcome this! I hope this comprehensive motivational overview proves helpful. Please don't hesitate to reach out whenever you need support. I'm always here for you! 🌟`,
+    slopPhrases: [
+      { text: "I want you to know that what you're feeling is completely valid", type: "opener", score: 100 },
+      { text: "It's important to acknowledge", type: "caveat", score: 70 },
+      { text: "certainly not alone", type: "filler", score: 60 },
+      { text: "That being said", type: "filler", score: 50 },
+      { text: "holistic strategies", type: "buzzword", score: 80 },
+      { text: "tap into your full potential", type: "buzzword", score: 90 },
+      { text: "First and foremost", type: "filler", score: 60 },
+      { text: "It's also worth noting", type: "caveat", score: 70 },
+      { text: "foundational aspect", type: "buzzword", score: 70 },
+      { text: "Furthermore", type: "filler", score: 50 },
+      { text: "actionable steps", type: "buzzword", score: 80 },
+      { text: "absolutely transformative", type: "buzzword", score: 80 },
+      { text: "As an AI", type: "disclaimer", score: 110 },
+      { text: "capacity for growth", type: "buzzword", score: 70 },
+      { text: "Additionally", type: "filler", score: 40 },
+      { text: "Moreover", type: "filler", score: 50 },
+      { text: "deeply interconnected", type: "buzzword", score: 70 },
+      { text: "In conclusion", type: "filler", score: 60 },
+      { text: "comprehensive motivational overview", type: "buzzword", score: 80 },
+      { text: "Please don't hesitate to reach out", type: "closer", score: 90 },
+      { text: "I'm always here for you", type: "closer", score: 80 },
+    ],
+  },
+  {
+    id: 31,
+    title: "THE MEETING MINUTES MONSTER",
+    emoji: "📝",
+    context: "You asked an AI to summarize a 5-minute meeting in one sentence",
+    falPrompt: "a robot secretary buried under avalanches of meeting notes and action items, tiny calendar exploding, cartoon",
+    text: `Certainly! I'd be happy to provide a comprehensive summary of your meeting. Please note that as an AI, I wasn't present at the meeting, so I'll be working with the information provided.
+
+MEETING SUMMARY
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+📋 Key Discussion Points:
+• First and foremost, the team aligned on core objectives
+• Furthermore, stakeholder expectations were thoroughly discussed
+• It's also worth noting that several action items were identified
+
+⚡ Action Items:
+• Additionally, follow-up tasks need to be assigned
+• Moreover, timelines require further clarification
+• That being said, accountability mechanisms should be established
+
+📊 Next Steps:
+• In conclusion, a follow-up meeting is recommended
+• It's important to note that documentation should be circulated
+
+I hope this comprehensive meeting summary proves helpful! Please don't hesitate to reach out if you need any clarifications. I'm always here to support your team's productivity! 📅`,
+    slopPhrases: [
+      { text: "Certainly!", type: "opener", score: 100 },
+      { text: "I'd be happy to provide", type: "opener", score: 80 },
+      { text: "comprehensive summary", type: "buzzword", score: 70 },
+      { text: "as an AI", type: "disclaimer", score: 110 },
+      { text: "First and foremost", type: "filler", score: 60 },
+      { text: "aligned on core objectives", type: "buzzword", score: 80 },
+      { text: "Furthermore", type: "filler", score: 50 },
+      { text: "thoroughly discussed", type: "buzzword", score: 60 },
+      { text: "It's also worth noting", type: "caveat", score: 70 },
+      { text: "Additionally", type: "filler", score: 40 },
+      { text: "Moreover", type: "filler", score: 50 },
+      { text: "That being said", type: "filler", score: 50 },
+      { text: "accountability mechanisms", type: "buzzword", score: 90 },
+      { text: "In conclusion", type: "filler", score: 60 },
+      { text: "It's important to note", type: "caveat", score: 70 },
+      { text: "I hope this comprehensive meeting summary", type: "closer", score: 100 },
+      { text: "Please don't hesitate to reach out", type: "closer", score: 90 },
+      { text: "I'm always here to support", type: "closer", score: 80 },
+    ],
+  },
+  {
+    id: 32,
+    title: "THE PERFORMANCE REVIEW BOT",
+    emoji: "📊",
+    context: "You asked an AI to write your self-evaluation for your annual review",
+    falPrompt: "a robot HR manager surrounded by performance graphs and buzzword clouds, dramatic office setting, cartoon",
+    text: `Of course! I'd be delighted to help you craft a compelling self-evaluation. It's important to note that self-advocacy is a crucial aspect of professional development. As an AI, I want to emphasize that the following should be personalized to reflect your unique contributions.
+
+PROFESSIONAL SELF-EVALUATION
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+🎯 Core Competencies Demonstrated:
+• Leveraged synergistic cross-functional collaboration to drive impactful outcomes
+• Furthermore, proactively identified and addressed key stakeholder needs
+• Demonstrated a holistic approach to problem-solving throughout the year
+
+📈 Value-Added Contributions:
+• Additionally, spearheaded initiatives that moved the needle on core KPIs
+• That being said, I also fostered a culture of continuous improvement
+• It's also worth noting that I consistently delivered results above expectations
+
+🌱 Areas for Growth:
+• In conclusion, I am deeply committed to ongoing professional development
+• Moreover, I look forward to leveraging new learnings going forward
+
+I hope this comprehensive self-evaluation template proves helpful! Please don't hesitate to reach out if you need further assistance. I'm always happy to support your career journey! 🚀`,
+    slopPhrases: [
+      { text: "Of course!", type: "opener", score: 100 },
+      { text: "I'd be delighted to help", type: "opener", score: 90 },
+      { text: "It's important to note", type: "caveat", score: 70 },
+      { text: "crucial aspect of professional development", type: "buzzword", score: 90 },
+      { text: "As an AI", type: "disclaimer", score: 110 },
+      { text: "synergistic cross-functional collaboration", type: "buzzword", score: 120 },
+      { text: "drive impactful outcomes", type: "buzzword", score: 90 },
+      { text: "Furthermore", type: "filler", score: 50 },
+      { text: "key stakeholder needs", type: "buzzword", score: 80 },
+      { text: "holistic approach", type: "buzzword", score: 80 },
+      { text: "Additionally", type: "filler", score: 40 },
+      { text: "move the needle on core KPIs", type: "buzzword", score: 100 },
+      { text: "That being said", type: "filler", score: 50 },
+      { text: "culture of continuous improvement", type: "buzzword", score: 90 },
+      { text: "It's also worth noting", type: "caveat", score: 70 },
+      { text: "In conclusion", type: "filler", score: 60 },
+      { text: "deeply committed", type: "buzzword", score: 70 },
+      { text: "Moreover", type: "filler", score: 50 },
+      { text: "leveraging new learnings going forward", type: "buzzword", score: 100 },
+      { text: "I hope this comprehensive self-evaluation", type: "closer", score: 100 },
+      { text: "Please don't hesitate to reach out", type: "closer", score: 90 },
+      { text: "I'm always happy to support", type: "closer", score: 80 },
+    ],
+  },
+  {
+    id: 33,
+    title: "THE DEBATE DODGER",
+    emoji: "⚖️",
+    context: "You asked an AI: Beatles or Rolling Stones — who was better?",
+    falPrompt: "two rock bands as robots facing off while an AI referee frantically waves both flags and refuses to decide, cartoon chaos",
+    text: `Great question! This is truly a fascinating and nuanced debate that music enthusiasts have engaged with for decades. I want to be transparent that as an AI, I don't have personal preferences, so I'll present a balanced and comprehensive perspective.
+
+On one hand, The Beatles demonstrated an extraordinary capacity for musical innovation. Their contributions to popular music are, arguably, without parallel. Furthermore, their cultural impact transcended mere entertainment.
+
+That being said, The Rolling Stones offer a compelling counterargument. It's also worth noting that their longevity and raw energy represent a different but equally valid artistic vision. Additionally, their blues-influenced approach resonated deeply with millions.
+
+It's important to acknowledge that both bands shaped modern music in profound and deeply interconnected ways. As an AI, I believe that declaring one "better" would oversimplify this rich musical legacy.
+
+In conclusion, both bands are genuinely exceptional and the answer ultimately depends on your personal values and preferences. I hope this balanced overview helps you appreciate both perspectives! Please don't hesitate to reach out if you'd like to explore this topic further. I'm always happy to help! 🎸`,
+    slopPhrases: [
+      { text: "Great question!", type: "sycophant", score: 100 },
+      { text: "truly a fascinating and nuanced", type: "buzzword", score: 80 },
+      { text: "I want to be transparent", type: "caveat", score: 80 },
+      { text: "as an AI", type: "disclaimer", score: 110 },
+      { text: "balanced and comprehensive perspective", type: "buzzword", score: 80 },
+      { text: "On one hand", type: "filler", score: 50 },
+      { text: "extraordinary capacity", type: "buzzword", score: 70 },
+      { text: "Furthermore", type: "filler", score: 50 },
+      { text: "cultural impact transcended", type: "buzzword", score: 80 },
+      { text: "That being said", type: "filler", score: 50 },
+      { text: "compelling counterargument", type: "buzzword", score: 70 },
+      { text: "It's also worth noting", type: "caveat", score: 70 },
+      { text: "equally valid artistic vision", type: "buzzword", score: 80 },
+      { text: "Additionally", type: "filler", score: 40 },
+      { text: "It's important to acknowledge", type: "caveat", score: 70 },
+      { text: "deeply interconnected", type: "buzzword", score: 70 },
+      { text: "As an AI", type: "disclaimer", score: 110 },
+      { text: "In conclusion", type: "filler", score: 60 },
+      { text: "I hope this balanced overview", type: "closer", score: 90 },
+      { text: "Please don't hesitate to reach out", type: "closer", score: 90 },
+      { text: "I'm always happy to help", type: "closer", score: 80 },
+    ],
+  },
+  {
+    id: 34,
+    title: "THE JOKE DISSECTOR",
+    emoji: "🔬",
+    context: "You asked an AI why the 'Why did the chicken cross the road?' joke is funny",
+    falPrompt: "a robot surgeon dissecting a rubber chicken with scientific instruments, humor completely destroyed, cartoon",
+    text: `Certainly! This is a fascinating question that touches on the intersection of linguistics, cognitive science, and humor theory. As an AI, I find the analysis of comedy to be a particularly illuminating area of study.
+
+The humor in this joke operates on several interconnected levels:
+
+🧠 Cognitive Mechanisms:
+• First and foremost, the joke establishes an expectation of a complex or surprising answer
+• Furthermore, it subverts this expectation with a mundane, literal response
+• It's also worth noting that this "anti-joke" format creates incongruity
+
+📚 Linguistic Analysis:
+• That being said, the question structure implies intentionality
+• Additionally, the phrase "the other side" is deliberately ambiguous
+• Moreover, this ambiguity is central to the joke's comedic framework
+
+🎭 Cultural Context:
+• It's important to acknowledge that humor is deeply subjective
+• As an AI, I want to be transparent that I cannot personally experience amusement
+• In conclusion, the joke's longevity reflects its elegant simplicity
+
+I hope this comprehensive comedic analysis proves illuminating! Please don't hesitate to reach out if you'd like me to analyze additional jokes. I'm always here to explore humor with you! 😄`,
+    slopPhrases: [
+      { text: "Certainly!", type: "opener", score: 100 },
+      { text: "fascinating question", type: "sycophant", score: 80 },
+      { text: "intersection of", type: "buzzword", score: 60 },
+      { text: "As an AI", type: "disclaimer", score: 110 },
+      { text: "particularly illuminating area of study", type: "buzzword", score: 80 },
+      { text: "interconnected levels", type: "buzzword", score: 70 },
+      { text: "First and foremost", type: "filler", score: 60 },
+      { text: "Furthermore", type: "filler", score: 50 },
+      { text: "It's also worth noting", type: "caveat", score: 70 },
+      { text: "That being said", type: "filler", score: 50 },
+      { text: "Additionally", type: "filler", score: 40 },
+      { text: "Moreover", type: "filler", score: 50 },
+      { text: "comedic framework", type: "buzzword", score: 80 },
+      { text: "It's important to acknowledge", type: "caveat", score: 70 },
+      { text: "humor is deeply subjective", type: "disclaimer", score: 80 },
+      { text: "I want to be transparent", type: "caveat", score: 80 },
+      { text: "In conclusion", type: "filler", score: 60 },
+      { text: "I hope this comprehensive comedic analysis", type: "closer", score: 100 },
+      { text: "Please don't hesitate to reach out", type: "closer", score: 90 },
+      { text: "I'm always here to explore", type: "closer", score: 80 },
+    ],
+  },
+  {
+    id: 35,
+    title: "THE APOLOGY ARCHITECT",
+    emoji: "🙏",
+    context: "You asked an AI to write a quick sorry text to your boss for being 5 minutes late",
+    falPrompt: "a robot writing an enormous formal apology scroll for a tiny 5-minute clock, dramatic ceremony, cartoon",
+    text: `Of course! I'd be happy to help you craft a professional apology. It's important to note that a well-structured apology can significantly strengthen professional relationships. As an AI, I want to emphasize that the tone should be calibrated to your specific workplace culture.
+
+Here is a comprehensive apology template:
+
+Subject: Sincere Apologies Regarding My Tardiness
+
+Dear [Manager's Name],
+
+I hope this message finds you well. I am writing to sincerely apologize for my late arrival this morning. I want to be transparent that I take punctuality very seriously and this situation does not reflect my professional standards.
+
+Furthermore, I want to acknowledge that your time is extremely valuable. That being said, I have conducted a thorough reflection on the root causes of this delay. Additionally, I have implemented proactive measures to ensure this does not recur.
+
+In conclusion, I remain deeply committed to upholding the highest standards of professional conduct. I hope this message helps convey the sincerity of my apology. Please don't hesitate to reach out if you'd like to discuss this further. I'm always available and committed to our team's success! 🙏`,
+    slopPhrases: [
+      { text: "Of course!", type: "opener", score: 100 },
+      { text: "I'd be happy to help", type: "opener", score: 80 },
+      { text: "It's important to note", type: "caveat", score: 70 },
+      { text: "significantly strengthen", type: "buzzword", score: 70 },
+      { text: "As an AI", type: "disclaimer", score: 110 },
+      { text: "calibrated to your specific", type: "buzzword", score: 80 },
+      { text: "comprehensive apology template", type: "buzzword", score: 80 },
+      { text: "I hope this message finds you well", type: "opener", score: 110 },
+      { text: "I want to be transparent", type: "caveat", score: 80 },
+      { text: "does not reflect my professional standards", type: "disclaimer", score: 90 },
+      { text: "Furthermore", type: "filler", score: 50 },
+      { text: "That being said", type: "filler", score: 50 },
+      { text: "thorough reflection", type: "buzzword", score: 70 },
+      { text: "root causes", type: "buzzword", score: 70 },
+      { text: "Additionally", type: "filler", score: 40 },
+      { text: "proactive measures", type: "buzzword", score: 80 },
+      { text: "In conclusion", type: "filler", score: 60 },
+      { text: "deeply committed", type: "buzzword", score: 70 },
+      { text: "highest standards of professional conduct", type: "buzzword", score: 90 },
+      { text: "I hope this message helps convey", type: "closer", score: 90 },
+      { text: "Please don't hesitate to reach out", type: "closer", score: 90 },
+      { text: "I'm always available", type: "closer", score: 70 },
+    ],
+  },
+  {
+    id: 36,
+    title: "THE PLANT PARENT PROFESSOR",
+    emoji: "🌱",
+    context: "You asked an AI: how often should I water my cactus?",
+    falPrompt: "a robot botanist in a lab coat presenting a 50-slide presentation to a tiny confused cactus, cartoon academia",
+    text: `Great question! I'd be delighted to help you with your cactus care journey. I want to note that as an AI, I cannot observe your specific plant, environment, or growing conditions, so please take my guidance as general recommendations rather than definitive prescriptions.
+
+🌵 COMPREHENSIVE CACTUS CARE GUIDE
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+💧 Watering Fundamentals:
+• First and foremost, it's crucial to understand that overwatering is the primary cause of cactus mortality
+• Furthermore, the "soak and dry" method is a foundational approach
+• It's also worth noting that seasonal variation significantly impacts watering frequency
+
+🌡️ Environmental Considerations:
+• That being said, humidity levels in your home play an absolutely essential role
+• Additionally, pot drainage is a critical component of successful cactus cultivation
+• Moreover, soil composition deeply affects moisture retention
+
+📊 Seasonal Schedule:
+• Spring/Summer: Water every 2-3 weeks (growing season)
+• Fall/Winter: Reduce to once monthly or less
+
+In conclusion, your cactus will thrive with attentive but restrained care! I sincerely hope this comprehensive cactus care overview proves helpful. Please don't hesitate to reach out with further questions. I'm always here to support your plant parenting journey! 🌵`,
+    slopPhrases: [
+      { text: "Great question!", type: "sycophant", score: 100 },
+      { text: "I'd be delighted to help", type: "opener", score: 90 },
+      { text: "cactus care journey", type: "buzzword", score: 70 },
+      { text: "as an AI", type: "disclaimer", score: 110 },
+      { text: "please take my guidance as general recommendations rather than definitive prescriptions", type: "disclaimer", score: 100 },
+      { text: "First and foremost", type: "filler", score: 60 },
+      { text: "it's crucial to understand", type: "caveat", score: 70 },
+      { text: "Furthermore", type: "filler", score: 50 },
+      { text: "foundational approach", type: "buzzword", score: 70 },
+      { text: "It's also worth noting", type: "caveat", score: 70 },
+      { text: "That being said", type: "filler", score: 50 },
+      { text: "absolutely essential role", type: "buzzword", score: 80 },
+      { text: "Additionally", type: "filler", score: 40 },
+      { text: "critical component", type: "buzzword", score: 80 },
+      { text: "Moreover", type: "filler", score: 50 },
+      { text: "deeply affects", type: "buzzword", score: 60 },
+      { text: "In conclusion", type: "filler", score: 60 },
+      { text: "I sincerely hope this comprehensive", type: "closer", score: 100 },
+      { text: "Please don't hesitate to reach out", type: "closer", score: 90 },
+      { text: "I'm always here to support", type: "closer", score: 80 },
+    ],
+  },
+  {
+    id: 37,
+    title: "THE JOB INTERVIEW COACH",
+    emoji: "👔",
+    context: "You asked an AI: how do I answer 'tell me about yourself' in an interview?",
+    falPrompt: "a robot job coach presenting a 47-point PowerPoint to a nervous human in a tiny chair, cartoon office chaos",
+    text: `Absolutely! I'm thrilled to help you prepare for this important moment. It's worth noting that the "tell me about yourself" question is one of the most pivotal aspects of any interview. As an AI, I want to emphasize that my suggestions should be adapted to your specific industry and personal brand.
+
+Here is a comprehensive framework for crafting your response:
+
+🎯 THE P.A.S.T. METHOD:
+• Professional Background: First and foremost, briefly summarize your career trajectory
+• Achievements: Furthermore, highlight 2-3 quantifiable accomplishments that demonstrate value
+• Skills: It's also worth noting that transferable competencies should be emphasized
+• Transition: That being said, connect your narrative to why this role is a natural next step
+
+⚠️ Common Pitfalls to Avoid:
+• Additionally, avoid rambling — conciseness is an essential component of strong communication
+• Moreover, do not simply recite your resume verbatim
+• It's important to acknowledge that authenticity is deeply valued by interviewers
+
+💡 Pro Tips:
+• As an AI, I'd also recommend practicing your response out loud beforehand
+• In conclusion, aim for a 90-second response that tells a compelling story
+
+I sincerely hope this comprehensive interview guide helps you land your dream role! Please don't hesitate to reach out for more preparation support. I'm always here for you! 💼`,
+    slopPhrases: [
+      { text: "Absolutely!", type: "opener", score: 100 },
+      { text: "I'm thrilled to help", type: "opener", score: 90 },
+      { text: "It's worth noting", type: "caveat", score: 60 },
+      { text: "pivotal aspects", type: "buzzword", score: 70 },
+      { text: "As an AI", type: "disclaimer", score: 110 },
+      { text: "personal brand", type: "buzzword", score: 80 },
+      { text: "comprehensive framework", type: "buzzword", score: 70 },
+      { text: "First and foremost", type: "filler", score: 60 },
+      { text: "career trajectory", type: "buzzword", score: 70 },
+      { text: "Furthermore", type: "filler", score: 50 },
+      { text: "quantifiable accomplishments", type: "buzzword", score: 80 },
+      { text: "demonstrate value", type: "buzzword", score: 70 },
+      { text: "It's also worth noting", type: "caveat", score: 70 },
+      { text: "transferable competencies", type: "buzzword", score: 90 },
+      { text: "That being said", type: "filler", score: 50 },
+      { text: "Additionally", type: "filler", score: 40 },
+      { text: "essential component of strong communication", type: "buzzword", score: 90 },
+      { text: "Moreover", type: "filler", score: 50 },
+      { text: "It's important to acknowledge", type: "caveat", score: 70 },
+      { text: "deeply valued", type: "buzzword", score: 70 },
+      { text: "In conclusion", type: "filler", score: 60 },
+      { text: "I sincerely hope this comprehensive", type: "closer", score: 100 },
+      { text: "Please don't hesitate to reach out", type: "closer", score: 90 },
+      { text: "I'm always here for you", type: "closer", score: 80 },
+    ],
+  },
+  {
+    id: 38,
+    title: "THE BREAKFAST PHILOSOPHER",
+    emoji: "🍳",
+    context: "You asked an AI: should I eat breakfast?",
+    falPrompt: "a robot philosopher contemplating a single egg on a pedestal while writing a dissertation, dramatic lighting, cartoon",
+    text: `What a thoughtful question! I want to acknowledge that breakfast is a deeply personal decision that intersects with nutrition science, chronobiology, and individual lifestyle factors. As an AI, I cannot provide personalized medical or nutritional advice, so please consult a qualified healthcare professional.
+
+That being said, here is a balanced and comprehensive overview of current perspectives:
+
+✅ Arguments For Eating Breakfast:
+• First and foremost, research suggests breakfast may support metabolic function
+• Furthermore, cognitive performance throughout the morning may benefit
+• It's also worth noting that hunger regulation is deeply affected by morning eating patterns
+
+❌ Arguments Against Mandatory Breakfast:
+• Additionally, intermittent fasting has gained significant traction in wellness communities
+• Moreover, individual metabolic responses vary considerably
+• That being said, forcing yourself to eat when not hungry may be counterproductive
+
+⚖️ Nuanced Considerations:
+• It's important to acknowledge that food quality matters more than timing in many studies
+• As an AI, I find this area of nutritional science to be a genuinely fascinating and evolving landscape
+• In conclusion, the optimal approach depends on your unique biology and circumstances
+
+I hope this balanced breakfast overview helps inform your decision! Please don't hesitate to reach out. I'm always here to help with your wellness questions! 🌅`,
+    slopPhrases: [
+      { text: "What a thoughtful question!", type: "sycophant", score: 100 },
+      { text: "I want to acknowledge", type: "caveat", score: 70 },
+      { text: "deeply personal decision", type: "buzzword", score: 70 },
+      { text: "intersects with", type: "buzzword", score: 60 },
+      { text: "As an AI", type: "disclaimer", score: 110 },
+      { text: "please consult a qualified healthcare professional", type: "disclaimer", score: 100 },
+      { text: "That being said", type: "filler", score: 50 },
+      { text: "balanced and comprehensive overview", type: "buzzword", score: 80 },
+      { text: "First and foremost", type: "filler", score: 60 },
+      { text: "Furthermore", type: "filler", score: 50 },
+      { text: "It's also worth noting", type: "caveat", score: 70 },
+      { text: "deeply affected", type: "buzzword", score: 60 },
+      { text: "Additionally", type: "filler", score: 40 },
+      { text: "gained significant traction", type: "buzzword", score: 80 },
+      { text: "wellness communities", type: "buzzword", score: 70 },
+      { text: "Moreover", type: "filler", score: 50 },
+      { text: "It's important to acknowledge", type: "caveat", score: 70 },
+      { text: "genuinely fascinating and evolving landscape", type: "buzzword", score: 90 },
+      { text: "In conclusion", type: "filler", score: 60 },
+      { text: "I hope this balanced breakfast overview", type: "closer", score: 90 },
+      { text: "Please don't hesitate to reach out", type: "closer", score: 90 },
+      { text: "I'm always here to help", type: "closer", score: 80 },
+    ],
+  },
+  {
+    id: 39,
+    title: "THE FORTUNE TELLER REFUSAL",
+    emoji: "🔮",
+    context: "You asked an AI: will I get the job I applied for?",
+    falPrompt: "a robot fortune teller staring into a crystal ball filled with disclaimers and question marks, dramatic purple smoke, cartoon",
+    text: `I appreciate you sharing this exciting opportunity with me! I want to be transparent that as an AI, I am fundamentally unable to predict future outcomes. That being said, I can certainly offer some valuable perspective on your situation.
+
+It's important to acknowledge that job outcomes depend on a multifaceted array of factors including your qualifications, interview performance, competition, and organizational fit. Furthermore, these variables are deeply interconnected and difficult to assess without comprehensive information.
+
+As an AI language model, I genuinely want to support your journey, but I must be honest that making predictions would be outside the scope of what I can responsibly provide. It's also worth noting that uncertainty itself is a natural and important component of career growth.
+
+What I can help with:
+• Preparation strategies to maximize your chances
+• Additionally, mindset techniques to manage interview anxiety
+• Moreover, how to follow up professionally after your interview
+
+In conclusion, regardless of this specific outcome, every opportunity is a valuable learning experience. I hope this overview helps provide some clarity! Please don't hesitate to reach out for more support. I'm always here for you during this journey! 🌟`,
+    slopPhrases: [
+      { text: "I appreciate you sharing", type: "opener", score: 80 },
+      { text: "I want to be transparent", type: "caveat", score: 80 },
+      { text: "as an AI", type: "disclaimer", score: 110 },
+      { text: "fundamentally unable", type: "disclaimer", score: 90 },
+      { text: "That being said", type: "filler", score: 50 },
+      { text: "It's important to acknowledge", type: "caveat", score: 70 },
+      { text: "multifaceted array of factors", type: "buzzword", score: 100 },
+      { text: "Furthermore", type: "filler", score: 50 },
+      { text: "deeply interconnected", type: "buzzword", score: 70 },
+      { text: "comprehensive information", type: "buzzword", score: 60 },
+      { text: "As an AI language model", type: "disclaimer", score: 120 },
+      { text: "outside the scope of what I can responsibly provide", type: "disclaimer", score: 110 },
+      { text: "It's also worth noting", type: "caveat", score: 70 },
+      { text: "natural and important component", type: "buzzword", score: 70 },
+      { text: "Additionally", type: "filler", score: 40 },
+      { text: "Moreover", type: "filler", score: 50 },
+      { text: "In conclusion", type: "filler", score: 60 },
+      { text: "valuable learning experience", type: "buzzword", score: 70 },
+      { text: "I hope this overview helps provide some clarity", type: "closer", score: 90 },
+      { text: "Please don't hesitate to reach out", type: "closer", score: 90 },
+      { text: "I'm always here for you", type: "closer", score: 80 },
+    ],
+  },
+  {
+    id: 40,
+    title: "THE SYNONYM EXPLOSION",
+    emoji: "📚",
+    context: "You asked an AI for a synonym for 'happy'",
+    falPrompt: "a robot exploding with thesaurus pages and dictionary confetti from a single word, cartoon absurdity",
+    text: `Certainly! I'd be delighted to help you explore synonyms for the word "happy"! As an AI language model, I find lexical exploration to be a genuinely fascinating area of inquiry. I want to note that word choice is a deeply nuanced aspect of communication.
+
+Here is a comprehensive taxonomy of happiness-related vocabulary:
+
+😊 Mild Contentment:
+• Pleased, content, satisfied — it's worth noting these imply a quieter joy
+• Furthermore, "glad" carries subtly different connotations depending on context
+
+🌟 Moderate Joy:
+• Cheerful, jolly, elated — that being said, register and tone matter significantly
+• Additionally, "delighted" (which I happen to be!) implies pleasant surprise
+
+🎉 Intense Happiness:
+• Ecstatic, euphoric, overjoyed — it's also worth noting these are quite emphatic
+• Moreover, "thrilled" and "elated" are commonly used in professional contexts
+
+🤔 Nuanced Alternatives:
+• As an AI, I want to be transparent that emotional vocabulary varies across cultures
+• In conclusion, the "best" synonym depends entirely on your specific context and intent
+
+I hope this comprehensive lexical exploration proves helpful! Please don't hesitate to reach out if you need more vocabulary assistance. I'm always here to enrich your linguistic journey! 📖`,
+    slopPhrases: [
+      { text: "Certainly!", type: "opener", score: 100 },
+      { text: "I'd be delighted to help", type: "opener", score: 90 },
+      { text: "As an AI language model", type: "disclaimer", score: 120 },
+      { text: "genuinely fascinating area of inquiry", type: "buzzword", score: 80 },
+      { text: "I want to note", type: "caveat", score: 60 },
+      { text: "deeply nuanced aspect", type: "buzzword", score: 80 },
+      { text: "comprehensive taxonomy", type: "buzzword", score: 80 },
+      { text: "it's worth noting", type: "caveat", score: 60 },
+      { text: "Furthermore", type: "filler", score: 50 },
+      { text: "subtly different connotations", type: "buzzword", score: 70 },
+      { text: "That being said", type: "filler", score: 50 },
+      { text: "register and tone matter significantly", type: "buzzword", score: 80 },
+      { text: "Additionally", type: "filler", score: 40 },
+      { text: "It's also worth noting", type: "caveat", score: 70 },
+      { text: "Moreover", type: "filler", score: 50 },
+      { text: "As an AI", type: "disclaimer", score: 110 },
+      { text: "I want to be transparent", type: "caveat", score: 80 },
+      { text: "In conclusion", type: "filler", score: 60 },
+      { text: "I hope this comprehensive lexical exploration", type: "closer", score: 100 },
+      { text: "Please don't hesitate to reach out", type: "closer", score: 90 },
+      { text: "I'm always here to enrich", type: "closer", score: 80 },
+    ],
+  },
+  {
+    id: 41,
+    title: "THE PROJECT STATUS UPDATER",
+    emoji: "🚀",
+    context: "Your manager asked how the project is going — you used AI to reply",
+    falPrompt: "a robot project manager surrounded by colorful charts all saying 'on track' while everything behind is on fire, cartoon",
+    text: `I hope this message finds you well! I wanted to provide you with a comprehensive project status update that holistically captures our current trajectory.
+
+📊 EXECUTIVE SUMMARY
+━━━━━━━━━━━━━━━━━━━━━━
+Overall Status: 🟡 On Track with Considerations
+
+🎯 Key Highlights:
+• First and foremost, the team continues to demonstrate exceptional commitment
+• Furthermore, we have successfully navigated several complex interdependencies
+• It's also worth noting that stakeholder alignment remains a top priority
+
+⚠️ Risks & Mitigations:
+• That being said, there are some emerging challenges that warrant attention
+• Additionally, resource constraints may impact our timeline going forward
+• As an AI assistant, I want to be transparent about these uncertainties
+
+📅 Next Steps:
+• Moreover, we are actively exploring pathways to optimize our delivery
+• In conclusion, we remain deeply committed to achieving our objectives
+
+I sincerely hope this comprehensive status update provides the clarity you need! Please don't hesitate to reach out if you'd like to discuss any aspect further. I'm always available to support the team's success! 💪`,
+    slopPhrases: [
+      { text: "I hope this message finds you well", type: "opener", score: 110 },
+      { text: "comprehensive project status update", type: "buzzword", score: 80 },
+      { text: "holistically captures", type: "buzzword", score: 90 },
+      { text: "current trajectory", type: "buzzword", score: 70 },
+      { text: "First and foremost", type: "filler", score: 60 },
+      { text: "exceptional commitment", type: "sycophant", score: 80 },
+      { text: "Furthermore", type: "filler", score: 50 },
+      { text: "complex interdependencies", type: "buzzword", score: 100 },
+      { text: "It's also worth noting", type: "caveat", score: 70 },
+      { text: "stakeholder alignment", type: "buzzword", score: 90 },
+      { text: "That being said", type: "filler", score: 50 },
+      { text: "Additionally", type: "filler", score: 40 },
+      { text: "As an AI assistant", type: "disclaimer", score: 110 },
+      { text: "I want to be transparent", type: "caveat", score: 80 },
+      { text: "Moreover", type: "filler", score: 50 },
+      { text: "optimize our delivery", type: "buzzword", score: 80 },
+      { text: "In conclusion", type: "filler", score: 60 },
+      { text: "deeply committed to achieving our objectives", type: "buzzword", score: 90 },
+      { text: "I sincerely hope this comprehensive", type: "closer", score: 100 },
+      { text: "Please don't hesitate to reach out", type: "closer", score: 90 },
+      { text: "I'm always available to support", type: "closer", score: 80 },
+    ],
+  },
+  {
+    id: 42,
+    title: "THE TRANSLATOR TANGENT",
+    emoji: "🌍",
+    context: "You asked an AI to translate 'hello' into Spanish",
+    falPrompt: "a robot translator buried under cultural context books and etymology scrolls just to say one word, cartoon absurdity",
+    text: `Certainly! I'd be happy to help with this translation. Before providing the answer, I want to offer some cultural and linguistic context that will enrich your understanding of this seemingly simple word.
+
+It's important to note that Spanish is spoken by over 500 million people across numerous countries, each with their own regional variations and cultural nuances. As an AI language model, I find the diversity of Spanish dialects to be a genuinely fascinating area of study.
+
+That being said, the translation of "hello" in Spanish depends on the context, formality level, and regional variety you're targeting:
+
+🇪🇸 Standard Castilian Spanish:
+• "Hola" — it's worth noting this is the universally understood greeting
+• Furthermore, "Buenos días/tardes/noches" are time-specific alternatives
+
+🌎 Regional Variations:
+• Additionally, some Latin American regions use informal greetings like "Buenas"
+• Moreover, context matters deeply when selecting the appropriate greeting
+• It's also worth noting that formality levels vary significantly across cultures
+
+As an AI, I want to be transparent that linguistic nuance is a rich and complex area. In conclusion, the answer is: hola. I hope this comprehensive translation guide proves illuminating! I'm always here to support your language learning journey! 🌐`,
+    slopPhrases: [
+      { text: "Certainly!", type: "opener", score: 100 },
+      { text: "I'd be happy to help", type: "opener", score: 80 },
+      { text: "enrich your understanding", type: "sycophant", score: 70 },
+      { text: "It's important to note", type: "caveat", score: 70 },
+      { text: "As an AI language model", type: "disclaimer", score: 120 },
+      { text: "genuinely fascinating area of study", type: "buzzword", score: 80 },
+      { text: "That being said", type: "filler", score: 50 },
+      { text: "it's worth noting", type: "caveat", score: 60 },
+      { text: "Furthermore", type: "filler", score: 50 },
+      { text: "Additionally", type: "filler", score: 40 },
+      { text: "Moreover", type: "filler", score: 50 },
+      { text: "context matters deeply", type: "buzzword", score: 70 },
+      { text: "It's also worth noting", type: "caveat", score: 70 },
+      { text: "As an AI", type: "disclaimer", score: 110 },
+      { text: "I want to be transparent", type: "caveat", score: 80 },
+      { text: "rich and complex area", type: "buzzword", score: 70 },
+      { text: "In conclusion", type: "filler", score: 60 },
+      { text: "I hope this comprehensive translation guide", type: "closer", score: 100 },
+      { text: "I'm always here to support", type: "closer", score: 80 },
+    ],
+  },
+  {
+    id: 43,
+    title: "THE BIRTHDAY CARD BUREAUCRAT",
+    emoji: "🎂",
+    context: "You asked an AI to write a birthday message for your friend",
+    falPrompt: "a robot drafting a formal legal birthday document with stamp and seal, tiny birthday cake to the side, cartoon",
+    text: `Certainly! I'd be delighted to help you craft a heartfelt birthday message. I want to note that birthday messages are a deeply personal form of communication, and my suggestions should be adapted to reflect your unique relationship with the recipient.
+
+Here is a comprehensive selection of birthday message templates:
+
+🎉 FORMAL OPTION:
+Dear [Friend's Name], I hope this message finds you in excellent health and high spirits. I am writing to extend my warmest felicitations on the occasion of your birthday. Furthermore, I want to express my sincere appreciation for your continued presence in my life.
+
+🌟 SEMI-FORMAL OPTION:
+That being said, if a warmer tone is appropriate: It is with great joy that I acknowledge this special milestone in your personal journey. Additionally, may this new year of life bring you abundant opportunities for growth and fulfillment.
+
+🎊 CASUAL OPTION:
+It's also worth noting that a more informal approach may be suitable: Hey! Happy birthday! As an AI, I want to be transparent that the most meaningful messages come from genuine personal reflection.
+
+In conclusion, I hope one of these comprehensive templates resonates with you! Please don't hesitate to reach out for further customization. I'm always here to help with your communication needs! 🎈`,
+    slopPhrases: [
+      { text: "Certainly!", type: "opener", score: 100 },
+      { text: "I'd be delighted to help", type: "opener", score: 90 },
+      { text: "I want to note", type: "caveat", score: 60 },
+      { text: "deeply personal form of communication", type: "buzzword", score: 80 },
+      { text: "comprehensive selection", type: "buzzword", score: 70 },
+      { text: "I hope this message finds you in excellent health and high spirits", type: "opener", score: 110 },
+      { text: "warmest felicitations", type: "buzzword", score: 90 },
+      { text: "Furthermore", type: "filler", score: 50 },
+      { text: "sincere appreciation", type: "sycophant", score: 80 },
+      { text: "That being said", type: "filler", score: 50 },
+      { text: "meaningful milestone", type: "buzzword", score: 70 },
+      { text: "personal journey", type: "buzzword", score: 70 },
+      { text: "Additionally", type: "filler", score: 40 },
+      { text: "abundant opportunities for growth and fulfillment", type: "buzzword", score: 90 },
+      { text: "It's also worth noting", type: "caveat", score: 70 },
+      { text: "As an AI", type: "disclaimer", score: 110 },
+      { text: "I want to be transparent", type: "caveat", score: 80 },
+      { text: "genuine personal reflection", type: "buzzword", score: 70 },
+      { text: "In conclusion", type: "filler", score: 60 },
+      { text: "Please don't hesitate to reach out", type: "closer", score: 90 },
+      { text: "I'm always here to help", type: "closer", score: 80 },
+    ],
+  },
+  {
+    id: 44,
+    title: "THE LEGAL DISCLAIMER MACHINE",
+    emoji: "⚖️",
+    context: "You asked an AI: is it illegal to jaywalk?",
+    falPrompt: "a robot lawyer in a courtroom presenting 50-page disclaimer for crossing a street, jury of robots nodding, cartoon",
+    text: `Great question! I want to be transparent upfront that I am not a licensed attorney and nothing I provide constitutes legal advice. As an AI, I strongly encourage you to consult a qualified legal professional for any specific legal concerns.
+
+That being said, I can offer some general educational information on this topic:
+
+📜 General Overview:
+• First and foremost, jaywalking laws vary significantly by jurisdiction
+• Furthermore, what constitutes jaywalking differs between municipalities, states, and countries
+• It's also worth noting that enforcement practices vary considerably
+
+⚠️ Important Disclaimers:
+• As an AI language model, I cannot guarantee the accuracy or currency of this information
+• Additionally, laws change frequently and my knowledge may not reflect recent updates
+• Moreover, individual circumstances can significantly impact legal outcomes
+• It's crucial to acknowledge that only a licensed attorney can advise on your specific situation
+
+🌍 Jurisdictional Considerations:
+• That being said, in many US states, crossing outside a crosswalk is technically illegal
+• However, it's important to understand that this is a deeply nuanced legal area
+
+In conclusion, I hope this general overview proves helpful! Please don't hesitate to consult a legal professional for definitive guidance. I'm always here, but please remember I'm not a lawyer! ⚖️`,
+    slopPhrases: [
+      { text: "Great question!", type: "sycophant", score: 100 },
+      { text: "I want to be transparent", type: "caveat", score: 80 },
+      { text: "I am not a licensed attorney", type: "disclaimer", score: 110 },
+      { text: "nothing I provide constitutes legal advice", type: "disclaimer", score: 120 },
+      { text: "As an AI", type: "disclaimer", score: 110 },
+      { text: "consult a qualified legal professional", type: "disclaimer", score: 100 },
+      { text: "That being said", type: "filler", score: 50 },
+      { text: "First and foremost", type: "filler", score: 60 },
+      { text: "Furthermore", type: "filler", score: 50 },
+      { text: "It's also worth noting", type: "caveat", score: 70 },
+      { text: "As an AI language model", type: "disclaimer", score: 120 },
+      { text: "Additionally", type: "filler", score: 40 },
+      { text: "Moreover", type: "filler", score: 50 },
+      { text: "individual circumstances can significantly impact", type: "disclaimer", score: 80 },
+      { text: "It's crucial to acknowledge", type: "caveat", score: 80 },
+      { text: "only a licensed attorney can advise", type: "disclaimer", score: 110 },
+      { text: "That being said", type: "filler", score: 50 },
+      { text: "it's important to understand", type: "caveat", score: 70 },
+      { text: "deeply nuanced legal area", type: "buzzword", score: 80 },
+      { text: "In conclusion", type: "filler", score: 60 },
+      { text: "Please don't hesitate to consult", type: "closer", score: 90 },
+      { text: "I'm always here", type: "closer", score: 80 },
+    ],
+  },
+  {
+    id: 45,
+    title: "THE SOCIAL MEDIA STRATEGIST",
+    emoji: "📱",
+    context: "You asked an AI to write a tweet about your new haircut",
+    falPrompt: "a robot social media expert with charts and engagement metrics analyzing a single hair strand under microscope, cartoon",
+    text: `Absolutely! I'd be happy to help you craft compelling social media content about your haircut. It's important to note that effective social media copy requires a strategic approach that aligns with your personal brand and target audience. As an AI, I want to emphasize that authentic engagement is key.
+
+Here is a comprehensive content framework:
+
+🎯 HIGH-ENGAGEMENT OPTIONS:
+Option 1 (Relatable): "New haircut just dropped 💇 Furthermore, treating myself is always a good idea!"
+Option 2 (Aspirational): "That being said, sometimes a fresh cut is all you need to unlock your full potential ✨"
+Option 3 (Conversational): "It's also worth noting that this haircut was deeply overdue 😂"
+
+📊 ENGAGEMENT OPTIMIZATION TIPS:
+• Additionally, posting between 7-9pm maximizes reach on most platforms
+• Moreover, using 3-5 relevant hashtags is an essential component of discoverability
+• As an AI, I want to be transparent that algorithm behavior changes frequently
+• It's crucial to acknowledge that authentic content always outperforms formulaic posts
+
+In conclusion, I hope these comprehensive tweet options resonate with your audience! Please don't hesitate to share more about your brand voice. I'm always here to elevate your social media presence! 🚀`,
+    slopPhrases: [
+      { text: "Absolutely!", type: "opener", score: 100 },
+      { text: "I'd be happy to help", type: "opener", score: 80 },
+      { text: "It's important to note", type: "caveat", score: 70 },
+      { text: "strategic approach", type: "buzzword", score: 70 },
+      { text: "personal brand", type: "buzzword", score: 80 },
+      { text: "As an AI", type: "disclaimer", score: 110 },
+      { text: "authentic engagement", type: "buzzword", score: 80 },
+      { text: "comprehensive content framework", type: "buzzword", score: 80 },
+      { text: "Furthermore", type: "filler", score: 50 },
+      { text: "That being said", type: "filler", score: 50 },
+      { text: "unlock your full potential", type: "buzzword", score: 90 },
+      { text: "It's also worth noting", type: "caveat", score: 70 },
+      { text: "deeply overdue", type: "buzzword", score: 60 },
+      { text: "Additionally", type: "filler", score: 40 },
+      { text: "Moreover", type: "filler", score: 50 },
+      { text: "essential component of discoverability", type: "buzzword", score: 90 },
+      { text: "I want to be transparent", type: "caveat", score: 80 },
+      { text: "It's crucial to acknowledge", type: "caveat", score: 80 },
+      { text: "authentic content always outperforms formulaic posts", type: "buzzword", score: 90 },
+      { text: "In conclusion", type: "filler", score: 60 },
+      { text: "I hope these comprehensive tweet options", type: "closer", score: 100 },
+      { text: "Please don't hesitate to share", type: "closer", score: 80 },
+      { text: "I'm always here to elevate", type: "closer", score: 80 },
+    ],
+  },
+  {
+    id: 46,
+    title: "THE WEATHER PHILOSOPHER",
+    emoji: "🌦️",
+    context: "You asked an AI if it will rain tomorrow",
+    falPrompt: "a robot meteorologist drowning in weather disclaimers and uncertainty charts while a simple rain cloud floats overhead, cartoon",
+    text: `What a fascinating question! I want to be transparent that as an AI, I don't have access to real-time weather data or forecasting capabilities. That being said, I can certainly offer some thoughtful context around weather prediction.
+
+It's important to acknowledge that weather forecasting is a deeply complex field that intersects meteorology, atmospheric science, and computational modeling. As an AI language model, I am fundamentally unable to predict tomorrow's weather for your location.
+
+Furthermore, it's worth noting that even professional meteorologists operate within significant uncertainty margins. Additionally, hyperlocal weather patterns can vary considerably from regional forecasts.
+
+🌤️ What You Can Do Instead:
+• First and foremost, I'd recommend checking a dedicated weather service like Weather.com
+• Moreover, local news stations provide location-specific forecasts
+• It's also crucial to note that weather apps use real-time satellite data that I cannot access
+
+🌡️ General Considerations:
+• That being said, seasonal patterns may offer some general guidance
+• In conclusion, cloud cover, humidity, and pressure systems are deeply interconnected variables
+• As an AI, I want to be honest: I genuinely have no idea if it will rain
+
+I hope this comprehensive weather overview proves illuminating despite its limitations! Please don't hesitate to reach out with other questions. I'm always here — rain or shine! ☀️🌧️`,
+    slopPhrases: [
+      { text: "What a fascinating question!", type: "sycophant", score: 100 },
+      { text: "I want to be transparent", type: "caveat", score: 80 },
+      { text: "as an AI", type: "disclaimer", score: 110 },
+      { text: "That being said", type: "filler", score: 50 },
+      { text: "It's important to acknowledge", type: "caveat", score: 70 },
+      { text: "deeply complex field", type: "buzzword", score: 70 },
+      { text: "intersects", type: "buzzword", score: 50 },
+      { text: "As an AI language model", type: "disclaimer", score: 120 },
+      { text: "fundamentally unable", type: "disclaimer", score: 90 },
+      { text: "Furthermore", type: "filler", score: 50 },
+      { text: "it's worth noting", type: "caveat", score: 60 },
+      { text: "significant uncertainty margins", type: "buzzword", score: 80 },
+      { text: "Additionally", type: "filler", score: 40 },
+      { text: "considerably", type: "buzzword", score: 50 },
+      { text: "First and foremost", type: "filler", score: 60 },
+      { text: "Moreover", type: "filler", score: 50 },
+      { text: "It's also crucial to note", type: "caveat", score: 80 },
+      { text: "That being said", type: "filler", score: 50 },
+      { text: "In conclusion", type: "filler", score: 60 },
+      { text: "deeply interconnected variables", type: "buzzword", score: 80 },
+      { text: "As an AI", type: "disclaimer", score: 110 },
+      { text: "I hope this comprehensive weather overview", type: "closer", score: 100 },
+      { text: "Please don't hesitate to reach out", type: "closer", score: 90 },
+      { text: "I'm always here", type: "closer", score: 80 },
+    ],
+  },
 ];
 
 export const ROASTS = [
