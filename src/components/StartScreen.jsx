@@ -146,16 +146,19 @@ export default function StartScreen({ onStart }) {
           {TAGLINES[taglineIdx]}
         </div>
 
-        {/* Slop facts ticker */}
+        {/* Slop facts ticker — fixed height prevents layout jumps when text wraps */}
         <div style={{
           fontSize: '0.58rem',
           color: '#475569',
           fontStyle: 'italic',
-          marginTop: '4px',
-          minHeight: '1.3em',
           maxWidth: '340px',
           margin: '4px auto 0',
-          lineHeight: 1.5,
+          lineHeight: 1.4,
+          height: '2.6em',
+          overflow: 'hidden',
+          display: '-webkit-box',
+          WebkitLineClamp: 2,
+          WebkitBoxOrient: 'vertical',
         }}>
           📊 {SLOP_FACTS[factIdx]}
         </div>
@@ -164,11 +167,13 @@ export default function StartScreen({ onStart }) {
         <div style={{
           fontSize: '0.56rem',
           color: '#334155',
-          marginTop: '3px',
-          minHeight: '1.3em',
           maxWidth: '340px',
-          margin: '3px auto 0',
-          lineHeight: 1.5,
+          margin: '2px auto 0',
+          lineHeight: 1.4,
+          height: '1.3em',
+          overflow: 'hidden',
+          whiteSpace: 'nowrap',
+          textOverflow: 'ellipsis',
         }}>
           🔴 {STATUS_UPDATES[statusIdx]}
         </div>
@@ -249,23 +254,23 @@ export default function StartScreen({ onStart }) {
             </div>
 
             {/* Difficulty */}
-            <div className="card" style={{ padding: '14px' }}>
-              <div style={{ fontSize: '0.62rem', color: '#94a3b8', fontFamily: "'Orbitron', sans-serif", marginBottom: '10px', letterSpacing: '1px' }}>
+            <div className="card" style={{ padding: '10px 14px' }}>
+              <div style={{ fontSize: '0.62rem', color: '#94a3b8', fontFamily: "'Orbitron', sans-serif", marginBottom: '8px', letterSpacing: '1px' }}>
                 DIFFICULTY
               </div>
-              <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '8px' }}>
+              <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '6px' }}>
                 {[
-                  { id: 'normal',   label: '😌 NORMAL',        desc: '45s per round',                 color: '#10b981' },
-                  { id: 'chaos',    label: '😈 CHAOS',          desc: '25s · high pressure',            color: '#ef4444' },
-                  { id: 'brainrot', label: '🧠 BRAINROT',       desc: '40s · text corrupts on misses',  color: '#fb923c' },
-                  { id: 'iron',     label: '☠ IRON DETECTOR',  desc: 'No wrong clicks · stopwatch',    color: '#ec4899' },
+                  { id: 'normal',   label: '😌 NORMAL',        desc: '45s per round',                color: '#10b981' },
+                  { id: 'chaos',    label: '😈 CHAOS',          desc: '25s · high pressure',          color: '#ef4444' },
+                  { id: 'brainrot', label: '🧠 BRAINROT',       desc: '40s · text corrupts',          color: '#fb923c' },
+                  { id: 'iron',     label: '☠ IRON DETECTOR',  desc: 'No wrong clicks · stopwatch',  color: '#ec4899' },
                 ].map(d => (
                   <button
                     key={d.id}
                     onClick={() => setDifficulty(d.id)}
                     style={{
                       flex: 1,
-                      padding: '10px',
+                      padding: '7px 8px',
                       borderRadius: '10px',
                       border: `2px solid ${difficulty === d.id ? d.color : 'rgba(124,58,237,0.2)'}`,
                       background: difficulty === d.id ? `${d.color}20` : 'transparent',
@@ -275,8 +280,8 @@ export default function StartScreen({ onStart }) {
                       transition: 'all 0.2s',
                     }}
                   >
-                    <div style={{ fontFamily: "'Orbitron', sans-serif", fontWeight: 700, fontSize: '0.72rem' }}>{d.label}</div>
-                    <div style={{ fontSize: '0.62rem', marginTop: '3px', opacity: 0.8 }}>{d.desc}</div>
+                    <div style={{ fontFamily: "'Orbitron', sans-serif", fontWeight: 700, fontSize: '0.68rem' }}>{d.label}</div>
+                    <div style={{ fontSize: '0.58rem', marginTop: '2px', opacity: 0.8 }}>{d.desc}</div>
                   </button>
                 ))}
               </div>

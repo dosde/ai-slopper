@@ -126,6 +126,9 @@ export default function GameScreen({ round, roundIdx, totalRounds, totalScore, o
   const totalSlop = round.slopPhrases.length;
   const foundSlop = foundIds.size;
 
+  // isUrgent must be declared BEFORE the music-tempo useEffect that lists it as a dependency
+  const isUrgent = !isIronDetector && timeLeft <= 10;
+
   // Timer (count-down for normal modes, count-up for iron)
   useEffect(() => {
     if (!timerRunning) return;
@@ -198,6 +201,9 @@ export default function GameScreen({ round, roundIdx, totalRounds, totalScore, o
   }, []);
 
   const isInverse = !!round.inverse;
+  const isDoubleActive = doublePoints || isInverse;
+  const accentColor = isInverse ? '#38bdf8' : '#fbbf24';
+  const accentGlow = isInverse ? 'rgba(56,189,248,0.5)' : 'rgba(251,191,36,0.5)';
 
   const WRONG_PENALTY = 50;
   const handleWrongClick = useCallback((x, y) => {
@@ -267,11 +273,6 @@ export default function GameScreen({ round, roundIdx, totalRounds, totalScore, o
       }, 10000);
     }
   };
-
-  const isUrgent = !isIronDetector && timeLeft <= 10;
-  const isDoubleActive = doublePoints || isInverse;
-  const accentColor = isInverse ? '#38bdf8' : '#fbbf24';
-  const accentGlow = isInverse ? 'rgba(56,189,248,0.5)' : 'rgba(251,191,36,0.5)';
 
   return (
     <div style={{
