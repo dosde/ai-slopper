@@ -1,9 +1,11 @@
 import { useState, useEffect, useCallback, useRef } from 'react';
 import SlopText from './SlopText';
+import PowerUps from './PowerUps';
 import { PopupLayer, usePopups } from './ScorePopup';
 import { playRoundComplete } from '../utils/audio';
 
-const ROUND_TIME = 45; // seconds
+const ROUND_TIME_NORMAL = 45;
+const ROUND_TIME_CHAOS = 25;
 
 function TimerBar({ timeLeft, total }) {
   const pct = (timeLeft / total) * 100;
@@ -15,39 +17,73 @@ function TimerBar({ timeLeft, total }) {
     <div className="timer-bar-track">
       <div
         className="timer-bar-fill"
-        style={{
-          width: `${pct}%`,
-          background: color,
-          boxShadow: `0 0 8px ${color}`,
-          transition: 'width 0.25s linear, background 0.5s',
-        }}
+        style={{ width: `${pct}%`, background: color, boxShadow: `0 0 8px ${color}` }}
       />
     </div>
   );
 }
 
-export default function GameScreen({ round, roundIdx, totalRounds, totalScore, onRoundEnd }) {
+function SlopMeter({ found, total }) {
+  const pct = total > 0 ? (found / total) * 100 : 0;
+  let color = '#ef4444';
+  if (pct >= 50) color = '#fbbf24';
+  if (pct >= 80) color = '#10b981';
+  if (pct >= 100) color = '#a78bfa';
+
+  return (
+    <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
+      <div style={{ fontSize: '0.6rem', color: '#64748b', fontFamily: "'Orbitron', sans-serif", whiteSpace: 'nowrap' }}>
+        SLOP {found}/{total}
+      </div>
+      <div style={{ flex: 1, height: 6, background: 'rgba(255,255,255,0.1)', borderRadius: 3, overflow: 'hidden', minWidth: 50 }}>
+        <div style={{
+          height: '100%',
+          width: `${pct}%`,
+          background: color,
+          borderRadius: 3,
+          transition: 'width 0.3s ease, background 0.5s',
+          boxShadow: pct >= 100 ? `0 0 6px ${color}` : 'none',
+        }} />
+      </div>
+    </div>
+  );
+}
+
+export default function GameScreen({ round, roundIdx, totalRounds, totalScore, onRoundEnd, difficulty = 'normal', onPowerUpUsed }) {
+  const ROUND_TIME = difficulty === 'chaos' ? ROUND_TIME_CHAOS : ROUND_TIME_NORMAL;
   const [timeLeft, setTimeLeft] = useState(ROUND_TIME);
   const [roundScore, setRoundScore] = useState(0);
   const [combo, setCombo] = useState(0);
   const [foundIds, setFoundIds] = useState(new Set());
   const [timerRunning, setTimerRunning] = useState(true);
   const [shakeHeader, setShakeHeader] = useState(false);
+  const [typingDone, setTypingDone] = useState(false);
+
+  // Power-ups
+  const [usedPowerUps, setUsedPowerUps] = useState([]);
+  const [activePowerUp, setActivePowerUp] = useState(null);
+  const [radarActive, setRadarActive] = useState(false);
+  const [doublePoints, setDoublePoints] = useState(false);
+  const powerUpTimerRef = useRef(null);
+
   const { popups, addPopup } = usePopups();
   const comboTimeoutRef = useRef(null);
-  const textRef = useRef(null);
+
+  // Slop meter stats
+  const totalSlop = round.slopPhrases.length;
+  const foundSlop = foundIds.size;
 
   // Timer countdown
   useEffect(() => {
     if (!timerRunning) return;
     if (timeLeft <= 0) {
       setTimerRunning(false);
-      setTimeout(() => onRoundEnd(roundScore, foundIds), 800);
+      setTimeout(() => onRoundEnd(roundScore, foundIds, timeLeft), 600);
       return;
     }
     const t = setTimeout(() => {
       setTimeLeft(t => t - 1);
-      if (timeLeft <= 10) setShakeHeader(true);
+      if (timeLeft === 10) setShakeHeader(true);
     }, 1000);
     return () => clearTimeout(t);
   }, [timeLeft, timerRunning, roundScore, foundIds, onRoundEnd]);
@@ -59,9 +95,9 @@ export default function GameScreen({ round, roundIdx, totalRounds, totalScore, o
     }
   }, [shakeHeader]);
 
-  const handleScore = useCallback((score, x, y, commentary) => {
+  const handleScore = useCallback((score, x, y, commentary, isDoubled) => {
     setRoundScore(prev => prev + score);
-    addPopup(x, y, score, commentary);
+    addPopup(x, y, score, commentary, isDoubled);
   }, [addPopup]);
 
   const handleCombo = useCallback((newCombo) => {
@@ -74,11 +110,36 @@ export default function GameScreen({ round, roundIdx, totalRounds, totalScore, o
     if (!timerRunning) return;
     setTimerRunning(false);
     playRoundComplete();
-    setTimeout(() => onRoundEnd(roundScore, foundIds), 400);
+    setTimeout(() => onRoundEnd(roundScore, foundIds, timeLeft), 400);
   };
 
-  const pct = (timeLeft / ROUND_TIME) * 100;
+  const handlePowerUp = (id) => {
+    if (usedPowerUps.includes(id)) return;
+    setUsedPowerUps(prev => [...prev, id]);
+    setActivePowerUp(id);
+    if (powerUpTimerRef.current) clearTimeout(powerUpTimerRef.current);
+    onPowerUpUsed?.(id);
+
+    if (id === 'radar') {
+      setRadarActive(true);
+      powerUpTimerRef.current = setTimeout(() => {
+        setRadarActive(false);
+        setActivePowerUp(null);
+      }, 3000);
+    } else if (id === 'time') {
+      setTimeLeft(t => Math.min(t + 15, ROUND_TIME + 15));
+      setActivePowerUp(null);
+    } else if (id === 'double') {
+      setDoublePoints(true);
+      powerUpTimerRef.current = setTimeout(() => {
+        setDoublePoints(false);
+        setActivePowerUp(null);
+      }, 10000);
+    }
+  };
+
   const isUrgent = timeLeft <= 10;
+  const isDoubleActive = doublePoints;
 
   return (
     <div style={{
@@ -88,7 +149,11 @@ export default function GameScreen({ round, roundIdx, totalRounds, totalScore, o
       position: 'relative',
       zIndex: 1,
       overflow: 'hidden',
-      background: isUrgent ? 'rgba(239,68,68,0.03)' : 'transparent',
+      background: isUrgent
+        ? 'rgba(239,68,68,0.04)'
+        : isDoubleActive
+        ? 'rgba(251,191,36,0.03)'
+        : 'transparent',
       transition: 'background 0.5s',
     }}>
       <PopupLayer popups={popups} />
@@ -97,40 +162,38 @@ export default function GameScreen({ round, roundIdx, totalRounds, totalScore, o
       <div
         className="safe-top"
         style={{
-          padding: '12px 16px',
+          padding: '10px 14px 8px',
           display: 'flex',
           flexDirection: 'column',
-          gap: '8px',
-          borderBottom: '1px solid rgba(124,58,237,0.2)',
-          background: 'rgba(15,15,26,0.95)',
+          gap: '6px',
+          borderBottom: `1px solid ${isDoubleActive ? 'rgba(251,191,36,0.3)' : 'rgba(124,58,237,0.2)'}`,
+          background: 'rgba(15,15,26,0.97)',
           backdropFilter: 'blur(10px)',
           animation: shakeHeader ? 'shake 0.4s ease' : 'none',
           flexShrink: 0,
+          transition: 'border-color 0.3s',
         }}
       >
-        {/* Top row */}
+        {/* Top row: round info + score */}
         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-          <div style={{ display: 'flex', flexDirection: 'column', gap: '2px' }}>
-            <div style={{ fontSize: '0.65rem', color: '#94a3b8', fontFamily: "'Orbitron', sans-serif" }}>
+          <div>
+            <div style={{ fontSize: '0.6rem', color: '#64748b', fontFamily: "'Orbitron', sans-serif" }}>
               ROUND {roundIdx + 1}/{totalRounds}
+              {difficulty === 'chaos' && (
+                <span style={{ color: '#ef4444', marginLeft: 6 }}>⚡ CHAOS</span>
+              )}
             </div>
-            <div style={{
-              fontFamily: "'Orbitron', sans-serif",
-              fontSize: '0.8rem',
-              fontWeight: 700,
-              color: '#e2e8f0',
-            }}>
+            <div style={{ fontFamily: "'Orbitron', sans-serif", fontSize: '0.78rem', fontWeight: 700, color: '#e2e8f0' }}>
               {round.emoji} {round.title}
             </div>
           </div>
 
-          {/* Score area */}
           <div style={{ textAlign: 'right' }}>
-            <div style={{ fontSize: '0.6rem', color: '#94a3b8', fontFamily: "'Orbitron', sans-serif" }}>TOTAL</div>
+            <div style={{ fontSize: '0.55rem', color: '#64748b', fontFamily: "'Orbitron', sans-serif" }}>TOTAL</div>
             <div style={{
               fontFamily: "'Orbitron', sans-serif",
               fontWeight: 900,
-              fontSize: '1rem',
+              fontSize: '0.95rem',
               color: '#fbbf24',
               textShadow: '0 0 8px #fbbf24',
             }}>
@@ -139,14 +202,14 @@ export default function GameScreen({ round, roundIdx, totalRounds, totalScore, o
           </div>
         </div>
 
-        {/* Timer row */}
-        <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+        {/* Timer + slop meter row */}
+        <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
           <TimerBar timeLeft={timeLeft} total={ROUND_TIME} />
           <div style={{
             fontFamily: "'Press Start 2P', monospace",
-            fontSize: '0.75rem',
+            fontSize: '0.7rem',
             color: isUrgent ? '#ef4444' : '#94a3b8',
-            minWidth: '28px',
+            minWidth: '24px',
             textAlign: 'right',
             textShadow: isUrgent ? '0 0 8px #ef4444' : 'none',
             animation: isUrgent ? 'pulse 0.5s ease-in-out infinite' : 'none',
@@ -155,12 +218,47 @@ export default function GameScreen({ round, roundIdx, totalRounds, totalScore, o
           </div>
         </div>
 
-        {/* Combo meter */}
+        {/* Slop meter + power-ups row */}
+        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', gap: '8px' }}>
+          <SlopMeter found={foundSlop} total={totalSlop} />
+          <PowerUps
+            used={usedPowerUps}
+            active={activePowerUp}
+            onUse={handlePowerUp}
+          />
+        </div>
+
+        {/* Combo badge */}
         {combo > 1 && (
-          <div style={{ display: 'flex', justifyContent: 'center' }}>
-            <div className="combo-badge" style={{ animation: 'wiggle 0.4s ease' }}>
-              🔥 {combo}x COMBO!
-            </div>
+          <div style={{ display: 'flex', gap: '6px', alignItems: 'center' }}>
+            <div className="combo-badge">🔥 {combo}x COMBO!</div>
+            {isDoubleActive && (
+              <div style={{
+                background: 'linear-gradient(135deg, #fbbf24, #f59e0b)',
+                color: '#0f0f1a',
+                fontFamily: "'Orbitron', sans-serif",
+                fontWeight: 900,
+                borderRadius: '8px',
+                padding: '4px 10px',
+                fontSize: '0.75rem',
+              }}>
+                💥 2X ACTIVE!
+              </div>
+            )}
+          </div>
+        )}
+        {combo <= 1 && isDoubleActive && (
+          <div style={{
+            background: 'linear-gradient(135deg, #fbbf24, #f59e0b)',
+            color: '#0f0f1a',
+            fontFamily: "'Orbitron', sans-serif",
+            fontWeight: 900,
+            borderRadius: '8px',
+            padding: '4px 10px',
+            fontSize: '0.75rem',
+            alignSelf: 'flex-start',
+          }}>
+            💥 DOUBLE POINTS ACTIVE!
           </div>
         )}
 
@@ -173,10 +271,10 @@ export default function GameScreen({ round, roundIdx, totalRounds, totalScore, o
 
       {/* Context strip */}
       <div style={{
-        background: 'rgba(124, 58, 237, 0.08)',
-        borderBottom: '1px solid rgba(124,58,237,0.15)',
-        padding: '8px 16px',
-        fontSize: '0.75rem',
+        background: 'rgba(124, 58, 237, 0.06)',
+        borderBottom: '1px solid rgba(124,58,237,0.12)',
+        padding: '6px 14px',
+        fontSize: '0.72rem',
         color: '#94a3b8',
         fontStyle: 'italic',
         flexShrink: 0,
@@ -185,48 +283,56 @@ export default function GameScreen({ round, roundIdx, totalRounds, totalScore, o
       </div>
 
       {/* Scrollable text area */}
-      <div
-        ref={textRef}
-        style={{
-          flex: 1,
-          overflowY: 'auto',
-          padding: '16px',
-          WebkitOverflowScrolling: 'touch',
-        }}
-      >
-        {/* "ChatGPT" response header */}
+      <div style={{
+        flex: 1,
+        overflowY: 'auto',
+        padding: '14px',
+        WebkitOverflowScrolling: 'touch',
+      }}>
+        {/* SloppyGPT header */}
         <div style={{
           display: 'flex',
           alignItems: 'center',
           gap: '10px',
           marginBottom: '12px',
-          padding: '10px 14px',
+          padding: '8px 12px',
           background: 'rgba(26,26,46,0.8)',
           borderRadius: '12px',
-          border: '1px solid rgba(124,58,237,0.2)',
+          border: `1px solid ${radarActive ? 'rgba(16,185,129,0.4)' : 'rgba(124,58,237,0.2)'}`,
+          transition: 'border-color 0.3s',
         }}>
           <div style={{
-            width: 32, height: 32,
+            width: 30, height: 30,
             borderRadius: '50%',
-            background: 'linear-gradient(135deg, #10b981, #7c3aed)',
+            background: radarActive
+              ? 'linear-gradient(135deg, #10b981, #3b82f6)'
+              : 'linear-gradient(135deg, #10b981, #7c3aed)',
             display: 'flex', alignItems: 'center', justifyContent: 'center',
-            fontSize: '0.9rem', flexShrink: 0,
-          }}>🤖</div>
+            fontSize: '0.85rem', flexShrink: 0,
+            transition: 'background 0.3s',
+          }}>
+            {radarActive ? '📡' : '🤖'}
+          </div>
           <div>
-            <div style={{ fontFamily: "'Orbitron', sans-serif", fontSize: '0.7rem', color: '#a78bfa' }}>SloppyGPT™</div>
-            <div style={{ fontSize: '0.65rem', color: '#64748b' }}>Professional Slop Generator • Always Helpful™</div>
+            <div style={{ fontFamily: "'Orbitron', sans-serif", fontSize: '0.65rem', color: '#a78bfa' }}>SloppyGPT™</div>
+            <div style={{ fontSize: '0.6rem', color: '#475569' }}>
+              {radarActive ? 'SLOP RADAR ACTIVE' : 'Professional Slop Generator'}
+            </div>
           </div>
           <div style={{
             marginLeft: 'auto',
-            background: 'rgba(251,191,36,0.1)',
-            border: '1px solid rgba(251,191,36,0.3)',
+            background: doublePoints
+              ? 'rgba(251,191,36,0.15)'
+              : 'rgba(251,191,36,0.08)',
+            border: `1px solid ${doublePoints ? 'rgba(251,191,36,0.6)' : 'rgba(251,191,36,0.2)'}`,
             borderRadius: '6px',
             padding: '3px 8px',
-            fontSize: '0.65rem',
+            fontSize: '0.6rem',
             color: '#fbbf24',
             fontFamily: "'Orbitron', sans-serif",
+            whiteSpace: 'nowrap',
           }}>
-            TAP SLOP!
+            {doublePoints ? '💥 2X!' : 'TAP SLOP!'}
           </div>
         </div>
 
@@ -237,26 +343,29 @@ export default function GameScreen({ round, roundIdx, totalRounds, totalScore, o
           combo={combo}
           found={foundIds}
           onFoundChange={setFoundIds}
+          radarActive={radarActive}
+          doublePoints={doublePoints}
+          onTypingComplete={() => setTypingDone(true)}
         />
       </div>
 
       {/* Bottom bar */}
       <div className="safe-bottom" style={{
-        padding: '10px 16px',
+        padding: '8px 14px',
         borderTop: '1px solid rgba(124,58,237,0.2)',
         display: 'flex',
         justifyContent: 'space-between',
         alignItems: 'center',
-        background: 'rgba(15,15,26,0.95)',
+        background: 'rgba(15,15,26,0.97)',
         flexShrink: 0,
       }}>
-        <div style={{ fontSize: '0.75rem', color: '#64748b' }}>
-          Round pts: <span style={{ color: '#e2e8f0', fontWeight: 700 }}>{roundScore.toLocaleString()}</span>
+        <div style={{ fontSize: '0.72rem', color: '#64748b' }}>
+          Round: <span style={{ color: '#e2e8f0', fontWeight: 700 }}>{roundScore.toLocaleString()}</span>
         </div>
         <button
           className="btn-secondary"
           onClick={handleFinishEarly}
-          style={{ padding: '8px 16px', fontSize: '0.75rem' }}
+          style={{ padding: '7px 14px', fontSize: '0.72rem' }}
         >
           DONE →
         </button>

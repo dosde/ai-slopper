@@ -1,11 +1,13 @@
-import { useState, useCallback } from 'react';
+import { useState, useCallback, useRef } from 'react';
 import StartScreen from './components/StartScreen';
 import RoundIntro from './components/RoundIntro';
 import GameScreen from './components/GameScreen';
 import RoundSummary from './components/RoundSummary';
 import ResultScreen from './components/ResultScreen';
-import { ROUNDS } from './data/slopData';
+import AchievementToastLayer, { showAchievement } from './components/AchievementToast';
+import { selectRounds, getDailyRounds } from './data/slopData';
 import { stopMusic } from './utils/audio';
+import { checkAndUnlockAchievements, updateStats } from './utils/storage';
 
 const STATE = {
   START: 'start',
@@ -17,18 +19,45 @@ const STATE = {
 
 export default function App() {
   const [gameState, setGameState] = useState(STATE.START);
+  const [rounds, setRounds] = useState([]);
   const [roundIdx, setRoundIdx] = useState(0);
   const [totalScore, setTotalScore] = useState(0);
   const [roundScores, setRoundScores] = useState([]);
   const [lastRoundScore, setLastRoundScore] = useState(0);
   const [lastFoundIds, setLastFoundIds] = useState(new Set());
+  const [difficulty, setDifficulty] = useState('normal');
+  const [newAchievements, setNewAchievements] = useState([]);
 
-  const handleStart = useCallback(() => {
+  // Per-game stats for achievements
+  const gameStatsRef = useRef({
+    totalDetected: 0,
+    certainlyCount: 0,
+    maxCombo: 0,
+    perfectRounds: 0,
+    bestTimeLeft: 0,
+    totalScore: 0,
+    roundsCompleted: 0,
+    usedRadar: false,
+    powerUpsUsed: 0,
+    completedChaos: false,
+  });
+
+  const handleStart = useCallback(({ difficulty: diff, mode, musicEnabled }) => {
+    const selectedRounds = mode === 'daily' ? getDailyRounds() : selectRounds();
+    setRounds(selectedRounds);
     setRoundIdx(0);
     setTotalScore(0);
     setRoundScores([]);
     setLastRoundScore(0);
     setLastFoundIds(new Set());
+    setDifficulty(diff);
+    setNewAchievements([]);
+    gameStatsRef.current = {
+      totalDetected: 0, certainlyCount: 0, maxCombo: 0,
+      perfectRounds: 0, bestTimeLeft: 0, totalScore: 0,
+      roundsCompleted: 0, usedRadar: false, powerUpsUsed: 0,
+      completedChaos: false,
+    };
     setGameState(STATE.ROUND_INTRO);
   }, []);
 
@@ -36,74 +65,119 @@ export default function App() {
     setGameState(STATE.PLAYING);
   }, []);
 
-  const handleRoundEnd = useCallback((score, foundIds) => {
+  const handleRoundEnd = useCallback((score, foundIds, timeLeft = 0) => {
     setLastRoundScore(score);
     setLastFoundIds(foundIds);
     setTotalScore(prev => prev + score);
     setRoundScores(prev => [...prev, score]);
+
+    // Update per-game stats
+    const round = rounds[roundIdx];
+    const totalPhrasesInRound = round?.slopPhrases?.length ?? 0;
+    const foundInRound = foundIds.size;
+    const stats = gameStatsRef.current;
+    stats.totalDetected += foundInRound;
+    stats.roundsCompleted += 1;
+    if (timeLeft > stats.bestTimeLeft) stats.bestTimeLeft = timeLeft;
+    if (foundInRound >= totalPhrasesInRound && totalPhrasesInRound > 0) stats.perfectRounds += 1;
+
     setGameState(STATE.ROUND_SUMMARY);
-  }, []);
+  }, [rounds, roundIdx]);
 
   const handleNextRound = useCallback(() => {
     const nextIdx = roundIdx + 1;
-    if (nextIdx >= ROUNDS.length) {
+    if (nextIdx >= rounds.length) {
+      // Game complete — check achievements
+      const stats = gameStatsRef.current;
+      stats.totalScore = totalScore + (roundScores[roundScores.length - 1] ?? 0);
+      if (difficulty === 'chaos') stats.completedChaos = true;
+
+      const unlocked = checkAndUnlockAchievements(stats);
+      updateStats({ ...stats, gamesPlayed: 1 });
+
+      // Show toasts sequentially
+      unlocked.forEach((ach, i) => {
+        setTimeout(() => showAchievement(ach), i * 800);
+      });
+      setNewAchievements(unlocked);
       setGameState(STATE.RESULT);
     } else {
       setRoundIdx(nextIdx);
       setGameState(STATE.ROUND_INTRO);
     }
-  }, [roundIdx]);
+  }, [roundIdx, rounds.length, totalScore, roundScores, difficulty]);
 
   const handleRestart = useCallback(() => {
     stopMusic();
     setGameState(STATE.START);
   }, []);
 
-  const currentRound = ROUNDS[roundIdx];
+  const handlePowerUpUsed = useCallback((id) => {
+    const stats = gameStatsRef.current;
+    stats.powerUpsUsed += 1;
+    if (id === 'radar') stats.usedRadar = true;
+  }, []);
+
+  const handleComboUpdate = useCallback((combo) => {
+    if (combo > gameStatsRef.current.maxCombo) {
+      gameStatsRef.current.maxCombo = combo;
+    }
+  }, []);
+
+  const currentRound = rounds[roundIdx];
 
   return (
-    <div className="game-container">
-      {gameState === STATE.START && (
-        <StartScreen onStart={handleStart} />
-      )}
+    <>
+      <div className="game-container">
+        {gameState === STATE.START && (
+          <StartScreen onStart={handleStart} />
+        )}
 
-      {gameState === STATE.ROUND_INTRO && (
-        <RoundIntro
-          round={currentRound}
-          totalRounds={ROUNDS.length}
-          onReady={handleRoundReady}
-        />
-      )}
+        {gameState === STATE.ROUND_INTRO && currentRound && (
+          <RoundIntro
+            round={currentRound}
+            totalRounds={rounds.length}
+            onReady={handleRoundReady}
+          />
+        )}
 
-      {gameState === STATE.PLAYING && (
-        <GameScreen
-          key={`game-${roundIdx}`}
-          round={currentRound}
-          roundIdx={roundIdx}
-          totalRounds={ROUNDS.length}
-          totalScore={totalScore}
-          onRoundEnd={handleRoundEnd}
-        />
-      )}
+        {gameState === STATE.PLAYING && currentRound && (
+          <GameScreen
+            key={`game-${roundIdx}-${currentRound.id}`}
+            round={currentRound}
+            roundIdx={roundIdx}
+            totalRounds={rounds.length}
+            totalScore={totalScore}
+            difficulty={difficulty}
+            onRoundEnd={handleRoundEnd}
+            onPowerUpUsed={handlePowerUpUsed}
+          />
+        )}
 
-      {gameState === STATE.ROUND_SUMMARY && (
-        <RoundSummary
-          round={currentRound}
-          roundScore={lastRoundScore}
-          foundIds={lastFoundIds}
-          totalScore={totalScore}
-          isLastRound={roundIdx >= ROUNDS.length - 1}
-          onNext={handleNextRound}
-        />
-      )}
+        {gameState === STATE.ROUND_SUMMARY && currentRound && (
+          <RoundSummary
+            round={currentRound}
+            roundScore={lastRoundScore}
+            foundIds={lastFoundIds}
+            totalScore={totalScore}
+            isLastRound={roundIdx >= rounds.length - 1}
+            onNext={handleNextRound}
+          />
+        )}
 
-      {gameState === STATE.RESULT && (
-        <ResultScreen
-          totalScore={totalScore}
-          roundScores={roundScores}
-          onRestart={handleRestart}
-        />
-      )}
-    </div>
+        {gameState === STATE.RESULT && (
+          <ResultScreen
+            totalScore={totalScore}
+            roundScores={roundScores}
+            newAchievements={newAchievements}
+            difficulty={difficulty}
+            onRestart={handleRestart}
+          />
+        )}
+      </div>
+
+      {/* Achievement toasts render outside game-container to avoid clipping */}
+      <AchievementToastLayer />
+    </>
   );
 }

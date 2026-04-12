@@ -56,7 +56,7 @@ export const getRandomCommentary = (type) => {
   return comments[Math.floor(Math.random() * comments.length)];
 };
 
-export const ROUNDS = [
+export const ALL_ROUNDS = [
   {
     id: 1,
     title: "THE SANDWICH INCIDENT",
@@ -221,6 +221,179 @@ I hope you found that amusing! It's worth noting that comedy has a rich and comp
       { text: "I'm always here!", type: "closer", score: 80 },
     ],
   },
+
+  // ===== 5 EXTRA ROUNDS (selected randomly to keep replays fresh) =====
+
+  {
+    id: 6,
+    title: "THE LINKEDIN LUNACY",
+    emoji: "💼",
+    context: "User asked: 'Write a LinkedIn post about being productive'",
+    falPrompt: "a robot in a business suit drowning in LinkedIn buzzwords like 'synergy' and 'pivot', corporate cringe, absurdist cartoon, vibrant colors",
+    text: `Certainly! I'd be absolutely thrilled to craft an engaging LinkedIn post for you! As an AI language model, I can certainly help you create content that will resonate with your professional network. It's important to note that LinkedIn posts perform best when they're authentic and value-driven. That being said, here's a post you might find useful:
+
+🚀 Excited to share some thoughts on productivity and personal growth!
+
+Furthermore, I've been reflecting on my journey and I want to be transparent about what truly drives results. Moreover, it's worth noting that success isn't just about working hard — it's about working smart. Additionally, leveraging the right mindset is absolutely crucial.
+
+In conclusion, I hope this comprehensive post helps you connect with your audience! Let me know if you'd like me to explore a different angle. I'm always happy to help with your content strategy! Feel free to reach out! 🌟`,
+    slopPhrases: [
+      { text: "Certainly!", type: "opener", score: 100 },
+      { text: "I'd be absolutely thrilled", type: "opener", score: 90 },
+      { text: "As an AI language model", type: "disclaimer", score: 200 },
+      { text: "I can certainly help", type: "opener", score: 70 },
+      { text: "It's important to note that", type: "caveat", score: 80 },
+      { text: "That being said", type: "filler", score: 60 },
+      { text: "Furthermore", type: "filler", score: 50 },
+      { text: "I want to be transparent about", type: "caveat", score: 70 },
+      { text: "Moreover", type: "filler", score: 50 },
+      { text: "it's worth noting that", type: "caveat", score: 80 },
+      { text: "Additionally", type: "filler", score: 50 },
+      { text: "absolutely crucial", type: "comprehensive", score: 70 },
+      { text: "In conclusion", type: "filler", score: 60 },
+      { text: "comprehensive post", type: "comprehensive", score: 70 },
+      { text: "Let me know if you'd like me to explore", type: "closer", score: 80 },
+      { text: "I'm always happy to help", type: "closer", score: 90 },
+      { text: "Feel free to reach out!", type: "closer", score: 80 },
+    ],
+  },
+  {
+    id: 7,
+    title: "THE SAFETY SHERIFF",
+    emoji: "🚨",
+    context: "User asked: 'How do I chop an onion?'",
+    falPrompt: "an AI robot dressed as a safety officer putting up warning signs around a single onion on a cutting board, absurd cartoon, bright colors, funny",
+    text: `Of course! I'd be happy to help, though I must first emphasize that kitchen safety is absolutely paramount. As an AI assistant, I want to ensure your wellbeing above all else. It's crucial to note that improper knife handling can lead to injury, so please exercise extreme caution throughout this process.
+
+That being said, it's worth noting that onions contain compounds that may cause eye irritation. Furthermore, I should mention that individual sensitivities may vary. Moreover, I strongly recommend consulting a professional chef if you have any concerns. Additionally, please ensure your workspace is properly sanitized.
+
+With all of that in mind, here are some safety-first guidelines I hope will be helpful! Please don't hesitate to reach out if you need any further assistance. I sincerely hope this helps you navigate your culinary journey safely! Take care! 🧅`,
+    slopPhrases: [
+      { text: "Of course!", type: "opener", score: 100 },
+      { text: "I'd be happy to help", type: "opener", score: 80 },
+      { text: "I must first emphasize that", type: "caveat", score: 90 },
+      { text: "absolutely paramount", type: "comprehensive", score: 80 },
+      { text: "As an AI assistant", type: "disclaimer", score: 150 },
+      { text: "It's crucial to note that", type: "caveat", score: 80 },
+      { text: "please exercise extreme caution", type: "caveat", score: 70 },
+      { text: "That being said", type: "filler", score: 60 },
+      { text: "it's worth noting that", type: "caveat", score: 80 },
+      { text: "Furthermore", type: "filler", score: 50 },
+      { text: "I should mention that", type: "caveat", score: 70 },
+      { text: "individual sensitivities may vary", type: "caveat", score: 70 },
+      { text: "Moreover", type: "filler", score: 50 },
+      { text: "Additionally", type: "filler", score: 50 },
+      { text: "With all of that in mind", type: "filler", score: 60 },
+      { text: "Please don't hesitate to reach out", type: "closer", score: 90 },
+      { text: "I sincerely hope this helps", type: "closer", score: 80 },
+      { text: "culinary journey", type: "comprehensive", score: 70 },
+    ],
+  },
+  {
+    id: 8,
+    title: "THE WELLNESS WARRIOR",
+    emoji: "🧘",
+    context: "User said: 'I'm a bit tired today'",
+    falPrompt: "a robot life coach surrounded by crystals and wellness quotes, looking deeply concerned about a tired person, cartoon style, vibrant and absurd",
+    text: `I'm so sorry to hear that you're feeling tired! That must be really difficult, and I want you to know that your feelings are completely valid. As an AI, I'm here to support you on your wellness journey in any way I can. It's important to note that fatigue can stem from many different sources.
+
+That said, I'd like to suggest a comprehensive, holistic approach to your wellbeing. Furthermore, it's worth exploring whether you're prioritizing self-care. Moreover, mindfulness practices can be absolutely transformative. Additionally, I want to be transparent that I'm not a medical professional.
+
+I hope this helps you begin your healing journey! Please don't hesitate to let me know if there's anything else I can do to support your overall wellness. I'm always here for you! Remember: you've got this! Take care of yourself! 💙`,
+    slopPhrases: [
+      { text: "I'm so sorry to hear that", type: "sycophant", score: 80 },
+      { text: "your feelings are completely valid", type: "sycophant", score: 90 },
+      { text: "As an AI", type: "disclaimer", score: 120 },
+      { text: "wellness journey", type: "comprehensive", score: 70 },
+      { text: "It's important to note that", type: "caveat", score: 80 },
+      { text: "That said", type: "filler", score: 40 },
+      { text: "comprehensive, holistic approach", type: "comprehensive", score: 100 },
+      { text: "Furthermore", type: "filler", score: 50 },
+      { text: "self-care", type: "comprehensive", score: 60 },
+      { text: "Moreover", type: "filler", score: 50 },
+      { text: "absolutely transformative", type: "comprehensive", score: 70 },
+      { text: "Additionally", type: "filler", score: 50 },
+      { text: "I want to be transparent that", type: "caveat", score: 80 },
+      { text: "healing journey", type: "comprehensive", score: 70 },
+      { text: "Please don't hesitate to let me know", type: "closer", score: 90 },
+      { text: "I'm always here for you!", type: "closer", score: 80 },
+      { text: "overall wellness", type: "comprehensive", score: 60 },
+    ],
+  },
+  {
+    id: 9,
+    title: "THE BUZZWORD BONANZA",
+    emoji: "📊",
+    context: "User asked: 'Give me a startup idea'",
+    falPrompt: "a robot entrepreneur presenting a whiteboard covered in buzzwords like 'disruptive', 'synergy', 'pivot', 'scalable', surrounded by confused investors, cartoon style",
+    text: `Absolutely! I'd be happy to help you brainstorm a disruptive startup idea! As an AI language model, I can certainly provide comprehensive insights into the current entrepreneurial landscape. That being said, it's important to note that the most successful startups leverage emerging technologies to create scalable solutions.
+
+Furthermore, consider a platform that harnesses the synergy between blockchain technology and artificial intelligence to create a holistic ecosystem for disrupting traditional paradigms. Moreover, this would involve leveraging data-driven insights to pivot toward untapped markets. Additionally, it's worth noting that building a robust, end-to-end solution is absolutely crucial for sustainable growth.
+
+In conclusion, I hope this comprehensive overview helps you ideate your entrepreneurial journey! Please don't hesitate to reach out if you'd like to deep-dive into any of these concepts further. I'm here to help you unlock your full potential! 🚀`,
+    slopPhrases: [
+      { text: "Absolutely!", type: "opener", score: 100 },
+      { text: "I'd be happy to help you brainstorm", type: "opener", score: 80 },
+      { text: "As an AI language model", type: "disclaimer", score: 200 },
+      { text: "I can certainly provide comprehensive insights", type: "comprehensive", score: 80 },
+      { text: "That being said", type: "filler", score: 60 },
+      { text: "it's important to note that", type: "caveat", score: 80 },
+      { text: "leverage emerging technologies", type: "comprehensive", score: 70 },
+      { text: "scalable solutions", type: "comprehensive", score: 70 },
+      { text: "Furthermore", type: "filler", score: 50 },
+      { text: "holistic ecosystem", type: "comprehensive", score: 80 },
+      { text: "disrupting traditional paradigms", type: "comprehensive", score: 80 },
+      { text: "Moreover", type: "filler", score: 50 },
+      { text: "leveraging data-driven insights", type: "comprehensive", score: 80 },
+      { text: "Additionally", type: "filler", score: 50 },
+      { text: "it's worth noting that", type: "caveat", score: 80 },
+      { text: "absolutely crucial", type: "comprehensive", score: 70 },
+      { text: "sustainable growth", type: "comprehensive", score: 60 },
+      { text: "In conclusion", type: "filler", score: 60 },
+      { text: "comprehensive overview", type: "comprehensive", score: 70 },
+      { text: "entrepreneurial journey", type: "comprehensive", score: 70 },
+      { text: "Please don't hesitate to reach out", type: "closer", score: 90 },
+      { text: "deep-dive", type: "comprehensive", score: 70 },
+      { text: "unlock your full potential!", type: "closer", score: 80 },
+    ],
+  },
+  {
+    id: 10,
+    title: "THE CODE CATASTROPHE",
+    emoji: "💻",
+    context: "User asked: 'Add a comment to this: x = x + 1'",
+    falPrompt: "a robot writing a 50 page technical specification document for the number 1, surrounded by mountains of documentation, sweating, overwhelmed, cartoon style",
+    text: `Of course! I'd be absolutely delighted to provide comprehensive documentation for this code snippet! As an AI assistant with extensive programming knowledge, I want to ensure this code is thoroughly documented. It's important to note that clear documentation is absolutely crucial for maintainable codebases.
+
+That being said, here is the documentation I've prepared:
+
+// This line of code performs an increment operation on the variable 'x'.
+// It's worth noting that this fundamental arithmetic operation adds the integer
+// value of 1 to the current value stored in the variable 'x'. Furthermore,
+// this operation is essential for counting, iteration, and accumulation patterns.
+// Moreover, it should be noted that the result is then reassigned back to 'x'.
+
+I hope this comprehensive documentation proves helpful! Please don't hesitate to let me know if you'd like me to elaborate further on any aspect of this code. I'm always happy to provide additional context! Feel free to ask any questions! 😊`,
+    slopPhrases: [
+      { text: "Of course!", type: "opener", score: 100 },
+      { text: "I'd be absolutely delighted", type: "opener", score: 90 },
+      { text: "comprehensive documentation", type: "comprehensive", score: 80 },
+      { text: "As an AI assistant", type: "disclaimer", score: 150 },
+      { text: "It's important to note that", type: "caveat", score: 80 },
+      { text: "absolutely crucial", type: "comprehensive", score: 70 },
+      { text: "That being said", type: "filler", score: 60 },
+      { text: "It's worth noting that", type: "caveat", score: 80 },
+      { text: "fundamental arithmetic operation", type: "comprehensive", score: 70 },
+      { text: "Furthermore", type: "filler", score: 50 },
+      { text: "essential for counting, iteration, and accumulation patterns", type: "comprehensive", score: 80 },
+      { text: "Moreover", type: "filler", score: 50 },
+      { text: "it should be noted that", type: "caveat", score: 80 },
+      { text: "comprehensive documentation proves helpful!", type: "closer", score: 90 },
+      { text: "Please don't hesitate to let me know", type: "closer", score: 90 },
+      { text: "I'm always happy to provide additional context!", type: "closer", score: 80 },
+      { text: "Feel free to ask any questions!", type: "closer", score: 70 },
+    ],
+  },
 ];
 
 export const ROASTS = [
@@ -234,3 +407,31 @@ export const ROASTS = [
 export const getRoast = (score) => {
   return ROASTS.find(r => score >= r.minScore && score <= r.maxScore) || ROASTS[0];
 };
+
+// Pick 5 random rounds from the pool, always shuffled for replayability
+export const selectRounds = (seed = null) => {
+  const pool = [...ALL_ROUNDS];
+  // Fisher-Yates shuffle with optional deterministic seed
+  let rand;
+  if (seed !== null) {
+    let s = seed;
+    rand = () => { s = (s * 1664525 + 1013904223) & 0xffffffff; return (s >>> 0) / 0x100000000; };
+  } else {
+    rand = Math.random;
+  }
+  for (let i = pool.length - 1; i > 0; i--) {
+    const j = Math.floor(rand() * (i + 1));
+    [pool[i], pool[j]] = [pool[j], pool[i]];
+  }
+  return pool.slice(0, 5).map((r, i) => ({ ...r, roundNumber: i + 1 }));
+};
+
+// Daily challenge: same 5 rounds for everyone on the same calendar day
+export const getDailyRounds = () => {
+  const today = new Date();
+  const seed = today.getFullYear() * 10000 + (today.getMonth() + 1) * 100 + today.getDate();
+  return selectRounds(seed);
+};
+
+// Keep backward compat
+export const ROUNDS = ALL_ROUNDS.slice(0, 5);
