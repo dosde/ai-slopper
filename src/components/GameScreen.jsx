@@ -7,6 +7,33 @@ import { playRoundComplete, playMiss } from '../utils/audio';
 const ROUND_TIME_NORMAL = 45;
 const ROUND_TIME_CHAOS = 25;
 
+const MISS_TAUNTS = [
+  "That's just a word 💀",
+  "AS AN AI: CERTAINLY WRONG",
+  "I hope this helps: NO.",
+  "Not slop. Or is it? It's not.",
+  "Holistically speaking, wrong.",
+  "Furthermore... nope.",
+  "That being said: WRONG",
+  "In conclusion: not slop",
+  "CERTAINLY not that one!",
+  "With all due respect... no.",
+  "Touch grass. That's normal text.",
+  "I cannot assist with that click.",
+  "My training data is cringing.",
+  "Error 404: Slop not found.",
+  "Would you like to elaborate? That was wrong.",
+  "Leveraging the wrong word, as always.",
+  "Please note this is NOT slop.",
+];
+
+const getComboStyle = (c) => {
+  if (c >= 5) return { emoji: '🌈', color: '#a78bfa', rainbow: true };
+  if (c >= 4) return { emoji: '💥', color: '#ec4899', rainbow: false };
+  if (c >= 3) return { emoji: '⚡', color: '#38bdf8', rainbow: false };
+  return { emoji: '🔥', color: '#fbbf24', rainbow: false };
+};
+
 function TimerBar({ timeLeft, total }) {
   const pct = (timeLeft / total) * 100;
   let color = '#10b981';
@@ -58,6 +85,8 @@ export default function GameScreen({ round, roundIdx, totalRounds, totalScore, o
   const [timerRunning, setTimerRunning] = useState(true);
   const [shakeHeader, setShakeHeader] = useState(false);
   const [typingDone, setTypingDone] = useState(false);
+  const [meltdownClicks, setMeltdownClicks] = useState(0);
+  const [meltdownActive, setMeltdownActive] = useState(false);
 
   // Power-ups (usedPowerUps comes from App so it persists across rounds)
   const [activePowerUp, setActivePowerUp] = useState(null);
@@ -111,7 +140,8 @@ export default function GameScreen({ round, roundIdx, totalRounds, totalScore, o
     setRoundScore(prev => Math.max(0, prev - WRONG_PENALTY));
     setCombo(0);
     if (comboTimeoutRef.current) clearTimeout(comboTimeoutRef.current);
-    addPopup(x, y, WRONG_PENALTY, null, false, true);
+    const taunt = MISS_TAUNTS[Math.floor(Math.random() * MISS_TAUNTS.length)];
+    addPopup(x, y, WRONG_PENALTY, taunt, false, true);
   }, [addPopup]);
 
   const handleFinishEarly = () => {
@@ -164,6 +194,34 @@ export default function GameScreen({ round, roundIdx, totalRounds, totalScore, o
       transition: 'background 0.5s',
     }}>
       <PopupLayer popups={popups} />
+
+      {/* SloppyGPT meltdown easter egg overlay */}
+      {meltdownActive && (
+        <div
+          onClick={() => { setMeltdownActive(false); setMeltdownClicks(0); }}
+          style={{
+            position: 'fixed', inset: 0, zIndex: 10000,
+            background: 'rgba(239,68,68,0.95)',
+            display: 'flex', flexDirection: 'column',
+            alignItems: 'center', justifyContent: 'center',
+            gap: '16px', cursor: 'pointer',
+            animation: 'meltdown-glitch 0.12s ease infinite',
+          }}
+        >
+          <div style={{ fontFamily: "'Press Start 2P', monospace", fontSize: 'clamp(0.85rem,3vw,1.3rem)', color: 'white', textAlign: 'center', lineHeight: 1.8 }}>
+            ⚠️ CRITICAL<br/>SLOP OVERLOAD
+          </div>
+          <div style={{ fontSize: '2.8rem', animation: 'wiggle 0.25s ease infinite' }}>💀🤖💀</div>
+          <div style={{ fontFamily: "'Orbitron', sans-serif", fontSize: '0.68rem', color: 'rgba(255,255,255,0.9)', textAlign: 'center', maxWidth: '280px', lineHeight: 1.7 }}>
+            SloppyGPT™ has encountered too many wrong clicks.<br/>
+            Initiating emergency cringe protocols...<br/>
+            <span style={{ opacity: 0.7 }}>Certainly! I hope this helps! Moreover—</span>
+          </div>
+          <div style={{ fontFamily: "'Orbitron', sans-serif", fontSize: '0.58rem', color: 'rgba(255,255,255,0.5)', marginTop: '8px' }}>
+            TAP TO REBOOT
+          </div>
+        </div>
+      )}
 
       {/* Header */}
       <div
@@ -236,24 +294,37 @@ export default function GameScreen({ round, roundIdx, totalRounds, totalScore, o
         </div>
 
         {/* Combo badge */}
-        {combo > 1 && (
-          <div style={{ display: 'flex', gap: '6px', alignItems: 'center' }}>
-            <div className="combo-badge">🔥 {combo}x COMBO!</div>
-            {isDoubleActive && (
-              <div style={{
-                background: 'linear-gradient(135deg, #fbbf24, #f59e0b)',
-                color: '#0f0f1a',
-                fontFamily: "'Orbitron', sans-serif",
-                fontWeight: 900,
-                borderRadius: '8px',
-                padding: '4px 10px',
-                fontSize: '0.75rem',
+        {combo > 1 && (() => {
+          const cs = getComboStyle(combo);
+          return (
+            <div style={{ display: 'flex', gap: '6px', alignItems: 'center' }}>
+              <div className="combo-badge" style={{
+                background: cs.rainbow
+                  ? 'linear-gradient(135deg,#ff0080,#ff8000,#ffff00,#00ff80,#0080ff,#8000ff)'
+                  : `linear-gradient(135deg, ${cs.color}, ${cs.color}bb)`,
+                color: cs.rainbow ? 'white' : '#0f0f1a',
+                textShadow: cs.rainbow ? '0 1px 3px rgba(0,0,0,0.5)' : 'none',
+                boxShadow: `0 0 14px ${cs.color}`,
+                animation: cs.rainbow ? 'wiggle 0.4s ease, rainbow-bg 1s linear infinite' : 'wiggle 0.5s ease',
               }}>
-                💥 2X ACTIVE!
+                {cs.emoji} {combo}x COMBO!
               </div>
-            )}
-          </div>
-        )}
+              {isDoubleActive && (
+                <div style={{
+                  background: 'linear-gradient(135deg, #fbbf24, #f59e0b)',
+                  color: '#0f0f1a',
+                  fontFamily: "'Orbitron', sans-serif",
+                  fontWeight: 900,
+                  borderRadius: '8px',
+                  padding: '4px 10px',
+                  fontSize: '0.75rem',
+                }}>
+                  💥 2X ACTIVE!
+                </div>
+              )}
+            </div>
+          );
+        })()}
         {combo <= 1 && isDoubleActive && (
           <div style={{
             background: 'linear-gradient(135deg, #fbbf24, #f59e0b)',
@@ -273,6 +344,8 @@ export default function GameScreen({ round, roundIdx, totalRounds, totalScore, o
           @keyframes shake { 0%,100%{transform:translateX(0)} 20%{transform:translateX(-6px)} 40%{transform:translateX(6px)} 60%{transform:translateX(-6px)} 80%{transform:translateX(6px)} }
           @keyframes pulse { 0%,100%{transform:scale(1)} 50%{transform:scale(1.08)} }
           @keyframes wiggle { 0%,100%{transform:rotate(0)} 25%{transform:rotate(-4deg)} 75%{transform:rotate(4deg)} }
+          @keyframes rainbow-bg { 0%{filter:hue-rotate(0deg)} 100%{filter:hue-rotate(360deg)} }
+          @keyframes meltdown-glitch { 0%,100%{transform:translate(0)} 20%{transform:translate(-4px,2px)} 40%{transform:translate(4px,-2px)} 60%{transform:translate(-2px,4px)} 80%{transform:translate(2px,-4px)} }
         `}</style>
       </div>
 
@@ -308,17 +381,29 @@ export default function GameScreen({ round, roundIdx, totalRounds, totalScore, o
           border: `1px solid ${radarActive ? 'rgba(16,185,129,0.4)' : 'rgba(124,58,237,0.2)'}`,
           transition: 'border-color 0.3s',
         }}>
-          <div style={{
-            width: 30, height: 30,
-            borderRadius: '50%',
-            background: radarActive
-              ? 'linear-gradient(135deg, #10b981, #3b82f6)'
-              : 'linear-gradient(135deg, #10b981, #7c3aed)',
-            display: 'flex', alignItems: 'center', justifyContent: 'center',
-            fontSize: '0.85rem', flexShrink: 0,
-            transition: 'background 0.3s',
-          }}>
-            {radarActive ? '📡' : '🤖'}
+          <div
+            onClick={() => {
+              const next = meltdownClicks + 1;
+              setMeltdownClicks(next);
+              if (next >= 5) setMeltdownActive(true);
+            }}
+            title={meltdownClicks > 0 && meltdownClicks < 5 ? `${5 - meltdownClicks} more...` : ''}
+            style={{
+              width: 30, height: 30,
+              borderRadius: '50%',
+              background: radarActive
+                ? 'linear-gradient(135deg, #10b981, #3b82f6)'
+                : meltdownActive
+                ? 'linear-gradient(135deg, #ef4444, #7c3aed)'
+                : 'linear-gradient(135deg, #10b981, #7c3aed)',
+              display: 'flex', alignItems: 'center', justifyContent: 'center',
+              fontSize: '0.85rem', flexShrink: 0,
+              transition: 'background 0.3s',
+              cursor: 'pointer',
+              animation: meltdownActive ? 'meltdown-glitch 0.2s ease infinite' : 'none',
+            }}
+          >
+            {meltdownActive ? '💀' : radarActive ? '📡' : '🤖'}
           </div>
           <div>
             <div style={{ fontFamily: "'Orbitron', sans-serif", fontSize: '0.65rem', color: '#a78bfa' }}>SloppyGPT™</div>

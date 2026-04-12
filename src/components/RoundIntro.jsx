@@ -1,8 +1,25 @@
 import { useEffect, useState } from 'react';
 import FalImage from './FalImage';
 
+const THINKING_MSGS = [
+  "Generating contextually rich response...",
+  "Certainly! Let me help you with that...",
+  "As an AI language model, I...",
+  "I hope this helps! Here are some key points...",
+  "Great question! I'll provide a comprehensive answer...",
+  "Drawing on my extensive training data...",
+  "In conclusion, to summarize: furthermore...",
+  "That being said, holistically speaking...",
+  "Leveraging synergistic paradigm shifts...",
+  "Please note that as an AI, I cannot...",
+  "Here is a bulleted list of bullet points:",
+  "I want to make sure I understand your query...",
+  "Absolutely! Of course! Certainly! Sure!",
+];
+
 export default function RoundIntro({ round, totalRounds, onReady }) {
   const [countdown, setCountdown] = useState(3);
+  const [thinkingIdx, setThinkingIdx] = useState(0);
 
   useEffect(() => {
     if (countdown <= 0) {
@@ -12,6 +29,11 @@ export default function RoundIntro({ round, totalRounds, onReady }) {
     const t = setTimeout(() => setCountdown(c => c - 1), 1000);
     return () => clearTimeout(t);
   }, [countdown, onReady]);
+
+  useEffect(() => {
+    const i = setInterval(() => setThinkingIdx(n => (n + 1) % THINKING_MSGS.length), 650);
+    return () => clearInterval(i);
+  }, []);
 
   return (
     <div style={{
@@ -71,12 +93,24 @@ export default function RoundIntro({ round, totalRounds, onReady }) {
         background: 'rgba(124, 58, 237, 0.1)',
         border: '1px solid rgba(124, 58, 237, 0.3)',
         borderRadius: '12px',
-        padding: '12px 20px',
+        padding: '10px 18px',
         textAlign: 'center',
         maxWidth: '360px',
+        display: 'flex',
+        flexDirection: 'column',
+        gap: '6px',
       }}>
         <div style={{ fontSize: '0.8rem', color: '#a78bfa' }}>
-          👆 Tap the <span style={{ color: '#fbbf24', fontWeight: 700 }}>highlighted slop phrases</span> before time runs out!
+          👆 Click slop phrases hiding in the text — <span style={{ color: '#fbbf24', fontWeight: 700 }}>all words look the same!</span>
+        </div>
+        <div style={{
+          fontSize: '0.62rem',
+          color: '#475569',
+          fontStyle: 'italic',
+          minHeight: '1.3em',
+          transition: 'opacity 0.3s',
+        }}>
+          💭 "{THINKING_MSGS[thinkingIdx]}"
         </div>
       </div>
 

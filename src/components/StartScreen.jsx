@@ -11,8 +11,25 @@ const TAGLINES = [
   "POWER-UPS! COMBOS! CHAOS MODE!",
 ];
 
+const SLOP_FACTS = [
+  "ChatGPT has typed 'Certainly!' more times than all Shakespeare combined.",
+  "73% of AI responses begin with 'Great question!'",
+  "The word 'Moreover' has been used 4.2 billion times since GPT-3 launched.",
+  "'I hope this helps!' has never actually helped anyone.",
+  "AI disclaimers contain more words than the actual answer 62% of the time.",
+  "Every 'As an AI language model' kills a developer's soul.",
+  "Scientists estimate 'Furthermore' will go extinct by 2027 due to overuse.",
+  "'Holistic approach' is code for 'I ran out of ideas'.",
+  "The word 'synergy' is contractually required in all corporate AI responses.",
+  "'Delve' usage increased 8,000% after GPT-4 launched. Coincidence? Certainly not.",
+  "No AI has ever actually hoped anything helps. They are incapable of hope.",
+  "Adding 'In conclusion:' before something does not make it a conclusion.",
+  "The phrase 'game-changing' has not changed a single game.",
+];
+
 export default function StartScreen({ onStart }) {
   const [taglineIdx, setTaglineIdx] = useState(0);
+  const [factIdx, setFactIdx] = useState(0);
   const [musicEnabled, setMusicEnabled] = useState(true);
   const [difficulty, setDifficulty] = useState('normal');
   const [mode, setMode] = useState('random'); // 'random' | 'daily'
@@ -24,6 +41,11 @@ export default function StartScreen({ onStart }) {
 
   useEffect(() => {
     const i = setInterval(() => setTaglineIdx(n => (n + 1) % TAGLINES.length), 2600);
+    return () => clearInterval(i);
+  }, []);
+
+  useEffect(() => {
+    const i = setInterval(() => setFactIdx(n => (n + 1) % SLOP_FACTS.length), 4200);
     return () => clearInterval(i);
   }, []);
 
@@ -96,6 +118,20 @@ export default function StartScreen({ onStart }) {
           minHeight: '1.4em',
         }}>
           {TAGLINES[taglineIdx]}
+        </div>
+
+        {/* Slop facts ticker */}
+        <div style={{
+          fontSize: '0.58rem',
+          color: '#475569',
+          fontStyle: 'italic',
+          marginTop: '4px',
+          minHeight: '1.6em',
+          maxWidth: '340px',
+          margin: '4px auto 0',
+          lineHeight: 1.5,
+        }}>
+          📊 {SLOP_FACTS[factIdx]}
         </div>
       </div>
 

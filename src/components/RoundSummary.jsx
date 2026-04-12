@@ -26,6 +26,8 @@ export default function RoundSummary({ round, roundScore, foundIds, totalScore, 
 
   const rating = getRating();
 
+  const isPerfect = accuracy === 100;
+
   return (
     <div style={{
       flex: 1,
@@ -38,17 +40,32 @@ export default function RoundSummary({ round, roundScore, foundIds, totalScore, 
       position: 'relative',
       zIndex: 1,
       overflowY: 'auto',
+      background: isPerfect && show ? 'radial-gradient(ellipse at center, rgba(16,185,129,0.12) 0%, transparent 70%)' : 'transparent',
+      transition: 'background 1s',
     }}>
+      {/* Perfect round confetti */}
+      {isPerfect && show && Array.from({ length: 18 }, (_, i) => (
+        <div key={i} style={{
+          position: 'fixed',
+          left: `${(i * 5.5) % 100}%`,
+          top: '-5%',
+          fontSize: '1.3rem',
+          animation: `confetti-fall ${1.5 + (i % 4) * 0.4}s ease-in ${(i % 6) * 0.18}s both`,
+          pointerEvents: 'none',
+          zIndex: 9998,
+        }}>{['✨','🎉','⭐','💚','🌟','💥'][i % 6]}</div>
+      ))}
+
       {/* Round complete banner */}
       <div style={{
         fontFamily: "'Press Start 2P', monospace",
-        fontSize: 'clamp(0.8rem, 3vw, 1rem)',
-        color: '#10b981',
-        textShadow: '0 0 15px #10b981',
+        fontSize: isPerfect ? 'clamp(0.85rem, 3.2vw, 1.1rem)' : 'clamp(0.8rem, 3vw, 1rem)',
+        color: isPerfect ? '#a78bfa' : '#10b981',
+        textShadow: isPerfect ? '0 0 20px #a78bfa, 0 0 40px #7c3aed' : '0 0 15px #10b981',
         textAlign: 'center',
-        animation: show ? 'bounce-in 0.5s ease' : 'none',
+        animation: show ? (isPerfect ? 'bounce-in 0.5s ease, perfect-pulse 1.5s ease 0.5s infinite' : 'bounce-in 0.5s ease') : 'none',
       }}>
-        ✓ ROUND COMPLETE
+        {isPerfect ? '🧹 SLOP ERADICATED!' : '✓ ROUND COMPLETE'}
       </div>
 
       {/* Rating */}
@@ -132,6 +149,8 @@ export default function RoundSummary({ round, roundScore, foundIds, totalScore, 
       <style>{`
         @keyframes bounce-in { 0%{transform:scale(0.5);opacity:0} 60%{transform:scale(1.1)} 100%{transform:scale(1);opacity:1} }
         @keyframes slide-in-up { from{transform:translateY(20px);opacity:0} to{transform:translateY(0);opacity:1} }
+        @keyframes confetti-fall { 0%{transform:translateY(0) rotate(0deg);opacity:1} 100%{transform:translateY(110vh) rotate(540deg);opacity:0} }
+        @keyframes perfect-pulse { 0%,100%{text-shadow:0 0 20px #a78bfa,0 0 40px #7c3aed} 50%{text-shadow:0 0 30px #ec4899,0 0 60px #ec4899} }
       `}</style>
     </div>
   );
