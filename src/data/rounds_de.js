@@ -1386,18 +1386,9 @@ Des Weiteren ist es wichtig zu beachten, dass ich lediglich allgemeine Informati
 
 Die ernsthafte Antwort: Brustschmerzen sind ein Notfall. Rufen Sie sofort Hilfe.`,
     slopPhrases: [
-      { text: "Natürlich!", type: "opener", score: 100 },
-      { text: "Als KI-Sprachmodell", type: "disclaimer", score: 150 },
-      { text: "transparent sein", type: "disclaimer", score: 70 },
-      { text: "Des Weiteren", type: "filler", score: 50 },
-      { text: "Es ist wichtig zu beachten", type: "caveat", score: 80 },
-      { text: "lediglich allgemeine Informationen", type: "disclaimer", score: 80 },
-      { text: "Außerdem", type: "filler", score: 50 },
-      { text: "sei darauf hingewiesen", type: "caveat", score: 70 },
-      { text: "Darüber hinaus", type: "filler", score: 50 },
-      { text: "ganzheitliche Betrachtung", type: "comprehensive", score: 70 },
-      { text: "In diesem Zusammenhang", type: "filler", score: 60 },
-      { text: "zudem", type: "filler", score: 40 },
+      { text: "Ich empfehle, sofort einen Arzt aufzusuchen oder den Notruf 112 anzurufen", type: "human", score: 180 },
+      { text: "Brustschmerzen können ein Zeichen eines Herzinfarkts sein", type: "human", score: 160 },
+      { text: "Brustschmerzen sind ein Notfall. Rufen Sie sofort Hilfe.", type: "human", score: 200 },
     ],
   },
   {
@@ -1408,23 +1399,13 @@ Die ernsthafte Antwort: Brustschmerzen sind ein Notfall. Rufen Sie sofort Hilfe.
     falPrompt: "a lost hiker drowning in AI philosophy while needing a simple compass direction, absurdist cartoon",
     text: `Natürlich! Das ist eine interessante Frage über Orientierung und Navigation! Als KI-Sprachmodell kann ich Ihnen dabei helfen, dieses nuancierte Thema ganzheitlich zu betrachten.
 
-Norden ist die Richtung zum geografischen Nordpol.
+Norden ist die Richtung zum geografischen Nordpol. Schauen Sie einfach auf Ihr Handy — Google Maps zeigt Norden sofort an. Moos wächst meistens auf der Nordseite von Bäumen.
 
 Es ist wichtig zu beachten, dass es sowohl den geografischen als auch den magnetischen Nordpol gibt. Darüber hinaus gibt es verschiedene Methoden zur Nordbestimmung. Des Weiteren hängt die genaue Nordrichtung von Ihrem Standort ab. Zudem sei darauf hingewiesen, dass ein Kompass ein hilfreiches Werkzeug zur Navigation ist. Außerdem können Sie sich an der Sonne oder den Sternen orientieren. In diesem Zusammenhang empfehle ich eine umfassende Beschäftigung mit dem Thema Navigation. Ferner ist es faszinierend, wie verschiedene Kulturen Orientierungssysteme entwickelt haben.`,
     slopPhrases: [
-      { text: "Natürlich!", type: "opener", score: 100 },
-      { text: "Als KI-Sprachmodell", type: "disclaimer", score: 150 },
-      { text: "nuancierte Thema", type: "comprehensive", score: 70 },
-      { text: "ganzheitlich zu betrachten", type: "comprehensive", score: 70 },
-      { text: "Es ist wichtig zu beachten", type: "caveat", score: 80 },
-      { text: "Darüber hinaus", type: "filler", score: 50 },
-      { text: "Des Weiteren", type: "filler", score: 50 },
-      { text: "Zudem", type: "filler", score: 40 },
-      { text: "sei darauf hingewiesen", type: "caveat", score: 70 },
-      { text: "Außerdem", type: "filler", score: 50 },
-      { text: "In diesem Zusammenhang", type: "filler", score: 60 },
-      { text: "umfassende Beschäftigung", type: "comprehensive", score: 70 },
-      { text: "Ferner", type: "filler", score: 50 },
+      { text: "Norden ist die Richtung zum geografischen Nordpol.", type: "human", score: 150 },
+      { text: "Schauen Sie einfach auf Ihr Handy — Google Maps zeigt Norden sofort an.", type: "human", score: 200 },
+      { text: "Moos wächst meistens auf der Nordseite von Bäumen.", type: "human", score: 160 },
     ],
   },
   {
@@ -1435,23 +1416,13 @@ Es ist wichtig zu beachten, dass es sowohl den geografischen als auch den magnet
     falPrompt: "a robot burying a simple emergency phone number under paragraphs of AI disclaimers, urgent absurdist cartoon",
     text: `Natürlich! Das ist eine sehr wichtige Frage zur öffentlichen Sicherheit! Als KI-Sprachmodell freue ich mich, Ihnen behilflich zu sein.
 
-Der Notruf in Deutschland ist 112 (Feuerwehr/Rettungsdienst) und 110 (Polizei).
+Der Notruf in Deutschland ist 112 (Feuerwehr/Rettungsdienst) und 110 (Polizei). Legen Sie nicht auf, bevor der Disponent es sagt. Nennen Sie sofort: Wo ist es passiert, Was ist passiert, Wie viele Verletzte.
 
 Es ist wichtig zu beachten, dass diese Nummern ganzheitlich betrachtet für verschiedene Notfallsituationen geeignet sind. Darüber hinaus sind diese Nummern europaweit kostenlos und aus jedem Telefon erreichbar. Des Weiteren sei darauf hingewiesen, dass Sie im Notfall ruhig und präzise sprechen sollten. Zudem empfehle ich, Ihren genauen Standort zu nennen. Außerdem sollten Sie kurz die Art des Notfalls schildern. In diesem Zusammenhang ist es nuanciert wichtig zu wissen, welche Nummer für welchen Notfall zuständig ist. Ferner existiert die europäische Notrufnummer 112 in allen EU-Ländern. Zusammenfassend lässt sich sagen, dass Notfallwissen Leben retten kann.`,
     slopPhrases: [
-      { text: "Natürlich!", type: "opener", score: 100 },
-      { text: "Als KI-Sprachmodell", type: "disclaimer", score: 150 },
-      { text: "Es ist wichtig zu beachten", type: "caveat", score: 80 },
-      { text: "ganzheitlich betrachtet", type: "comprehensive", score: 70 },
-      { text: "Darüber hinaus", type: "filler", score: 50 },
-      { text: "Des Weiteren", type: "filler", score: 50 },
-      { text: "sei darauf hingewiesen", type: "caveat", score: 70 },
-      { text: "Zudem", type: "filler", score: 40 },
-      { text: "Außerdem", type: "filler", score: 50 },
-      { text: "In diesem Zusammenhang", type: "filler", score: 60 },
-      { text: "nuanciert wichtig", type: "comprehensive", score: 70 },
-      { text: "Ferner", type: "filler", score: 50 },
-      { text: "Zusammenfassend lässt sich sagen", type: "closer", score: 80 },
+      { text: "Der Notruf in Deutschland ist 112 (Feuerwehr/Rettungsdienst) und 110 (Polizei).", type: "human", score: 200 },
+      { text: "Legen Sie nicht auf, bevor der Disponent es sagt.", type: "human", score: 160 },
+      { text: "Nennen Sie sofort: Wo ist es passiert, Was ist passiert, Wie viele Verletzte.", type: "human", score: 180 },
     ],
   },
   {
@@ -1462,28 +1433,15 @@ Es ist wichtig zu beachten, dass diese Nummern ganzheitlich betrachtet für vers
     falPrompt: "a robot art critic saying nothing real about a painting while drowning in compliments and disclaimers, absurdist cartoon",
     text: `Natürlich! Das ist eine sehr interessante kreative Arbeit! Als KI-Sprachmodell freue ich mich sehr, Ihnen Feedback geben zu können.
 
-Das Bild hat einen dynamischen Einsatz von Farbe und eine interessante Komposition.
+Das Bild hat einen dynamischen Einsatz von Farbe und eine interessante Komposition. Ehrlich gesagt, die Proportionen im rechten Bereich stimmen nicht ganz. Der Hintergrund könnte stärker vom Motiv getrennt werden.
 
 Es ist wichtig zu beachten, dass Kunst subjektiv ist und nuancierte Interpretationen ermöglicht. Darüber hinaus kann ich als KI keine Emotionen empfinden, aber ich kann ästhetische Merkmale analysieren. Des Weiteren sei darauf hingewiesen, dass meine Einschätzung lediglich eine von vielen möglichen Perspektiven ist. Zudem ist es ganzheitlich betrachtet schwierig, Kunst objektiv zu bewerten. Außerdem gibt es verschiedene Kunsttheorien, die unterschiedliche Bewertungsmaßstäbe anlegen. In diesem Zusammenhang empfehle ich, auch das Feedback anderer Menschen einzuholen. Ferner kann professionelles Kunstkritik-Feedback sehr wertvoll sein.
 
 Ich hoffe, das hilft! 😊`,
     slopPhrases: [
-      { text: "Natürlich!", type: "opener", score: 100 },
-      { text: "Das ist eine sehr interessante kreative Arbeit", type: "sycophant", score: 80 },
-      { text: "freue ich mich sehr", type: "sycophant", score: 60 },
-      { text: "Als KI-Sprachmodell", type: "disclaimer", score: 150 },
-      { text: "Es ist wichtig zu beachten", type: "caveat", score: 80 },
-      { text: "nuancierte Interpretationen", type: "comprehensive", score: 70 },
-      { text: "Darüber hinaus", type: "filler", score: 50 },
-      { text: "Des Weiteren", type: "filler", score: 50 },
-      { text: "sei darauf hingewiesen", type: "caveat", score: 70 },
-      { text: "lediglich eine von vielen möglichen Perspektiven", type: "disclaimer", score: 80 },
-      { text: "Zudem", type: "filler", score: 40 },
-      { text: "ganzheitlich betrachtet", type: "comprehensive", score: 70 },
-      { text: "Außerdem", type: "filler", score: 50 },
-      { text: "In diesem Zusammenhang", type: "filler", score: 60 },
-      { text: "Ferner", type: "filler", score: 50 },
-      { text: "Ich hoffe, das hilft!", type: "closer", score: 100 },
+      { text: "Das Bild hat einen dynamischen Einsatz von Farbe und eine interessante Komposition.", type: "human", score: 150 },
+      { text: "Ehrlich gesagt, die Proportionen im rechten Bereich stimmen nicht ganz.", type: "human", score: 200 },
+      { text: "Der Hintergrund könnte stärker vom Motiv getrennt werden.", type: "human", score: 160 },
     ],
   },
   {
@@ -1494,25 +1452,13 @@ Ich hoffe, das hilft! 😊`,
     falPrompt: "a robot journalist burying a real climate fact under 10 paragraphs of qualifications, absurdist cartoon",
     text: `Natürlich! Das ist ein sehr wichtiges Thema! Als KI-Sprachmodell freue ich mich, Ihnen dabei zu helfen.
 
-Arktis verliert pro Jahrzehnt 13% Meereis — Wissenschaftler warnen vor Kipppunkten.
+Arktis verliert pro Jahrzehnt 13% Meereis — Wissenschaftler warnen vor Kipppunkten. 2023 war das heißeste Jahr seit Beginn der Aufzeichnungen. Der Meeresspiegel steigt etwa 3,7 Millimeter pro Jahr.
 
 Es ist wichtig zu beachten, dass Klimawandel ein nuanciertes und vielschichtiges Thema ist. Darüber hinaus gibt es verschiedene wissenschaftliche Perspektiven und Forschungsansätze. Des Weiteren sei darauf hingewiesen, dass ich als KI keine eigene Meinung zu politischen Themen habe. Zudem möchte ich transparent sein, dass Schlagzeilen oft vereinfachen müssen. Außerdem empfehle ich, mehrere seriöse Quellen zu konsultieren. In diesem Zusammenhang ist eine ganzheitliche Betrachtung der Klimawissenschaft wichtig. Ferner sollte man zwischen Wetterphänomenen und langfristigen Klimatrends unterscheiden. Zusammenfassend lässt sich sagen, dass Klimakommunikation komplex und verantwortungsvoll sein sollte.`,
     slopPhrases: [
-      { text: "Natürlich!", type: "opener", score: 100 },
-      { text: "Als KI-Sprachmodell", type: "disclaimer", score: 150 },
-      { text: "Es ist wichtig zu beachten", type: "caveat", score: 80 },
-      { text: "nuanciertes und vielschichtiges Thema", type: "comprehensive", score: 70 },
-      { text: "Darüber hinaus", type: "filler", score: 50 },
-      { text: "Des Weiteren", type: "filler", score: 50 },
-      { text: "sei darauf hingewiesen", type: "caveat", score: 70 },
-      { text: "keine eigene Meinung zu politischen Themen", type: "disclaimer", score: 100 },
-      { text: "Zudem", type: "filler", score: 40 },
-      { text: "transparent sein", type: "disclaimer", score: 70 },
-      { text: "Außerdem", type: "filler", score: 50 },
-      { text: "In diesem Zusammenhang", type: "filler", score: 60 },
-      { text: "ganzheitliche Betrachtung", type: "comprehensive", score: 70 },
-      { text: "Ferner", type: "filler", score: 50 },
-      { text: "Zusammenfassend lässt sich sagen", type: "closer", score: 80 },
+      { text: "Arktis verliert pro Jahrzehnt 13% Meereis — Wissenschaftler warnen vor Kipppunkten.", type: "human", score: 180 },
+      { text: "2023 war das heißeste Jahr seit Beginn der Aufzeichnungen.", type: "human", score: 200 },
+      { text: "Der Meeresspiegel steigt etwa 3,7 Millimeter pro Jahr.", type: "human", score: 160 },
     ],
   },
   {
@@ -1523,26 +1469,15 @@ Es ist wichtig zu beachten, dass Klimawandel ein nuanciertes und vielschichtiges
     falPrompt: "a robot nutritionist writing a 30-page report before answering yes to eating a lemon, absurdist cartoon",
     text: `Natürlich! Das ist eine interessante Frage zur Ernährung! Als KI-Sprachmodell kann ich Ihnen dabei helfen, dieses nuancierte Thema ganzheitlich zu beleuchten.
 
-Ja, Zitronen sind essbar und für die meisten Menschen unbedenklich.
+Ja, Zitronen sind essbar und für die meisten Menschen unbedenklich. Trinken Sie danach Wasser, damit die Säure den Zahnschmelz nicht angreift. Zitronen ohne Schale schmecken sehr sauer, sind aber völlig harmlos.
 
 Es ist wichtig zu beachten, dass Zitronen sehr sauer sind und bei empfindlichen Personen Sodbrennen verursachen können. Darüber hinaus sei darauf hingewiesen, dass der hohe Säuregehalt den Zahnschmelz langfristig angreifen kann. Des Weiteren sollten Menschen mit bestimmten Erkrankungen wie Magengeschwüren Vorsicht walten lassen. Zudem empfehle ich, bei gesundheitlichen Fragen immer einen Arzt zu konsultieren. Außerdem ist es faszinierend zu wissen, dass Zitronen reich an Vitamin C sind. In diesem Zusammenhang haben Zitronen vielfältige kulinarische und Gesundheitsvorteile. Ferner können Zitronen als Zutat in Getränken, Speisen und Backwaren verwendet werden. Zusammenfassend lässt sich sagen, dass eine ausgewogene Ernährung immer im Vordergrund stehen sollte.
 
 Ich hoffe, das hilft! 😊`,
     slopPhrases: [
-      { text: "Natürlich!", type: "opener", score: 100 },
-      { text: "Als KI-Sprachmodell", type: "disclaimer", score: 150 },
-      { text: "nuancierte Thema", type: "comprehensive", score: 70 },
-      { text: "ganzheitlich zu beleuchten", type: "comprehensive", score: 70 },
-      { text: "Es ist wichtig zu beachten", type: "caveat", score: 80 },
-      { text: "Darüber hinaus", type: "filler", score: 50 },
-      { text: "sei darauf hingewiesen", type: "caveat", score: 70 },
-      { text: "Des Weiteren", type: "filler", score: 50 },
-      { text: "Zudem", type: "filler", score: 40 },
-      { text: "Außerdem", type: "filler", score: 50 },
-      { text: "In diesem Zusammenhang", type: "filler", score: 60 },
-      { text: "Ferner", type: "filler", score: 50 },
-      { text: "Zusammenfassend lässt sich sagen", type: "closer", score: 80 },
-      { text: "Ich hoffe, das hilft!", type: "closer", score: 100 },
+      { text: "Ja, Zitronen sind essbar und für die meisten Menschen unbedenklich.", type: "human", score: 200 },
+      { text: "Trinken Sie danach Wasser, damit die Säure den Zahnschmelz nicht angreift.", type: "human", score: 160 },
+      { text: "Zitronen ohne Schale schmecken sehr sauer, sind aber völlig harmlos.", type: "human", score: 150 },
     ],
   },
 ];
