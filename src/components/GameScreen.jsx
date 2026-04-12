@@ -427,55 +427,56 @@ export default function GameScreen({ round, roundIdx, totalRounds, totalScore, o
           />
         </div>
 
-        {/* Combo badge */}
-        {combo > 1 && (() => {
-          const cs = getComboStyle(combo);
-          return (
-            <div style={{ display: 'flex', gap: '6px', alignItems: 'center' }}>
-              <div className="combo-badge" style={{
-                background: cs.rainbow
-                  ? 'linear-gradient(135deg,#ff0080,#ff8000,#ffff00,#00ff80,#0080ff,#8000ff)'
-                  : `linear-gradient(135deg, ${cs.color}, ${cs.color}bb)`,
-                color: cs.rainbow ? 'white' : '#0f0f1a',
-                textShadow: cs.rainbow ? '0 1px 3px rgba(0,0,0,0.5)' : 'none',
-                boxShadow: `0 0 14px ${cs.color}`,
-                opacity: comboDecaying ? 0.65 : 1,
-                animation: cs.rainbow
-                  ? 'wiggle 0.4s ease, rainbow-bg 1s linear infinite'
-                  : comboDecaying ? 'combo-decay-pulse 0.6s ease-in-out infinite' : 'wiggle 0.5s ease',
-              }}>
-                {cs.emoji} {combo}x COMBO!{comboDecaying ? ' ↓' : ''}
-              </div>
-              {isDoubleActive && (
-                <div style={{
-                  background: 'linear-gradient(135deg, #fbbf24, #f59e0b)',
-                  color: '#0f0f1a',
-                  fontFamily: "'Orbitron', sans-serif",
-                  fontWeight: 900,
-                  borderRadius: '8px',
-                  padding: '4px 10px',
-                  fontSize: '0.75rem',
+        {/* Combo + double badge row — always rendered so height is always reserved */}
+        <div style={{ display: 'flex', gap: '6px', alignItems: 'center', minHeight: '26px' }}>
+          {combo > 1 && (() => {
+            const cs = getComboStyle(combo);
+            return (
+              <>
+                <div className="combo-badge" style={{
+                  background: cs.rainbow
+                    ? 'linear-gradient(135deg,#ff0080,#ff8000,#ffff00,#00ff80,#0080ff,#8000ff)'
+                    : `linear-gradient(135deg, ${cs.color}, ${cs.color}bb)`,
+                  color: cs.rainbow ? 'white' : '#0f0f1a',
+                  textShadow: cs.rainbow ? '0 1px 3px rgba(0,0,0,0.5)' : 'none',
+                  boxShadow: `0 0 14px ${cs.color}`,
+                  opacity: comboDecaying ? 0.65 : 1,
+                  animation: cs.rainbow
+                    ? 'wiggle 0.4s ease, rainbow-bg 1s linear infinite'
+                    : comboDecaying ? 'combo-decay-pulse 0.6s ease-in-out infinite' : 'wiggle 0.5s ease',
                 }}>
-                  💥 2X ACTIVE!
+                  {cs.emoji} {combo}x COMBO!{comboDecaying ? ' ↓' : ''}
                 </div>
-              )}
+                {isDoubleActive && (
+                  <div style={{
+                    background: 'linear-gradient(135deg, #fbbf24, #f59e0b)',
+                    color: '#0f0f1a',
+                    fontFamily: "'Orbitron', sans-serif",
+                    fontWeight: 900,
+                    borderRadius: '8px',
+                    padding: '4px 10px',
+                    fontSize: '0.75rem',
+                  }}>
+                    💥 2X ACTIVE!
+                  </div>
+                )}
+              </>
+            );
+          })()}
+          {combo <= 1 && isDoubleActive && (
+            <div style={{
+              background: 'linear-gradient(135deg, #fbbf24, #f59e0b)',
+              color: '#0f0f1a',
+              fontFamily: "'Orbitron', sans-serif",
+              fontWeight: 900,
+              borderRadius: '8px',
+              padding: '4px 10px',
+              fontSize: '0.75rem',
+            }}>
+              💥 DOUBLE POINTS ACTIVE!
             </div>
-          );
-        })()}
-        {combo <= 1 && isDoubleActive && (
-          <div style={{
-            background: 'linear-gradient(135deg, #fbbf24, #f59e0b)',
-            color: '#0f0f1a',
-            fontFamily: "'Orbitron', sans-serif",
-            fontWeight: 900,
-            borderRadius: '8px',
-            padding: '4px 10px',
-            fontSize: '0.75rem',
-            alignSelf: 'flex-start',
-          }}>
-            💥 DOUBLE POINTS ACTIVE!
-          </div>
-        )}
+          )}
+        </div>
 
         <style>{`
           @keyframes shake { 0%,100%{transform:translateX(0)} 20%{transform:translateX(-6px)} 40%{transform:translateX(6px)} 60%{transform:translateX(-6px)} 80%{transform:translateX(6px)} }
