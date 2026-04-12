@@ -249,6 +249,8 @@ export default function SlopText({
       color: '#e2e8f0',
       whiteSpace: 'pre-wrap',
       wordBreak: 'break-word',
+      userSelect: 'none',
+      WebkitUserSelect: 'none',
     }}>
       {tokens.current.map((token, idx) => {
         const isRevealed = idx < revealedCount;

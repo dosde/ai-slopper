@@ -5,6 +5,7 @@ import { t as tr } from '../i18n/index';
 
 export default function RoundIntro({ round, totalRounds, onReady, difficulty = 'normal', lang = 'en' }) {
   const isInverse = !!round?.inverse;
+  const isBoss = !!round?.boss;
   const isBrainrot = difficulty === 'brainrot';
   const isIronDetector = difficulty === 'iron';
   const [countdown, setCountdown] = useState(5);
@@ -54,13 +55,26 @@ export default function RoundIntro({ round, totalRounds, onReady, difficulty = '
         fontFamily: "'Orbitron', sans-serif",
         fontSize: 'clamp(1.2rem, 5vw, 1.8rem)',
         fontWeight: 900,
-        color: '#a78bfa',
+        color: isBoss ? '#ef4444' : '#a78bfa',
         textAlign: 'center',
-        textShadow: '0 0 15px #7c3aed',
-        animation: 'bounce-in 0.5s ease',
+        textShadow: isBoss ? '0 0 20px #ef4444, 0 0 40px rgba(239,68,68,0.5)' : '0 0 15px #7c3aed',
+        animation: isBoss ? 'bounce-in 0.5s ease, boss-flicker 1.4s ease-in-out infinite' : 'bounce-in 0.5s ease',
       }}>
         {round.emoji} {round.title}
       </div>
+
+      {isBoss && (
+        <div style={{
+          fontFamily: "'Press Start 2P', monospace",
+          fontSize: '0.55rem',
+          color: '#fca5a5',
+          letterSpacing: '2px',
+          textAlign: 'center',
+          opacity: 0.85,
+        }}>
+          ⚔️ ROUND 6 / 6 — THE FINAL BOSS
+        </div>
+      )}
 
       {/* Context box */}
       <div className="card" style={{
@@ -82,8 +96,8 @@ export default function RoundIntro({ round, totalRounds, onReady, difficulty = '
 
       {/* Instructions */}
       <div style={{
-        background: isInverse ? 'rgba(56,189,248,0.08)' : isIronDetector ? 'rgba(236,72,153,0.08)' : 'rgba(124, 58, 237, 0.1)',
-        border: `1px solid ${isInverse ? 'rgba(56,189,248,0.4)' : isIronDetector ? 'rgba(236,72,153,0.5)' : 'rgba(124, 58, 237, 0.3)'}`,
+        background: isBoss ? 'rgba(239,68,68,0.1)' : isInverse ? 'rgba(56,189,248,0.08)' : isIronDetector ? 'rgba(236,72,153,0.08)' : 'rgba(124, 58, 237, 0.1)',
+        border: `2px solid ${isBoss ? 'rgba(239,68,68,0.6)' : isInverse ? 'rgba(56,189,248,0.4)' : isIronDetector ? 'rgba(236,72,153,0.5)' : 'rgba(124, 58, 237, 0.3)'}`,
         borderRadius: '12px',
         padding: '10px 18px',
         textAlign: 'center',
@@ -91,8 +105,22 @@ export default function RoundIntro({ round, totalRounds, onReady, difficulty = '
         display: 'flex',
         flexDirection: 'column',
         gap: '6px',
+        boxShadow: isBoss ? '0 0 20px rgba(239,68,68,0.3)' : 'none',
+        animation: isBoss ? 'boss-pulse 2s ease-in-out infinite' : 'none',
       }}>
-        {isInverse ? (
+        {isBoss ? (
+          <>
+            <div style={{ fontSize: '0.8rem', color: '#ef4444', fontWeight: 700, textShadow: '0 0 8px #ef4444' }}>
+              ⚔️ THE SLOP SINGULARITY
+            </div>
+            <div style={{ fontSize: '0.78rem', color: '#fca5a5' }}>
+              This is it. The AI gave 100% slop. Find <strong>every single phrase</strong>.
+            </div>
+            <div style={{ fontSize: '0.65rem', color: '#fca5a5', fontStyle: 'italic', opacity: 0.85 }}>
+              {round.slopPhrases?.length ?? '?'} phrases · 60 seconds · Miss penalty on DONE
+            </div>
+          </>
+        ) : isInverse ? (
           <>
             <div style={{ fontSize: '0.8rem', color: '#38bdf8', fontWeight: 700 }}>
               {tr('inverse_header', lang)}
@@ -142,7 +170,7 @@ export default function RoundIntro({ round, totalRounds, onReady, difficulty = '
       <div style={{
         fontFamily: "'Press Start 2P', monospace",
         fontSize: 'clamp(2.5rem, 10vw, 4rem)',
-        color: countdown <= 1 && !readyToStart ? '#ef4444' : countdown <= 2 ? '#fbbf24' : (isInverse ? '#38bdf8' : isIronDetector ? '#ec4899' : '#10b981'),
+        color: countdown <= 1 && !readyToStart ? '#ef4444' : countdown <= 2 ? '#fbbf24' : (isBoss ? '#ef4444' : isInverse ? '#38bdf8' : isIronDetector ? '#ec4899' : '#10b981'),
         textShadow: `0 0 20px currentColor`,
         animation: 'bounce-in 0.3s ease',
         key: countdown,
@@ -175,6 +203,8 @@ export default function RoundIntro({ round, totalRounds, onReady, difficulty = '
           60% { transform: scale(1.1); }
           100% { transform: scale(1); opacity: 1; }
         }
+        @keyframes boss-flicker { 0%,100%{opacity:1} 50%{opacity:0.65} }
+        @keyframes boss-pulse { 0%,100%{box-shadow:0 0 14px rgba(239,68,68,0.3)} 50%{box-shadow:0 0 28px rgba(239,68,68,0.75)} }
       `}</style>
     </div>
   );

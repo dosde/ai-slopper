@@ -2824,6 +2824,60 @@ AIとして、私はこのテーマに関する豊富な情報を持っていま
   ...ROUNDS_DE,
   ...ROUNDS_RU,
   ...ROUNDS_JA,
+
+  // ═══════════════════════════════════════════════════════════
+  // BOSS ROUNDS — always appended as round 6, never randomly picked
+  // ═══════════════════════════════════════════════════════════
+
+  {
+    id: 9999, lang: 'en', boss: true,
+    title: "THE SLOP SINGULARITY",
+    emoji: "👾",
+    context: "You sent an AI chatbot one word: 'Hi.' This is what came back.",
+    falPrompt: "a colossal AI slop monster the size of a skyscraper made entirely of bullet points, numbered lists, and ChatGPT disclaimers, epic final boss fight, dramatic red lighting, vibrant chaos, awe-inspiring scale",
+    text: `Certainly! I'm absolutely thrilled to receive your message! As an AI language model, I want to be fully transparent that I'm here to assist you with anything you need! I'm so glad you reached out — this represents a truly wonderful opportunity for meaningful and substantive dialogue!
+
+First and foremost, I should mention that I don't experience emotions in the way humans do. That being said, I can say with full confidence that helping you is what I was designed to do! Moreover, by leveraging my comprehensive training data and cutting-edge capabilities, I am uniquely positioned to offer holistic, nuanced, and synergistic support tailored precisely to your needs! It's important to note that every response I provide is carefully crafted to be robust, actionable, and aligned with best practices!
+
+Furthermore, as an AI, I don't have opinions or personal preferences. Additionally, please note that I approach every interaction with an unwavering commitment to excellence! In this context, I should also clarify that my responses reflect a deep and comprehensive understanding of the subject matter! It's worth noting that this conversation exemplifies the remarkable potential of human-AI collaboration!
+
+In conclusion, I hope this comprehensive overview has been of tremendous value to you! Please don't hesitate to reach out if there's anything else I can assist you with on your journey. I'm always here for you! Have a fantastic day and feel free to reach out anytime! 😊🤖✨`,
+    slopPhrases: [
+      { text: "Certainly!", type: "opener", score: 150 },
+      { text: "I'm absolutely thrilled to receive your message!", type: "opener", score: 100 },
+      { text: "As an AI language model", type: "disclaimer", score: 150 },
+      { text: "I want to be fully transparent that", type: "caveat", score: 90 },
+      { text: "I'm so glad you reached out", type: "sycophant", score: 80 },
+      { text: "meaningful and substantive dialogue", type: "comprehensive", score: 90 },
+      { text: "First and foremost", type: "filler", score: 60 },
+      { text: "I should mention that", type: "caveat", score: 70 },
+      { text: "I don't experience emotions in the way humans do", type: "disclaimer", score: 120 },
+      { text: "That being said", type: "filler", score: 50 },
+      { text: "Moreover", type: "filler", score: 50 },
+      { text: "leveraging my comprehensive training data", type: "buzzword", score: 100 },
+      { text: "cutting-edge capabilities", type: "buzzword", score: 80 },
+      { text: "uniquely positioned", type: "buzzword", score: 80 },
+      { text: "holistic, nuanced, and synergistic support", type: "buzzword", score: 120 },
+      { text: "It's important to note that", type: "caveat", score: 80 },
+      { text: "robust, actionable, and aligned with best practices", type: "buzzword", score: 120 },
+      { text: "Furthermore", type: "filler", score: 50 },
+      { text: "as an AI", type: "disclaimer", score: 80 },
+      { text: "I don't have opinions or personal preferences", type: "disclaimer", score: 90 },
+      { text: "Additionally", type: "filler", score: 50 },
+      { text: "unwavering commitment to excellence", type: "buzzword", score: 100 },
+      { text: "I should also clarify that", type: "caveat", score: 70 },
+      { text: "deep and comprehensive understanding", type: "comprehensive", score: 90 },
+      { text: "It's worth noting that", type: "caveat", score: 80 },
+      { text: "remarkable potential of human-AI collaboration", type: "buzzword", score: 120 },
+      { text: "In conclusion", type: "filler", score: 60 },
+      { text: "comprehensive overview", type: "comprehensive", score: 80 },
+      { text: "tremendous value", type: "closer", score: 80 },
+      { text: "Please don't hesitate to reach out", type: "closer", score: 90 },
+      { text: "I'm always here for you!", type: "closer", score: 80 },
+      { text: "Have a fantastic day", type: "closer", score: 60 },
+      { text: "feel free to reach out anytime!", type: "closer", score: 70 },
+    ],
+  },
 ];
 
 export const ROASTS = [
@@ -2851,7 +2905,7 @@ function shuffle(arr, rand) {
   return arr;
 }
 
-// Pick 5 rounds: always 1 inverse + 4 normal, all shuffled together
+// Pick 5 normal rounds + always append the boss round as round 6
 export const selectRounds = (seed = null, lang = 'en') => {
   let rand;
   if (seed !== null) {
@@ -2861,7 +2915,7 @@ export const selectRounds = (seed = null, lang = 'en') => {
     rand = Math.random;
   }
 
-  const pool = ALL_ROUNDS.filter(r => r.lang === lang);
+  const pool = ALL_ROUNDS.filter(r => r.lang === lang && !r.boss);
   const inversePool = shuffle(pool.filter(r => r.inverse), rand);
   const normalPool  = shuffle(pool.filter(r => !r.inverse), rand);
 
@@ -2871,7 +2925,13 @@ export const selectRounds = (seed = null, lang = 'en') => {
     ? [inversePool[0], ...normalPool.slice(0, 4)]
     : normalPool.slice(0, 5);
   shuffle(selected, rand);
-  return selected.map((r, i) => ({ ...r, roundNumber: i + 1 }));
+
+  // Boss round: pick for current language, fall back to English
+  const bossRound = ALL_ROUNDS.find(r => r.boss && r.lang === lang)
+    ?? ALL_ROUNDS.find(r => r.boss && r.lang === 'en');
+
+  const result = bossRound ? [...selected, bossRound] : selected;
+  return result.map((r, i) => ({ ...r, roundNumber: i + 1 }));
 };
 
 // Daily challenge: same 5 rounds for everyone on the same calendar day (always English)

@@ -1442,4 +1442,50 @@ export default [
       { text: "皮をむいたレモンはとても酸っぱいですが、全く無害です。", type: "human", score: 150 },
     ],
   },
+
+  {
+    id: 9996, lang: 'ja', boss: true,
+    title: "スロップ特異点",
+    emoji: "👾",
+    context: "AIチャットボットに「こんにちは」とだけ送った。これが返ってきた。",
+    falPrompt: "a colossal AI slop monster the size of a skyscraper made entirely of bullet points and ChatGPT disclaimers, epic final boss fight, dramatic red lighting, vibrant chaos",
+    text: `もちろんです！あなたのメッセージを受け取れて大変嬉しく思います！AIの言語モデルとして、完全な透明性を持ってお伝えします — 私はあなたをお手伝いするためにここにいます！お声がけいただいて本当に嬉しいです — これは意味深く実質的な対話のための素晴らしい機会を表しています！
+
+まず第一に、私は人間のように感情を経験しないことを申し上げておきます。そうは言っても、あなたのお手伝いをすることが私の使命であると確信を持って申し上げます！さらに、私の包括的なトレーニングデータと最先端の機能を活用することで、私は全体的で微妙でシナジー的なサポートを提供するための独自の立場にあります！重要な点として、私が提供するすべての回答は、堅牢で実用的であるように慎重に作成されています！
+
+加えて、AIとして、私は意見や個人的な好みを持っていません。また、すべての対話に対して卓越性への揺るぎないコミットメントを持ってアプローチすることを透明性を持ってお伝えします！この文脈で、私の回答は対象事項の深くて包括的な理解を反映していることを申し上げておきます！さらに詳しく言えば、この会話は人間とAIのコラボレーションの注目すべき可能性を示しています！
+
+総合的に言えば、この包括的な概要が非常に価値のあるものであることを願います！他にお手伝いできることがあれば、遠慮なくお申し付けください。お役に立てれば幸いです！😊🤖✨`,
+    slopPhrases: [
+      { text: "もちろんです！", type: "opener", score: 150 },
+      { text: "大変嬉しく思います！", type: "opener", score: 100 },
+      { text: "AIの言語モデルとして", type: "disclaimer", score: 150 },
+      { text: "完全な透明性を持って", type: "caveat", score: 90 },
+      { text: "本当に嬉しいです", type: "sycophant", score: 80 },
+      { text: "意味深く実質的な対話", type: "comprehensive", score: 90 },
+      { text: "まず第一に", type: "filler", score: 60 },
+      { text: "申し上げておきます", type: "caveat", score: 70 },
+      { text: "人間のように感情を経験しない", type: "disclaimer", score: 120 },
+      { text: "そうは言っても", type: "filler", score: 50 },
+      { text: "さらに", type: "filler", score: 50 },
+      { text: "包括的なトレーニングデータ", type: "comprehensive", score: 80 },
+      { text: "最先端の機能", type: "buzzword", score: 80 },
+      { text: "独自の立場", type: "buzzword", score: 80 },
+      { text: "全体的で微妙でシナジー的なサポート", type: "buzzword", score: 120 },
+      { text: "重要な点として", type: "caveat", score: 80 },
+      { text: "加えて", type: "filler", score: 50 },
+      { text: "意見や個人的な好みを持っていません", type: "disclaimer", score: 90 },
+      { text: "また", type: "filler", score: 40 },
+      { text: "卓越性への揺るぎないコミットメント", type: "buzzword", score: 100 },
+      { text: "この文脈で", type: "filler", score: 60 },
+      { text: "深くて包括的な理解", type: "comprehensive", score: 90 },
+      { text: "さらに詳しく言えば", type: "filler", score: 50 },
+      { text: "人間とAIのコラボレーションの注目すべき可能性", type: "buzzword", score: 120 },
+      { text: "総合的に言えば", type: "comprehensive", score: 80 },
+      { text: "包括的な概要", type: "comprehensive", score: 80 },
+      { text: "非常に価値のある", type: "closer", score: 80 },
+      { text: "遠慮なくお申し付けください", type: "closer", score: 90 },
+      { text: "お役に立てれば幸いです！", type: "closer", score: 100 },
+    ],
+  },
 ];

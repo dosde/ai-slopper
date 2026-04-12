@@ -1,5 +1,5 @@
 import { useState, useEffect, useCallback, useRef } from 'react';
-import SlopText from './SlopText';
+import SlopText, { getSlopStats } from './SlopText';
 import PowerUps from './PowerUps';
 import { PopupLayer, usePopups } from './ScorePopup';
 import { playRoundComplete, playMiss, setMusicTempo } from '../utils/audio';
@@ -94,10 +94,13 @@ function SlopMeter({ found, total }) {
   );
 }
 
+const ROUND_TIME_BOSS = 60;
+
 export default function GameScreen({ round, roundIdx, totalRounds, totalScore, onRoundEnd, difficulty = 'normal', lang = 'en', onPowerUpUsed, usedPowerUps = [] }) {
   const isBrainrot = difficulty === 'brainrot';
   const isIronDetector = difficulty === 'iron';
-  const ROUND_TIME = difficulty === 'chaos' ? ROUND_TIME_CHAOS : isBrainrot ? ROUND_TIME_BRAINROT : ROUND_TIME_NORMAL;
+  const isBoss = !!round.boss;
+  const ROUND_TIME = isBoss ? ROUND_TIME_BOSS : difficulty === 'chaos' ? ROUND_TIME_CHAOS : isBrainrot ? ROUND_TIME_BRAINROT : ROUND_TIME_NORMAL;
   const [timeLeft, setTimeLeft] = useState(isIronDetector ? 0 : ROUND_TIME);
   const [roundScore, setRoundScore] = useState(0);
   const [combo, setCombo] = useState(0);
@@ -210,8 +213,8 @@ export default function GameScreen({ round, roundIdx, totalRounds, totalScore, o
 
   const isInverse = !!round.inverse;
   const isDoubleActive = doublePoints || isInverse;
-  const accentColor = isInverse ? '#38bdf8' : '#fbbf24';
-  const accentGlow = isInverse ? 'rgba(56,189,248,0.5)' : 'rgba(251,191,36,0.5)';
+  const accentColor = isBoss ? '#ef4444' : isInverse ? '#38bdf8' : '#fbbf24';
+  const accentGlow = isBoss ? 'rgba(239,68,68,0.5)' : isInverse ? 'rgba(56,189,248,0.5)' : 'rgba(251,191,36,0.5)';
 
   const WRONG_PENALTY = 50;
   const handleWrongClick = useCallback((x, y) => {
@@ -245,20 +248,30 @@ export default function GameScreen({ round, roundIdx, totalRounds, totalScore, o
       setTimeout(() => onRoundEnd(roundScore, foundIds, timeLeft, wrongClickCount), 400);
       return;
     }
+
+    // Penalty for each unfound slop phrase (deduct its full score value)
+    const stats = getSlopStats(round, foundIds);
+    const missedTokens = stats.tokens.filter(t => !foundIds.has(t.id));
+    const missPenalty = missedTokens.reduce((sum, t) => sum + (t.phraseData?.score ?? 80), 0);
+    const cx = Math.round(window.innerWidth / 2);
+
+    let finalScore = roundScore;
+    let delay = 400;
+
+    if (missPenalty > 0) {
+      finalScore -= missPenalty;
+      addPopup(cx, 200, missPenalty, `💀 MISSED ${missedTokens.length} — PENALTY!`, false, true);
+      delay = 1600;
+    }
+
     const timeBonus = timeLeft * TIME_BONUS_PER_SEC;
     if (timeBonus > 0) {
-      addPopup(
-        Math.round(window.innerWidth / 2),
-        160,
-        timeBonus,
-        `⏱ ${timeLeft}s TIME BONUS!`,
-        false,
-        false,
-      );
-      setTimeout(() => onRoundEnd(roundScore + timeBonus, foundIds, timeLeft, wrongClickCount), 1600);
-    } else {
-      setTimeout(() => onRoundEnd(roundScore, foundIds, timeLeft, wrongClickCount), 400);
+      finalScore += timeBonus;
+      addPopup(cx, 160, timeBonus, `⏱ ${timeLeft}s TIME BONUS!`, false, false);
+      delay = 1800;
     }
+
+    setTimeout(() => onRoundEnd(finalScore, foundIds, timeLeft, wrongClickCount), delay);
   };
 
   const handlePowerUp = (id) => {
@@ -294,7 +307,9 @@ export default function GameScreen({ round, roundIdx, totalRounds, totalScore, o
       zIndex: 1,
       overflow: 'hidden',
       background: isUrgent
-        ? 'rgba(239,68,68,0.04)'
+        ? 'rgba(239,68,68,0.06)'
+        : isBoss
+        ? 'rgba(239,68,68,0.05)'
         : isInverse
         ? 'rgba(56,189,248,0.03)'
         : isDoubleActive
@@ -340,8 +355,8 @@ export default function GameScreen({ round, roundIdx, totalRounds, totalScore, o
           display: 'flex',
           flexDirection: 'column',
           gap: '6px',
-          borderBottom: `1px solid ${isInverse ? 'rgba(56,189,248,0.35)' : isDoubleActive ? 'rgba(251,191,36,0.3)' : 'rgba(124,58,237,0.2)'}`,
-          background: 'rgba(15,15,26,0.97)',
+          borderBottom: `1px solid ${isBoss ? 'rgba(239,68,68,0.5)' : isInverse ? 'rgba(56,189,248,0.35)' : isDoubleActive ? 'rgba(251,191,36,0.3)' : 'rgba(124,58,237,0.2)'}`,
+          background: isBoss ? 'rgba(15,5,5,0.98)' : 'rgba(15,15,26,0.97)',
           backdropFilter: 'blur(10px)',
           animation: shakeHeader ? 'shake 0.4s ease' : 'none',
           flexShrink: 0,
@@ -351,9 +366,12 @@ export default function GameScreen({ round, roundIdx, totalRounds, totalScore, o
         {/* Top row: round info + score */}
         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
           <div>
-            <div style={{ fontSize: '0.6rem', color: '#64748b', fontFamily: "'Orbitron', sans-serif" }}>
+            <div style={{ fontSize: '0.6rem', color: isBoss ? '#fca5a5' : '#64748b', fontFamily: "'Orbitron', sans-serif" }}>
               {t('round', lang)} {roundIdx + 1}/{totalRounds}
-              {difficulty === 'chaos' && (
+              {isBoss && (
+                <span style={{ color: '#ef4444', marginLeft: 6, animation: 'boss-flicker 1.2s ease-in-out infinite' }}>⚔️ FINAL BOSS</span>
+              )}
+              {!isBoss && difficulty === 'chaos' && (
                 <span style={{ color: '#ef4444', marginLeft: 6 }}>⚡ CHAOS</span>
               )}
               {isBrainrot && (
@@ -367,8 +385,8 @@ export default function GameScreen({ round, roundIdx, totalRounds, totalScore, o
               fontFamily: "'Orbitron', sans-serif",
               fontSize: '0.78rem',
               fontWeight: 700,
-              color: isInverse ? '#38bdf8' : '#e2e8f0',
-              textShadow: isInverse ? '0 0 8px rgba(56,189,248,0.6)' : 'none',
+              color: isBoss ? '#ef4444' : isInverse ? '#38bdf8' : '#e2e8f0',
+              textShadow: isBoss ? '0 0 10px rgba(239,68,68,0.7)' : isInverse ? '0 0 8px rgba(56,189,248,0.6)' : 'none',
             }}>
               {isInverse && <span style={{ fontSize: '0.6rem', marginRight: 4, letterSpacing: 1 }}>🔄 INVERSE</span>}
               {round.emoji} {round.title}
@@ -494,6 +512,8 @@ export default function GameScreen({ round, roundIdx, totalRounds, totalScore, o
           @keyframes slide-in-up { from{transform:translateY(12px);opacity:0} to{transform:translateY(0);opacity:1} }
           @keyframes inverse-pulse { 0%,100%{box-shadow:0 0 14px rgba(56,189,248,0.3)} 50%{box-shadow:0 0 24px rgba(56,189,248,0.65)} }
           @keyframes combo-decay-pulse { 0%,100%{opacity:0.65;transform:scale(1)} 50%{opacity:0.4;transform:scale(0.96)} }
+          @keyframes boss-flicker { 0%,100%{opacity:1} 50%{opacity:0.65} }
+          @keyframes boss-pulse { 0%,100%{box-shadow:0 0 14px rgba(239,68,68,0.3)} 50%{box-shadow:0 0 28px rgba(239,68,68,0.75)} }
         `}</style>
       </div>
 
@@ -620,6 +640,31 @@ export default function GameScreen({ round, roundIdx, totalRounds, totalScore, o
             animation: 'slide-in-up 0.4s ease',
           }}>
             ☠ IRON DETECTOR — ONE WRONG CLICK = RUN OVER
+          </div>
+        )}
+
+        {/* Boss round alert banner */}
+        {isBoss && (
+          <div style={{
+            marginBottom: '10px',
+            padding: '10px 14px',
+            background: 'linear-gradient(90deg, rgba(239,68,68,0.22), rgba(239,68,68,0.08), rgba(239,68,68,0.22))',
+            border: '2px solid rgba(239,68,68,0.6)',
+            borderRadius: '10px',
+            fontSize: '0.72rem',
+            color: '#fca5a5',
+            fontFamily: "'Orbitron', sans-serif",
+            fontWeight: 700,
+            textAlign: 'center',
+            boxShadow: '0 0 16px rgba(239,68,68,0.35)',
+            animation: 'slide-in-up 0.4s ease, boss-pulse 2s ease-in-out infinite',
+          }}>
+            <div style={{ fontSize: '0.85rem', color: '#ef4444', marginBottom: 2, textShadow: '0 0 8px #ef4444' }}>
+              ⚔️ FINAL BOSS ROUND
+            </div>
+            <div style={{ fontSize: '0.65rem', opacity: 0.95 }}>
+              {round.slopPhrases?.length ?? '?'} SLOP PHRASES — FIND THEM ALL!
+            </div>
           </div>
         )}
 

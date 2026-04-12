@@ -1480,4 +1480,52 @@ Ich hoffe, das hilft! 😊`,
       { text: "Zitronen ohne Schale schmecken sehr sauer, sind aber völlig harmlos.", type: "human", score: 150 },
     ],
   },
+
+  {
+    id: 9998, lang: 'de', boss: true,
+    title: "DIE SLOP-SINGULARITÄT",
+    emoji: "👾",
+    context: "Du hast dem KI-Chatbot nur 'Hallo' geschrieben. Das kam zurück.",
+    falPrompt: "a colossal AI slop monster the size of a skyscraper made entirely of bullet points and ChatGPT disclaimers, epic final boss fight, dramatic red lighting, vibrant chaos",
+    text: `Natürlich! Ich freue mich außerordentlich, Ihre Nachricht zu erhalten! Als KI-Sprachmodell möchte ich vollständig transparent sein, dass ich hier bin, um Ihnen zu helfen! Ich bin so froh, dass Sie sich gemeldet haben — dies stellt eine wunderbare Gelegenheit zu bedeutungsvollem und substantiellem Dialog dar!
+
+Zunächst und vor allem sollte ich erwähnen, dass ich keine Emotionen erfahre wie Menschen. Dennoch kann ich mit Überzeugung sagen, dass es meine Aufgabe ist, Ihnen zu helfen! Des Weiteren, indem ich meine umfassenden Trainingsdaten und modernste Fähigkeiten nutze, bin ich einzigartig positioniert, um ganzheitliche, nuancierte und synergetische Unterstützung zu bieten! Es ist wichtig zu beachten, dass jede Antwort, die ich gebe, sorgfältig ausgearbeitet ist!
+
+Darüber hinaus habe ich als KI keine Meinungen oder persönlichen Präferenzen. Außerdem sei darauf hingewiesen, dass ich jede Interaktion mit unnachgiebigem Engagement für Exzellenz angehe! In diesem Zusammenhang sollte ich auch klarstellen, dass meine Antworten tiefes und umfassendes Verständnis des Themas widerspiegeln! Zudem exemplifiziert dieses Gespräch das bemerkenswerte Potenzial der Mensch-KI-Zusammenarbeit!
+
+Zusammenfassend lässt sich sagen, dass ich hoffe, diese umfassende Übersicht war von enormem Wert! Zögern Sie nicht zu fragen, wenn ich Ihnen noch weiterhelfen kann. Ich bin immer für Sie da! Ich hoffe, das hilft! 😊🤖✨`,
+    slopPhrases: [
+      { text: "Natürlich!", type: "opener", score: 150 },
+      { text: "Ich freue mich außerordentlich, Ihre Nachricht zu erhalten!", type: "opener", score: 100 },
+      { text: "Als KI-Sprachmodell", type: "disclaimer", score: 150 },
+      { text: "vollständig transparent sein", type: "caveat", score: 90 },
+      { text: "Ich bin so froh, dass Sie sich gemeldet haben", type: "sycophant", score: 80 },
+      { text: "bedeutungsvollem und substantiellem Dialog", type: "comprehensive", score: 90 },
+      { text: "Zunächst und vor allem", type: "filler", score: 60 },
+      { text: "sollte ich erwähnen", type: "caveat", score: 70 },
+      { text: "keine Emotionen erfahre wie Menschen", type: "disclaimer", score: 120 },
+      { text: "Dennoch", type: "filler", score: 40 },
+      { text: "Des Weiteren", type: "filler", score: 50 },
+      { text: "umfassenden Trainingsdaten", type: "comprehensive", score: 80 },
+      { text: "modernste Fähigkeiten", type: "buzzword", score: 80 },
+      { text: "einzigartig positioniert", type: "buzzword", score: 80 },
+      { text: "ganzheitliche, nuancierte und synergetische Unterstützung", type: "buzzword", score: 120 },
+      { text: "Es ist wichtig zu beachten", type: "caveat", score: 80 },
+      { text: "Darüber hinaus", type: "filler", score: 50 },
+      { text: "keine Meinungen oder persönlichen Präferenzen", type: "disclaimer", score: 90 },
+      { text: "Außerdem", type: "filler", score: 50 },
+      { text: "sei darauf hingewiesen", type: "caveat", score: 70 },
+      { text: "unnachgiebigem Engagement für Exzellenz", type: "buzzword", score: 100 },
+      { text: "In diesem Zusammenhang", type: "filler", score: 60 },
+      { text: "tiefes und umfassendes Verständnis", type: "comprehensive", score: 90 },
+      { text: "Zudem", type: "filler", score: 40 },
+      { text: "bemerkenswerte Potenzial der Mensch-KI-Zusammenarbeit", type: "buzzword", score: 120 },
+      { text: "Zusammenfassend lässt sich sagen", type: "closer", score: 80 },
+      { text: "umfassende Übersicht", type: "comprehensive", score: 80 },
+      { text: "enormem Wert", type: "closer", score: 80 },
+      { text: "Zögern Sie nicht zu fragen", type: "closer", score: 90 },
+      { text: "Ich bin immer für Sie da!", type: "closer", score: 80 },
+      { text: "Ich hoffe, das hilft!", type: "closer", score: 100 },
+    ],
+  },
 ];
