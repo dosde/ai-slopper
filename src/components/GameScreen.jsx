@@ -96,8 +96,9 @@ function SlopMeter({ found, total }) {
 
 export default function GameScreen({ round, roundIdx, totalRounds, totalScore, onRoundEnd, difficulty = 'normal', lang = 'en', onPowerUpUsed, usedPowerUps = [] }) {
   const isBrainrot = difficulty === 'brainrot';
+  const isIronDetector = difficulty === 'iron';
   const ROUND_TIME = difficulty === 'chaos' ? ROUND_TIME_CHAOS : isBrainrot ? ROUND_TIME_BRAINROT : ROUND_TIME_NORMAL;
-  const [timeLeft, setTimeLeft] = useState(ROUND_TIME);
+  const [timeLeft, setTimeLeft] = useState(isIronDetector ? 0 : ROUND_TIME);
   const [roundScore, setRoundScore] = useState(0);
   const [combo, setCombo] = useState(0);
   const [foundIds, setFoundIds] = useState(new Set());
@@ -118,14 +119,20 @@ export default function GameScreen({ round, roundIdx, totalRounds, totalScore, o
 
   const { popups, addPopup } = usePopups();
   const comboDecayRef = useRef(null);
+  const ironGameOverRef = useRef(false);
+  const ironAutoCompleteRef = useRef(false);
 
   // Slop meter stats
   const totalSlop = round.slopPhrases.length;
   const foundSlop = foundIds.size;
 
-  // Timer countdown
+  // Timer (count-down for normal modes, count-up for iron)
   useEffect(() => {
     if (!timerRunning) return;
+    if (isIronDetector) {
+      const t = setTimeout(() => setTimeLeft(t => t + 1), 1000);
+      return () => clearTimeout(t);
+    }
     if (timeLeft <= 0) {
       setTimerRunning(false);
       setTimeout(() => onRoundEnd(roundScore, foundIds, 0, wrongClickCount), 600);
@@ -136,7 +143,19 @@ export default function GameScreen({ round, roundIdx, totalRounds, totalScore, o
       if (timeLeft === 10) setShakeHeader(true);
     }, 1000);
     return () => clearTimeout(t);
-  }, [timeLeft, timerRunning, roundScore, foundIds, onRoundEnd]);
+  }, [timeLeft, timerRunning, roundScore, foundIds, onRoundEnd, isIronDetector]);
+
+  // Iron mode: auto-complete when all slop found
+  useEffect(() => {
+    if (!isIronDetector || ironAutoCompleteRef.current || !timerRunning) return;
+    if (totalSlop > 0 && foundSlop === totalSlop) {
+      ironAutoCompleteRef.current = true;
+      setTimerRunning(false);
+      playRoundComplete();
+      setTimeout(() => onRoundEnd(roundScore, foundIds, timeLeft, wrongClickCount), 800);
+    }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [foundSlop, totalSlop]);
 
   useEffect(() => {
     if (shakeHeader) {
@@ -152,9 +171,9 @@ export default function GameScreen({ round, roundIdx, totalRounds, totalScore, o
 
   const handleScore = useCallback((score, x, y, commentary, isDoubled) => {
     setRoundScore(prev => prev + score);
-    setTimeLeft(prev => Math.min(prev + 1, ROUND_TIME + 60)); // +1s per correct slop
+    if (!isIronDetector) setTimeLeft(prev => Math.min(prev + 1, ROUND_TIME + 60));
     addPopup(x, y, score, commentary, isDoubled);
-  }, [addPopup, ROUND_TIME]);
+  }, [addPopup, ROUND_TIME, isIronDetector]);
 
   const handleCombo = useCallback((newCombo) => {
     setCombo(newCombo);
@@ -182,6 +201,15 @@ export default function GameScreen({ round, roundIdx, totalRounds, totalScore, o
 
   const WRONG_PENALTY = 50;
   const handleWrongClick = useCallback((x, y) => {
+    if (isIronDetector) {
+      if (ironGameOverRef.current) return;
+      ironGameOverRef.current = true;
+      setTimerRunning(false);
+      playMiss();
+      addPopup(x, y, 0, '☠ RUN TERMINATED!', false, true);
+      setTimeout(() => onRoundEnd(roundScore, foundIds, timeLeft, 1, true), 1400);
+      return;
+    }
     setRoundScore(prev => prev - WRONG_PENALTY);
     setCombo(0);
     setComboDecaying(false);
@@ -190,12 +218,16 @@ export default function GameScreen({ round, roundIdx, totalRounds, totalScore, o
     const pool = isInverse ? INVERSE_MISS_TAUNTS : MISS_TAUNTS;
     const taunt = pool[Math.floor(Math.random() * pool.length)];
     addPopup(x, y, WRONG_PENALTY, taunt, false, true);
-  }, [addPopup, isInverse]);
+  }, [addPopup, isInverse, isIronDetector, roundScore, foundIds, timeLeft, onRoundEnd]);
 
   const handleFinishEarly = () => {
     if (!timerRunning) return;
     setTimerRunning(false);
     playRoundComplete();
+    if (isIronDetector) {
+      setTimeout(() => onRoundEnd(roundScore, foundIds, timeLeft, wrongClickCount), 400);
+      return;
+    }
     const timeBonus = timeLeft * TIME_BONUS_PER_SEC;
     if (timeBonus > 0) {
       addPopup(
@@ -236,7 +268,7 @@ export default function GameScreen({ round, roundIdx, totalRounds, totalScore, o
     }
   };
 
-  const isUrgent = timeLeft <= 10;
+  const isUrgent = !isIronDetector && timeLeft <= 10;
   const isDoubleActive = doublePoints || isInverse;
   const accentColor = isInverse ? '#38bdf8' : '#fbbf24';
   const accentGlow = isInverse ? 'rgba(56,189,248,0.5)' : 'rgba(251,191,36,0.5)';
@@ -315,6 +347,9 @@ export default function GameScreen({ round, roundIdx, totalRounds, totalScore, o
               {isBrainrot && (
                 <span style={{ color: '#fb923c', marginLeft: 6 }}>🧠 BRAINROT</span>
               )}
+              {isIronDetector && (
+                <span style={{ color: '#ec4899', marginLeft: 6 }}>☠ IRON</span>
+              )}
             </div>
             <div style={{ fontFamily: "'Orbitron', sans-serif", fontSize: '0.78rem', fontWeight: 700, color: '#e2e8f0' }}>
               {round.emoji} {round.title}
@@ -337,18 +372,37 @@ export default function GameScreen({ round, roundIdx, totalRounds, totalScore, o
 
         {/* Timer + slop meter row */}
         <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-          <TimerBar timeLeft={timeLeft} total={ROUND_TIME} />
-          <div style={{
-            fontFamily: "'Press Start 2P', monospace",
-            fontSize: '0.7rem',
-            color: isUrgent ? '#ef4444' : '#94a3b8',
-            minWidth: '24px',
-            textAlign: 'right',
-            textShadow: isUrgent ? '0 0 8px #ef4444' : 'none',
-            animation: isUrgent ? 'pulse 0.5s ease-in-out infinite' : 'none',
-          }}>
-            {timeLeft}
-          </div>
+          {isIronDetector ? (
+            <div style={{ flex: 1, display: 'flex', alignItems: 'center', gap: '8px' }}>
+              <div style={{ fontSize: '0.58rem', color: '#ec4899', fontFamily: "'Orbitron', sans-serif", whiteSpace: 'nowrap', textShadow: '0 0 6px #ec4899' }}>
+                ⏱ ELAPSED
+              </div>
+              <div style={{
+                fontFamily: "'Press Start 2P', monospace",
+                fontSize: '0.85rem',
+                color: '#ec4899',
+                textShadow: '0 0 10px #ec4899',
+                letterSpacing: '1px',
+              }}>
+                {`${Math.floor(timeLeft / 60)}:${String(timeLeft % 60).padStart(2, '0')}`}
+              </div>
+            </div>
+          ) : (
+            <>
+              <TimerBar timeLeft={timeLeft} total={ROUND_TIME} />
+              <div style={{
+                fontFamily: "'Press Start 2P', monospace",
+                fontSize: '0.7rem',
+                color: isUrgent ? '#ef4444' : '#94a3b8',
+                minWidth: '24px',
+                textAlign: 'right',
+                textShadow: isUrgent ? '0 0 8px #ef4444' : 'none',
+                animation: isUrgent ? 'pulse 0.5s ease-in-out infinite' : 'none',
+              }}>
+                {timeLeft}
+              </div>
+            </>
+          )}
         </div>
 
         {/* Slop meter + power-ups row */}
@@ -528,6 +582,25 @@ export default function GameScreen({ round, roundIdx, totalRounds, totalScore, o
           </div>
         )}
 
+        {/* Iron detector alert banner */}
+        {isIronDetector && (
+          <div style={{
+            marginBottom: '10px',
+            padding: '8px 14px',
+            background: 'rgba(236,72,153,0.1)',
+            border: '1px solid rgba(236,72,153,0.5)',
+            borderRadius: '10px',
+            fontSize: '0.7rem',
+            color: '#ec4899',
+            fontFamily: "'Orbitron', sans-serif",
+            fontWeight: 700,
+            textAlign: 'center',
+            animation: 'slide-in-up 0.4s ease',
+          }}>
+            ☠ IRON DETECTOR — ONE WRONG CLICK = RUN OVER
+          </div>
+        )}
+
         {/* Inverse mode alert banner */}
         {isInverse && (
           <div style={{
@@ -576,7 +649,7 @@ export default function GameScreen({ round, roundIdx, totalRounds, totalScore, o
       }}>
         <div style={{ fontSize: '0.72rem', color: '#64748b' }}>
           Round: <span style={{ color: '#e2e8f0', fontWeight: 700 }}>{roundScore.toLocaleString()}</span>
-          {timeLeft > 0 && (
+          {!isIronDetector && timeLeft > 0 && (
             <span style={{ color: '#475569', marginLeft: 6, fontSize: '0.62rem' }}>
               +{timeLeft * TIME_BONUS_PER_SEC} bonus
             </span>

@@ -6,6 +6,7 @@ import { t as tr } from '../i18n/index';
 export default function RoundIntro({ round, totalRounds, onReady, difficulty = 'normal', lang = 'en' }) {
   const isInverse = !!round?.inverse;
   const isBrainrot = difficulty === 'brainrot';
+  const isIronDetector = difficulty === 'iron';
   const [countdown, setCountdown] = useState(5);
   const [readyToStart, setReadyToStart] = useState(false);
   const [thinkingIdx, setThinkingIdx] = useState(0);
@@ -81,8 +82,8 @@ export default function RoundIntro({ round, totalRounds, onReady, difficulty = '
 
       {/* Instructions */}
       <div style={{
-        background: isInverse ? 'rgba(56,189,248,0.08)' : 'rgba(124, 58, 237, 0.1)',
-        border: `1px solid ${isInverse ? 'rgba(56,189,248,0.4)' : 'rgba(124, 58, 237, 0.3)'}`,
+        background: isInverse ? 'rgba(56,189,248,0.08)' : isIronDetector ? 'rgba(236,72,153,0.08)' : 'rgba(124, 58, 237, 0.1)',
+        border: `1px solid ${isInverse ? 'rgba(56,189,248,0.4)' : isIronDetector ? 'rgba(236,72,153,0.5)' : 'rgba(124, 58, 237, 0.3)'}`,
         borderRadius: '12px',
         padding: '10px 18px',
         textAlign: 'center',
@@ -101,6 +102,18 @@ export default function RoundIntro({ round, totalRounds, onReady, difficulty = '
             </div>
             <div style={{ fontSize: '0.65rem', color: '#64748b', fontStyle: 'italic' }}>
               {tr('inverse_hint', lang)}
+            </div>
+          </>
+        ) : isIronDetector ? (
+          <>
+            <div style={{ fontSize: '0.8rem', color: '#ec4899', fontWeight: 700 }}>
+              ☠ IRON DETECTOR MODE
+            </div>
+            <div style={{ fontSize: '0.78rem', color: '#e2e8f0' }}>
+              Find all AI slop phrases. One wrong click and the run is over.
+            </div>
+            <div style={{ fontSize: '0.65rem', color: '#ec4899', fontStyle: 'italic' }}>
+              Timer counts up — faster completion = higher score bonus
             </div>
           </>
         ) : (
@@ -129,7 +142,7 @@ export default function RoundIntro({ round, totalRounds, onReady, difficulty = '
       <div style={{
         fontFamily: "'Press Start 2P', monospace",
         fontSize: 'clamp(2.5rem, 10vw, 4rem)',
-        color: countdown <= 1 && !readyToStart ? '#ef4444' : countdown <= 2 ? '#fbbf24' : (isInverse ? '#38bdf8' : '#10b981'),
+        color: countdown <= 1 && !readyToStart ? '#ef4444' : countdown <= 2 ? '#fbbf24' : (isInverse ? '#38bdf8' : isIronDetector ? '#ec4899' : '#10b981'),
         textShadow: `0 0 20px currentColor`,
         animation: 'bounce-in 0.3s ease',
         key: countdown,

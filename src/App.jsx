@@ -32,6 +32,8 @@ export default function App() {
 
   const [isDaily, setIsDaily] = useState(false);
   const [usedPowerUps, setUsedPowerUps] = useState([]);
+  const [totalRunTime, setTotalRunTime] = useState(0);
+  const [ironFailedRound, setIronFailedRound] = useState(null);
 
   // Per-game stats for achievements
   const gameStatsRef = useRef({
@@ -62,6 +64,8 @@ export default function App() {
     setDifficulty(diff);
     setNewAchievements([]);
     setUsedPowerUps([]);
+    setTotalRunTime(0);
+    setIronFailedRound(null);
     const daily = mode === 'daily';
     setIsDaily(daily);
     gameStatsRef.current = {
@@ -78,12 +82,16 @@ export default function App() {
     setGameState(STATE.PLAYING);
   }, []);
 
-  const handleRoundEnd = useCallback((score, foundIds, timeLeft = 0, wrongClicks = 0) => {
+  const handleRoundEnd = useCallback((score, foundIds, time = 0, wrongClicks = 0, isGameOver = false) => {
     setLastRoundScore(score);
     setLastFoundIds(foundIds);
     setLastWrongClicks(wrongClicks);
     setTotalScore(prev => prev + score);
     setRoundScores(prev => [...prev, score]);
+
+    if (difficulty === 'iron') {
+      setTotalRunTime(prev => prev + time);
+    }
 
     // Update per-game stats
     const round = rounds[roundIdx];
@@ -93,33 +101,47 @@ export default function App() {
     stats.totalDetected += foundInRound;
     stats.roundsCompleted += 1;
     if (score > stats.bestRoundScore) stats.bestRoundScore = score;
-    if (timeLeft > stats.bestTimeLeft) stats.bestTimeLeft = timeLeft;
+    if (difficulty !== 'iron' && time > stats.bestTimeLeft) stats.bestTimeLeft = time;
     if (foundInRound >= totalPhrasesInRound && totalPhrasesInRound > 0) stats.perfectRounds += 1;
-    // Count phrase types for cross-game achievements
     if (round?.slopPhrases) {
-      round.slopPhrases.forEach((p, i) => {
-        // token IDs are indices in tokenized array; we check foundIds loosely by count
+      round.slopPhrases.forEach((p) => {
         if (p.type === 'opener') stats.openerCount = (stats.openerCount || 0) + 1;
         if (p.type === 'disclaimer') stats.disclaimerCount = (stats.disclaimerCount || 0) + 1;
         if (p.text === 'Certainly!') stats.certainlyCount = (stats.certainlyCount || 0) + 1;
       });
     }
 
+    if (isGameOver) {
+      setIronFailedRound(roundIdx + 1);
+      stats.totalScore = totalScore + score;
+      const unlocked = checkAndUnlockAchievements(stats);
+      updateStats({ ...stats, gamesPlayed: 1 });
+      unlocked.forEach((ach, i) => { setTimeout(() => showAchievement(ach), i * 800); });
+      setNewAchievements(unlocked);
+      setGameState(STATE.RESULT);
+      return;
+    }
+
     setGameState(STATE.ROUND_SUMMARY);
-  }, [rounds, roundIdx]);
+  }, [rounds, roundIdx, difficulty, totalScore]);
 
   const handleNextRound = useCallback(() => {
     const nextIdx = roundIdx + 1;
     if (nextIdx >= rounds.length) {
       // Game complete — check achievements
       const stats = gameStatsRef.current;
-      stats.totalScore = totalScore + (roundScores[roundScores.length - 1] ?? 0);
+      stats.totalScore = totalScore;
       if (difficulty === 'chaos') stats.completedChaos = true;
+
+      // Iron detector: award speed bonus on successful full completion
+      if (difficulty === 'iron') {
+        const speedBonus = Math.max(0, 15000 - totalRunTime * 15);
+        if (speedBonus > 0) setTotalScore(prev => prev + speedBonus);
+      }
 
       const unlocked = checkAndUnlockAchievements(stats);
       updateStats({ ...stats, gamesPlayed: 1 });
 
-      // Show toasts sequentially
       unlocked.forEach((ach, i) => {
         setTimeout(() => showAchievement(ach), i * 800);
       });
@@ -129,7 +151,7 @@ export default function App() {
       setRoundIdx(nextIdx);
       setGameState(STATE.ROUND_INTRO);
     }
-  }, [roundIdx, rounds.length, totalScore, roundScores, difficulty]);
+  }, [roundIdx, rounds.length, totalScore, roundScores, difficulty, totalRunTime]);
 
   const handleRestart = useCallback(() => {
     stopMusic();
@@ -202,6 +224,8 @@ export default function App() {
             roundScores={roundScores}
             newAchievements={newAchievements}
             difficulty={difficulty}
+            totalRunTime={totalRunTime}
+            ironFailedRound={ironFailedRound}
             onRestart={handleRestart}
           />
         )}

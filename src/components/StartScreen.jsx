@@ -253,11 +253,12 @@ export default function StartScreen({ onStart }) {
               <div style={{ fontSize: '0.62rem', color: '#94a3b8', fontFamily: "'Orbitron', sans-serif", marginBottom: '10px', letterSpacing: '1px' }}>
                 DIFFICULTY
               </div>
-              <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '8px' }}>
+              <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '8px' }}>
                 {[
-                  { id: 'normal',   label: '😌 NORMAL',   desc: '45s per round',                color: '#10b981' },
-                  { id: 'chaos',    label: '😈 CHAOS',    desc: '25s · high pressure',           color: '#ef4444' },
-                  { id: 'brainrot', label: '🧠 BRAINROT', desc: '40s · text corrupts on misses', color: '#fb923c' },
+                  { id: 'normal',   label: '😌 NORMAL',        desc: '45s per round',                 color: '#10b981' },
+                  { id: 'chaos',    label: '😈 CHAOS',          desc: '25s · high pressure',            color: '#ef4444' },
+                  { id: 'brainrot', label: '🧠 BRAINROT',       desc: '40s · text corrupts on misses',  color: '#fb923c' },
+                  { id: 'iron',     label: '☠ IRON DETECTOR',  desc: 'No wrong clicks · stopwatch',    color: '#ec4899' },
                 ].map(d => (
                   <button
                     key={d.id}

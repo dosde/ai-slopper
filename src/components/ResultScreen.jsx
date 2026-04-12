@@ -11,7 +11,7 @@ const SHARE_MESSAGES = [
   "I spotted {score} pts worth of AI slop. 'Certainly!' is defeated. 🎯",
 ];
 
-export default function ResultScreen({ totalScore, roundScores, newAchievements = [], difficulty, onRestart }) {
+export default function ResultScreen({ totalScore, roundScores, newAchievements = [], difficulty, totalRunTime = 0, ironFailedRound = null, onRestart }) {
   const [show, setShow] = useState(false);
   const [particles, setParticles] = useState([]);
   const [initials, setInitials] = useState('');
@@ -95,8 +95,9 @@ export default function ResultScreen({ totalScore, roundScores, newAchievements 
       {/* Game Over + rank */}
       <div style={{ textAlign: 'center', animation: show ? 'bounce-in 0.6s ease' : 'none', marginTop: '4px' }}>
         <div style={{ fontFamily: "'Press Start 2P', monospace", fontSize: 'clamp(0.7rem, 2.5vw, 0.9rem)', color: '#10b981', textShadow: '0 0 15px #10b981', marginBottom: '8px' }}>
-          GAME OVER!
+          {difficulty === 'iron' && ironFailedRound ? 'ELIMINATED!' : 'GAME OVER!'}
           {difficulty === 'chaos' && <span style={{ color: '#ef4444', marginLeft: 10 }}>⚡ CHAOS</span>}
+          {difficulty === 'iron' && <span style={{ color: '#ec4899', marginLeft: 10 }}>☠ IRON</span>}
         </div>
         <div style={{ fontSize: '2.5rem' }}>{roast.emoji}</div>
         <div style={{
@@ -121,6 +122,49 @@ export default function ResultScreen({ totalScore, roundScores, newAchievements 
         {totalScore.toLocaleString()}
       </div>
       <div style={{ fontSize: '0.65rem', color: '#94a3b8', fontFamily: "'Orbitron', sans-serif", marginTop: '-8px' }}>TOTAL CRINGE POINTS</div>
+
+      {/* Iron Detector summary */}
+      {difficulty === 'iron' && (
+        <div className="card" style={{
+          padding: '14px 16px',
+          maxWidth: '380px',
+          width: '100%',
+          animation: show ? 'slide-in-up 0.5s ease 0.25s both' : 'none',
+          border: ironFailedRound ? '1px solid rgba(236,72,153,0.4)' : '1px solid rgba(16,185,129,0.4)',
+        }}>
+          {ironFailedRound ? (
+            <>
+              <div style={{ fontSize: '0.62rem', color: '#ec4899', fontFamily: "'Orbitron', sans-serif", marginBottom: '8px' }}>
+                ☠ IRON DETECTOR STATUS
+              </div>
+              <div style={{ fontSize: '0.85rem', color: '#ec4899', fontWeight: 700, textAlign: 'center', marginBottom: '6px', fontFamily: "'Orbitron', sans-serif" }}>
+                ELIMINATED ON ROUND {ironFailedRound} / {roundScores.length + 1}
+              </div>
+              <div style={{ fontSize: '0.65rem', color: '#94a3b8', textAlign: 'center' }}>
+                One wrong click ended the run.
+              </div>
+            </>
+          ) : (
+            <>
+              <div style={{ fontSize: '0.62rem', color: '#10b981', fontFamily: "'Orbitron', sans-serif", marginBottom: '10px' }}>
+                ☠ IRON DETECTOR COMPLETE!
+              </div>
+              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '6px' }}>
+                <span style={{ fontSize: '0.7rem', color: '#94a3b8' }}>Total Time</span>
+                <span style={{ fontFamily: "'Orbitron', sans-serif", fontWeight: 700, fontSize: '0.9rem', color: '#ec4899' }}>
+                  {`${Math.floor(totalRunTime / 60)}:${String(totalRunTime % 60).padStart(2, '0')}`}
+                </span>
+              </div>
+              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                <span style={{ fontSize: '0.7rem', color: '#94a3b8' }}>Speed Bonus</span>
+                <span style={{ fontFamily: "'Orbitron', sans-serif", fontWeight: 700, fontSize: '0.9rem', color: '#10b981' }}>
+                  +{Math.max(0, 15000 - totalRunTime * 15).toLocaleString()}
+                </span>
+              </div>
+            </>
+          )}
+        </div>
+      )}
 
       {/* New achievements */}
       {newAchievements.length > 0 && (
