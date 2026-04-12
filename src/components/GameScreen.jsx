@@ -151,7 +151,7 @@ export default function GameScreen({ round, roundIdx, totalRounds, totalScore, o
       if (timeLeft === 10) setShakeHeader(true);
     }, 1000);
     return () => clearTimeout(t);
-  }, [timeLeft, timerRunning, roundScore, foundIds, onRoundEnd, isIronDetector]);
+  }, [timeLeft, timerRunning, roundScore, foundIds, onRoundEnd, isIronDetector, wrongClickCount]);
 
   // Iron mode: auto-complete when all slop found (reads from liveRef to avoid stale closure)
   useEffect(() => {
@@ -421,7 +421,7 @@ export default function GameScreen({ round, roundIdx, totalRounds, totalScore, o
         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', gap: '8px' }}>
           <SlopMeter found={foundSlop} total={totalSlop} />
           <PowerUps
-            used={usedPowerUps}
+            used={isIronDetector ? [...usedPowerUps, 'time'] : usedPowerUps}
             active={activePowerUp}
             onUse={handlePowerUp}
           />

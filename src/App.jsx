@@ -226,6 +226,7 @@ export default function App() {
             difficulty={difficulty}
             totalRunTime={totalRunTime}
             ironFailedRound={ironFailedRound}
+            totalRounds={rounds.length}
             onRestart={handleRestart}
           />
         )}

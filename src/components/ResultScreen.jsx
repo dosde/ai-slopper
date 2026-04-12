@@ -11,7 +11,7 @@ const SHARE_MESSAGES = [
   "I spotted {score} pts worth of AI slop. 'Certainly!' is defeated. 🎯",
 ];
 
-export default function ResultScreen({ totalScore, roundScores, newAchievements = [], difficulty, totalRunTime = 0, ironFailedRound = null, onRestart }) {
+export default function ResultScreen({ totalScore, roundScores, newAchievements = [], difficulty, totalRunTime = 0, ironFailedRound = null, totalRounds = 5, onRestart }) {
   const [show, setShow] = useState(false);
   const [particles, setParticles] = useState([]);
   const [initials, setInitials] = useState('');
@@ -138,7 +138,7 @@ export default function ResultScreen({ totalScore, roundScores, newAchievements 
                 ☠ IRON DETECTOR STATUS
               </div>
               <div style={{ fontSize: '0.85rem', color: '#ec4899', fontWeight: 700, textAlign: 'center', marginBottom: '6px', fontFamily: "'Orbitron', sans-serif" }}>
-                ELIMINATED ON ROUND {ironFailedRound} / {roundScores.length + 1}
+                ELIMINATED ON ROUND {ironFailedRound} / {totalRounds}
               </div>
               <div style={{ fontSize: '0.65rem', color: '#94a3b8', textAlign: 'center' }}>
                 One wrong click ended the run.
