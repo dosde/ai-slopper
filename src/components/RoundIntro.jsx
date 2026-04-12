@@ -6,17 +6,18 @@ import { t as tr } from '../i18n/index';
 export default function RoundIntro({ round, totalRounds, onReady, difficulty = 'normal', lang = 'en' }) {
   const isInverse = !!round?.inverse;
   const isBrainrot = difficulty === 'brainrot';
-  const [countdown, setCountdown] = useState(3);
+  const [countdown, setCountdown] = useState(5);
+  const [readyToStart, setReadyToStart] = useState(false);
   const [thinkingIdx, setThinkingIdx] = useState(0);
 
   useEffect(() => {
     if (countdown <= 0) {
-      onReady();
+      setReadyToStart(true);
       return;
     }
     const t = setTimeout(() => setCountdown(c => c - 1), 1000);
     return () => clearTimeout(t);
-  }, [countdown, onReady]);
+  }, [countdown]);
 
   const thinkingMsgs = tr('thinking', lang);
   useEffect(() => {
@@ -128,7 +129,7 @@ export default function RoundIntro({ round, totalRounds, onReady, difficulty = '
       <div style={{
         fontFamily: "'Press Start 2P', monospace",
         fontSize: 'clamp(2.5rem, 10vw, 4rem)',
-        color: countdown <= 1 ? '#ef4444' : countdown <= 2 ? '#fbbf24' : (isInverse ? '#38bdf8' : '#10b981'),
+        color: countdown <= 1 && !readyToStart ? '#ef4444' : countdown <= 2 ? '#fbbf24' : (isInverse ? '#38bdf8' : '#10b981'),
         textShadow: `0 0 20px currentColor`,
         animation: 'bounce-in 0.3s ease',
         key: countdown,
@@ -139,6 +140,21 @@ export default function RoundIntro({ round, totalRounds, onReady, difficulty = '
       }}>
         {countdown > 0 ? countdown : tr('go', lang)}
       </div>
+
+      {/* Start button — appears after countdown */}
+      {readyToStart && (
+        <button
+          className="btn-primary"
+          onClick={onReady}
+          style={{
+            fontSize: '1rem',
+            padding: '14px 36px',
+            animation: 'bounce-in 0.4s ease',
+          }}
+        >
+          ▶ START
+        </button>
+      )}
 
       <style>{`
         @keyframes bounce-in {

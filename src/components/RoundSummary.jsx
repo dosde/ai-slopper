@@ -169,7 +169,7 @@ export default function RoundSummary({ round, roundScore, foundIds, totalScore, 
       }}>
         <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '10px' }}>
           {[
-            { label: t('round_score', lang), value: `+${roundScore.toLocaleString()}`, color: '#fbbf24' },
+            { label: t('round_score', lang), value: roundScore >= 0 ? `+${roundScore.toLocaleString()}` : roundScore.toLocaleString(), color: roundScore >= 0 ? '#fbbf24' : '#ef4444' },
             { label: t('total_score', lang), value: totalScore.toLocaleString(), color: '#a78bfa' },
             { label: round.inverse ? t('humans_found', lang) : t('slop_found', lang), value: `${foundCount}/${totalPhrases}`, color: round.inverse ? '#38bdf8' : '#10b981' },
             { label: t('accuracy', lang), value: `${accuracy}%`, color: accuracy >= 70 ? '#10b981' : accuracy >= 40 ? '#fbbf24' : '#ef4444' },

@@ -182,7 +182,7 @@ export default function GameScreen({ round, roundIdx, totalRounds, totalScore, o
 
   const WRONG_PENALTY = 50;
   const handleWrongClick = useCallback((x, y) => {
-    setRoundScore(prev => Math.max(0, prev - WRONG_PENALTY));
+    setRoundScore(prev => prev - WRONG_PENALTY);
     setCombo(0);
     setComboDecaying(false);
     setWrongClickCount(prev => prev + 1);
