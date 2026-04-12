@@ -121,6 +121,8 @@ export default function GameScreen({ round, roundIdx, totalRounds, totalScore, o
   const comboDecayRef = useRef(null);
   const ironGameOverRef = useRef(false);
   const ironAutoCompleteRef = useRef(false);
+  // Always-fresh snapshot of values needed inside iron-mode callbacks
+  const liveRef = useRef({});
 
   // Slop meter stats
   const totalSlop = round.slopPhrases.length;
@@ -128,6 +130,9 @@ export default function GameScreen({ round, roundIdx, totalRounds, totalScore, o
 
   // isUrgent must be declared BEFORE the music-tempo useEffect that lists it as a dependency
   const isUrgent = !isIronDetector && timeLeft <= 10;
+
+  // Keep liveRef in sync every render so iron-mode effects always have fresh values
+  liveRef.current = { roundScore, foundIds, timeLeft, wrongClickCount, onRoundEnd };
 
   // Timer (count-down for normal modes, count-up for iron)
   useEffect(() => {
@@ -148,14 +153,17 @@ export default function GameScreen({ round, roundIdx, totalRounds, totalScore, o
     return () => clearTimeout(t);
   }, [timeLeft, timerRunning, roundScore, foundIds, onRoundEnd, isIronDetector]);
 
-  // Iron mode: auto-complete when all slop found
+  // Iron mode: auto-complete when all slop found (reads from liveRef to avoid stale closure)
   useEffect(() => {
     if (!isIronDetector || ironAutoCompleteRef.current || !timerRunning) return;
     if (totalSlop > 0 && foundSlop === totalSlop) {
       ironAutoCompleteRef.current = true;
       setTimerRunning(false);
       playRoundComplete();
-      setTimeout(() => onRoundEnd(roundScore, foundIds, timeLeft, wrongClickCount), 800);
+      setTimeout(() => {
+        const { roundScore: rs, foundIds: fi, timeLeft: tl, wrongClickCount: wc, onRoundEnd: cb } = liveRef.current;
+        cb(rs, fi, tl, wc);
+      }, 800);
     }
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [foundSlop, totalSlop]);
@@ -213,7 +221,10 @@ export default function GameScreen({ round, roundIdx, totalRounds, totalScore, o
       setTimerRunning(false);
       playMiss();
       addPopup(x, y, 0, '☠ RUN TERMINATED!', false, true);
-      setTimeout(() => onRoundEnd(roundScore, foundIds, timeLeft, 1, true), 1400);
+      setTimeout(() => {
+        const { roundScore: rs, foundIds: fi, timeLeft: tl, onRoundEnd: cb } = liveRef.current;
+        cb(rs, fi, tl, 1, true);
+      }, 1400);
       return;
     }
     setRoundScore(prev => prev - WRONG_PENALTY);
