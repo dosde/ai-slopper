@@ -186,10 +186,11 @@ export default function StartScreen({ onStart }) {
               <div style={{ fontSize: '0.62rem', color: '#94a3b8', fontFamily: "'Orbitron', sans-serif", marginBottom: '10px', letterSpacing: '1px' }}>
                 DIFFICULTY
               </div>
-              <div style={{ display: 'flex', gap: '8px' }}>
+              <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '8px' }}>
                 {[
-                  { id: 'normal', label: '😌 NORMAL', desc: '45s per round', color: '#10b981' },
-                  { id: 'chaos',  label: '😈 CHAOS',  desc: '25s per round', color: '#ef4444' },
+                  { id: 'normal',   label: '😌 NORMAL',   desc: '45s per round',                color: '#10b981' },
+                  { id: 'chaos',    label: '😈 CHAOS',    desc: '25s · high pressure',           color: '#ef4444' },
+                  { id: 'brainrot', label: '🧠 BRAINROT', desc: '40s · text corrupts on misses', color: '#fb923c' },
                 ].map(d => (
                   <button
                     key={d.id}
@@ -254,7 +255,9 @@ export default function StartScreen({ onStart }) {
                 ['👆', 'Click slop phrases hiding in plain text — all words look the same!'],
                 ['⚡', 'Chain detections for COMBO MULTIPLIER up to 5x (+1s per hit)'],
                 ['📡', 'Power-ups usable once per game: Radar, Time Boost, Double Points'],
-                ['🎲', '5 random rounds every game from a pool of 46'],
+                ['⏱', 'Finish early to earn TIME BONUS: seconds left × 10 pts'],
+                ['🧠', 'BRAINROT mode: wrong clicks corrupt the text — letters mutate!'],
+                ['🎲', '5 rounds per game (always 1 inverse round) from a pool of 52'],
               ].map(([icon, text]) => (
                 <div key={icon} style={{ display: 'flex', gap: '10px', marginBottom: '8px', fontSize: '0.8rem', color: '#e2e8f0', alignItems: 'flex-start' }}>
                   <span style={{ flexShrink: 0 }}>{icon}</span>
@@ -287,7 +290,7 @@ export default function StartScreen({ onStart }) {
                 🎮 START DETECTING
               </button>
               <div style={{ color: '#334155', fontSize: '0.62rem', fontFamily: "'Orbitron', sans-serif" }}>
-                46 ROUNDS POOL • REAL AI SLOP™
+                52 ROUNDS POOL • REAL AI SLOP™
               </div>
             </div>
           </>

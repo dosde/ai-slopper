@@ -6,6 +6,8 @@ import { playRoundComplete, playMiss } from '../utils/audio';
 
 const ROUND_TIME_NORMAL = 45;
 const ROUND_TIME_CHAOS = 25;
+const ROUND_TIME_BRAINROT = 40;
+const TIME_BONUS_PER_SEC = 10;
 
 const MISS_TAUNTS = [
   "That's just a word 💀",
@@ -92,7 +94,8 @@ function SlopMeter({ found, total }) {
 }
 
 export default function GameScreen({ round, roundIdx, totalRounds, totalScore, onRoundEnd, difficulty = 'normal', onPowerUpUsed, usedPowerUps = [] }) {
-  const ROUND_TIME = difficulty === 'chaos' ? ROUND_TIME_CHAOS : ROUND_TIME_NORMAL;
+  const isBrainrot = difficulty === 'brainrot';
+  const ROUND_TIME = difficulty === 'chaos' ? ROUND_TIME_CHAOS : isBrainrot ? ROUND_TIME_BRAINROT : ROUND_TIME_NORMAL;
   const [timeLeft, setTimeLeft] = useState(ROUND_TIME);
   const [roundScore, setRoundScore] = useState(0);
   const [combo, setCombo] = useState(0);
@@ -102,6 +105,7 @@ export default function GameScreen({ round, roundIdx, totalRounds, totalScore, o
   const [typingDone, setTypingDone] = useState(false);
   const [meltdownClicks, setMeltdownClicks] = useState(0);
   const [meltdownActive, setMeltdownActive] = useState(false);
+  const [corruptionCount, setCorruptionCount] = useState(0);
 
   // Power-ups (usedPowerUps comes from App so it persists across rounds)
   const [activePowerUp, setActivePowerUp] = useState(null);
@@ -166,7 +170,20 @@ export default function GameScreen({ round, roundIdx, totalRounds, totalScore, o
     if (!timerRunning) return;
     setTimerRunning(false);
     playRoundComplete();
-    setTimeout(() => onRoundEnd(roundScore, foundIds, timeLeft), 400);
+    const timeBonus = timeLeft * TIME_BONUS_PER_SEC;
+    if (timeBonus > 0) {
+      addPopup(
+        Math.round(window.innerWidth / 2),
+        160,
+        timeBonus,
+        `⏱ ${timeLeft}s TIME BONUS!`,
+        false,
+        false,
+      );
+      setTimeout(() => onRoundEnd(roundScore + timeBonus, foundIds, timeLeft), 1600);
+    } else {
+      setTimeout(() => onRoundEnd(roundScore, foundIds, timeLeft), 400);
+    }
   };
 
   const handlePowerUp = (id) => {
@@ -268,6 +285,9 @@ export default function GameScreen({ round, roundIdx, totalRounds, totalScore, o
               ROUND {roundIdx + 1}/{totalRounds}
               {difficulty === 'chaos' && (
                 <span style={{ color: '#ef4444', marginLeft: 6 }}>⚡ CHAOS</span>
+              )}
+              {isBrainrot && (
+                <span style={{ color: '#fb923c', marginLeft: 6 }}>🧠 BRAINROT</span>
               )}
             </div>
             <div style={{ fontFamily: "'Orbitron', sans-serif", fontSize: '0.78rem', fontWeight: 700, color: '#e2e8f0' }}>
@@ -453,6 +473,31 @@ export default function GameScreen({ round, roundIdx, totalRounds, totalScore, o
           </div>
         </div>
 
+        {/* Brainrot mode alert banner */}
+        {isBrainrot && (
+          <div style={{
+            marginBottom: '10px',
+            padding: '7px 14px',
+            background: 'rgba(249,115,22,0.08)',
+            border: '1px solid rgba(249,115,22,0.3)',
+            borderRadius: '10px',
+            fontSize: '0.68rem',
+            color: '#fb923c',
+            fontFamily: "'Orbitron', sans-serif",
+            fontWeight: 700,
+            display: 'flex',
+            justifyContent: 'space-between',
+            alignItems: 'center',
+          }}>
+            <span>🧠 BRAINROT — wrong clicks corrupt the text!</span>
+            {corruptionCount > 0 && (
+              <span style={{ color: corruptionCount > 10 ? '#ef4444' : '#fb923c' }}>
+                ☣️ {corruptionCount} corrupted
+              </span>
+            )}
+          </div>
+        )}
+
         {/* Inverse mode alert banner */}
         {isInverse && (
           <div style={{
@@ -482,6 +527,8 @@ export default function GameScreen({ round, roundIdx, totalRounds, totalScore, o
           onWrongClick={handleWrongClick}
           radarActive={radarActive}
           doublePoints={isDoubleActive}
+          brainrot={isBrainrot}
+          onCorruptionChange={setCorruptionCount}
           onTypingComplete={() => setTypingDone(true)}
         />
       </div>
@@ -498,13 +545,18 @@ export default function GameScreen({ round, roundIdx, totalRounds, totalScore, o
       }}>
         <div style={{ fontSize: '0.72rem', color: '#64748b' }}>
           Round: <span style={{ color: '#e2e8f0', fontWeight: 700 }}>{roundScore.toLocaleString()}</span>
+          {timeLeft > 0 && (
+            <span style={{ color: '#475569', marginLeft: 6, fontSize: '0.62rem' }}>
+              +{timeLeft * TIME_BONUS_PER_SEC} bonus
+            </span>
+          )}
         </div>
         <button
           className="btn-secondary"
           onClick={handleFinishEarly}
           style={{ padding: '7px 14px', fontSize: '0.72rem' }}
         >
-          DONE →
+          DONE ⏱→
         </button>
       </div>
     </div>

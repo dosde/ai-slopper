@@ -158,6 +158,7 @@ export default function App() {
           <RoundIntro
             round={currentRound}
             totalRounds={rounds.length}
+            difficulty={difficulty}
             onReady={handleRoundReady}
           />
         )}

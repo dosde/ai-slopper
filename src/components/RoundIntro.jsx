@@ -17,8 +17,9 @@ const THINKING_MSGS = [
   "Absolutely! Of course! Certainly! Sure!",
 ];
 
-export default function RoundIntro({ round, totalRounds, onReady }) {
+export default function RoundIntro({ round, totalRounds, onReady, difficulty = 'normal' }) {
   const isInverse = !!round?.inverse;
+  const isBrainrot = difficulty === 'brainrot';
   const [countdown, setCountdown] = useState(3);
   const [thinkingIdx, setThinkingIdx] = useState(0);
 
@@ -115,9 +116,17 @@ export default function RoundIntro({ round, totalRounds, onReady }) {
           </>
         ) : (
           <>
-            <div style={{ fontSize: '0.8rem', color: '#a78bfa' }}>
-              👆 Click slop phrases hiding in the text — <span style={{ color: '#fbbf24', fontWeight: 700 }}>all words look the same!</span>
+            <div style={{ fontSize: '0.8rem', color: isBrainrot ? '#fb923c' : '#a78bfa' }}>
+              {isBrainrot
+                ? <>🧠 <span style={{ fontWeight: 700 }}>BRAINROT MODE</span> — wrong clicks corrupt the text!</>
+                : <>👆 Click slop phrases hiding in the text — <span style={{ color: '#fbbf24', fontWeight: 700 }}>all words look the same!</span></>
+              }
             </div>
+            {isBrainrot && (
+              <div style={{ fontSize: '0.65rem', color: '#64748b' }}>
+                Letters will mutate. Words will decay. The slop endures.
+              </div>
+            )}
             <div style={{
               fontSize: '0.62rem',
               color: '#475569',

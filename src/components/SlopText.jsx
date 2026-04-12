@@ -49,6 +49,50 @@ function tokenize(text, slopPhrases) {
   return result;
 }
 
+// ── Brainrot corruption engine ───────────────────────────────────────────────
+
+const L33T = { a:'4', e:'3', o:'0', i:'1', s:'$', t:'7', b:'8', g:'9', l:'|', z:'2' };
+
+function corruptToken(text) {
+  if (!text || text.length < 2) return text;
+  const roll = Math.random();
+  const pos = Math.floor(Math.random() * text.length);
+
+  if (roll < 0.30) {
+    // l33t substitute — find first eligible character
+    for (let i = 0; i < text.length; i++) {
+      const c = text[i].toLowerCase();
+      if (L33T[c]) {
+        return text.slice(0, i) + L33T[c] + text.slice(i + 1);
+      }
+    }
+  }
+  if (roll < 0.50 && text.length > 1) {
+    // Swap two adjacent characters
+    const i = Math.min(pos, text.length - 2);
+    return text.slice(0, i) + text[i + 1] + text[i] + text.slice(i + 2);
+  }
+  if (roll < 0.68) {
+    // Duplicate a character
+    return text.slice(0, pos) + text[pos] + text[pos] + text.slice(pos + 1);
+  }
+  if (roll < 0.82 && text.length > 3) {
+    // Drop a middle character
+    const safe = 1 + Math.floor(Math.random() * (text.length - 2));
+    return text.slice(0, safe) + text.slice(safe + 1);
+  }
+  if (roll < 0.92) {
+    // Random caps on one letter
+    return text.slice(0, pos) + text[pos].toUpperCase() + text.slice(pos + 1);
+  }
+  // Insert a random nearby keyboard character
+  const noise = 'qwrtypsdfghjklzxcvbnm'.split('');
+  const ch = noise[Math.floor(Math.random() * noise.length)];
+  return text.slice(0, pos) + ch + text.slice(pos);
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+
 const WORDS_PER_SECOND = 18;
 
 export default function SlopText({
@@ -56,12 +100,17 @@ export default function SlopText({
   found, onFoundChange,
   onWrongClick,
   radarActive = false, doublePoints = false,
+  brainrot = false,
   onTypingComplete,
+  onCorruptionChange,
 }) {
   const tokens = useRef(null);
   const [revealedCount, setRevealedCount] = useState(0);
   const [wrongIds, setWrongIds] = useState(new Set());
+  const [corruptions, setCorruptions] = useState(new Map()); // tokenId → corrupted display text
   const intervalRef = useRef(null);
+  const brainrotTimerRef = useRef(null);
+  const revealedCountRef = useRef(0);
 
   // Build tokens once per round
   if (!tokens.current) {
@@ -72,6 +121,8 @@ export default function SlopText({
   useEffect(() => {
     setRevealedCount(0);
     setWrongIds(new Set());
+    setCorruptions(new Map());
+    revealedCountRef.current = 0;
     tokens.current = tokenize(round.text, round.slopPhrases);
 
     const totalTokens = tokens.current.length;
@@ -82,7 +133,9 @@ export default function SlopText({
 
     intervalRef.current = setInterval(() => {
       count += Math.ceil(totalTokens / (totalWords / 2));
-      setRevealedCount(Math.min(count, totalTokens));
+      const next = Math.min(count, totalTokens);
+      setRevealedCount(next);
+      revealedCountRef.current = next;
       if (count >= totalTokens) {
         clearInterval(intervalRef.current);
         onTypingComplete?.();
@@ -92,6 +145,35 @@ export default function SlopText({
     return () => clearInterval(intervalRef.current);
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [round.id]);
+
+  // Brainrot background corruption timer — randomly corrupts a token every 4-8s
+  useEffect(() => {
+    if (!brainrot) return;
+
+    const scheduleNext = () => {
+      const delay = 4000 + Math.random() * 4000;
+      brainrotTimerRef.current = setTimeout(() => {
+        const visible = tokens.current.slice(0, revealedCountRef.current);
+        const candidates = visible.filter(t => !t.isSpace && t.text.length > 2);
+        if (candidates.length > 0) {
+          const target = candidates[Math.floor(Math.random() * candidates.length)];
+          setCorruptions(prev => {
+            const next = new Map(prev);
+            const current = next.get(target.id) ?? target.text;
+            const corrupted = corruptToken(current);
+            next.set(target.id, corrupted);
+            onCorruptionChange?.(next.size);
+            return next;
+          });
+        }
+        scheduleNext();
+      }, delay);
+    };
+
+    scheduleNext();
+    return () => { if (brainrotTimerRef.current) clearTimeout(brainrotTimerRef.current); };
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [brainrot]);
 
   // Correct click — slop phrase found
   const handleSlopClick = useCallback((e, token) => {
@@ -133,9 +215,28 @@ export default function SlopText({
       setWrongIds(prev => { const n = new Set(prev); n.delete(token.id); return n; });
     }, 500);
 
+    // Brainrot: corrupt 2-3 random visible tokens on wrong click
+    if (brainrot) {
+      const visible = tokens.current.slice(0, revealedCountRef.current);
+      const candidates = visible.filter(t => !t.isSpace && t.text.length > 2 && t.id !== token.id);
+      const count = 2 + Math.floor(Math.random() * 2); // 2 or 3
+      const victims = [...candidates].sort(() => Math.random() - 0.5).slice(0, count);
+      if (victims.length > 0) {
+        setCorruptions(prev => {
+          const next = new Map(prev);
+          for (const v of victims) {
+            const current = next.get(v.id) ?? v.text;
+            next.set(v.id, corruptToken(current));
+          }
+          onCorruptionChange?.(next.size);
+          return next;
+        });
+      }
+    }
+
     playMiss();
     onWrongClick?.(x, y);
-  }, [onWrongClick]);
+  }, [onWrongClick, brainrot]);
 
   return (
     <div style={{
@@ -153,6 +254,9 @@ export default function SlopText({
           return <span key={token.id} style={{ opacity: 0 }}>{token.text}</span>;
         }
 
+        const isCorrupted = brainrot && corruptions.has(token.id);
+        const displayText = isCorrupted ? corruptions.get(token.id) : token.text;
+
         if (token.isSlop) {
           const isFound = found.has(token.id);
           const showRadar = radarActive && !isFound;
@@ -163,6 +267,7 @@ export default function SlopText({
               className={`slop-token${isFound ? (isInverse ? ' human-found' : ' found') : ' active'}`}
               onClick={!isFound ? (e) => handleSlopClick(e, token) : undefined}
               style={{
+                ...(isCorrupted && !isFound ? { color: '#fb923c', transition: 'color 0.3s' } : {}),
                 ...(showRadar ? {
                   background: 'rgba(56,189,248,0.3)',
                   borderBottom: '2px solid #38bdf8',
@@ -174,7 +279,7 @@ export default function SlopText({
                 } : {}),
               }}
             >
-              {token.text}
+              {displayText}
             </span>
           );
         }
@@ -189,9 +294,10 @@ export default function SlopText({
           <span
             key={token.id}
             className={`normal-token${isWrong ? ' wrong-click' : ''}`}
+            style={isCorrupted ? { color: '#fb923c', transition: 'color 0.3s' } : undefined}
             onClick={(e) => handleNormalClick(e, token)}
           >
-            {token.text}
+            {displayText}
           </span>
         );
       })}
