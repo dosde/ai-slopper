@@ -39,7 +39,7 @@ const getWrongClickShame = (count, lang = 'en') => {
   return { msg: fns[idx](count), color };
 };
 
-export default function RoundSummary({ round, roundScore, foundIds, foundCombos = {}, totalScore, isLastRound, wrongClicks = 0, timeLeft = 0, lang = 'en', onNext }) {
+export default function RoundSummary({ round, roundScore, foundIds, foundCombos = {}, totalScore, isLastRound, wrongClicks = 0, timeLeft = 0, lang = 'en', musicEnabled = true, onNext }) {
   const [show, setShow] = useState(false);
   const [roastText, setRoastText] = useState('');
   const [roastDone, setRoastDone] = useState(false);
@@ -47,8 +47,9 @@ export default function RoundSummary({ round, roundScore, foundIds, foundCombos 
   const roastTimerRef = useRef(null);
 
   useEffect(() => {
-    startSummaryMusic();
+    if (musicEnabled) startSummaryMusic();
     return () => stopSummaryMusic();
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const foundCount = foundIds.size;
@@ -299,15 +300,21 @@ export default function RoundSummary({ round, roundScore, foundIds, foundCombos 
             </div>
           )}
 
-          {/* Missed phrases */}
-          {missedTokens.map((token, i) => (
-            <div key={i} style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '5px 0', borderBottom: '1px solid rgba(124,58,237,0.06)' }}>
-              <div style={{ fontSize: '0.65rem', color: '#334155', flex: 1, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap', marginRight: '8px' }}>
-                ✗ <span style={{ fontStyle: 'italic' }}>"{token.phraseData.text}"</span>
+          {/* Missed phrases — show penalty when player finished early (timeLeft > 0) */}
+          {missedTokens.map((token, i) => {
+            const penalty = token.phraseData?.score ?? 80;
+            const showPenalty = timeLeft > 0;
+            return (
+              <div key={i} style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '5px 0', borderBottom: '1px solid rgba(124,58,237,0.06)' }}>
+                <div style={{ fontSize: '0.65rem', color: showPenalty ? '#7f8ea3' : '#334155', flex: 1, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap', marginRight: '8px' }}>
+                  ✗ <span style={{ fontStyle: 'italic' }}>"{token.phraseData.text}"</span>
+                </div>
+                <div style={{ fontSize: '0.65rem', color: showPenalty ? '#ef4444' : '#334155', fontFamily: showPenalty ? "'Orbitron', sans-serif" : undefined, flexShrink: 0 }}>
+                  {showPenalty ? `-${penalty}` : 'missed'}
+                </div>
               </div>
-              <div style={{ fontSize: '0.65rem', color: '#334155', flexShrink: 0 }}>missed</div>
-            </div>
-          ))}
+            );
+          })}
 
           <div style={{ fontSize: '0.56rem', color: '#1e293b', fontStyle: 'italic', marginTop: '8px', textAlign: 'center' }}>
             Scores include combo multiplier (up to 5×) applied at time of click

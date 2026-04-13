@@ -56,6 +56,7 @@ export default function App() {
   const [lastWrongClicks, setLastWrongClicks] = useState(0);
   const [lastTimeLeft, setLastTimeLeft] = useState(0);
   const [difficulty, setDifficulty] = useState('normal');
+  const [musicEnabled, setMusicEnabled] = useState(true);
   const [lang, setLang] = useState('en');
   const [newAchievements, setNewAchievements] = useState([]);
 
@@ -81,9 +82,10 @@ export default function App() {
     completedChaos: false,
   });
 
-  const handleStart = useCallback(({ difficulty: diff, mode, musicEnabled, lang: l = 'en' }) => {
+  const handleStart = useCallback(({ difficulty: diff, mode, musicEnabled: mu, lang: l = 'en' }) => {
     const selectedRounds = mode === 'daily' ? getDailyRounds() : selectRounds(null, l);
     setLang(l);
+    setMusicEnabled(mu);
     setRounds(selectedRounds);
     setRoundIdx(0);
     setTotalScore(0);
@@ -231,6 +233,7 @@ export default function App() {
             totalScore={totalScore}
             difficulty={difficulty}
             lang={lang}
+            musicEnabled={musicEnabled}
             onRoundEnd={handleRoundEnd}
             onPowerUpUsed={handlePowerUpUsed}
             usedPowerUps={usedPowerUps}
@@ -248,6 +251,7 @@ export default function App() {
             wrongClicks={lastWrongClicks}
             timeLeft={lastTimeLeft}
             lang={lang}
+            musicEnabled={musicEnabled}
             onNext={handleNextRound}
           />
         )}

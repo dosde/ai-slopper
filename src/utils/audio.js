@@ -816,10 +816,14 @@ export const startTitleMusic = () => {
   isTitleMusicPlaying = true;
   const ctx = getCtx();
   if (ctx.state === 'suspended') ctx.resume();
-  // Fade in (gracefully handles the case where we just faded out)
-  const tg = getTitleGain();
-  tg.gain.cancelScheduledValues(ctx.currentTime);
-  tg.gain.setValueAtTime(tg.gain.value, ctx.currentTime);
+  // Disconnect the old gain node so any still-running oscillators from the
+  // previous session play into silence instead of bleeding into the new one.
+  if (titleGain) {
+    titleGain.disconnect();
+    titleGain = null;
+  }
+  const tg = getTitleGain(); // fresh gain node connected to masterGain
+  tg.gain.setValueAtTime(0.0001, ctx.currentTime);
   tg.gain.linearRampToValueAtTime(1.0, ctx.currentTime + 0.15);
   if (currentMusicStyle === 'pleasant') {
     restartTitleChillLoop();
@@ -841,8 +845,10 @@ export const stopTitleMusic = () => {
 };
 
 export const startBossMusic = () => {
-  if (!isMusicPlaying) return; // respect music-off
-  // Stop regular music, start boss
+  // Stop regular music (if any) and start boss music.
+  // Callers are responsible for checking musicEnabled — no guard here so that
+  // boss music works correctly on round 2+ (when isMusicPlaying is already false
+  // because the previous round's cleanup called stopMusic).
   isMusicPlaying = false;
   if (musicInterval) { clearInterval(musicInterval); musicInterval = null; }
   isBossMusicPlaying = true;

@@ -2,7 +2,7 @@ import { useState, useEffect, useCallback, useRef } from 'react';
 import SlopText, { getSlopStats } from './SlopText';
 import PowerUps from './PowerUps';
 import { PopupLayer, usePopups } from './ScorePopup';
-import { playRoundComplete, playMiss, setMusicTempo, startBossMusic, startInverseMusic, stopInverseMusic, stopMusic } from '../utils/audio';
+import { playRoundComplete, playMiss, setMusicTempo, startMusic, startBossMusic, startInverseMusic, stopInverseMusic, stopMusic } from '../utils/audio';
 import { t } from '../i18n/index';
 
 const ROUND_TIME_NORMAL = 45;
@@ -96,7 +96,7 @@ function SlopMeter({ found, total }) {
 
 const ROUND_TIME_BOSS = 60;
 
-export default function GameScreen({ round, roundIdx, totalRounds, totalScore, onRoundEnd, difficulty = 'normal', lang = 'en', onPowerUpUsed, usedPowerUps = [] }) {
+export default function GameScreen({ round, roundIdx, totalRounds, totalScore, onRoundEnd, difficulty = 'normal', lang = 'en', musicEnabled = true, onPowerUpUsed, usedPowerUps = [] }) {
   const isBrainrot = difficulty === 'brainrot';
   const isIronDetector = difficulty === 'iron';
   const isBoss = !!round.boss;
@@ -122,7 +122,8 @@ export default function GameScreen({ round, roundIdx, totalRounds, totalScore, o
   const powerUpTimerRef = useRef(null);
 
   const { popups, addPopup } = usePopups();
-  const comboDecayRef = useRef(null);
+  const comboDecayDelayRef = useRef(null);   // setTimeout ID for the 2s idle delay
+  const comboDecayIntervalRef = useRef(null); // setInterval ID for the per-tick decay
   const foundCombosRef = useRef({});
   const ironGameOverRef = useRef(false);
   const allFoundRef = useRef(false);
@@ -140,10 +141,14 @@ export default function GameScreen({ round, roundIdx, totalRounds, totalScore, o
   // Keep liveRef in sync every render so effects always have fresh values
   liveRef.current = { roundScore, foundIds, timeLeft, wrongClickCount, onRoundEnd, addPopup };
 
-  // Start boss music when boss round mounts
+  // Start music when round mounts. Boss/inverse use their own tracks; regular
+  // rounds restart the game music (which was stopped by the previous round's cleanup).
   useEffect(() => {
-    if (isBoss) startBossMusic();
-    else if (isInverse) startInverseMusic();
+    if (musicEnabled) {
+      if (isBoss) startBossMusic();
+      else if (isInverse) startInverseMusic();
+      else startMusic();
+    }
     return () => { stopMusic(); stopInverseMusic(); };
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
@@ -157,7 +162,11 @@ export default function GameScreen({ round, roundIdx, totalRounds, totalScore, o
     }
     if (timeLeft <= 0) {
       setTimerRunning(false);
-      setTimeout(() => onRoundEnd(roundScore, foundIds, 0, wrongClickCount, false, foundCombosRef.current), 600);
+      // Use liveRef so any click registered in the 600ms gap is included in the final score.
+      setTimeout(() => {
+        const { roundScore: rs, foundIds: fi, wrongClickCount: wc, onRoundEnd: cb } = liveRef.current;
+        cb(rs, fi, 0, wc, false, foundCombosRef.current);
+      }, 600);
       return;
     }
     const t = setTimeout(() => {
@@ -211,14 +220,19 @@ export default function GameScreen({ round, roundIdx, totalRounds, totalScore, o
   const handleCombo = useCallback((newCombo) => {
     setCombo(newCombo);
     setComboDecaying(false);
-    if (comboDecayRef.current) clearInterval(comboDecayRef.current);
+    // Cancel any pending delay or in-progress decay
+    clearTimeout(comboDecayDelayRef.current);
+    clearInterval(comboDecayIntervalRef.current);
+    comboDecayDelayRef.current = null;
+    comboDecayIntervalRef.current = null;
     // Start decay: after 2s of inactivity, reduce combo by 1 every 1.2s
-    const startDelay = setTimeout(() => {
+    comboDecayDelayRef.current = setTimeout(() => {
       setComboDecaying(true);
-      comboDecayRef.current = setInterval(() => {
+      comboDecayIntervalRef.current = setInterval(() => {
         setCombo(prev => {
           if (prev <= 1) {
-            clearInterval(comboDecayRef.current);
+            clearInterval(comboDecayIntervalRef.current);
+            comboDecayIntervalRef.current = null;
             setComboDecaying(false);
             return 0;
           }
@@ -226,8 +240,6 @@ export default function GameScreen({ round, roundIdx, totalRounds, totalScore, o
         });
       }, 1200);
     }, 2000);
-    // Store the outer timeout so we can cancel it too
-    comboDecayRef.current = startDelay;
   }, []);
 
   const isDoubleActive = doublePoints || isInverse;
@@ -252,7 +264,10 @@ export default function GameScreen({ round, roundIdx, totalRounds, totalScore, o
     setCombo(0);
     setComboDecaying(false);
     setWrongClickCount(prev => prev + 1);
-    if (comboDecayRef.current) clearInterval(comboDecayRef.current);
+    clearTimeout(comboDecayDelayRef.current);
+    clearInterval(comboDecayIntervalRef.current);
+    comboDecayDelayRef.current = null;
+    comboDecayIntervalRef.current = null;
     const pool = isInverse ? INVERSE_MISS_TAUNTS : MISS_TAUNTS;
     const taunt = pool[Math.floor(Math.random() * pool.length)];
     addPopup(x, y, WRONG_PENALTY, taunt, false, true);
