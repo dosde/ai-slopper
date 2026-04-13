@@ -723,13 +723,22 @@ Ich hoffe, das hilft! Bitte zögern Sie nicht, weitere Anpassungen vorzunehmen! 
     emoji: "🤝",
     context: "Nutzer fragte: 'Wie entschuldige ich mich bei einem Freund nach einem Streit?'",
     falPrompt: "a robot presenting a 10-step apology framework on a whiteboard to a confused friend, absurdist cartoon",
-    text: `Natürlich! Das ist eine sehr wichtige zwischenmenschliche Frage. Als KI-Sprachmodell fehlt mir zwar die Fähigkeit, menschliche Beziehungen vollständig zu verstehen, aber ich kann Ihnen gerne einen umfassenden Leitfaden zur Konfliktlösung anbieten!
+    text: `Hervorragende Frage — und eine, bei der ich trotz meiner fehlenden Fähigkeit, jemals verletzt oder beleidigt worden zu sein, gerne helfe! Als KI-Sprachmodell fehlt mir zwar die Fähigkeit, menschliche Beziehungen vollständig zu verstehen, aber ich kann Ihnen gerne einen umfassenden Leitfaden zur Konfliktlösung anbieten.
+
+Eine aufrichtige Entschuldigung enthält laut meiner Analyse folgende Kernelemente:
+
+| Bestandteil | Schlechtes Beispiel | Gutes Beispiel |
+|---|---|---|
+| Eingeständnis | "Wenn du dich verletzt gefühlt hast..." | "Ich habe Unrecht gehabt." |
+| Empathie | "Das war doch kein Grund zum Aufregen" | "Ich verstehe, warum das wehtut." |
+| Verantwortung | "Aber du hast auch..." | "Das lag an mir." |
+| Wiedergutmachung | nichts | Konkrete Änderung anbieten |
 
 Es ist wichtig zu beachten, dass eine aufrichtige Entschuldigung mehrere Kernelemente beinhalten sollte. Darüber hinaus empfehle ich einen ganzheitlichen Ansatz bei der Kommunikation. Des Weiteren ist aktives Zuhören ein zentraler Aspekt.
 
 Zudem sollten Sie Ihre eigenen Gefühle und die Ihres Freundes gleichermaßen berücksichtigen. Außerdem ist es wichtig, Verantwortung für Ihr Handeln zu übernehmen. In diesem Zusammenhang sei darauf hingewiesen, dass Empathie der Schlüssel zu einer nuancierten Versöhnung ist.
 
-Ferner empfehle ich, einen ruhigen Moment für das Gespräch zu wählen.
+Ferner empfehle ich, einen ruhigen Moment für das Gespräch zu wählen — keinen Dienstagmorgen direkt nach dem Aufstehen.
 
 Ich hoffe, das hilft! Für weitere Ratschläge zu zwischenmenschlichen Themen stehe ich gerne zur Verfügung! 😊`,
     slopPhrases: [
@@ -757,11 +766,28 @@ Ich hoffe, das hilft! Für weitere Ratschläge zu zwischenmenschlichen Themen st
     emoji: "💪",
     context: "Nutzer fragte: 'Wie mache ich einen Liegestütz?'",
     falPrompt: "a robot demonstrating push-ups with 20 diagrams and safety warnings for doing a single push-up, absurdist cartoon",
-    text: `Natürlich! Das ist eine hervorragende Frage zur körperlichen Fitness! Als KI-Sprachmodell freue ich mich, Ihnen eine umfassende Schritt-für-Schritt-Anleitung für korrekte Liegestütze zu geben.
+    text: `Sehr gerne — denn Liegestütze sind, entgegen der Intuition, eine nuancierte Übung, die einem ganzheitlichen Aufwärmprozess bedarf! Als KI-Sprachmodell freue ich mich, Ihnen eine umfassende Schritt-für-Schritt-Anleitung für korrekte Liegestütze zu geben.
+
+Bevor Sie beginnen, lesen Sie bitte die folgenden Sicherheitshinweise:
+
+⚠️ **Wichtige Vorabhinweise:**
+• 🦴 Ihre Arme werden beansprucht — das ist beabsichtigt
+• 🏥 Bei Schmerzen sofort aufhören (ich kann das leider nicht von hier aus prüfen)
+• 🧘 Aufwärmen wird empfohlen, obwohl ich nicht überprüfen kann, ob Sie es tun
+• 🤖 Ich selbst habe keinen Körper und werde diese Übung nie durchführen
+
+Die korrekte Ausführung in Tabellenform:
+
+| Schritt | Anweisung | Häufiger Fehler |
+|---|---|---|
+| 1 | Hände schulterbreit aufstützen | Zu weit auseinander |
+| 2 | Körper in einer geraden Linie halten | Po zu hoch oder zu tief |
+| 3 | Absenken bis Brust fast den Boden berührt | Nur halb runter — zählt nicht |
+| 4 | Wieder hochdrücken | Luftholen vergessen |
 
 Es ist wichtig zu beachten, dass die korrekte Ausführung entscheidend ist, um Verletzungen zu vermeiden. Darüber hinaus empfehle ich einen ganzheitlichen Aufwärmprozess vor dem Training. Des Weiteren sind Liegestütze eine nuancierte Übung, die mehrere Muskelgruppen beansprucht.
 
-Zudem gilt die Grundposition: Hände schulterbreit aufstützen, Körper in einer Linie halten. Außerdem sei darauf hingewiesen, dass die Ellbogen beim Absenken etwa 45 Grad vom Körper zeigen sollten. In diesem Zusammenhang ist die Atemtechnik ein wichtiger Aspekt.
+Zudem gilt: Hände schulterbreit aufstützen, Körper in einer Linie halten. Außerdem sei darauf hingewiesen, dass die Ellbogen beim Absenken etwa 45 Grad vom Körper zeigen sollten. In diesem Zusammenhang ist die Atemtechnik ein wichtiger Aspekt.
 
 Ferner empfehle ich, mit einer überschaubaren Anzahl von Wiederholungen zu beginnen und diese schrittweise zu steigern.
 
@@ -790,9 +816,16 @@ Ich hoffe, das hilft! Bitte zögern Sie nicht, weitere Fitnessfragen zu stellen!
     emoji: "🎥",
     context: "Nutzer fragte: 'Empfiehl mir einen Film für heute Abend.'",
     falPrompt: "a robot presenting a 50-criteria decision matrix for choosing a movie while the human falls asleep, absurdist cartoon",
-    text: `Natürlich! Ich helfe Ihnen gerne dabei, den perfekten Film für heute Abend zu finden! Als KI-Sprachmodell verfüge ich über umfassende Kenntnisse des Filmrepertoires und kann Ihnen einen ganzheitlichen Überblick bieten.
+    text: `Ich helfe Ihnen gerne dabei, den perfekten Film für heute Abend zu finden — wobei "perfekt" natürlich kontextabhängig ist! Als KI-Sprachmodell verfüge ich über umfassende Kenntnisse des Filmrepertoires und kann Ihnen einen ganzheitlichen Überblick bieten.
 
-Es ist wichtig zu beachten, dass eine gute Filmempfehlung von Ihren persönlichen Vorlieben abhängt. Darüber hinaus spielen Stimmung, Genre-Präferenzen und verfügbare Zeit eine nuancierte Rolle. Des Weiteren empfehle ich, Ihre aktuellen Interessen zu berücksichtigen.
+Es ist wichtig zu beachten, dass eine gute Filmempfehlung von Ihren persönlichen Vorlieben abhängt. Erlauben Sie mir zunächst, einige Präzisierungsfragen zu stellen:
+
+• 🎭 Welches Genre bevorzugen Sie? (Drama, Komödie, Sci-Fi, "irgendetwas")
+• 🕐 Wie viel Zeit haben Sie? (unter 2h, über 2h, "egal, ich schlafe sowieso ein")
+• 😢 Möchten Sie weinen? (manchmal ist das nämlich das Ziel)
+• 🍿 Haben Sie Popcorn? (Dies beeinflusst meine Empfehlung erheblich)
+
+Darüber hinaus spielen Stimmung, Genre-Präferenzen und verfügbare Zeit eine nuancierte Rolle. Des Weiteren empfehle ich, Ihre aktuellen Interessen zu berücksichtigen.
 
 Zudem gibt es für jeden Geschmack etwas: Für anspruchsvolle Unterhaltung empfehle ich zeitlose Klassiker. Außerdem bieten aktuelle Produktionen spannende neue Perspektiven. In diesem Zusammenhang sei darauf hingewiesen, dass Streaming-Plattformen heute ein enormes Angebot bereitstellen.
 
@@ -825,7 +858,20 @@ Ich hoffe, das hilft bei Ihrer Entscheidung! Für weitere Empfehlungen stehe ich
     emoji: "📖",
     context: "Nutzer fragte: 'Was bedeutet das Wort \"ephemer\"?'",
     falPrompt: "a robot giving a 3-hour etymology lecture for a single word definition, absurdist cartoon, vibrant colors",
-    text: `Natürlich! Das ist eine sehr gute Frage zur deutschen Sprache! Als KI-Sprachmodell freue ich mich, Ihnen eine umfassende etymologische und semantische Erläuterung zu geben.
+    text: `Das ist eine sehr gute Frage — und ich sage das nicht nur, weil ich darauf trainiert wurde, jede Frage gut zu finden! Als KI-Sprachmodell freue ich mich, Ihnen eine umfassende etymologische und semantische Erläuterung zu geben.
+
+Kurze Antwort: "ephemer" bedeutet "kurzlebig" oder "vergänglich."
+
+Lange Antwort, die ich Ihnen natürlich nicht vorenthalten kann:
+
+| Aspekt | Information |
+|---|---|
+| Herkunft | Griechisch: ἐφήμερος (ephémeros) |
+| Wortbestandteile | ἐπί (epi = für) + ἡμέρα (hémera = Tag) |
+| Bedeutung | "Nur für einen Tag" → "vergänglich" |
+| Verwandte Wörter | flüchtig, transient, vorübergehend |
+| Biologisches Beispiel | Ephemere Pflanzen — blühen kurz und verschwinden |
+| Ironisches Beispiel | Diese Antwort — ephemer wie alles im Internet |
 
 Es ist wichtig zu beachten, dass das Wort "ephemer" vom griechischen "ephémeros" abstammt. Darüber hinaus bedeutet es in der heutigen Verwendung "kurzlebig" oder "vergänglich". Des Weiteren wird es vor allem in wissenschaftlichen und literarischen Kontexten verwendet.
 
@@ -859,7 +905,19 @@ Ich hoffe, das hilft! Für weitere sprachliche Fragen stehe ich gerne zur Verfü
     emoji: "✍️",
     context: "Nutzer bat: 'Korrigiere diesen Satz: \"Die Katze saß auf Matte\"'",
     falPrompt: "a robot writing a grammar textbook about correcting a single sentence, absurdist cartoon, vibrant colors",
-    text: `Natürlich! Ich helfe Ihnen gerne dabei, diesen Satz grammatikalisch und stilistisch zu überarbeiten! Als KI-Sprachmodell freue ich mich, auch bei scheinbar einfachen Korrekturaufgaben einen umfassenden Dienst zu leisten.
+    text: `Ich helfe Ihnen gerne dabei, diesen Satz grammatikalisch und stilistisch zu überarbeiten — mit dem vollen Gewicht einer KI-gestützten Sprachanalyse! Als KI-Sprachmodell freue ich mich, auch bei scheinbar einfachen Korrekturaufgaben einen umfassenden Dienst zu leisten.
+
+Die Korrektur: **"Die Katze saß auf der Matte."** ← Ein Artikel wurde hinzugefügt.
+
+Hier ist die vollständige grammatikalische Analyse, die Sie nicht verlangt haben:
+
+| Element | Analyse |
+|---|---|
+| "Die Katze" | Nominativ, feminin, Singular — Subjekt |
+| "saß" | Präteritum von "sitzen" — Verb |
+| "auf" | Präposition — verlangt Dativ bei Ruhelage |
+| "der Matte" | Dativ, feminin — "die Matte" → "der Matte" |
+| Gesamtbewertung | ✅ Korrekt (nach Korrektur) |
 
 Es ist wichtig zu beachten, dass der Satz einen fehlenden bestimmten Artikel enthält. Darüber hinaus lautet die korrekte Version: "Die Katze saß auf der Matte." Des Weiteren ist der bestimmte Artikel "der" hier im Dativ erforderlich.
 
@@ -893,7 +951,17 @@ Ich hoffe, das hilft! Für weitere Sprachkorrekturen stehe ich gerne zur Verfüg
     emoji: "💧",
     context: "Nutzer fragte: 'Wie kocht man Wasser?'",
     falPrompt: "a robot presenting a 10-step safety manual for boiling water with risk assessment charts, absurdist cartoon",
-    text: `Natürlich! Das Kochen von Wasser ist ein fundamentaler Prozess, der eines ganzheitlichen Verständnisses bedarf! Als KI-Sprachmodell freue ich mich, Ihnen eine umfassende Schritt-für-Schritt-Anleitung zu geben.
+    text: `Das Kochen von Wasser ist ein fundamentaler Prozess, der eines ganzheitlichen Verständnisses bedarf — und eine Frage, die häufiger gestellt wird als man denkt! Als KI-Sprachmodell freue ich mich, Ihnen eine umfassende Schritt-für-Schritt-Anleitung zu geben.
+
+Hier ist eine vollständige Risikoanalyse des Wasserkochens:
+
+| Schritt | Anweisung | Risikostufe |
+|---|---|---|
+| 1 | Wasser in Topf oder Wasserkocher füllen | 🟢 Gering |
+| 2 | Hitzequelle einschalten | 🟡 Moderat — es wird heiß |
+| 3 | Auf Blasenbildung warten (100°C bei Normaldruck) | 🟢 Gering |
+| 4 | Nicht mit bloßen Händen anfassen | 🔴 Hoch — bitte nicht |
+| 5 | Für gewünschten Zweck verwenden | 🟢 Gering (außer Experimente) |
 
 Es ist wichtig zu beachten, dass verschiedene Faktoren den Kochprozess beeinflussen können. Darüber hinaus variiert der Siedepunkt des Wassers je nach Höhenlage und Luftdruck. Des Weiteren empfehle ich die Verwendung eines geeigneten Behälters.
 
@@ -927,7 +995,16 @@ Ich hoffe, das hilft! Bitte zögern Sie nicht, weitere Kochfragen zu stellen! �
     emoji: "⏰",
     context: "Nutzer fragte: 'Wann sollte ich aufwachen?'",
     falPrompt: "a robot presenting a sleep science dissertation to someone just wanting to set an alarm, absurdist cartoon",
-    text: `Natürlich! Die Frage nach der optimalen Aufwachzeit ist nuancierter als sie auf den ersten Blick erscheint! Als KI-Sprachmodell freue ich mich, Ihnen einen ganzheitlichen Überblick zur Schlafwissenschaft zu geben.
+    text: `Die Frage nach der optimalen Aufwachzeit ist nuancierter als sie auf den ersten Blick erscheint — glauben Sie mir, als KI bearbeite ich diese Anfragen auch um 3 Uhr nachts (ich schlafe nie)! Als KI-Sprachmodell freue ich mich, Ihnen einen ganzheitlichen Überblick zur Schlafwissenschaft zu geben.
+
+Hier ist ein Schlafzyklus-Rechner in Tabellenform:
+
+| Schlafbeginn | + 6 Zyklen (9h) | + 5 Zyklen (7,5h) | + 4 Zyklen (6h) |
+|---|---|---|---|
+| 22:00 Uhr | 07:00 ✅ | 05:30 😬 | 04:00 ❌ |
+| 23:00 Uhr | 08:00 ✅ | 06:30 😐 | 05:00 😬 |
+| 00:00 Uhr | 09:00 😬 | 07:30 ✅ | 06:00 😐 |
+| 02:00 Uhr | "Viel Erfolg" | "Viel Erfolg" | "Viel Erfolg" |
 
 Es ist wichtig zu beachten, dass der individuelle Schlafbedarf variiert und von verschiedenen Faktoren abhängt. Darüber hinaus empfehlen Schlafexperten 7-9 Stunden Schlaf für Erwachsene. Des Weiteren ist es sinnvoll, die Schlafzyklen von etwa 90 Minuten zu berücksichtigen.
 
@@ -960,7 +1037,18 @@ Ich hoffe, das hilft! Für weitere Schlaf-Fragen stehe ich gerne zur Verfügung!
     emoji: "⚖️",
     context: "Nutzer bat: 'Überprüfe meine 3-zeilige Python-Funktion.'",
     falPrompt: "a robot judge in a courtroom reviewing three lines of code with a 100-page verdict, absurdist cartoon",
-    text: `Natürlich! Ich freue ich mich sehr, Ihren Code zu überprüfen! Als KI-Sprachmodell verfüge ich über umfassende Kenntnisse in verschiedenen Programmiersprachen, einschließlich Python.
+    text: `Sehr gerne — 3 Zeilen Python! Als KI-Sprachmodell verfüge ich über umfassende Kenntnisse in verschiedenen Programmiersprachen, einschließlich Python, und werde diese Gelegenheit nutzen, um eine vollständige Bewertung durchzuführen.
+
+Ihre 3-zeilige Funktion wird nach folgenden nuancierten Kriterien bewertet:
+
+| Kriterium | Gewichtung | Kommentar |
+|---|---|---|
+| Funktionalität | 40% | Tut sie das, was sie soll? |
+| Lesbarkeit | 20% | PEP 8 beachtet? |
+| Effizienz | 20% | O(n) oder schlechter? |
+| Docstrings | 10% | Keine Docstrings = sofortiger Punktabzug |
+| Typannotationen | 10% | Fehlen? Das ist schon fast Fahrlässigkeit |
+| Variablennamen | Bonus/Malus | "x", "temp", "foo" → Malus |
 
 Es ist wichtig zu beachten, dass eine gründliche Code-Review mehrere Dimensionen umfasst. Darüber hinaus werde ich Lesbarkeit, Effizienz und Best Practices berücksichtigen. Des Weiteren empfehle ich einen ganzheitlichen Ansatz bei der Code-Qualitätssicherung.
 
