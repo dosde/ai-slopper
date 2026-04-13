@@ -78,8 +78,8 @@ export const saveScoreGlobal = async (score, initials, rank) => {
   try {
     const url = SUBMIT_URL || API_URL;
     const headers = SUBMIT_URL
-      ? apiHeaders()   // edge function also needs anon key in Authorization header
-      : apiHeaders();  // direct REST — anon key required
+      ? { 'Content-Type': 'application/json' }  // edge function — no anon key needed
+      : apiHeaders();                            // direct REST — anon key required
     await fetch(url, { method: 'POST', headers, body: JSON.stringify(payload) });
   } catch { /* non-fatal */ }
   return localRank;
