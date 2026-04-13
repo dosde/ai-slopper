@@ -199,7 +199,7 @@ export default function ResultScreen({ totalScore, roundScores, newAchievements 
       </div>
 
       {/* Save score */}
-      {!saved ? (
+      {totalScore > 0 && (!saved ? (
         <div className="card" style={{ padding: '14px', maxWidth: '380px', width: '100%', animation: show ? 'slide-in-up 0.5s ease 0.4s both' : 'none' }}>
           <div style={{ fontSize: '0.62rem', color: '#fbbf24', fontFamily: "'Orbitron', sans-serif", marginBottom: '10px' }}>
             {isGlobalEnabled() ? '🌍 SAVE TO GLOBAL LEADERBOARD' : '🏆 SAVE YOUR SCORE'}
@@ -255,7 +255,7 @@ export default function ResultScreen({ totalScore, roundScores, newAchievements 
             SAVED! RANK #{savedRank} ON LEADERBOARD
           </div>
         </div>
-      )}
+      ))}
 
       {/* Leaderboard toggle */}
       <div style={{ maxWidth: '380px', width: '100%' }}>
