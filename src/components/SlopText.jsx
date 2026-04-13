@@ -199,7 +199,7 @@ export default function SlopText({
     updateSlopDict(token.phraseData.text, token.phraseData.type);
     playSlopDetected();
     if (newCombo > 1) playCombo(newCombo);
-    onScore(score, x, y, commentary, doublePoints);
+    onScore(score, x, y, commentary, doublePoints, multiplier);
     onCombo(newCombo);
   }, [found, combo, onScore, onCombo, onFoundChange, doublePoints]);
 

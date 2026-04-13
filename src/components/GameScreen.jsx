@@ -192,10 +192,10 @@ export default function GameScreen({ round, roundIdx, totalRounds, totalScore, o
     setMusicTempo(isUrgent ? 1.4 : 1.0);
   }, [isUrgent]);
 
-  const handleScore = useCallback((score, x, y, commentary, isDoubled) => {
+  const handleScore = useCallback((score, x, y, commentary, isDoubled, combo) => {
     setRoundScore(prev => prev + score);
     if (!isIronDetector) setTimeLeft(prev => Math.min(prev + 1, ROUND_TIME + 60));
-    addPopup(x, y, score, commentary, isDoubled);
+    addPopup(x, y, score, commentary, isDoubled, false, combo);
   }, [addPopup, ROUND_TIME, isIronDetector]);
 
   const handleCombo = useCallback((newCombo) => {

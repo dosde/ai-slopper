@@ -116,13 +116,43 @@ export default function ResultScreen({ totalScore, roundScores, newAchievements 
       <div style={{
         fontFamily: "'Press Start 2P', monospace",
         fontSize: 'clamp(1.8rem, 7vw, 3rem)',
-        color: '#fbbf24',
-        textShadow: '0 0 20px #fbbf24, 0 0 40px #fbbf24',
+        color: totalScore < 0 ? '#ef4444' : '#fbbf24',
+        textShadow: totalScore < 0 ? '0 0 20px #ef4444, 0 0 40px #ef4444' : '0 0 20px #fbbf24, 0 0 40px #fbbf24',
         animation: show ? 'bounce-in 0.5s ease 0.2s both' : 'none',
       }}>
         {totalScore.toLocaleString()}
       </div>
       <div style={{ fontSize: '0.65rem', color: '#94a3b8', fontFamily: "'Orbitron', sans-serif", marginTop: '-8px' }}>TOTAL CRINGE POINTS</div>
+
+      {/* Negative score easter egg */}
+      {totalScore < 0 && (
+        <div className="card" style={{
+          padding: '18px 20px',
+          maxWidth: '380px',
+          width: '100%',
+          border: '2px solid rgba(239,68,68,0.5)',
+          background: 'rgba(239,68,68,0.07)',
+          textAlign: 'center',
+          animation: show ? 'slide-in-up 0.5s ease 0.25s both' : 'none',
+        }}>
+          <div style={{ fontSize: '2.5rem', marginBottom: '8px' }}>🤖</div>
+          <div style={{
+            fontFamily: "'Orbitron', sans-serif",
+            fontWeight: 900,
+            fontSize: '1rem',
+            color: '#ef4444',
+            marginBottom: '8px',
+            letterSpacing: '1px',
+          }}>THE SLOP HAS WON</div>
+          <div style={{ fontSize: '0.72rem', color: '#fca5a5', lineHeight: 1.6 }}>
+            The AI's buzzwords have overwhelmed your defenses.<br />
+            You are now officially part of the slop.
+          </div>
+          <div style={{ fontSize: '0.65rem', color: '#94a3b8', marginTop: '10px', fontStyle: 'italic' }}>
+            "Certainly! As an AI language model, I helped you lose."
+          </div>
+        </div>
+      )}
 
       {/* Iron Detector summary */}
       {difficulty === 'iron' && (
