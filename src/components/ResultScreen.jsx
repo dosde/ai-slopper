@@ -3,7 +3,7 @@ import { getRoast } from '../data/slopData';
 import { playGameOver, stopMusic } from '../utils/audio';
 import FalImage from './FalImage';
 import Leaderboard from './Leaderboard';
-import { saveScore, getLeaderboard, ACHIEVEMENTS, getUnlockedAchievements } from '../utils/storage';
+import { saveScoreGlobal, saveDailyScore, getLeaderboard, ACHIEVEMENTS, getUnlockedAchievements, isGlobalEnabled } from '../utils/storage';
 
 const SHARE_MESSAGES = [
   "I scored {score} pts destroying AI slop on AI Slop Royale! Can you beat me? 🤖💥",
@@ -11,13 +11,14 @@ const SHARE_MESSAGES = [
   "I spotted {score} pts worth of AI slop. 'Certainly!' is defeated. 🎯",
 ];
 
-export default function ResultScreen({ totalScore, roundScores, newAchievements = [], difficulty, onRestart }) {
+export default function ResultScreen({ totalScore, roundScores, newAchievements = [], difficulty, totalRunTime = 0, ironFailedRound = null, totalRounds = 5, isDaily = false, onRestart }) {
   const [show, setShow] = useState(false);
   const [particles, setParticles] = useState([]);
   const [initials, setInitials] = useState('');
   const [saved, setSaved] = useState(false);
   const [savedRank, setSavedRank] = useState(null);
   const [showLeaderboard, setShowLeaderboard] = useState(false);
+  const [leaderboardMode, setLeaderboardMode] = useState(isDaily ? 'daily' : 'all');
   const inputRef = useRef(null);
   const roast = getRoast(totalScore);
   const unlockedIds = getUnlockedAchievements();
@@ -37,9 +38,10 @@ export default function ResultScreen({ totalScore, roundScores, newAchievements 
     setParticles(newParticles);
   }, []);
 
-  const handleSave = () => {
+  const handleSave = async () => {
     if (initials.trim().length === 0) return;
-    const rank = saveScore(totalScore, initials.trim(), roast.title);
+    const rank = await saveScoreGlobal(totalScore, initials.trim(), roast.title);
+    saveDailyScore(totalScore, initials.trim(), roast.title);
     setSaved(true);
     setSavedRank(rank);
     setShowLeaderboard(true);
@@ -59,7 +61,7 @@ export default function ResultScreen({ totalScore, roundScores, newAchievements 
   const isHighScore = getLeaderboard().length === 0 || totalScore > (getLeaderboard()[0]?.score ?? 0);
 
   return (
-    <div style={{
+    <div className="result-screen-root" style={{
       flex: 1,
       display: 'flex',
       flexDirection: 'column',
@@ -90,13 +92,15 @@ export default function ResultScreen({ totalScore, roundScores, newAchievements 
         @keyframes bounce-in{0%{transform:scale(0);opacity:0}60%{transform:scale(1.2)}100%{transform:scale(1);opacity:1}}
         @keyframes slide-in-up{from{transform:translateY(20px);opacity:0}to{transform:translateY(0);opacity:1}}
         @keyframes glow-pulse{0%,100%{text-shadow:0 0 20px #fbbf24,0 0 40px #fbbf24}50%{text-shadow:0 0 40px #fbbf24,0 0 80px #f59e0b}}
+        .result-screen-root > * { flex-shrink: 0; }
       `}</style>
 
       {/* Game Over + rank */}
       <div style={{ textAlign: 'center', animation: show ? 'bounce-in 0.6s ease' : 'none', marginTop: '4px' }}>
         <div style={{ fontFamily: "'Press Start 2P', monospace", fontSize: 'clamp(0.7rem, 2.5vw, 0.9rem)', color: '#10b981', textShadow: '0 0 15px #10b981', marginBottom: '8px' }}>
-          GAME OVER!
+          {difficulty === 'iron' && ironFailedRound ? 'ELIMINATED!' : 'GAME OVER!'}
           {difficulty === 'chaos' && <span style={{ color: '#ef4444', marginLeft: 10 }}>⚡ CHAOS</span>}
+          {difficulty === 'iron' && <span style={{ color: '#ec4899', marginLeft: 10 }}>☠ IRON</span>}
         </div>
         <div style={{ fontSize: '2.5rem' }}>{roast.emoji}</div>
         <div style={{
@@ -121,6 +125,49 @@ export default function ResultScreen({ totalScore, roundScores, newAchievements 
         {totalScore.toLocaleString()}
       </div>
       <div style={{ fontSize: '0.65rem', color: '#94a3b8', fontFamily: "'Orbitron', sans-serif", marginTop: '-8px' }}>TOTAL CRINGE POINTS</div>
+
+      {/* Iron Detector summary */}
+      {difficulty === 'iron' && (
+        <div className="card" style={{
+          padding: '14px 16px',
+          maxWidth: '380px',
+          width: '100%',
+          animation: show ? 'slide-in-up 0.5s ease 0.25s both' : 'none',
+          border: ironFailedRound ? '1px solid rgba(236,72,153,0.4)' : '1px solid rgba(16,185,129,0.4)',
+        }}>
+          {ironFailedRound ? (
+            <>
+              <div style={{ fontSize: '0.62rem', color: '#ec4899', fontFamily: "'Orbitron', sans-serif", marginBottom: '8px' }}>
+                ☠ IRON DETECTOR STATUS
+              </div>
+              <div style={{ fontSize: '0.85rem', color: '#ec4899', fontWeight: 700, textAlign: 'center', marginBottom: '6px', fontFamily: "'Orbitron', sans-serif" }}>
+                ELIMINATED ON ROUND {ironFailedRound} / {totalRounds}
+              </div>
+              <div style={{ fontSize: '0.65rem', color: '#94a3b8', textAlign: 'center' }}>
+                One wrong click ended the run.
+              </div>
+            </>
+          ) : (
+            <>
+              <div style={{ fontSize: '0.62rem', color: '#10b981', fontFamily: "'Orbitron', sans-serif", marginBottom: '10px' }}>
+                ☠ IRON DETECTOR COMPLETE!
+              </div>
+              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '6px' }}>
+                <span style={{ fontSize: '0.7rem', color: '#94a3b8' }}>Total Time</span>
+                <span style={{ fontFamily: "'Orbitron', sans-serif", fontWeight: 700, fontSize: '0.9rem', color: '#ec4899' }}>
+                  {`${Math.floor(totalRunTime / 60)}:${String(totalRunTime % 60).padStart(2, '0')}`}
+                </span>
+              </div>
+              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                <span style={{ fontSize: '0.7rem', color: '#94a3b8' }}>Speed Bonus</span>
+                <span style={{ fontFamily: "'Orbitron', sans-serif", fontWeight: 700, fontSize: '0.9rem', color: '#10b981' }}>
+                  +{Math.max(0, 15000 - totalRunTime * 15).toLocaleString()}
+                </span>
+              </div>
+            </>
+          )}
+        </div>
+      )}
 
       {/* New achievements */}
       {newAchievements.length > 0 && (
@@ -157,37 +204,39 @@ export default function ResultScreen({ totalScore, roundScores, newAchievements 
       {!saved ? (
         <div className="card" style={{ padding: '14px', maxWidth: '380px', width: '100%', animation: show ? 'slide-in-up 0.5s ease 0.4s both' : 'none' }}>
           <div style={{ fontSize: '0.62rem', color: '#fbbf24', fontFamily: "'Orbitron', sans-serif", marginBottom: '10px' }}>
-            🏆 SAVE YOUR SCORE
+            {isGlobalEnabled() ? '🌍 SAVE TO GLOBAL LEADERBOARD' : '🏆 SAVE YOUR SCORE'}
           </div>
-          <div style={{ display: 'flex', gap: '8px' }}>
+          <div style={{ display: 'flex', gap: '8px', alignItems: 'stretch' }}>
             <input
               ref={inputRef}
               type="text"
-              maxLength={3}
-              placeholder="AAA"
+              maxLength={6}
+              placeholder="ABCDEF"
               value={initials}
-              onChange={e => setInitials(e.target.value.toUpperCase().replace(/[^A-Z]/g, ''))}
+              onChange={e => setInitials(e.target.value.toUpperCase().replace(/[^A-Z0-9]/g, ''))}
               onKeyDown={e => e.key === 'Enter' && handleSave()}
               style={{
                 flex: 1,
+                minWidth: 0,
                 background: 'rgba(124,58,237,0.1)',
                 border: '2px solid rgba(124,58,237,0.4)',
                 borderRadius: '10px',
-                padding: '10px 14px',
+                padding: '8px 10px',
                 color: '#f8fafc',
                 fontFamily: "'Orbitron', sans-serif",
                 fontWeight: 700,
-                fontSize: '1.1rem',
+                fontSize: '0.95rem',
                 textAlign: 'center',
-                letterSpacing: '6px',
+                letterSpacing: '2px',
                 outline: 'none',
+                boxSizing: 'border-box',
               }}
             />
             <button
               className="btn-primary"
               onClick={handleSave}
               disabled={initials.length === 0}
-              style={{ padding: '10px 18px', fontSize: '0.8rem', opacity: initials.length === 0 ? 0.5 : 1 }}
+              style={{ padding: '8px 14px', fontSize: '0.75rem', opacity: initials.length === 0 ? 0.5 : 1, flexShrink: 0 }}
             >
               SAVE
             </button>
@@ -231,7 +280,36 @@ export default function ResultScreen({ totalScore, roundScores, newAchievements 
         </button>
         {showLeaderboard && (
           <div className="card" style={{ padding: '12px' }}>
-            <Leaderboard highlight={saved ? totalScore : null} maxRows={10} />
+            {/* Daily / All-time tabs */}
+            <div style={{ display: 'flex', gap: '6px', marginBottom: '10px' }}>
+              {[['all', '🏆 ALL-TIME'], ['daily', '📅 TODAY']].map(([m, label]) => (
+                <button
+                  key={m}
+                  onClick={() => setLeaderboardMode(m)}
+                  style={{
+                    flex: 1,
+                    padding: '6px 4px',
+                    borderRadius: '8px',
+                    border: `1px solid ${leaderboardMode === m ? '#a78bfa' : 'rgba(124,58,237,0.2)'}`,
+                    background: leaderboardMode === m ? 'rgba(124,58,237,0.15)' : 'transparent',
+                    color: leaderboardMode === m ? '#a78bfa' : '#64748b',
+                    fontFamily: "'Orbitron', sans-serif",
+                    fontSize: '0.6rem',
+                    fontWeight: 700,
+                    cursor: 'pointer',
+                    transition: 'all 0.2s',
+                  }}
+                >
+                  {label}
+                </button>
+              ))}
+            </div>
+            <Leaderboard
+              key={`${leaderboardMode}-${String(saved)}`}
+              highlight={saved ? totalScore : null}
+              maxRows={10}
+              mode={leaderboardMode}
+            />
           </div>
         )}
       </div>

@@ -1,8 +1,25 @@
 // localStorage helpers for leaderboard, achievements, and stats
+// Optional global leaderboard:
+//   VITE_SCORES_URL  — Supabase REST endpoint for reads  (anon key, SELECT only)
+//   VITE_SCORES_KEY  — Supabase anon key
+//   VITE_SUBMIT_URL  — Edge Function URL for writes (validates + uses service role)
 
 const SCORES_KEY = 'slop_royale_scores_v2';
+const DAILY_SCORES_KEY = 'slop_royale_daily_v1';
 const ACHIEVEMENTS_KEY = 'slop_royale_achievements_v2';
 const STATS_KEY = 'slop_royale_stats_v2';
+const DICT_KEY = 'slop_royale_dict_v1';
+
+const getTodayKey = () => new Date().toLocaleDateString('en-CA'); // YYYY-MM-DD
+
+const API_URL    = import.meta.env.VITE_SCORES_URL;  // REST read endpoint
+const API_KEY    = import.meta.env.VITE_SCORES_KEY;  // Supabase anon key
+const SUBMIT_URL = import.meta.env.VITE_SUBMIT_URL;  // Edge Function submit endpoint
+
+const apiHeaders = () => ({
+  'Content-Type': 'application/json',
+  ...(API_KEY ? { apikey: API_KEY, Authorization: `Bearer ${API_KEY}` } : {}),
+});
 
 // ========== LEADERBOARD ==========
 
@@ -13,6 +30,21 @@ export const getLeaderboard = () => {
     return [];
   }
 };
+
+// Fetch global scores (async). Falls back to local on any error.
+export const getGlobalLeaderboard = async () => {
+  if (!API_URL) return getLeaderboard();
+  try {
+    const res = await fetch(`${API_URL}?order=score.desc&limit=20`, { headers: apiHeaders() });
+    if (!res.ok) throw new Error(res.status);
+    return await res.json();
+  } catch {
+    return getLeaderboard();
+  }
+};
+
+// Returns true if global scores are configured
+export const isGlobalEnabled = () => Boolean(API_URL);
 
 export const saveScore = (score, initials, rank) => {
   const board = getLeaderboard();
@@ -27,6 +59,64 @@ export const saveScore = (score, initials, rank) => {
   board.sort((a, b) => b.score - a.score);
   const top10 = board.slice(0, 10);
   localStorage.setItem(SCORES_KEY, JSON.stringify(top10));
+  return top10.findIndex(e => e.timestamp === entry.timestamp) + 1;
+};
+
+// Save to global backend and local. Returns local rank position.
+// Writes go through the Edge Function (VITE_SUBMIT_URL) which validates server-side.
+// Falls back to direct REST insert if no edge function is configured.
+export const saveScoreGlobal = async (score, initials, rank) => {
+  const localRank = saveScore(score, initials, rank);
+  if (!API_URL) return localRank;
+  const payload = {
+    score,
+    initials: initials.toUpperCase().slice(0, 6).padEnd(3, '·'),
+    rank,
+    date: new Date().toLocaleDateString(),
+    timestamp: Date.now(),
+  };
+  try {
+    const url = SUBMIT_URL || API_URL;
+    const headers = SUBMIT_URL
+      ? apiHeaders()   // edge function also needs anon key in Authorization header
+      : apiHeaders();  // direct REST — anon key required
+    await fetch(url, { method: 'POST', headers, body: JSON.stringify(payload) });
+  } catch { /* non-fatal */ }
+  return localRank;
+};
+
+// ========== DAILY LEADERBOARD ==========
+
+export const getDailyLeaderboard = () => {
+  try {
+    const data = JSON.parse(localStorage.getItem(DAILY_SCORES_KEY) || 'null');
+    if (!data || data.date !== getTodayKey()) return [];
+    return data.scores || [];
+  } catch {
+    return [];
+  }
+};
+
+export const saveDailyScore = (score, initials, rank) => {
+  const today = getTodayKey();
+  let data;
+  try {
+    data = JSON.parse(localStorage.getItem(DAILY_SCORES_KEY) || 'null');
+  } catch {
+    data = null;
+  }
+  const entry = {
+    score,
+    initials: initials.toUpperCase().slice(0, 3).padEnd(3, '·'),
+    rank,
+    date: new Date().toLocaleDateString(),
+    timestamp: Date.now(),
+  };
+  const existing = (data && data.date === today) ? data.scores : [];
+  const scores = [...existing, entry];
+  scores.sort((a, b) => b.score - a.score);
+  const top10 = scores.slice(0, 10);
+  localStorage.setItem(DAILY_SCORES_KEY, JSON.stringify({ date: today, scores: top10 }));
   return top10.findIndex(e => e.timestamp === entry.timestamp) + 1;
 };
 
@@ -140,3 +230,27 @@ export const updateStats = (delta) => {
   localStorage.setItem(STATS_KEY, JSON.stringify(merged));
   return merged;
 };
+
+// ========== SLOP DICTIONARY ==========
+// Tracks every unique slop phrase ever detected, with count and type.
+
+export const getSlopDict = () => {
+  try {
+    return JSON.parse(localStorage.getItem(DICT_KEY) || '{}');
+  } catch {
+    return {};
+  }
+};
+
+// Call whenever a slop phrase is correctly detected
+export const updateSlopDict = (text, type) => {
+  const dict = getSlopDict();
+  const key = text.toLowerCase().trim();
+  if (!dict[key]) dict[key] = { text, type, count: 0 };
+  dict[key].count += 1;
+  localStorage.setItem(DICT_KEY, JSON.stringify(dict));
+};
+
+// Returns entries sorted by detection count descending
+export const getSlopDictSorted = () =>
+  Object.values(getSlopDict()).sort((a, b) => b.count - a.count);

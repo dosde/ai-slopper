@@ -44,7 +44,7 @@ export default function FalImage({ prompt, roundId, size = 200 }) {
         src={imageUrl}
         alt="AI Slop Monster"
         className="fal-image"
-        style={{ width: size, height: size }}
+        style={{ width: size, height: size, flexShrink: 0 }}
       />
     );
   }
@@ -53,6 +53,7 @@ export default function FalImage({ prompt, roundId, size = 200 }) {
     <div style={{
       width: size,
       height: size,
+      flexShrink: 0,
       borderRadius: 16,
       background: botColor,
       display: 'flex',
@@ -84,19 +85,6 @@ export default function FalImage({ prompt, roundId, size = 200 }) {
           position: 'relative',
         }}>
           GENERATING SLOP...
-        </div>
-      )}
-      {!loading && !isFalConfigured() && (
-        <div style={{
-          fontFamily: "'Orbitron', sans-serif",
-          fontSize: '0.55rem',
-          color: 'rgba(255,255,255,0.7)',
-          textAlign: 'center',
-          padding: '0 12px',
-          position: 'relative',
-          lineHeight: 1.4,
-        }}>
-          ADD VITE_FAL_KEY<br/>FOR AI IMAGES
         </div>
       )}
 

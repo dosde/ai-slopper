@@ -136,23 +136,6 @@ html, body {
   background: radial-gradient(ellipse at top, #1a0a2e 0%, #0f0f1a 60%);
 }
 
-/* Stars */
-.game-container::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background-image:
-    radial-gradient(1px 1px at 10% 15%, rgba(255,255,255,0.8) 1px, transparent 0),
-    radial-gradient(1px 1px at 30% 55%, rgba(255,255,255,0.6) 1px, transparent 0),
-    radial-gradient(1px 1px at 50% 25%, rgba(255,255,255,0.8) 1px, transparent 0),
-    radial-gradient(1px 1px at 70% 80%, rgba(255,255,255,0.5) 1px, transparent 0),
-    radial-gradient(1px 1px at 85% 40%, rgba(255,255,255,0.7) 1px, transparent 0),
-    radial-gradient(1px 1px at 20% 90%, rgba(255,255,255,0.4) 1px, transparent 0),
-    radial-gradient(1px 1px at 60% 10%, rgba(255,255,255,0.6) 1px, transparent 0),
-    radial-gradient(1px 1px at 95% 65%, rgba(255,255,255,0.5) 1px, transparent 0);
-  pointer-events: none;
-  z-index: 0;
-}
 
 /* ========== CARDS ========== */
 .card {
@@ -206,11 +189,14 @@ html, body {
 .btn-secondary:active { transform: scale(0.97); }
 
 /* ========== SLOP TEXT ========== */
-.slop-token {
+
+/* Shared base for ALL clickable word tokens — looks identical until interacted with */
+.slop-token,
+.normal-token {
   cursor: pointer;
   border-radius: 3px;
   padding: 1px 2px;
-  transition: background 0.1s, transform 0.1s;
+  transition: background 0.12s, transform 0.1s, color 0.15s;
   user-select: none;
   -webkit-user-select: none;
   touch-action: manipulation;
@@ -218,17 +204,16 @@ html, body {
   line-height: 1.8;
 }
 
-.slop-token.active {
-  background: rgba(251, 191, 36, 0.15);
-  text-decoration: underline dotted rgba(251, 191, 36, 0.6);
-}
-
+/* Hover: same subtle highlight for BOTH slop and normal tokens */
 .slop-token.active:hover,
-.slop-token.active:active {
-  background: rgba(251, 191, 36, 0.3);
+.slop-token.active:active,
+.normal-token:hover,
+.normal-token:active {
+  background: rgba(148, 163, 184, 0.18);
   transform: scale(1.03);
 }
 
+/* Found slop — green strikethrough */
 .slop-token.found {
   background: rgba(16, 185, 129, 0.2) !important;
   color: #10b981 !important;
@@ -238,10 +223,22 @@ html, body {
   animation: pop-in 0.25s ease;
 }
 
+/* Missed slop — revealed at round end */
 .slop-token.missed {
   background: rgba(239, 68, 68, 0.2) !important;
   color: #ef4444 !important;
   cursor: default;
+}
+
+/* Wrong click flash */
+.wrong-click {
+  animation: wrong-flash 0.5s ease forwards !important;
+}
+
+@keyframes wrong-flash {
+  0%   { background: rgba(239,68,68,0.55); color: #ef4444; transform: scale(1.06); }
+  60%  { background: rgba(239,68,68,0.15); }
+  100% { background: transparent; transform: scale(1); }
 }
 
 /* ========== SCORE POPUPS ========== */

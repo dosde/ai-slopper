@@ -1,10 +1,13 @@
-import { useCallback, useRef, useState, useEffect } from 'react';
+import React, { useCallback, useRef, useState, useEffect } from 'react';
 import { getRandomCommentary } from '../data/slopData';
-import { playSlopDetected, playCombo } from '../utils/audio';
+import { playSlopDetected, playCombo, playMiss } from '../utils/audio';
+import { updateSlopDict } from '../utils/storage';
 
 /**
- * Tokenizes text into normal and slop phrase segments.
- * Longest phrases matched first to avoid substring conflicts.
+ * Tokenizes text into slop phrases and individual words.
+ * Slop phrases matched longest-first to avoid substring conflicts.
+ * Non-slop segments are then split into individual words so every
+ * word is independently hoverable/clickable.
  */
 function tokenize(text, slopPhrases) {
   const sorted = [...slopPhrases].sort((a, b) => b.text.length - a.text.length);
@@ -18,55 +21,125 @@ function tokenize(text, slopPhrases) {
       if (idx === -1) { next.push(seg); continue; }
       if (idx > 0) next.push({ text: seg.text.slice(0, idx), isSlop: false, phraseData: null });
       next.push({ text: seg.text.slice(idx, idx + phrase.text.length), isSlop: true, phraseData: phrase });
-      if (idx + phrase.text.length < seg.text.length) {
+      if (idx + phrase.text.length < seg.text.length)
         next.push({ text: seg.text.slice(idx + phrase.text.length), isSlop: false, phraseData: null });
-      }
     }
     segments = next;
   }
-  return segments.map((seg, i) => ({ ...seg, id: i }));
+
+  // Split non-slop segments into individual words so all text looks clickable
+  const result = [];
+  let id = 0;
+  for (const seg of segments) {
+    if (seg.isSlop) {
+      result.push({ ...seg, id: id++ });
+    } else {
+      const parts = seg.text.split(/(\s+)/);
+      for (const part of parts) {
+        if (!part) continue;
+        result.push({
+          text: part,
+          isSlop: false,
+          isSpace: /^\s+$/.test(part),
+          phraseData: null,
+          id: id++,
+        });
+      }
+    }
+  }
+  return result;
 }
 
-// Words per second for typing reveal
+// ── Brainrot corruption engine ───────────────────────────────────────────────
+
+const L33T = { a:'4', e:'3', o:'0', i:'1', s:'$', t:'7', b:'8', g:'9', l:'|', z:'2' };
+
+function corruptToken(text) {
+  if (!text || text.length < 2) return text;
+  const roll = Math.random();
+  const pos = Math.floor(Math.random() * text.length);
+
+  if (roll < 0.30) {
+    // l33t substitute — find first eligible character
+    for (let i = 0; i < text.length; i++) {
+      const c = text[i].toLowerCase();
+      if (L33T[c]) {
+        return text.slice(0, i) + L33T[c] + text.slice(i + 1);
+      }
+    }
+  }
+  if (roll < 0.50 && text.length > 1) {
+    // Swap two adjacent characters
+    const i = Math.min(pos, text.length - 2);
+    return text.slice(0, i) + text[i + 1] + text[i] + text.slice(i + 2);
+  }
+  if (roll < 0.68) {
+    // Duplicate a character
+    return text.slice(0, pos) + text[pos] + text[pos] + text.slice(pos + 1);
+  }
+  if (roll < 0.82 && text.length > 3) {
+    // Drop a middle character
+    const safe = 1 + Math.floor(Math.random() * (text.length - 2));
+    return text.slice(0, safe) + text.slice(safe + 1);
+  }
+  if (roll < 0.92) {
+    // Random caps on one letter
+    return text.slice(0, pos) + text[pos].toUpperCase() + text.slice(pos + 1);
+  }
+  // Insert a random nearby keyboard character
+  const noise = 'qwrtypsdfghjklzxcvbnm'.split('');
+  const ch = noise[Math.floor(Math.random() * noise.length)];
+  return text.slice(0, pos) + ch + text.slice(pos);
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+
 const WORDS_PER_SECOND = 18;
 
 export default function SlopText({
   round, onScore, onCombo, combo,
   found, onFoundChange,
+  onWrongClick,
   radarActive = false, doublePoints = false,
+  brainrot = false,
+  lang = 'en',
   onTypingComplete,
+  onCorruptionChange,
 }) {
   const tokens = useRef(null);
   const [revealedCount, setRevealedCount] = useState(0);
-  const [typingDone, setTypingDone] = useState(false);
+  const [wrongIds, setWrongIds] = useState(new Set());
+  const [corruptions, setCorruptions] = useState(new Map()); // tokenId → corrupted display text
   const intervalRef = useRef(null);
+  const brainrotTimerRef = useRef(null);
+  const revealedCountRef = useRef(0);
 
   // Build tokens once per round
   if (!tokens.current) {
     tokens.current = tokenize(round.text, round.slopPhrases);
   }
-  const total = tokens.current.length;
 
-  // Typing animation: reveal tokens progressively
+  // Typing animation — reveal tokens progressively
   useEffect(() => {
-    // Reset on new round
     setRevealedCount(0);
-    setTypingDone(false);
+    setWrongIds(new Set());
+    setCorruptions(new Map());
+    revealedCountRef.current = 0;
     tokens.current = tokenize(round.text, round.slopPhrases);
 
     const totalTokens = tokens.current.length;
-    // Approximate total words across all tokens
     const totalWords = round.text.split(/\s+/).length;
     const msPerToken = (1000 / WORDS_PER_SECOND) * (totalWords / totalTokens);
     const delay = Math.max(20, Math.min(msPerToken, 80));
-
     let count = 0;
+
     intervalRef.current = setInterval(() => {
       count += Math.ceil(totalTokens / (totalWords / 2));
-      setRevealedCount(Math.min(count, totalTokens));
+      const next = Math.min(count, totalTokens);
+      setRevealedCount(next);
+      revealedCountRef.current = next;
       if (count >= totalTokens) {
         clearInterval(intervalRef.current);
-        setTypingDone(true);
         onTypingComplete?.();
       }
     }, delay);
@@ -75,6 +148,36 @@ export default function SlopText({
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [round.id]);
 
+  // Brainrot background corruption timer — randomly corrupts a token every 4-8s
+  useEffect(() => {
+    if (!brainrot) return;
+
+    const scheduleNext = () => {
+      const delay = 4000 + Math.random() * 4000;
+      brainrotTimerRef.current = setTimeout(() => {
+        const visible = tokens.current.slice(0, revealedCountRef.current);
+        const candidates = visible.filter(t => !t.isSpace && t.text.length > 2);
+        if (candidates.length > 0) {
+          const target = candidates[Math.floor(Math.random() * candidates.length)];
+          setCorruptions(prev => {
+            const next = new Map(prev);
+            const current = next.get(target.id) ?? target.text;
+            const corrupted = corruptToken(current);
+            next.set(target.id, corrupted);
+            onCorruptionChange?.(next.size);
+            return next;
+          });
+        }
+        scheduleNext();
+      }, delay);
+    };
+
+    scheduleNext();
+    return () => { if (brainrotTimerRef.current) clearTimeout(brainrotTimerRef.current); };
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [brainrot]);
+
+  // Correct click — slop phrase found
   const handleSlopClick = useCallback((e, token) => {
     if (!found || found.has(token.id)) return;
     e.stopPropagation();
@@ -87,18 +190,56 @@ export default function SlopText({
     newFound.add(token.id);
     onFoundChange(newFound);
 
-    const commentary = getRandomCommentary(token.phraseData.type);
+    const commentary = getRandomCommentary(token.phraseData.type, lang);
     const newCombo = (combo || 0) + 1;
     const multiplier = Math.min(newCombo, 5);
     const baseScore = token.phraseData.score * multiplier;
     const score = doublePoints ? baseScore * 2 : baseScore;
 
+    updateSlopDict(token.phraseData.text, token.phraseData.type);
     playSlopDetected();
     if (newCombo > 1) playCombo(newCombo);
-
     onScore(score, x, y, commentary, doublePoints);
     onCombo(newCombo);
   }, [found, combo, onScore, onCombo, onFoundChange, doublePoints]);
+
+  // Wrong click — normal word clicked
+  const handleNormalClick = useCallback((e, token) => {
+    if (token.isSpace) return;
+    e.stopPropagation();
+
+    const rect = e.currentTarget.getBoundingClientRect();
+    const x = rect.left + rect.width / 2;
+    const y = rect.top;
+
+    // Flash red
+    setWrongIds(prev => new Set([...prev, token.id]));
+    setTimeout(() => {
+      setWrongIds(prev => { const n = new Set(prev); n.delete(token.id); return n; });
+    }, 500);
+
+    // Brainrot: corrupt 2-3 random visible tokens on wrong click
+    if (brainrot) {
+      const visible = tokens.current.slice(0, revealedCountRef.current);
+      const candidates = visible.filter(t => !t.isSpace && t.text.length > 2 && t.id !== token.id);
+      const count = 2 + Math.floor(Math.random() * 2); // 2 or 3
+      const victims = [...candidates].sort(() => Math.random() - 0.5).slice(0, count);
+      if (victims.length > 0) {
+        setCorruptions(prev => {
+          const next = new Map(prev);
+          for (const v of victims) {
+            const current = next.get(v.id) ?? v.text;
+            next.set(v.id, corruptToken(current));
+          }
+          onCorruptionChange?.(next.size);
+          return next;
+        });
+      }
+    }
+
+    playMiss();
+    onWrongClick?.(x, y);
+  }, [onWrongClick, brainrot]);
 
   return (
     <div style={{
@@ -108,55 +249,90 @@ export default function SlopText({
       color: '#e2e8f0',
       whiteSpace: 'pre-wrap',
       wordBreak: 'break-word',
+      userSelect: 'none',
+      WebkitUserSelect: 'none',
     }}>
       {tokens.current.map((token, idx) => {
         const isRevealed = idx < revealedCount;
 
-        if (!token.isSlop) {
+        if (!isRevealed) {
+          return <span key={token.id} style={{ opacity: 0 }}>{token.text}</span>;
+        }
+
+        const isCorrupted = brainrot && corruptions.has(token.id);
+        const displayText = isCorrupted ? corruptions.get(token.id) : token.text;
+
+        if (token.isSlop) {
+          const isFound = found.has(token.id);
+          const showRadar = radarActive && !isFound;
+          const isInverse = !!round.inverse;
+          const className = `slop-token${isFound ? (isInverse ? ' human-found' : ' found') : ' active'}`;
+          const extraStyle = {
+            ...(isCorrupted && !isFound ? { color: '#fb923c', transition: 'color 0.3s' } : {}),
+            ...(showRadar ? {
+              background: 'rgba(56,189,248,0.3)',
+              borderBottom: '2px solid #38bdf8',
+              boxShadow: '0 0 8px rgba(56,189,248,0.6)',
+              animation: 'radar-pulse 0.5s ease-in-out infinite alternate',
+            } : {}),
+            ...(!isFound && !showRadar && doublePoints && !isInverse ? {
+              borderBottom: `2px solid rgba(251,191,36,0.5)`,
+            } : {}),
+          };
+          // Split multi-word phrases into individual word spans so hovering
+          // highlights one word at a time — indistinguishable from normal tokens.
+          const parts = displayText.split(/(\s+)/);
           return (
-            <span
-              key={token.id}
-              style={{
-                opacity: isRevealed ? 1 : 0,
-                transition: 'opacity 0.1s',
-              }}
-            >
-              {token.text}
-            </span>
+            <React.Fragment key={token.id}>
+              {parts.map((part, pi) => {
+                if (!part) return null;
+                if (/^\s+$/.test(part)) return <span key={pi}>{part}</span>;
+                return (
+                  <span
+                    key={pi}
+                    className={className}
+                    onClick={!isFound ? (e) => handleSlopClick(e, token) : undefined}
+                    style={extraStyle}
+                  >
+                    {part}
+                  </span>
+                );
+              })}
+            </React.Fragment>
           );
         }
 
-        const isFound = found.has(token.id);
-        const showRadar = radarActive && !isFound && isRevealed;
+        // Normal (non-slop) token
+        if (token.isSpace) {
+          return <span key={token.id}>{token.text}</span>;
+        }
 
+        const isWrong = wrongIds.has(token.id);
         return (
           <span
             key={token.id}
-            className={`slop-token ${isFound ? 'found' : isRevealed ? 'active' : ''}`}
-            onClick={isRevealed && !isFound ? (e) => handleSlopClick(e, token) : undefined}
-            title={isFound ? undefined : isRevealed ? `Click to detect slop! (+${token.phraseData.score} pts)` : undefined}
-            style={{
-              opacity: isRevealed ? 1 : 0,
-              transition: 'opacity 0.1s',
-              ...(showRadar ? {
-                background: 'rgba(16, 185, 129, 0.35)',
-                borderBottom: '2px solid #10b981',
-                boxShadow: '0 0 8px rgba(16,185,129,0.6)',
-                animation: 'radar-pulse 0.5s ease-in-out infinite alternate',
-              } : {}),
-              ...(doublePoints && !isFound && isRevealed ? {
-                borderBottom: '2px solid rgba(251,191,36,0.6)',
-              } : {}),
-            }}
+            className={`normal-token${isWrong ? ' wrong-click' : ''}`}
+            style={isCorrupted ? { color: '#fb923c', transition: 'color 0.3s' } : undefined}
+            onClick={(e) => handleNormalClick(e, token)}
           >
-            {token.text}
+            {displayText}
           </span>
         );
       })}
       <style>{`
         @keyframes radar-pulse {
-          from { background: rgba(16,185,129,0.2); box-shadow: 0 0 4px rgba(16,185,129,0.4); }
-          to   { background: rgba(16,185,129,0.5); box-shadow: 0 0 12px rgba(16,185,129,0.8); }
+          from { background: rgba(56,189,248,0.18); box-shadow: 0 0 4px rgba(56,189,248,0.3); }
+          to   { background: rgba(56,189,248,0.45); box-shadow: 0 0 14px rgba(56,189,248,0.8); }
+        }
+        .slop-token.human-found {
+          background: rgba(56,189,248,0.22) !important;
+          color: #38bdf8 !important;
+          text-decoration: none !important;
+          font-weight: 700;
+          box-shadow: 0 0 10px rgba(56,189,248,0.4);
+          border-radius: 3px;
+          cursor: default;
+          animation: pop-in 0.25s ease;
         }
       `}</style>
     </div>
