@@ -7,6 +7,8 @@ let masterGain = null;
 let tempoScale = 1.0;
 let isBossMusicPlaying = false;
 let bossMusicInterval = null;
+let isTitleMusicPlaying = false;
+let titleMusicInterval = null;
 
 // Persist music style preference
 let currentMusicStyle = (() => {
@@ -21,6 +23,11 @@ export const setMusicStyle = (style) => {
     isMusicPlaying = false;
     if (musicInterval) { clearInterval(musicInterval); musicInterval = null; }
     startMusic();
+  }
+  if (isTitleMusicPlaying) {
+    isTitleMusicPlaying = false;
+    if (titleMusicInterval) { clearInterval(titleMusicInterval); titleMusicInterval = null; }
+    startTitleMusic();
   }
 };
 
@@ -164,6 +171,55 @@ const BOSS_BASS = [
   [N.E3,0.15],[0,0.05],[N.A3,0.15],[0,0.05],[N.E3,0.10],[0,0.05],
   [N.A3,0.30],[0,0.05],[N.A3,0.15],[0,0.05],[N.A3,0.20],[0,0.10],
 ];
+
+// ── TITLE SCREEN music ────────────────────────────────────────────────────────
+
+// Sloppy title: punchy arcade fanfare, exactly 4.00s loop
+// Structure: 8 half-beat pairs, each 0.50s
+const TITLE_SLOPPY_MELODY = [
+  [N.C5,0.10],[N.E5,0.10],[N.G5,0.10],[N.C6,0.15],[0,0.05],          // 0.50
+  [N.B5,0.10],[N.G5,0.10],[N.E5,0.10],[N.G5,0.15],[0,0.05],          // 0.50
+  [N.A5,0.12],[N.G5,0.10],[N.F5,0.10],[N.E5,0.10],[0,0.08],          // 0.50
+  [N.D5,0.10],[N.E5,0.10],[N.G5,0.10],[N.A5,0.15],[0,0.05],          // 0.50
+  [N.F5,0.08],[N.G5,0.08],[N.A5,0.08],[N.C6,0.08],[N.A5,0.08],[0,0.10], // 0.50
+  [N.G5,0.08],[N.F5,0.08],[N.E5,0.08],[N.D5,0.08],[N.C5,0.08],[0,0.10], // 0.50
+  [N.E5,0.10],[N.G5,0.10],[N.A5,0.10],[N.G5,0.10],[N.E5,0.10],[0,0.05], // 0.55
+  [N.C5,0.35],[0,0.10],                                                   // 0.45
+];
+// Total: 6×0.50 + 0.55 + 0.45 = 4.00s
+
+const TITLE_SLOPPY_BASS = [
+  [N.C3,0.20],[0,0.05],[N.G3,0.20],[0,0.05],
+  [N.C3,0.20],[0,0.05],[N.G3,0.20],[0,0.05],
+  [N.A3,0.20],[0,0.05],[N.E3,0.20],[0,0.05],
+  [N.F3,0.20],[0,0.05],[N.C3,0.20],[0,0.05],
+  [N.G3,0.20],[0,0.05],[N.D3,0.20],[0,0.05],
+  [N.C3,0.20],[0,0.05],[N.E3,0.20],[0,0.05],
+  [N.F3,0.20],[0,0.05],[N.G3,0.20],[0,0.05],
+  [N.C3,0.40],[0,0.10],
+];
+// Total: 7×0.50 + 0.50 = 4.00s
+
+// Chill title: slow ambient C-G-Am-F progression, ~9.20s loop
+const TITLE_CHILL_MELODY = [
+  // Bar 1: C major — gentle opening (2.20s)
+  [N.G5,0.60],[0,0.10],[N.E5,0.50],[0,0.10],[N.C5,0.40],[0,0.10],[N.E5,0.30],[0,0.10],
+  // Bar 2: G major — warm rise (2.00s)
+  [N.B5,0.65],[0,0.10],[N.G5,0.50],[0,0.10],[N.D5,0.55],[0,0.10],
+  // Bar 3: Am — gentle dip (2.20s)
+  [N.A5,0.60],[0,0.10],[N.C5,0.45],[0,0.10],[N.E5,0.45],[0,0.10],[N.A5,0.30],[0,0.10],
+  // Bar 4: F major — resolve (2.80s)
+  [N.F5,0.65],[0,0.10],[N.A5,0.50],[0,0.10],[N.C6,0.45],[0,0.10],[N.F5,0.60],[0,0.30],
+];
+// Bar durations: 2.20 + 2.00 + 2.20 + 2.80 = 9.20s
+
+const TITLE_CHILL_BASS = [
+  [N.C3,0.55],[N.E3,0.55],[N.G3,0.55],[N.E3,0.55],   // C major  2.20s
+  [N.G3,0.65],[N.B3,0.65],[N.D3,0.70],                // G major  2.00s
+  [N.A3,0.55],[N.C3,0.55],[N.E3,0.55],[N.A3,0.55],   // Am       2.20s
+  [N.F3,0.70],[N.A3,0.70],[N.C3,0.70],[N.F3,0.70],   // F major  2.80s
+];
+// Total: 2.20 + 2.00 + 2.20 + 2.80 = 9.20s
 
 const getArrayDuration = (arr) => arr.reduce((sum, [, d]) => sum + d, 0);
 
@@ -336,6 +392,117 @@ const restartBossLoop = () => {
   bossMusicInterval = setInterval(() => { if (isBossMusicPlaying) playBossBar(); }, loopMs);
 };
 
+// ── Title music playback ──────────────────────────────────────────────────────
+const playTitleSloppyBar = () => {
+  const ctx = getCtx();
+  const now = ctx.currentTime;
+  const loopDuration = getArrayDuration(TITLE_SLOPPY_MELODY);
+
+  let t = now;
+  for (const [freq, dur] of TITLE_SLOPPY_MELODY) {
+    if (freq > 0) playNote(freq, dur * 0.80, t, 'square', 0.13);
+    t += dur;
+  }
+  t = now;
+  for (const [freq, dur] of TITLE_SLOPPY_BASS) {
+    if (freq > 0) playNote(freq, dur * 0.75, t, 'triangle', 0.14);
+    t += dur;
+  }
+  // Kick on every half-beat
+  for (let beat = 0; beat < loopDuration; beat += 0.50) {
+    const ko = ctx.createOscillator(); const kg = ctx.createGain();
+    ko.type = 'sine';
+    ko.frequency.setValueAtTime(155, now + beat);
+    ko.frequency.exponentialRampToValueAtTime(0.01, now + beat + 0.20);
+    kg.gain.setValueAtTime(0.28, now + beat);
+    kg.gain.exponentialRampToValueAtTime(0.001, now + beat + 0.20);
+    ko.connect(kg); kg.connect(masterGain);
+    ko.start(now + beat); ko.stop(now + beat + 0.22);
+  }
+  // Snare on off-beats
+  for (let beat = 0.25; beat < loopDuration; beat += 0.50) {
+    const so = ctx.createOscillator(); const sg = ctx.createGain();
+    so.type = 'sawtooth'; so.frequency.value = 220;
+    sg.gain.setValueAtTime(0.07, now + beat);
+    sg.gain.exponentialRampToValueAtTime(0.001, now + beat + 0.09);
+    so.connect(sg); sg.connect(masterGain);
+    so.start(now + beat); so.stop(now + beat + 0.10);
+  }
+  // Hi-hat every quarter-beat
+  for (let beat = 0; beat < loopDuration; beat += 0.25) {
+    const ho = ctx.createOscillator(); const hg = ctx.createGain();
+    ho.type = 'square'; ho.frequency.value = 5800;
+    hg.gain.setValueAtTime(0.016, now + beat);
+    hg.gain.exponentialRampToValueAtTime(0.001, now + beat + 0.04);
+    ho.connect(hg); hg.connect(masterGain);
+    ho.start(now + beat); ho.stop(now + beat + 0.05);
+  }
+};
+
+const playTitleChillBar = () => {
+  const ctx = getCtx();
+  const now = ctx.currentTime;
+  const loopDuration = getArrayDuration(TITLE_CHILL_MELODY);
+
+  // Melody: warm sine with chorus detune
+  let t = now;
+  for (const [freq, dur] of TITLE_CHILL_MELODY) {
+    if (freq > 0) {
+      playNote(freq, dur * 0.86, t, 'sine', 0.10);
+      playNote(freq * 1.004, dur * 0.86, t, 'sine', 0.04);
+    }
+    t += dur;
+  }
+  // Bass: soft triangle arpeggios
+  t = now;
+  for (const [freq, dur] of TITLE_CHILL_BASS) {
+    if (freq > 0) playNote(freq, dur * 0.72, t, 'triangle', 0.10);
+    t += dur;
+  }
+  // Chord pads: C-G-Am-F, one per bar
+  const chordSets = [
+    [N.C4, N.E4, N.G4],
+    [N.G3, N.B3, N.D4],
+    [N.A3, N.C4, N.E4],
+    [N.F3, N.A3, N.C4],
+  ];
+  // Bar start times derived from bass
+  const barSizes = [4, 3, 4, 4];
+  let bi = 0; let bt = 0;
+  for (let b = 0; b < 4; b++) {
+    const barStart = bt;
+    const barDur = barSizes[b] === 3
+      ? TITLE_CHILL_BASS.slice(bi, bi + 3).reduce((s, [, d]) => s + d, 0)
+      : TITLE_CHILL_BASS.slice(bi, bi + 4).reduce((s, [, d]) => s + d, 0);
+    for (const f of chordSets[b]) {
+      playNote(f, barDur * 0.82, now + barStart, 'sine', 0.024);
+    }
+    // Soft shimmer on bar 1
+    const ho = ctx.createOscillator(); const hg = ctx.createGain();
+    ho.type = 'sine'; ho.frequency.value = 2800;
+    hg.gain.setValueAtTime(0.010, now + barStart);
+    hg.gain.exponentialRampToValueAtTime(0.001, now + barStart + 0.40);
+    ho.connect(hg); hg.connect(masterGain);
+    ho.start(now + barStart); ho.stop(now + barStart + 0.42);
+    bt += barDur;
+    bi += barSizes[b];
+  }
+};
+
+const restartTitleSloppyLoop = () => {
+  if (titleMusicInterval) { clearInterval(titleMusicInterval); titleMusicInterval = null; }
+  const loopMs = getArrayDuration(TITLE_SLOPPY_MELODY) * 1000;
+  playTitleSloppyBar();
+  titleMusicInterval = setInterval(() => { if (isTitleMusicPlaying) playTitleSloppyBar(); }, loopMs);
+};
+
+const restartTitleChillLoop = () => {
+  if (titleMusicInterval) { clearInterval(titleMusicInterval); titleMusicInterval = null; }
+  const loopMs = getArrayDuration(TITLE_CHILL_MELODY) * 1000;
+  playTitleChillBar();
+  titleMusicInterval = setInterval(() => { if (isTitleMusicPlaying) playTitleChillBar(); }, loopMs);
+};
+
 // ── Public API ────────────────────────────────────────────────────────────────
 export const startMusic = () => {
   if (isMusicPlaying) return;
@@ -355,6 +522,23 @@ export const stopMusic = () => {
   tempoScale = 1.0;
   if (musicInterval) { clearInterval(musicInterval); musicInterval = null; }
   if (bossMusicInterval) { clearInterval(bossMusicInterval); bossMusicInterval = null; }
+};
+
+export const startTitleMusic = () => {
+  if (isTitleMusicPlaying) return;
+  isTitleMusicPlaying = true;
+  const ctx = getCtx();
+  if (ctx.state === 'suspended') ctx.resume();
+  if (currentMusicStyle === 'pleasant') {
+    restartTitleChillLoop();
+  } else {
+    restartTitleSloppyLoop();
+  }
+};
+
+export const stopTitleMusic = () => {
+  isTitleMusicPlaying = false;
+  if (titleMusicInterval) { clearInterval(titleMusicInterval); titleMusicInterval = null; }
 };
 
 export const startBossMusic = () => {

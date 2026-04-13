@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { initAudio, startMusic, getMusicStyle, setMusicStyle } from '../utils/audio';
+import { initAudio, startMusic, startTitleMusic, stopTitleMusic, getMusicStyle, setMusicStyle } from '../utils/audio';
 import Leaderboard from './Leaderboard';
 import { getLeaderboard, getUnlockedAchievements, ACHIEVEMENTS, getSlopDictSorted } from '../utils/storage';
 import { LANGS } from '../i18n/index';
@@ -52,6 +52,7 @@ export default function StartScreen({ onStart }) {
   const [statusIdx, setStatusIdx] = useState(0);
   const [musicEnabled, setMusicEnabled] = useState(true);
   const [musicStyle, setMusicStyleState] = useState(getMusicStyle);
+  const [hasInteracted, setHasInteracted] = useState(false);
   const [difficulty, setDifficulty] = useState('normal');
   const [mode, setMode] = useState('random'); // 'random' | 'daily'
   const [lang, setLang] = useState('en');
@@ -81,21 +82,35 @@ export default function StartScreen({ onStart }) {
     return () => clearInterval(p);
   }, []);
 
+  // Start title music on first interaction; stop/restart when music toggle changes
+  useEffect(() => {
+    if (!hasInteracted || !musicEnabled) return;
+    startTitleMusic();
+    return () => stopTitleMusic();
+  }, [hasInteracted, musicEnabled]);
+
+  const handleFirstInteraction = () => {
+    if (!hasInteracted) setHasInteracted(true);
+  };
+
   const handleStart = () => {
+    stopTitleMusic();
     initAudio();
     if (musicEnabled) startMusic();
     onStart({ difficulty, mode, musicEnabled, lang });
   };
 
   return (
-    <div style={{
-      flex: 1,
-      display: 'flex',
-      flexDirection: 'column',
-      position: 'relative',
-      zIndex: 1,
-      overflow: 'hidden',
-    }}>
+    <div
+      onClick={handleFirstInteraction}
+      style={{
+        flex: 1,
+        display: 'flex',
+        flexDirection: 'column',
+        position: 'relative',
+        zIndex: 1,
+        overflow: 'hidden',
+      }}>
       {/* Floating background emoji */}
       <div style={{ position: 'absolute', inset: 0, overflow: 'hidden', pointerEvents: 'none' }}>
         {['🤖', '💬', '📋', '✅', '💩', '📝', '🫠', '🔫', '📌', '🗂️'].map((e, i) => (
@@ -382,9 +397,10 @@ export default function StartScreen({ onStart }) {
                       setMusicStyle(next);
                       setMusicStyleState(next);
                     }}
+                    title="Switch music style — hear it live!"
                     style={{ fontSize: '0.7rem', padding: '7px 14px' }}
                   >
-                    {musicStyle === 'sloppy' ? '🎮 SLOPPY BEATS' : '🎶 CHILL TUNE'}
+                    {musicStyle === 'sloppy' ? '🎮 SLOPPY' : '🎶 CHILL'}
                   </button>
                 )}
               </div>
