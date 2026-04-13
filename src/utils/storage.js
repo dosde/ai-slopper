@@ -50,7 +50,7 @@ export const saveScore = (score, initials, rank) => {
   const board = getLeaderboard();
   const entry = {
     score,
-    initials: initials.toUpperCase().slice(0, 3).padEnd(3, '·'),
+    initials: initials.toUpperCase().slice(0, 6).padEnd(3, '·'),
     rank,
     date: new Date().toLocaleDateString(),
     timestamp: Date.now(),
@@ -76,11 +76,12 @@ export const saveScoreGlobal = async (score, initials, rank) => {
     timestamp: Date.now(),
   };
   try {
-    const url = SUBMIT_URL || API_URL;
-    const headers = SUBMIT_URL
-      ? { 'Content-Type': 'application/json' }  // edge function — no anon key needed
-      : apiHeaders();                            // direct REST — anon key required
-    await fetch(url, { method: 'POST', headers, body: JSON.stringify(payload) });
+    // Edge function also needs the anon key in Authorization header (Supabase gateway requirement)
+    await fetch(SUBMIT_URL || API_URL, {
+      method: 'POST',
+      headers: apiHeaders(),
+      body: JSON.stringify(payload),
+    });
   } catch { /* non-fatal */ }
   return localRank;
 };
