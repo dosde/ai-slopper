@@ -297,10 +297,11 @@ export default function GameScreen({ round, roundIdx, totalRounds, totalScore, o
       delay = 1600;
     }
 
-    const timeBonus = timeLeft * TIME_BONUS_PER_SEC;
+    // Early finish: time bonus is ÷10 (1pt/s) as a penalty for skipping
+    const timeBonus = timeLeft;
     if (timeBonus > 0) {
       finalScore += timeBonus;
-      addPopup(cx, 160, timeBonus, `⏱ ${timeLeft}s TIME BONUS!`, false, false);
+      addPopup(cx, 160, timeBonus, `⏱ ${timeLeft}s TIME BONUS (÷10)`, false, false);
       delay = 1800;
     }
 

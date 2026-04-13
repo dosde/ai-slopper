@@ -16,6 +16,7 @@ export default function ResultScreen({ totalScore, roundScores, newAchievements 
   const [particles, setParticles] = useState([]);
   const [initials, setInitials] = useState('');
   const [saved, setSaved] = useState(false);
+  const [saving, setSaving] = useState(false);
   const [savedRank, setSavedRank] = useState(null);
   const [showLeaderboard, setShowLeaderboard] = useState(false);
   const [leaderboardMode, setLeaderboardMode] = useState(isDaily ? 'daily' : difficulty);
@@ -39,7 +40,8 @@ export default function ResultScreen({ totalScore, roundScores, newAchievements 
   }, []);
 
   const handleSave = async () => {
-    if (initials.trim().length === 0) return;
+    if (initials.trim().length === 0 || saving || saved) return;
+    setSaving(true);
     const rank = await saveScoreGlobal(totalScore, initials.trim(), roast.title, difficulty);
     saveDailyScore(totalScore, initials.trim(), roast.title);
     setSaved(true);
@@ -265,10 +267,10 @@ export default function ResultScreen({ totalScore, roundScores, newAchievements 
             <button
               className="btn-primary"
               onClick={handleSave}
-              disabled={initials.length === 0}
-              style={{ padding: '8px 14px', fontSize: '0.75rem', opacity: initials.length === 0 ? 0.5 : 1, flexShrink: 0 }}
+              disabled={initials.length === 0 || saving}
+              style={{ padding: '8px 14px', fontSize: '0.75rem', opacity: (initials.length === 0 || saving) ? 0.5 : 1, flexShrink: 0 }}
             >
-              SAVE
+              {saving ? '...' : 'SAVE'}
             </button>
           </div>
         </div>

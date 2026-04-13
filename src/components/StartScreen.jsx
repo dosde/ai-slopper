@@ -329,7 +329,7 @@ export default function StartScreen({ onStart }) {
                 {[
                   { id: 'normal',   label: '😌 NORMAL',        desc: '45s per round',                color: '#10b981' },
                   { id: 'chaos',    label: '😈 CHAOS',          desc: '25s · high pressure',          color: '#ef4444' },
-                  { id: 'brainrot', label: '🧠 BRAINROT',       desc: '40s · text corrupts',          color: '#fb923c' },
+                  { id: 'brainrot', label: '🧠 BRAINROT',       desc: '40s · wrong clicks & time rot text', color: '#fb923c' },
                   { id: 'iron',     label: '☠ IRON DETECTOR',  desc: 'No wrong clicks · stopwatch',  color: '#ec4899' },
                 ].map(d => (
                   <button
