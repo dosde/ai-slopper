@@ -1,5 +1,8 @@
 // localStorage helpers for leaderboard, achievements, and stats
-// Optional global leaderboard: set VITE_SCORES_URL + VITE_SCORES_KEY (Supabase)
+// Optional global leaderboard:
+//   VITE_SCORES_URL  — Supabase REST endpoint for reads  (anon key, SELECT only)
+//   VITE_SCORES_KEY  — Supabase anon key
+//   VITE_SUBMIT_URL  — Edge Function URL for writes (validates + uses service role)
 
 const SCORES_KEY = 'slop_royale_scores_v2';
 const DAILY_SCORES_KEY = 'slop_royale_daily_v1';
@@ -9,8 +12,9 @@ const DICT_KEY = 'slop_royale_dict_v1';
 
 const getTodayKey = () => new Date().toLocaleDateString('en-CA'); // YYYY-MM-DD
 
-const API_URL  = import.meta.env.VITE_SCORES_URL;  // e.g. https://xyz.supabase.co/rest/v1/scores
-const API_KEY  = import.meta.env.VITE_SCORES_KEY;  // Supabase anon key
+const API_URL    = import.meta.env.VITE_SCORES_URL;  // REST read endpoint
+const API_KEY    = import.meta.env.VITE_SCORES_KEY;  // Supabase anon key
+const SUBMIT_URL = import.meta.env.VITE_SUBMIT_URL;  // Edge Function submit endpoint
 
 const apiHeaders = () => ({
   'Content-Type': 'application/json',
@@ -58,22 +62,25 @@ export const saveScore = (score, initials, rank) => {
   return top10.findIndex(e => e.timestamp === entry.timestamp) + 1;
 };
 
-// Save to global API and local. Returns position.
+// Save to global backend and local. Returns local rank position.
+// Writes go through the Edge Function (VITE_SUBMIT_URL) which validates server-side.
+// Falls back to direct REST insert if no edge function is configured.
 export const saveScoreGlobal = async (score, initials, rank) => {
   const localRank = saveScore(score, initials, rank);
   if (!API_URL) return localRank;
+  const payload = {
+    score,
+    initials: initials.toUpperCase().slice(0, 6).padEnd(3, '·'),
+    rank,
+    date: new Date().toLocaleDateString(),
+    timestamp: Date.now(),
+  };
   try {
-    await fetch(API_URL, {
-      method: 'POST',
-      headers: apiHeaders(),
-      body: JSON.stringify({
-        score,
-        initials: initials.toUpperCase().slice(0, 3).padEnd(3, '·'),
-        rank,
-        date: new Date().toLocaleDateString(),
-        timestamp: Date.now(),
-      }),
-    });
+    const url = SUBMIT_URL || API_URL;
+    const headers = SUBMIT_URL
+      ? { 'Content-Type': 'application/json' }  // edge function — no anon key needed
+      : apiHeaders();                            // direct REST — anon key required
+    await fetch(url, { method: 'POST', headers, body: JSON.stringify(payload) });
   } catch { /* non-fatal */ }
   return localRank;
 };
