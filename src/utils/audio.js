@@ -36,8 +36,16 @@ export const setMusicStyle = (style) => {
     startMusic();
   }
   if (isTitleMusicPlaying) {
-    stopTitleMusic(); // fades out in ~80ms, clears interval
-    setTimeout(() => startTitleMusic(), 100); // start new style after fade completes
+    // Cut gain immediately so old notes are silenced before new bar starts
+    isTitleMusicPlaying = false;
+    if (titleMusicInterval) { clearInterval(titleMusicInterval); titleMusicInterval = null; }
+    if (titleGain) {
+      const ctx = getCtx();
+      titleGain.gain.cancelScheduledValues(ctx.currentTime);
+      titleGain.gain.setValueAtTime(0.0001, ctx.currentTime);
+    }
+    // Short gap so any in-flight oscillators can reach their stop() time
+    setTimeout(() => startTitleMusic(), 40);
   }
 };
 

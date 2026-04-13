@@ -52,6 +52,7 @@ export default function App() {
   const [roundScores, setRoundScores] = useState([]);
   const [lastRoundScore, setLastRoundScore] = useState(0);
   const [lastFoundIds, setLastFoundIds] = useState(new Set());
+  const [lastFoundCombos, setLastFoundCombos] = useState({});
   const [lastWrongClicks, setLastWrongClicks] = useState(0);
   const [lastTimeLeft, setLastTimeLeft] = useState(0);
   const [difficulty, setDifficulty] = useState('normal');
@@ -110,9 +111,10 @@ export default function App() {
     setGameState(STATE.PLAYING);
   }, []);
 
-  const handleRoundEnd = useCallback((score, foundIds, time = 0, wrongClicks = 0, isGameOver = false) => {
+  const handleRoundEnd = useCallback((score, foundIds, time = 0, wrongClicks = 0, isGameOver = false, foundCombos = {}) => {
     setLastRoundScore(score);
     setLastFoundIds(foundIds);
+    setLastFoundCombos(foundCombos);
     setLastWrongClicks(wrongClicks);
     setLastTimeLeft(time);
     setTotalScore(prev => prev + score);
@@ -240,6 +242,7 @@ export default function App() {
             round={currentRound}
             roundScore={lastRoundScore}
             foundIds={lastFoundIds}
+            foundCombos={lastFoundCombos}
             totalScore={totalScore}
             isLastRound={roundIdx >= rounds.length - 1}
             wrongClicks={lastWrongClicks}

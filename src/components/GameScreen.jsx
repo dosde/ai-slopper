@@ -2,7 +2,7 @@ import { useState, useEffect, useCallback, useRef } from 'react';
 import SlopText, { getSlopStats } from './SlopText';
 import PowerUps from './PowerUps';
 import { PopupLayer, usePopups } from './ScorePopup';
-import { playRoundComplete, playMiss, setMusicTempo, startBossMusic, startInverseMusic, stopInverseMusic } from '../utils/audio';
+import { playRoundComplete, playMiss, setMusicTempo, startBossMusic, startInverseMusic, stopInverseMusic, stopMusic } from '../utils/audio';
 import { t } from '../i18n/index';
 
 const ROUND_TIME_NORMAL = 45;
@@ -123,6 +123,7 @@ export default function GameScreen({ round, roundIdx, totalRounds, totalScore, o
 
   const { popups, addPopup } = usePopups();
   const comboDecayRef = useRef(null);
+  const foundCombosRef = useRef({});
   const ironGameOverRef = useRef(false);
   const allFoundRef = useRef(false);
   const [allFoundFlash, setAllFoundFlash] = useState(false);
@@ -143,7 +144,7 @@ export default function GameScreen({ round, roundIdx, totalRounds, totalScore, o
   useEffect(() => {
     if (isBoss) startBossMusic();
     else if (isInverse) startInverseMusic();
-    return () => stopInverseMusic();
+    return () => { stopMusic(); stopInverseMusic(); };
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
@@ -156,7 +157,7 @@ export default function GameScreen({ round, roundIdx, totalRounds, totalScore, o
     }
     if (timeLeft <= 0) {
       setTimerRunning(false);
-      setTimeout(() => onRoundEnd(roundScore, foundIds, 0, wrongClickCount), 600);
+      setTimeout(() => onRoundEnd(roundScore, foundIds, 0, wrongClickCount, false, foundCombosRef.current), 600);
       return;
     }
     const t = setTimeout(() => {
@@ -176,14 +177,14 @@ export default function GameScreen({ round, roundIdx, totalRounds, totalScore, o
     setTimeout(() => {
       setAllFoundFlash(false);
       const { roundScore: rs, foundIds: fi, timeLeft: tl, wrongClickCount: wc, onRoundEnd: cb, addPopup: ap } = liveRef.current;
-      if (isIronDetector) { cb(rs, fi, tl, wc); return; }
+      if (isIronDetector) { cb(rs, fi, tl, wc, false, foundCombosRef.current); return; }
       const timeBonus = tl * TIME_BONUS_PER_SEC;
       let finalScore = rs;
       if (timeBonus > 0) {
         finalScore += timeBonus;
         ap(Math.round(window.innerWidth / 2), 160, timeBonus, `⏱ ${tl}s TIME BONUS!`, false, false);
       }
-      setTimeout(() => cb(finalScore, fi, tl, wc), timeBonus > 0 ? 1000 : 200);
+      setTimeout(() => cb(finalScore, fi, tl, wc, false, foundCombosRef.current), timeBonus > 0 ? 1000 : 200);
     }, 1800);
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [foundSlop, totalSlop]);
@@ -200,10 +201,11 @@ export default function GameScreen({ round, roundIdx, totalRounds, totalScore, o
     setMusicTempo(isUrgent ? 1.4 : 1.0);
   }, [isUrgent]);
 
-  const handleScore = useCallback((score, x, y, commentary, isDoubled, combo) => {
+  const handleScore = useCallback((score, x, y, commentary, isDoubled, combo, tokenId) => {
     setRoundScore(prev => prev + score);
     if (!isIronDetector) setTimeLeft(prev => Math.min(prev + 1, ROUND_TIME + 60));
     addPopup(x, y, score, commentary, isDoubled, false, combo);
+    if (tokenId !== undefined) foundCombosRef.current[tokenId] = { combo, finalScore: score };
   }, [addPopup, ROUND_TIME, isIronDetector]);
 
   const handleCombo = useCallback((newCombo) => {
@@ -242,7 +244,7 @@ export default function GameScreen({ round, roundIdx, totalRounds, totalScore, o
       addPopup(x, y, 0, '☠ RUN TERMINATED!', false, true);
       setTimeout(() => {
         const { roundScore: rs, foundIds: fi, timeLeft: tl, onRoundEnd: cb } = liveRef.current;
-        cb(rs, fi, tl, 1, true);
+        cb(rs, fi, tl, 1, true, foundCombosRef.current);
       }, 1400);
       return;
     }
@@ -261,7 +263,7 @@ export default function GameScreen({ round, roundIdx, totalRounds, totalScore, o
     setTimerRunning(false);
     playRoundComplete();
     if (isIronDetector) {
-      setTimeout(() => onRoundEnd(roundScore, foundIds, timeLeft, wrongClickCount), 400);
+      setTimeout(() => onRoundEnd(roundScore, foundIds, timeLeft, wrongClickCount, false, foundCombosRef.current), 400);
       return;
     }
 
@@ -287,7 +289,7 @@ export default function GameScreen({ round, roundIdx, totalRounds, totalScore, o
       delay = 1800;
     }
 
-    setTimeout(() => onRoundEnd(finalScore, foundIds, timeLeft, wrongClickCount), delay);
+    setTimeout(() => onRoundEnd(finalScore, foundIds, timeLeft, wrongClickCount, false, foundCombosRef.current), delay);
   };
 
   const handlePowerUp = (id) => {

@@ -39,7 +39,7 @@ const getWrongClickShame = (count, lang = 'en') => {
   return { msg: fns[idx](count), color };
 };
 
-export default function RoundSummary({ round, roundScore, foundIds, totalScore, isLastRound, wrongClicks = 0, timeLeft = 0, lang = 'en', onNext }) {
+export default function RoundSummary({ round, roundScore, foundIds, foundCombos = {}, totalScore, isLastRound, wrongClicks = 0, timeLeft = 0, lang = 'en', onNext }) {
   const [show, setShow] = useState(false);
   const [roastText, setRoastText] = useState('');
   const [roastDone, setRoastDone] = useState(false);
@@ -275,7 +275,10 @@ export default function RoundSummary({ round, roundScore, foundIds, totalScore, 
                 ✓ <span style={{ color: '#e2e8f0', fontStyle: 'italic' }}>"{token.phraseData.text}"</span>
               </div>
               <div style={{ fontSize: '0.68rem', color: '#10b981', fontFamily: "'Orbitron', sans-serif", flexShrink: 0 }}>
-                +{token.phraseData.score}<span style={{ opacity: 0.5 }}>×combo</span>
+                {foundCombos[token.id]
+                  ? <>+{foundCombos[token.id].finalScore}{foundCombos[token.id].combo > 1 && <span style={{ opacity: 0.55, fontSize: '0.85em' }}> ×{foundCombos[token.id].combo}</span>}</>
+                  : <>+{token.phraseData.score}</>
+                }
               </div>
             </div>
           ))}
@@ -307,7 +310,7 @@ export default function RoundSummary({ round, roundScore, foundIds, totalScore, 
           ))}
 
           <div style={{ fontSize: '0.56rem', color: '#1e293b', fontStyle: 'italic', marginTop: '8px', textAlign: 'center' }}>
-            Phrase scores were multiplied by your combo (up to 5×) during play
+            Scores include combo multiplier (up to 5×) applied at time of click
           </div>
         </div>
       )}
