@@ -199,7 +199,7 @@ export default function SlopText({
     updateSlopDict(token.phraseData.text, token.phraseData.type);
     playSlopDetected();
     if (newCombo > 1) playCombo(newCombo);
-    onScore(score, x, y, commentary, doublePoints);
+    onScore(score, x, y, commentary, doublePoints, multiplier);
     onCombo(newCombo);
   }, [found, combo, onScore, onCombo, onFoundChange, doublePoints]);
 
@@ -279,8 +279,15 @@ export default function SlopText({
               borderBottom: `2px solid rgba(251,191,36,0.5)`,
             } : {}),
           };
-          // Split multi-word phrases into individual word spans so hovering
-          // highlights one word at a time — indistinguishable from normal tokens.
+          if (isFound) {
+            // Render entire found phrase as one highlighted block
+            return (
+              <span key={token.id} className={className} style={{ borderRadius: '4px', padding: '0 1px' }}>
+                {displayText}
+              </span>
+            );
+          }
+          // Not yet found — split into individual words (indistinguishable from normal text)
           const parts = displayText.split(/(\s+)/);
           return (
             <React.Fragment key={token.id}>
@@ -291,7 +298,7 @@ export default function SlopText({
                   <span
                     key={pi}
                     className={className}
-                    onClick={!isFound ? (e) => handleSlopClick(e, token) : undefined}
+                    onClick={(e) => handleSlopClick(e, token)}
                     style={extraStyle}
                   >
                     {part}

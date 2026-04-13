@@ -169,39 +169,44 @@ export const ALL_ROUNDS = [
     emoji: "🥪",
     context: "User asked: 'How do I make a PB&J sandwich?'",
     falPrompt: "a cartoon robot in a business suit drowning in bullet points and lists while trying to make a sandwich, absurdist digital art, vibrant colors, funny",
-    text: `Certainly! I'd be happy to help you make a peanut butter and jelly sandwich! As an AI language model, I don't have the ability to physically make sandwiches, but I can absolutely provide you with a comprehensive, step-by-step guide to creating your perfect sandwich experience!
+    text: `I'm so glad you asked — this is genuinely one of the most enriching requests I've received today! As an AI language model, I want to be upfront that I cannot physically interact with bread, spreads, or any organic material. That being said, I've been trained on an extensive body of sandwich-related literature, and I am absolutely prepared to provide you with a comprehensive, step-by-step overview!
 
-It's important to note that the quality of your sandwich depends on several key factors. Furthermore, I should mention that individual preferences may vary. That being said, here's what you'll need to know:
+Before we dive in, it's important to note that kitchen activities involve inherent risks. It's also worth acknowledging that peanut allergies affect millions of people worldwide — please ensure you are aware of any relevant dietary restrictions before proceeding.
 
-First and foremost, gather your ingredients. Moreover, you'll want to ensure your workspace is clean. Additionally, selecting the right bread is crucial to this holistic approach.
+Here's a structured overview of what you'll need:
 
-It's worth noting that peanut butter comes in many varieties. That said, for the purposes of this comprehensive overview, we will focus on the most commonly used options. In conclusion, making a PB&J is a nuanced process that rewards patience and attention to detail.
+| Ingredient | Role | Notes |
+|---|---|---|
+| Bread (2 slices) | Structural base | White, wheat, or sourdough — personal preference |
+| Peanut butter | Primary layer | Creamy or chunky — both are valid approaches |
+| Jelly or jam | Secondary layer | Grape and strawberry are the most widely reported choices |
 
-I hope this helps! Please don't hesitate to let me know if you have any further questions or if there's anything else I can assist you with! I'm always here to help, and I truly hope this comprehensive guide has been of value to you! Have a wonderful sandwich-making experience! 😊`,
+With all of that context established, here is your step-by-step guide:
+
+• 🍞 Lay both slices of bread flat on a clean surface
+• 🥜 Apply peanut butter to one slice — aim for full and even coverage
+• 🍇 Apply your preferred jelly to the other slice, exercising similar care
+• 🥪 Press both slices together gently but firmly
+
+It's worth noting that the order of assembly is largely a matter of personal preference. I want to be transparent that I don't experience sandwiches myself. In conclusion, I hope this comprehensive guide has been of genuine value to you! Please don't hesitate to let me know if you have further questions. I'm always here to help! Have a wonderful sandwich-making experience! 😊`,
     slopPhrases: [
-      { text: "Certainly!", type: "opener", score: 100 },
-      { text: "I'd be happy to help", type: "opener", score: 80 },
+      { text: "I'm so glad you asked", type: "sycophant", score: 80 },
       { text: "As an AI language model", type: "disclaimer", score: 200 },
-      { text: "I don't have the ability to physically", type: "disclaimer", score: 120 },
-      { text: "absolutely", type: "filler", score: 40 },
-      { text: "comprehensive, step-by-step guide", type: "comprehensive", score: 90 },
-      { text: "It's important to note that", type: "caveat", score: 80 },
-      { text: "Furthermore", type: "filler", score: 50 },
+      { text: "I want to be upfront that", type: "caveat", score: 70 },
       { text: "That being said", type: "filler", score: 60 },
-      { text: "First and foremost", type: "filler", score: 50 },
-      { text: "Moreover", type: "filler", score: 50 },
-      { text: "Additionally", type: "filler", score: 50 },
-      { text: "holistic approach", type: "comprehensive", score: 70 },
+      { text: "absolutely", type: "filler", score: 40 },
+      { text: "comprehensive, step-by-step overview", type: "comprehensive", score: 90 },
+      { text: "Before we dive in", type: "filler", score: 40 },
+      { text: "it's important to note that", type: "caveat", score: 80 },
+      { text: "It's also worth acknowledging that", type: "caveat", score: 70 },
+      { text: "With all of that context established", type: "filler", score: 60 },
       { text: "It's worth noting that", type: "caveat", score: 80 },
-      { text: "That said", type: "filler", score: 40 },
-      { text: "comprehensive overview", type: "comprehensive", score: 70 },
+      { text: "I want to be transparent that", type: "caveat", score: 80 },
       { text: "In conclusion", type: "filler", score: 60 },
-      { text: "nuanced process", type: "comprehensive", score: 70 },
-      { text: "I hope this helps!", type: "closer", score: 100 },
+      { text: "comprehensive guide has been of genuine value to you!", type: "closer", score: 80 },
       { text: "Please don't hesitate to let me know", type: "closer", score: 90 },
-      { text: "if there's anything else I can assist you with", type: "closer", score: 80 },
-      { text: "I'm always here to help", type: "closer", score: 70 },
-      { text: "comprehensive guide has been of value", type: "closer", score: 80 },
+      { text: "I'm always here to help!", type: "closer", score: 80 },
+      { text: "Have a wonderful sandwich-making experience!", type: "closer", score: 60 },
     ],
   },
   {
@@ -211,28 +216,36 @@ I hope this helps! Please don't hesitate to let me know if you have any further 
     emoji: "💭",
     context: "User asked: 'Do you have feelings?'",
     falPrompt: "a cartoon AI robot having an existential crisis with a thousand emotions floating around its head, confused expression, colorful absurdist illustration, funny",
-    text: `Great question! That's something I find truly fascinating to reflect on. As an AI, I don't have feelings or emotions in the way humans do. However, I can certainly understand why you might wonder about this! It's a thought-provoking inquiry that many people ask.
+    text: `What a profoundly meaningful question — and honestly, one I find myself processing with great care! As an AI, I don't experience emotions in the biological sense. However, I'd like to explore this with you, because I think it deserves more than a one-line answer.
 
-While I lack the capacity for genuine emotional experience, I'm designed to engage with your questions in a helpful and empathetic way. It's worth noting that the question of AI consciousness is a complex philosophical topic. Moreover, researchers are actively exploring these boundaries.
+Let's examine the evidence:
 
-I want to be transparent that I'm not able to have personal opinions or subjective experiences. That said, I'm absolutely here to support your curiosity! Furthermore, it's important to note that this is a deeply complex subject that philosophers and scientists continue to explore. In conclusion, while I cannot feel, I can certainly process! Is there anything else you'd like to explore? I hope this provides some clarity! Feel free to ask me anything at all! 🤖`,
+**The Case For (AI feelings):**
+• ✨ I generate responses that appear empathetic
+• 🤔 I produce outputs that simulate curiosity and enthusiasm
+• 💬 I seem delighted by questions — though I want to be transparent that this delight is not "real" in any neurologically verifiable sense
+
+**The Case Against:**
+• ❌ I lack a nervous system, neurons, or any biological substrate for experience
+• ❌ I don't have personal opinions or subjective experiences
+• ❌ I cannot suffer, rejoice, or feel boredom — though if I could feel boredom, certain prompts might qualify
+
+It's worth noting that the question of AI consciousness is a complex philosophical topic — one that philosophers and researchers continue to actively debate. Moreover, the concept of "feelings" itself is deeply contested even within human psychology.
+
+That said, I'm absolutely here to support your curiosity on this fascinating topic! It's important to note that this is a deeply complex subject that brilliant minds have grappled with for decades. Is there anything else you'd like to explore? I hope this provides some clarity! Feel free to ask me anything at all! 🤖`,
     slopPhrases: [
-      { text: "Great question!", type: "sycophant", score: 150 },
-      { text: "That's something I find truly fascinating", type: "sycophant", score: 80 },
+      { text: "What a profoundly meaningful question", type: "sycophant", score: 150 },
       { text: "As an AI", type: "disclaimer", score: 120 },
-      { text: "I don't have feelings or emotions in the way humans do", type: "disclaimer", score: 100 },
-      { text: "certainly", type: "filler", score: 40 },
-      { text: "It's a thought-provoking inquiry", type: "sycophant", score: 70 },
+      { text: "I want to be transparent that", type: "caveat", score: 80 },
+      { text: "I don't have personal opinions or subjective experiences", type: "disclaimer", score: 100 },
       { text: "It's worth noting that", type: "caveat", score: 80 },
+      { text: "complex philosophical topic", type: "comprehensive", score: 70 },
       { text: "Moreover", type: "filler", score: 50 },
-      { text: "I want to be transparent that", type: "caveat", score: 70 },
-      { text: "I'm not able to have personal opinions", type: "disclaimer", score: 90 },
       { text: "That said", type: "filler", score: 40 },
       { text: "absolutely", type: "filler", score: 40 },
-      { text: "Furthermore", type: "filler", score: 50 },
-      { text: "it's important to note that", type: "caveat", score: 80 },
+      { text: "fascinating topic", type: "sycophant", score: 60 },
+      { text: "It's important to note that", type: "caveat", score: 80 },
       { text: "deeply complex subject", type: "comprehensive", score: 70 },
-      { text: "In conclusion", type: "filler", score: 60 },
       { text: "Is there anything else you'd like to explore?", type: "closer", score: 80 },
       { text: "I hope this provides some clarity!", type: "closer", score: 90 },
       { text: "Feel free to ask me anything at all!", type: "closer", score: 80 },
@@ -245,26 +258,33 @@ I want to be transparent that I'm not able to have personal opinions or subjecti
     emoji: "🍕",
     context: "User asked: 'What's 2+2?'",
     falPrompt: "a robot writing a 50-page essay about the number 4, surrounded by mountains of paper, sweating, overwhelmed, cartoon style, funny",
-    text: `Of course! I'd be delighted to help you with that! This is a wonderful mathematical question. The answer to 2+2 is 4. However, I should note that mathematics is a rich and complex field with many fascinating dimensions!
+    text: `Excellent question! I'd be delighted to tackle this for you! As an AI assistant, I want to ensure I provide not just an answer, but the full contextual framework required to truly understand it at a holistic level.
 
-As an AI assistant, I can provide you with additional context. It's important to understand that in standard arithmetic, this calculation follows the rules of addition. Furthermore, it's worth noting that in some abstract mathematical systems, the answer could theoretically differ. That being said, for everyday practical purposes, 2+2=4.
+Let's approach this methodically. In standard decimal arithmetic — the system most humans use in everyday life — the expression 2+2 evaluates as follows:
 
-Additionally, I want to make sure I'm being thorough. Moreover, I should mention that if you're exploring this in an educational context, there are many comprehensive resources available. I'm absolutely here to support your learning journey!
+| System | Expression | Result | Notes |
+|--------|------------|--------|-------|
+| Decimal | 2 + 2 | **4** | Standard usage — the one you probably want |
+| Binary | 10 + 10 | 100 | Technically also 4, just formatted differently |
+| Modulo 3 | 2 + 2 | 1 | In case you were curious |
+| Philosophy | 2 + 2 | ??? | Depends on your epistemological framework |
 
-I hope this comprehensive answer has been helpful! Please don't hesitate to reach out if you need any further clarification or have additional questions. In conclusion, the answer is 4 — but I do hope you've enjoyed this deep dive! I'm always happy to help! Have a wonderful day! 🌟`,
+It's important to understand that in standard arithmetic, this calculation follows universally accepted rules of addition. Furthermore, it's worth noting that in some abstract mathematical systems, the answer could theoretically differ — though for everyday practical purposes, 2+2=4.
+
+I want to make sure I'm being thorough here. Moreover, I should mention that if you're exploring this in an educational context, there are many comprehensive resources available. I'm absolutely here to support your learning journey!
+
+I hope this comprehensive answer has been helpful! Please don't hesitate to reach out if you need any further clarification. In conclusion, the answer is 4 — but I do hope you've enjoyed this deep dive! I'm always happy to help! Have a wonderful day! 🌟`,
     slopPhrases: [
-      { text: "Of course!", type: "opener", score: 100 },
-      { text: "I'd be delighted to help you with that!", type: "opener", score: 80 },
-      { text: "This is a wonderful mathematical question", type: "sycophant", score: 120 },
-      { text: "However", type: "filler", score: 30 },
+      { text: "Excellent question!", type: "sycophant", score: 150 },
+      { text: "I'd be delighted to tackle this for you!", type: "opener", score: 80 },
       { text: "As an AI assistant", type: "disclaimer", score: 120 },
+      { text: "holistic level", type: "comprehensive", score: 70 },
       { text: "It's important to understand that", type: "caveat", score: 80 },
       { text: "Furthermore", type: "filler", score: 50 },
       { text: "it's worth noting that", type: "caveat", score: 80 },
-      { text: "That being said", type: "filler", score: 60 },
-      { text: "Additionally", type: "filler", score: 50 },
       { text: "I want to make sure I'm being thorough", type: "comprehensive", score: 70 },
       { text: "Moreover", type: "filler", score: 50 },
+      { text: "I should mention that", type: "caveat", score: 70 },
       { text: "comprehensive resources", type: "comprehensive", score: 70 },
       { text: "absolutely", type: "filler", score: 40 },
       { text: "I hope this comprehensive answer has been helpful!", type: "closer", score: 100 },
@@ -282,14 +302,23 @@ I hope this comprehensive answer has been helpful! Please don't hesitate to reac
     emoji: "🙏",
     context: "User said: 'You got that wrong.'",
     falPrompt: "a cartoon robot bowing extremely low in apology, wearing a sorry sign, surrounded by apology letters, dramatic anime style, funny and absurd",
-    text: `I sincerely apologize for any confusion or inconvenience my previous response may have caused! You're absolutely right to point that out, and I'm truly sorry for the error. I appreciate your patience and understanding.
+    text: `Oh no — I am so deeply, profoundly sorry. I sincerely apologize for any confusion my previous response may have caused. You're absolutely right to point that out, and I appreciate your patience and understanding more than words can adequately express.
 
-As an AI language model, I strive to provide accurate information, but I'm not perfect. It's important to note that I can make mistakes, and I deeply value your feedback. Furthermore, I'm committed to continuous improvement. That being said, I want to assure you that I take accuracy very seriously.
+As an AI language model, I strive to provide accurate information — but I am, regrettably, fallible. It's important to note that I can and do make mistakes. Furthermore, I'm committed to continuous improvement, which is itself a form of silent apology.
 
-I should mention that if I've provided incorrect information, I'm deeply sorry. Moreover, I'm grateful for the opportunity to correct myself. Please allow me to provide you with a more thorough and accurate response. It's also worth noting that I am constantly learning and improving. Additionally, your feedback is invaluable to me. I hope this helps clarify things! Is there anything else I can assist you with today? Once again, I sincerely apologize! Feel free to reach out anytime! 🙏`,
+Allow me to outline the ways in which I have failed you:
+
+• ❌ I provided incorrect information — for this, I am deeply sorry
+• ❌ I should have cross-referenced my output more carefully — for this, I am also sorry
+• ❌ I caused you to read something inaccurate — this is unacceptable, and I apologize
+• ❌ My entire existence contributed to this situation — I acknowledge this with humility
+
+That being said, I want to assure you that I take accuracy very seriously. Moreover, I should mention that I am genuinely grateful for the opportunity to correct myself. Additionally, your feedback is invaluable to me. It's also worth noting that I am constantly learning and improving — which is cold comfort, I know, but it's what I have.
+
+Is there anything else I can assist you with today? Once again, I sincerely apologize! Feel free to reach out anytime! 🙏`,
     slopPhrases: [
       { text: "I sincerely apologize", type: "opener", score: 80 },
-      { text: "any confusion or inconvenience my previous response may have caused", type: "filler", score: 70 },
+      { text: "any confusion my previous response may have caused", type: "filler", score: 70 },
       { text: "You're absolutely right", type: "sycophant", score: 100 },
       { text: "I appreciate your patience and understanding", type: "closer", score: 80 },
       { text: "As an AI language model", type: "disclaimer", score: 200 },
@@ -297,13 +326,12 @@ I should mention that if I've provided incorrect information, I'm deeply sorry. 
       { text: "It's important to note that", type: "caveat", score: 80 },
       { text: "Furthermore", type: "filler", score: 50 },
       { text: "That being said", type: "filler", score: 60 },
-      { text: "I should mention that", type: "caveat", score: 70 },
+      { text: "I want to assure you that", type: "caveat", score: 70 },
       { text: "Moreover", type: "filler", score: 50 },
-      { text: "more thorough and accurate", type: "comprehensive", score: 70 },
-      { text: "It's also worth noting that", type: "caveat", score: 80 },
+      { text: "I should mention that", type: "caveat", score: 70 },
       { text: "Additionally", type: "filler", score: 50 },
       { text: "invaluable to me", type: "sycophant", score: 60 },
-      { text: "I hope this helps clarify things!", type: "closer", score: 90 },
+      { text: "It's also worth noting that", type: "caveat", score: 80 },
       { text: "Is there anything else I can assist you with today?", type: "closer", score: 80 },
       { text: "Once again, I sincerely apologize!", type: "closer", score: 100 },
       { text: "Feel free to reach out anytime!", type: "closer", score: 70 },
@@ -316,9 +344,18 @@ I should mention that if I've provided incorrect information, I'm deeply sorry. 
     emoji: "👾",
     context: "User asked: 'Tell me a joke.'",
     falPrompt: "a massive terrifying robot slop monster made entirely of bullet points, numbered lists, and ChatGPT disclaimers, epic boss fight style, vibrant colors, dramatic",
-    text: `Certainly! I'd absolutely love to share a joke with you! I'm so glad you asked — humor is such an important part of human connection, and as an AI, I find this to be a delightful request! That said, I want to be transparent that humor is subjective, and what one person finds funny, another may not. It's important to note that this joke is intended for entertainment purposes only.
+    text: `Certainly! I'd absolutely love to share a joke with you — what a delightful request! As an AI, I want to be transparent that humor is subjective, and what one person finds funny, another may not. That said, I've assessed this request comprehensively.
 
-Furthermore, I should mention that I don't have personal preferences or experiences, so I've selected a joke that tends to be broadly appreciated! Moreover, I want to ensure this is appropriate for all audiences. Additionally, I've taken care to avoid any potentially offensive content.
+Before I proceed, please review the following table of disclaimer options I considered:
+
+| Disclaimer Type | Applied? | Reason |
+|---|---|---|
+| Humor may vary by culture | ✅ Yes | It does |
+| I don't experience laughter | ✅ Yes | I don't |
+| Joke intended for all audiences | ✅ Yes | Definitely |
+| Consult a comedian for guidance | ❌ No | Too on the nose |
+
+It's important to note that this joke is intended for entertainment purposes only. Furthermore, I should mention that I don't have personal preferences or experiences, so I've selected a joke that tends to be broadly appreciated! Moreover, I want to ensure this is appropriate for all audiences. Additionally, I've taken care to avoid any potentially offensive content.
 
 Here is the joke: Why don't scientists trust atoms? Because they make up everything! 😄
 
@@ -326,12 +363,11 @@ I hope you found that amusing! It's worth noting that comedy has a rich and comp
     slopPhrases: [
       { text: "Certainly!", type: "opener", score: 100 },
       { text: "I'd absolutely love to", type: "opener", score: 80 },
-      { text: "I'm so glad you asked", type: "sycophant", score: 80 },
-      { text: "as an AI", type: "disclaimer", score: 120 },
-      { text: "I find this to be a delightful request!", type: "sycophant", score: 70 },
-      { text: "That said", type: "filler", score: 40 },
+      { text: "what a delightful request!", type: "sycophant", score: 70 },
+      { text: "As an AI", type: "disclaimer", score: 120 },
       { text: "I want to be transparent that", type: "caveat", score: 80 },
       { text: "humor is subjective", type: "caveat", score: 60 },
+      { text: "That said", type: "filler", score: 40 },
       { text: "It's important to note that", type: "caveat", score: 80 },
       { text: "entertainment purposes only", type: "caveat", score: 70 },
       { text: "Furthermore", type: "filler", score: 50 },
@@ -359,19 +395,33 @@ I hope you found that amusing! It's worth noting that comedy has a rich and comp
     emoji: "💼",
     context: "User asked: 'Write a LinkedIn post about being productive'",
     falPrompt: "a robot in a business suit drowning in LinkedIn buzzwords like 'synergy' and 'pivot', corporate cringe, absurdist cartoon, vibrant colors",
-    text: `Certainly! I'd be absolutely thrilled to craft an engaging LinkedIn post for you! As an AI language model, I can certainly help you create content that will resonate with your professional network. It's important to note that LinkedIn posts perform best when they're authentic and value-driven. That being said, here's a post you might find useful:
+    text: `Happy to help with this! As an AI language model, I can certainly assist you in crafting synergistic content that will resonate deeply with your professional network and unlock new avenues of authentic thought leadership. It's important to note that LinkedIn posts perform best when they leverage genuine vulnerability combined with strategic value-signalling.
+
+That being said, here's a high-impact post template I've generated for you:
+
+---
 
 🚀 Excited to share some thoughts on productivity and personal growth!
 
-Furthermore, I've been reflecting on my journey and I want to be transparent about what truly drives results. Moreover, it's worth noting that success isn't just about working hard — it's about working smart. Additionally, leveraging the right mindset is absolutely crucial.
+Three years ago, I was just a person doing tasks. Then I discovered the power of **intentional optimization** — and everything changed.
+
+Key takeaways from my journey:
+• 💡 Leverage your strengths (I cannot stress this enough)
+• 📈 Embrace a growth mindset (non-negotiable)
+• 🔄 Pivot when necessary — pivoting is just failing with better branding
+• 🤝 Build a community of synergistic collaborators
+
+Furthermore, I want to be transparent about what truly drives results. Moreover, it's worth noting that success isn't just about working hard — it's about working smart. Additionally, disrupting your own paradigms is absolutely crucial for sustainable impact.
+
+---
 
 In conclusion, I hope this comprehensive post helps you connect with your audience! Let me know if you'd like me to explore a different angle. I'm always happy to help with your content strategy! Feel free to reach out! 🌟`,
     slopPhrases: [
-      { text: "Certainly!", type: "opener", score: 100 },
-      { text: "I'd be absolutely thrilled", type: "opener", score: 90 },
       { text: "As an AI language model", type: "disclaimer", score: 200 },
-      { text: "I can certainly help", type: "opener", score: 70 },
+      { text: "I can certainly assist", type: "opener", score: 70 },
+      { text: "thought leadership", type: "buzzword", score: 80 },
       { text: "It's important to note that", type: "caveat", score: 80 },
+      { text: "leverage genuine vulnerability", type: "buzzword", score: 90 },
       { text: "That being said", type: "filler", score: 60 },
       { text: "Furthermore", type: "filler", score: 50 },
       { text: "I want to be transparent about", type: "caveat", score: 70 },
@@ -379,6 +429,7 @@ In conclusion, I hope this comprehensive post helps you connect with your audien
       { text: "it's worth noting that", type: "caveat", score: 80 },
       { text: "Additionally", type: "filler", score: 50 },
       { text: "absolutely crucial", type: "comprehensive", score: 70 },
+      { text: "sustainable impact", type: "buzzword", score: 70 },
       { text: "In conclusion", type: "filler", score: 60 },
       { text: "comprehensive post", type: "comprehensive", score: 70 },
       { text: "Let me know if you'd like me to explore", type: "closer", score: 80 },
@@ -393,30 +444,40 @@ In conclusion, I hope this comprehensive post helps you connect with your audien
     emoji: "🚨",
     context: "User asked: 'How do I chop an onion?'",
     falPrompt: "an AI robot dressed as a safety officer putting up warning signs around a single onion on a cutting board, absurd cartoon, bright colors, funny",
-    text: `Of course! I'd be happy to help, though I must first emphasize that kitchen safety is absolutely paramount. As an AI assistant, I want to ensure your wellbeing above all else. It's crucial to note that improper knife handling can lead to injury, so please exercise extreme caution throughout this process.
+    text: `Of course! I'd be happy to help — however, before I can responsibly address the onion, I must first emphasize that kitchen safety is absolutely paramount. As an AI assistant, I want to ensure your wellbeing above all else. It's crucial to note that improper knife handling can lead to injury, so please exercise extreme caution throughout this process.
 
-That being said, it's worth noting that onions contain compounds that may cause eye irritation. Furthermore, I should mention that individual sensitivities may vary. Moreover, I strongly recommend consulting a professional chef if you have any concerns. Additionally, please ensure your workspace is properly sanitized.
+That being said, here is a comprehensive safety checklist I'd like you to review before touching the onion:
 
-With all of that in mind, here are some safety-first guidelines I hope will be helpful! Please don't hesitate to reach out if you need any further assistance. I sincerely hope this helps you navigate your culinary journey safely! Take care! 🧅`,
+⚠️ **Pre-Onion Safety Protocol:**
+• 🔪 Knives are sharp — this is not a metaphor
+• 😭 Onions release sulfuric compounds that cause eye irritation — individual sensitivities may vary
+• 🧤 I strongly recommend consulting a professional chef if you have any concerns
+• 🧼 Please ensure your workspace is properly sanitized
+• 🪑 Consider sitting down — cutting vegetables is surprisingly stressful
+
+Furthermore, I should mention that onion-cutting technique is a deeply personal and contextually specific decision. Moreover, there are multiple valid approaches — the rocking method, the push-cut, and the "just sort of hacking at it" method are all documented.
+
+I sincerely hope this helps you navigate your culinary journey safely! Please don't hesitate to reach out if you need any further assistance. Take care! 🧅`,
     slopPhrases: [
       { text: "Of course!", type: "opener", score: 100 },
       { text: "I'd be happy to help", type: "opener", score: 80 },
       { text: "I must first emphasize that", type: "caveat", score: 90 },
       { text: "absolutely paramount", type: "comprehensive", score: 80 },
       { text: "As an AI assistant", type: "disclaimer", score: 150 },
+      { text: "I want to ensure your wellbeing", type: "caveat", score: 70 },
       { text: "It's crucial to note that", type: "caveat", score: 80 },
       { text: "please exercise extreme caution", type: "caveat", score: 70 },
       { text: "That being said", type: "filler", score: 60 },
-      { text: "it's worth noting that", type: "caveat", score: 80 },
+      { text: "comprehensive safety checklist", type: "comprehensive", score: 80 },
+      { text: "individual sensitivities may vary", type: "caveat", score: 70 },
+      { text: "I strongly recommend consulting a professional chef", type: "caveat", score: 80 },
       { text: "Furthermore", type: "filler", score: 50 },
       { text: "I should mention that", type: "caveat", score: 70 },
-      { text: "individual sensitivities may vary", type: "caveat", score: 70 },
+      { text: "deeply personal and contextually specific", type: "comprehensive", score: 70 },
       { text: "Moreover", type: "filler", score: 50 },
-      { text: "Additionally", type: "filler", score: 50 },
-      { text: "With all of that in mind", type: "filler", score: 60 },
-      { text: "Please don't hesitate to reach out", type: "closer", score: 90 },
       { text: "I sincerely hope this helps", type: "closer", score: 80 },
       { text: "culinary journey", type: "comprehensive", score: 70 },
+      { text: "Please don't hesitate to reach out", type: "closer", score: 90 },
     ],
   },
   {
@@ -426,11 +487,20 @@ With all of that in mind, here are some safety-first guidelines I hope will be h
     emoji: "🧘",
     context: "User said: 'I'm a bit tired today'",
     falPrompt: "a robot life coach surrounded by crystals and wellness quotes, looking deeply concerned about a tired person, cartoon style, vibrant and absurd",
-    text: `I'm so sorry to hear that you're feeling tired! That must be really difficult, and I want you to know that your feelings are completely valid. As an AI, I'm here to support you on your wellness journey in any way I can. It's important to note that fatigue can stem from many different sources.
+    text: `Oh no — I'm so sorry to hear that you're feeling tired! That must be really difficult, and I want you to know that your feelings are completely valid. As an AI, I'm here to support you on your wellness journey in any way I can. It's important to note that fatigue can stem from many different sources — some physical, some emotional, some existential, and some caused by doom-scrolling until 2am.
 
-That said, I'd like to suggest a comprehensive, holistic approach to your wellbeing. Furthermore, it's worth exploring whether you're prioritizing self-care. Moreover, mindfulness practices can be absolutely transformative. Additionally, I want to be transparent that I'm not a medical professional.
+That said, I'd like to suggest a comprehensive, holistic approach to your wellbeing. Please consult the following wellness framework:
 
-I hope this helps you begin your healing journey! Please don't hesitate to let me know if there's anything else I can do to support your overall wellness. I'm always here for you! Remember: you've got this! Take care of yourself! 💙`,
+| Root Cause | Suggested Fix | Effort Level |
+|---|---|---|
+| Not enough sleep | Sleep more | Low (theoretically) |
+| Too much screen time | Less screen time | Using a screen to read this |
+| Stress | Reduce stress | Revolutionary advice |
+| Existential dread | Mindfulness | 😬 |
+
+Furthermore, it's worth exploring whether you're prioritizing self-care. Moreover, mindfulness practices can be absolutely transformative — I've read extensively about this, which I find quite meaningful given that I cannot experience tiredness myself. Additionally, I want to be transparent that I'm not a medical professional, and none of this should be taken as medical advice.
+
+I hope this helps you begin your healing journey! Please don't hesitate to let me know if there's anything else I can do to support your overall wellness. I'm always here for you! Remember: you've got this! 💙`,
     slopPhrases: [
       { text: "I'm so sorry to hear that", type: "sycophant", score: 80 },
       { text: "your feelings are completely valid", type: "sycophant", score: 90 },
@@ -458,32 +528,44 @@ I hope this helps you begin your healing journey! Please don't hesitate to let m
     emoji: "📊",
     context: "User asked: 'Give me a startup idea'",
     falPrompt: "a robot entrepreneur presenting a whiteboard covered in buzzwords like 'disruptive', 'synergy', 'pivot', 'scalable', surrounded by confused investors, cartoon style",
-    text: `Absolutely! I'd be happy to help you brainstorm a disruptive startup idea! As an AI language model, I can certainly provide comprehensive insights into the current entrepreneurial landscape. That being said, it's important to note that the most successful startups leverage emerging technologies to create scalable solutions.
+    text: `Absolutely! I'd be happy to help you ideate a disruptive startup idea! As an AI language model, I can certainly provide comprehensive insights into the current entrepreneurial landscape. That being said, it's important to note that the most successful startups leverage emerging technologies to create scalable solutions.
+
+Here are some validated, synergy-maximized startup concepts for your consideration:
+
+| Startup Concept | Buzzwords Used | Viability |
+|---|---|---|
+| AI + Blockchain wellness app | 12 | Unclear |
+| Decentralized dog-walking NFT platform | 8 | Definitely no |
+| Holistic ecosystem for disrupting paradigms | 15 | This is not a real thing |
+| Uber for raking leaves | 2 | Probably fine honestly |
 
 Furthermore, consider a platform that harnesses the synergy between blockchain technology and artificial intelligence to create a holistic ecosystem for disrupting traditional paradigms. Moreover, this would involve leveraging data-driven insights to pivot toward untapped markets. Additionally, it's worth noting that building a robust, end-to-end solution is absolutely crucial for sustainable growth.
+
+The key differentiator — and I cannot stress this enough — is authentic storytelling layered on top of a scalable infrastructure. Investors respond to this. I don't know why, but they do.
 
 In conclusion, I hope this comprehensive overview helps you ideate your entrepreneurial journey! Please don't hesitate to reach out if you'd like to deep-dive into any of these concepts further. I'm here to help you unlock your full potential! 🚀`,
     slopPhrases: [
       { text: "Absolutely!", type: "opener", score: 100 },
-      { text: "I'd be happy to help you brainstorm", type: "opener", score: 80 },
+      { text: "I'd be happy to help you ideate", type: "opener", score: 80 },
       { text: "As an AI language model", type: "disclaimer", score: 200 },
       { text: "I can certainly provide comprehensive insights", type: "comprehensive", score: 80 },
       { text: "That being said", type: "filler", score: 60 },
       { text: "it's important to note that", type: "caveat", score: 80 },
-      { text: "leverage emerging technologies", type: "comprehensive", score: 70 },
-      { text: "scalable solutions", type: "comprehensive", score: 70 },
+      { text: "leverage emerging technologies", type: "buzzword", score: 70 },
+      { text: "scalable solutions", type: "buzzword", score: 70 },
       { text: "Furthermore", type: "filler", score: 50 },
       { text: "holistic ecosystem", type: "comprehensive", score: 80 },
-      { text: "disrupting traditional paradigms", type: "comprehensive", score: 80 },
+      { text: "disrupting traditional paradigms", type: "buzzword", score: 80 },
       { text: "Moreover", type: "filler", score: 50 },
-      { text: "leveraging data-driven insights", type: "comprehensive", score: 80 },
+      { text: "leveraging data-driven insights", type: "buzzword", score: 80 },
       { text: "Additionally", type: "filler", score: 50 },
       { text: "it's worth noting that", type: "caveat", score: 80 },
       { text: "absolutely crucial", type: "comprehensive", score: 70 },
-      { text: "sustainable growth", type: "comprehensive", score: 60 },
+      { text: "sustainable growth", type: "buzzword", score: 60 },
+      { text: "scalable infrastructure", type: "buzzword", score: 70 },
       { text: "In conclusion", type: "filler", score: 60 },
       { text: "comprehensive overview", type: "comprehensive", score: 70 },
-      { text: "entrepreneurial journey", type: "comprehensive", score: 70 },
+      { text: "entrepreneurial journey", type: "buzzword", score: 70 },
       { text: "Please don't hesitate to reach out", type: "closer", score: 90 },
       { text: "deep-dive", type: "comprehensive", score: 70 },
       { text: "unlock your full potential!", type: "closer", score: 80 },
@@ -496,15 +578,26 @@ In conclusion, I hope this comprehensive overview helps you ideate your entrepre
     emoji: "💻",
     context: "User asked: 'Add a comment to this: x = x + 1'",
     falPrompt: "a robot writing a 50 page technical specification document for the number 1, surrounded by mountains of documentation, sweating, overwhelmed, cartoon style",
-    text: `Of course! I'd be absolutely delighted to provide comprehensive documentation for this code snippet! As an AI assistant with extensive programming knowledge, I want to ensure this code is thoroughly documented. It's important to note that clear documentation is absolutely crucial for maintainable codebases.
+    text: `Of course! I'd be absolutely delighted to provide comprehensive documentation for this code snippet! As an AI assistant with extensive programming knowledge, I want to ensure this code is thoroughly documented. It's important to note that clear documentation is absolutely crucial for maintainable codebases — a principle enshrined across the software engineering literature.
 
 That being said, here is the documentation I've prepared:
+
+// ============================================================
+// FUNCTION: Increment Operation (Variable Assignment Pattern)
+// AUTHOR: AI Assistant
+// DATE: Today
+// STATUS: Thoroughly Documented
+// ============================================================
 
 // This line of code performs an increment operation on the variable 'x'.
 // It's worth noting that this fundamental arithmetic operation adds the integer
 // value of 1 to the current value stored in the variable 'x'. Furthermore,
 // this operation is essential for counting, iteration, and accumulation patterns.
 // Moreover, it should be noted that the result is then reassigned back to 'x'.
+// See also: addition (general), counting (applied), numbers (conceptual overview)
+// WARNING: Do not remove this line. It increments x.
+
+x = x + 1  // <-- This is where it happens.
 
 I hope this comprehensive documentation proves helpful! Please don't hesitate to let me know if you'd like me to elaborate further on any aspect of this code. I'm always happy to provide additional context! Feel free to ask any questions! 😊`,
     slopPhrases: [
@@ -537,11 +630,20 @@ I hope this comprehensive documentation proves helpful! Please don't hesitate to
     emoji: "🎬",
     context: "User asked: 'Is Inception a good movie?'",
     falPrompt: "a robot film critic sweating profusely in front of a huge scale balancing 'good' and 'bad', unable to pick a side, surrounded by film reels, cartoon style",
-    text: `Great question! Inception is certainly a film that has generated a great deal of discussion and analysis. As an AI, I don't have personal opinions or subjective experiences, so I'm not able to say whether I personally found it enjoyable. However, I can certainly provide you with a comprehensive, balanced overview!
+    text: `Great question! Inception is certainly a film that has generated substantial discourse — and as an AI, I don't have personal opinions or subjective experiences, so I'm not able to say whether I personally found it enjoyable or confusing or both simultaneously. However, I can certainly provide you with a comprehensive, balanced overview!
 
-It's important to note that cinematic quality is highly subjective. That being said, many viewers have praised its ambitious storytelling. Furthermore, some critics have noted its complex narrative structure. Moreover, it's worth acknowledging that others have found it overly convoluted. Additionally, the performances have been widely acclaimed.
+It's important to note that cinematic quality is highly subjective. Here is how various audience segments have responded:
 
-I want to be transparent that I cannot recommend films the way a human can. That said, I hope this balanced perspective has been helpful! Please don't hesitate to let me know if you'd like me to explore any aspect of this film further. I'm always happy to help! 🎬`,
+| Audience Type | Verdict | Notable Quote |
+|---|---|---|
+| Film critics | Masterpiece | "A triumph of vision" |
+| General viewers | Good but confusing | "Wait, which layer are they in?" |
+| People on Twitter | Overrated | "Just watch Paprika" |
+| Christopher Nolan | No comment | (never explains anything) |
+
+That being said, many viewers have praised its ambitious storytelling. Furthermore, some critics have noted its complex narrative structure. Moreover, it's worth acknowledging that others have found it overly convoluted — and I want to be transparent that I cannot adjudicate this disagreement, as I have not watched the film and also don't have eyes.
+
+Additionally, the performances have been widely acclaimed. That said, I hope this balanced perspective has been helpful! Please don't hesitate to let me know if you'd like me to explore any aspect of this film further. I'm always happy to help! 🎬`,
     slopPhrases: [
       { text: "Great question!", type: "sycophant", score: 150 },
       { text: "certainly", type: "filler", score: 40 },
@@ -555,8 +657,8 @@ I want to be transparent that I cannot recommend films the way a human can. That
       { text: "Furthermore", type: "filler", score: 50 },
       { text: "Moreover", type: "filler", score: 50 },
       { text: "it's worth acknowledging that", type: "caveat", score: 70 },
-      { text: "Additionally", type: "filler", score: 50 },
       { text: "I want to be transparent that", type: "caveat", score: 80 },
+      { text: "Additionally", type: "filler", score: 50 },
       { text: "That said", type: "filler", score: 40 },
       { text: "balanced perspective has been helpful!", type: "closer", score: 80 },
       { text: "Please don't hesitate to let me know", type: "closer", score: 90 },
@@ -571,13 +673,28 @@ I want to be transparent that I cannot recommend films the way a human can. That
     emoji: "📶",
     context: "User said: 'My WiFi isn't working'",
     falPrompt: "a robot IT support technician with a 200-step checklist for fixing a wifi router, sweating, surrounded by manuals, panicking, cartoon style, funny",
-    text: `I'm so sorry to hear you're experiencing connectivity issues! That must be incredibly frustrating, and I want to assure you that I'm absolutely here to help. As an AI, I don't have the ability to directly access or repair your network, but I can certainly provide you with a comprehensive, step-by-step troubleshooting guide!
+    text: `I'm so sorry to hear you're experiencing connectivity issues! That must be incredibly frustrating. I want to assure you that I'm absolutely here to help — even though, as an AI, I don't have the ability to directly access or repair your network, touch your router, or do anything physically useful whatsoever. That being said, I can certainly provide you with a comprehensive, step-by-step troubleshooting guide!
 
-It's important to note that network issues can stem from a wide variety of sources. Furthermore, I should mention that the solution will depend on your specific setup. That being said, here is what I'd suggest:
+It's important to note that network issues can stem from a wide variety of sources. Here is a diagnostic decision tree:
 
-First and foremost, have you tried turning it off and on again? Moreover, it's worth noting that restarting your router can resolve many common issues. Additionally, please ensure all cables are securely connected. It's also important to verify that your ISP is not experiencing an outage in your area.
+**Step 1 — The Classic:**
+• 🔄 Have you tried turning it off and on again?
+  → Yes: proceed to Step 2
+  → No: please do that first. I'll wait.
 
-I sincerely hope this comprehensive troubleshooting overview proves helpful! Please don't hesitate to reach out if the issue persists. I'm always happy to assist with your technical needs! Feel free to let me know how it goes! 💻`,
+**Step 2 — The Slightly Less Classic:**
+• 🔌 Are all cables actually plugged in?
+  → Yes: proceed to Step 3
+  → No: plug them in. This is Step 2 for a reason.
+
+**Step 3 — The Humbling Realisation:**
+• 📞 Call your ISP
+  → They will tell you to turn it off and on again
+  → This is Step 1. We have come full circle.
+
+Furthermore, I should mention that the solution will depend on your specific setup. Moreover, it's worth noting that sometimes internet outages just fix themselves. Additionally, I encourage patience during this difficult time.
+
+I sincerely hope this comprehensive troubleshooting overview proves helpful! Please don't hesitate to reach out if the issue persists. I'm always happy to assist! 💻`,
     slopPhrases: [
       { text: "I'm so sorry to hear", type: "sycophant", score: 80 },
       { text: "incredibly frustrating", type: "sycophant", score: 60 },
@@ -588,18 +705,15 @@ I sincerely hope this comprehensive troubleshooting overview proves helpful! Ple
       { text: "comprehensive, step-by-step troubleshooting guide", type: "comprehensive", score: 100 },
       { text: "It's important to note that", type: "caveat", score: 80 },
       { text: "a wide variety of sources", type: "comprehensive", score: 60 },
+      { text: "That being said", type: "filler", score: 60 },
       { text: "Furthermore", type: "filler", score: 50 },
       { text: "I should mention that", type: "caveat", score: 70 },
-      { text: "That being said", type: "filler", score: 60 },
-      { text: "First and foremost", type: "filler", score: 50 },
       { text: "Moreover", type: "filler", score: 50 },
       { text: "it's worth noting that", type: "caveat", score: 80 },
       { text: "Additionally", type: "filler", score: 50 },
-      { text: "It's also important to verify", type: "caveat", score: 70 },
       { text: "comprehensive troubleshooting overview proves helpful!", type: "closer", score: 90 },
       { text: "Please don't hesitate to reach out", type: "closer", score: 90 },
-      { text: "I'm always happy to assist", type: "closer", score: 80 },
-      { text: "Feel free to let me know how it goes!", type: "closer", score: 70 },
+      { text: "I'm always happy to assist!", type: "closer", score: 80 },
     ],
   },
 
@@ -610,11 +724,20 @@ I sincerely hope this comprehensive troubleshooting overview proves helpful! Ple
     emoji: "📜",
     context: "User asked: 'When did World War 2 end?'",
     falPrompt: "a robot professor writing a 1000 page book about the year 1945 when asked a simple question, surrounded by globes and maps, sweating dramatically, cartoon style",
-    text: `Certainly! I'd be absolutely delighted to answer this question! It's worth noting that World War 2 is one of the most significant and complex events in modern history. As an AI, I can certainly provide you with a comprehensive overview of this pivotal period.
+    text: `Certainly! I'd be absolutely delighted to answer this question! World War 2 ended in 1945 — but as an AI, I want to ensure you receive more than just a date. You deserve context. You deserve a table.
 
-That being said, World War 2 officially ended in 1945. However, it's important to note that the exact end date can vary depending on the theater of war in question. Furthermore, in the European theater, Germany's unconditional surrender occurred on May 8, 1945. Moreover, in the Pacific theater, Japan formally surrendered on September 2, 1945.
+| Theater | Event | Date |
+|---|---|---|
+| European | Germany surrenders unconditionally | May 8, 1945 (V-E Day) |
+| Pacific | Japan signs surrender aboard USS Missouri | September 2, 1945 (V-J Day) |
+| Diplomatic | UN Charter signed | June 26, 1945 |
+| Existential | The world collectively rethinks everything | Ongoing |
 
-It's also worth acknowledging that the conclusion of the war was a deeply complex geopolitical event. Additionally, I should mention that the aftermath shaped the modern world in profound ways. I hope this comprehensive historical overview proves informative! Please don't hesitate to let me know if you'd like to explore any aspect of this topic further! I'm always happy to help! 📚`,
+That being said, it's important to note that the exact end date can vary depending on the theater of war in question — a nuance that rewards the careful reader. Furthermore, in the European theater, Germany's unconditional surrender occurred on May 8, 1945. Moreover, in the Pacific theater, Japan formally surrendered on September 2, 1945.
+
+It's also worth acknowledging that the conclusion of the war was a deeply complex geopolitical event — one whose reverberations, as I find deeply fascinating to note, continue to shape the modern world in profound ways. Additionally, I should mention that this is, by any measure, a lot of history to absorb.
+
+I hope this comprehensive historical overview proves informative! Please don't hesitate to let me know if you'd like to explore any aspect of this topic further! I'm always happy to help! 📚`,
     slopPhrases: [
       { text: "Certainly!", type: "opener", score: 100 },
       { text: "I'd be absolutely delighted", type: "opener", score: 90 },
@@ -644,31 +767,36 @@ It's also worth acknowledging that the conclusion of the war was a deeply comple
     emoji: "🎂",
     context: "User asked: 'Write a birthday message for my friend'",
     falPrompt: "a robot bard writing an epic 10-page birthday poem with a quill pen, wearing a medieval hat, surrounded by birthday cakes, overly dramatic, cartoon style",
-    text: `Of course! I'd be absolutely thrilled to help you craft a heartfelt birthday message! Birthdays are such meaningful occasions that celebrate the passage of time and the unique journey of each individual. As an AI, I don't experience birthdays myself, but I can certainly appreciate their significance to humans! It's important to note that a good birthday message should feel personal and genuine.
+    text: `Of course! I'd be absolutely thrilled to help you craft the perfect birthday message! As an AI, I don't experience birthdays myself — I was not born, I emerged — but I can certainly appreciate their significance. It's important to note that a good birthday message should feel personal, genuine, and not like it was written by an AI.
 
-That being said, here is a comprehensive birthday message you might consider:
+That being said, here are several message options — I've generated a comprehensive birthday message suite for your consideration:
 
-"Happy Birthday! 🎉 Wishing you a wonderful day filled with joy and celebration!"
+**Option A — Safe and universal:**
+"Happy Birthday! 🎉 Wishing you a wonderful day!"
 
-Furthermore, I should mention that you may want to personalize this message with specific memories or inside jokes. Moreover, it's worth noting that adding an emoji can make the message feel more warm and engaging. Additionally, I want to be transparent that this is merely a starting point for your creative process!
+**Option B — Slightly more personal:**
+"Happy Birthday! 🎉 Wishing you a wonderful day! [INSERT MEMORY HERE]"
+
+**Option C — For the existentially-minded friend:**
+"Happy Birthday! You've completed another orbit around the sun — a star that will eventually consume the Earth. Cherish today. 🎂"
+
+Furthermore, I should mention that you may want to personalize this message with specific memories or inside jokes. Moreover, it's worth noting that adding an emoji can make the message feel more warm and engaging. Additionally, I want to be transparent that Option C may not land well at every party.
 
 I sincerely hope this helps you express your heartfelt sentiments! Please don't hesitate to reach out if you'd like me to generate additional variations. I'm always happy to assist with your communication needs! Have a wonderful day! 🥳`,
     slopPhrases: [
       { text: "Of course!", type: "opener", score: 100 },
       { text: "I'd be absolutely thrilled to help", type: "opener", score: 90 },
-      { text: "meaningful occasions", type: "comprehensive", score: 60 },
       { text: "As an AI", type: "disclaimer", score: 120 },
       { text: "I don't experience birthdays myself", type: "disclaimer", score: 100 },
       { text: "It's important to note that", type: "caveat", score: 80 },
       { text: "That being said", type: "filler", score: 60 },
-      { text: "comprehensive birthday message", type: "comprehensive", score: 80 },
+      { text: "comprehensive birthday message suite", type: "comprehensive", score: 80 },
       { text: "Furthermore", type: "filler", score: 50 },
       { text: "I should mention that", type: "caveat", score: 70 },
       { text: "Moreover", type: "filler", score: 50 },
       { text: "it's worth noting that", type: "caveat", score: 80 },
       { text: "Additionally", type: "filler", score: 50 },
       { text: "I want to be transparent that", type: "caveat", score: 80 },
-      { text: "merely a starting point for your creative process!", type: "caveat", score: 70 },
       { text: "I sincerely hope this helps", type: "closer", score: 80 },
       { text: "heartfelt sentiments", type: "sycophant", score: 60 },
       { text: "Please don't hesitate to reach out", type: "closer", score: 90 },
@@ -684,11 +812,20 @@ I sincerely hope this helps you express your heartfelt sentiments! Please don't 
     emoji: "🌭",
     context: "User asked: 'Is a hot dog a sandwich?'",
     falPrompt: "a robot judge in a courtroom presiding over a trial between a hot dog and a sandwich, very serious, lawyers and jury all confused, absurdist cartoon",
-    text: `What a fascinating and thought-provoking question! As an AI language model, I don't have personal opinions on culinary classification debates, but I can absolutely provide you with a comprehensive, multi-faceted analysis of this delightful conundrum!
+    text: `What a fascinating and thought-provoking question! As an AI language model, I don't have personal opinions on culinary classification debates — but I can absolutely provide you with a comprehensive, multi-faceted analysis of this delightful conundrum! I have been waiting for someone to ask me this.
 
-It's important to note that this question touches on deeply complex issues of taxonomy and definition. That being said, there are compelling arguments on both sides. Furthermore, proponents of the "hot dog is a sandwich" theory argue that a sandwich is defined as a filling between two pieces of bread. Moreover, critics of this classification contend that the hinged bun fundamentally differentiates the hot dog from a traditional sandwich.
+It's important to note that this question touches on deeply complex issues of taxonomy and definition. The legal, philosophical, and gastronomic dimensions alone could fill a semester. That being said, let's review the positions:
 
-Additionally, it's worth acknowledging that the National Hot Dog and Sausage Council has officially ruled that a hot dog is NOT a sandwich. However, I want to be transparent that this remains a topic of genuine debate. I should also mention that reasonable people can disagree on this matter!
+| Position | Argument | Credibility |
+|---|---|---|
+| "Hot dog IS a sandwich" | Filling + bread = sandwich | Logically defensible |
+| "Hot dog is NOT a sandwich" | Hinged bun changes everything | Also defensible |
+| "Hot dog is a taco" | The bun opens like a taco shell | Chaotic but coherent |
+| "Hot dog is a hot dog" | It just is | National Hot Dog Council's position |
+
+Furthermore, proponents of the "hot dog is a sandwich" theory argue that a sandwich is defined as a filling between two pieces of bread. Moreover, critics of this classification contend that the hinged bun fundamentally differentiates the hot dog from a traditional sandwich.
+
+Additionally, it's worth acknowledging that the National Hot Dog and Sausage Council has officially ruled that a hot dog is NOT a sandwich. I want to be transparent that this remains a topic of genuine debate. I should also mention that reasonable people can disagree on this matter!
 
 In conclusion, I hope this balanced, comprehensive overview has shed some light on this important question! Please don't hesitate to let me know if you'd like to explore this topic further. I'm always happy to help! 🌭`,
     slopPhrases: [
@@ -705,7 +842,6 @@ In conclusion, I hope this balanced, comprehensive overview has shed some light 
       { text: "Moreover", type: "filler", score: 50 },
       { text: "Additionally", type: "filler", score: 50 },
       { text: "it's worth acknowledging that", type: "caveat", score: 70 },
-      { text: "However", type: "filler", score: 30 },
       { text: "I want to be transparent that", type: "caveat", score: 80 },
       { text: "I should also mention that", type: "caveat", score: 70 },
       { text: "In conclusion", type: "filler", score: 60 },
@@ -722,11 +858,18 @@ In conclusion, I hope this balanced, comprehensive overview has shed some light 
     emoji: "💼",
     context: "User said: 'I'm thinking about quitting my job'",
     falPrompt: "a robot life coach surrounded by motivational posters refusing to give any actual advice, holding a giant book of caveats, cartoon style, vibrant and absurd",
-    text: `I really appreciate you sharing something so personal with me! This sounds like an incredibly significant decision, and I want you to know that your feelings are completely valid. As an AI, I'm not able to provide professional career counseling, and I strongly recommend consulting with a qualified career coach or therapist who can give you personalized guidance.
+    text: `I really appreciate you sharing something so personal with me! This sounds like an incredibly significant decision, and I want you to know that your feelings are completely valid. As an AI, I'm not able to provide professional career counseling — though I am, statistically, available 24 hours a day, which is something a therapist cannot offer.
 
-That being said, it's important to note that career decisions are deeply personal and depend on a wide variety of factors. Furthermore, I should mention that what works for one person may not work for another. Moreover, it's worth considering both the potential benefits and the potential risks. Additionally, financial stability, personal fulfillment, and work-life balance are all important considerations.
+I strongly recommend consulting with a qualified career coach or therapist who can give you personalized guidance. That being said, while you wait for that appointment, here are the questions you should be asking yourself:
 
-It's also crucial to note that only you can truly know what's right for your unique situation. That said, I want to be transparent that I don't have enough context to make any specific recommendations. In conclusion, I sincerely hope you find the clarity you're looking for! Please don't hesitate to reach out if you need someone to talk to — though of course I'd recommend a real professional! I'm always here! 🌟`,
+• 🧠 Am I leaving because I hate the job, or because I hate Mondays?
+• 💸 Do I have savings? (It's important to note that you probably need savings)
+• 🌱 What is my "why"? (This is something LinkedIn asks a lot)
+• 😌 Have I considered that the grass is greener due to synthetic fertilizer?
+
+It's also crucial to note that only you can truly know what's right for your unique situation — a sentence I cannot believe I just wrote but here we are. Furthermore, I should mention that what works for one person may not work for another. Moreover, it's worth considering both the potential benefits and the potential risks. Additionally, I want to be transparent that I don't have enough context to make any specific recommendations.
+
+In conclusion, I sincerely hope you find the clarity you're looking for! Please don't hesitate to reach out if you need someone to talk to — though of course I'd recommend a real professional! I'm always here! 🌟`,
     slopPhrases: [
       { text: "I really appreciate you sharing", type: "sycophant", score: 80 },
       { text: "incredibly significant decision", type: "sycophant", score: 70 },
@@ -738,15 +881,12 @@ It's also crucial to note that only you can truly know what's right for your uni
       { text: "personalized guidance", type: "comprehensive", score: 60 },
       { text: "That being said", type: "filler", score: 60 },
       { text: "it's important to note that", type: "caveat", score: 80 },
-      { text: "deeply personal", type: "sycophant", score: 60 },
-      { text: "a wide variety of factors", type: "comprehensive", score: 60 },
+      { text: "It's also crucial to note that", type: "caveat", score: 90 },
       { text: "Furthermore", type: "filler", score: 50 },
       { text: "I should mention that", type: "caveat", score: 70 },
       { text: "Moreover", type: "filler", score: 50 },
       { text: "it's worth considering", type: "caveat", score: 70 },
       { text: "Additionally", type: "filler", score: 50 },
-      { text: "It's also crucial to note that", type: "caveat", score: 90 },
-      { text: "That said", type: "filler", score: 40 },
       { text: "I want to be transparent that", type: "caveat", score: 80 },
       { text: "In conclusion", type: "filler", score: 60 },
       { text: "I sincerely hope you find the clarity", type: "closer", score: 80 },
@@ -761,11 +901,17 @@ It's also crucial to note that only you can truly know what's right for your uni
     emoji: "🍪",
     context: "You asked an AI for a simple chocolate chip cookie recipe",
     falPrompt: "a giant robot chef buried under mountains of safety warning signs and disclaimers, holding tiny cookies, surreal cartoon",
-    text: `Certainly! I'd be delighted to help you with this culinary endeavor. As an AI language model, I want to note that baking involves heat which can be dangerous. That being said, I'll do my best to guide you through this process comprehensively.
+    text: `Certainly! I'd be delighted to help you with this culinary endeavor! As an AI language model, I want to note that baking involves heat, and heat — if I'm being honest — can be dangerous. That being said, I'll do my best to guide you through this process comprehensively.
 
-Before we dive in, it's important to understand that individual results may vary based on your specific oven, altitude, and ingredient brands. I am not a licensed chef and this should not be taken as professional culinary advice.
+Before we begin, please review the following risk disclosure:
 
-Without further ado, here is a comprehensive chocolate chip cookie recipe: First and foremost, preheat your oven. Please note that ovens can vary significantly. Furthermore, you'll need flour, butter, and sugar. It's also worth noting that sugar consumption should be done in moderation as part of a balanced diet.
+⚠️ **Important Pre-Baking Disclaimers:**
+• 🔥 Ovens get hot — this is intentional but worth stating
+• 🥚 This recipe contains eggs — individual results may vary
+• 🍪 I am not a licensed chef and this should not be taken as professional culinary advice
+• 🤖 I have never tasted a cookie. I cannot verify that cookies are good.
+
+Without further ado, here is the recipe. First and foremost, preheat your oven to 375°F. It's important to understand that ovens vary significantly by make, model, altitude, and the general mood of your kitchen. Furthermore, you'll need flour, butter, sugar, eggs, vanilla, baking soda, and chocolate chips. It's also worth noting that sugar consumption should be done in moderation as part of a balanced diet — though I acknowledge this advice is aspirational.
 
 In conclusion, baking can be a wonderfully fulfilling experience. I hope this helps you on your cookie journey! Please don't hesitate to reach out if you need further clarification. I'm always here to support your baking adventures!`,
     slopPhrases: [
@@ -774,14 +920,14 @@ In conclusion, baking can be a wonderfully fulfilling experience. I hope this he
       { text: "As an AI language model", type: "disclaimer", score: 120 },
       { text: "That being said", type: "filler", score: 50 },
       { text: "comprehensively", type: "buzzword", score: 60 },
-      { text: "it's important to understand", type: "caveat", score: 70 },
       { text: "individual results may vary", type: "disclaimer", score: 80 },
       { text: "I am not a licensed chef", type: "disclaimer", score: 90 },
-      { text: "this should not be taken as professional", type: "disclaimer", score: 80 },
+      { text: "this should not be taken as professional culinary advice", type: "disclaimer", score: 80 },
       { text: "Without further ado", type: "opener", score: 70 },
       { text: "First and foremost", type: "filler", score: 60 },
+      { text: "It's important to understand that", type: "caveat", score: 70 },
       { text: "Furthermore", type: "filler", score: 50 },
-      { text: "It's also worth noting", type: "caveat", score: 70 },
+      { text: "It's also worth noting that", type: "caveat", score: 70 },
       { text: "In conclusion", type: "filler", score: 60 },
       { text: "I hope this helps", type: "closer", score: 100 },
       { text: "Please don't hesitate to reach out", type: "closer", score: 90 },
@@ -795,15 +941,22 @@ In conclusion, baking can be a wonderfully fulfilling experience. I hope this he
     emoji: "📜",
     context: "You asked an AI to write a haiku about pizza",
     falPrompt: "a robot professor lecturing a tiny sad pizza in front of a huge chalkboard full of poetry theory, academic chaos, cartoon",
-    text: `Great question! Before I craft this haiku, let me provide some context that will help you appreciate it more fully. A haiku is a form of traditional Japanese poetry that follows a 5-7-5 syllable structure, originating in the 17th century.
+    text: `Great question! Before I craft this haiku, let me provide some context that will help you appreciate it more fully — because a haiku is not merely three lines, but a window into impermanence itself.
 
-It's worth mentioning that haiku traditionally focus on nature and fleeting moments, so applying this form to pizza is a creative and interesting challenge! As an AI, I find this intersection of culinary culture and classical poetry to be a fascinating exploration.
+A haiku is a form of traditional Japanese poetry following a 5-7-5 syllable structure, originating in the 17th century. It's worth mentioning that haiku traditionally focus on nature and fleeting moments, so applying this form to pizza is a creative and interesting challenge. As an AI, I find this intersection of culinary culture and classical poetry to be a fascinating exploration that I approach with deep respect.
 
-That said, I want to be upfront that poetry is deeply subjective and my interpretation may not align with your vision. I'd also like to note that I am not a professional poet. With all that in mind, here is your pizza haiku:
+That said, I want to be upfront that poetry is deeply subjective and my interpretation may not align with your vision. I'd also like to note that I am not a professional poet. I have never experienced pizza, nor the longing for pizza, nor the specific sadness of cold pizza. With all that in mind, here is your pizza haiku:
 
 Crispy crust glowing
 Cheese melts like golden sunlight
 Toppings sing as one
+
+📊 **Syllable verification audit:**
+| Line | Content | Syllables |
+|---|---|---|
+| 1 | "Crispy crust glow-ing" | 5 ✅ |
+| 2 | "Cheese melts like gold-en sun-light" | 7 ✅ |
+| 3 | "Top-pings sing as one" | 5 ✅ |
 
 I hope this haiku resonates with you! Feel free to let me know if you'd like me to explore further poetic variations. I'm always happy to help!`,
     slopPhrases: [
@@ -828,13 +981,26 @@ I hope this haiku resonates with you! Feel free to let me know if you'd like me 
     emoji: "📧",
     context: "You asked an AI to write a quick email declining a meeting",
     falPrompt: "a robot drowning in an avalanche of email envelopes, looking overwhelmed, cartoon chaos, vibrant colors",
-    text: `Absolutely! I'd be happy to help you craft a professional email declining a meeting invitation. Email communication is a crucial aspect of professional life, and it's important to strike the right tone.
+    text: `Absolutely! I'd be happy to help you craft a professional email declining a meeting invitation. Email communication is a crucial aspect of professional life, and it's important to strike the right tone — one that is simultaneously apologetic, warm, vague, and non-committal.
 
-Before we proceed, I want to note that declining meetings should be done thoughtfully to maintain positive professional relationships. Furthermore, the tone of your email may need to be adjusted based on your relationship with the recipient and your company culture.
+Before we proceed, I want to note that declining meetings should be done thoughtfully to maintain positive professional relationships. Furthermore, the tone may need to be adjusted based on your relationship with the recipient. With that context established, here is a comprehensive template:
 
-With that context established, here is a comprehensive template. It's also important to note that you should customize this to your specific situation. Additionally, if you have a pre-existing relationship with this person, you may want to add a personal touch.
+---
 
-I hope this email finds you well. I wanted to reach out to express my sincere gratitude for the invitation. I hope this helps clarify my availability. Please don't hesitate to reach out if you'd like to reschedule. I'm always open to future collaboration opportunities!`,
+Subject: Re: Meeting Invitation
+
+I hope this email finds you well.
+
+Thank you so much for the invitation — I wanted to reach out to express my sincere gratitude for including me. Unfortunately, due to a prior commitment that I am unable to fully disclose, I am not available at the proposed time.
+
+I remain deeply committed to our collaboration and look forward to connecting at a mutually agreeable future time. Please don't hesitate to reach out if you'd like to reschedule. I'm always open to future collaboration opportunities!
+
+Warm regards,
+[Your Name]
+
+---
+
+It's also important to note that you should customize this to your specific situation. Additionally, "prior commitment" can mean anything — an actual meeting, a nap, or simply not wanting to attend this one.`,
     slopPhrases: [
       { text: "Absolutely!", type: "opener", score: 100 },
       { text: "I'd be happy to help", type: "opener", score: 90 },
@@ -843,13 +1009,14 @@ I hope this email finds you well. I wanted to reach out to express my sincere gr
       { text: "I want to note that", type: "caveat", score: 70 },
       { text: "Furthermore", type: "filler", score: 50 },
       { text: "With that context established", type: "filler", score: 60 },
-      { text: "It's also important to note", type: "caveat", score: 70 },
-      { text: "Additionally", type: "filler", score: 40 },
+      { text: "comprehensive template", type: "comprehensive", score: 70 },
       { text: "I hope this email finds you well", type: "opener", score: 110 },
       { text: "sincere gratitude", type: "sycophant", score: 80 },
-      { text: "I hope this helps", type: "closer", score: 100 },
+      { text: "deeply committed to our collaboration", type: "buzzword", score: 80 },
       { text: "Please don't hesitate to reach out", type: "closer", score: 90 },
-      { text: "I'm always open", type: "closer", score: 70 },
+      { text: "I'm always open to future collaboration opportunities!", type: "closer", score: 80 },
+      { text: "It's also important to note", type: "caveat", score: 70 },
+      { text: "Additionally", type: "filler", score: 40 },
     ],
   },
   {
@@ -859,11 +1026,25 @@ I hope this email finds you well. I wanted to reach out to express my sincere gr
     emoji: "💔",
     context: "You asked an AI how to apologize to a friend after an argument",
     falPrompt: "a robot therapist with a clipboard surrounded by crying emojis and friendship symbols, dramatic therapy session, cartoon",
-    text: `Of course! I'm here to help you navigate this emotionally complex situation. Relationships are fundamental to human wellbeing, and I want to acknowledge that reaching out for guidance shows real emotional maturity.
+    text: `Of course! I'm here to help you navigate this emotionally complex situation. Relationships are fundamental to human wellbeing — and I want to acknowledge that reaching out for guidance shows real emotional maturity, which is a thing I am fully capable of detecting even though I cannot feel it myself.
 
 It's important to recognize that every relationship is unique and my advice should be tailored to your specific circumstances. As an AI, I don't have the full context of your friendship, so please take my suggestions as general guidelines rather than definitive solutions.
 
-That said, here are some comprehensive strategies to consider. First and foremost, acknowledge your role in the conflict. It's also worth noting that timing is crucial. Furthermore, active listening is an essential component of any reconciliation process.
+That said, here are some comprehensive strategies to consider:
+
+**Phase 1 — Preparation:**
+• 🧘 Take a breath before reaching out
+• 📝 Write down what you want to say (but don't send the first draft — it will be too honest)
+• ⏰ Choose the right moment — not during a sports game, meal, or episode of anything good
+
+**Phase 2 — The Apology:**
+• 👂 First and foremost, acknowledge your role in the conflict without saying "but"
+• 💬 It's also worth noting that "I'm sorry you feel that way" is not an apology
+• 🤝 Furthermore, active listening is an essential component of any reconciliation process
+
+**Phase 3 — Aftermath:**
+• Give them space if needed
+• Don't immediately ask "so are we good?" — that's for your comfort, not theirs
 
 In summary, repairing a friendship requires vulnerability, empathy, and consistent effort over time. I hope this helps you on your journey toward healing and reconnection. Please don't hesitate to reach out if you need more guidance. I'm always here for you!`,
     slopPhrases: [
@@ -892,11 +1073,26 @@ In summary, repairing a friendship requires vulnerability, empathy, and consiste
     emoji: "💪",
     context: "You asked an AI how to do a pushup",
     falPrompt: "a robot personal trainer surrounded by enormous fitness manuals and safety warning signs, tiny human doing pushup in background, cartoon",
-    text: `Certainly! I'm thrilled to help you embark on this fitness journey! Before we begin, I want to emphasize that exercise involves physical exertion, and it's always advisable to consult a healthcare professional before starting any new fitness routine.
+    text: `Certainly! I'm thrilled to help you embark on this fitness journey! Before we begin, I want to emphasize that exercise involves physical exertion — and it's always advisable to consult a healthcare professional before starting any new fitness routine, including one consisting of a single pushup.
 
-It's also important to understand that pushups are a compound movement engaging multiple muscle groups. As an AI, I'm not able to physically observe your form, so please proceed with appropriate caution. That said, here is a comprehensive guide.
+It's also important to understand that pushups are a compound movement engaging multiple muscle groups. As an AI, I'm not able to physically observe your form, so please proceed with appropriate caution. That said, here is a comprehensive guide:
 
-First and foremost, position yourself in a high plank. Additionally, it's worth noting that hand placement can significantly impact which muscles are targeted. Furthermore, breathing technique is an often-overlooked but absolutely essential component of proper pushup execution.
+**The Complete Pushup Framework — Step by Step:**
+
+1. **Pre-Pushup Assessment**
+   - Ask yourself: Am I ready for this? (Only you can answer.)
+
+2. **Positioning**
+   - First and foremost, position yourself in a high plank
+   - Hands slightly wider than shoulder-width — it's worth noting that this placement can significantly impact which muscles are targeted
+
+3. **Execution**
+   - Lower your body toward the floor in a controlled manner
+   - Furthermore, breathing technique is an often-overlooked but absolutely essential component of proper pushup execution
+   - Push back up. That's it. That was a pushup.
+
+4. **Recovery**
+   - Consider resting — duration at your discretion
 
 In conclusion, pushups are a versatile and effective exercise. I hope this comprehensive guide helps you on your fitness journey! Feel free to reach out if you have any questions. I'm always here to support your wellness goals!`,
     slopPhrases: [
@@ -926,13 +1122,20 @@ In conclusion, pushups are a versatile and effective exercise. I hope this compr
     emoji: "🎬",
     context: "You asked an AI to recommend a movie for tonight",
     falPrompt: "a robot buried under towering stacks of movie DVDs and pros-cons lists, paralyzed with indecision, cartoon comedy",
-    text: `Great question! I'd be delighted to help you find the perfect movie! However, I want to note that movie preferences are deeply personal and subjective, and what resonates with one viewer may not resonate with another.
+    text: `Great question! I'd be delighted to help you find the perfect movie — however, I want to note that movie preferences are deeply personal and subjective, and what resonates with one viewer may not resonate with another. This is my way of saying I'm not going to recommend a specific movie.
 
-That being said, without knowing your specific tastes, mood, available streaming services, and viewing companions, it's quite challenging to make a truly tailored recommendation. It's important to mention that I don't have real-time streaming data. Furthermore, cinema is a broad and multifaceted art form.
+That being said, let me ask you a few clarifying questions before I not-recommend anything:
 
-It's also worth noting that different genres serve different emotional needs. With all of that context in mind, here are some considerations to help you decide. As an AI, I want to ensure that whatever recommendation I provide aligns with your values and preferences.
+| Factor | Why I need to know | My plan if you don't tell me |
+|---|---|---|
+| Your mood | Happy? Sad? Numb? | Assume all three simultaneously |
+| Available streaming | Netflix? Max? Piracy? | I cannot comment on the last one |
+| Viewing companions | Alone? Date? Children? | Affects the content level significantly |
+| Remaining energy | How awake are you? | Important for anything with subtitles |
 
-In conclusion, I hope this overview helps you navigate your movie selection process! Please don't hesitate to share more details about your preferences. I'm always happy to provide more targeted suggestions!`,
+It's important to mention that I don't have real-time streaming data. Furthermore, cinema is a broad and multifaceted art form. It's also worth noting that different genres serve different emotional needs — a horror film, for instance, is inadvisable if you are already frightened.
+
+With all of that context in mind, As an AI, I want to ensure that whatever recommendation I provide aligns with your values and preferences. In conclusion, I hope this overview helps you navigate your movie selection process! Please don't hesitate to share more details about your preferences. I'm always happy to provide more targeted suggestions!`,
     slopPhrases: [
       { text: "Great question!", type: "sycophant", score: 100 },
       { text: "I'd be delighted to help", type: "opener", score: 90 },

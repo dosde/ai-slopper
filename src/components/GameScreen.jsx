@@ -2,7 +2,7 @@ import { useState, useEffect, useCallback, useRef } from 'react';
 import SlopText, { getSlopStats } from './SlopText';
 import PowerUps from './PowerUps';
 import { PopupLayer, usePopups } from './ScorePopup';
-import { playRoundComplete, playMiss, setMusicTempo, startBossMusic } from '../utils/audio';
+import { playRoundComplete, playMiss, setMusicTempo, startBossMusic, startInverseMusic, stopInverseMusic } from '../utils/audio';
 import { t } from '../i18n/index';
 
 const ROUND_TIME_NORMAL = 45;
@@ -100,6 +100,7 @@ export default function GameScreen({ round, roundIdx, totalRounds, totalScore, o
   const isBrainrot = difficulty === 'brainrot';
   const isIronDetector = difficulty === 'iron';
   const isBoss = !!round.boss;
+  const isInverse = !!round.inverse;
   const ROUND_TIME = isBoss ? ROUND_TIME_BOSS : difficulty === 'chaos' ? ROUND_TIME_CHAOS : isBrainrot ? ROUND_TIME_BRAINROT : ROUND_TIME_NORMAL;
   const [timeLeft, setTimeLeft] = useState(isIronDetector ? 0 : ROUND_TIME);
   const [roundScore, setRoundScore] = useState(0);
@@ -141,6 +142,8 @@ export default function GameScreen({ round, roundIdx, totalRounds, totalScore, o
   // Start boss music when boss round mounts
   useEffect(() => {
     if (isBoss) startBossMusic();
+    else if (isInverse) startInverseMusic();
+    return () => stopInverseMusic();
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
@@ -197,10 +200,10 @@ export default function GameScreen({ round, roundIdx, totalRounds, totalScore, o
     setMusicTempo(isUrgent ? 1.4 : 1.0);
   }, [isUrgent]);
 
-  const handleScore = useCallback((score, x, y, commentary, isDoubled) => {
+  const handleScore = useCallback((score, x, y, commentary, isDoubled, combo) => {
     setRoundScore(prev => prev + score);
     if (!isIronDetector) setTimeLeft(prev => Math.min(prev + 1, ROUND_TIME + 60));
-    addPopup(x, y, score, commentary, isDoubled);
+    addPopup(x, y, score, commentary, isDoubled, false, combo);
   }, [addPopup, ROUND_TIME, isIronDetector]);
 
   const handleCombo = useCallback((newCombo) => {
@@ -225,7 +228,6 @@ export default function GameScreen({ round, roundIdx, totalRounds, totalScore, o
     comboDecayRef.current = startDelay;
   }, []);
 
-  const isInverse = !!round.inverse;
   const isDoubleActive = doublePoints || isInverse;
   const accentColor = isBoss ? '#ef4444' : isInverse ? '#38bdf8' : '#fbbf24';
   const accentGlow = isBoss ? 'rgba(239,68,68,0.5)' : isInverse ? 'rgba(56,189,248,0.5)' : 'rgba(251,191,36,0.5)';

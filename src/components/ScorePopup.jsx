@@ -5,9 +5,9 @@ let popupId = 0;
 export const usePopups = () => {
   const [popups, setPopups] = useState([]);
 
-  const addPopup = useCallback((x, y, score, commentary, isDoubled = false, isMiss = false) => {
+  const addPopup = useCallback((x, y, score, commentary, isDoubled = false, isMiss = false, combo = 1) => {
     const id = ++popupId;
-    setPopups(prev => [...prev, { id, x, y, score, commentary, isDoubled, isMiss }]);
+    setPopups(prev => [...prev, { id, x, y, score, commentary, isDoubled, isMiss, combo }]);
     setTimeout(() => {
       setPopups(prev => prev.filter(p => p.id !== id));
     }, isMiss ? 1200 : 2000);
@@ -38,6 +38,7 @@ export const PopupLayer = ({ popups }) => (
               <>
                 {p.isDoubled && <span style={{ fontSize: '0.7em' }}>💥</span>}
                 +{p.score}
+                {p.combo > 1 && <span style={{ fontSize: '0.65em', opacity: 0.85 }}> x{p.combo}</span>}
                 {p.isDoubled && <span style={{ fontSize: '0.7em' }}> 2X!</span>}
               </>
             )

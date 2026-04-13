@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import FalImage from './FalImage';
 import { t as tr } from '../i18n/index';
+import { playCountdownTick, playCountdownGo } from '../utils/audio';
 
 
 export default function RoundIntro({ round, totalRounds, onReady, difficulty = 'normal', lang = 'en' }) {
@@ -14,9 +15,11 @@ export default function RoundIntro({ round, totalRounds, onReady, difficulty = '
 
   useEffect(() => {
     if (countdown <= 0) {
+      playCountdownGo();
       setReadyToStart(true);
       return;
     }
+    playCountdownTick(countdown);
     const t = setTimeout(() => setCountdown(c => c - 1), 1000);
     return () => clearTimeout(t);
   }, [countdown]);

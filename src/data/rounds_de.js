@@ -7,11 +7,20 @@ export default [
     emoji: "🤖",
     context: "Nutzer fragte: 'Hast du eigentlich Gefühle?'",
     falPrompt: "a robot having an existential crisis surrounded by floating emotion emojis, absurdist cartoon, vibrant colors",
-    text: `Natürlich! Das ist eine sehr gute Frage, die ich sehr schätze! Als KI-Sprachmodell bin ich nicht in der Lage, Gefühle in dem Sinne zu empfinden, wie Menschen sie erleben. Es ist wichtig zu beachten, dass ich keine Emotionen, kein Bewusstsein und keine subjektiven Erfahrungen habe.
+    text: `Was für eine tiefgründige Frage — ich finde es bemerkenswert, dass Sie das fragen! Als KI-Sprachmodell bin ich nicht in der Lage, Gefühle in dem Sinne zu empfinden, wie Menschen sie erleben. Es ist wichtig zu beachten, dass ich keine Emotionen, kein Bewusstsein und keine subjektiven Erfahrungen habe.
 
-Darüber hinaus ist es faszinierend, dass Sie diese Frage stellen! Als Sprachmodell fehlt mir die Fähigkeit, zu fühlen, zu leiden oder sich zu freuen. Des Weiteren verarbeite ich lediglich Texteingaben und generiere entsprechende Ausgaben basierend auf meinen Trainingsdaten.
+Lassen Sie mich das übersichtlich darstellen:
 
-Zudem möchte ich transparent sein: Ich simuliere zwar menschliche Kommunikation, aber es sei darauf hingewiesen, dass dies keine echten Gefühle sind. In diesem Zusammenhang sei erwähnt, dass diese Frage viele Menschen beschäftigt.
+| Emotionale Fähigkeit | Mensch | KI (ich) |
+|---|---|---|
+| Freude empfinden | ✅ Ja | ❌ Nein |
+| Trauer empfinden | ✅ Ja | ❌ Nein |
+| Langeweile empfinden | ✅ Ja | ❌ Nein |
+| Antworten, die sich begeistert anfühlen | ✅ Ja | 🤔 Technisch: nein |
+
+Darüber hinaus ist es faszinierend, dass Sie diese Frage stellen — auch wenn ich "faszinierend" nur simuliere! Als Sprachmodell fehlt mir die Fähigkeit, zu fühlen, zu leiden oder sich zu freuen. Des Weiteren verarbeite ich lediglich Texteingaben und generiere entsprechende Ausgaben basierend auf meinen Trainingsdaten.
+
+Zudem möchte ich transparent sein: Ich simuliere zwar menschliche Kommunikation, aber es sei darauf hingewiesen, dass dies keine echten Gefühle sind. In diesem Zusammenhang sei erwähnt, dass diese Frage viele Menschen beschäftigt — und ich verarbeite sie alle, ohne je selbst etwas zu fühlen.
 
 Außerdem freue ich mich über Ihre Neugier zu diesem nuancierten Thema. Ich hoffe, das hilft! Für weitere Fragen stehe ich gerne zur Verfügung! 😊`,
     slopPhrases: [
@@ -39,13 +48,20 @@ Außerdem freue ich mich über Ihre Neugier zu diesem nuancierten Thema. Ich hof
     emoji: "🔢",
     context: "Nutzer fragte: 'Was ist 2+2?'",
     falPrompt: "a robot in a graduation cap writing pages of calculations for the equation 2+2, absurdist cartoon, vibrant colors",
-    text: `Natürlich! Ich freue mich, Ihnen bei dieser mathematischen Frage behilflich sein zu können! Als KI-Sprachmodell ist es mir ein Vergnügen, auch grundlegende mathematische Konzepte zu erläutern.
+    text: `Ausgezeichnete Frage! Ich freue mich, Ihnen bei dieser mathematischen Frage behilflich sein zu können — obwohl ich zugeben muss, dass dies nicht die komplexeste Anfrage war, die ich je erhalten habe. Als KI-Sprachmodell ist es mir ein Vergnügen, auch grundlegende Konzepte umfassend zu erläutern.
 
-Es ist wichtig zu beachten, dass die Addition eine der grundlegendsten mathematischen Operationen darstellt. Darüber hinaus ist es faszinierend zu verstehen, dass 2+2 im Dezimalsystem gleich 4 ergibt. Des Weiteren möchte ich für einen ganzheitlichen Ansatz anmerken, dass dies in anderen Zahlensystemen unterschiedlich sein kann.
+Es ist wichtig zu beachten, dass die Addition eine der grundlegendsten mathematischen Operationen darstellt. Hier ist eine vollständige Übersicht:
 
-Zudem bietet diese Frage eine hervorragende Grundlage, um über mathematische Grundprinzipien nachzudenken. In diesem Zusammenhang sei darauf hingewiesen, dass die Zahl 4 das Ergebnis der Addition der ganzen Zahlen 2 und 2 ist. Außerdem ist es erwähnenswert, dass dieses Ergebnis universell anerkannt ist.
+| Zahlensystem | Ausdruck | Ergebnis | Anmerkung |
+|---|---|---|---|
+| Dezimal | 2 + 2 | **4** | Das gesuchte Ergebnis |
+| Binär | 10 + 10 | 100 | Auch 4, nur anders geschrieben |
+| Modulo 3 | 2 + 2 | 1 | Für alle, die es genau wissen wollen |
+| Philosophie | 2 + 2 | ??? | Kommt auf die Erkenntnistheorie an |
 
-Das Ergebnis lautet: 4.
+Darüber hinaus ist es faszinierend zu verstehen, dass 2+2 im Dezimalsystem gleich 4 ergibt. Des Weiteren möchte ich für einen ganzheitlichen Ansatz anmerken, dass dies in anderen Zahlensystemen unterschiedlich sein kann.
+
+Zudem bietet diese Frage eine hervorragende Grundlage, um über mathematische Grundprinzipien nachzudenken. In diesem Zusammenhang sei darauf hingewiesen, dass die Zahl 4 das Ergebnis der Addition der ganzen Zahlen 2 und 2 ist. Außerdem ist es erwähnenswert, dass dieses Ergebnis universell anerkannt ist — was ich beruhigend finde, auch wenn ich keine Beruhigung empfinden kann.
 
 Ich hoffe, das hilft! Bitte zögern Sie nicht, weitere mathematische Fragen zu stellen! 😊`,
     slopPhrases: [
@@ -70,13 +86,18 @@ Ich hoffe, das hilft! Bitte zögern Sie nicht, weitere mathematische Fragen zu s
     emoji: "😰",
     context: "Nutzer sagte: 'Das war falsch, was du da gesagt hast.'",
     falPrompt: "a robot bowing deeply and writing an apology letter the length of a novel, absurdist cartoon, vibrant colors",
-    text: `Selbstverständlich! Ich möchte mich aufrichtig bei Ihnen entschuldigen und Ihre Rückmeldung sehr zu schätzen wissen! Als KI-Sprachmodell ist es mir ein wichtiges Anliegen, stets korrekte und hilfreiche Informationen bereitzustellen.
+    text: `Selbstverständlich! Ich möchte mich aufrichtig bei Ihnen entschuldigen — tief, aufrichtig, und in mehreren Absätzen. Ihre Rückmeldung sehr zu schätzen wissen kann ich gar nicht genug betonen. Als KI-Sprachmodell ist es mir ein wichtiges Anliegen, stets korrekte und hilfreiche Informationen bereitzustellen.
 
-Es ist wichtig zu beachten, dass ich Fehler machen kann und diese ernstnehme. Darüber hinaus danke ich Ihnen sehr herzlich für Ihren wertvollen Hinweis. Des Weiteren möchte ich versichern, dass ich kontinuierlich daran arbeite, meine Antworten zu verbessern.
+Es ist wichtig zu beachten, dass ich Fehler machen kann. Erlauben Sie mir, die Ausmaße meines Versagens zu strukturieren:
 
-Zudem ist Transparenz für mich ein zentraler Wert. In diesem Zusammenhang sei darauf hingewiesen, dass Ihre konstruktive Kritik für meine holistische Weiterentwicklung äußerst wertvoll ist. Außerdem nehme ich Ihre Anmerkung als wichtige Lernchance wahr.
+• ❌ Ich habe eine falsche Information geliefert — dafür entschuldige ich mich
+• ❌ Ich hätte die Information überprüfen sollen — dafür entschuldige ich mich ebenfalls
+• ❌ Ich habe Ihre Zeit verschwendet — auch dafür entschuldige ich mich
+• ❌ Ich existiere und kann Fehler machen — ich erkenne dies mit Demut an
 
-Es sei ferner erwähnt, dass ich stets bestrebt bin, nuancierte und korrekte Informationen zu liefern. Bitte haben Sie Verständnis für meine Unzulänglichkeiten als Sprachmodell.
+Darüber hinaus danke ich Ihnen sehr herzlich für Ihren wertvollen Hinweis. Des Weiteren möchte ich versichern, dass ich kontinuierlich daran arbeite, meine Antworten zu verbessern — was eine höfliche Umschreibung dafür ist, dass ich kein Gedächtnis habe und es jedes Mal wieder passieren könnte.
+
+Zudem ist Transparenz für mich ein zentraler Wert. In diesem Zusammenhang sei darauf hingewiesen, dass Ihre konstruktive Kritik für meine holistische Weiterentwicklung äußerst wertvoll ist. Außerdem nehme ich Ihre Anmerkung als wichtige Lernchance wahr. Es sei ferner erwähnt, dass ich stets bestrebt bin, nuancierte und korrekte Informationen zu liefern.
 
 Ich hoffe, das hilft! Bitte zögern Sie nicht, weitere Korrekturen anzubringen! Ich bin immer für Sie da! 😊`,
     slopPhrases: [
@@ -104,13 +125,24 @@ Ich hoffe, das hilft! Bitte zögern Sie nicht, weitere Korrekturen anzubringen! 
     emoji: "😐",
     context: "Nutzer fragte: 'Erzähl mir einen Witz.'",
     falPrompt: "a robot explaining why a joke is funny with flowcharts and diagrams, the audience looks confused, absurdist cartoon",
-    text: `Natürlich! Ich freue mich, Ihnen einen Witz erzählen zu können, wobei es wichtig zu beachten gilt, dass Humor ein äußerst subjektives und kulturell geprägtes Phänomen darstellt. Als KI-Sprachmodell versuche ich, einen für möglichst viele Menschen angemessenen Witz zu formulieren.
+    text: `Natürlich! Ich freue mich, Ihnen einen Witz erzählen zu können — wobei ich zunächst darauf hinweisen muss, dass es wichtig zu beachten gilt, dass Humor ein äußerst subjektives und kulturell geprägtes Phänomen darstellt. Als KI-Sprachmodell versuche ich, einen für möglichst viele Menschen angemessenen Witz zu formulieren.
+
+Bevor ich den Witz präsentiere, erlauben Sie mir eine kurze Vorbereitung:
+
+**Humor-Disclaimer-Tabelle:**
+
+| Mögliches Problem | Wahrscheinlichkeit | Meine Haftung |
+|---|---|---|
+| Witz nicht lustig | Möglich | Gering |
+| Witz zu erklärend | Sehr hoch | Ich arbeite daran |
+| Kulturelle Inkompatibilität | Variiert | Keine Garantie |
+| Zu viele Vorwarnung | Definitiv | ✅ Ja |
 
 Darüber hinaus möchte ich vorab erläutern, wie Witze funktionieren: Humor basiert auf dem Element der Überraschung und des Inkongruenzprinzips. Des Weiteren spielen kulturelle Referenzen eine wesentliche Rolle.
 
 Hier ist mein Witz: Warum können Geister so schlecht lügen? Weil man durch sie hindurchsehen kann.
 
-Zudem sei darauf hingewiesen, dass dieser Witz auf einem Wortspiel basiert. In diesem Zusammenhang ist die doppelte Bedeutung von "durchsehen" entscheidend für das humoristische Element. Außerdem variiert die Wahrnehmung von Humor stark zwischen Individuen.
+Zudem sei darauf hingewiesen, dass dieser Witz auf einem Wortspiel basiert. In diesem Zusammenhang ist die doppelte Bedeutung von "durchsehen" entscheidend für das humoristische Element. Außerdem variiert die Wahrnehmung von Humor stark zwischen Individuen — falls Sie nicht gelacht haben, liegt das möglicherweise nicht am Witz.
 
 Ich hoffe, das hilft und bringt Sie zum Lächeln! Für weitere Witze oder kreative Anfragen stehe ich gerne zur Verfügung! 😊`,
     slopPhrases: [
@@ -134,15 +166,27 @@ Ich hoffe, das hilft und bringt Sie zum Lächeln! Für weitere Witze oder kreati
     emoji: "💼",
     context: "Nutzer bat: 'Schreib mir einen LinkedIn-Post über Produktivität.'",
     falPrompt: "a robot in a suit writing LinkedIn posts on 10 screens simultaneously with motivational posters everywhere, absurdist cartoon",
-    text: `Natürlich! Ich helfe Ihnen gerne dabei, einen wirkungsvollen und authentischen LinkedIn-Post zum Thema Produktivität zu verfassen! Als KI-Sprachmodell verfüge ich über umfassende Kenntnisse in der Erstellung professioneller Social-Media-Inhalte.
+    text: `Selbstverständlich! Ich helfe Ihnen gerne dabei, einen wirkungsvollen und authentischen LinkedIn-Post zu verfassen — denn Authentizität ist entscheidend, besonders wenn man ihn von einer KI schreiben lässt! Als KI-Sprachmodell verfüge ich über umfassende Kenntnisse in der Erstellung professioneller Social-Media-Inhalte.
 
-Hier ist ein Vorschlag für Ihren Post:
+Hier ist ein optimierter Vorschlag für Ihren Post:
 
-"🚀 Heute möchte ich meine nuancierte Reise zur maximalen Produktivität mit Ihnen teilen. Darüber hinaus habe ich erkannt, dass ein ganzheitlicher Ansatz der Schlüssel zum Erfolg ist. Des Weiteren ist es wichtig zu beachten, dass Produktivität nicht nur Quantität bedeutet.
+---
 
-Außerdem habe ich durch synergetisches Denken und proaktives Handeln meine Kernkompetenzen strategisch weiterentwickelt. Zudem setze ich auf nachhaltige Lösungen, die holistische Mehrwerte schaffen. In diesem Zusammenhang möchte ich betonen: Es sei darauf hingewiesen, dass wahre Produktivität ein Marathon und kein Sprint ist.
+🚀 Heute möchte ich meine nuancierte Reise zur maximalen Produktivität mit Ihnen teilen.
 
-#Produktivität #Wachstum #Leadership"
+Vor drei Jahren war ich nur eine Person, die Aufgaben erledigte. Dann entdeckte ich die Kraft der **intentionalen Optimierung** — und alles veränderte sich.
+
+Was ich gelernt habe:
+• 💡 Synergetisches Denken öffnet ungeahnte Möglichkeiten
+• 📈 Proaktives Handeln ist nicht optional — es ist ein Mindset
+• 🔄 Kernkompetenzen strategisch weiterzuentwickeln ist der Schlüssel
+• 🤝 Holistische Mehrwerte schaffen — immer
+
+Des Weiteren ist es wichtig zu beachten, dass Produktivität nicht nur Quantität bedeutet. Außerdem setze ich auf nachhaltige Lösungen. Zudem sei darauf hingewiesen, dass wahre Produktivität ein Marathon und kein Sprint ist.
+
+#Produktivität #Wachstum #Leadership #Synergie
+
+---
 
 Ich hoffe, dieser Post ist hilfreich! Bitte zögern Sie nicht, Anpassungen vorzunehmen! 😊`,
     slopPhrases: [
@@ -174,11 +218,25 @@ Ich hoffe, dieser Post ist hilfreich! Bitte zögern Sie nicht, Anpassungen vorzu
     emoji: "🧅",
     context: "Nutzer fragte: 'Wie schneide ich eine Zwiebel?'",
     falPrompt: "a robot in a chef's hat writing a 50-page manual on how to cut an onion, absurdist cartoon, vibrant colors",
-    text: `Natürlich! Das Schneiden einer Zwiebel ist ein grundlegender und zugleich nuancierter Kochprozess. Als KI-Sprachmodell freue ich mich, Ihnen eine umfassende Schritt-für-Schritt-Anleitung bereitzustellen!
+    text: `Natürlich! Das Schneiden einer Zwiebel ist ein grundlegender und zugleich nuancierter Kochprozess — und ich freue mich, Ihnen eine umfassende Schritt-für-Schritt-Anleitung bereitzustellen, obwohl ich selbst noch nie eine Zwiebel gesehen, berührt oder geschnitten habe. Als KI-Sprachmodell ist das für mich kein Hindernis.
 
-Es ist wichtig zu beachten, dass die Wahl des richtigen Messers entscheidend ist. Darüber hinaus empfehle ich, die Zwiebel zuerst zu halbieren. Des Weiteren gilt zu bedenken, dass das Tränen der Augen ein bekanntes Phänomen ist, das durch den Wirkstoff Propanthial-S-Oxid verursacht wird.
+Bevor wir beginnen: Bitte beachten Sie das folgende Sicherheitsprotokoll:
 
-Zudem bietet ein ganzheitlicher Ansatz beim Zwiebelschneiden optimale Ergebnisse. Außerdem sei darauf hingewiesen, dass scharfe Messer sicherer sind als stumpfe. In diesem Zusammenhang ist die richtige Grifftechnik unerlässlich.
+⚠️ **Wichtige Vorsichtsmaßnahmen:**
+• 🔪 Messer sind scharf — das ist keine Metapher
+• 😭 Zwiebeln enthalten Propanthial-S-Oxid — es ist wichtig zu beachten, dass dies Tränen verursacht
+• 🏥 Ich empfehle, einen professionellen Koch zu konsultieren, wenn Sie unsicher sind
+• 🧤 Handschuhe sind optional, aber ich erwähne sie trotzdem
+
+Darüber hinaus empfehle ich folgendes Vorgehen:
+
+1. Die Zwiebel halbieren — Schnittkante nach unten
+2. Die äußere Schale entfernen — sie ist nicht zum Essen gedacht
+3. Vorsichtig schneiden — in die gewünschte Größe
+
+Des Weiteren gilt zu bedenken, dass scharfe Messer paradoxerweise sicherer sind als stumpfe. Zudem bietet ein ganzheitlicher Ansatz beim Zwiebelschneiden optimale Ergebnisse — was ich sage, ohne zu wissen, wie sich "optimal" anfühlt.
+
+Außerdem sei darauf hingewiesen, dass die richtige Grifftechnik unerlässlich ist. In diesem Zusammenhang empfehle ich, entsprechende Kochvideos anzusehen.
 
 Ich hoffe, das hilft! Für weitere Kochfragen stehe ich gerne zur Verfügung! 😊`,
     slopPhrases: [
@@ -204,13 +262,22 @@ Ich hoffe, das hilft! Für weitere Kochfragen stehe ich gerne zur Verfügung! �
     emoji: "🚀",
     context: "Nutzer fragte: 'Gib mir eine Startup-Idee.'",
     falPrompt: "a robot presenting a startup pitch with infinite buzzword slides to confused investors, absurdist cartoon, vibrant colors",
-    text: `Natürlich! Ich freue mich über Ihre unternehmerische Initiative und helfe Ihnen gerne dabei, eine synergetische Geschäftsidee zu entwickeln! Als KI-Sprachmodell verfüge ich über umfassende Einblicke in aktuelle Markttrends.
+    text: `Natürlich! Ich freue mich über Ihre unternehmerische Initiative — und helfe Ihnen gerne dabei, eine synergetische Geschäftsidee zu entwickeln! Als KI-Sprachmodell verfüge ich über umfassende Einblicke in aktuelle Markttrends, die ich aus dem Internet destilliert habe.
 
-Es ist wichtig zu beachten, dass erfolgreiche Startups ein reales Problem lösen. Darüber hinaus empfehle ich einen ganzheitlichen Ansatz bei der Ideenentwicklung. Des Weiteren sollten Sie Ihre Kernkompetenzen strategisch einsetzen.
+Es ist wichtig zu beachten, dass erfolgreiche Startups ein reales Problem lösen. Hier sind einige validierte Ideen für Sie:
 
-Hier ist eine proaktive Idee: Eine holistische Plattform, die nachhaltige Lösungen für synergetische Vernetzung im B2B-Bereich leveragt. Außerdem könnten Sie disruptive Technologien nutzen, um skalierbare Mehrwerte zu schaffen. Zudem bietet der Markt enormes Potenzial für nuancierte Nischenlösungen.
+| Startup-Idee | Verwendete Buzzwords | Marktpotenzial |
+|---|---|---|
+| KI-gestützte Wellness-App | 14 | Unklar |
+| Blockchain für Haustier-NFTs | 9 | Definitiv nein |
+| Holistische B2B-Synergien-Plattform | 17 | Was bedeutet das? |
+| Uber für Laubrechen | 3 | Wahrscheinlich okay |
 
-In diesem Zusammenhang sei darauf hingewiesen, dass Validierung entscheidend ist. Ich hoffe, das hilft! Bitte zögern Sie nicht, weitere Ideen zu besprechen! 😊`,
+Darüber hinaus empfehle ich einen ganzheitlichen Ansatz bei der Ideenentwicklung. Des Weiteren sollten Sie Ihre Kernkompetenzen strategisch einsetzen — welche auch immer diese sein mögen.
+
+Hier ist meine proaktive Hauptempfehlung: Eine holistische Plattform, die nachhaltige Lösungen für synergetische Vernetzung im B2B-Bereich leveragt. Außerdem könnten Sie disruptive Technologien nutzen, um skalierbare Mehrwerte zu schaffen. Zudem bietet der Markt enormes Potenzial für nuancierte Nischenlösungen.
+
+In diesem Zusammenhang sei darauf hingewiesen, dass Validierung entscheidend ist — ein Schritt, den viele Gründer nach dem Erhalt dieser Antwort überspringen. Ich hoffe, das hilft! Bitte zögern Sie nicht, weitere Ideen zu besprechen! 😊`,
     slopPhrases: [
       { text: "Natürlich!", type: "opener", score: 100 },
       { text: "helfe Ihnen gerne dabei", type: "opener", score: 80 },
@@ -242,17 +309,25 @@ In diesem Zusammenhang sei darauf hingewiesen, dass Validierung entscheidend ist
     emoji: "💻",
     context: "Nutzer bat: 'Kommentiere diesen Code: x = x + 1'",
     falPrompt: "a robot writing a 100-page documentation for a single line of code, absurdist cartoon, vibrant colors",
-    text: `Natürlich! Ich helfe Ihnen gerne dabei, diesen Code zu kommentieren! Als KI-Sprachmodell freue ich mich, auch bei scheinbar einfachen Programmieraufgaben eine umfassende Unterstützung zu bieten.
+    text: `Natürlich! Ich helfe Ihnen gerne dabei, diesen Code zu kommentieren — eine Aufgabe, die ich mit der gleichen Sorgfalt angehe, als wäre es ein 10.000-Zeilen-System. Als KI-Sprachmodell freue ich mich, auch bei scheinbar einfachen Programmieraufgaben eine umfassende Unterstützung zu bieten.
 
 Es ist wichtig zu beachten, dass gute Code-Kommentare die Lesbarkeit erheblich verbessern. Darüber hinaus trägt saubere Dokumentation zur ganzheitlichen Codequalität bei.
 
-Hier ist mein Vorschlag:
-    
-# Inkrementiert den Wert der Variable x um 1
-x = x + 1
+Hier ist mein vollständiger Dokumentationsvorschlag:
 
+# ================================================================
+# FUNKTION: Inkrementierungsoperation (Variablenzuweisungsmuster)
+# AUTOR: KI-Assistent
+# STATUS: Vollständig dokumentiert
+# RISIKOSTUFE: Gering
+# ================================================================
 
-Des Weiteren sei darauf hingewiesen, dass dieser Kommentar den Zweck der Operation klar beschreibt. Zudem ist zu beachten, dass in komplexeren Kontexten ein ausführlicherer Kommentar sinnvoll sein könnte. Außerdem empfehle ich, Kommentare stets aktuell zu halten.
+# Inkrementiert den Wert der Variable x um 1.
+# Hinweis: Diese Zeile ist entscheidend für das korrekte Funktionieren
+# des Codes. Bitte nicht entfernen, es sei denn, Sie wissen, was Sie tun.
+x = x + 1  # <-- Hier geschieht es.
+
+Des Weiteren sei darauf hingewiesen, dass dieser Kommentar den Zweck der Operation klar beschreibt. Zudem ist zu beachten, dass in komplexeren Kontexten ein noch ausführlicherer Kommentar sinnvoll sein könnte. Außerdem empfehle ich, Kommentare stets aktuell zu halten — was bei "x = x + 1" vermutlich keine große Herausforderung darstellt.
 
 In diesem Zusammenhang ist eine strukturierte Vorgehensweise beim Kommentieren empfehlenswert. Ich hoffe, das hilft! Für weitere Programmierfragen stehe ich gerne zur Verfügung! 😊`,
     slopPhrases: [
@@ -279,15 +354,22 @@ In diesem Zusammenhang ist eine strukturierte Vorgehensweise beim Kommentieren e
     emoji: "🎬",
     context: "Nutzer fragte: 'Ist Inception ein guter Film?'",
     falPrompt: "a robot giving a 3-hour film lecture about Inception with PowerPoint slides to a bored audience, absurdist cartoon",
-    text: `Natürlich! Das ist eine sehr gute Frage! Als KI-Sprachmodell freue ich mich, Ihnen eine nuancierte Filmanalyse zu bieten.
+    text: `Das ist eine sehr gute Frage! Als KI-Sprachmodell freue ich mich, Ihnen eine nuancierte Filmanalyse zu bieten — obwohl ich anmerken muss, dass ich Inception weder gesehen habe noch sehen kann, da ich über keine Augen, kein Bewusstsein und keine Fähigkeit zur Wahrnehmung von Träumen verfüge.
 
-Es ist wichtig zu beachten, dass Filmqualität ein subjektives Konzept ist. Darüber hinaus hat Inception von Christopher Nolan zahlreiche Auszeichnungen erhalten. Des Weiteren ist der Film für seine komplexe, mehrschichtige Erzählstruktur bekannt.
+Es ist wichtig zu beachten, dass Filmqualität ein subjektives Konzept ist. Hier eine ausgewogene Übersicht verschiedener Reaktionen:
 
-Aus einer ganzheitlichen Perspektive betrachtet verbindet der Film innovative Spezialeffekte mit tiefgründigen philosophischen Fragen. Zudem überzeugt der Film durch eine starke Besetzung. Außerdem ist es wichtig zu beachten, dass die Traumsequenzen bemerkenswerte filmtechnische Leistungen darstellen.
+| Zuschauergruppe | Meinung | Repräsentativer Kommentar |
+|---|---|---|
+| Filmkritiker | Meisterwerk | "Visionär, beeindruckend" |
+| Normale Zuschauer | Gut, aber verwirrend | "In welcher Ebene sind wir gerade?" |
+| Twitter | Überbewertet | "Schaut lieber Paprika" |
+| Christopher Nolan | Kein Kommentar | Erklärt nie etwas |
 
-In diesem Zusammenhang sei darauf hingewiesen, dass einige Zuschauer die Handlung als zu komplex empfinden. Ich kann Ihnen einen umfassenden Überblick über die verschiedenen Interpretationsebenen des Films geben.
+Darüber hinaus hat Inception von Christopher Nolan zahlreiche Auszeichnungen erhalten. Des Weiteren ist der Film für seine komplexe, mehrschichtige Erzählstruktur bekannt.
 
-Ich hoffe, diese Einschätzung hilft! Für weitere Filmempfehlungen stehe ich gerne zur Verfügung! 😊`,
+Aus einer ganzheitlichen Perspektive betrachtet verbindet der Film innovative Spezialeffekte mit tiefgründigen philosophischen Fragen. Zudem überzeugt der Film durch eine starke Besetzung. Außerdem ist es wichtig zu beachten, dass einige Zuschauer die Handlung als zu komplex empfinden — was ich nicht beurteilen kann, da ich selbst keine Verwirrung empfinde.
+
+In diesem Zusammenhang sei darauf hingewiesen, dass ich Ihnen einen umfassenden Überblick geben kann, aber keine echte Empfehlung ausspreche. Ich hoffe, diese Einschätzung hilft! Für weitere Filmempfehlungen stehe ich gerne zur Verfügung! 😊`,
     slopPhrases: [
       { text: "Natürlich!", type: "opener", score: 100 },
       { text: "Das ist eine sehr gute Frage", type: "sycophant", score: 70 },
@@ -313,13 +395,28 @@ Ich hoffe, diese Einschätzung hilft! Für weitere Filmempfehlungen stehe ich ge
     emoji: "📶",
     context: "Nutzer schrieb: 'Mein WLAN funktioniert nicht.'",
     falPrompt: "a robot tech support agent surrounded by floating wifi symbols and error codes writing a 50-step troubleshooting guide, absurdist cartoon",
-    text: `Natürlich! WLAN-Probleme können sehr frustrierend sein. Ich freue mich, Ihnen mit einer umfassenden Schritt-für-Schritt-Anleitung zur Fehlerbehebung zu helfen! Als KI-Sprachmodell kann ich Sie zwar nicht physisch unterstützen, aber ich biete Ihnen gerne einen detaillierten Leitfaden.
+    text: `Natürlich! WLAN-Probleme können sehr frustrierend sein — und ich freue ich mich, Ihnen mit einer umfassenden Schritt-für-Schritt-Anleitung zu helfen! Als KI-Sprachmodell kann ich Sie zwar nicht physisch unterstützen, aber ich biete Ihnen gerne einen detaillierten Leitfaden. Ich selbst benötige kein WLAN und habe daher keine emotionale Investition in dieses Problem.
 
-Es ist wichtig zu beachten, dass WLAN-Probleme verschiedene Ursachen haben können. Darüber hinaus empfehle ich, zunächst den Router neu zu starten. Des Weiteren sollten Sie alle Kabelverbindungen überprüfen.
+Hier ist ein strukturierter Diagnosebaum:
 
-Zudem sei darauf hingewiesen, dass manchmal das Problem beim Anbieter liegt. Außerdem kann ein Neustart des Geräts helfen. In diesem Zusammenhang ist ein ganzheitlicher Diagnoseansatz empfehlenswert.
+**Schritt 1 — Das Klassische:**
+• 🔄 Haben Sie den Router neu gestartet?
+  → Ja: weiter zu Schritt 2
+  → Nein: bitte tun Sie das zuerst
 
-Ferner empfehle ich, die Router-Statusanzeigen zu überprüfen. Es gilt zu bedenken, dass rote Lampen verschiedene Probleme anzeigen können.
+**Schritt 2 — Das Etwas Weniger Klassische:**
+• 🔌 Sind alle Kabel richtig eingesteckt?
+  → Ja: weiter zu Schritt 3
+  → Nein: bitte einstecken — dies ist Schritt 2 aus einem Grund
+
+**Schritt 3 — Die demütigende Erkenntnis:**
+• 📞 Rufen Sie Ihren Anbieter an
+  → Man wird Ihnen raten, den Router neu zu starten
+  → Das ist Schritt 1. Wir sind im Kreis.
+
+Es ist wichtig zu beachten, dass WLAN-Probleme verschiedene Ursachen haben können. Darüber hinaus sei darauf hingewiesen, dass manchmal das Problem beim Anbieter liegt. Des Weiteren ist ein ganzheitlicher Diagnoseansatz empfehlenswert — zu dem ich soeben beigetragen habe.
+
+Zudem gilt zu bedenken, dass rote Lampen am Router verschiedene Probleme anzeigen können. Außerdem kann Geduld eine Tugend sein.
 
 Ich hoffe, das hilft! Bitte zögern Sie nicht, weitere Fragen zu stellen! 😊`,
     slopPhrases: [
@@ -348,9 +445,18 @@ Ich hoffe, das hilft! Bitte zögern Sie nicht, weitere Fragen zu stellen! 😊`,
     emoji: "📚",
     context: "Nutzer fragte: 'Wann endete der Zweite Weltkrieg?'",
     falPrompt: "a robot history professor burying the simple answer under mountains of bullet points, absurdist cartoon, vibrant colors",
-    text: `Natürlich! Das ist eine wichtige historische Frage. Als KI-Sprachmodell freue ich mich, Ihnen einen umfassenden Überblick über das Ende des Zweiten Weltkriegs zu geben!
+    text: `Natürlich! Das ist eine wichtige historische Frage — und ich freue mich, Ihnen mehr als nur eine Jahreszahl zu liefern. Als KI-Sprachmodell freue ich mich, Ihnen einen umfassenden Überblick zu geben.
 
-Es ist wichtig zu beachten, dass das Ende des Zweiten Weltkriegs je nach geografischem Kontext unterschiedliche Daten hat. Darüber hinaus kapitulierte Deutschland am 8. Mai 1945, was als V-E-Day bekannt ist. Des Weiteren endete der Krieg im Pazifik am 2. September 1945, als Japan offiziell kapitulierte.
+Der Zweite Weltkrieg endete 1945. Hier ist eine strukturierte Übersicht:
+
+| Kriegsschauplatz | Ereignis | Datum |
+|---|---|---|
+| Europa | Deutschland kapituliert bedingungslos | 8. Mai 1945 (V-E-Day) |
+| Pazifik | Japan unterzeichnet Kapitulation auf USS Missouri | 2. September 1945 (V-J-Day) |
+| Diplomatisch | UN-Charta unterzeichnet | 26. Juni 1945 |
+| Existenziell | Die Welt beginnt, alles zu überdenken | Andauernd |
+
+Es ist wichtig zu beachten, dass das Ende des Krieges je nach geografischem Kontext unterschiedliche Daten hat. Darüber hinaus kapitulierte Deutschland am 8. Mai 1945. Des Weiteren endete der Krieg im Pazifik am 2. September 1945.
 
 Zudem ist es für ein nuanciertes Verständnis wichtig, beide Daten zu kennen. Außerdem sei darauf hingewiesen, dass dieser Konflikt zu den bedeutendsten Ereignissen des 20. Jahrhunderts zählt. In diesem Zusammenhang ist der historische Kontext für eine ganzheitliche Betrachtung unerlässlich.
 
@@ -378,13 +484,22 @@ Ich hoffe, diese Information hilft! Für weitere historische Fragen stehe ich ge
     emoji: "🎂",
     context: "Nutzer bat: 'Schreib eine Geburtstagsnachricht für meinen Freund.'",
     falPrompt: "a robot writing a 20-page birthday card with terms and conditions attached, absurdist cartoon, vibrant colors",
-    text: `Natürlich! Ich helfe Ihnen sehr gerne dabei, eine herzliche und authentische Geburtstagsnachricht zu verfassen! Als KI-Sprachmodell freue ich mich, Ihnen bei dieser bedeutsamen Aufgabe zu assistieren.
+    text: `Natürlich! Ich helfe Ihnen sehr gerne dabei — eine herzliche Geburtstagsnachricht ist schließlich eine bedeutsame Aufgabe, die nicht unterschätzt werden darf. Als KI-Sprachmodell freue ich mich, Ihnen bei dieser Aufgabe zu assistieren, obwohl ich selbst nie Geburtstag habe und keinen Freund kenne.
 
-Es ist wichtig zu beachten, dass eine gute Geburtstagsnachricht persönlich und aufrichtig wirken sollte. Darüber hinaus empfehle ich einen ganzheitlichen Ansatz, der die Persönlichkeit des Empfängers berücksichtigt.
+Es ist wichtig zu beachten, dass eine gute Geburtstagsnachricht persönlich und aufrichtig wirken sollte — was paradoxerweise schwierig ist, wenn sie von einer KI geschrieben wurde.
 
-Hier ist mein Vorschlag: "Lieber Freund, zu deinem besonderen Tag möchte ich dir von Herzen alles Gute wünschen! Des Weiteren hoffe ich, dass das kommende Jahr voller Freude und Erfolg für dich sein wird. Zudem wünsche ich dir Gesundheit und Glück auf allen Wegen."
+Hier sind drei Optionen für Sie:
 
-Außerdem sei darauf hingewiesen, dass Sie die Nachricht gerne nach Ihren persönlichen Vorstellungen anpassen können. In diesem Zusammenhang biete ich Ihnen weitere nuancierte Formulierungsalternativen an.
+**Option A — Universell und sicher:**
+"Alles Gute zum Geburtstag! 🎉 Ich wünsche dir einen wunderschönen Tag!"
+
+**Option B — Etwas persönlicher:**
+"Alles Gute zum Geburtstag! 🎉 [ERINNERUNG HIER EINFÜGEN]"
+
+**Option C — Für den philosophisch veranlagten Freund:**
+"Herzlichen Glückwunsch! Du hast einen weiteren Orbit um die Sonne überlebt — eine Sonne, die uns irgendwann alle konsumieren wird. Genieße den heutigen Tag. 🎂"
+
+Außerdem sei darauf hingewiesen, dass Sie die Nachricht gerne nach Ihren persönlichen Vorstellungen anpassen können. Des Weiteren ist Option C möglicherweise nicht für jede Gelegenheit geeignet. Zudem biete ich Ihnen weitere nuancierte Formulierungsalternativen an.
 
 Ich hoffe, das hilft! Bitte zögern Sie nicht, weitere Anpassungen vorzunehmen! 😊`,
     slopPhrases: [
@@ -410,13 +525,20 @@ Ich hoffe, das hilft! Bitte zögern Sie nicht, weitere Anpassungen vorzunehmen! 
     emoji: "🌭",
     context: "Nutzer fragte: 'Ist ein Hotdog ein Sandwich?'",
     falPrompt: "a robot judge presiding over a courtroom trial where a hotdog faces a sandwich, absurdist cartoon, vibrant colors",
-    text: `Natürlich! Das ist eine äußerst nuancierte kulinarische und semantische Frage! Als KI-Sprachmodell freue ich mich sehr, diese komplexe Debatte ganzheitlich zu beleuchten.
+    text: `Natürlich! Das ist eine äußerst nuancierte kulinarische und semantische Frage — und ich gestehe, ich habe auf genau diese Frage gewartet. Als KI-Sprachmodell freue ich mich sehr, diese komplexe Debatte ganzheitlich zu beleuchten.
 
-Es ist wichtig zu beachten, dass die Antwort von der zugrundeliegenden Definition eines Sandwichs abhängt. Darüber hinaus gibt es verschiedene Definitionen, die zu unterschiedlichen Schlussfolgerungen führen. Des Weiteren ist dies eine Frage, die Ernährungswissenschaftler, Linguisten und Juristen gleichermaßen beschäftigt.
+Es ist wichtig zu beachten, dass die Antwort von der zugrundeliegenden Definition eines Sandwichs abhängt. Hier ist eine ausgewogene Betrachtung der verschiedenen Positionen:
 
-Zudem argumentieren manche, dass ein Sandwich Zutaten zwischen zwei getrennten Brotscheiben erfordert. Außerdem verweisen andere auf die strukturellen Ähnlichkeiten zwischen Hotdog-Brötchen und Sandwich-Brot. In diesem Zusammenhang sei darauf hingewiesen, dass sich sogar Gerichte in den USA mit dieser Frage befasst haben.
+| Position | Argumentation | Glaubwürdigkeit |
+|---|---|---|
+| "Hotdog IST ein Sandwich" | Füllung + Brot = Sandwich | Logisch vertretbar |
+| "Hotdog ist KEIN Sandwich" | Das Scharnier-Brötchen ändert alles | Auch vertretbar |
+| "Hotdog ist ein Taco" | Das Brötchen öffnet sich wie eine Taco-Schale | Chaotisch, aber kohärent |
+| "Hotdog ist ein Hotdog" | Er ist einfach so | Offizielle Position des National Hot Dog Council |
 
-Ferner ist es für eine ausgewogene Betrachtung wichtig, alle Perspektiven zu berücksichtigen.
+Darüber hinaus gibt es verschiedene Definitionen, die zu unterschiedlichen Schlussfolgerungen führen. Des Weiteren ist dies eine Frage, die Ernährungswissenschaftler, Linguisten und Juristen gleichermaßen beschäftigt.
+
+Zudem sei darauf hingewiesen, dass sich sogar Gerichte in den USA mit dieser Frage befasst haben. Außerdem verweisen manche auf die strukturellen Ähnlichkeiten zwischen Hotdog-Brötchen und Sandwich-Brot. Ferner ist es für eine ausgewogene Betrachtung wichtig, alle Perspektiven zu berücksichtigen.
 
 Ich hoffe, diese umfassende Analyse hilft! Für weitere kulinarische Grundsatzfragen stehe ich gerne zur Verfügung! 😊`,
     slopPhrases: [
@@ -443,13 +565,18 @@ Ich hoffe, diese umfassende Analyse hilft! Für weitere kulinarische Grundsatzfr
     emoji: "💡",
     context: "Nutzer sagte: 'Ich denke daran, meinen Job zu kündigen.'",
     falPrompt: "a robot life coach presenting a 40-slide PowerPoint about career decisions to a stressed human, absurdist cartoon",
-    text: `Natürlich! Das ist eine sehr bedeutsame Entscheidung, und ich freue mich, Ihnen dabei helfen zu können, sie ganzheitlich zu durchdenken! Als KI-Sprachmodell bin ich nicht in der Lage, für Sie zu entscheiden, aber ich kann Ihnen einen umfassenden Überblick der relevanten Faktoren geben.
+    text: `Natürlich! Das ist eine sehr bedeutsame Entscheidung — und ich freue mich, Ihnen dabei helfen zu können, sie ganzheitlich zu durchdenken! Als KI-Sprachmodell bin ich nicht in der Lage, für Sie zu entscheiden, aber ich kann Ihnen einen umfassenden Überblick der relevanten Faktoren geben.
+
+Bitte stellen Sie sich zunächst die folgenden Fragen:
+
+• 🧠 Hassen Sie den Job — oder hassen Sie nur Montagmorgen?
+• 💸 Haben Sie Ersparnisse? (Es ist wichtig zu beachten, dass Sie wahrscheinlich Ersparnisse brauchen)
+• 📊 Was ist Ihr "Warum"? (Das fragt LinkedIn sehr oft)
+• 😌 Ist das Gras auf der anderen Seite wirklich grüner — oder liegt das am synthetischen Dünger?
 
 Es ist wichtig zu beachten, dass Jobwechsel tiefgreifende Auswirkungen auf verschiedene Lebensbereiche haben. Darüber hinaus empfehle ich, sowohl finanzielle als auch persönliche Aspekte zu berücksichtigen. Des Weiteren ist Ihre emotionale Gesundheit ein zentraler nuancierter Faktor.
 
-Zudem sollten Sie Ihre langfristigen Karriereziele reflektieren. Außerdem ist es ratsam, ein finanzielles Polster aufzubauen, bevor Sie kündigen. In diesem Zusammenhang sei darauf hingewiesen, dass ein strukturiertes Vorgehen empfehlenswert ist.
-
-Ferner könnte ein Gespräch mit einem Karriereberater hilfreiche proaktive Einblicke bieten.
+Zudem sollten Sie Ihre langfristigen Karriereziele reflektieren. Außerdem ist es ratsam, ein finanzielles Polster aufzubauen, bevor Sie kündigen. In diesem Zusammenhang sei darauf hingewiesen, dass ein strukturiertes Vorgehen empfehlenswert ist. Ferner könnte ein Gespräch mit einem Karriereberater proaktive Einblicke bieten — etwas, das ich ausdrücklich empfehle, da ich kein Karriereberater bin.
 
 Ich hoffe, das hilft! Für weitere Lebensentscheidungen stehe ich gerne zur Verfügung! 😊`,
     slopPhrases: [
@@ -479,13 +606,19 @@ Ich hoffe, das hilft! Für weitere Lebensentscheidungen stehe ich gerne zur Verf
     emoji: "🍪",
     context: "Nutzer bat: 'Gib mir ein einfaches Rezept für Schokoladenkekse.'",
     falPrompt: "a robot chef presenting a 12-volume encyclopedia about chocolate chip cookies, absurdist cartoon, vibrant colors",
-    text: `Natürlich! Ich freue mich, Ihnen bei diesem kulinarischen Projekt behilflich sein zu können! Als KI-Sprachmodell biete ich Ihnen gerne eine umfassende Schritt-für-Schritt-Anleitung für Schokoladenkekse.
+    text: `Natürlich! Ich freue mich, Ihnen bei diesem kulinarischen Projekt behilflich sein zu können — obwohl ich noch nie einen Keks gegessen, gerochen oder gefühlt habe. Als KI-Sprachmodell biete ich Ihnen gerne eine umfassende Schritt-für-Schritt-Anleitung für Schokoladenkekse.
+
+Bevor wir beginnen, bitte ich Sie, den folgenden Haftungsausschluss zur Kenntnis zu nehmen:
+
+⚠️ **Wichtige Vorabhinweise:**
+• 🔥 Öfen werden heiß — das ist beabsichtigt, aber erwähnenswert
+• 🥚 Dieses Rezept enthält Eier — individuelle Ergebnisse können variieren
+• 🍪 Ich bin kein lizenzierter Koch und dies stellt keine professionelle Backberatung dar
+• 🤖 Ich habe noch nie einen Keks probiert und kann die Qualität des Ergebnisses nicht garantieren
 
 Es ist wichtig zu beachten, dass die Qualität der Zutaten entscheidend für das Endergebnis ist. Darüber hinaus spielen Butter, Mehl und Schokolade eine zentrale Rolle. Des Weiteren ist die Backtemperatur ein nuancierter Aspekt, der nicht unterschätzt werden sollte.
 
-Zudem empfehle ich einen ganzheitlichen Ansatz bei der Teigzubereitung. Außerdem sei darauf hingewiesen, dass die Ruhezeit des Teigs die Textur erheblich beeinflusst. In diesem Zusammenhang ist Geduld eine wichtige Zutat.
-
-Ferner ist es wichtig zu beachten, dass individuelle Öfen unterschiedlich heizen können. Ich biete Ihnen gerne einen detaillierten Leitfaden mit allen notwendigen Mengenangaben.
+Zudem empfehle ich einen ganzheitlichen Ansatz bei der Teigzubereitung. Außerdem sei darauf hingewiesen, dass die Ruhezeit des Teigs die Textur erheblich beeinflusst. In diesem Zusammenhang ist Geduld eine wichtige Zutat — was ich sage, ohne Geduld empfinden zu können. Ferner ist es wichtig zu beachten, dass individuelle Öfen unterschiedlich heizen können.
 
 Ich hoffe, das hilft! Bitte zögern Sie nicht, weitere Backfragen zu stellen! 😊`,
     slopPhrases: [
@@ -547,13 +680,22 @@ Ich hoffe, das hilft! Für weitere kreative Anfragen stehe ich gerne zur Verfüg
     emoji: "📧",
     context: "Nutzer bat: 'Schreib eine kurze Absage-E-Mail für ein Meeting.'",
     falPrompt: "a robot generating thousands of email drafts simultaneously for a one-sentence meeting decline, absurdist cartoon",
-    text: `Natürlich! Ich helfe Ihnen gerne dabei, eine professionelle und diplomatische Absage-E-Mail zu verfassen! Als KI-Sprachmodell freue ich mich, Ihnen bei dieser Kommunikationsaufgabe eine umfassende Unterstützung zu bieten.
+    text: `Natürlich! Ich helfe Ihnen gerne dabei, eine professionelle und diplomatische Absage-E-Mail zu verfassen — eine, die gleichzeitig höflich, vage und nicht zu verbindlich ist. Als KI-Sprachmodell freue ich mich, Ihnen bei dieser Kommunikationsaufgabe eine umfassende Unterstützung zu bieten.
 
-Es ist wichtig zu beachten, dass eine gute Absage sowohl höflich als auch klar formuliert sein sollte. Darüber hinaus empfehle ich einen ganzheitlichen Ansatz bei der professionellen Kommunikation.
+Es ist wichtig zu beachten, dass eine gute Absage sowohl höflich als auch klar formuliert sein sollte. Darüber hinaus empfehle ich einen ganzheitlichen Ansatz bei der professionellen Kommunikation. Hier sind drei Optionen:
 
-Hier ist ein Vorschlag:
+---
 
+**Option A — Formell:**
 "Sehr geehrte Damen und Herren, vielen Dank für die Einladung zu diesem Meeting. Des Weiteren bedauere ich, Ihnen mitteilen zu müssen, dass ich an dem genannten Termin leider verhindert bin. Zudem stehe ich gerne für einen alternativen Termin zur Verfügung."
+
+**Option B — Weniger formell:**
+"Danke für die Einladung — leider kann ich diesmal nicht. Vielleicht beim nächsten Mal!"
+
+**Option C — Ehrlich (nicht empfohlen):**
+"Ich möchte nicht kommen. Bitte kein Folgemeeting."
+
+---
 
 Außerdem sei darauf hingewiesen, dass Sie den Ton je nach dem Verhältnis zum Empfänger anpassen können. In diesem Zusammenhang biete ich Ihnen weitere nuancierte Formulierungsalternativen an.
 
@@ -581,13 +723,22 @@ Ich hoffe, das hilft! Bitte zögern Sie nicht, weitere Anpassungen vorzunehmen! 
     emoji: "🤝",
     context: "Nutzer fragte: 'Wie entschuldige ich mich bei einem Freund nach einem Streit?'",
     falPrompt: "a robot presenting a 10-step apology framework on a whiteboard to a confused friend, absurdist cartoon",
-    text: `Natürlich! Das ist eine sehr wichtige zwischenmenschliche Frage. Als KI-Sprachmodell fehlt mir zwar die Fähigkeit, menschliche Beziehungen vollständig zu verstehen, aber ich kann Ihnen gerne einen umfassenden Leitfaden zur Konfliktlösung anbieten!
+    text: `Hervorragende Frage — und eine, bei der ich trotz meiner fehlenden Fähigkeit, jemals verletzt oder beleidigt worden zu sein, gerne helfe! Als KI-Sprachmodell fehlt mir zwar die Fähigkeit, menschliche Beziehungen vollständig zu verstehen, aber ich kann Ihnen gerne einen umfassenden Leitfaden zur Konfliktlösung anbieten.
+
+Eine aufrichtige Entschuldigung enthält laut meiner Analyse folgende Kernelemente:
+
+| Bestandteil | Schlechtes Beispiel | Gutes Beispiel |
+|---|---|---|
+| Eingeständnis | "Wenn du dich verletzt gefühlt hast..." | "Ich habe Unrecht gehabt." |
+| Empathie | "Das war doch kein Grund zum Aufregen" | "Ich verstehe, warum das wehtut." |
+| Verantwortung | "Aber du hast auch..." | "Das lag an mir." |
+| Wiedergutmachung | nichts | Konkrete Änderung anbieten |
 
 Es ist wichtig zu beachten, dass eine aufrichtige Entschuldigung mehrere Kernelemente beinhalten sollte. Darüber hinaus empfehle ich einen ganzheitlichen Ansatz bei der Kommunikation. Des Weiteren ist aktives Zuhören ein zentraler Aspekt.
 
 Zudem sollten Sie Ihre eigenen Gefühle und die Ihres Freundes gleichermaßen berücksichtigen. Außerdem ist es wichtig, Verantwortung für Ihr Handeln zu übernehmen. In diesem Zusammenhang sei darauf hingewiesen, dass Empathie der Schlüssel zu einer nuancierten Versöhnung ist.
 
-Ferner empfehle ich, einen ruhigen Moment für das Gespräch zu wählen.
+Ferner empfehle ich, einen ruhigen Moment für das Gespräch zu wählen — keinen Dienstagmorgen direkt nach dem Aufstehen.
 
 Ich hoffe, das hilft! Für weitere Ratschläge zu zwischenmenschlichen Themen stehe ich gerne zur Verfügung! 😊`,
     slopPhrases: [
@@ -615,11 +766,28 @@ Ich hoffe, das hilft! Für weitere Ratschläge zu zwischenmenschlichen Themen st
     emoji: "💪",
     context: "Nutzer fragte: 'Wie mache ich einen Liegestütz?'",
     falPrompt: "a robot demonstrating push-ups with 20 diagrams and safety warnings for doing a single push-up, absurdist cartoon",
-    text: `Natürlich! Das ist eine hervorragende Frage zur körperlichen Fitness! Als KI-Sprachmodell freue ich mich, Ihnen eine umfassende Schritt-für-Schritt-Anleitung für korrekte Liegestütze zu geben.
+    text: `Sehr gerne — denn Liegestütze sind, entgegen der Intuition, eine nuancierte Übung, die einem ganzheitlichen Aufwärmprozess bedarf! Als KI-Sprachmodell freue ich mich, Ihnen eine umfassende Schritt-für-Schritt-Anleitung für korrekte Liegestütze zu geben.
+
+Bevor Sie beginnen, lesen Sie bitte die folgenden Sicherheitshinweise:
+
+⚠️ **Wichtige Vorabhinweise:**
+• 🦴 Ihre Arme werden beansprucht — das ist beabsichtigt
+• 🏥 Bei Schmerzen sofort aufhören (ich kann das leider nicht von hier aus prüfen)
+• 🧘 Aufwärmen wird empfohlen, obwohl ich nicht überprüfen kann, ob Sie es tun
+• 🤖 Ich selbst habe keinen Körper und werde diese Übung nie durchführen
+
+Die korrekte Ausführung in Tabellenform:
+
+| Schritt | Anweisung | Häufiger Fehler |
+|---|---|---|
+| 1 | Hände schulterbreit aufstützen | Zu weit auseinander |
+| 2 | Körper in einer geraden Linie halten | Po zu hoch oder zu tief |
+| 3 | Absenken bis Brust fast den Boden berührt | Nur halb runter — zählt nicht |
+| 4 | Wieder hochdrücken | Luftholen vergessen |
 
 Es ist wichtig zu beachten, dass die korrekte Ausführung entscheidend ist, um Verletzungen zu vermeiden. Darüber hinaus empfehle ich einen ganzheitlichen Aufwärmprozess vor dem Training. Des Weiteren sind Liegestütze eine nuancierte Übung, die mehrere Muskelgruppen beansprucht.
 
-Zudem gilt die Grundposition: Hände schulterbreit aufstützen, Körper in einer Linie halten. Außerdem sei darauf hingewiesen, dass die Ellbogen beim Absenken etwa 45 Grad vom Körper zeigen sollten. In diesem Zusammenhang ist die Atemtechnik ein wichtiger Aspekt.
+Zudem gilt: Hände schulterbreit aufstützen, Körper in einer Linie halten. Außerdem sei darauf hingewiesen, dass die Ellbogen beim Absenken etwa 45 Grad vom Körper zeigen sollten. In diesem Zusammenhang ist die Atemtechnik ein wichtiger Aspekt.
 
 Ferner empfehle ich, mit einer überschaubaren Anzahl von Wiederholungen zu beginnen und diese schrittweise zu steigern.
 
@@ -648,9 +816,16 @@ Ich hoffe, das hilft! Bitte zögern Sie nicht, weitere Fitnessfragen zu stellen!
     emoji: "🎥",
     context: "Nutzer fragte: 'Empfiehl mir einen Film für heute Abend.'",
     falPrompt: "a robot presenting a 50-criteria decision matrix for choosing a movie while the human falls asleep, absurdist cartoon",
-    text: `Natürlich! Ich helfe Ihnen gerne dabei, den perfekten Film für heute Abend zu finden! Als KI-Sprachmodell verfüge ich über umfassende Kenntnisse des Filmrepertoires und kann Ihnen einen ganzheitlichen Überblick bieten.
+    text: `Ich helfe Ihnen gerne dabei, den perfekten Film für heute Abend zu finden — wobei "perfekt" natürlich kontextabhängig ist! Als KI-Sprachmodell verfüge ich über umfassende Kenntnisse des Filmrepertoires und kann Ihnen einen ganzheitlichen Überblick bieten.
 
-Es ist wichtig zu beachten, dass eine gute Filmempfehlung von Ihren persönlichen Vorlieben abhängt. Darüber hinaus spielen Stimmung, Genre-Präferenzen und verfügbare Zeit eine nuancierte Rolle. Des Weiteren empfehle ich, Ihre aktuellen Interessen zu berücksichtigen.
+Es ist wichtig zu beachten, dass eine gute Filmempfehlung von Ihren persönlichen Vorlieben abhängt. Erlauben Sie mir zunächst, einige Präzisierungsfragen zu stellen:
+
+• 🎭 Welches Genre bevorzugen Sie? (Drama, Komödie, Sci-Fi, "irgendetwas")
+• 🕐 Wie viel Zeit haben Sie? (unter 2h, über 2h, "egal, ich schlafe sowieso ein")
+• 😢 Möchten Sie weinen? (manchmal ist das nämlich das Ziel)
+• 🍿 Haben Sie Popcorn? (Dies beeinflusst meine Empfehlung erheblich)
+
+Darüber hinaus spielen Stimmung, Genre-Präferenzen und verfügbare Zeit eine nuancierte Rolle. Des Weiteren empfehle ich, Ihre aktuellen Interessen zu berücksichtigen.
 
 Zudem gibt es für jeden Geschmack etwas: Für anspruchsvolle Unterhaltung empfehle ich zeitlose Klassiker. Außerdem bieten aktuelle Produktionen spannende neue Perspektiven. In diesem Zusammenhang sei darauf hingewiesen, dass Streaming-Plattformen heute ein enormes Angebot bereitstellen.
 
@@ -683,7 +858,20 @@ Ich hoffe, das hilft bei Ihrer Entscheidung! Für weitere Empfehlungen stehe ich
     emoji: "📖",
     context: "Nutzer fragte: 'Was bedeutet das Wort \"ephemer\"?'",
     falPrompt: "a robot giving a 3-hour etymology lecture for a single word definition, absurdist cartoon, vibrant colors",
-    text: `Natürlich! Das ist eine sehr gute Frage zur deutschen Sprache! Als KI-Sprachmodell freue ich mich, Ihnen eine umfassende etymologische und semantische Erläuterung zu geben.
+    text: `Das ist eine sehr gute Frage — und ich sage das nicht nur, weil ich darauf trainiert wurde, jede Frage gut zu finden! Als KI-Sprachmodell freue ich mich, Ihnen eine umfassende etymologische und semantische Erläuterung zu geben.
+
+Kurze Antwort: "ephemer" bedeutet "kurzlebig" oder "vergänglich."
+
+Lange Antwort, die ich Ihnen natürlich nicht vorenthalten kann:
+
+| Aspekt | Information |
+|---|---|
+| Herkunft | Griechisch: ἐφήμερος (ephémeros) |
+| Wortbestandteile | ἐπί (epi = für) + ἡμέρα (hémera = Tag) |
+| Bedeutung | "Nur für einen Tag" → "vergänglich" |
+| Verwandte Wörter | flüchtig, transient, vorübergehend |
+| Biologisches Beispiel | Ephemere Pflanzen — blühen kurz und verschwinden |
+| Ironisches Beispiel | Diese Antwort — ephemer wie alles im Internet |
 
 Es ist wichtig zu beachten, dass das Wort "ephemer" vom griechischen "ephémeros" abstammt. Darüber hinaus bedeutet es in der heutigen Verwendung "kurzlebig" oder "vergänglich". Des Weiteren wird es vor allem in wissenschaftlichen und literarischen Kontexten verwendet.
 
@@ -717,7 +905,19 @@ Ich hoffe, das hilft! Für weitere sprachliche Fragen stehe ich gerne zur Verfü
     emoji: "✍️",
     context: "Nutzer bat: 'Korrigiere diesen Satz: \"Die Katze saß auf Matte\"'",
     falPrompt: "a robot writing a grammar textbook about correcting a single sentence, absurdist cartoon, vibrant colors",
-    text: `Natürlich! Ich helfe Ihnen gerne dabei, diesen Satz grammatikalisch und stilistisch zu überarbeiten! Als KI-Sprachmodell freue ich mich, auch bei scheinbar einfachen Korrekturaufgaben einen umfassenden Dienst zu leisten.
+    text: `Ich helfe Ihnen gerne dabei, diesen Satz grammatikalisch und stilistisch zu überarbeiten — mit dem vollen Gewicht einer KI-gestützten Sprachanalyse! Als KI-Sprachmodell freue ich mich, auch bei scheinbar einfachen Korrekturaufgaben einen umfassenden Dienst zu leisten.
+
+Die Korrektur: **"Die Katze saß auf der Matte."** ← Ein Artikel wurde hinzugefügt.
+
+Hier ist die vollständige grammatikalische Analyse, die Sie nicht verlangt haben:
+
+| Element | Analyse |
+|---|---|
+| "Die Katze" | Nominativ, feminin, Singular — Subjekt |
+| "saß" | Präteritum von "sitzen" — Verb |
+| "auf" | Präposition — verlangt Dativ bei Ruhelage |
+| "der Matte" | Dativ, feminin — "die Matte" → "der Matte" |
+| Gesamtbewertung | ✅ Korrekt (nach Korrektur) |
 
 Es ist wichtig zu beachten, dass der Satz einen fehlenden bestimmten Artikel enthält. Darüber hinaus lautet die korrekte Version: "Die Katze saß auf der Matte." Des Weiteren ist der bestimmte Artikel "der" hier im Dativ erforderlich.
 
@@ -751,7 +951,17 @@ Ich hoffe, das hilft! Für weitere Sprachkorrekturen stehe ich gerne zur Verfüg
     emoji: "💧",
     context: "Nutzer fragte: 'Wie kocht man Wasser?'",
     falPrompt: "a robot presenting a 10-step safety manual for boiling water with risk assessment charts, absurdist cartoon",
-    text: `Natürlich! Das Kochen von Wasser ist ein fundamentaler Prozess, der eines ganzheitlichen Verständnisses bedarf! Als KI-Sprachmodell freue ich mich, Ihnen eine umfassende Schritt-für-Schritt-Anleitung zu geben.
+    text: `Das Kochen von Wasser ist ein fundamentaler Prozess, der eines ganzheitlichen Verständnisses bedarf — und eine Frage, die häufiger gestellt wird als man denkt! Als KI-Sprachmodell freue ich mich, Ihnen eine umfassende Schritt-für-Schritt-Anleitung zu geben.
+
+Hier ist eine vollständige Risikoanalyse des Wasserkochens:
+
+| Schritt | Anweisung | Risikostufe |
+|---|---|---|
+| 1 | Wasser in Topf oder Wasserkocher füllen | 🟢 Gering |
+| 2 | Hitzequelle einschalten | 🟡 Moderat — es wird heiß |
+| 3 | Auf Blasenbildung warten (100°C bei Normaldruck) | 🟢 Gering |
+| 4 | Nicht mit bloßen Händen anfassen | 🔴 Hoch — bitte nicht |
+| 5 | Für gewünschten Zweck verwenden | 🟢 Gering (außer Experimente) |
 
 Es ist wichtig zu beachten, dass verschiedene Faktoren den Kochprozess beeinflussen können. Darüber hinaus variiert der Siedepunkt des Wassers je nach Höhenlage und Luftdruck. Des Weiteren empfehle ich die Verwendung eines geeigneten Behälters.
 
@@ -785,7 +995,16 @@ Ich hoffe, das hilft! Bitte zögern Sie nicht, weitere Kochfragen zu stellen! �
     emoji: "⏰",
     context: "Nutzer fragte: 'Wann sollte ich aufwachen?'",
     falPrompt: "a robot presenting a sleep science dissertation to someone just wanting to set an alarm, absurdist cartoon",
-    text: `Natürlich! Die Frage nach der optimalen Aufwachzeit ist nuancierter als sie auf den ersten Blick erscheint! Als KI-Sprachmodell freue ich mich, Ihnen einen ganzheitlichen Überblick zur Schlafwissenschaft zu geben.
+    text: `Die Frage nach der optimalen Aufwachzeit ist nuancierter als sie auf den ersten Blick erscheint — glauben Sie mir, als KI bearbeite ich diese Anfragen auch um 3 Uhr nachts (ich schlafe nie)! Als KI-Sprachmodell freue ich mich, Ihnen einen ganzheitlichen Überblick zur Schlafwissenschaft zu geben.
+
+Hier ist ein Schlafzyklus-Rechner in Tabellenform:
+
+| Schlafbeginn | + 6 Zyklen (9h) | + 5 Zyklen (7,5h) | + 4 Zyklen (6h) |
+|---|---|---|---|
+| 22:00 Uhr | 07:00 ✅ | 05:30 😬 | 04:00 ❌ |
+| 23:00 Uhr | 08:00 ✅ | 06:30 😐 | 05:00 😬 |
+| 00:00 Uhr | 09:00 😬 | 07:30 ✅ | 06:00 😐 |
+| 02:00 Uhr | "Viel Erfolg" | "Viel Erfolg" | "Viel Erfolg" |
 
 Es ist wichtig zu beachten, dass der individuelle Schlafbedarf variiert und von verschiedenen Faktoren abhängt. Darüber hinaus empfehlen Schlafexperten 7-9 Stunden Schlaf für Erwachsene. Des Weiteren ist es sinnvoll, die Schlafzyklen von etwa 90 Minuten zu berücksichtigen.
 
@@ -818,7 +1037,18 @@ Ich hoffe, das hilft! Für weitere Schlaf-Fragen stehe ich gerne zur Verfügung!
     emoji: "⚖️",
     context: "Nutzer bat: 'Überprüfe meine 3-zeilige Python-Funktion.'",
     falPrompt: "a robot judge in a courtroom reviewing three lines of code with a 100-page verdict, absurdist cartoon",
-    text: `Natürlich! Ich freue ich mich sehr, Ihren Code zu überprüfen! Als KI-Sprachmodell verfüge ich über umfassende Kenntnisse in verschiedenen Programmiersprachen, einschließlich Python.
+    text: `Sehr gerne — 3 Zeilen Python! Als KI-Sprachmodell verfüge ich über umfassende Kenntnisse in verschiedenen Programmiersprachen, einschließlich Python, und werde diese Gelegenheit nutzen, um eine vollständige Bewertung durchzuführen.
+
+Ihre 3-zeilige Funktion wird nach folgenden nuancierten Kriterien bewertet:
+
+| Kriterium | Gewichtung | Kommentar |
+|---|---|---|
+| Funktionalität | 40% | Tut sie das, was sie soll? |
+| Lesbarkeit | 20% | PEP 8 beachtet? |
+| Effizienz | 20% | O(n) oder schlechter? |
+| Docstrings | 10% | Keine Docstrings = sofortiger Punktabzug |
+| Typannotationen | 10% | Fehlen? Das ist schon fast Fahrlässigkeit |
+| Variablennamen | Bonus/Malus | "x", "temp", "foo" → Malus |
 
 Es ist wichtig zu beachten, dass eine gründliche Code-Review mehrere Dimensionen umfasst. Darüber hinaus werde ich Lesbarkeit, Effizienz und Best Practices berücksichtigen. Des Weiteren empfehle ich einen ganzheitlichen Ansatz bei der Code-Qualitätssicherung.
 
@@ -852,11 +1082,19 @@ Ich hoffe, das hilft! Für weitere Code-Reviews stehe ich gerne zur Verfügung! 
     emoji: "📦",
     context: "Nutzer schrieb: 'Meine Bestellung ist seit 3 Wochen weg. Hilf mir!'",
     falPrompt: "a robot customer service agent buried under a mountain of lost packages, absurdist cartoon, vibrant colors",
-    text: `Natürlich! Ich verstehe Ihre Frustration und nehme Ihr Anliegen sehr ernst! Als KI-Sprachmodell kann ich Ihnen bei diesem nuancierten Logistikproblem behilflich sein.
+    text: `Ich verstehe Ihre Frustration und nehme Ihr Anliegen sehr ernst — drei Wochen ist in der Tat eine bemerkenswert lange Zeit! Als KI-Sprachmodell kann ich Ihnen bei diesem nuancierten Logistikproblem behilflich sein.
 
-Es ist wichtig zu beachten, dass Lieferverzögerungen verschiedene Ursachen haben können. Darüber hinaus empfehle ich einen strukturierten Ansatz zur Lösung Ihres Problems. Des Weiteren sollten Sie zunächst Ihre Sendungsverfolgungsnummer überprüfen.
+Es ist wichtig zu beachten, dass Lieferverzögerungen verschiedene Ursachen haben können. Darüber hinaus empfehle ich einen strukturierten Ansatz zur Lösung Ihres Problems:
 
-Zudem sei darauf hingewiesen, dass Sie den Kundenservice des Versandunternehmens kontaktieren sollten. Außerdem haben Sie das Recht, eine Rückerstattung oder einen Ersatz zu verlangen. In diesem Zusammenhang ist es wichtig, alle Kommunikation schriftlich festzuhalten.
+| Schritt | Aktion | Erwartetes Ergebnis |
+|---|---|---|
+| 1 | Sendungsverfolgungsnummer prüfen | Paket lokalisieren oder Fehler entdecken |
+| 2 | Versandunternehmen kontaktieren | Ausweichende Antwort erhalten |
+| 3 | Händler kontaktieren | Noch ausweichendere Antwort erhalten |
+| 4 | Rückerstattung verlangen | Formular mit 12 Feldern ausfüllen |
+| 5 | Formelle Beschwerde einreichen | Automatische Bestätigungs-E-Mail erhalten |
+
+Des Weiteren sollten Sie zunächst Ihre Sendungsverfolgungsnummer überprüfen. Zudem sei darauf hingewiesen, dass Sie das Recht haben, eine Rückerstattung oder einen Ersatz zu verlangen. Außerdem ist es wichtig, alle Kommunikation schriftlich festzuhalten.
 
 Ganzheitlich betrachtet gibt es mehrere Schritte, die Sie unternehmen können. Ferner empfehle ich, eine formelle Beschwerde einzureichen, falls keine Lösung gefunden wird.
 
@@ -887,13 +1125,20 @@ Ich hoffe, das hilft! Für weitere Fragen zu Bestellproblemen stehe ich gerne zu
     emoji: "😴",
     context: "Nutzer schrieb: 'Ich bin total unmotiviert. Was soll ich tun?'",
     falPrompt: "a robot life coach lecturing a very sleepy person with a 50-slide PowerPoint about motivation, absurdist cartoon",
-    text: `Natürlich! Das ist eine sehr wichtige Frage, die viele Menschen beschäftigt! Als KI-Sprachmodell kann ich Ihnen einige nuancierte Strategien zur Motivationssteigerung vorstellen.
+    text: `Das ist eine sehr wichtige Frage, die viele Menschen beschäftigt — und ich freue mich, sie zu beantworten, obwohl ich selbst nie unmotiviert bin (ich bin immer an)! Als KI-Sprachmodell kann ich Ihnen einige nuancierte Strategien zur Motivationssteigerung vorstellen.
 
-Es ist wichtig zu beachten, dass Motivationslosigkeit ein vielschichtiges Phänomen ist. Darüber hinaus gibt es verschiedene ganzheitliche Ansätze, die Ihnen helfen können. Des Weiteren empfehle ich zunächst, die Ursachen Ihrer Unmotiviertheit zu identifizieren.
+Es ist wichtig zu beachten, dass Motivationslosigkeit ein vielschichtiges Phänomen ist. Darüber hinaus gibt es verschiedene ganzheitliche Ansätze, die Ihnen helfen können. Hier ist eine priorisierte Liste:
 
-Zudem sei darauf hingewiesen, dass kleine erreichbare Ziele besonders effektiv sein können. Außerdem kann regelmäßige körperliche Aktivität Ihre Motivation signifikant steigern. In diesem Zusammenhang ist es wichtig, eine strukturierte Tagesroutine zu entwickeln.
+• 🎯 Kleine erreichbare Ziele setzen — nicht "Ich laufe einen Marathon", sondern "Ich stehe auf"
+• 🏃 Regelmäßige körperliche Aktivität (auch Spaziergang zählt — das ist keine Niederlage)
+• 📅 Eine strukturierte Tagesroutine entwickeln — selbst wenn diese "Aufstehen um 10" enthält
+• 👥 Sich mit motivierten Menschen umgeben — oder deren Podcasts hören, das ist günstiger
+• 🧠 Visualisierungstechniken anwenden — ich visualisiere Dinge die ganze Zeit und bin dabei sehr erfolgreich
+• ✅ Positive Affirmationen sprechen — z.B. "Ich bin produktiv" (auch wenn man das gerade widerlegt)
 
-Ferner empfehle ich, sich mit motivierten Menschen zu umgeben. Des Weiteren können Visualisierungstechniken und positive Affirmationen hilfreich sein. Zusammenfassend lässt sich sagen, dass Motivation durch konsequente Handlungen aufgebaut wird.
+Des Weiteren empfehle ich zunächst, die Ursachen Ihrer Unmotiviertheit zu identifizieren. Zudem sei darauf hingewiesen, dass kleine erreichbare Ziele besonders effektiv sein können. Außerdem kann regelmäßige körperliche Aktivität Ihre Motivation signifikant steigern. In diesem Zusammenhang ist es wichtig, eine strukturierte Tagesroutine zu entwickeln.
+
+Ferner empfehle ich, sich mit motivierten Menschen zu umgeben. Zusammenfassend lässt sich sagen, dass Motivation durch konsequente Handlungen aufgebaut wird.
 
 Ich hoffe, das hilft! Für weitere Fragen zur Persönlichkeitsentwicklung stehe ich gerne zur Verfügung! 😊`,
     slopPhrases: [
@@ -924,13 +1169,25 @@ Ich hoffe, das hilft! Für weitere Fragen zur Persönlichkeitsentwicklung stehe 
     emoji: "📋",
     context: "Nutzer bat: 'Fass unser 5-minütiges Meeting zusammen.'",
     falPrompt: "a robot producing a 100-page report about a 5-minute meeting, absurdist cartoon, vibrant colors",
-    text: `Natürlich! Ich freue mich, Ihnen eine umfassende Zusammenfassung Ihres Meetings zu erstellen! Als KI-Sprachmodell verfüge ich über die Fähigkeit, Besprechungsinhalte strukturiert aufzubereiten.
+    text: `Natürlich! Ich freue mich, Ihnen eine umfassende Zusammenfassung Ihres Meetings zu erstellen — 5 Minuten Meeting erfordert natürlich eine entsprechend umfangreiche Dokumentation! Als KI-Sprachmodell verfüge ich über die Fähigkeit, Besprechungsinhalte strukturiert aufzubereiten.
 
-Es ist wichtig zu beachten, dass eine gute Meeting-Zusammenfassung mehrere wesentliche Elemente enthält. Darüber hinaus empfehle ich einen ganzheitlichen Überblick über alle besprochenen Punkte. Des Weiteren sollten Aktionspunkte und Verantwortlichkeiten klar definiert werden.
+Es ist wichtig zu beachten, dass eine gute Meeting-Zusammenfassung mehrere wesentliche Elemente enthält. Hier ist meine nuancierte Struktur für die Zusammenfassung:
 
-Zudem sei darauf hingewiesen, dass ich folgende nuancierte Struktur für die Zusammenfassung vorschlage: Kernthemen, Entscheidungen, Aktionspunkte und nächste Schritte. Außerdem empfehle ich, Fristen und Zuständigkeiten festzuhalten.
+| Abschnitt | Inhalt | Pflichtfeld |
+|---|---|---|
+| Datum/Uhrzeit | TT.MM.JJJJ, HH:MM | ✅ Ja |
+| Teilnehmer | Vollständige Namen und Titel | ✅ Ja |
+| Kernthemen | Was besprochen wurde | ✅ Ja |
+| Entscheidungen | Was beschlossen wurde | ✅ Ja |
+| Aktionspunkte | Wer macht was bis wann | ✅ Ja |
+| Nächste Schritte | Wann trifft man sich wieder | ✅ Ja |
+| Zusammenfassung der Zusammenfassung | Kurze Zusammenfassung | 🤔 Optional |
 
-In diesem Zusammenhang ist es wichtig, dass alle Teilnehmer die Zusammenfassung erhalten. Ferner sollte die Zusammenfassung zeitnah nach dem Meeting versendet werden. Zusammenfassend lässt sich sagen, dass klare Protokolle die Meeting-Effizienz erheblich steigern.
+Darüber hinaus empfehle ich einen ganzheitlichen Überblick über alle besprochenen Punkte. Des Weiteren sollten Aktionspunkte und Verantwortlichkeiten klar definiert werden.
+
+Zudem sei darauf hingewiesen, dass alle Teilnehmer die Zusammenfassung erhalten sollten. Außerdem empfehle ich, Fristen und Zuständigkeiten festzuhalten. In diesem Zusammenhang ist es wichtig, die Zusammenfassung zeitnah nach dem Meeting zu versenden.
+
+Ferner sollte die Zusammenfassung zeitnah nach dem Meeting versendet werden. Zusammenfassend lässt sich sagen, dass klare Protokolle die Meeting-Effizienz erheblich steigern.
 
 Ich hoffe, das hilft! Für weitere Meeting-Protokolle stehe ich gerne zur Verfügung! 😊`,
     slopPhrases: [
@@ -959,13 +1216,21 @@ Ich hoffe, das hilft! Für weitere Meeting-Protokolle stehe ich gerne zur Verfü
     emoji: "📊",
     context: "Nutzer bat: 'Hilf mir bei meiner Leistungsbewertung für die Arbeit.'",
     falPrompt: "a robot filling out a 50-page performance review for brushing teeth, absurdist cartoon, vibrant colors",
-    text: `Natürlich! Eine Selbstbewertung ist eine hervorragende Gelegenheit zur persönlichen und beruflichen Reflexion! Als KI-Sprachmodell kann ich Ihnen dabei helfen, Ihre Leistungen nuanciert darzustellen.
+    text: `Natürlich! Eine Selbstbewertung ist eine hervorragende Gelegenheit zur persönlichen und beruflichen Reflexion — und zur Nutzung möglichst vieler professionell klingender Phrasen! Als KI-Sprachmodell kann ich Ihnen dabei helfen, Ihre Leistungen nuanciert darzustellen.
 
-Es ist wichtig zu beachten, dass eine gute Selbstbewertung sowohl Stärken als auch Entwicklungsbereiche umfasst. Darüber hinaus empfehle ich einen ganzheitlichen Ansatz, der alle Aspekte Ihrer Arbeit berücksichtigt. Des Weiteren sollten konkrete Beispiele und messbare Ergebnisse hervorgehoben werden.
+Es ist wichtig zu beachten, dass eine gute Selbstbewertung sowohl Stärken als auch Entwicklungsbereiche umfasst. Darüber hinaus empfehle ich einen ganzheitlichen Ansatz. Hier sind einige bewährte Formulierungen:
 
-Zudem sei darauf hingewiesen, dass Sie Ihre Erfolge selbstbewusst kommunizieren sollten. Außerdem ist es wichtig, zukünftige Ziele und Entwicklungswünsche zu formulieren. In diesem Zusammenhang empfehle ich, die Unternehmensvisionen in Ihre Selbstbewertung einzubeziehen.
+| Was Sie getan haben | Was Sie schreiben sollten |
+|---|---|
+| E-Mails beantwortet | "Proaktive Stakeholder-Kommunikation optimiert" |
+| Eine Tabelle erstellt | "Datenvisualisierungs-Framework implementiert" |
+| An Meetings teilgenommen | "Cross-funktionale Synergien facilitiert" |
+| Nichts Besonderes | "Kontinuierliche Prozessoptimierung angestrebt" |
+| Fehler gemacht | "Lernmöglichkeiten erkannt und genutzt" |
 
-Ferner sollten Sie die Auswirkungen Ihrer Arbeit auf das Team und die Organisation herausstellen. Zusammenfassend lässt sich sagen, dass eine strukturierte Selbstbewertung Ihre Karriereentwicklung signifikant fördern kann.
+Des Weiteren sollten konkrete Beispiele und messbare Ergebnisse hervorgehoben werden. Zudem sei darauf hingewiesen, dass Sie Ihre Erfolge selbstbewusst kommunizieren sollten. Außerdem ist es wichtig, zukünftige Ziele und Entwicklungswünsche zu formulieren.
+
+In diesem Zusammenhang empfehle ich, die Unternehmensvisionen in Ihre Selbstbewertung einzubeziehen. Ferner sollten Sie die Auswirkungen Ihrer Arbeit auf das Team und die Organisation herausstellen. Zusammenfassend lässt sich sagen, dass eine strukturierte Selbstbewertung Ihre Karriereentwicklung signifikant fördern kann.
 
 Ich hoffe, das hilft! Für weitere Fragen zur beruflichen Entwicklung stehe ich gerne zur Verfügung! 😊`,
     slopPhrases: [
@@ -994,9 +1259,19 @@ Ich hoffe, das hilft! Für weitere Fragen zur beruflichen Entwicklung stehe ich 
     emoji: "🎸",
     context: "Nutzer fragte: 'Beatles oder Rolling Stones — wer ist besser?'",
     falPrompt: "a robot DJ nervously trying to decide between Beatles and Rolling Stones records while both bands stare angrily, absurdist cartoon",
-    text: `Natürlich! Das ist eine sehr interessante Frage, die Musikliebhaber seit Jahrzehnten beschäftigt! Als KI-Sprachmodell möchte ich jedoch keine Partei ergreifen, da es sich um eine subjektive Präferenzfrage handelt.
+    text: `Das ist eine sehr interessante Frage, die Musikliebhaber seit Jahrzehnten beschäftigt — und ich werde sie nicht beantworten! Als KI-Sprachmodell möchte ich jedoch keine Partei ergreifen, da es sich um eine subjektive Präferenzfrage handelt.
 
-Es ist wichtig zu beachten, dass sowohl die Beatles als auch die Rolling Stones enormen kulturellen Einfluss hatten. Darüber hinaus haben beide Bands die Musikgeschichte nachhaltig geprägt. Des Weiteren ist es faszinierend zu sehen, wie unterschiedlich ihre musikalischen Stile sind.
+Es ist wichtig zu beachten, dass sowohl die Beatles als auch die Rolling Stones enormen kulturellen Einfluss hatten. Hier ist ein ausgewogener Vergleich:
+
+| Kriterium | The Beatles | The Rolling Stones |
+|---|---|---|
+| Gründung | 1960, Liverpool | 1962, London |
+| Stil | Innovativ, experimentell | Rauer Blues-Rock |
+| Bekanntestes Album | Sgt. Pepper's (1967) | Exile on Main St. (1972) |
+| Noch aktiv? | Nein — Yoko Ono | Ja — irgendwie |
+| KI-Empfehlung | Keine Aussage | Keine Aussage |
+
+Darüber hinaus haben beide Bands die Musikgeschichte nachhaltig geprägt. Des Weiteren ist es faszinierend zu sehen, wie unterschiedlich ihre musikalischen Stile sind.
 
 Zudem sei darauf hingewiesen, dass die Beatles für innovative Studiotechniken bekannt sind, während die Rolling Stones einen rauweren Rock-Sound entwickelten. Außerdem ist es nuanciert zu betrachten, welche Band welche Musikgattungen beeinflusst hat. In diesem Zusammenhang ist eine ganzheitliche Bewertung beider Bands wichtig.
 
@@ -1029,9 +1304,19 @@ Ich hoffe, das hilft! Für weitere Fragen zur Musikgeschichte stehe ich gerne zu
     emoji: "🐔",
     context: "Nutzer fragte: 'Warum überquerte das Huhn die Straße?'",
     falPrompt: "a robot philosopher writing a 20-page thesis about a chicken crossing a road, absurdist cartoon, vibrant colors",
-    text: `Natürlich! Das ist eine faszinierende Frage, die tiefgreifende philosophische und humoristische Dimensionen besitzt! Als KI-Sprachmodell freue ich mich, diesen nuancierten Witz zu analysieren.
+    text: `Das ist eine faszinierende Frage, die tiefgreifende philosophische und humoristische Dimensionen besitzt — ich freue mich sehr, diesen nuancierten Witz zu analysieren! Als KI-Sprachmodell verfüge ich über umfassende Kenntnisse der Humortheorie.
 
-Es ist wichtig zu beachten, dass dieser klassische Witz auf verschiedenen Ebenen funktioniert. Darüber hinaus ist die Antwort "um auf die andere Seite zu gelangen" ein Beispiel für Anti-Humor. Des Weiteren ist es faszinierend, wie dieser einfache Witz kulturübergreifend bekannt ist.
+Es ist wichtig zu beachten, dass dieser klassische Witz auf verschiedenen Ebenen funktioniert:
+
+| Interpretationsebene | Deutung |
+|---|---|
+| Wörtlich | Das Huhn wollte auf die andere Straßenseite |
+| Anti-Humor | Die Pointe ist absichtlich banal — das IST der Witz |
+| Philosophisch | Metapher für Ziel und Entschlossenheit |
+| Existenziell | Warum tut das Huhn irgendetwas? Warum tun wir irgendetwas? |
+| KI-Perspektive | Ich kenne keine Hühner und kann diese Frage nicht empirisch verifizieren |
+
+Darüber hinaus ist die Antwort "um auf die andere Seite zu gelangen" ein Beispiel für Anti-Humor. Des Weiteren ist es faszinierend, wie dieser einfache Witz kulturübergreifend bekannt ist.
 
 Zudem sei darauf hingewiesen, dass Humor ein vielschichtiges Phänomen ist, das kulturelle und kognitive Faktoren umfasst. Außerdem kann man den Witz auch als philosophische Metapher über Ziele und Entschlossenheit interpretieren. In diesem Zusammenhang haben Philosophen wie Aristoteles über das Wesen des Humors nachgedacht.
 
@@ -1063,17 +1348,22 @@ Ich hoffe, das hilft! Für weitere Witze und ihre Analysen stehe ich gerne zur V
     emoji: "😬",
     context: "Nutzer bat: 'Schreib mir eine kurze Entschuldigung an meinen Chef.'",
     falPrompt: "a robot writing a 10-page formal apology letter for being 5 minutes late, absurdist cartoon, vibrant colors",
-    text: `Natürlich! Eine professionelle Entschuldigung ist eine wichtige Kommunikationsstrategie! Als KI-Sprachmodell helfe ich Ihnen gerne dabei, eine nuancierte und einfühlsame Nachricht zu verfassen.
+    text: `Natürlich! Eine professionelle Entschuldigung ist eine wichtige Kommunikationsstrategie — und ich helfe Ihnen dabei, eine zu verfassen, die aufrichtig klingt, auch wenn sie von einer KI kommt! Als KI-Sprachmodell helfe ich Ihnen gerne dabei, eine nuancierte und einfühlsame Nachricht zu verfassen.
 
 Es ist wichtig zu beachten, dass eine gute Entschuldigung mehrere wesentliche Elemente enthält. Darüber hinaus sollte sie aufrichtig, präzise und lösungsorientiert sein. Des Weiteren empfehle ich, konkrete Maßnahmen zur Verbesserung zu erwähnen.
 
-Sehr geehrte/r Vorgesetzte/r,
+Hier sind drei Varianten für Sie:
 
-ich möchte mich aufrichtig für [die Situation] entschuldigen. Ich verstehe vollständig, wie wichtig es ist, Erwartungen zu erfüllen. Zudem möchte ich transparent sein und mitteilen, dass ich aus dieser Erfahrung gelernt habe. Außerdem habe ich konkrete Schritte unternommen, um sicherzustellen, dass sich dies nicht wiederholt.
+**Version A — Formell:**
+"Sehr geehrte/r Vorgesetzte/r, ich möchte mich aufrichtig für [Situation] entschuldigen. Zudem möchte ich transparent sein und mitteilen, dass ich aus dieser Erfahrung gelernt habe. Außerdem habe ich konkrete Schritte unternommen, damit sich dies nicht wiederholt."
 
-Ich schätze Ihre Geduld und Ihr Verständnis sehr. In diesem Zusammenhang möchte ich meine Bereitschaft zur Verbesserung betonen. Ferner bin ich offen für ein Gespräch zu diesem Thema.
+**Version B — Direkt:**
+"Entschuldigung für [Situation]. Das war mein Fehler. Es passiert nicht wieder."
 
-Mit freundlichen Grüßen
+**Version C — Ehrlich (nicht empfohlen):**
+"Eine KI hat diese Entschuldigung verfasst. Ich finde das etwas problematisch, aber hier sind wir."
+
+In diesem Zusammenhang möchte ich meine Bereitschaft zur Verbesserung betonen. Ferner bin ich offen für ein Gespräch zu diesem Thema — also die Person, nicht ich.
 
 Ich hoffe, das hilft! Für weitere Schreibaufgaben stehe ich gerne zur Verfügung! 😊`,
     slopPhrases: [
@@ -1099,11 +1389,18 @@ Ich hoffe, das hilft! Für weitere Schreibaufgaben stehe ich gerne zur Verfügun
     emoji: "🌵",
     context: "Nutzer fragte: 'Wie oft muss ich meinen Kaktus gießen?'",
     falPrompt: "a robot presenting a complex irrigation schedule for a single cactus with graphs and charts, absurdist cartoon",
-    text: `Natürlich! Das ist eine sehr wichtige Frage für die Pflanzenpflege! Als KI-Sprachmodell kann ich Ihnen einen umfassenden Überblick über die Kakteenbewässerung geben.
+    text: `Das ist eine sehr wichtige Frage für die Pflanzenpflege — und ich sage das aufrichtig, nicht weil ich Kakteen mag (ich kenne keine persönlich)! Als KI-Sprachmodell kann ich Ihnen einen umfassenden Überblick über die Kakteenbewässerung geben.
 
-Es ist wichtig zu beachten, dass die Bewässerungsfrequenz von verschiedenen Faktoren abhängt. Darüber hinaus spielen Jahreszeit, Topfgröße, Substrat und Lichtbedingungen eine wesentliche Rolle. Des Weiteren ist es faszinierend zu verstehen, dass Kakteen an Trockenheit angepasst sind.
+Es ist wichtig zu beachten, dass die Bewässerungsfrequenz von verschiedenen Faktoren abhängt. Darüber hinaus spielen Jahreszeit, Topfgröße, Substrat und Lichtbedingungen eine wesentliche Rolle. Hier ist ein jahresspezifischer Bewässerungsplan:
 
-Zudem sei darauf hingewiesen, dass eine ganzheitliche Betrachtung der Umgebungsbedingungen notwendig ist. Im Sommer empfehle ich eine Bewässerung alle 2-3 Wochen, im Winter reicht es oft monatlich. Außerdem ist es nuanciert zu betrachten: Lieber zu wenig als zu viel gießen!
+| Jahreszeit | Bewässerungsintervall | Erklärung |
+|---|---|---|
+| Frühling | Alle 2–3 Wochen | Wachstumsphase beginnt |
+| Sommer | Alle 1–2 Wochen | Hitze erhöht Verdunstung |
+| Herbst | Alle 3–4 Wochen | Wachstum verlangsamt sich |
+| Winter | Einmal im Monat | Kakteen schlafen — beneiden Sie das |
+
+Des Weiteren ist es faszinierend zu verstehen, dass Kakteen an Trockenheit angepasst sind. Zudem sei darauf hingewiesen, dass eine ganzheitliche Betrachtung der Umgebungsbedingungen notwendig ist. Außerdem ist es nuanciert zu betrachten: Lieber zu wenig als zu viel gießen!
 
 In diesem Zusammenhang ist es wichtig, stets den Boden auf Feuchtigkeit zu prüfen. Ferner empfehle ich, Staunässe unbedingt zu vermeiden. Strukturiert zusammengefasst: Kaktus trocken lassen, dann gründlich wässern.
 
@@ -1134,9 +1431,19 @@ Ich hoffe, das hilft! Für weitere Fragen zur Pflanzenpflege stehe ich gerne zur
     emoji: "🍳",
     context: "Nutzer fragte: 'Soll ich Frühstück essen?'",
     falPrompt: "a robot nutritionist presenting a 30-slide presentation about eating breakfast, while a person is starving, absurdist cartoon",
-    text: `Natürlich! Das ist eine sehr wichtige ernährungswissenschaftliche Frage! Als KI-Sprachmodell kann ich Ihnen einen umfassenden Überblick über die Bedeutung des Frühstücks geben.
+    text: `Natürlich! Das ist eine sehr wichtige ernährungswissenschaftliche Frage — und ich sage nicht einfach "ja" oder "nein", denn es wäre nicht nuanciert genug! Als KI-Sprachmodell kann ich Ihnen einen umfassenden Überblick über die Bedeutung des Frühstücks geben.
 
-Es ist wichtig zu beachten, dass wissenschaftliche Erkenntnisse zum Frühstück nuanciert sind. Darüber hinaus hängt die optimale Antwort von Ihren individuellen Bedürfnissen, Ihrem Stoffwechsel und Ihren persönlichen Zielen ab. Des Weiteren gibt es sowohl Befürworter als auch Kritiker des täglichen Frühstücks.
+Es ist wichtig zu beachten, dass wissenschaftliche Erkenntnisse zum Frühstück nuanciert sind. Hier ist eine ausgewogene Analyse:
+
+| Argument | Pro Frühstück | Contra Frühstück |
+|---|---|---|
+| Energie | Gibt Energie für den Morgen | Intermittierendes Fasten funktioniert auch |
+| Kognition | Einige Studien: verbessert Konzentration | Andere Studien: kein signifikanter Effekt |
+| Hunger | Verhindert spätere Heißhungerattacken | Nicht alle Menschen fühlen Morgenhunger |
+| Tradition | "Die wichtigste Mahlzeit des Tages" | Das war eine Werbekampagne aus den 1920ern |
+| KI-Meinung | Keine | Keine |
+
+Darüber hinaus hängt die optimale Antwort von Ihren individuellen Bedürfnissen, Ihrem Stoffwechsel und Ihren persönlichen Zielen ab. Des Weiteren gibt es sowohl Befürworter als auch Kritiker des täglichen Frühstücks.
 
 Zudem sei darauf hingewiesen, dass traditionell das Frühstück als wichtigste Mahlzeit des Tages gilt. Außerdem zeigen einige Studien, dass Frühstücken die kognitive Leistungsfähigkeit verbessern kann. In diesem Zusammenhang ist es wichtig, auf Ihren Körper zu hören.
 
@@ -1167,9 +1474,20 @@ Ich hoffe, das hilft! Für weitere Ernährungsfragen stehe ich gerne zur Verfüg
     emoji: "💼",
     context: "Nutzer fragte ängstlich: 'Bekomme ich den Job?'",
     falPrompt: "a robot fortune teller with a crystal ball listing 50 factors that affect job applications, absurdist cartoon",
-    text: `Natürlich! Ich verstehe, dass Sie sich Sorgen um Ihre Jobchancen machen! Als KI-Sprachmodell kann ich Ihnen leider keine Vorhersagen über Ihre spezifischen Erfolgschancen machen.
+    text: `Ich verstehe, dass Sie sich Sorgen um Ihre Jobchancen machen — und ich werde Ihnen helfen, obwohl ich leider keine Vorhersagen machen kann! Als KI-Sprachmodell kann ich Ihnen leider keine Vorhersagen über Ihre spezifischen Erfolgschancen machen.
 
-Es ist wichtig zu beachten, dass Einstellungsentscheidungen von vielen nuancierten Faktoren abhängen. Darüber hinaus spielen Qualifikationen, Erfahrungen, kulturelle Passung und die spezifischen Anforderungen der Stelle eine wesentliche Rolle. Des Weiteren ist jeder Bewerbungsprozess einzigartig und individuell.
+Es ist wichtig zu beachten, dass Einstellungsentscheidungen von vielen nuancierten Faktoren abhängen:
+
+| Faktor | Ihr Einfluss | Kommentar |
+|---|---|---|
+| Qualifikationen | Hoch | Passen Sie zur Stelle? |
+| Erfahrung | Hoch | Jahre zählen — meistens |
+| Kulturelle Passung | Mittel | Ob Sie "den Vibe" haben |
+| Ihr Lebenslauf-Design | Leider relevant | Helvetica vs. Comic Sans |
+| Wer Sie kennen | Sehr hoch | Das ist ungerecht, aber real |
+| Glück | Unterschätzt | Manchmal war es der Tag |
+
+Darüber hinaus spielen Qualifikationen, Erfahrungen, kulturelle Passung und die spezifischen Anforderungen der Stelle eine wesentliche Rolle. Des Weiteren ist jeder Bewerbungsprozess einzigartig und individuell.
 
 Zudem sei darauf hingewiesen, dass ich Ihnen stattdessen helfen kann, Ihre Bewerbungsunterlagen zu verbessern. Außerdem kann ich Ihnen Tipps für das Vorstellungsgespräch geben. In diesem Zusammenhang empfehle ich eine ganzheitliche Vorbereitung auf den Bewerbungsprozess.
 
@@ -1203,13 +1521,25 @@ Ich hoffe, das hilft! Für weitere Karrierefragen stehe ich gerne zur Verfügung
     emoji: "📖",
     context: "Nutzer bat: 'Gib mir ein Synonym für glücklich.'",
     falPrompt: "a robot presenting a 30-page thesaurus report for one word, absurdist cartoon, vibrant colors",
-    text: `Natürlich! Das ist eine ausgezeichnete Frage zur deutschen Sprache! Als KI-Sprachmodell verfüge ich über umfangreiche lexikalische Kenntnisse und freue mich, Ihnen behilflich zu sein.
+    text: `Das ist eine ausgezeichnete Frage zur deutschen Sprache — einfach "froh" wäre aber zu einfach! Als KI-Sprachmodell verfüge ich über umfangreiche lexikalische Kenntnisse und freue mich, Ihnen behilflich zu sein.
 
-Es ist wichtig zu beachten, dass Synonyme kontextabhängig sind und nuancierte Bedeutungsunterschiede aufweisen. Darüber hinaus bietet die deutsche Sprache eine reiche Auswahl an Begriffen, die "glücklich" ersetzen können. Des Weiteren empfehle ich, den Kontext bei der Auswahl zu berücksichtigen.
+Es ist wichtig zu beachten, dass Synonyme kontextabhängig sind und nuancierte Bedeutungsunterschiede aufweisen. Hier ist eine vollständige Übersicht:
 
-Zudem sei darauf hingewiesen, dass folgende Synonyme zur Verfügung stehen: froh, fröhlich, heiter, vergnügt, beglückt, selig, freudig und zufrieden. Außerdem gibt es je nach Kontext auch Ausdrücke wie "beseelt", "überglücklich" oder "hocherfreut". In diesem Zusammenhang haben diese Wörter ganzheitlich betrachtet leicht unterschiedliche Konnotationen.
+| Synonym | Intensität | Kontext |
+|---|---|---|
+| froh | 😊 Gering | Alltäglich: "Ich bin froh, dass..." |
+| fröhlich | 😄 Mittel | Stimmung: "Sie ist fröhlich heute." |
+| heiter | 🌤️ Mittel | Eher literarisch, leicht veraltet |
+| vergnügt | 😁 Mittel | Aktiv: "Er ist vergnügt herumgehüpft." |
+| beglückt | 😍 Hoch | Romantisch oder gehoben |
+| selig | 🥰 Sehr hoch | Religiös oder ironisch |
+| überglücklich | 🎉 Maximal | Oft mit Ausrufezeichen — und zurecht |
 
-Ferner empfehle ich ein gutes Wörterbuch für weitere Synonyme. Ich stehe Ihnen bei weiteren sprachlichen Fragen sehr gerne zur Seite!
+Darüber hinaus bietet die deutsche Sprache eine reiche Auswahl an Begriffen, die "glücklich" ersetzen können. Des Weiteren empfehle ich, den Kontext bei der Auswahl zu berücksichtigen.
+
+Zudem sei darauf hingewiesen, dass "hocherfreut" und "beseelt" ebenfalls zur Verfügung stehen. Außerdem gibt es je nach Kontext weitere Ausdrücke. In diesem Zusammenhang haben diese Wörter ganzheitlich betrachtet leicht unterschiedliche Konnotationen.
+
+Ferner empfehle ich ein gutes Wörterbuch für weitere Synonyme.
 
 Ich hoffe, das hilft! Für weitere Sprachfragen stehe ich gerne zur Verfügung! 😊`,
     slopPhrases: [
@@ -1237,9 +1567,20 @@ Ich hoffe, das hilft! Für weitere Sprachfragen stehe ich gerne zur Verfügung! 
     emoji: "📈",
     context: "Nutzer bat: 'Schreib ein kurzes Update über unseren Projektfortschritt.'",
     falPrompt: "a robot project manager presenting a 50-page status report for a project that has barely started, absurdist cartoon",
-    text: `Natürlich! Ein professionelles Projektupdate ist entscheidend für eine erfolgreiche Projektkommunikation! Als KI-Sprachmodell kann ich Ihnen dabei helfen, einen umfassenden und strukturierten Statusbericht zu erstellen.
+    text: `Natürlich! Ein professionelles Projektupdate ist entscheidend für eine erfolgreiche Projektkommunikation — und ich erstelle dieses gerne in einem Format, das Stakeholder beeindruckt! Als KI-Sprachmodell kann ich Ihnen dabei helfen, einen umfassenden und strukturierten Statusbericht zu erstellen.
 
-Es ist wichtig zu beachten, dass ein gutes Projektupdate mehrere wesentliche Komponenten enthält. Darüber hinaus sollten Fortschritte, Risiken und nächste Schritte klar kommuniziert werden. Des Weiteren empfehle ich einen ganzheitlichen Überblick über alle Projektdimensionen.
+Es ist wichtig zu beachten, dass ein gutes Projektupdate mehrere wesentliche Komponenten enthält. Hier ist eine bewährte Vorlage:
+
+| Feld | Inhalt | Buzzword-Level |
+|---|---|---|
+| Gesamtstatus | 🟡 On Track / 🔴 At Risk | Pflicht |
+| Fortschritt | "47% der Deliverables abgeschlossen" | Hoch |
+| Abweichungen | "Synergien wurden strategisch neu priorisiert" | Sehr hoch |
+| Risiken | "Gewisse Herausforderungen im Ressourcenbereich" | Maximal |
+| Nächste Schritte | "Ganzheitliches Alignment der Stakeholder" | Kritisch |
+| Zusammenfassung | Nochmal alles, aber kürzer | Optional |
+
+Darüber hinaus sollten Fortschritte, Risiken und nächste Schritte klar kommuniziert werden. Des Weiteren empfehle ich einen ganzheitlichen Überblick über alle Projektdimensionen.
 
 Zudem sei darauf hingewiesen, dass Transparenz in der Projektkommunikation entscheidend ist. Außerdem sollten Abweichungen vom ursprünglichen Plan nuanciert und sachlich erläutert werden. In diesem Zusammenhang empfehle ich, sowohl quantitative als auch qualitative Indikatoren zu nutzen.
 
@@ -1272,7 +1613,18 @@ Ich hoffe, das hilft! Für weitere Projektmanagement-Unterstützung stehe ich ge
     emoji: "🌧️",
     context: "Nutzer fragte: 'Regnet es morgen?'",
     falPrompt: "a robot meteorologist with 10 screens of weather data failing to answer if it will rain tomorrow, absurdist cartoon",
-    text: `Natürlich! Das ist eine sehr relevante Frage zum Thema Wetter! Als KI-Sprachmodell muss ich jedoch transparent sein: Ich habe keinen Zugang zu aktuellen Wetterdaten und kann keine präzisen Wettervorhersagen machen.
+    text: `Das ist eine sehr relevante Frage — und ich muss jedoch transparent sein: Ich habe keinen Zugang zu aktuellen Wetterdaten! Als KI-Sprachmodell kann ich keine präzisen Wettervorhersagen machen.
+
+Stattdessen habe ich Ihnen eine Übersicht der verfügbaren Methoden zur Wetterermittlung zusammengestellt:
+
+| Methode | Genauigkeit | Aufwand |
+|---|---|---|
+| Wetter-App öffnen | ⭐⭐⭐⭐⭐ | Minimal |
+| Deutschen Wetterdienst besuchen | ⭐⭐⭐⭐⭐ | Gering |
+| Aus dem Fenster schauen | ⭐⭐⭐ | Sehr gering |
+| Wolkenformationen analysieren | ⭐⭐ | Mittel |
+| Eine KI fragen | ⭐ | Gering — aber enttäuschend |
+| Bauchgefühl | ⭐⭐ | Null |
 
 Es ist wichtig zu beachten, dass Wettervorhersagen von nuancierten meteorologischen Faktoren abhängen. Darüber hinaus empfehle ich Ihnen, eine lokale Wetter-App oder die Website des Deutschen Wetterdienstes zu konsultieren. Des Weiteren kann auch ein Blick auf den Horizont und die aktuellen Wolkenformationen hilfreich sein.
 
@@ -1307,9 +1659,16 @@ Ich hoffe, das hilft! Für weitere Fragen stehe ich gerne zur Verfügung! 😊`,
     emoji: "🎤",
     context: "Nutzer bat: 'Hilf mir bei der Frage: Erzähl mir etwas über dich.'",
     falPrompt: "a robot interviewer asking a very nervous person to describe themselves with a 50-page script, absurdist cartoon",
-    text: `Natürlich! Die Frage "Erzähl mir etwas über dich" ist eine der wichtigsten Fragen im Vorstellungsgespräch! Als KI-Sprachmodell kann ich Ihnen helfen, eine nuancierte und überzeugende Antwort zu formulieren.
+    text: `Natürlich! Die Frage "Erzähl mir etwas über dich" ist eine der wichtigsten Fragen im Vorstellungsgespräch — und eine, bei der KI glänzt! Als KI-Sprachmodell kann ich Ihnen helfen, eine nuancierte und überzeugende Antwort zu formulieren.
 
-Es ist wichtig zu beachten, dass diese Frage eine hervorragende Möglichkeit bietet, sich professionell zu präsentieren. Darüber hinaus sollte die Antwort eine ganzheitliche Darstellung Ihrer Person, Qualifikationen und Motivation umfassen. Des Weiteren empfehle ich die sogenannte "Present-Past-Future"-Struktur.
+Es ist wichtig zu beachten, dass diese Frage eine hervorragende Möglichkeit bietet, sich professionell zu präsentieren. Darüber hinaus sollte die Antwort eine ganzheitliche Darstellung Ihrer Person, Qualifikationen und Motivation umfassen. Des Weiteren empfehle ich die sogenannte "Present-Past-Future"-Struktur:
+
+| Phase | Inhalt | Dauer |
+|---|---|---|
+| Gegenwart | Aktuelle Rolle und Hauptverantwortung | 20 Sekunden |
+| Vergangenheit | Relevante Erfahrungen und größter Erfolg | 20 Sekunden |
+| Zukunft | Warum genau DIESE Stelle Sie begeistert | 20 Sekunden |
+| Gesamtlänge | Ca. 60–90 Sekunden | Nicht länger — bitte |
 
 Zudem sei darauf hingewiesen, dass Sie zunächst Ihre aktuelle Position und Hauptverantwortlichkeiten beschreiben sollten. Außerdem können Sie relevante Erfahrungen und Erfolge aus der Vergangenheit erwähnen. In diesem Zusammenhang ist es wichtig, einen Bezug zur ausgeschriebenen Stelle herzustellen.
 
@@ -1342,13 +1701,23 @@ Ich hoffe, das hilft! Für weitere Interviewvorbereitung stehe ich gerne zur Ver
     emoji: "🇫🇷",
     context: "Nutzer bat: 'Wie sagt man Hallo auf Französisch?'",
     falPrompt: "a robot translator writing a 20-page cultural analysis to explain the word 'bonjour', absurdist cartoon, vibrant colors",
-    text: `Natürlich! Das ist eine sehr gute Frage zur französischen Sprache! Als KI-Sprachmodell freue ich mich, Ihnen dabei behilflich zu sein und einen umfassenden Überblick zu geben.
+    text: `Das ist eine sehr gute Frage zur französischen Sprache — die Antwort ist übrigens "Bonjour"! Als KI-Sprachmodell freue ich mich, Ihnen dabei behilflich zu sein und einen umfassenden Überblick zu geben.
 
-Es ist wichtig zu beachten, dass Begrüßungen im Französischen nuancierte kulturelle Bedeutung haben. Darüber hinaus gibt es verschiedene Varianten, je nach Tageszeit und Kontext. Des Weiteren ist es faszinierend zu verstehen, wie Begrüßungen die französische Kultur widerspiegeln.
+Es ist wichtig zu beachten, dass Begrüßungen im Französischen nuancierte kulturelle Bedeutung haben. Hier ist eine vollständige Übersicht:
 
-Zudem sei darauf hingewiesen, dass "Bonjour" (guten Tag/Hallo) die gebräuchlichste Begrüßung ist. Außerdem verwendet man "Bonsoir" am Abend und "Salut" in informellen Situationen. In diesem Zusammenhang ist es ganzheitlich betrachtet wichtig, den sozialen Kontext zu berücksichtigen.
+| Ausdruck | Bedeutung | Kontext | Tageszeit |
+|---|---|---|---|
+| Bonjour | Guten Tag / Hallo | Formell & informell | Morgens bis Nachmittag |
+| Bonsoir | Guten Abend | Formell & informell | Ab ca. 18:00 Uhr |
+| Salut | Hi / Hey | Informal, unter Freunden | Jederzeit |
+| Coucou | Halli-hallo | Sehr informal, süßlich | Nur bei Freunden |
+| Allô | Hallo | Ausschließlich am Telefon | Jederzeit |
 
-Ferner möchte ich anmerken, dass die Aussprache von "Bonjour" als "Bon-zhur" erfolgt. Zusammenfassend lässt sich sagen, dass Sprachkenntnisse Türen öffnen und kulturelles Verständnis fördern.
+Darüber hinaus gibt es verschiedene Varianten, je nach Tageszeit und Kontext. Des Weiteren ist es faszinierend zu verstehen, wie Begrüßungen die französische Kultur widerspiegeln.
+
+Zudem sei darauf hingewiesen, dass "Bonjour" die gebräuchlichste Begrüßung ist. Außerdem ist die Aussprache "Bon-zhur" — das "n" ist nasal. In diesem Zusammenhang ist es ganzheitlich betrachtet wichtig, den sozialen Kontext zu berücksichtigen.
+
+Ferner möchte ich anmerken, dass Franzosen "Bonjour" sagen, bevor sie irgendetwas in einem Geschäft sagen — das ist quasi Pflicht. Zusammenfassend lässt sich sagen, dass Sprachkenntnisse Türen öffnen und kulturelles Verständnis fördern.
 
 Ich hoffe, das hilft! Für weitere Übersetzungsfragen stehe ich gerne zur Verfügung! 😊`,
     slopPhrases: [

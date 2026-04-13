@@ -70,6 +70,12 @@ const N = {
   C4:261.63, D4:293.66, E4:329.63, F4:349.23, G4:392.00, A4:440.00, B4:493.88,
   C5:523.25, D5:587.33, E5:659.25, F5:698.46, G5:783.99, A5:880.00, B5:987.77,
   C6:1046.50,
+  // Chromatic additions
+  Bb2: 116.54, A2: 110.00,
+  Eb3: 155.56, Fs3: 185.00, Ab3: 207.65, Bb3: 233.08,
+  Cs4: 277.18, Eb4: 311.13, Fs4: 369.99, Ab4: 415.30, Bb4: 466.16,
+  Cs5: 554.37, Eb5: 622.25, Fs5: 739.99, Ab5: 830.61, Bb5: 932.33,
+  D6: 1174.66,
 };
 
 // ── SLOPPY chiptune music (original) ─────────────────────────────────────────
@@ -156,30 +162,31 @@ const PLEASANT_BASS = [
 // Total: 16 × 0.75 = 12.00s
 
 // ── BOSS music ────────────────────────────────────────────────────────────────
-// A minor, aggressive sawtooth, ~5.6s loop
+// A minor, aggressive sawtooth with tritone stabs, ~5.8s loop
 
 const BOSS_MELODY = [
-  // Dark Am riff — staccato attack
-  [N.A4,0.10],[0,0.05],[N.A4,0.10],[N.C5,0.15],[N.B4,0.10],[N.A4,0.10],[0,0.05],
-  [N.G4,0.10],[0,0.05],[N.G4,0.10],[N.E5,0.15],[N.D5,0.10],[N.C5,0.10],[0,0.05],
-  [N.F4,0.10],[0,0.05],[N.F4,0.10],[N.A4,0.15],[N.G4,0.10],[N.F4,0.10],[0,0.05],
-  [N.E4,0.15],[0,0.05],[N.E4,0.15],[0,0.05],[N.E4,0.15],[N.G4,0.10],[N.A4,0.10],[0,0.05],
-  // Climax run
-  [N.A5,0.10],[N.G5,0.10],[N.F5,0.10],[N.E5,0.10],[0,0.05],[N.D5,0.10],[N.C5,0.10],[0,0.05],
-  [N.B4,0.10],[N.A4,0.10],[N.G4,0.10],[N.A4,0.10],[N.B4,0.10],[N.C5,0.10],[0,0.05],
-  [N.D5,0.10],[N.E5,0.10],[N.F5,0.10],[N.G5,0.10],[N.A5,0.10],[0,0.05],
-  [N.A5,0.30],[0,0.05],[N.E5,0.15],[0,0.05],[N.A4,0.30],[0,0.10],
+  // Riff 1 — staccato attack with tritone stabs (Eb against A)
+  [N.A4,0.09],[0,0.03],[N.A4,0.09],[N.Eb5,0.12],[N.D5,0.09],[N.A4,0.09],[0,0.03],
+  [N.G4,0.09],[0,0.03],[N.G4,0.09],[N.E5,0.12],[N.D5,0.09],[N.C5,0.09],[0,0.03],
+  [N.F4,0.09],[0,0.03],[N.F4,0.09],[N.Bb4,0.12],[N.A4,0.09],[N.G4,0.09],[0,0.03],
+  [N.E4,0.12],[0,0.03],[N.E4,0.09],[N.G4,0.09],[N.A4,0.09],[N.Bb4,0.09],[0,0.03],
+  // Chromatic descent — full chromatic run with speed
+  [N.A5,0.09],[N.Ab5,0.09],[N.G5,0.09],[N.Fs5,0.09],[N.F5,0.09],[N.E5,0.09],[0,0.03],
+  [N.Eb5,0.09],[N.D5,0.09],[N.Cs5,0.09],[N.C5,0.09],[N.B4,0.09],[N.A4,0.09],[0,0.03],
+  [N.G4,0.09],[N.A4,0.09],[N.B4,0.09],[N.Cs5,0.09],[N.Eb5,0.09],[0,0.03],
+  // Tritone landing — A vs Eb
+  [N.A5,0.24],[0,0.04],[N.Eb5,0.14],[0,0.04],[N.A4,0.24],[0,0.08],
 ];
 
 const BOSS_BASS = [
-  [N.A3,0.15],[0,0.05],[N.A3,0.10],[0,0.05],[N.A3,0.15],[N.C3,0.10],[0,0.05],
-  [N.G3,0.15],[0,0.05],[N.G3,0.10],[N.E3,0.10],[N.G3,0.10],[N.A3,0.10],[0,0.05],
-  [N.F3,0.15],[0,0.05],[N.F3,0.10],[N.A3,0.10],[N.F3,0.15],[N.E3,0.10],[0,0.05],
-  [N.E3,0.15],[0,0.05],[N.E3,0.15],[0,0.05],[N.E3,0.15],[N.G3,0.10],[N.A3,0.10],[0,0.05],
-  [N.A3,0.15],[N.G3,0.10],[N.F3,0.10],[N.E3,0.10],[N.D3,0.10],[N.C3,0.10],[0,0.05],
-  [N.C3,0.10],[N.D3,0.10],[N.E3,0.10],[N.F3,0.10],[N.E3,0.10],[N.D3,0.10],[0,0.05],
-  [N.E3,0.15],[0,0.05],[N.A3,0.15],[0,0.05],[N.E3,0.10],[0,0.05],
-  [N.A3,0.30],[0,0.05],[N.A3,0.15],[0,0.05],[N.A3,0.20],[0,0.10],
+  [N.A3,0.09],[N.A3,0.09],[0,0.03],[N.A3,0.09],[N.E3,0.09],[0,0.03],[N.A3,0.09],[N.Eb3,0.09],[0,0.03],
+  [N.G3,0.09],[N.G3,0.09],[0,0.03],[N.G3,0.09],[N.D3,0.09],[0,0.03],[N.G3,0.09],[0,0.03],
+  [N.F3,0.09],[N.F3,0.09],[0,0.03],[N.F3,0.09],[N.C3,0.09],[0,0.03],[N.F3,0.09],[N.Bb2,0.09],[0,0.03],
+  [N.E3,0.12],[0,0.03],[N.E3,0.09],[N.G3,0.09],[N.A3,0.09],[N.Bb3,0.09],[0,0.03],
+  [N.A3,0.09],[0,0.03],[N.G3,0.09],[0,0.03],[N.F3,0.09],[0,0.03],[N.E3,0.09],[0,0.03],
+  [N.D3,0.09],[0,0.03],[N.E3,0.09],[0,0.03],[N.F3,0.09],[N.G3,0.09],[0,0.03],
+  [N.E3,0.12],[N.A3,0.09],[N.E4,0.09],[0,0.03],
+  [N.A3,0.24],[0,0.04],[N.Eb3,0.14],[0,0.04],[N.A2,0.24],[0,0.08],
 ];
 
 // ── TITLE SCREEN music ────────────────────────────────────────────────────────
@@ -300,6 +307,15 @@ const playMusicBar = (scale = tempoScale) => {
     ho.connect(hg); hg.connect(masterGain);
     ho.start(now + beat); ho.stop(now + beat + 0.05 / s);
   }
+  // Low sub-bass rumble on beat 3 — adds tension/weight
+  for (let beat = loopDuration * 0.5; beat < loopDuration; beat += loopDuration) {
+    const ro = ctx.createOscillator(); const rg = ctx.createGain();
+    ro.type = 'sine'; ro.frequency.value = 65;
+    rg.gain.setValueAtTime(0.18, now + beat);
+    rg.gain.exponentialRampToValueAtTime(0.001, now + beat + 0.35 / s);
+    ro.connect(rg); rg.connect(masterGain);
+    ro.start(now + beat); ro.stop(now + beat + 0.36 / s);
+  }
 };
 
 // ── Pleasant music playback ───────────────────────────────────────────────────
@@ -349,6 +365,11 @@ const playPleasantBar = () => {
     ho.connect(hg); hg.connect(masterGain);
     ho.start(beat); ho.stop(beat + 0.36);
   }
+  // Tension pulse — soft Dm7 dissonance on bar 4 before looping back
+  const tensionStart = now + 9.0;
+  [N.D3, N.F3, N.C4].forEach(f => {
+    playNote(f, 2.80, tensionStart, 'sine', 0.018);
+  });
 };
 
 // ── Boss music playback ───────────────────────────────────────────────────────
@@ -360,47 +381,69 @@ const playBossBar = () => {
   // Boss lead: aggressive sawtooth
   let t = now;
   for (const [freq, dur] of BOSS_MELODY) {
-    if (freq > 0) playNote(freq, dur * 0.78, t, 'sawtooth', 0.14);
+    if (freq > 0) playNote(freq, dur * 0.75, t, 'sawtooth', 0.13);
     t += dur;
   }
 
-  // Heavy bass: triangle
+  // Heavy bass: triangle + sawtooth layer for grit
   t = now;
   for (const [freq, dur] of BOSS_BASS) {
-    if (freq > 0) playNote(freq, dur * 0.72, t, 'triangle', 0.20);
+    if (freq > 0) {
+      playNote(freq, dur * 0.70, t, 'triangle', 0.22);
+      playNote(freq, dur * 0.68, t, 'sawtooth', 0.07);
+    }
     t += dur;
   }
 
-  // Heavy kick every 0.25s
-  for (let beat = 0; beat < loopDuration; beat += 0.25) {
+  // Low drone — A2 pedal tone, buzzy, creates weight
+  const drone = ctx.createOscillator(); const droneG = ctx.createGain();
+  drone.type = 'sawtooth'; drone.frequency.value = N.A2;
+  droneG.gain.setValueAtTime(0.09, now);
+  droneG.gain.setValueAtTime(0.06, now + loopDuration * 0.5);
+  droneG.gain.setValueAtTime(0.09, now + loopDuration - 0.1);
+  drone.connect(droneG); droneG.connect(masterGain);
+  drone.start(now); drone.stop(now + loopDuration);
+
+  // Tritone sting (Eb) accent — hits on every 4th 16th note for dissonance
+  for (let beat = 0.48; beat < loopDuration; beat += 0.96) {
+    const s = ctx.createOscillator(); const sg = ctx.createGain();
+    s.type = 'square'; s.frequency.value = N.Eb3;
+    sg.gain.setValueAtTime(0.06, now + beat);
+    sg.gain.exponentialRampToValueAtTime(0.001, now + beat + 0.08);
+    s.connect(sg); sg.connect(masterGain);
+    s.start(now + beat); s.stop(now + beat + 0.09);
+  }
+
+  // Heavy kick — syncopated pattern
+  for (let beat = 0; beat < loopDuration; beat += 0.24) {
     const ko = ctx.createOscillator(); const kg = ctx.createGain();
     ko.type = 'sine';
-    ko.frequency.setValueAtTime(200, now + beat);
+    ko.frequency.setValueAtTime(220, now + beat);
     ko.frequency.exponentialRampToValueAtTime(0.01, now + beat + 0.14);
-    kg.gain.setValueAtTime(0.42, now + beat);
+    kg.gain.setValueAtTime(0.45, now + beat);
     kg.gain.exponentialRampToValueAtTime(0.001, now + beat + 0.14);
     ko.connect(kg); kg.connect(masterGain);
     ko.start(now + beat); ko.stop(now + beat + 0.15);
   }
 
-  // Aggressive snare on 2nd and 4th of each half-second
-  for (let beat = 0.125; beat < loopDuration; beat += 0.25) {
+  // Sharp snare on 2 and 4
+  for (let beat = 0.48; beat < loopDuration; beat += 0.96) {
     const so = ctx.createOscillator(); const sg = ctx.createGain();
-    so.type = 'square'; so.frequency.value = 200;
-    sg.gain.setValueAtTime(0.16, now + beat);
-    sg.gain.exponentialRampToValueAtTime(0.001, now + beat + 0.07);
+    so.type = 'square'; so.frequency.value = 260;
+    sg.gain.setValueAtTime(0.22, now + beat);
+    sg.gain.exponentialRampToValueAtTime(0.001, now + beat + 0.06);
     so.connect(sg); sg.connect(masterGain);
-    so.start(now + beat); so.stop(now + beat + 0.08);
+    so.start(now + beat); so.stop(now + beat + 0.07);
   }
 
-  // Fast 16th-note hi-hat
-  for (let beat = 0; beat < loopDuration; beat += 0.08) {
+  // Fast 32nd-note hi-hat
+  for (let beat = 0; beat < loopDuration; beat += 0.06) {
     const ho = ctx.createOscillator(); const hg = ctx.createGain();
-    ho.type = 'square'; ho.frequency.value = 9000;
-    hg.gain.setValueAtTime(0.022, now + beat);
-    hg.gain.exponentialRampToValueAtTime(0.001, now + beat + 0.025);
+    ho.type = 'square'; ho.frequency.value = 11000;
+    hg.gain.setValueAtTime(0.018, now + beat);
+    hg.gain.exponentialRampToValueAtTime(0.001, now + beat + 0.018);
     ho.connect(hg); hg.connect(masterGain);
-    ho.start(now + beat); ho.stop(now + beat + 0.03);
+    ho.start(now + beat); ho.stop(now + beat + 0.02);
   }
 };
 
@@ -424,6 +467,204 @@ const restartBossLoop = () => {
   const loopMs = getArrayDuration(BOSS_MELODY) * 1000;
   playBossBar();
   bossMusicInterval = setInterval(() => { if (isBossMusicPlaying) playBossBar(); }, loopMs);
+};
+
+// ── Summary / between-rounds music ───────────────────────────────────────────
+// C major, upbeat victory fanfare, ~3.8s loop
+
+const SUMMARY_MELODY = [
+  // Bar 1: Rising arpeggio flourish
+  [N.C5,0.09],[N.E5,0.09],[N.G5,0.09],[N.C6,0.18],[0,0.06],
+  [N.B5,0.09],[N.A5,0.09],[N.G5,0.09],[0,0.06],
+  // Bar 2: F major color with 6th
+  [N.F5,0.12],[N.A5,0.12],[N.C6,0.12],[N.A5,0.20],[0,0.06],
+  [N.G5,0.09],[N.F5,0.09],[N.E5,0.09],[0,0.06],
+  // Bar 3: Tension — Am walk to G
+  [N.A5,0.10],[N.G5,0.10],[N.F5,0.10],[N.E5,0.10],[N.D5,0.10],[0,0.06],
+  [N.E5,0.10],[N.G5,0.10],[N.B5,0.10],[0,0.06],
+  // Bar 4: Bright resolution
+  [N.C6,0.22],[N.G5,0.14],[N.E5,0.14],[N.C5,0.38],[0,0.10],
+];
+
+const SUMMARY_BASS = [
+  [N.C3,0.21],[N.G3,0.21],[N.E3,0.21],[N.G3,0.21],
+  [N.F3,0.24],[N.C4,0.24],[N.A3,0.24],[N.F3,0.25],
+  [N.A3,0.23],[N.E3,0.23],[N.C3,0.23],[N.G3,0.23],
+  [N.C3,0.25],[N.E3,0.24],[N.G3,0.24],[N.C3,0.25],
+];
+
+let isSummaryMusicPlaying = false;
+let summaryMusicInterval = null;
+let summaryGain = null;
+const getSummaryGain = () => {
+  const ctx = getCtx();
+  if (!summaryGain) {
+    summaryGain = ctx.createGain();
+    summaryGain.gain.value = 1.0;
+    summaryGain.connect(masterGain);
+  }
+  return summaryGain;
+};
+
+const playSummaryBar = () => {
+  const ctx = getCtx();
+  const now = ctx.currentTime;
+  const sg = getSummaryGain();
+  let t = now;
+  for (const [freq, dur] of SUMMARY_MELODY) {
+    if (freq > 0) {
+      playNote(freq, dur * 0.82, t, 'square', 0.10, sg);
+      playNote(freq * 0.5, dur * 0.78, t, 'triangle', 0.05, sg); // octave lower for warmth
+    }
+    t += dur;
+  }
+  t = now;
+  for (const [freq, dur] of SUMMARY_BASS) {
+    if (freq > 0) playNote(freq, dur * 0.72, t, 'triangle', 0.13, sg);
+    t += dur;
+  }
+  const loopDuration = getArrayDuration(SUMMARY_MELODY);
+  // Light kick on beat 1
+  for (let beat = 0; beat < loopDuration; beat += 0.95) {
+    const ko = ctx.createOscillator(); const kg = ctx.createGain();
+    ko.type = 'sine';
+    ko.frequency.setValueAtTime(120, now + beat);
+    ko.frequency.exponentialRampToValueAtTime(0.01, now + beat + 0.12);
+    kg.gain.setValueAtTime(0.22, now + beat);
+    kg.gain.exponentialRampToValueAtTime(0.001, now + beat + 0.12);
+    ko.connect(kg); kg.connect(sg);
+    ko.start(now + beat); ko.stop(now + beat + 0.13);
+  }
+};
+
+const restartSummaryLoop = () => {
+  if (summaryMusicInterval) { clearInterval(summaryMusicInterval); summaryMusicInterval = null; }
+  const loopMs = getArrayDuration(SUMMARY_MELODY) * 1000;
+  playSummaryBar();
+  summaryMusicInterval = setInterval(() => { if (isSummaryMusicPlaying) playSummaryBar(); }, loopMs);
+};
+
+export const startSummaryMusic = () => {
+  if (isSummaryMusicPlaying) return;
+  isSummaryMusicPlaying = true;
+  const ctx = getCtx();
+  if (ctx.state === 'suspended') ctx.resume();
+  const sg = getSummaryGain();
+  sg.gain.cancelScheduledValues(ctx.currentTime);
+  sg.gain.setValueAtTime(0, ctx.currentTime);
+  sg.gain.linearRampToValueAtTime(1.0, ctx.currentTime + 0.12);
+  restartSummaryLoop();
+};
+
+export const stopSummaryMusic = () => {
+  isSummaryMusicPlaying = false;
+  if (summaryMusicInterval) { clearInterval(summaryMusicInterval); summaryMusicInterval = null; }
+  if (summaryGain) {
+    const ctx = getCtx();
+    summaryGain.gain.cancelScheduledValues(ctx.currentTime);
+    summaryGain.gain.setValueAtTime(summaryGain.gain.value, ctx.currentTime);
+    summaryGain.gain.linearRampToValueAtTime(0.0001, ctx.currentTime + 0.15);
+  }
+};
+
+// ── Inverse mode music ────────────────────────────────────────────────────────
+// D minor, haunting/ethereal, no drums, ~5.5s loop
+
+const INVERSE_MELODY = [
+  // Dm — descending haunting motif
+  [N.A5,0.22],[0,0.06],[N.F5,0.18],[N.D5,0.18],[N.C5,0.18],[N.A4,0.44],[0,0.12],
+  // Gm — Bb adds minor color
+  [N.G4,0.14],[N.Bb4,0.14],[N.D5,0.14],[N.G5,0.36],[0,0.10],
+  [N.F5,0.14],[N.D5,0.14],[N.Bb4,0.28],[0,0.10],
+  // A7 — tritone tension: Eb against A
+  [N.E5,0.20],[N.Cs5,0.16],[N.A4,0.16],[N.G4,0.16],[N.Eb4,0.38],[0,0.12],
+  // Dm resolution with chromatic approach
+  [N.D5,0.22],[N.F5,0.18],[N.A5,0.18],[N.F5,0.18],[N.D5,0.50],[0,0.12],
+];
+
+const INVERSE_BASS = [
+  [N.D3,0.35],[N.A3,0.35],[N.F3,0.35],[N.D3,0.33],   // Dm  ~1.38s
+  [N.G3,0.39],[N.D3,0.39],[N.Bb3,0.38],[N.G3,0.38],   // Gm  ~1.54s
+  [N.A3,0.30],[N.E3,0.30],[N.Cs4,0.30],[N.A3,0.28],   // A7  ~1.18s
+  [N.D3,0.35],[N.F3,0.35],[N.A3,0.35],[N.D3,0.35],    // Dm  ~1.40s
+];
+
+let isInverseMusicPlaying = false;
+let inverseMusicInterval = null;
+let inverseGain = null;
+const getInverseGain = () => {
+  const ctx = getCtx();
+  if (!inverseGain) {
+    inverseGain = ctx.createGain();
+    inverseGain.gain.value = 1.0;
+    inverseGain.connect(masterGain);
+  }
+  return inverseGain;
+};
+
+const playInverseBar = () => {
+  const ctx = getCtx();
+  const now = ctx.currentTime;
+  const ig = getInverseGain();
+  // Melody: warm sine with slight chorus for ethereal feel
+  let t = now;
+  for (const [freq, dur] of INVERSE_MELODY) {
+    if (freq > 0) {
+      playNote(freq, dur * 0.88, t, 'sine', 0.11, ig);
+      playNote(freq * 1.006, dur * 0.85, t, 'sine', 0.04, ig); // detune for chorus
+      playNote(freq * 0.5, dur * 0.80, t, 'sine', 0.03, ig);   // sub-octave shimmer
+    }
+    t += dur;
+  }
+  // Bass: soft triangle
+  t = now;
+  for (const [freq, dur] of INVERSE_BASS) {
+    if (freq > 0) playNote(freq, dur * 0.75, t, 'triangle', 0.12, ig);
+    t += dur;
+  }
+  // Chord pads: sustained minor chords
+  const loopDuration = getArrayDuration(INVERSE_MELODY);
+  const padChords = [
+    { start: 0,    dur: 1.38, notes: [N.D3, N.F3, N.A3] },   // Dm
+    { start: 1.38, dur: 1.54, notes: [N.G3, N.Bb3, N.D4] },  // Gm
+    { start: 2.92, dur: 1.18, notes: [N.A3, N.Cs4, N.E4] },  // A7
+    { start: 4.10, dur: 1.40, notes: [N.D3, N.F3, N.A3] },   // Dm
+  ];
+  for (const pad of padChords) {
+    for (const f of pad.notes) {
+      playNote(f, pad.dur * 0.88, now + pad.start, 'sine', 0.022, ig);
+    }
+  }
+};
+
+const restartInverseLoop = () => {
+  if (inverseMusicInterval) { clearInterval(inverseMusicInterval); inverseMusicInterval = null; }
+  const loopMs = getArrayDuration(INVERSE_MELODY) * 1000;
+  playInverseBar();
+  inverseMusicInterval = setInterval(() => { if (isInverseMusicPlaying) playInverseBar(); }, loopMs);
+};
+
+export const startInverseMusic = () => {
+  if (isInverseMusicPlaying) return;
+  isInverseMusicPlaying = true;
+  const ctx = getCtx();
+  if (ctx.state === 'suspended') ctx.resume();
+  const ig = getInverseGain();
+  ig.gain.cancelScheduledValues(ctx.currentTime);
+  ig.gain.setValueAtTime(0, ctx.currentTime);
+  ig.gain.linearRampToValueAtTime(1.0, ctx.currentTime + 0.20);
+  restartInverseLoop();
+};
+
+export const stopInverseMusic = () => {
+  isInverseMusicPlaying = false;
+  if (inverseMusicInterval) { clearInterval(inverseMusicInterval); inverseMusicInterval = null; }
+  if (inverseGain) {
+    const ctx = getCtx();
+    inverseGain.gain.cancelScheduledValues(ctx.currentTime);
+    inverseGain.gain.setValueAtTime(inverseGain.gain.value, ctx.currentTime);
+    inverseGain.gain.linearRampToValueAtTime(0.0001, ctx.currentTime + 0.15);
+  }
 };
 
 // ── Title music playback ──────────────────────────────────────────────────────
@@ -612,6 +853,32 @@ export const setMusicTempo = (scale) => {
 
 export const setMusicVolume = (vol) => {
   if (masterGain) masterGain.gain.value = vol;
+};
+
+// ── Countdown sounds ─────────────────────────────────────────────────────────
+// Rising pitch as tension builds: 5→low, 1→high
+const COUNTDOWN_FREQS = { 5: N.A3, 4: N.B3, 3: N.D4, 2: N.E4, 1: N.G4 };
+
+export const playCountdownTick = (num) => {
+  const ctx = getCtx();
+  if (ctx.state === 'suspended') ctx.resume();
+  const now = ctx.currentTime;
+  const freq = COUNTDOWN_FREQS[num] || N.C4;
+  const dur = num <= 2 ? 0.22 : 0.14;
+  playNote(freq, dur, now, 'sine', 0.38);
+  // Add overtone for last two ticks — urgency
+  if (num <= 2) playNote(freq * 2, dur * 0.6, now, 'sine', 0.14);
+  if (num === 1) playNote(freq * 3, dur * 0.4, now, 'sine', 0.06);
+};
+
+export const playCountdownGo = () => {
+  const ctx = getCtx();
+  if (ctx.state === 'suspended') ctx.resume();
+  const now = ctx.currentTime;
+  // Triumphant C major arpeggio launch
+  [[N.C5, 0], [N.E5, 0.07], [N.G5, 0.14], [N.C6, 0.21]].forEach(([f, delay]) => {
+    playNote(f, 0.40, now + delay, 'sine', 0.38);
+  });
 };
 
 // ── Sound effects ────────────────────────────────────────────────────────────
