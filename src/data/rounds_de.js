@@ -1431,9 +1431,19 @@ Ich hoffe, das hilft! Für weitere Fragen zur Pflanzenpflege stehe ich gerne zur
     emoji: "🍳",
     context: "Nutzer fragte: 'Soll ich Frühstück essen?'",
     falPrompt: "a robot nutritionist presenting a 30-slide presentation about eating breakfast, while a person is starving, absurdist cartoon",
-    text: `Natürlich! Das ist eine sehr wichtige ernährungswissenschaftliche Frage! Als KI-Sprachmodell kann ich Ihnen einen umfassenden Überblick über die Bedeutung des Frühstücks geben.
+    text: `Natürlich! Das ist eine sehr wichtige ernährungswissenschaftliche Frage — und ich sage nicht einfach "ja" oder "nein", denn es wäre nicht nuanciert genug! Als KI-Sprachmodell kann ich Ihnen einen umfassenden Überblick über die Bedeutung des Frühstücks geben.
 
-Es ist wichtig zu beachten, dass wissenschaftliche Erkenntnisse zum Frühstück nuanciert sind. Darüber hinaus hängt die optimale Antwort von Ihren individuellen Bedürfnissen, Ihrem Stoffwechsel und Ihren persönlichen Zielen ab. Des Weiteren gibt es sowohl Befürworter als auch Kritiker des täglichen Frühstücks.
+Es ist wichtig zu beachten, dass wissenschaftliche Erkenntnisse zum Frühstück nuanciert sind. Hier ist eine ausgewogene Analyse:
+
+| Argument | Pro Frühstück | Contra Frühstück |
+|---|---|---|
+| Energie | Gibt Energie für den Morgen | Intermittierendes Fasten funktioniert auch |
+| Kognition | Einige Studien: verbessert Konzentration | Andere Studien: kein signifikanter Effekt |
+| Hunger | Verhindert spätere Heißhungerattacken | Nicht alle Menschen fühlen Morgenhunger |
+| Tradition | "Die wichtigste Mahlzeit des Tages" | Das war eine Werbekampagne aus den 1920ern |
+| KI-Meinung | Keine | Keine |
+
+Darüber hinaus hängt die optimale Antwort von Ihren individuellen Bedürfnissen, Ihrem Stoffwechsel und Ihren persönlichen Zielen ab. Des Weiteren gibt es sowohl Befürworter als auch Kritiker des täglichen Frühstücks.
 
 Zudem sei darauf hingewiesen, dass traditionell das Frühstück als wichtigste Mahlzeit des Tages gilt. Außerdem zeigen einige Studien, dass Frühstücken die kognitive Leistungsfähigkeit verbessern kann. In diesem Zusammenhang ist es wichtig, auf Ihren Körper zu hören.
 
@@ -1464,9 +1474,20 @@ Ich hoffe, das hilft! Für weitere Ernährungsfragen stehe ich gerne zur Verfüg
     emoji: "💼",
     context: "Nutzer fragte ängstlich: 'Bekomme ich den Job?'",
     falPrompt: "a robot fortune teller with a crystal ball listing 50 factors that affect job applications, absurdist cartoon",
-    text: `Natürlich! Ich verstehe, dass Sie sich Sorgen um Ihre Jobchancen machen! Als KI-Sprachmodell kann ich Ihnen leider keine Vorhersagen über Ihre spezifischen Erfolgschancen machen.
+    text: `Ich verstehe, dass Sie sich Sorgen um Ihre Jobchancen machen — und ich werde Ihnen helfen, obwohl ich leider keine Vorhersagen machen kann! Als KI-Sprachmodell kann ich Ihnen leider keine Vorhersagen über Ihre spezifischen Erfolgschancen machen.
 
-Es ist wichtig zu beachten, dass Einstellungsentscheidungen von vielen nuancierten Faktoren abhängen. Darüber hinaus spielen Qualifikationen, Erfahrungen, kulturelle Passung und die spezifischen Anforderungen der Stelle eine wesentliche Rolle. Des Weiteren ist jeder Bewerbungsprozess einzigartig und individuell.
+Es ist wichtig zu beachten, dass Einstellungsentscheidungen von vielen nuancierten Faktoren abhängen:
+
+| Faktor | Ihr Einfluss | Kommentar |
+|---|---|---|
+| Qualifikationen | Hoch | Passen Sie zur Stelle? |
+| Erfahrung | Hoch | Jahre zählen — meistens |
+| Kulturelle Passung | Mittel | Ob Sie "den Vibe" haben |
+| Ihr Lebenslauf-Design | Leider relevant | Helvetica vs. Comic Sans |
+| Wer Sie kennen | Sehr hoch | Das ist ungerecht, aber real |
+| Glück | Unterschätzt | Manchmal war es der Tag |
+
+Darüber hinaus spielen Qualifikationen, Erfahrungen, kulturelle Passung und die spezifischen Anforderungen der Stelle eine wesentliche Rolle. Des Weiteren ist jeder Bewerbungsprozess einzigartig und individuell.
 
 Zudem sei darauf hingewiesen, dass ich Ihnen stattdessen helfen kann, Ihre Bewerbungsunterlagen zu verbessern. Außerdem kann ich Ihnen Tipps für das Vorstellungsgespräch geben. In diesem Zusammenhang empfehle ich eine ganzheitliche Vorbereitung auf den Bewerbungsprozess.
 
@@ -1500,13 +1521,25 @@ Ich hoffe, das hilft! Für weitere Karrierefragen stehe ich gerne zur Verfügung
     emoji: "📖",
     context: "Nutzer bat: 'Gib mir ein Synonym für glücklich.'",
     falPrompt: "a robot presenting a 30-page thesaurus report for one word, absurdist cartoon, vibrant colors",
-    text: `Natürlich! Das ist eine ausgezeichnete Frage zur deutschen Sprache! Als KI-Sprachmodell verfüge ich über umfangreiche lexikalische Kenntnisse und freue mich, Ihnen behilflich zu sein.
+    text: `Das ist eine ausgezeichnete Frage zur deutschen Sprache — einfach "froh" wäre aber zu einfach! Als KI-Sprachmodell verfüge ich über umfangreiche lexikalische Kenntnisse und freue mich, Ihnen behilflich zu sein.
 
-Es ist wichtig zu beachten, dass Synonyme kontextabhängig sind und nuancierte Bedeutungsunterschiede aufweisen. Darüber hinaus bietet die deutsche Sprache eine reiche Auswahl an Begriffen, die "glücklich" ersetzen können. Des Weiteren empfehle ich, den Kontext bei der Auswahl zu berücksichtigen.
+Es ist wichtig zu beachten, dass Synonyme kontextabhängig sind und nuancierte Bedeutungsunterschiede aufweisen. Hier ist eine vollständige Übersicht:
 
-Zudem sei darauf hingewiesen, dass folgende Synonyme zur Verfügung stehen: froh, fröhlich, heiter, vergnügt, beglückt, selig, freudig und zufrieden. Außerdem gibt es je nach Kontext auch Ausdrücke wie "beseelt", "überglücklich" oder "hocherfreut". In diesem Zusammenhang haben diese Wörter ganzheitlich betrachtet leicht unterschiedliche Konnotationen.
+| Synonym | Intensität | Kontext |
+|---|---|---|
+| froh | 😊 Gering | Alltäglich: "Ich bin froh, dass..." |
+| fröhlich | 😄 Mittel | Stimmung: "Sie ist fröhlich heute." |
+| heiter | 🌤️ Mittel | Eher literarisch, leicht veraltet |
+| vergnügt | 😁 Mittel | Aktiv: "Er ist vergnügt herumgehüpft." |
+| beglückt | 😍 Hoch | Romantisch oder gehoben |
+| selig | 🥰 Sehr hoch | Religiös oder ironisch |
+| überglücklich | 🎉 Maximal | Oft mit Ausrufezeichen — und zurecht |
 
-Ferner empfehle ich ein gutes Wörterbuch für weitere Synonyme. Ich stehe Ihnen bei weiteren sprachlichen Fragen sehr gerne zur Seite!
+Darüber hinaus bietet die deutsche Sprache eine reiche Auswahl an Begriffen, die "glücklich" ersetzen können. Des Weiteren empfehle ich, den Kontext bei der Auswahl zu berücksichtigen.
+
+Zudem sei darauf hingewiesen, dass "hocherfreut" und "beseelt" ebenfalls zur Verfügung stehen. Außerdem gibt es je nach Kontext weitere Ausdrücke. In diesem Zusammenhang haben diese Wörter ganzheitlich betrachtet leicht unterschiedliche Konnotationen.
+
+Ferner empfehle ich ein gutes Wörterbuch für weitere Synonyme.
 
 Ich hoffe, das hilft! Für weitere Sprachfragen stehe ich gerne zur Verfügung! 😊`,
     slopPhrases: [
@@ -1534,9 +1567,20 @@ Ich hoffe, das hilft! Für weitere Sprachfragen stehe ich gerne zur Verfügung! 
     emoji: "📈",
     context: "Nutzer bat: 'Schreib ein kurzes Update über unseren Projektfortschritt.'",
     falPrompt: "a robot project manager presenting a 50-page status report for a project that has barely started, absurdist cartoon",
-    text: `Natürlich! Ein professionelles Projektupdate ist entscheidend für eine erfolgreiche Projektkommunikation! Als KI-Sprachmodell kann ich Ihnen dabei helfen, einen umfassenden und strukturierten Statusbericht zu erstellen.
+    text: `Natürlich! Ein professionelles Projektupdate ist entscheidend für eine erfolgreiche Projektkommunikation — und ich erstelle dieses gerne in einem Format, das Stakeholder beeindruckt! Als KI-Sprachmodell kann ich Ihnen dabei helfen, einen umfassenden und strukturierten Statusbericht zu erstellen.
 
-Es ist wichtig zu beachten, dass ein gutes Projektupdate mehrere wesentliche Komponenten enthält. Darüber hinaus sollten Fortschritte, Risiken und nächste Schritte klar kommuniziert werden. Des Weiteren empfehle ich einen ganzheitlichen Überblick über alle Projektdimensionen.
+Es ist wichtig zu beachten, dass ein gutes Projektupdate mehrere wesentliche Komponenten enthält. Hier ist eine bewährte Vorlage:
+
+| Feld | Inhalt | Buzzword-Level |
+|---|---|---|
+| Gesamtstatus | 🟡 On Track / 🔴 At Risk | Pflicht |
+| Fortschritt | "47% der Deliverables abgeschlossen" | Hoch |
+| Abweichungen | "Synergien wurden strategisch neu priorisiert" | Sehr hoch |
+| Risiken | "Gewisse Herausforderungen im Ressourcenbereich" | Maximal |
+| Nächste Schritte | "Ganzheitliches Alignment der Stakeholder" | Kritisch |
+| Zusammenfassung | Nochmal alles, aber kürzer | Optional |
+
+Darüber hinaus sollten Fortschritte, Risiken und nächste Schritte klar kommuniziert werden. Des Weiteren empfehle ich einen ganzheitlichen Überblick über alle Projektdimensionen.
 
 Zudem sei darauf hingewiesen, dass Transparenz in der Projektkommunikation entscheidend ist. Außerdem sollten Abweichungen vom ursprünglichen Plan nuanciert und sachlich erläutert werden. In diesem Zusammenhang empfehle ich, sowohl quantitative als auch qualitative Indikatoren zu nutzen.
 
@@ -1569,7 +1613,18 @@ Ich hoffe, das hilft! Für weitere Projektmanagement-Unterstützung stehe ich ge
     emoji: "🌧️",
     context: "Nutzer fragte: 'Regnet es morgen?'",
     falPrompt: "a robot meteorologist with 10 screens of weather data failing to answer if it will rain tomorrow, absurdist cartoon",
-    text: `Natürlich! Das ist eine sehr relevante Frage zum Thema Wetter! Als KI-Sprachmodell muss ich jedoch transparent sein: Ich habe keinen Zugang zu aktuellen Wetterdaten und kann keine präzisen Wettervorhersagen machen.
+    text: `Das ist eine sehr relevante Frage — und ich muss jedoch transparent sein: Ich habe keinen Zugang zu aktuellen Wetterdaten! Als KI-Sprachmodell kann ich keine präzisen Wettervorhersagen machen.
+
+Stattdessen habe ich Ihnen eine Übersicht der verfügbaren Methoden zur Wetterermittlung zusammengestellt:
+
+| Methode | Genauigkeit | Aufwand |
+|---|---|---|
+| Wetter-App öffnen | ⭐⭐⭐⭐⭐ | Minimal |
+| Deutschen Wetterdienst besuchen | ⭐⭐⭐⭐⭐ | Gering |
+| Aus dem Fenster schauen | ⭐⭐⭐ | Sehr gering |
+| Wolkenformationen analysieren | ⭐⭐ | Mittel |
+| Eine KI fragen | ⭐ | Gering — aber enttäuschend |
+| Bauchgefühl | ⭐⭐ | Null |
 
 Es ist wichtig zu beachten, dass Wettervorhersagen von nuancierten meteorologischen Faktoren abhängen. Darüber hinaus empfehle ich Ihnen, eine lokale Wetter-App oder die Website des Deutschen Wetterdienstes zu konsultieren. Des Weiteren kann auch ein Blick auf den Horizont und die aktuellen Wolkenformationen hilfreich sein.
 
@@ -1604,9 +1659,16 @@ Ich hoffe, das hilft! Für weitere Fragen stehe ich gerne zur Verfügung! 😊`,
     emoji: "🎤",
     context: "Nutzer bat: 'Hilf mir bei der Frage: Erzähl mir etwas über dich.'",
     falPrompt: "a robot interviewer asking a very nervous person to describe themselves with a 50-page script, absurdist cartoon",
-    text: `Natürlich! Die Frage "Erzähl mir etwas über dich" ist eine der wichtigsten Fragen im Vorstellungsgespräch! Als KI-Sprachmodell kann ich Ihnen helfen, eine nuancierte und überzeugende Antwort zu formulieren.
+    text: `Natürlich! Die Frage "Erzähl mir etwas über dich" ist eine der wichtigsten Fragen im Vorstellungsgespräch — und eine, bei der KI glänzt! Als KI-Sprachmodell kann ich Ihnen helfen, eine nuancierte und überzeugende Antwort zu formulieren.
 
-Es ist wichtig zu beachten, dass diese Frage eine hervorragende Möglichkeit bietet, sich professionell zu präsentieren. Darüber hinaus sollte die Antwort eine ganzheitliche Darstellung Ihrer Person, Qualifikationen und Motivation umfassen. Des Weiteren empfehle ich die sogenannte "Present-Past-Future"-Struktur.
+Es ist wichtig zu beachten, dass diese Frage eine hervorragende Möglichkeit bietet, sich professionell zu präsentieren. Darüber hinaus sollte die Antwort eine ganzheitliche Darstellung Ihrer Person, Qualifikationen und Motivation umfassen. Des Weiteren empfehle ich die sogenannte "Present-Past-Future"-Struktur:
+
+| Phase | Inhalt | Dauer |
+|---|---|---|
+| Gegenwart | Aktuelle Rolle und Hauptverantwortung | 20 Sekunden |
+| Vergangenheit | Relevante Erfahrungen und größter Erfolg | 20 Sekunden |
+| Zukunft | Warum genau DIESE Stelle Sie begeistert | 20 Sekunden |
+| Gesamtlänge | Ca. 60–90 Sekunden | Nicht länger — bitte |
 
 Zudem sei darauf hingewiesen, dass Sie zunächst Ihre aktuelle Position und Hauptverantwortlichkeiten beschreiben sollten. Außerdem können Sie relevante Erfahrungen und Erfolge aus der Vergangenheit erwähnen. In diesem Zusammenhang ist es wichtig, einen Bezug zur ausgeschriebenen Stelle herzustellen.
 
@@ -1639,13 +1701,23 @@ Ich hoffe, das hilft! Für weitere Interviewvorbereitung stehe ich gerne zur Ver
     emoji: "🇫🇷",
     context: "Nutzer bat: 'Wie sagt man Hallo auf Französisch?'",
     falPrompt: "a robot translator writing a 20-page cultural analysis to explain the word 'bonjour', absurdist cartoon, vibrant colors",
-    text: `Natürlich! Das ist eine sehr gute Frage zur französischen Sprache! Als KI-Sprachmodell freue ich mich, Ihnen dabei behilflich zu sein und einen umfassenden Überblick zu geben.
+    text: `Das ist eine sehr gute Frage zur französischen Sprache — die Antwort ist übrigens "Bonjour"! Als KI-Sprachmodell freue ich mich, Ihnen dabei behilflich zu sein und einen umfassenden Überblick zu geben.
 
-Es ist wichtig zu beachten, dass Begrüßungen im Französischen nuancierte kulturelle Bedeutung haben. Darüber hinaus gibt es verschiedene Varianten, je nach Tageszeit und Kontext. Des Weiteren ist es faszinierend zu verstehen, wie Begrüßungen die französische Kultur widerspiegeln.
+Es ist wichtig zu beachten, dass Begrüßungen im Französischen nuancierte kulturelle Bedeutung haben. Hier ist eine vollständige Übersicht:
 
-Zudem sei darauf hingewiesen, dass "Bonjour" (guten Tag/Hallo) die gebräuchlichste Begrüßung ist. Außerdem verwendet man "Bonsoir" am Abend und "Salut" in informellen Situationen. In diesem Zusammenhang ist es ganzheitlich betrachtet wichtig, den sozialen Kontext zu berücksichtigen.
+| Ausdruck | Bedeutung | Kontext | Tageszeit |
+|---|---|---|---|
+| Bonjour | Guten Tag / Hallo | Formell & informell | Morgens bis Nachmittag |
+| Bonsoir | Guten Abend | Formell & informell | Ab ca. 18:00 Uhr |
+| Salut | Hi / Hey | Informal, unter Freunden | Jederzeit |
+| Coucou | Halli-hallo | Sehr informal, süßlich | Nur bei Freunden |
+| Allô | Hallo | Ausschließlich am Telefon | Jederzeit |
 
-Ferner möchte ich anmerken, dass die Aussprache von "Bonjour" als "Bon-zhur" erfolgt. Zusammenfassend lässt sich sagen, dass Sprachkenntnisse Türen öffnen und kulturelles Verständnis fördern.
+Darüber hinaus gibt es verschiedene Varianten, je nach Tageszeit und Kontext. Des Weiteren ist es faszinierend zu verstehen, wie Begrüßungen die französische Kultur widerspiegeln.
+
+Zudem sei darauf hingewiesen, dass "Bonjour" die gebräuchlichste Begrüßung ist. Außerdem ist die Aussprache "Bon-zhur" — das "n" ist nasal. In diesem Zusammenhang ist es ganzheitlich betrachtet wichtig, den sozialen Kontext zu berücksichtigen.
+
+Ferner möchte ich anmerken, dass Franzosen "Bonjour" sagen, bevor sie irgendetwas in einem Geschäft sagen — das ist quasi Pflicht. Zusammenfassend lässt sich sagen, dass Sprachkenntnisse Türen öffnen und kulturelles Verständnis fördern.
 
 Ich hoffe, das hilft! Für weitere Übersetzungsfragen stehe ich gerne zur Verfügung! 😊`,
     slopPhrases: [
