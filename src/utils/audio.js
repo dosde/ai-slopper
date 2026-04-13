@@ -9,10 +9,21 @@ let isBossMusicPlaying = false;
 let bossMusicInterval = null;
 let isTitleMusicPlaying = false;
 let titleMusicInterval = null;
+let titleGain = null;
+// Lazy getter — routes all title audio through one gain node so we can fade instantly
+const getTitleGain = () => {
+  const ctx = getCtx(); // ensures masterGain exists
+  if (!titleGain) {
+    titleGain = ctx.createGain();
+    titleGain.gain.value = 1.0;
+    titleGain.connect(masterGain);
+  }
+  return titleGain;
+};
 
 // Persist music style preference
 let currentMusicStyle = (() => {
-  try { return localStorage.getItem('musicStyle') || 'sloppy'; } catch (e) { return 'sloppy'; }
+  try { return localStorage.getItem('musicStyle') || 'pleasant'; } catch (e) { return 'pleasant'; }
 })();
 
 export const getMusicStyle = () => currentMusicStyle;
@@ -25,9 +36,8 @@ export const setMusicStyle = (style) => {
     startMusic();
   }
   if (isTitleMusicPlaying) {
-    isTitleMusicPlaying = false;
-    if (titleMusicInterval) { clearInterval(titleMusicInterval); titleMusicInterval = null; }
-    startTitleMusic();
+    stopTitleMusic(); // fades out in ~80ms, clears interval
+    setTimeout(() => startTitleMusic(), 100); // start new style after fade completes
   }
 };
 
@@ -41,7 +51,7 @@ const getCtx = () => {
   return audioCtx;
 };
 
-const playNote = (freq, duration, startTime, type = 'square', gain = 0.15) => {
+const playNote = (freq, duration, startTime, type = 'square', gain = 0.15, dest = null) => {
   const ctx = getCtx();
   const osc = ctx.createOscillator();
   const gainNode = ctx.createGain();
@@ -50,7 +60,7 @@ const playNote = (freq, duration, startTime, type = 'square', gain = 0.15) => {
   gainNode.gain.setValueAtTime(gain, startTime);
   gainNode.gain.exponentialRampToValueAtTime(0.001, startTime + duration);
   osc.connect(gainNode);
-  gainNode.connect(masterGain);
+  gainNode.connect(dest || masterGain);
   osc.start(startTime);
   osc.stop(startTime + duration);
 };
@@ -420,16 +430,17 @@ const restartBossLoop = () => {
 const playTitleSloppyBar = () => {
   const ctx = getCtx();
   const now = ctx.currentTime;
+  const tg = getTitleGain();
   const loopDuration = getArrayDuration(TITLE_SLOPPY_MELODY);
 
   let t = now;
   for (const [freq, dur] of TITLE_SLOPPY_MELODY) {
-    if (freq > 0) playNote(freq, dur * 0.80, t, 'square', 0.13);
+    if (freq > 0) playNote(freq, dur * 0.80, t, 'square', 0.13, tg);
     t += dur;
   }
   t = now;
   for (const [freq, dur] of TITLE_SLOPPY_BASS) {
-    if (freq > 0) playNote(freq, dur * 0.75, t, 'triangle', 0.14);
+    if (freq > 0) playNote(freq, dur * 0.75, t, 'triangle', 0.14, tg);
     t += dur;
   }
   // Kick on every half-beat
@@ -440,7 +451,7 @@ const playTitleSloppyBar = () => {
     ko.frequency.exponentialRampToValueAtTime(0.01, now + beat + 0.20);
     kg.gain.setValueAtTime(0.28, now + beat);
     kg.gain.exponentialRampToValueAtTime(0.001, now + beat + 0.20);
-    ko.connect(kg); kg.connect(masterGain);
+    ko.connect(kg); kg.connect(tg);
     ko.start(now + beat); ko.stop(now + beat + 0.22);
   }
   // Snare on off-beats
@@ -449,7 +460,7 @@ const playTitleSloppyBar = () => {
     so.type = 'sawtooth'; so.frequency.value = 220;
     sg.gain.setValueAtTime(0.07, now + beat);
     sg.gain.exponentialRampToValueAtTime(0.001, now + beat + 0.09);
-    so.connect(sg); sg.connect(masterGain);
+    so.connect(sg); sg.connect(tg);
     so.start(now + beat); so.stop(now + beat + 0.10);
   }
   // Hi-hat every quarter-beat
@@ -458,7 +469,7 @@ const playTitleSloppyBar = () => {
     ho.type = 'square'; ho.frequency.value = 5800;
     hg.gain.setValueAtTime(0.016, now + beat);
     hg.gain.exponentialRampToValueAtTime(0.001, now + beat + 0.04);
-    ho.connect(hg); hg.connect(masterGain);
+    ho.connect(hg); hg.connect(tg);
     ho.start(now + beat); ho.stop(now + beat + 0.05);
   }
 };
@@ -466,21 +477,22 @@ const playTitleSloppyBar = () => {
 const playTitleChillBar = () => {
   const ctx = getCtx();
   const now = ctx.currentTime;
+  const tg = getTitleGain();
   const loopDuration = getArrayDuration(TITLE_CHILL_MELODY);
 
   // Melody: warm sine with chorus detune
   let t = now;
   for (const [freq, dur] of TITLE_CHILL_MELODY) {
     if (freq > 0) {
-      playNote(freq, dur * 0.86, t, 'sine', 0.10);
-      playNote(freq * 1.004, dur * 0.86, t, 'sine', 0.04);
+      playNote(freq, dur * 0.86, t, 'sine', 0.10, tg);
+      playNote(freq * 1.004, dur * 0.86, t, 'sine', 0.04, tg);
     }
     t += dur;
   }
   // Bass: soft triangle arpeggios
   t = now;
   for (const [freq, dur] of TITLE_CHILL_BASS) {
-    if (freq > 0) playNote(freq, dur * 0.72, t, 'triangle', 0.10);
+    if (freq > 0) playNote(freq, dur * 0.72, t, 'triangle', 0.10, tg);
     t += dur;
   }
   // Chord pads: C-G-Am-F-Am-C, one per bar
@@ -501,14 +513,14 @@ const playTitleChillBar = () => {
       ? TITLE_CHILL_BASS.slice(bi, bi + 3).reduce((s, [, d]) => s + d, 0)
       : TITLE_CHILL_BASS.slice(bi, bi + 4).reduce((s, [, d]) => s + d, 0);
     for (const f of chordSets[b]) {
-      playNote(f, barDur * 0.82, now + barStart, 'sine', 0.024);
+      playNote(f, barDur * 0.82, now + barStart, 'sine', 0.024, tg);
     }
     // Soft shimmer on bar 1
     const ho = ctx.createOscillator(); const hg = ctx.createGain();
     ho.type = 'sine'; ho.frequency.value = 2800;
     hg.gain.setValueAtTime(0.010, now + barStart);
     hg.gain.exponentialRampToValueAtTime(0.001, now + barStart + 0.40);
-    ho.connect(hg); hg.connect(masterGain);
+    ho.connect(hg); hg.connect(tg);
     ho.start(now + barStart); ho.stop(now + barStart + 0.42);
     bt += barDur;
     bi += barSizes[b];
@@ -555,6 +567,11 @@ export const startTitleMusic = () => {
   isTitleMusicPlaying = true;
   const ctx = getCtx();
   if (ctx.state === 'suspended') ctx.resume();
+  // Fade in (gracefully handles the case where we just faded out)
+  const tg = getTitleGain();
+  tg.gain.cancelScheduledValues(ctx.currentTime);
+  tg.gain.setValueAtTime(tg.gain.value, ctx.currentTime);
+  tg.gain.linearRampToValueAtTime(1.0, ctx.currentTime + 0.15);
   if (currentMusicStyle === 'pleasant') {
     restartTitleChillLoop();
   } else {
@@ -565,6 +582,13 @@ export const startTitleMusic = () => {
 export const stopTitleMusic = () => {
   isTitleMusicPlaying = false;
   if (titleMusicInterval) { clearInterval(titleMusicInterval); titleMusicInterval = null; }
+  // Fade out quickly — kills already-scheduled Web Audio nodes without a hard cut
+  if (titleGain) {
+    const ctx = getCtx();
+    titleGain.gain.cancelScheduledValues(ctx.currentTime);
+    titleGain.gain.setValueAtTime(titleGain.gain.value, ctx.currentTime);
+    titleGain.gain.linearRampToValueAtTime(0.0001, ctx.currentTime + 0.08);
+  }
 };
 
 export const startBossMusic = () => {

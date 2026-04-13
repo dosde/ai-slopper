@@ -83,15 +83,21 @@ export default function StartScreen({ onStart }) {
     return () => clearInterval(p);
   }, []);
 
-  // Start title music on first interaction; stop/restart when music toggle changes
+  // Handle music toggle after first interaction
   useEffect(() => {
-    if (!hasInteracted || !musicEnabled) return;
-    startTitleMusic();
-    return () => stopTitleMusic();
+    if (!hasInteracted) return;
+    if (musicEnabled) startTitleMusic(); else stopTitleMusic();
   }, [hasInteracted, musicEnabled]);
 
+  // Always stop on unmount
+  useEffect(() => () => stopTitleMusic(), []);
+
   const handleFirstInteraction = () => {
-    if (!hasInteracted) setHasInteracted(true);
+    if (!hasInteracted) {
+      setHasInteracted(true);
+      // Call directly in the click handler — satisfies browser autoplay policy
+      if (musicEnabled) startTitleMusic();
+    }
   };
 
   const handleStart = () => {
