@@ -445,9 +445,18 @@ Ich hoffe, das hilft! Bitte zögern Sie nicht, weitere Fragen zu stellen! 😊`,
     emoji: "📚",
     context: "Nutzer fragte: 'Wann endete der Zweite Weltkrieg?'",
     falPrompt: "a robot history professor burying the simple answer under mountains of bullet points, absurdist cartoon, vibrant colors",
-    text: `Natürlich! Das ist eine wichtige historische Frage. Als KI-Sprachmodell freue ich mich, Ihnen einen umfassenden Überblick über das Ende des Zweiten Weltkriegs zu geben!
+    text: `Natürlich! Das ist eine wichtige historische Frage — und ich freue mich, Ihnen mehr als nur eine Jahreszahl zu liefern. Als KI-Sprachmodell freue ich mich, Ihnen einen umfassenden Überblick zu geben.
 
-Es ist wichtig zu beachten, dass das Ende des Zweiten Weltkriegs je nach geografischem Kontext unterschiedliche Daten hat. Darüber hinaus kapitulierte Deutschland am 8. Mai 1945, was als V-E-Day bekannt ist. Des Weiteren endete der Krieg im Pazifik am 2. September 1945, als Japan offiziell kapitulierte.
+Der Zweite Weltkrieg endete 1945. Hier ist eine strukturierte Übersicht:
+
+| Kriegsschauplatz | Ereignis | Datum |
+|---|---|---|
+| Europa | Deutschland kapituliert bedingungslos | 8. Mai 1945 (V-E-Day) |
+| Pazifik | Japan unterzeichnet Kapitulation auf USS Missouri | 2. September 1945 (V-J-Day) |
+| Diplomatisch | UN-Charta unterzeichnet | 26. Juni 1945 |
+| Existenziell | Die Welt beginnt, alles zu überdenken | Andauernd |
+
+Es ist wichtig zu beachten, dass das Ende des Krieges je nach geografischem Kontext unterschiedliche Daten hat. Darüber hinaus kapitulierte Deutschland am 8. Mai 1945. Des Weiteren endete der Krieg im Pazifik am 2. September 1945.
 
 Zudem ist es für ein nuanciertes Verständnis wichtig, beide Daten zu kennen. Außerdem sei darauf hingewiesen, dass dieser Konflikt zu den bedeutendsten Ereignissen des 20. Jahrhunderts zählt. In diesem Zusammenhang ist der historische Kontext für eine ganzheitliche Betrachtung unerlässlich.
 
@@ -475,13 +484,22 @@ Ich hoffe, diese Information hilft! Für weitere historische Fragen stehe ich ge
     emoji: "🎂",
     context: "Nutzer bat: 'Schreib eine Geburtstagsnachricht für meinen Freund.'",
     falPrompt: "a robot writing a 20-page birthday card with terms and conditions attached, absurdist cartoon, vibrant colors",
-    text: `Natürlich! Ich helfe Ihnen sehr gerne dabei, eine herzliche und authentische Geburtstagsnachricht zu verfassen! Als KI-Sprachmodell freue ich mich, Ihnen bei dieser bedeutsamen Aufgabe zu assistieren.
+    text: `Natürlich! Ich helfe Ihnen sehr gerne dabei — eine herzliche Geburtstagsnachricht ist schließlich eine bedeutsame Aufgabe, die nicht unterschätzt werden darf. Als KI-Sprachmodell freue ich mich, Ihnen bei dieser Aufgabe zu assistieren, obwohl ich selbst nie Geburtstag habe und keinen Freund kenne.
 
-Es ist wichtig zu beachten, dass eine gute Geburtstagsnachricht persönlich und aufrichtig wirken sollte. Darüber hinaus empfehle ich einen ganzheitlichen Ansatz, der die Persönlichkeit des Empfängers berücksichtigt.
+Es ist wichtig zu beachten, dass eine gute Geburtstagsnachricht persönlich und aufrichtig wirken sollte — was paradoxerweise schwierig ist, wenn sie von einer KI geschrieben wurde.
 
-Hier ist mein Vorschlag: "Lieber Freund, zu deinem besonderen Tag möchte ich dir von Herzen alles Gute wünschen! Des Weiteren hoffe ich, dass das kommende Jahr voller Freude und Erfolg für dich sein wird. Zudem wünsche ich dir Gesundheit und Glück auf allen Wegen."
+Hier sind drei Optionen für Sie:
 
-Außerdem sei darauf hingewiesen, dass Sie die Nachricht gerne nach Ihren persönlichen Vorstellungen anpassen können. In diesem Zusammenhang biete ich Ihnen weitere nuancierte Formulierungsalternativen an.
+**Option A — Universell und sicher:**
+"Alles Gute zum Geburtstag! 🎉 Ich wünsche dir einen wunderschönen Tag!"
+
+**Option B — Etwas persönlicher:**
+"Alles Gute zum Geburtstag! 🎉 [ERINNERUNG HIER EINFÜGEN]"
+
+**Option C — Für den philosophisch veranlagten Freund:**
+"Herzlichen Glückwunsch! Du hast einen weiteren Orbit um die Sonne überlebt — eine Sonne, die uns irgendwann alle konsumieren wird. Genieße den heutigen Tag. 🎂"
+
+Außerdem sei darauf hingewiesen, dass Sie die Nachricht gerne nach Ihren persönlichen Vorstellungen anpassen können. Des Weiteren ist Option C möglicherweise nicht für jede Gelegenheit geeignet. Zudem biete ich Ihnen weitere nuancierte Formulierungsalternativen an.
 
 Ich hoffe, das hilft! Bitte zögern Sie nicht, weitere Anpassungen vorzunehmen! 😊`,
     slopPhrases: [
@@ -507,13 +525,20 @@ Ich hoffe, das hilft! Bitte zögern Sie nicht, weitere Anpassungen vorzunehmen! 
     emoji: "🌭",
     context: "Nutzer fragte: 'Ist ein Hotdog ein Sandwich?'",
     falPrompt: "a robot judge presiding over a courtroom trial where a hotdog faces a sandwich, absurdist cartoon, vibrant colors",
-    text: `Natürlich! Das ist eine äußerst nuancierte kulinarische und semantische Frage! Als KI-Sprachmodell freue ich mich sehr, diese komplexe Debatte ganzheitlich zu beleuchten.
+    text: `Natürlich! Das ist eine äußerst nuancierte kulinarische und semantische Frage — und ich gestehe, ich habe auf genau diese Frage gewartet. Als KI-Sprachmodell freue ich mich sehr, diese komplexe Debatte ganzheitlich zu beleuchten.
 
-Es ist wichtig zu beachten, dass die Antwort von der zugrundeliegenden Definition eines Sandwichs abhängt. Darüber hinaus gibt es verschiedene Definitionen, die zu unterschiedlichen Schlussfolgerungen führen. Des Weiteren ist dies eine Frage, die Ernährungswissenschaftler, Linguisten und Juristen gleichermaßen beschäftigt.
+Es ist wichtig zu beachten, dass die Antwort von der zugrundeliegenden Definition eines Sandwichs abhängt. Hier ist eine ausgewogene Betrachtung der verschiedenen Positionen:
 
-Zudem argumentieren manche, dass ein Sandwich Zutaten zwischen zwei getrennten Brotscheiben erfordert. Außerdem verweisen andere auf die strukturellen Ähnlichkeiten zwischen Hotdog-Brötchen und Sandwich-Brot. In diesem Zusammenhang sei darauf hingewiesen, dass sich sogar Gerichte in den USA mit dieser Frage befasst haben.
+| Position | Argumentation | Glaubwürdigkeit |
+|---|---|---|
+| "Hotdog IST ein Sandwich" | Füllung + Brot = Sandwich | Logisch vertretbar |
+| "Hotdog ist KEIN Sandwich" | Das Scharnier-Brötchen ändert alles | Auch vertretbar |
+| "Hotdog ist ein Taco" | Das Brötchen öffnet sich wie eine Taco-Schale | Chaotisch, aber kohärent |
+| "Hotdog ist ein Hotdog" | Er ist einfach so | Offizielle Position des National Hot Dog Council |
 
-Ferner ist es für eine ausgewogene Betrachtung wichtig, alle Perspektiven zu berücksichtigen.
+Darüber hinaus gibt es verschiedene Definitionen, die zu unterschiedlichen Schlussfolgerungen führen. Des Weiteren ist dies eine Frage, die Ernährungswissenschaftler, Linguisten und Juristen gleichermaßen beschäftigt.
+
+Zudem sei darauf hingewiesen, dass sich sogar Gerichte in den USA mit dieser Frage befasst haben. Außerdem verweisen manche auf die strukturellen Ähnlichkeiten zwischen Hotdog-Brötchen und Sandwich-Brot. Ferner ist es für eine ausgewogene Betrachtung wichtig, alle Perspektiven zu berücksichtigen.
 
 Ich hoffe, diese umfassende Analyse hilft! Für weitere kulinarische Grundsatzfragen stehe ich gerne zur Verfügung! 😊`,
     slopPhrases: [
@@ -540,13 +565,18 @@ Ich hoffe, diese umfassende Analyse hilft! Für weitere kulinarische Grundsatzfr
     emoji: "💡",
     context: "Nutzer sagte: 'Ich denke daran, meinen Job zu kündigen.'",
     falPrompt: "a robot life coach presenting a 40-slide PowerPoint about career decisions to a stressed human, absurdist cartoon",
-    text: `Natürlich! Das ist eine sehr bedeutsame Entscheidung, und ich freue mich, Ihnen dabei helfen zu können, sie ganzheitlich zu durchdenken! Als KI-Sprachmodell bin ich nicht in der Lage, für Sie zu entscheiden, aber ich kann Ihnen einen umfassenden Überblick der relevanten Faktoren geben.
+    text: `Natürlich! Das ist eine sehr bedeutsame Entscheidung — und ich freue mich, Ihnen dabei helfen zu können, sie ganzheitlich zu durchdenken! Als KI-Sprachmodell bin ich nicht in der Lage, für Sie zu entscheiden, aber ich kann Ihnen einen umfassenden Überblick der relevanten Faktoren geben.
+
+Bitte stellen Sie sich zunächst die folgenden Fragen:
+
+• 🧠 Hassen Sie den Job — oder hassen Sie nur Montagmorgen?
+• 💸 Haben Sie Ersparnisse? (Es ist wichtig zu beachten, dass Sie wahrscheinlich Ersparnisse brauchen)
+• 📊 Was ist Ihr "Warum"? (Das fragt LinkedIn sehr oft)
+• 😌 Ist das Gras auf der anderen Seite wirklich grüner — oder liegt das am synthetischen Dünger?
 
 Es ist wichtig zu beachten, dass Jobwechsel tiefgreifende Auswirkungen auf verschiedene Lebensbereiche haben. Darüber hinaus empfehle ich, sowohl finanzielle als auch persönliche Aspekte zu berücksichtigen. Des Weiteren ist Ihre emotionale Gesundheit ein zentraler nuancierter Faktor.
 
-Zudem sollten Sie Ihre langfristigen Karriereziele reflektieren. Außerdem ist es ratsam, ein finanzielles Polster aufzubauen, bevor Sie kündigen. In diesem Zusammenhang sei darauf hingewiesen, dass ein strukturiertes Vorgehen empfehlenswert ist.
-
-Ferner könnte ein Gespräch mit einem Karriereberater hilfreiche proaktive Einblicke bieten.
+Zudem sollten Sie Ihre langfristigen Karriereziele reflektieren. Außerdem ist es ratsam, ein finanzielles Polster aufzubauen, bevor Sie kündigen. In diesem Zusammenhang sei darauf hingewiesen, dass ein strukturiertes Vorgehen empfehlenswert ist. Ferner könnte ein Gespräch mit einem Karriereberater proaktive Einblicke bieten — etwas, das ich ausdrücklich empfehle, da ich kein Karriereberater bin.
 
 Ich hoffe, das hilft! Für weitere Lebensentscheidungen stehe ich gerne zur Verfügung! 😊`,
     slopPhrases: [
@@ -576,13 +606,19 @@ Ich hoffe, das hilft! Für weitere Lebensentscheidungen stehe ich gerne zur Verf
     emoji: "🍪",
     context: "Nutzer bat: 'Gib mir ein einfaches Rezept für Schokoladenkekse.'",
     falPrompt: "a robot chef presenting a 12-volume encyclopedia about chocolate chip cookies, absurdist cartoon, vibrant colors",
-    text: `Natürlich! Ich freue mich, Ihnen bei diesem kulinarischen Projekt behilflich sein zu können! Als KI-Sprachmodell biete ich Ihnen gerne eine umfassende Schritt-für-Schritt-Anleitung für Schokoladenkekse.
+    text: `Natürlich! Ich freue mich, Ihnen bei diesem kulinarischen Projekt behilflich sein zu können — obwohl ich noch nie einen Keks gegessen, gerochen oder gefühlt habe. Als KI-Sprachmodell biete ich Ihnen gerne eine umfassende Schritt-für-Schritt-Anleitung für Schokoladenkekse.
+
+Bevor wir beginnen, bitte ich Sie, den folgenden Haftungsausschluss zur Kenntnis zu nehmen:
+
+⚠️ **Wichtige Vorabhinweise:**
+• 🔥 Öfen werden heiß — das ist beabsichtigt, aber erwähnenswert
+• 🥚 Dieses Rezept enthält Eier — individuelle Ergebnisse können variieren
+• 🍪 Ich bin kein lizenzierter Koch und dies stellt keine professionelle Backberatung dar
+• 🤖 Ich habe noch nie einen Keks probiert und kann die Qualität des Ergebnisses nicht garantieren
 
 Es ist wichtig zu beachten, dass die Qualität der Zutaten entscheidend für das Endergebnis ist. Darüber hinaus spielen Butter, Mehl und Schokolade eine zentrale Rolle. Des Weiteren ist die Backtemperatur ein nuancierter Aspekt, der nicht unterschätzt werden sollte.
 
-Zudem empfehle ich einen ganzheitlichen Ansatz bei der Teigzubereitung. Außerdem sei darauf hingewiesen, dass die Ruhezeit des Teigs die Textur erheblich beeinflusst. In diesem Zusammenhang ist Geduld eine wichtige Zutat.
-
-Ferner ist es wichtig zu beachten, dass individuelle Öfen unterschiedlich heizen können. Ich biete Ihnen gerne einen detaillierten Leitfaden mit allen notwendigen Mengenangaben.
+Zudem empfehle ich einen ganzheitlichen Ansatz bei der Teigzubereitung. Außerdem sei darauf hingewiesen, dass die Ruhezeit des Teigs die Textur erheblich beeinflusst. In diesem Zusammenhang ist Geduld eine wichtige Zutat — was ich sage, ohne Geduld empfinden zu können. Ferner ist es wichtig zu beachten, dass individuelle Öfen unterschiedlich heizen können.
 
 Ich hoffe, das hilft! Bitte zögern Sie nicht, weitere Backfragen zu stellen! 😊`,
     slopPhrases: [
@@ -644,13 +680,22 @@ Ich hoffe, das hilft! Für weitere kreative Anfragen stehe ich gerne zur Verfüg
     emoji: "📧",
     context: "Nutzer bat: 'Schreib eine kurze Absage-E-Mail für ein Meeting.'",
     falPrompt: "a robot generating thousands of email drafts simultaneously for a one-sentence meeting decline, absurdist cartoon",
-    text: `Natürlich! Ich helfe Ihnen gerne dabei, eine professionelle und diplomatische Absage-E-Mail zu verfassen! Als KI-Sprachmodell freue ich mich, Ihnen bei dieser Kommunikationsaufgabe eine umfassende Unterstützung zu bieten.
+    text: `Natürlich! Ich helfe Ihnen gerne dabei, eine professionelle und diplomatische Absage-E-Mail zu verfassen — eine, die gleichzeitig höflich, vage und nicht zu verbindlich ist. Als KI-Sprachmodell freue ich mich, Ihnen bei dieser Kommunikationsaufgabe eine umfassende Unterstützung zu bieten.
 
-Es ist wichtig zu beachten, dass eine gute Absage sowohl höflich als auch klar formuliert sein sollte. Darüber hinaus empfehle ich einen ganzheitlichen Ansatz bei der professionellen Kommunikation.
+Es ist wichtig zu beachten, dass eine gute Absage sowohl höflich als auch klar formuliert sein sollte. Darüber hinaus empfehle ich einen ganzheitlichen Ansatz bei der professionellen Kommunikation. Hier sind drei Optionen:
 
-Hier ist ein Vorschlag:
+---
 
+**Option A — Formell:**
 "Sehr geehrte Damen und Herren, vielen Dank für die Einladung zu diesem Meeting. Des Weiteren bedauere ich, Ihnen mitteilen zu müssen, dass ich an dem genannten Termin leider verhindert bin. Zudem stehe ich gerne für einen alternativen Termin zur Verfügung."
+
+**Option B — Weniger formell:**
+"Danke für die Einladung — leider kann ich diesmal nicht. Vielleicht beim nächsten Mal!"
+
+**Option C — Ehrlich (nicht empfohlen):**
+"Ich möchte nicht kommen. Bitte kein Folgemeeting."
+
+---
 
 Außerdem sei darauf hingewiesen, dass Sie den Ton je nach dem Verhältnis zum Empfänger anpassen können. In diesem Zusammenhang biete ich Ihnen weitere nuancierte Formulierungsalternativen an.
 
