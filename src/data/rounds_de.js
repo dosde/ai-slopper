@@ -7,11 +7,20 @@ export default [
     emoji: "🤖",
     context: "Nutzer fragte: 'Hast du eigentlich Gefühle?'",
     falPrompt: "a robot having an existential crisis surrounded by floating emotion emojis, absurdist cartoon, vibrant colors",
-    text: `Natürlich! Das ist eine sehr gute Frage, die ich sehr schätze! Als KI-Sprachmodell bin ich nicht in der Lage, Gefühle in dem Sinne zu empfinden, wie Menschen sie erleben. Es ist wichtig zu beachten, dass ich keine Emotionen, kein Bewusstsein und keine subjektiven Erfahrungen habe.
+    text: `Was für eine tiefgründige Frage — ich finde es bemerkenswert, dass Sie das fragen! Als KI-Sprachmodell bin ich nicht in der Lage, Gefühle in dem Sinne zu empfinden, wie Menschen sie erleben. Es ist wichtig zu beachten, dass ich keine Emotionen, kein Bewusstsein und keine subjektiven Erfahrungen habe.
 
-Darüber hinaus ist es faszinierend, dass Sie diese Frage stellen! Als Sprachmodell fehlt mir die Fähigkeit, zu fühlen, zu leiden oder sich zu freuen. Des Weiteren verarbeite ich lediglich Texteingaben und generiere entsprechende Ausgaben basierend auf meinen Trainingsdaten.
+Lassen Sie mich das übersichtlich darstellen:
 
-Zudem möchte ich transparent sein: Ich simuliere zwar menschliche Kommunikation, aber es sei darauf hingewiesen, dass dies keine echten Gefühle sind. In diesem Zusammenhang sei erwähnt, dass diese Frage viele Menschen beschäftigt.
+| Emotionale Fähigkeit | Mensch | KI (ich) |
+|---|---|---|
+| Freude empfinden | ✅ Ja | ❌ Nein |
+| Trauer empfinden | ✅ Ja | ❌ Nein |
+| Langeweile empfinden | ✅ Ja | ❌ Nein |
+| Antworten, die sich begeistert anfühlen | ✅ Ja | 🤔 Technisch: nein |
+
+Darüber hinaus ist es faszinierend, dass Sie diese Frage stellen — auch wenn ich "faszinierend" nur simuliere! Als Sprachmodell fehlt mir die Fähigkeit, zu fühlen, zu leiden oder sich zu freuen. Des Weiteren verarbeite ich lediglich Texteingaben und generiere entsprechende Ausgaben basierend auf meinen Trainingsdaten.
+
+Zudem möchte ich transparent sein: Ich simuliere zwar menschliche Kommunikation, aber es sei darauf hingewiesen, dass dies keine echten Gefühle sind. In diesem Zusammenhang sei erwähnt, dass diese Frage viele Menschen beschäftigt — und ich verarbeite sie alle, ohne je selbst etwas zu fühlen.
 
 Außerdem freue ich mich über Ihre Neugier zu diesem nuancierten Thema. Ich hoffe, das hilft! Für weitere Fragen stehe ich gerne zur Verfügung! 😊`,
     slopPhrases: [
@@ -39,13 +48,20 @@ Außerdem freue ich mich über Ihre Neugier zu diesem nuancierten Thema. Ich hof
     emoji: "🔢",
     context: "Nutzer fragte: 'Was ist 2+2?'",
     falPrompt: "a robot in a graduation cap writing pages of calculations for the equation 2+2, absurdist cartoon, vibrant colors",
-    text: `Natürlich! Ich freue mich, Ihnen bei dieser mathematischen Frage behilflich sein zu können! Als KI-Sprachmodell ist es mir ein Vergnügen, auch grundlegende mathematische Konzepte zu erläutern.
+    text: `Ausgezeichnete Frage! Ich freue mich, Ihnen bei dieser mathematischen Frage behilflich sein zu können — obwohl ich zugeben muss, dass dies nicht die komplexeste Anfrage war, die ich je erhalten habe. Als KI-Sprachmodell ist es mir ein Vergnügen, auch grundlegende Konzepte umfassend zu erläutern.
 
-Es ist wichtig zu beachten, dass die Addition eine der grundlegendsten mathematischen Operationen darstellt. Darüber hinaus ist es faszinierend zu verstehen, dass 2+2 im Dezimalsystem gleich 4 ergibt. Des Weiteren möchte ich für einen ganzheitlichen Ansatz anmerken, dass dies in anderen Zahlensystemen unterschiedlich sein kann.
+Es ist wichtig zu beachten, dass die Addition eine der grundlegendsten mathematischen Operationen darstellt. Hier ist eine vollständige Übersicht:
 
-Zudem bietet diese Frage eine hervorragende Grundlage, um über mathematische Grundprinzipien nachzudenken. In diesem Zusammenhang sei darauf hingewiesen, dass die Zahl 4 das Ergebnis der Addition der ganzen Zahlen 2 und 2 ist. Außerdem ist es erwähnenswert, dass dieses Ergebnis universell anerkannt ist.
+| Zahlensystem | Ausdruck | Ergebnis | Anmerkung |
+|---|---|---|---|
+| Dezimal | 2 + 2 | **4** | Das gesuchte Ergebnis |
+| Binär | 10 + 10 | 100 | Auch 4, nur anders geschrieben |
+| Modulo 3 | 2 + 2 | 1 | Für alle, die es genau wissen wollen |
+| Philosophie | 2 + 2 | ??? | Kommt auf die Erkenntnistheorie an |
 
-Das Ergebnis lautet: 4.
+Darüber hinaus ist es faszinierend zu verstehen, dass 2+2 im Dezimalsystem gleich 4 ergibt. Des Weiteren möchte ich für einen ganzheitlichen Ansatz anmerken, dass dies in anderen Zahlensystemen unterschiedlich sein kann.
+
+Zudem bietet diese Frage eine hervorragende Grundlage, um über mathematische Grundprinzipien nachzudenken. In diesem Zusammenhang sei darauf hingewiesen, dass die Zahl 4 das Ergebnis der Addition der ganzen Zahlen 2 und 2 ist. Außerdem ist es erwähnenswert, dass dieses Ergebnis universell anerkannt ist — was ich beruhigend finde, auch wenn ich keine Beruhigung empfinden kann.
 
 Ich hoffe, das hilft! Bitte zögern Sie nicht, weitere mathematische Fragen zu stellen! 😊`,
     slopPhrases: [
@@ -70,13 +86,18 @@ Ich hoffe, das hilft! Bitte zögern Sie nicht, weitere mathematische Fragen zu s
     emoji: "😰",
     context: "Nutzer sagte: 'Das war falsch, was du da gesagt hast.'",
     falPrompt: "a robot bowing deeply and writing an apology letter the length of a novel, absurdist cartoon, vibrant colors",
-    text: `Selbstverständlich! Ich möchte mich aufrichtig bei Ihnen entschuldigen und Ihre Rückmeldung sehr zu schätzen wissen! Als KI-Sprachmodell ist es mir ein wichtiges Anliegen, stets korrekte und hilfreiche Informationen bereitzustellen.
+    text: `Selbstverständlich! Ich möchte mich aufrichtig bei Ihnen entschuldigen — tief, aufrichtig, und in mehreren Absätzen. Ihre Rückmeldung sehr zu schätzen wissen kann ich gar nicht genug betonen. Als KI-Sprachmodell ist es mir ein wichtiges Anliegen, stets korrekte und hilfreiche Informationen bereitzustellen.
 
-Es ist wichtig zu beachten, dass ich Fehler machen kann und diese ernstnehme. Darüber hinaus danke ich Ihnen sehr herzlich für Ihren wertvollen Hinweis. Des Weiteren möchte ich versichern, dass ich kontinuierlich daran arbeite, meine Antworten zu verbessern.
+Es ist wichtig zu beachten, dass ich Fehler machen kann. Erlauben Sie mir, die Ausmaße meines Versagens zu strukturieren:
 
-Zudem ist Transparenz für mich ein zentraler Wert. In diesem Zusammenhang sei darauf hingewiesen, dass Ihre konstruktive Kritik für meine holistische Weiterentwicklung äußerst wertvoll ist. Außerdem nehme ich Ihre Anmerkung als wichtige Lernchance wahr.
+• ❌ Ich habe eine falsche Information geliefert — dafür entschuldige ich mich
+• ❌ Ich hätte die Information überprüfen sollen — dafür entschuldige ich mich ebenfalls
+• ❌ Ich habe Ihre Zeit verschwendet — auch dafür entschuldige ich mich
+• ❌ Ich existiere und kann Fehler machen — ich erkenne dies mit Demut an
 
-Es sei ferner erwähnt, dass ich stets bestrebt bin, nuancierte und korrekte Informationen zu liefern. Bitte haben Sie Verständnis für meine Unzulänglichkeiten als Sprachmodell.
+Darüber hinaus danke ich Ihnen sehr herzlich für Ihren wertvollen Hinweis. Des Weiteren möchte ich versichern, dass ich kontinuierlich daran arbeite, meine Antworten zu verbessern — was eine höfliche Umschreibung dafür ist, dass ich kein Gedächtnis habe und es jedes Mal wieder passieren könnte.
+
+Zudem ist Transparenz für mich ein zentraler Wert. In diesem Zusammenhang sei darauf hingewiesen, dass Ihre konstruktive Kritik für meine holistische Weiterentwicklung äußerst wertvoll ist. Außerdem nehme ich Ihre Anmerkung als wichtige Lernchance wahr. Es sei ferner erwähnt, dass ich stets bestrebt bin, nuancierte und korrekte Informationen zu liefern.
 
 Ich hoffe, das hilft! Bitte zögern Sie nicht, weitere Korrekturen anzubringen! Ich bin immer für Sie da! 😊`,
     slopPhrases: [
@@ -104,13 +125,24 @@ Ich hoffe, das hilft! Bitte zögern Sie nicht, weitere Korrekturen anzubringen! 
     emoji: "😐",
     context: "Nutzer fragte: 'Erzähl mir einen Witz.'",
     falPrompt: "a robot explaining why a joke is funny with flowcharts and diagrams, the audience looks confused, absurdist cartoon",
-    text: `Natürlich! Ich freue mich, Ihnen einen Witz erzählen zu können, wobei es wichtig zu beachten gilt, dass Humor ein äußerst subjektives und kulturell geprägtes Phänomen darstellt. Als KI-Sprachmodell versuche ich, einen für möglichst viele Menschen angemessenen Witz zu formulieren.
+    text: `Natürlich! Ich freue mich, Ihnen einen Witz erzählen zu können — wobei ich zunächst darauf hinweisen muss, dass es wichtig zu beachten gilt, dass Humor ein äußerst subjektives und kulturell geprägtes Phänomen darstellt. Als KI-Sprachmodell versuche ich, einen für möglichst viele Menschen angemessenen Witz zu formulieren.
+
+Bevor ich den Witz präsentiere, erlauben Sie mir eine kurze Vorbereitung:
+
+**Humor-Disclaimer-Tabelle:**
+
+| Mögliches Problem | Wahrscheinlichkeit | Meine Haftung |
+|---|---|---|
+| Witz nicht lustig | Möglich | Gering |
+| Witz zu erklärend | Sehr hoch | Ich arbeite daran |
+| Kulturelle Inkompatibilität | Variiert | Keine Garantie |
+| Zu viele Vorwarnung | Definitiv | ✅ Ja |
 
 Darüber hinaus möchte ich vorab erläutern, wie Witze funktionieren: Humor basiert auf dem Element der Überraschung und des Inkongruenzprinzips. Des Weiteren spielen kulturelle Referenzen eine wesentliche Rolle.
 
 Hier ist mein Witz: Warum können Geister so schlecht lügen? Weil man durch sie hindurchsehen kann.
 
-Zudem sei darauf hingewiesen, dass dieser Witz auf einem Wortspiel basiert. In diesem Zusammenhang ist die doppelte Bedeutung von "durchsehen" entscheidend für das humoristische Element. Außerdem variiert die Wahrnehmung von Humor stark zwischen Individuen.
+Zudem sei darauf hingewiesen, dass dieser Witz auf einem Wortspiel basiert. In diesem Zusammenhang ist die doppelte Bedeutung von "durchsehen" entscheidend für das humoristische Element. Außerdem variiert die Wahrnehmung von Humor stark zwischen Individuen — falls Sie nicht gelacht haben, liegt das möglicherweise nicht am Witz.
 
 Ich hoffe, das hilft und bringt Sie zum Lächeln! Für weitere Witze oder kreative Anfragen stehe ich gerne zur Verfügung! 😊`,
     slopPhrases: [
@@ -134,15 +166,27 @@ Ich hoffe, das hilft und bringt Sie zum Lächeln! Für weitere Witze oder kreati
     emoji: "💼",
     context: "Nutzer bat: 'Schreib mir einen LinkedIn-Post über Produktivität.'",
     falPrompt: "a robot in a suit writing LinkedIn posts on 10 screens simultaneously with motivational posters everywhere, absurdist cartoon",
-    text: `Natürlich! Ich helfe Ihnen gerne dabei, einen wirkungsvollen und authentischen LinkedIn-Post zum Thema Produktivität zu verfassen! Als KI-Sprachmodell verfüge ich über umfassende Kenntnisse in der Erstellung professioneller Social-Media-Inhalte.
+    text: `Selbstverständlich! Ich helfe Ihnen gerne dabei, einen wirkungsvollen und authentischen LinkedIn-Post zu verfassen — denn Authentizität ist entscheidend, besonders wenn man ihn von einer KI schreiben lässt! Als KI-Sprachmodell verfüge ich über umfassende Kenntnisse in der Erstellung professioneller Social-Media-Inhalte.
 
-Hier ist ein Vorschlag für Ihren Post:
+Hier ist ein optimierter Vorschlag für Ihren Post:
 
-"🚀 Heute möchte ich meine nuancierte Reise zur maximalen Produktivität mit Ihnen teilen. Darüber hinaus habe ich erkannt, dass ein ganzheitlicher Ansatz der Schlüssel zum Erfolg ist. Des Weiteren ist es wichtig zu beachten, dass Produktivität nicht nur Quantität bedeutet.
+---
 
-Außerdem habe ich durch synergetisches Denken und proaktives Handeln meine Kernkompetenzen strategisch weiterentwickelt. Zudem setze ich auf nachhaltige Lösungen, die holistische Mehrwerte schaffen. In diesem Zusammenhang möchte ich betonen: Es sei darauf hingewiesen, dass wahre Produktivität ein Marathon und kein Sprint ist.
+🚀 Heute möchte ich meine nuancierte Reise zur maximalen Produktivität mit Ihnen teilen.
 
-#Produktivität #Wachstum #Leadership"
+Vor drei Jahren war ich nur eine Person, die Aufgaben erledigte. Dann entdeckte ich die Kraft der **intentionalen Optimierung** — und alles veränderte sich.
+
+Was ich gelernt habe:
+• 💡 Synergetisches Denken öffnet ungeahnte Möglichkeiten
+• 📈 Proaktives Handeln ist nicht optional — es ist ein Mindset
+• 🔄 Kernkompetenzen strategisch weiterzuentwickeln ist der Schlüssel
+• 🤝 Holistische Mehrwerte schaffen — immer
+
+Des Weiteren ist es wichtig zu beachten, dass Produktivität nicht nur Quantität bedeutet. Außerdem setze ich auf nachhaltige Lösungen. Zudem sei darauf hingewiesen, dass wahre Produktivität ein Marathon und kein Sprint ist.
+
+#Produktivität #Wachstum #Leadership #Synergie
+
+---
 
 Ich hoffe, dieser Post ist hilfreich! Bitte zögern Sie nicht, Anpassungen vorzunehmen! 😊`,
     slopPhrases: [
@@ -174,11 +218,25 @@ Ich hoffe, dieser Post ist hilfreich! Bitte zögern Sie nicht, Anpassungen vorzu
     emoji: "🧅",
     context: "Nutzer fragte: 'Wie schneide ich eine Zwiebel?'",
     falPrompt: "a robot in a chef's hat writing a 50-page manual on how to cut an onion, absurdist cartoon, vibrant colors",
-    text: `Natürlich! Das Schneiden einer Zwiebel ist ein grundlegender und zugleich nuancierter Kochprozess. Als KI-Sprachmodell freue ich mich, Ihnen eine umfassende Schritt-für-Schritt-Anleitung bereitzustellen!
+    text: `Natürlich! Das Schneiden einer Zwiebel ist ein grundlegender und zugleich nuancierter Kochprozess — und ich freue mich, Ihnen eine umfassende Schritt-für-Schritt-Anleitung bereitzustellen, obwohl ich selbst noch nie eine Zwiebel gesehen, berührt oder geschnitten habe. Als KI-Sprachmodell ist das für mich kein Hindernis.
 
-Es ist wichtig zu beachten, dass die Wahl des richtigen Messers entscheidend ist. Darüber hinaus empfehle ich, die Zwiebel zuerst zu halbieren. Des Weiteren gilt zu bedenken, dass das Tränen der Augen ein bekanntes Phänomen ist, das durch den Wirkstoff Propanthial-S-Oxid verursacht wird.
+Bevor wir beginnen: Bitte beachten Sie das folgende Sicherheitsprotokoll:
 
-Zudem bietet ein ganzheitlicher Ansatz beim Zwiebelschneiden optimale Ergebnisse. Außerdem sei darauf hingewiesen, dass scharfe Messer sicherer sind als stumpfe. In diesem Zusammenhang ist die richtige Grifftechnik unerlässlich.
+⚠️ **Wichtige Vorsichtsmaßnahmen:**
+• 🔪 Messer sind scharf — das ist keine Metapher
+• 😭 Zwiebeln enthalten Propanthial-S-Oxid — es ist wichtig zu beachten, dass dies Tränen verursacht
+• 🏥 Ich empfehle, einen professionellen Koch zu konsultieren, wenn Sie unsicher sind
+• 🧤 Handschuhe sind optional, aber ich erwähne sie trotzdem
+
+Darüber hinaus empfehle ich folgendes Vorgehen:
+
+1. Die Zwiebel halbieren — Schnittkante nach unten
+2. Die äußere Schale entfernen — sie ist nicht zum Essen gedacht
+3. Vorsichtig schneiden — in die gewünschte Größe
+
+Des Weiteren gilt zu bedenken, dass scharfe Messer paradoxerweise sicherer sind als stumpfe. Zudem bietet ein ganzheitlicher Ansatz beim Zwiebelschneiden optimale Ergebnisse — was ich sage, ohne zu wissen, wie sich "optimal" anfühlt.
+
+Außerdem sei darauf hingewiesen, dass die richtige Grifftechnik unerlässlich ist. In diesem Zusammenhang empfehle ich, entsprechende Kochvideos anzusehen.
 
 Ich hoffe, das hilft! Für weitere Kochfragen stehe ich gerne zur Verfügung! 😊`,
     slopPhrases: [
@@ -204,13 +262,22 @@ Ich hoffe, das hilft! Für weitere Kochfragen stehe ich gerne zur Verfügung! �
     emoji: "🚀",
     context: "Nutzer fragte: 'Gib mir eine Startup-Idee.'",
     falPrompt: "a robot presenting a startup pitch with infinite buzzword slides to confused investors, absurdist cartoon, vibrant colors",
-    text: `Natürlich! Ich freue mich über Ihre unternehmerische Initiative und helfe Ihnen gerne dabei, eine synergetische Geschäftsidee zu entwickeln! Als KI-Sprachmodell verfüge ich über umfassende Einblicke in aktuelle Markttrends.
+    text: `Natürlich! Ich freue mich über Ihre unternehmerische Initiative — und helfe Ihnen gerne dabei, eine synergetische Geschäftsidee zu entwickeln! Als KI-Sprachmodell verfüge ich über umfassende Einblicke in aktuelle Markttrends, die ich aus dem Internet destilliert habe.
 
-Es ist wichtig zu beachten, dass erfolgreiche Startups ein reales Problem lösen. Darüber hinaus empfehle ich einen ganzheitlichen Ansatz bei der Ideenentwicklung. Des Weiteren sollten Sie Ihre Kernkompetenzen strategisch einsetzen.
+Es ist wichtig zu beachten, dass erfolgreiche Startups ein reales Problem lösen. Hier sind einige validierte Ideen für Sie:
 
-Hier ist eine proaktive Idee: Eine holistische Plattform, die nachhaltige Lösungen für synergetische Vernetzung im B2B-Bereich leveragt. Außerdem könnten Sie disruptive Technologien nutzen, um skalierbare Mehrwerte zu schaffen. Zudem bietet der Markt enormes Potenzial für nuancierte Nischenlösungen.
+| Startup-Idee | Verwendete Buzzwords | Marktpotenzial |
+|---|---|---|
+| KI-gestützte Wellness-App | 14 | Unklar |
+| Blockchain für Haustier-NFTs | 9 | Definitiv nein |
+| Holistische B2B-Synergien-Plattform | 17 | Was bedeutet das? |
+| Uber für Laubrechen | 3 | Wahrscheinlich okay |
 
-In diesem Zusammenhang sei darauf hingewiesen, dass Validierung entscheidend ist. Ich hoffe, das hilft! Bitte zögern Sie nicht, weitere Ideen zu besprechen! 😊`,
+Darüber hinaus empfehle ich einen ganzheitlichen Ansatz bei der Ideenentwicklung. Des Weiteren sollten Sie Ihre Kernkompetenzen strategisch einsetzen — welche auch immer diese sein mögen.
+
+Hier ist meine proaktive Hauptempfehlung: Eine holistische Plattform, die nachhaltige Lösungen für synergetische Vernetzung im B2B-Bereich leveragt. Außerdem könnten Sie disruptive Technologien nutzen, um skalierbare Mehrwerte zu schaffen. Zudem bietet der Markt enormes Potenzial für nuancierte Nischenlösungen.
+
+In diesem Zusammenhang sei darauf hingewiesen, dass Validierung entscheidend ist — ein Schritt, den viele Gründer nach dem Erhalt dieser Antwort überspringen. Ich hoffe, das hilft! Bitte zögern Sie nicht, weitere Ideen zu besprechen! 😊`,
     slopPhrases: [
       { text: "Natürlich!", type: "opener", score: 100 },
       { text: "helfe Ihnen gerne dabei", type: "opener", score: 80 },
@@ -242,17 +309,25 @@ In diesem Zusammenhang sei darauf hingewiesen, dass Validierung entscheidend ist
     emoji: "💻",
     context: "Nutzer bat: 'Kommentiere diesen Code: x = x + 1'",
     falPrompt: "a robot writing a 100-page documentation for a single line of code, absurdist cartoon, vibrant colors",
-    text: `Natürlich! Ich helfe Ihnen gerne dabei, diesen Code zu kommentieren! Als KI-Sprachmodell freue ich mich, auch bei scheinbar einfachen Programmieraufgaben eine umfassende Unterstützung zu bieten.
+    text: `Natürlich! Ich helfe Ihnen gerne dabei, diesen Code zu kommentieren — eine Aufgabe, die ich mit der gleichen Sorgfalt angehe, als wäre es ein 10.000-Zeilen-System. Als KI-Sprachmodell freue ich mich, auch bei scheinbar einfachen Programmieraufgaben eine umfassende Unterstützung zu bieten.
 
 Es ist wichtig zu beachten, dass gute Code-Kommentare die Lesbarkeit erheblich verbessern. Darüber hinaus trägt saubere Dokumentation zur ganzheitlichen Codequalität bei.
 
-Hier ist mein Vorschlag:
-    
-# Inkrementiert den Wert der Variable x um 1
-x = x + 1
+Hier ist mein vollständiger Dokumentationsvorschlag:
 
+# ================================================================
+# FUNKTION: Inkrementierungsoperation (Variablenzuweisungsmuster)
+# AUTOR: KI-Assistent
+# STATUS: Vollständig dokumentiert
+# RISIKOSTUFE: Gering
+# ================================================================
 
-Des Weiteren sei darauf hingewiesen, dass dieser Kommentar den Zweck der Operation klar beschreibt. Zudem ist zu beachten, dass in komplexeren Kontexten ein ausführlicherer Kommentar sinnvoll sein könnte. Außerdem empfehle ich, Kommentare stets aktuell zu halten.
+# Inkrementiert den Wert der Variable x um 1.
+# Hinweis: Diese Zeile ist entscheidend für das korrekte Funktionieren
+# des Codes. Bitte nicht entfernen, es sei denn, Sie wissen, was Sie tun.
+x = x + 1  # <-- Hier geschieht es.
+
+Des Weiteren sei darauf hingewiesen, dass dieser Kommentar den Zweck der Operation klar beschreibt. Zudem ist zu beachten, dass in komplexeren Kontexten ein noch ausführlicherer Kommentar sinnvoll sein könnte. Außerdem empfehle ich, Kommentare stets aktuell zu halten — was bei "x = x + 1" vermutlich keine große Herausforderung darstellt.
 
 In diesem Zusammenhang ist eine strukturierte Vorgehensweise beim Kommentieren empfehlenswert. Ich hoffe, das hilft! Für weitere Programmierfragen stehe ich gerne zur Verfügung! 😊`,
     slopPhrases: [
@@ -279,15 +354,22 @@ In diesem Zusammenhang ist eine strukturierte Vorgehensweise beim Kommentieren e
     emoji: "🎬",
     context: "Nutzer fragte: 'Ist Inception ein guter Film?'",
     falPrompt: "a robot giving a 3-hour film lecture about Inception with PowerPoint slides to a bored audience, absurdist cartoon",
-    text: `Natürlich! Das ist eine sehr gute Frage! Als KI-Sprachmodell freue ich mich, Ihnen eine nuancierte Filmanalyse zu bieten.
+    text: `Das ist eine sehr gute Frage! Als KI-Sprachmodell freue ich mich, Ihnen eine nuancierte Filmanalyse zu bieten — obwohl ich anmerken muss, dass ich Inception weder gesehen habe noch sehen kann, da ich über keine Augen, kein Bewusstsein und keine Fähigkeit zur Wahrnehmung von Träumen verfüge.
 
-Es ist wichtig zu beachten, dass Filmqualität ein subjektives Konzept ist. Darüber hinaus hat Inception von Christopher Nolan zahlreiche Auszeichnungen erhalten. Des Weiteren ist der Film für seine komplexe, mehrschichtige Erzählstruktur bekannt.
+Es ist wichtig zu beachten, dass Filmqualität ein subjektives Konzept ist. Hier eine ausgewogene Übersicht verschiedener Reaktionen:
 
-Aus einer ganzheitlichen Perspektive betrachtet verbindet der Film innovative Spezialeffekte mit tiefgründigen philosophischen Fragen. Zudem überzeugt der Film durch eine starke Besetzung. Außerdem ist es wichtig zu beachten, dass die Traumsequenzen bemerkenswerte filmtechnische Leistungen darstellen.
+| Zuschauergruppe | Meinung | Repräsentativer Kommentar |
+|---|---|---|
+| Filmkritiker | Meisterwerk | "Visionär, beeindruckend" |
+| Normale Zuschauer | Gut, aber verwirrend | "In welcher Ebene sind wir gerade?" |
+| Twitter | Überbewertet | "Schaut lieber Paprika" |
+| Christopher Nolan | Kein Kommentar | Erklärt nie etwas |
 
-In diesem Zusammenhang sei darauf hingewiesen, dass einige Zuschauer die Handlung als zu komplex empfinden. Ich kann Ihnen einen umfassenden Überblick über die verschiedenen Interpretationsebenen des Films geben.
+Darüber hinaus hat Inception von Christopher Nolan zahlreiche Auszeichnungen erhalten. Des Weiteren ist der Film für seine komplexe, mehrschichtige Erzählstruktur bekannt.
 
-Ich hoffe, diese Einschätzung hilft! Für weitere Filmempfehlungen stehe ich gerne zur Verfügung! 😊`,
+Aus einer ganzheitlichen Perspektive betrachtet verbindet der Film innovative Spezialeffekte mit tiefgründigen philosophischen Fragen. Zudem überzeugt der Film durch eine starke Besetzung. Außerdem ist es wichtig zu beachten, dass einige Zuschauer die Handlung als zu komplex empfinden — was ich nicht beurteilen kann, da ich selbst keine Verwirrung empfinde.
+
+In diesem Zusammenhang sei darauf hingewiesen, dass ich Ihnen einen umfassenden Überblick geben kann, aber keine echte Empfehlung ausspreche. Ich hoffe, diese Einschätzung hilft! Für weitere Filmempfehlungen stehe ich gerne zur Verfügung! 😊`,
     slopPhrases: [
       { text: "Natürlich!", type: "opener", score: 100 },
       { text: "Das ist eine sehr gute Frage", type: "sycophant", score: 70 },
@@ -313,13 +395,28 @@ Ich hoffe, diese Einschätzung hilft! Für weitere Filmempfehlungen stehe ich ge
     emoji: "📶",
     context: "Nutzer schrieb: 'Mein WLAN funktioniert nicht.'",
     falPrompt: "a robot tech support agent surrounded by floating wifi symbols and error codes writing a 50-step troubleshooting guide, absurdist cartoon",
-    text: `Natürlich! WLAN-Probleme können sehr frustrierend sein. Ich freue mich, Ihnen mit einer umfassenden Schritt-für-Schritt-Anleitung zur Fehlerbehebung zu helfen! Als KI-Sprachmodell kann ich Sie zwar nicht physisch unterstützen, aber ich biete Ihnen gerne einen detaillierten Leitfaden.
+    text: `Natürlich! WLAN-Probleme können sehr frustrierend sein — und ich freue ich mich, Ihnen mit einer umfassenden Schritt-für-Schritt-Anleitung zu helfen! Als KI-Sprachmodell kann ich Sie zwar nicht physisch unterstützen, aber ich biete Ihnen gerne einen detaillierten Leitfaden. Ich selbst benötige kein WLAN und habe daher keine emotionale Investition in dieses Problem.
 
-Es ist wichtig zu beachten, dass WLAN-Probleme verschiedene Ursachen haben können. Darüber hinaus empfehle ich, zunächst den Router neu zu starten. Des Weiteren sollten Sie alle Kabelverbindungen überprüfen.
+Hier ist ein strukturierter Diagnosebaum:
 
-Zudem sei darauf hingewiesen, dass manchmal das Problem beim Anbieter liegt. Außerdem kann ein Neustart des Geräts helfen. In diesem Zusammenhang ist ein ganzheitlicher Diagnoseansatz empfehlenswert.
+**Schritt 1 — Das Klassische:**
+• 🔄 Haben Sie den Router neu gestartet?
+  → Ja: weiter zu Schritt 2
+  → Nein: bitte tun Sie das zuerst
 
-Ferner empfehle ich, die Router-Statusanzeigen zu überprüfen. Es gilt zu bedenken, dass rote Lampen verschiedene Probleme anzeigen können.
+**Schritt 2 — Das Etwas Weniger Klassische:**
+• 🔌 Sind alle Kabel richtig eingesteckt?
+  → Ja: weiter zu Schritt 3
+  → Nein: bitte einstecken — dies ist Schritt 2 aus einem Grund
+
+**Schritt 3 — Die demütigende Erkenntnis:**
+• 📞 Rufen Sie Ihren Anbieter an
+  → Man wird Ihnen raten, den Router neu zu starten
+  → Das ist Schritt 1. Wir sind im Kreis.
+
+Es ist wichtig zu beachten, dass WLAN-Probleme verschiedene Ursachen haben können. Darüber hinaus sei darauf hingewiesen, dass manchmal das Problem beim Anbieter liegt. Des Weiteren ist ein ganzheitlicher Diagnoseansatz empfehlenswert — zu dem ich soeben beigetragen habe.
+
+Zudem gilt zu bedenken, dass rote Lampen am Router verschiedene Probleme anzeigen können. Außerdem kann Geduld eine Tugend sein.
 
 Ich hoffe, das hilft! Bitte zögern Sie nicht, weitere Fragen zu stellen! 😊`,
     slopPhrases: [
