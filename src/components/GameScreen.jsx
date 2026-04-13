@@ -123,7 +123,8 @@ export default function GameScreen({ round, roundIdx, totalRounds, totalScore, o
   const { popups, addPopup } = usePopups();
   const comboDecayRef = useRef(null);
   const ironGameOverRef = useRef(false);
-  const ironAutoCompleteRef = useRef(false);
+  const allFoundRef = useRef(false);
+  const [allFoundFlash, setAllFoundFlash] = useState(false);
   // Always-fresh snapshot of values needed inside iron-mode callbacks
   const liveRef = useRef({});
 
@@ -134,8 +135,8 @@ export default function GameScreen({ round, roundIdx, totalRounds, totalScore, o
   // isUrgent must be declared BEFORE the music-tempo useEffect that lists it as a dependency
   const isUrgent = !isIronDetector && timeLeft <= 10;
 
-  // Keep liveRef in sync every render so iron-mode effects always have fresh values
-  liveRef.current = { roundScore, foundIds, timeLeft, wrongClickCount, onRoundEnd };
+  // Keep liveRef in sync every render so effects always have fresh values
+  liveRef.current = { roundScore, foundIds, timeLeft, wrongClickCount, onRoundEnd, addPopup };
 
   // Start boss music when boss round mounts
   useEffect(() => {
@@ -162,18 +163,25 @@ export default function GameScreen({ round, roundIdx, totalRounds, totalScore, o
     return () => clearTimeout(t);
   }, [timeLeft, timerRunning, roundScore, foundIds, onRoundEnd, isIronDetector, wrongClickCount]);
 
-  // Iron mode: auto-complete when all slop found (reads from liveRef to avoid stale closure)
+  // Auto-complete when all phrases found — all modes (reads from liveRef to avoid stale closure)
   useEffect(() => {
-    if (!isIronDetector || ironAutoCompleteRef.current || !timerRunning) return;
-    if (totalSlop > 0 && foundSlop === totalSlop) {
-      ironAutoCompleteRef.current = true;
-      setTimerRunning(false);
-      playRoundComplete();
-      setTimeout(() => {
-        const { roundScore: rs, foundIds: fi, timeLeft: tl, wrongClickCount: wc, onRoundEnd: cb } = liveRef.current;
-        cb(rs, fi, tl, wc);
-      }, 800);
-    }
+    if (allFoundRef.current || !timerRunning || totalSlop === 0 || foundSlop < totalSlop) return;
+    allFoundRef.current = true;
+    setTimerRunning(false);
+    setAllFoundFlash(true);
+    playRoundComplete();
+    setTimeout(() => {
+      setAllFoundFlash(false);
+      const { roundScore: rs, foundIds: fi, timeLeft: tl, wrongClickCount: wc, onRoundEnd: cb, addPopup: ap } = liveRef.current;
+      if (isIronDetector) { cb(rs, fi, tl, wc); return; }
+      const timeBonus = tl * TIME_BONUS_PER_SEC;
+      let finalScore = rs;
+      if (timeBonus > 0) {
+        finalScore += timeBonus;
+        ap(Math.round(window.innerWidth / 2), 160, timeBonus, `⏱ ${tl}s TIME BONUS!`, false, false);
+      }
+      setTimeout(() => cb(finalScore, fi, tl, wc), timeBonus > 0 ? 1000 : 200);
+    }, 1800);
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [foundSlop, totalSlop]);
 
@@ -324,6 +332,42 @@ export default function GameScreen({ round, roundIdx, totalRounds, totalScore, o
       transition: 'background 0.5s',
     }}>
       <PopupLayer popups={popups} />
+
+      {/* All-found flash overlay */}
+      {allFoundFlash && (
+        <div style={{
+          position: 'fixed', inset: 0, zIndex: 9500,
+          background: isInverse
+            ? 'linear-gradient(135deg, rgba(8,145,178,0.95), rgba(14,116,144,0.9))'
+            : 'linear-gradient(135deg, rgba(5,150,105,0.95), rgba(4,120,87,0.9))',
+          display: 'flex', flexDirection: 'column',
+          alignItems: 'center', justifyContent: 'center',
+          gap: '16px',
+          animation: 'all-found-pop 1.8s ease forwards',
+          pointerEvents: 'none',
+        }}>
+          <div style={{ fontSize: '4rem' }}>{isInverse ? '🧠' : '🏆'}</div>
+          <div style={{
+            fontFamily: "'Press Start 2P', monospace",
+            fontSize: 'clamp(0.9rem, 3.5vw, 1.3rem)',
+            color: 'white',
+            textAlign: 'center',
+            lineHeight: 2,
+            textShadow: '0 0 24px rgba(255,255,255,0.6)',
+          }}>
+            {isInverse ? 'ALL HUMANS\nRESCUED!' : 'ALL SLOP\nERADICATED!'}
+          </div>
+          <div style={{
+            fontFamily: "'Orbitron', sans-serif",
+            fontSize: '0.95rem',
+            color: 'rgba(255,255,255,0.9)',
+            fontWeight: 700,
+            letterSpacing: '3px',
+          }}>
+            PERFECT! 💯
+          </div>
+        </div>
+      )}
 
       {/* SloppyGPT meltdown easter egg overlay */}
       {meltdownActive && (
@@ -520,6 +564,7 @@ export default function GameScreen({ round, roundIdx, totalRounds, totalScore, o
           @keyframes combo-decay-pulse { 0%,100%{opacity:0.65;transform:scale(1)} 50%{opacity:0.4;transform:scale(0.96)} }
           @keyframes boss-flicker { 0%,100%{opacity:1} 50%{opacity:0.65} }
           @keyframes boss-pulse { 0%,100%{box-shadow:0 0 14px rgba(239,68,68,0.3)} 50%{box-shadow:0 0 28px rgba(239,68,68,0.75)} }
+          @keyframes all-found-pop { 0%{opacity:0;transform:scale(0.92)} 15%{opacity:1;transform:scale(1)} 80%{opacity:1;transform:scale(1)} 100%{opacity:0;transform:scale(1.04)} }
         `}</style>
       </div>
 

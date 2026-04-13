@@ -3,7 +3,7 @@ import { getRoast } from '../data/slopData';
 import { playGameOver, stopMusic } from '../utils/audio';
 import FalImage from './FalImage';
 import Leaderboard from './Leaderboard';
-import { saveScoreGlobal, getLeaderboard, ACHIEVEMENTS, getUnlockedAchievements, isGlobalEnabled } from '../utils/storage';
+import { saveScoreGlobal, saveDailyScore, getLeaderboard, ACHIEVEMENTS, getUnlockedAchievements, isGlobalEnabled } from '../utils/storage';
 
 const SHARE_MESSAGES = [
   "I scored {score} pts destroying AI slop on AI Slop Royale! Can you beat me? 🤖💥",
@@ -11,13 +11,14 @@ const SHARE_MESSAGES = [
   "I spotted {score} pts worth of AI slop. 'Certainly!' is defeated. 🎯",
 ];
 
-export default function ResultScreen({ totalScore, roundScores, newAchievements = [], difficulty, totalRunTime = 0, ironFailedRound = null, totalRounds = 5, onRestart }) {
+export default function ResultScreen({ totalScore, roundScores, newAchievements = [], difficulty, totalRunTime = 0, ironFailedRound = null, totalRounds = 5, isDaily = false, onRestart }) {
   const [show, setShow] = useState(false);
   const [particles, setParticles] = useState([]);
   const [initials, setInitials] = useState('');
   const [saved, setSaved] = useState(false);
   const [savedRank, setSavedRank] = useState(null);
   const [showLeaderboard, setShowLeaderboard] = useState(false);
+  const [leaderboardMode, setLeaderboardMode] = useState(isDaily ? 'daily' : 'all');
   const inputRef = useRef(null);
   const roast = getRoast(totalScore);
   const unlockedIds = getUnlockedAchievements();
@@ -40,6 +41,7 @@ export default function ResultScreen({ totalScore, roundScores, newAchievements 
   const handleSave = async () => {
     if (initials.trim().length === 0) return;
     const rank = await saveScoreGlobal(totalScore, initials.trim(), roast.title);
+    saveDailyScore(totalScore, initials.trim(), roast.title);
     setSaved(true);
     setSavedRank(rank);
     setShowLeaderboard(true);
@@ -278,7 +280,36 @@ export default function ResultScreen({ totalScore, roundScores, newAchievements 
         </button>
         {showLeaderboard && (
           <div className="card" style={{ padding: '12px' }}>
-            <Leaderboard key={String(saved)} highlight={saved ? totalScore : null} maxRows={10} />
+            {/* Daily / All-time tabs */}
+            <div style={{ display: 'flex', gap: '6px', marginBottom: '10px' }}>
+              {[['all', '🏆 ALL-TIME'], ['daily', '📅 TODAY']].map(([m, label]) => (
+                <button
+                  key={m}
+                  onClick={() => setLeaderboardMode(m)}
+                  style={{
+                    flex: 1,
+                    padding: '6px 4px',
+                    borderRadius: '8px',
+                    border: `1px solid ${leaderboardMode === m ? '#a78bfa' : 'rgba(124,58,237,0.2)'}`,
+                    background: leaderboardMode === m ? 'rgba(124,58,237,0.15)' : 'transparent',
+                    color: leaderboardMode === m ? '#a78bfa' : '#64748b',
+                    fontFamily: "'Orbitron', sans-serif",
+                    fontSize: '0.6rem',
+                    fontWeight: 700,
+                    cursor: 'pointer',
+                    transition: 'all 0.2s',
+                  }}
+                >
+                  {label}
+                </button>
+              ))}
+            </div>
+            <Leaderboard
+              key={`${leaderboardMode}-${String(saved)}`}
+              highlight={saved ? totalScore : null}
+              maxRows={10}
+              mode={leaderboardMode}
+            />
           </div>
         )}
       </div>

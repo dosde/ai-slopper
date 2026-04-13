@@ -1,16 +1,22 @@
 import { useState, useEffect } from 'react';
-import { getGlobalLeaderboard, isGlobalEnabled } from '../utils/storage';
+import { getGlobalLeaderboard, getDailyLeaderboard, isGlobalEnabled } from '../utils/storage';
 
-export default function Leaderboard({ highlight = null, maxRows = 20 }) {
+export default function Leaderboard({ highlight = null, maxRows = 20, mode = 'all' }) {
   const [board, setBoard] = useState([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    getGlobalLeaderboard().then(data => {
-      setBoard((data || []).slice(0, maxRows));
+    setLoading(true);
+    if (mode === 'daily') {
+      setBoard(getDailyLeaderboard().slice(0, maxRows));
       setLoading(false);
-    });
-  }, [maxRows]);
+    } else {
+      getGlobalLeaderboard().then(data => {
+        setBoard((data || []).slice(0, maxRows));
+        setLoading(false);
+      });
+    }
+  }, [maxRows, mode]);
 
   if (loading) {
     return (
@@ -23,7 +29,7 @@ export default function Leaderboard({ highlight = null, maxRows = 20 }) {
   if (board.length === 0) {
     return (
       <div style={{ textAlign: 'center', padding: '16px', color: '#475569', fontSize: '0.75rem', fontFamily: "'Orbitron', sans-serif" }}>
-        NO SCORES YET — BE THE FIRST!
+        {mode === 'daily' ? 'NO SCORES TODAY YET — BE THE FIRST!' : 'NO SCORES YET — BE THE FIRST!'}
       </div>
     );
   }

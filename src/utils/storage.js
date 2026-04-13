@@ -2,9 +2,12 @@
 // Optional global leaderboard: set VITE_SCORES_URL + VITE_SCORES_KEY (Supabase)
 
 const SCORES_KEY = 'slop_royale_scores_v2';
+const DAILY_SCORES_KEY = 'slop_royale_daily_v1';
 const ACHIEVEMENTS_KEY = 'slop_royale_achievements_v2';
 const STATS_KEY = 'slop_royale_stats_v2';
 const DICT_KEY = 'slop_royale_dict_v1';
+
+const getTodayKey = () => new Date().toLocaleDateString('en-CA'); // YYYY-MM-DD
 
 const API_URL  = import.meta.env.VITE_SCORES_URL;  // e.g. https://xyz.supabase.co/rest/v1/scores
 const API_KEY  = import.meta.env.VITE_SCORES_KEY;  // Supabase anon key
@@ -73,6 +76,41 @@ export const saveScoreGlobal = async (score, initials, rank) => {
     });
   } catch { /* non-fatal */ }
   return localRank;
+};
+
+// ========== DAILY LEADERBOARD ==========
+
+export const getDailyLeaderboard = () => {
+  try {
+    const data = JSON.parse(localStorage.getItem(DAILY_SCORES_KEY) || 'null');
+    if (!data || data.date !== getTodayKey()) return [];
+    return data.scores || [];
+  } catch {
+    return [];
+  }
+};
+
+export const saveDailyScore = (score, initials, rank) => {
+  const today = getTodayKey();
+  let data;
+  try {
+    data = JSON.parse(localStorage.getItem(DAILY_SCORES_KEY) || 'null');
+  } catch {
+    data = null;
+  }
+  const entry = {
+    score,
+    initials: initials.toUpperCase().slice(0, 3).padEnd(3, '·'),
+    rank,
+    date: new Date().toLocaleDateString(),
+    timestamp: Date.now(),
+  };
+  const existing = (data && data.date === today) ? data.scores : [];
+  const scores = [...existing, entry];
+  scores.sort((a, b) => b.score - a.score);
+  const top10 = scores.slice(0, 10);
+  localStorage.setItem(DAILY_SCORES_KEY, JSON.stringify({ date: today, scores: top10 }));
+  return top10.findIndex(e => e.timestamp === entry.timestamp) + 1;
 };
 
 export const getPlayerRank = (score) => {

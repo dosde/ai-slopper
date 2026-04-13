@@ -1,6 +1,7 @@
 import { useEffect, useState, useRef } from 'react';
 import { playRoundComplete } from '../utils/audio';
 import { t, tFn } from '../i18n/index';
+import { getSlopStats } from './SlopText';
 
 // English-only fallback (other languages are in i18n/index.js)
 const SLOPPY_ROASTS = {
@@ -38,16 +39,24 @@ const getWrongClickShame = (count, lang = 'en') => {
   return { msg: fns[idx](count), color };
 };
 
-export default function RoundSummary({ round, roundScore, foundIds, totalScore, isLastRound, wrongClicks = 0, lang = 'en', onNext }) {
+export default function RoundSummary({ round, roundScore, foundIds, totalScore, isLastRound, wrongClicks = 0, timeLeft = 0, lang = 'en', onNext }) {
   const [show, setShow] = useState(false);
   const [roastText, setRoastText] = useState('');
   const [roastDone, setRoastDone] = useState(false);
+  const [showBreakdown, setShowBreakdown] = useState(false);
   const roastTimerRef = useRef(null);
 
   const foundCount = foundIds.size;
   const totalPhrases = round.slopPhrases.length;
   const missedCount = Math.max(0, totalPhrases - foundCount);
   const accuracy = totalPhrases > 0 ? Math.round((foundCount / totalPhrases) * 100) : 0;
+
+  // Reconstruct which tokens were found/missed for breakdown
+  const slopStats = getSlopStats(round, foundIds);
+  const foundTokens = slopStats.tokens.filter(t => foundIds.has(t.id));
+  const missedTokens = slopStats.tokens.filter(t => !foundIds.has(t.id));
+  const timeBonus = timeLeft > 0 ? timeLeft * 10 : 0;
+  const wrongPenalty = wrongClicks * 50;
 
   const getRating = () => {
     const r = t('ratings', lang);
@@ -91,7 +100,7 @@ export default function RoundSummary({ round, roundScore, foundIds, totalScore, 
           setRoastDone(true);
         }
       }, 32);
-    }, 900); // start after stats card animation
+    }, 900);
     return () => { clearTimeout(delay); clearInterval(roastTimerRef.current); };
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [show]);
@@ -99,7 +108,6 @@ export default function RoundSummary({ round, roundScore, foundIds, totalScore, 
   const skipRoast = () => {
     clearInterval(roastTimerRef.current);
     setRoastDone(true);
-    // Jump to full message
     setRoastText(getRoastMessage());
   };
 
@@ -111,12 +119,14 @@ export default function RoundSummary({ round, roundScore, foundIds, totalScore, 
       display: 'flex',
       flexDirection: 'column',
       alignItems: 'center',
-      justifyContent: 'center',
-      padding: '20px',
+      justifyContent: 'flex-start',
+      paddingTop: '20px',
+      padding: '20px 20px 20px',
       gap: '14px',
       position: 'relative',
       zIndex: 1,
       overflowY: 'auto',
+      WebkitOverflowScrolling: 'touch',
       background: isPerfect && show ? 'radial-gradient(ellipse at center, rgba(16,185,129,0.12) 0%, transparent 70%)' : 'transparent',
       transition: 'background 1s',
     }}>
@@ -219,7 +229,83 @@ export default function RoundSummary({ round, roundScore, foundIds, totalScore, 
             {round.inverse ? tFn('missed_human', lang)(missedCount) : tFn('missed_slop', lang)(missedCount)}
           </div>
         )}
+
+        {/* Score breakdown toggle */}
+        <button
+          onClick={() => setShowBreakdown(v => !v)}
+          style={{
+            width: '100%',
+            marginTop: '10px',
+            padding: '7px',
+            background: 'rgba(124,58,237,0.06)',
+            border: '1px solid rgba(124,58,237,0.18)',
+            borderRadius: '8px',
+            color: '#64748b',
+            fontFamily: "'Orbitron', sans-serif",
+            fontSize: '0.58rem',
+            cursor: 'pointer',
+            letterSpacing: '0.5px',
+          }}
+        >
+          {showBreakdown ? '▲ HIDE BREAKDOWN' : '▼ SCORE BREAKDOWN'}
+        </button>
       </div>
+
+      {/* Score breakdown panel */}
+      {showBreakdown && (
+        <div className="card" style={{
+          padding: '14px',
+          maxWidth: '380px',
+          width: '100%',
+          animation: 'slide-in-up 0.3s ease',
+        }}>
+          <div style={{ fontSize: '0.58rem', color: '#94a3b8', fontFamily: "'Orbitron', sans-serif", marginBottom: '10px', letterSpacing: '1px' }}>
+            📊 SCORE BREAKDOWN
+          </div>
+
+          {/* Found phrases */}
+          {foundTokens.map((token, i) => (
+            <div key={i} style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '5px 0', borderBottom: '1px solid rgba(124,58,237,0.1)' }}>
+              <div style={{ fontSize: '0.68rem', color: '#94a3b8', flex: 1, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap', marginRight: '8px' }}>
+                ✓ <span style={{ color: '#e2e8f0', fontStyle: 'italic' }}>"{token.phraseData.text}"</span>
+              </div>
+              <div style={{ fontSize: '0.68rem', color: '#10b981', fontFamily: "'Orbitron', sans-serif", flexShrink: 0 }}>
+                +{token.phraseData.score}<span style={{ opacity: 0.5 }}>×combo</span>
+              </div>
+            </div>
+          ))}
+
+          {/* Time bonus */}
+          {timeBonus > 0 && (
+            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '5px 0', borderBottom: '1px solid rgba(124,58,237,0.1)' }}>
+              <div style={{ fontSize: '0.68rem', color: '#94a3b8' }}>⏱ Time bonus ({timeLeft}s left)</div>
+              <div style={{ fontSize: '0.68rem', color: '#fbbf24', fontFamily: "'Orbitron', sans-serif" }}>+{timeBonus}</div>
+            </div>
+          )}
+
+          {/* Wrong click penalties */}
+          {wrongClicks > 0 && (
+            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '5px 0', borderBottom: '1px solid rgba(124,58,237,0.1)' }}>
+              <div style={{ fontSize: '0.68rem', color: '#94a3b8' }}>💀 Wrong clicks ×{wrongClicks}</div>
+              <div style={{ fontSize: '0.68rem', color: '#ef4444', fontFamily: "'Orbitron', sans-serif" }}>-{wrongPenalty}</div>
+            </div>
+          )}
+
+          {/* Missed phrases */}
+          {missedTokens.map((token, i) => (
+            <div key={i} style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '5px 0', borderBottom: '1px solid rgba(124,58,237,0.06)' }}>
+              <div style={{ fontSize: '0.65rem', color: '#334155', flex: 1, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap', marginRight: '8px' }}>
+                ✗ <span style={{ fontStyle: 'italic' }}>"{token.phraseData.text}"</span>
+              </div>
+              <div style={{ fontSize: '0.65rem', color: '#334155', flexShrink: 0 }}>missed</div>
+            </div>
+          ))}
+
+          <div style={{ fontSize: '0.56rem', color: '#1e293b', fontStyle: 'italic', marginTop: '8px', textAlign: 'center' }}>
+            Phrase scores were multiplied by your combo (up to 5×) during play
+          </div>
+        </div>
+      )}
 
       {/* SloppyGPT typewriter roast */}
       {show && (
@@ -247,20 +333,22 @@ export default function RoundSummary({ round, roundScore, foundIds, totalScore, 
         </div>
       )}
 
-      {/* Next button — appears after roast finishes */}
-      {roastDone && (
-        <button
-          className="btn-primary"
-          onClick={onNext}
-          style={{
-            fontSize: '1rem',
-            padding: '14px 32px',
-            animation: 'slide-in-up 0.4s ease',
-          }}
-        >
-          {isLastRound ? t('final_results', lang) : t('next_round', lang)}
-        </button>
-      )}
+      {/* Next button — reserves height always to prevent layout shift */}
+      <div style={{ minHeight: '60px', display: 'flex', alignItems: 'center', justifyContent: 'center', paddingBottom: '12px' }}>
+        {roastDone && (
+          <button
+            className="btn-primary"
+            onClick={onNext}
+            style={{
+              fontSize: '1rem',
+              padding: '14px 32px',
+              animation: 'slide-in-up 0.4s ease',
+            }}
+          >
+            {isLastRound ? t('final_results', lang) : t('next_round', lang)}
+          </button>
+        )}
+      </div>
 
       <style>{`
         @keyframes bounce-in { 0%{transform:scale(0.5);opacity:0} 60%{transform:scale(1.1)} 100%{transform:scale(1);opacity:1} }

@@ -34,11 +34,17 @@ export default function RoundIntro({ round, totalRounds, onReady, difficulty = '
       display: 'flex',
       flexDirection: 'column',
       alignItems: 'center',
-      justifyContent: 'center',
-      padding: '24px',
-      gap: '20px',
+      justifyContent: 'flex-start',
+      paddingTop: '28px',
+      padding: '28px 24px 24px',
+      gap: '16px',
       position: 'relative',
       zIndex: 1,
+      overflowY: 'auto',
+      background: isInverse
+        ? 'radial-gradient(ellipse at top, rgba(8,145,178,0.18) 0%, transparent 65%)'
+        : 'transparent',
+      transition: 'background 0.5s',
     }}>
       {/* Round badge */}
       <div style={{
@@ -73,6 +79,39 @@ export default function RoundIntro({ round, totalRounds, onReady, difficulty = '
           opacity: 0.85,
         }}>
           ⚔️ ROUND 6 / 6 — THE FINAL BOSS
+        </div>
+      )}
+
+      {/* Inverse mode warning — shown before context box for maximum visibility */}
+      {isInverse && (
+        <div style={{
+          padding: '14px 20px',
+          background: 'linear-gradient(135deg, rgba(8,145,178,0.35), rgba(14,116,144,0.15))',
+          border: '2px solid rgba(56,189,248,0.85)',
+          borderRadius: '14px',
+          textAlign: 'center',
+          maxWidth: '380px',
+          width: '100%',
+          animation: 'bounce-in 0.5s ease, inverse-glow 1.6s ease-in-out infinite',
+          boxShadow: '0 0 22px rgba(56,189,248,0.35)',
+        }}>
+          <div style={{ fontSize: '2.2rem', marginBottom: '4px' }}>🔄</div>
+          <div style={{
+            fontFamily: "'Press Start 2P', monospace",
+            fontSize: 'clamp(0.7rem, 2.5vw, 0.9rem)',
+            color: '#38bdf8',
+            textShadow: '0 0 14px #38bdf8, 0 0 28px rgba(56,189,248,0.5)',
+            letterSpacing: '2px',
+            marginBottom: '8px',
+          }}>
+            RULES REVERSED!
+          </div>
+          <div style={{ fontSize: '0.78rem', color: '#7dd3fc', lineHeight: 1.6, maxWidth: '300px', margin: '0 auto' }}>
+            The AI text is <strong style={{ color: '#38bdf8' }}>everywhere</strong> — find the <strong style={{ color: '#a5f3fc' }}>HUMAN phrases</strong> hiding inside!
+          </div>
+          <div style={{ fontSize: '0.62rem', color: '#0891b2', marginTop: '6px', fontStyle: 'italic' }}>
+            {tr('inverse_hint', lang)}
+          </div>
         </div>
       )}
 
@@ -182,20 +221,18 @@ export default function RoundIntro({ round, totalRounds, onReady, difficulty = '
         {countdown > 0 ? countdown : tr('go', lang)}
       </div>
 
-      {/* Start button — appears after countdown */}
-      {readyToStart && (
-        <button
-          className="btn-primary"
-          onClick={onReady}
-          style={{
-            fontSize: '1rem',
-            padding: '14px 36px',
-            animation: 'bounce-in 0.4s ease',
-          }}
-        >
-          ▶ START
-        </button>
-      )}
+      {/* Start button area — always reserves height to prevent layout shift */}
+      <div style={{ minHeight: '54px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+        {readyToStart && (
+          <button
+            className="btn-primary"
+            onClick={onReady}
+            style={{ fontSize: '1rem', padding: '14px 36px', animation: 'bounce-in 0.4s ease' }}
+          >
+            ▶ START
+          </button>
+        )}
+      </div>
 
       <style>{`
         @keyframes bounce-in {
@@ -205,6 +242,7 @@ export default function RoundIntro({ round, totalRounds, onReady, difficulty = '
         }
         @keyframes boss-flicker { 0%,100%{opacity:1} 50%{opacity:0.65} }
         @keyframes boss-pulse { 0%,100%{box-shadow:0 0 14px rgba(239,68,68,0.3)} 50%{box-shadow:0 0 28px rgba(239,68,68,0.75)} }
+        @keyframes inverse-glow { 0%,100%{box-shadow:0 0 16px rgba(56,189,248,0.35)} 50%{box-shadow:0 0 32px rgba(56,189,248,0.8),0 0 60px rgba(56,189,248,0.25)} }
       `}</style>
     </div>
   );

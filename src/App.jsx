@@ -53,6 +53,7 @@ export default function App() {
   const [lastRoundScore, setLastRoundScore] = useState(0);
   const [lastFoundIds, setLastFoundIds] = useState(new Set());
   const [lastWrongClicks, setLastWrongClicks] = useState(0);
+  const [lastTimeLeft, setLastTimeLeft] = useState(0);
   const [difficulty, setDifficulty] = useState('normal');
   const [lang, setLang] = useState('en');
   const [newAchievements, setNewAchievements] = useState([]);
@@ -113,6 +114,7 @@ export default function App() {
     setLastRoundScore(score);
     setLastFoundIds(foundIds);
     setLastWrongClicks(wrongClicks);
+    setLastTimeLeft(time);
     setTotalScore(prev => prev + score);
     setRoundScores(prev => [...prev, score]);
 
@@ -241,6 +243,7 @@ export default function App() {
             totalScore={totalScore}
             isLastRound={roundIdx >= rounds.length - 1}
             wrongClicks={lastWrongClicks}
+            timeLeft={lastTimeLeft}
             lang={lang}
             onNext={handleNextRound}
           />
@@ -255,6 +258,7 @@ export default function App() {
             totalRunTime={totalRunTime}
             ironFailedRound={ironFailedRound}
             totalRounds={rounds.length}
+            isDaily={isDaily}
             onRestart={handleRestart}
           />
         )}
