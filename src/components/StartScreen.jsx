@@ -57,10 +57,9 @@ export default function StartScreen({ onStart }) {
   const [mode, setMode] = useState('random'); // 'random' | 'daily'
   const [lang, setLang] = useState('en');
   const [tab, setTab] = useState('play'); // 'play' | 'scores' | 'badges'
-  const [scoresMode, setScoresMode] = useState('all'); // 'all' | 'daily'
+  const [scoresMode, setScoresMode] = useState('normal'); // 'normal' | 'chaos' | 'brainrot' | 'iron' | 'daily'
   const [titlePulse, setTitlePulse] = useState(false);
 
-  const leaderboard = getLeaderboard();
   const unlockedIds = getUnlockedAchievements();
 
   useEffect(() => {
@@ -423,35 +422,42 @@ export default function StartScreen({ onStart }) {
 
         {tab === 'scores' && (
           <div>
-            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '10px' }}>
-              <div style={{ fontSize: '0.62rem', color: '#94a3b8', fontFamily: "'Orbitron', sans-serif", letterSpacing: '1px' }}>
-                HALL OF SHAME
-              </div>
-              <div style={{ display: 'flex', gap: '5px' }}>
-                {[['all', '🏆 ALL-TIME'], ['daily', '📅 TODAY']].map(([m, label]) => (
-                  <button
-                    key={m}
-                    onClick={() => setScoresMode(m)}
-                    style={{
-                      padding: '4px 9px',
-                      borderRadius: '7px',
-                      border: `1px solid ${scoresMode === m ? '#a78bfa' : 'rgba(124,58,237,0.2)'}`,
-                      background: scoresMode === m ? 'rgba(124,58,237,0.15)' : 'transparent',
-                      color: scoresMode === m ? '#a78bfa' : '#64748b',
-                      fontFamily: "'Orbitron', sans-serif",
-                      fontSize: '0.55rem',
-                      fontWeight: 700,
-                      cursor: 'pointer',
-                      transition: 'all 0.2s',
-                    }}
-                  >
-                    {label}
-                  </button>
-                ))}
-              </div>
+            <div style={{ fontSize: '0.62rem', color: '#94a3b8', fontFamily: "'Orbitron', sans-serif", letterSpacing: '1px', marginBottom: '8px' }}>
+              HALL OF SHAME
+            </div>
+            {/* Per-difficulty + daily tabs */}
+            <div style={{ display: 'flex', gap: '4px', marginBottom: '10px', flexWrap: 'wrap' }}>
+              {[
+                ['normal',   '🟢 NORMAL'],
+                ['chaos',    '⚡ CHAOS'],
+                ['brainrot', '🧠 BRAIN'],
+                ['iron',     '☠ IRON'],
+                ['daily',    '📅 TODAY'],
+              ].map(([m, label]) => (
+                <button
+                  key={m}
+                  onClick={() => setScoresMode(m)}
+                  style={{
+                    flex: '1 1 0',
+                    padding: '5px 4px',
+                    borderRadius: '7px',
+                    border: `1px solid ${scoresMode === m ? '#a78bfa' : 'rgba(124,58,237,0.2)'}`,
+                    background: scoresMode === m ? 'rgba(124,58,237,0.15)' : 'transparent',
+                    color: scoresMode === m ? '#a78bfa' : '#64748b',
+                    fontFamily: "'Orbitron', sans-serif",
+                    fontSize: '0.5rem',
+                    fontWeight: 700,
+                    cursor: 'pointer',
+                    transition: 'all 0.2s',
+                    whiteSpace: 'nowrap',
+                  }}
+                >
+                  {label}
+                </button>
+              ))}
             </div>
             <Leaderboard maxRows={10} mode={scoresMode} />
-            {leaderboard.length > 0 && (
+            {getLeaderboard(scoresMode === 'daily' ? undefined : scoresMode).length > 0 && (
               <div style={{ textAlign: 'center', marginTop: '12px' }}>
                 <button className="btn-primary" onClick={handleStart} style={{ fontSize: '0.85rem', padding: '12px 28px' }}>
                   🎮 BEAT THE RECORD

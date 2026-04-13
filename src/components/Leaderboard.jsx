@@ -1,7 +1,8 @@
 import { useState, useEffect } from 'react';
 import { getGlobalLeaderboard, getDailyLeaderboard, isGlobalEnabled } from '../utils/storage';
 
-export default function Leaderboard({ highlight = null, maxRows = 20, mode = 'all' }) {
+// mode: 'daily' | 'normal' | 'chaos' | 'brainrot' | 'iron'
+export default function Leaderboard({ highlight = null, maxRows = 20, mode = 'normal' }) {
   const [board, setBoard] = useState([]);
   const [loading, setLoading] = useState(true);
 
@@ -11,7 +12,7 @@ export default function Leaderboard({ highlight = null, maxRows = 20, mode = 'al
       setBoard(getDailyLeaderboard().slice(0, maxRows));
       setLoading(false);
     } else {
-      getGlobalLeaderboard().then(data => {
+      getGlobalLeaderboard(mode).then(data => {
         setBoard((data || []).slice(0, maxRows));
         setLoading(false);
       });

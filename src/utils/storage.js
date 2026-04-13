@@ -4,7 +4,8 @@
 //   VITE_SCORES_KEY  — Supabase anon key
 //   VITE_SUBMIT_URL  — Edge Function URL for writes (validates + uses service role)
 
-const SCORES_KEY = 'slop_royale_scores_v2';
+// Per-difficulty local leaderboard keys (v3 introduces difficulty separation)
+const DIFFICULTY_KEY = (d) => `slop_royale_scores_${d || 'normal'}_v3`;
 const DAILY_SCORES_KEY = 'slop_royale_daily_v1';
 const ACHIEVEMENTS_KEY = 'slop_royale_achievements_v2';
 const STATS_KEY = 'slop_royale_stats_v2';
@@ -23,60 +24,62 @@ const apiHeaders = () => ({
 
 // ========== LEADERBOARD ==========
 
-export const getLeaderboard = () => {
+export const getLeaderboard = (difficulty = 'normal') => {
   try {
-    return JSON.parse(localStorage.getItem(SCORES_KEY) || '[]');
+    return JSON.parse(localStorage.getItem(DIFFICULTY_KEY(difficulty)) || '[]');
   } catch {
     return [];
   }
 };
 
 // Fetch global scores (async). Falls back to local on any error.
-export const getGlobalLeaderboard = async () => {
-  if (!API_URL) return getLeaderboard();
+export const getGlobalLeaderboard = async (difficulty = 'normal') => {
+  if (!API_URL) return getLeaderboard(difficulty);
   try {
-    const res = await fetch(`${API_URL}?order=score.desc&limit=20`, { headers: apiHeaders() });
+    const url = `${API_URL}?order=score.desc&limit=20${difficulty !== 'normal' ? `&difficulty=eq.${difficulty}` : ''}`;
+    const res = await fetch(url, { headers: apiHeaders() });
     if (!res.ok) throw new Error(res.status);
     return await res.json();
   } catch {
-    return getLeaderboard();
+    return getLeaderboard(difficulty);
   }
 };
 
 // Returns true if global scores are configured
 export const isGlobalEnabled = () => Boolean(API_URL);
 
-export const saveScore = (score, initials, rank) => {
-  const board = getLeaderboard();
+export const saveScore = (score, initials, rank, difficulty = 'normal') => {
+  const board = getLeaderboard(difficulty);
   const entry = {
     score,
     initials: initials.toUpperCase().slice(0, 6).padEnd(3, '·'),
     rank,
+    difficulty,
     date: new Date().toLocaleDateString(),
     timestamp: Date.now(),
   };
   board.push(entry);
   board.sort((a, b) => b.score - a.score);
   const top10 = board.slice(0, 10);
-  localStorage.setItem(SCORES_KEY, JSON.stringify(top10));
+  localStorage.setItem(DIFFICULTY_KEY(difficulty), JSON.stringify(top10));
   return top10.findIndex(e => e.timestamp === entry.timestamp) + 1;
 };
 
 // Save to global backend and local. Returns local rank position.
 // Writes go through the Edge Function (VITE_SUBMIT_URL) which validates server-side.
 // Falls back to direct REST insert if no edge function is configured.
-export const saveScoreGlobal = async (score, initials, rank) => {
-  const localRank = saveScore(score, initials, rank);
+export const saveScoreGlobal = async (score, initials, rank, difficulty = 'normal') => {
+  const localRank = saveScore(score, initials, rank, difficulty);
   if (!API_URL) return localRank;
   const payload = {
     score,
     initials: initials.toUpperCase().slice(0, 6).padEnd(3, '·'),
     rank,
+    difficulty,
     date: new Date().toLocaleDateString(),
     timestamp: Date.now(),
   };
   try {
-    // Edge function also needs the anon key in Authorization header (Supabase gateway requirement)
     await fetch(SUBMIT_URL || API_URL, {
       method: 'POST',
       headers: apiHeaders(),
@@ -121,8 +124,8 @@ export const saveDailyScore = (score, initials, rank) => {
   return top10.findIndex(e => e.timestamp === entry.timestamp) + 1;
 };
 
-export const getPlayerRank = (score) => {
-  const board = getLeaderboard();
+export const getPlayerRank = (score, difficulty = 'normal') => {
+  const board = getLeaderboard(difficulty);
   const position = board.filter(e => e.score > score).length + 1;
   return position;
 };

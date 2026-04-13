@@ -655,13 +655,15 @@ const restartInverseLoop = () => {
 export const startInverseMusic = () => {
   if (isInverseMusicPlaying) return;
   isInverseMusicPlaying = true;
-  const ctx = getCtx();
-  if (ctx.state === 'suspended') ctx.resume();
-  const ig = getInverseGain();
-  ig.gain.cancelScheduledValues(ctx.currentTime);
-  ig.gain.setValueAtTime(0, ctx.currentTime);
-  ig.gain.linearRampToValueAtTime(1.0, ctx.currentTime + 0.20);
-  restartInverseLoop();
+  withRunningCtx(() => {
+    if (!isInverseMusicPlaying) return;
+    const ctx = getCtx();
+    const ig = getInverseGain();
+    ig.gain.cancelScheduledValues(ctx.currentTime);
+    ig.gain.setValueAtTime(0, ctx.currentTime);
+    ig.gain.linearRampToValueAtTime(1.0, ctx.currentTime + 0.20);
+    restartInverseLoop();
+  });
 };
 
 export const stopInverseMusic = () => {
@@ -791,16 +793,24 @@ const restartTitleChillLoop = () => {
 };
 
 // ── Public API ────────────────────────────────────────────────────────────────
+
+// Resume the AudioContext if needed, then call fn. Schedules fn synchronously
+// if context is already running, otherwise awaits the resume promise so notes
+// are never scheduled against a frozen AudioContext clock.
+const withRunningCtx = (fn) => {
+  const ctx = getCtx();
+  if (ctx.state === 'running') { fn(); return; }
+  ctx.resume().then(() => fn()).catch(() => {});
+};
+
 export const startMusic = () => {
   if (isMusicPlaying) return;
   isMusicPlaying = true;
-  const ctx = getCtx();
-  if (ctx.state === 'suspended') ctx.resume();
-  if (currentMusicStyle === 'pleasant') {
-    restartPleasantLoop();
-  } else {
-    restartMusicLoop(1.0);
-  }
+  withRunningCtx(() => {
+    if (!isMusicPlaying) return; // stopped while awaiting resume
+    if (currentMusicStyle === 'pleasant') restartPleasantLoop();
+    else restartMusicLoop(1.0);
+  });
 };
 
 export const stopMusic = () => {
@@ -814,22 +824,18 @@ export const stopMusic = () => {
 export const startTitleMusic = () => {
   if (isTitleMusicPlaying) return;
   isTitleMusicPlaying = true;
-  const ctx = getCtx();
-  if (ctx.state === 'suspended') ctx.resume();
   // Disconnect the old gain node so any still-running oscillators from the
   // previous session play into silence instead of bleeding into the new one.
-  if (titleGain) {
-    titleGain.disconnect();
-    titleGain = null;
-  }
-  const tg = getTitleGain(); // fresh gain node connected to masterGain
-  tg.gain.setValueAtTime(0.0001, ctx.currentTime);
-  tg.gain.linearRampToValueAtTime(1.0, ctx.currentTime + 0.15);
-  if (currentMusicStyle === 'pleasant') {
-    restartTitleChillLoop();
-  } else {
-    restartTitleSloppyLoop();
-  }
+  if (titleGain) { titleGain.disconnect(); titleGain = null; }
+  withRunningCtx(() => {
+    if (!isTitleMusicPlaying) return;
+    const ctx = getCtx();
+    const tg = getTitleGain(); // fresh gain node connected to masterGain
+    tg.gain.setValueAtTime(0.0001, ctx.currentTime);
+    tg.gain.linearRampToValueAtTime(1.0, ctx.currentTime + 0.15);
+    if (currentMusicStyle === 'pleasant') restartTitleChillLoop();
+    else restartTitleSloppyLoop();
+  });
 };
 
 export const stopTitleMusic = () => {
@@ -846,15 +852,11 @@ export const stopTitleMusic = () => {
 
 export const startBossMusic = () => {
   // Stop regular music (if any) and start boss music.
-  // Callers are responsible for checking musicEnabled — no guard here so that
-  // boss music works correctly on round 2+ (when isMusicPlaying is already false
-  // because the previous round's cleanup called stopMusic).
+  // Callers are responsible for checking musicEnabled.
   isMusicPlaying = false;
   if (musicInterval) { clearInterval(musicInterval); musicInterval = null; }
   isBossMusicPlaying = true;
-  const ctx = getCtx();
-  if (ctx.state === 'suspended') ctx.resume();
-  restartBossLoop();
+  withRunningCtx(() => { if (isBossMusicPlaying) restartBossLoop(); });
 };
 
 // Speed up / slow down sloppy music tempo (no-op for other styles)

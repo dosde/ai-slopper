@@ -18,7 +18,7 @@ export default function ResultScreen({ totalScore, roundScores, newAchievements 
   const [saved, setSaved] = useState(false);
   const [savedRank, setSavedRank] = useState(null);
   const [showLeaderboard, setShowLeaderboard] = useState(false);
-  const [leaderboardMode, setLeaderboardMode] = useState(isDaily ? 'daily' : 'all');
+  const [leaderboardMode, setLeaderboardMode] = useState(isDaily ? 'daily' : difficulty);
   const inputRef = useRef(null);
   const roast = getRoast(totalScore);
   const unlockedIds = getUnlockedAchievements();
@@ -40,7 +40,7 @@ export default function ResultScreen({ totalScore, roundScores, newAchievements 
 
   const handleSave = async () => {
     if (initials.trim().length === 0) return;
-    const rank = await saveScoreGlobal(totalScore, initials.trim(), roast.title);
+    const rank = await saveScoreGlobal(totalScore, initials.trim(), roast.title, difficulty);
     saveDailyScore(totalScore, initials.trim(), roast.title);
     setSaved(true);
     setSavedRank(rank);
@@ -58,7 +58,7 @@ export default function ResultScreen({ totalScore, roundScores, newAchievements 
 
   const maxRoundScore = Math.max(...roundScores);
   const bestRound = roundScores.indexOf(maxRoundScore) + 1;
-  const isHighScore = getLeaderboard().length === 0 || totalScore > (getLeaderboard()[0]?.score ?? 0);
+  const isHighScore = getLeaderboard(difficulty).length === 0 || totalScore > (getLeaderboard(difficulty)[0]?.score ?? 0);
 
   return (
     <div className="result-screen-root" style={{
@@ -310,9 +310,9 @@ export default function ResultScreen({ totalScore, roundScores, newAchievements 
         </button>
         {showLeaderboard && (
           <div className="card" style={{ padding: '12px' }}>
-            {/* Daily / All-time tabs */}
-            <div style={{ display: 'flex', gap: '6px', marginBottom: '10px' }}>
-              {[['all', '🏆 ALL-TIME'], ['daily', '📅 TODAY']].map(([m, label]) => (
+            {/* Mode tabs: current difficulty + daily */}
+            <div style={{ display: 'flex', gap: '5px', marginBottom: '10px' }}>
+              {[[difficulty, `🏆 ${difficulty.toUpperCase()}`], ['daily', '📅 TODAY']].map(([m, label]) => (
                 <button
                   key={m}
                   onClick={() => setLeaderboardMode(m)}

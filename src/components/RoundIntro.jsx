@@ -1,10 +1,10 @@
 import { useEffect, useState } from 'react';
 import FalImage from './FalImage';
 import { t as tr } from '../i18n/index';
-import { playCountdownTick, playCountdownGo } from '../utils/audio';
+import { playCountdownTick, playCountdownGo, startMusic } from '../utils/audio';
 
 
-export default function RoundIntro({ round, totalRounds, onReady, difficulty = 'normal', lang = 'en' }) {
+export default function RoundIntro({ round, totalRounds, onReady, difficulty = 'normal', lang = 'en', musicEnabled = true }) {
   const isInverse = !!round?.inverse;
   const isBoss = !!round?.boss;
   const isBrainrot = difficulty === 'brainrot';
@@ -12,6 +12,17 @@ export default function RoundIntro({ round, totalRounds, onReady, difficulty = '
   const [countdown, setCountdown] = useState(5);
   const [readyToStart, setReadyToStart] = useState(false);
   const [thinkingIdx, setThinkingIdx] = useState(0);
+
+  // Start background music during countdown (covers the silent gap between rounds 2+).
+  // startMusic() is a no-op if music is already playing or musicEnabled is false.
+  useEffect(() => {
+    const isBossRound = !!round?.boss;
+    const isInverseRound = !!round?.inverse;
+    // Boss/inverse tracks are started by GameScreen on mount; only start regular
+    // game music here to fill the countdown gap for normal rounds.
+    if (musicEnabled && !isBossRound && !isInverseRound) startMusic();
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   useEffect(() => {
     if (countdown <= 0) {

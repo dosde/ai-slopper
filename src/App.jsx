@@ -220,6 +220,7 @@ export default function App() {
             totalRounds={rounds.length}
             difficulty={difficulty}
             lang={lang}
+            musicEnabled={musicEnabled}
             onReady={handleRoundReady}
           />
         )}
