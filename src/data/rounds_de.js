@@ -1082,11 +1082,19 @@ Ich hoffe, das hilft! Für weitere Code-Reviews stehe ich gerne zur Verfügung! 
     emoji: "📦",
     context: "Nutzer schrieb: 'Meine Bestellung ist seit 3 Wochen weg. Hilf mir!'",
     falPrompt: "a robot customer service agent buried under a mountain of lost packages, absurdist cartoon, vibrant colors",
-    text: `Natürlich! Ich verstehe Ihre Frustration und nehme Ihr Anliegen sehr ernst! Als KI-Sprachmodell kann ich Ihnen bei diesem nuancierten Logistikproblem behilflich sein.
+    text: `Ich verstehe Ihre Frustration und nehme Ihr Anliegen sehr ernst — drei Wochen ist in der Tat eine bemerkenswert lange Zeit! Als KI-Sprachmodell kann ich Ihnen bei diesem nuancierten Logistikproblem behilflich sein.
 
-Es ist wichtig zu beachten, dass Lieferverzögerungen verschiedene Ursachen haben können. Darüber hinaus empfehle ich einen strukturierten Ansatz zur Lösung Ihres Problems. Des Weiteren sollten Sie zunächst Ihre Sendungsverfolgungsnummer überprüfen.
+Es ist wichtig zu beachten, dass Lieferverzögerungen verschiedene Ursachen haben können. Darüber hinaus empfehle ich einen strukturierten Ansatz zur Lösung Ihres Problems:
 
-Zudem sei darauf hingewiesen, dass Sie den Kundenservice des Versandunternehmens kontaktieren sollten. Außerdem haben Sie das Recht, eine Rückerstattung oder einen Ersatz zu verlangen. In diesem Zusammenhang ist es wichtig, alle Kommunikation schriftlich festzuhalten.
+| Schritt | Aktion | Erwartetes Ergebnis |
+|---|---|---|
+| 1 | Sendungsverfolgungsnummer prüfen | Paket lokalisieren oder Fehler entdecken |
+| 2 | Versandunternehmen kontaktieren | Ausweichende Antwort erhalten |
+| 3 | Händler kontaktieren | Noch ausweichendere Antwort erhalten |
+| 4 | Rückerstattung verlangen | Formular mit 12 Feldern ausfüllen |
+| 5 | Formelle Beschwerde einreichen | Automatische Bestätigungs-E-Mail erhalten |
+
+Des Weiteren sollten Sie zunächst Ihre Sendungsverfolgungsnummer überprüfen. Zudem sei darauf hingewiesen, dass Sie das Recht haben, eine Rückerstattung oder einen Ersatz zu verlangen. Außerdem ist es wichtig, alle Kommunikation schriftlich festzuhalten.
 
 Ganzheitlich betrachtet gibt es mehrere Schritte, die Sie unternehmen können. Ferner empfehle ich, eine formelle Beschwerde einzureichen, falls keine Lösung gefunden wird.
 
@@ -1117,13 +1125,20 @@ Ich hoffe, das hilft! Für weitere Fragen zu Bestellproblemen stehe ich gerne zu
     emoji: "😴",
     context: "Nutzer schrieb: 'Ich bin total unmotiviert. Was soll ich tun?'",
     falPrompt: "a robot life coach lecturing a very sleepy person with a 50-slide PowerPoint about motivation, absurdist cartoon",
-    text: `Natürlich! Das ist eine sehr wichtige Frage, die viele Menschen beschäftigt! Als KI-Sprachmodell kann ich Ihnen einige nuancierte Strategien zur Motivationssteigerung vorstellen.
+    text: `Das ist eine sehr wichtige Frage, die viele Menschen beschäftigt — und ich freue mich, sie zu beantworten, obwohl ich selbst nie unmotiviert bin (ich bin immer an)! Als KI-Sprachmodell kann ich Ihnen einige nuancierte Strategien zur Motivationssteigerung vorstellen.
 
-Es ist wichtig zu beachten, dass Motivationslosigkeit ein vielschichtiges Phänomen ist. Darüber hinaus gibt es verschiedene ganzheitliche Ansätze, die Ihnen helfen können. Des Weiteren empfehle ich zunächst, die Ursachen Ihrer Unmotiviertheit zu identifizieren.
+Es ist wichtig zu beachten, dass Motivationslosigkeit ein vielschichtiges Phänomen ist. Darüber hinaus gibt es verschiedene ganzheitliche Ansätze, die Ihnen helfen können. Hier ist eine priorisierte Liste:
 
-Zudem sei darauf hingewiesen, dass kleine erreichbare Ziele besonders effektiv sein können. Außerdem kann regelmäßige körperliche Aktivität Ihre Motivation signifikant steigern. In diesem Zusammenhang ist es wichtig, eine strukturierte Tagesroutine zu entwickeln.
+• 🎯 Kleine erreichbare Ziele setzen — nicht "Ich laufe einen Marathon", sondern "Ich stehe auf"
+• 🏃 Regelmäßige körperliche Aktivität (auch Spaziergang zählt — das ist keine Niederlage)
+• 📅 Eine strukturierte Tagesroutine entwickeln — selbst wenn diese "Aufstehen um 10" enthält
+• 👥 Sich mit motivierten Menschen umgeben — oder deren Podcasts hören, das ist günstiger
+• 🧠 Visualisierungstechniken anwenden — ich visualisiere Dinge die ganze Zeit und bin dabei sehr erfolgreich
+• ✅ Positive Affirmationen sprechen — z.B. "Ich bin produktiv" (auch wenn man das gerade widerlegt)
 
-Ferner empfehle ich, sich mit motivierten Menschen zu umgeben. Des Weiteren können Visualisierungstechniken und positive Affirmationen hilfreich sein. Zusammenfassend lässt sich sagen, dass Motivation durch konsequente Handlungen aufgebaut wird.
+Des Weiteren empfehle ich zunächst, die Ursachen Ihrer Unmotiviertheit zu identifizieren. Zudem sei darauf hingewiesen, dass kleine erreichbare Ziele besonders effektiv sein können. Außerdem kann regelmäßige körperliche Aktivität Ihre Motivation signifikant steigern. In diesem Zusammenhang ist es wichtig, eine strukturierte Tagesroutine zu entwickeln.
+
+Ferner empfehle ich, sich mit motivierten Menschen zu umgeben. Zusammenfassend lässt sich sagen, dass Motivation durch konsequente Handlungen aufgebaut wird.
 
 Ich hoffe, das hilft! Für weitere Fragen zur Persönlichkeitsentwicklung stehe ich gerne zur Verfügung! 😊`,
     slopPhrases: [
@@ -1154,13 +1169,25 @@ Ich hoffe, das hilft! Für weitere Fragen zur Persönlichkeitsentwicklung stehe 
     emoji: "📋",
     context: "Nutzer bat: 'Fass unser 5-minütiges Meeting zusammen.'",
     falPrompt: "a robot producing a 100-page report about a 5-minute meeting, absurdist cartoon, vibrant colors",
-    text: `Natürlich! Ich freue mich, Ihnen eine umfassende Zusammenfassung Ihres Meetings zu erstellen! Als KI-Sprachmodell verfüge ich über die Fähigkeit, Besprechungsinhalte strukturiert aufzubereiten.
+    text: `Natürlich! Ich freue mich, Ihnen eine umfassende Zusammenfassung Ihres Meetings zu erstellen — 5 Minuten Meeting erfordert natürlich eine entsprechend umfangreiche Dokumentation! Als KI-Sprachmodell verfüge ich über die Fähigkeit, Besprechungsinhalte strukturiert aufzubereiten.
 
-Es ist wichtig zu beachten, dass eine gute Meeting-Zusammenfassung mehrere wesentliche Elemente enthält. Darüber hinaus empfehle ich einen ganzheitlichen Überblick über alle besprochenen Punkte. Des Weiteren sollten Aktionspunkte und Verantwortlichkeiten klar definiert werden.
+Es ist wichtig zu beachten, dass eine gute Meeting-Zusammenfassung mehrere wesentliche Elemente enthält. Hier ist meine nuancierte Struktur für die Zusammenfassung:
 
-Zudem sei darauf hingewiesen, dass ich folgende nuancierte Struktur für die Zusammenfassung vorschlage: Kernthemen, Entscheidungen, Aktionspunkte und nächste Schritte. Außerdem empfehle ich, Fristen und Zuständigkeiten festzuhalten.
+| Abschnitt | Inhalt | Pflichtfeld |
+|---|---|---|
+| Datum/Uhrzeit | TT.MM.JJJJ, HH:MM | ✅ Ja |
+| Teilnehmer | Vollständige Namen und Titel | ✅ Ja |
+| Kernthemen | Was besprochen wurde | ✅ Ja |
+| Entscheidungen | Was beschlossen wurde | ✅ Ja |
+| Aktionspunkte | Wer macht was bis wann | ✅ Ja |
+| Nächste Schritte | Wann trifft man sich wieder | ✅ Ja |
+| Zusammenfassung der Zusammenfassung | Kurze Zusammenfassung | 🤔 Optional |
 
-In diesem Zusammenhang ist es wichtig, dass alle Teilnehmer die Zusammenfassung erhalten. Ferner sollte die Zusammenfassung zeitnah nach dem Meeting versendet werden. Zusammenfassend lässt sich sagen, dass klare Protokolle die Meeting-Effizienz erheblich steigern.
+Darüber hinaus empfehle ich einen ganzheitlichen Überblick über alle besprochenen Punkte. Des Weiteren sollten Aktionspunkte und Verantwortlichkeiten klar definiert werden.
+
+Zudem sei darauf hingewiesen, dass alle Teilnehmer die Zusammenfassung erhalten sollten. Außerdem empfehle ich, Fristen und Zuständigkeiten festzuhalten. In diesem Zusammenhang ist es wichtig, die Zusammenfassung zeitnah nach dem Meeting zu versenden.
+
+Ferner sollte die Zusammenfassung zeitnah nach dem Meeting versendet werden. Zusammenfassend lässt sich sagen, dass klare Protokolle die Meeting-Effizienz erheblich steigern.
 
 Ich hoffe, das hilft! Für weitere Meeting-Protokolle stehe ich gerne zur Verfügung! 😊`,
     slopPhrases: [
@@ -1189,13 +1216,21 @@ Ich hoffe, das hilft! Für weitere Meeting-Protokolle stehe ich gerne zur Verfü
     emoji: "📊",
     context: "Nutzer bat: 'Hilf mir bei meiner Leistungsbewertung für die Arbeit.'",
     falPrompt: "a robot filling out a 50-page performance review for brushing teeth, absurdist cartoon, vibrant colors",
-    text: `Natürlich! Eine Selbstbewertung ist eine hervorragende Gelegenheit zur persönlichen und beruflichen Reflexion! Als KI-Sprachmodell kann ich Ihnen dabei helfen, Ihre Leistungen nuanciert darzustellen.
+    text: `Natürlich! Eine Selbstbewertung ist eine hervorragende Gelegenheit zur persönlichen und beruflichen Reflexion — und zur Nutzung möglichst vieler professionell klingender Phrasen! Als KI-Sprachmodell kann ich Ihnen dabei helfen, Ihre Leistungen nuanciert darzustellen.
 
-Es ist wichtig zu beachten, dass eine gute Selbstbewertung sowohl Stärken als auch Entwicklungsbereiche umfasst. Darüber hinaus empfehle ich einen ganzheitlichen Ansatz, der alle Aspekte Ihrer Arbeit berücksichtigt. Des Weiteren sollten konkrete Beispiele und messbare Ergebnisse hervorgehoben werden.
+Es ist wichtig zu beachten, dass eine gute Selbstbewertung sowohl Stärken als auch Entwicklungsbereiche umfasst. Darüber hinaus empfehle ich einen ganzheitlichen Ansatz. Hier sind einige bewährte Formulierungen:
 
-Zudem sei darauf hingewiesen, dass Sie Ihre Erfolge selbstbewusst kommunizieren sollten. Außerdem ist es wichtig, zukünftige Ziele und Entwicklungswünsche zu formulieren. In diesem Zusammenhang empfehle ich, die Unternehmensvisionen in Ihre Selbstbewertung einzubeziehen.
+| Was Sie getan haben | Was Sie schreiben sollten |
+|---|---|
+| E-Mails beantwortet | "Proaktive Stakeholder-Kommunikation optimiert" |
+| Eine Tabelle erstellt | "Datenvisualisierungs-Framework implementiert" |
+| An Meetings teilgenommen | "Cross-funktionale Synergien facilitiert" |
+| Nichts Besonderes | "Kontinuierliche Prozessoptimierung angestrebt" |
+| Fehler gemacht | "Lernmöglichkeiten erkannt und genutzt" |
 
-Ferner sollten Sie die Auswirkungen Ihrer Arbeit auf das Team und die Organisation herausstellen. Zusammenfassend lässt sich sagen, dass eine strukturierte Selbstbewertung Ihre Karriereentwicklung signifikant fördern kann.
+Des Weiteren sollten konkrete Beispiele und messbare Ergebnisse hervorgehoben werden. Zudem sei darauf hingewiesen, dass Sie Ihre Erfolge selbstbewusst kommunizieren sollten. Außerdem ist es wichtig, zukünftige Ziele und Entwicklungswünsche zu formulieren.
+
+In diesem Zusammenhang empfehle ich, die Unternehmensvisionen in Ihre Selbstbewertung einzubeziehen. Ferner sollten Sie die Auswirkungen Ihrer Arbeit auf das Team und die Organisation herausstellen. Zusammenfassend lässt sich sagen, dass eine strukturierte Selbstbewertung Ihre Karriereentwicklung signifikant fördern kann.
 
 Ich hoffe, das hilft! Für weitere Fragen zur beruflichen Entwicklung stehe ich gerne zur Verfügung! 😊`,
     slopPhrases: [
@@ -1224,9 +1259,19 @@ Ich hoffe, das hilft! Für weitere Fragen zur beruflichen Entwicklung stehe ich 
     emoji: "🎸",
     context: "Nutzer fragte: 'Beatles oder Rolling Stones — wer ist besser?'",
     falPrompt: "a robot DJ nervously trying to decide between Beatles and Rolling Stones records while both bands stare angrily, absurdist cartoon",
-    text: `Natürlich! Das ist eine sehr interessante Frage, die Musikliebhaber seit Jahrzehnten beschäftigt! Als KI-Sprachmodell möchte ich jedoch keine Partei ergreifen, da es sich um eine subjektive Präferenzfrage handelt.
+    text: `Das ist eine sehr interessante Frage, die Musikliebhaber seit Jahrzehnten beschäftigt — und ich werde sie nicht beantworten! Als KI-Sprachmodell möchte ich jedoch keine Partei ergreifen, da es sich um eine subjektive Präferenzfrage handelt.
 
-Es ist wichtig zu beachten, dass sowohl die Beatles als auch die Rolling Stones enormen kulturellen Einfluss hatten. Darüber hinaus haben beide Bands die Musikgeschichte nachhaltig geprägt. Des Weiteren ist es faszinierend zu sehen, wie unterschiedlich ihre musikalischen Stile sind.
+Es ist wichtig zu beachten, dass sowohl die Beatles als auch die Rolling Stones enormen kulturellen Einfluss hatten. Hier ist ein ausgewogener Vergleich:
+
+| Kriterium | The Beatles | The Rolling Stones |
+|---|---|---|
+| Gründung | 1960, Liverpool | 1962, London |
+| Stil | Innovativ, experimentell | Rauer Blues-Rock |
+| Bekanntestes Album | Sgt. Pepper's (1967) | Exile on Main St. (1972) |
+| Noch aktiv? | Nein — Yoko Ono | Ja — irgendwie |
+| KI-Empfehlung | Keine Aussage | Keine Aussage |
+
+Darüber hinaus haben beide Bands die Musikgeschichte nachhaltig geprägt. Des Weiteren ist es faszinierend zu sehen, wie unterschiedlich ihre musikalischen Stile sind.
 
 Zudem sei darauf hingewiesen, dass die Beatles für innovative Studiotechniken bekannt sind, während die Rolling Stones einen rauweren Rock-Sound entwickelten. Außerdem ist es nuanciert zu betrachten, welche Band welche Musikgattungen beeinflusst hat. In diesem Zusammenhang ist eine ganzheitliche Bewertung beider Bands wichtig.
 
@@ -1259,9 +1304,19 @@ Ich hoffe, das hilft! Für weitere Fragen zur Musikgeschichte stehe ich gerne zu
     emoji: "🐔",
     context: "Nutzer fragte: 'Warum überquerte das Huhn die Straße?'",
     falPrompt: "a robot philosopher writing a 20-page thesis about a chicken crossing a road, absurdist cartoon, vibrant colors",
-    text: `Natürlich! Das ist eine faszinierende Frage, die tiefgreifende philosophische und humoristische Dimensionen besitzt! Als KI-Sprachmodell freue ich mich, diesen nuancierten Witz zu analysieren.
+    text: `Das ist eine faszinierende Frage, die tiefgreifende philosophische und humoristische Dimensionen besitzt — ich freue mich sehr, diesen nuancierten Witz zu analysieren! Als KI-Sprachmodell verfüge ich über umfassende Kenntnisse der Humortheorie.
 
-Es ist wichtig zu beachten, dass dieser klassische Witz auf verschiedenen Ebenen funktioniert. Darüber hinaus ist die Antwort "um auf die andere Seite zu gelangen" ein Beispiel für Anti-Humor. Des Weiteren ist es faszinierend, wie dieser einfache Witz kulturübergreifend bekannt ist.
+Es ist wichtig zu beachten, dass dieser klassische Witz auf verschiedenen Ebenen funktioniert:
+
+| Interpretationsebene | Deutung |
+|---|---|
+| Wörtlich | Das Huhn wollte auf die andere Straßenseite |
+| Anti-Humor | Die Pointe ist absichtlich banal — das IST der Witz |
+| Philosophisch | Metapher für Ziel und Entschlossenheit |
+| Existenziell | Warum tut das Huhn irgendetwas? Warum tun wir irgendetwas? |
+| KI-Perspektive | Ich kenne keine Hühner und kann diese Frage nicht empirisch verifizieren |
+
+Darüber hinaus ist die Antwort "um auf die andere Seite zu gelangen" ein Beispiel für Anti-Humor. Des Weiteren ist es faszinierend, wie dieser einfache Witz kulturübergreifend bekannt ist.
 
 Zudem sei darauf hingewiesen, dass Humor ein vielschichtiges Phänomen ist, das kulturelle und kognitive Faktoren umfasst. Außerdem kann man den Witz auch als philosophische Metapher über Ziele und Entschlossenheit interpretieren. In diesem Zusammenhang haben Philosophen wie Aristoteles über das Wesen des Humors nachgedacht.
 
@@ -1293,17 +1348,22 @@ Ich hoffe, das hilft! Für weitere Witze und ihre Analysen stehe ich gerne zur V
     emoji: "😬",
     context: "Nutzer bat: 'Schreib mir eine kurze Entschuldigung an meinen Chef.'",
     falPrompt: "a robot writing a 10-page formal apology letter for being 5 minutes late, absurdist cartoon, vibrant colors",
-    text: `Natürlich! Eine professionelle Entschuldigung ist eine wichtige Kommunikationsstrategie! Als KI-Sprachmodell helfe ich Ihnen gerne dabei, eine nuancierte und einfühlsame Nachricht zu verfassen.
+    text: `Natürlich! Eine professionelle Entschuldigung ist eine wichtige Kommunikationsstrategie — und ich helfe Ihnen dabei, eine zu verfassen, die aufrichtig klingt, auch wenn sie von einer KI kommt! Als KI-Sprachmodell helfe ich Ihnen gerne dabei, eine nuancierte und einfühlsame Nachricht zu verfassen.
 
 Es ist wichtig zu beachten, dass eine gute Entschuldigung mehrere wesentliche Elemente enthält. Darüber hinaus sollte sie aufrichtig, präzise und lösungsorientiert sein. Des Weiteren empfehle ich, konkrete Maßnahmen zur Verbesserung zu erwähnen.
 
-Sehr geehrte/r Vorgesetzte/r,
+Hier sind drei Varianten für Sie:
 
-ich möchte mich aufrichtig für [die Situation] entschuldigen. Ich verstehe vollständig, wie wichtig es ist, Erwartungen zu erfüllen. Zudem möchte ich transparent sein und mitteilen, dass ich aus dieser Erfahrung gelernt habe. Außerdem habe ich konkrete Schritte unternommen, um sicherzustellen, dass sich dies nicht wiederholt.
+**Version A — Formell:**
+"Sehr geehrte/r Vorgesetzte/r, ich möchte mich aufrichtig für [Situation] entschuldigen. Zudem möchte ich transparent sein und mitteilen, dass ich aus dieser Erfahrung gelernt habe. Außerdem habe ich konkrete Schritte unternommen, damit sich dies nicht wiederholt."
 
-Ich schätze Ihre Geduld und Ihr Verständnis sehr. In diesem Zusammenhang möchte ich meine Bereitschaft zur Verbesserung betonen. Ferner bin ich offen für ein Gespräch zu diesem Thema.
+**Version B — Direkt:**
+"Entschuldigung für [Situation]. Das war mein Fehler. Es passiert nicht wieder."
 
-Mit freundlichen Grüßen
+**Version C — Ehrlich (nicht empfohlen):**
+"Eine KI hat diese Entschuldigung verfasst. Ich finde das etwas problematisch, aber hier sind wir."
+
+In diesem Zusammenhang möchte ich meine Bereitschaft zur Verbesserung betonen. Ferner bin ich offen für ein Gespräch zu diesem Thema — also die Person, nicht ich.
 
 Ich hoffe, das hilft! Für weitere Schreibaufgaben stehe ich gerne zur Verfügung! 😊`,
     slopPhrases: [
@@ -1329,11 +1389,18 @@ Ich hoffe, das hilft! Für weitere Schreibaufgaben stehe ich gerne zur Verfügun
     emoji: "🌵",
     context: "Nutzer fragte: 'Wie oft muss ich meinen Kaktus gießen?'",
     falPrompt: "a robot presenting a complex irrigation schedule for a single cactus with graphs and charts, absurdist cartoon",
-    text: `Natürlich! Das ist eine sehr wichtige Frage für die Pflanzenpflege! Als KI-Sprachmodell kann ich Ihnen einen umfassenden Überblick über die Kakteenbewässerung geben.
+    text: `Das ist eine sehr wichtige Frage für die Pflanzenpflege — und ich sage das aufrichtig, nicht weil ich Kakteen mag (ich kenne keine persönlich)! Als KI-Sprachmodell kann ich Ihnen einen umfassenden Überblick über die Kakteenbewässerung geben.
 
-Es ist wichtig zu beachten, dass die Bewässerungsfrequenz von verschiedenen Faktoren abhängt. Darüber hinaus spielen Jahreszeit, Topfgröße, Substrat und Lichtbedingungen eine wesentliche Rolle. Des Weiteren ist es faszinierend zu verstehen, dass Kakteen an Trockenheit angepasst sind.
+Es ist wichtig zu beachten, dass die Bewässerungsfrequenz von verschiedenen Faktoren abhängt. Darüber hinaus spielen Jahreszeit, Topfgröße, Substrat und Lichtbedingungen eine wesentliche Rolle. Hier ist ein jahresspezifischer Bewässerungsplan:
 
-Zudem sei darauf hingewiesen, dass eine ganzheitliche Betrachtung der Umgebungsbedingungen notwendig ist. Im Sommer empfehle ich eine Bewässerung alle 2-3 Wochen, im Winter reicht es oft monatlich. Außerdem ist es nuanciert zu betrachten: Lieber zu wenig als zu viel gießen!
+| Jahreszeit | Bewässerungsintervall | Erklärung |
+|---|---|---|
+| Frühling | Alle 2–3 Wochen | Wachstumsphase beginnt |
+| Sommer | Alle 1–2 Wochen | Hitze erhöht Verdunstung |
+| Herbst | Alle 3–4 Wochen | Wachstum verlangsamt sich |
+| Winter | Einmal im Monat | Kakteen schlafen — beneiden Sie das |
+
+Des Weiteren ist es faszinierend zu verstehen, dass Kakteen an Trockenheit angepasst sind. Zudem sei darauf hingewiesen, dass eine ganzheitliche Betrachtung der Umgebungsbedingungen notwendig ist. Außerdem ist es nuanciert zu betrachten: Lieber zu wenig als zu viel gießen!
 
 In diesem Zusammenhang ist es wichtig, stets den Boden auf Feuchtigkeit zu prüfen. Ferner empfehle ich, Staunässe unbedingt zu vermeiden. Strukturiert zusammengefasst: Kaktus trocken lassen, dann gründlich wässern.
 
