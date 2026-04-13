@@ -1,5 +1,5 @@
 import { useEffect, useState, useRef } from 'react';
-import { playRoundComplete } from '../utils/audio';
+import { playRoundComplete, startSummaryMusic, stopSummaryMusic } from '../utils/audio';
 import { t, tFn } from '../i18n/index';
 
 // English-only fallback (other languages are in i18n/index.js)
@@ -43,6 +43,11 @@ export default function RoundSummary({ round, roundScore, foundIds, totalScore, 
   const [roastText, setRoastText] = useState('');
   const [roastDone, setRoastDone] = useState(false);
   const roastTimerRef = useRef(null);
+
+  useEffect(() => {
+    startSummaryMusic();
+    return () => stopSummaryMusic();
+  }, []);
 
   const foundCount = foundIds.size;
   const totalPhrases = round.slopPhrases.length;
