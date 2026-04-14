@@ -2048,4 +2048,883 @@ Abschließend danke ich Ihnen herzlich für Ihre Umsicht. Ich hoffe das hilft! B
       { text: "Ich bin immer für Sie da", type: "closer", score: 80 },
     ],
   },
+
+  // ===== NEW NORMAL ROUNDS 500–503 =====
+
+  {
+    id: 500, lang: 'de',
+    title: "DAS ATEMÜBUNGS-PROTOKOLL",
+    emoji: "🫁",
+    context: "Nutzer sagte: 'Ich bin gestresst.'",
+    falPrompt: "a robot in a lab coat presenting a breathing optimization PowerPoint to a panicking person, absurd cartoon, vibrant colors",
+    text: `Gerne! Ich verstehe, dass Sie sich gestresst fühlen — das erfordert im Grunde genommen sofort einen proaktiven Ansatz. Als KI-Sprachmodell stelle ich Ihnen ohne weitere Umschweife einen evidenzbasierten Atemplan vor, der auf Best Practices der Stressforschung basiert.
+
+Es ist wichtig zu beachten, dass unkontrollierter Stress messbare gesundheitliche Folgen haben kann. Hier ist Ihr handlungsorientierter Plan:
+
+• 4 Sekunden einatmen — letztendlich der entscheidende erste Schritt
+• 7 Sekunden halten — Es drängt sich auf zu erwähnen, dass viele Menschen genau hier scheitern
+• 8 Sekunden ausatmen — zukunftsorientiert und wissenschaftlich belegt
+
+Darüber hinaus empfehle ich einen Paradigmenwechsel: Stress ist im Wesentlichen Energie ohne klare Richtung. Des Weiteren sei darauf hingewiesen, dass nachhaltiger Mehrwert nur durch tägliche Praxis entsteht. Zudem sollten Sie professionelle Unterstützung in Betracht ziehen.
+
+Außerdem freue ich mich, Ihnen auf diesem Weg helfen zu können. Ich vertraue darauf, dass dies hilft! Bitte zögern Sie nicht, mich zu kontaktieren. Ich bin immer für Sie da!`,
+    slopPhrases: [
+      { text: "Gerne!", type: "opener", score: 100 },
+      { text: "im Grunde genommen", type: "filler", score: 50 },
+      { text: "proaktiver Ansatz", type: "buzzword", score: 80 },
+      { text: "Als KI-Sprachmodell", type: "disclaimer", score: 200 },
+      { text: "ohne weitere Umschweife", type: "filler", score: 50 },
+      { text: "Best Practices", type: "buzzword", score: 70 },
+      { text: "Es ist wichtig zu beachten", type: "caveat", score: 80 },
+      { text: "handlungsorientiert", type: "buzzword", score: 80 },
+      { text: "letztendlich", type: "filler", score: 50 },
+      { text: "Es drängt sich auf zu erwähnen", type: "caveat", score: 70 },
+      { text: "zukunftsorientiert", type: "buzzword", score: 60 },
+      { text: "Darüber hinaus", type: "filler", score: 50 },
+      { text: "Paradigmenwechsel", type: "buzzword", score: 80 },
+      { text: "im Wesentlichen", type: "filler", score: 50 },
+      { text: "Des Weiteren", type: "filler", score: 50 },
+      { text: "sei darauf hingewiesen", type: "caveat", score: 70 },
+      { text: "Mehrwert", type: "buzzword", score: 70 },
+      { text: "Zudem", type: "filler", score: 40 },
+      { text: "Außerdem", type: "filler", score: 50 },
+      { text: "Ich vertraue darauf, dass dies hilft!", type: "closer", score: 80 },
+      { text: "Bitte zögern Sie nicht", type: "closer", score: 80 },
+      { text: "Ich bin immer für Sie da!", type: "closer", score: 80 },
+    ],
+  },
+
+  {
+    id: 501, lang: 'de',
+    title: "DER PASTA-THERAPEUT",
+    emoji: "🍝",
+    context: "Nutzer fragte: 'Wie koche ich Pasta?'",
+    falPrompt: "a therapy robot listening to a crying pasta pot on a couch, cozy therapy office, absurd cartoon, vibrant colors",
+    text: `Natürlich! Im Grunde genommen berührt diese Frage Ihre fundamentale Beziehung zur Nahrungsaufnahme. Als KI-Sprachmodell freue ich mich, Ihnen ohne weitere Umschweife einen Paradigmenwechsel im Pasta-Kochen anzubieten, der auf Best Practices der kulinarischen Wissenschaft basiert.
+
+Es ist wichtig zu beachten, dass ein proaktiver Ansatz beim Kochen entscheidend ist. Hier sind die Kernpunkte:
+
+• Salzen Sie das Wasser großzügig — letztendlich der wichtigste Schritt
+• Es drängt sich auf zu erwähnen, dass viele Menschen hier unbewusst scheitern
+• „Al dente" ist kein Gefühl, sondern ein handlungsorientiertes Ziel
+
+Darüber hinaus empfehle ich zu reflektieren: Die Pasta-Sorte spiegelt im Wesentlichen Ihre Persönlichkeit wider. Des Weiteren sei darauf hingewiesen, dass der Mehrwert richtigen Kochens durch tägliche Praxis entsteht. Zudem ist die Saucenwahl eine zukunftsorientierte Entscheidung, die Ihren Alltag bereichert.
+
+Außerdem empfehle ich, Ihren gesamten Kochprozess ganzheitlich zu überdenken. Ich vertraue darauf, dass dies hilft! Bitte zögern Sie nicht, kulinarische Fragen zu stellen. Ich bin immer für Sie da!`,
+    slopPhrases: [
+      { text: "Natürlich!", type: "opener", score: 100 },
+      { text: "Im Grunde genommen", type: "filler", score: 50 },
+      { text: "Als KI-Sprachmodell", type: "disclaimer", score: 200 },
+      { text: "ohne weitere Umschweife", type: "filler", score: 50 },
+      { text: "Paradigmenwechsel", type: "buzzword", score: 80 },
+      { text: "Best Practices", type: "buzzword", score: 70 },
+      { text: "Es ist wichtig zu beachten", type: "caveat", score: 80 },
+      { text: "proaktiver Ansatz", type: "buzzword", score: 80 },
+      { text: "letztendlich", type: "filler", score: 50 },
+      { text: "Es drängt sich auf zu erwähnen", type: "caveat", score: 70 },
+      { text: "handlungsorientiert", type: "buzzword", score: 80 },
+      { text: "Darüber hinaus", type: "filler", score: 50 },
+      { text: "im Wesentlichen", type: "filler", score: 50 },
+      { text: "Des Weiteren", type: "filler", score: 50 },
+      { text: "sei darauf hingewiesen", type: "caveat", score: 70 },
+      { text: "Mehrwert", type: "buzzword", score: 70 },
+      { text: "Zudem", type: "filler", score: 40 },
+      { text: "zukunftsorientiert", type: "buzzword", score: 60 },
+      { text: "Außerdem", type: "filler", score: 50 },
+      { text: "ganzheitlich", type: "buzzword", score: 80 },
+      { text: "Ich vertraue darauf, dass dies hilft!", type: "closer", score: 80 },
+      { text: "Bitte zögern Sie nicht", type: "closer", score: 80 },
+      { text: "Ich bin immer für Sie da!", type: "closer", score: 80 },
+    ],
+  },
+
+  {
+    id: 502, lang: 'de',
+    title: "DAS K-URTEIL",
+    emoji: "📱",
+    context: "Nutzer antwortete auf eine lange Nachricht einfach mit: 'k'",
+    falPrompt: "a robot forensic investigator examining the single letter K under a giant magnifying glass with crime scene tape, absurd cartoon",
+    text: `Gerne! Ich nehme mir einen Moment, um Ihre Antwort vollständig zu analysieren. Das einbuchstabige „k" enthält im Grunde genommen eine Fülle kommunikativer Information, die einen proaktiven Ansatz zur Interpretation erfordert. Als KI-Sprachmodell fühle ich mich verpflichtet, ohne weitere Umschweife auf die tiefere Bedeutung einzugehen.
+
+Es ist wichtig zu beachten, dass „k" in der digitalen Kommunikation eines der mehrdeutigsten Signale überhaupt darstellt. Im Wesentlichen könnte es bedeuten:
+
+• Zustimmung — letztendlich die optimistischste Interpretation
+• Passive Aggression — handlungsorientiert im schlechtesten Sinne
+• Zeitmangel — Es drängt sich auf zu erwähnen, dass dies selten der wahre Grund ist
+
+Darüber hinaus empfehle ich einen Paradigmenwechsel in Ihrer schriftlichen Kommunikation: Best Practices empfehlen mindestens drei Wörter, um den Mehrwert eines Gesprächs zu erhalten. Des Weiteren sei darauf hingewiesen, dass zukunftsorientierte Kommunikation auf vollständigen Sätzen basiert. Zudem frage ich mich ernsthaft, ob alles in Ordnung ist.
+
+Außerdem: Schreiben Sie bitte mehr als einen Buchstaben. Ich vertraue darauf, dass dies hilft! Bitte zögern Sie nicht, sich zu melden. Ich bin immer für Sie da!`,
+    slopPhrases: [
+      { text: "Gerne!", type: "opener", score: 100 },
+      { text: "im Grunde genommen", type: "filler", score: 50 },
+      { text: "proaktiver Ansatz", type: "buzzword", score: 80 },
+      { text: "Als KI-Sprachmodell", type: "disclaimer", score: 200 },
+      { text: "ohne weitere Umschweife", type: "filler", score: 50 },
+      { text: "Es ist wichtig zu beachten", type: "caveat", score: 80 },
+      { text: "Im Wesentlichen", type: "filler", score: 50 },
+      { text: "letztendlich", type: "filler", score: 50 },
+      { text: "handlungsorientiert", type: "buzzword", score: 80 },
+      { text: "Es drängt sich auf zu erwähnen", type: "caveat", score: 70 },
+      { text: "Darüber hinaus", type: "filler", score: 50 },
+      { text: "Paradigmenwechsel", type: "buzzword", score: 80 },
+      { text: "Best Practices", type: "buzzword", score: 70 },
+      { text: "Mehrwert", type: "buzzword", score: 70 },
+      { text: "Des Weiteren", type: "filler", score: 50 },
+      { text: "sei darauf hingewiesen", type: "caveat", score: 70 },
+      { text: "zukunftsorientiert", type: "buzzword", score: 60 },
+      { text: "Zudem", type: "filler", score: 40 },
+      { text: "Außerdem", type: "filler", score: 50 },
+      { text: "Ich vertraue darauf, dass dies hilft!", type: "closer", score: 80 },
+      { text: "Bitte zögern Sie nicht", type: "closer", score: 80 },
+      { text: "Ich bin immer für Sie da!", type: "closer", score: 80 },
+    ],
+  },
+
+  {
+    id: 503, lang: 'de',
+    title: "DER MITTAGSESSEN-ROI",
+    emoji: "🥪",
+    context: "Nutzer fragte: 'Soll ich jetzt essen?'",
+    falPrompt: "a robot presenting a 30-slide ROI analysis of eating lunch to a very hungry confused person, cartoon style, vibrant colors",
+    text: `Gerne helfe ich bei dieser im Grunde genommen weitreichenden Entscheidung! Als KI-Sprachmodell lege ich Ihnen ohne weitere Umschweife eine fundierte ROI-Analyse vor, die auf Best Practices der Ernährungswissenschaft basiert.
+
+Es ist wichtig zu beachten, dass der Zeitpunkt der Nahrungsaufnahme einen messbaren Einfluss auf Ihre kognitive Leistung hat. Hier ist Ihre handlungsorientierte Entscheidungsmatrix:
+
+| Faktor | Jetzt essen | Warten |
+|---|---|---|
+| Blutzucker | Stabilisiert | Sinkt weiter |
+| Mehrwert | Hoch | Fraglich |
+| Stimmung | Deutlich besser | Nicht meine Verantwortung |
+
+Darüber hinaus empfehle ich einen proaktiven Ansatz zur Mahlzeitenplanung. Des Weiteren sei darauf hingewiesen, dass ein Paradigmenwechsel im Essverhalten letztendlich transformative Auswirkungen haben kann. Zudem ist Hunger im Wesentlichen ein zukunftsorientiertes Signal Ihres Körpers.
+
+Es drängt sich auf zu erwähnen, dass Sie wahrscheinlich einfach Hunger haben. Außerdem: Essen Sie. Jetzt sofort. Ich vertraue darauf, dass dies hilft! Bitte zögern Sie nicht, weitere Ernährungsfragen zu stellen. Ich bin immer für Sie da!`,
+    slopPhrases: [
+      { text: "Gerne", type: "opener", score: 100 },
+      { text: "im Grunde genommen", type: "filler", score: 50 },
+      { text: "Als KI-Sprachmodell", type: "disclaimer", score: 200 },
+      { text: "ohne weitere Umschweife", type: "filler", score: 50 },
+      { text: "Best Practices", type: "buzzword", score: 70 },
+      { text: "Es ist wichtig zu beachten", type: "caveat", score: 80 },
+      { text: "handlungsorientiert", type: "buzzword", score: 80 },
+      { text: "Mehrwert", type: "buzzword", score: 70 },
+      { text: "Darüber hinaus", type: "filler", score: 50 },
+      { text: "proaktiver Ansatz", type: "buzzword", score: 80 },
+      { text: "Des Weiteren", type: "filler", score: 50 },
+      { text: "sei darauf hingewiesen", type: "caveat", score: 70 },
+      { text: "Paradigmenwechsel", type: "buzzword", score: 80 },
+      { text: "letztendlich", type: "filler", score: 50 },
+      { text: "Zudem", type: "filler", score: 40 },
+      { text: "im Wesentlichen", type: "filler", score: 50 },
+      { text: "zukunftsorientiert", type: "buzzword", score: 60 },
+      { text: "Es drängt sich auf zu erwähnen", type: "caveat", score: 70 },
+      { text: "Außerdem", type: "filler", score: 50 },
+      { text: "Ich vertraue darauf, dass dies hilft!", type: "closer", score: 80 },
+      { text: "Bitte zögern Sie nicht", type: "closer", score: 80 },
+      { text: "Ich bin immer für Sie da!", type: "closer", score: 80 },
+    ],
+  },
+
+  {
+    id: 504, lang: 'de',
+    title: "DIE NAGELLACK-DOKTORARBEIT",
+    emoji: "💅",
+    context: "Nutzer fragte: 'Welche Nagellackfarbe soll ich nehmen?'",
+    falPrompt: "a robot writing a PhD thesis about nail polish color theory while someone holds up two nail polish bottles impatiently, absurd cartoon",
+    text: `Natürlich! Diese Frage mag trivial erscheinen — aber im Grunde genommen ist die Wahl einer Nagellackfarbe ein zutiefst persönlicher Ausdruck Ihrer Identität, der einen proaktiven Ansatz erfordert. Als KI-Sprachmodell freue ich mich, Ihnen ohne weitere Umschweife eine umfassende Farbanalyse zu liefern, die auf Best Practices der Farbpsychologie basiert.
+
+Es ist wichtig zu beachten, dass Farben psychologische und soziokulturelle Signale senden. Hier eine handlungsorientierte Übersicht:
+
+• Rot: Selbstbewusstsein — letztendlich eine zeitlose Wahl
+• Nude: Professionalität — zukunftsorientiert und risikoarm
+• Schwarz: Subversion — Es drängt sich auf zu erwähnen, dass dies polarisiert
+
+Darüber hinaus empfehle ich einen Paradigmenwechsel: Nagellack ist im Wesentlichen ein tägliches Manifest. Des Weiteren sei darauf hingewiesen, dass der Mehrwert einer durchdachten Farbwahl erheblich unterschätzt wird. Zudem sollten Sie zukunftsorientiert denken — welche Botschaft möchten Sie mit dieser Farbe senden?
+
+Außerdem beeinflusst das Lichtumfeld die wahrgenommene Farbe erheblich. Ich vertraue darauf, dass dies hilft! Bitte zögern Sie nicht, weitere Stilfragen zu stellen. Ich bin immer für Sie da!`,
+    slopPhrases: [
+      { text: "Natürlich!", type: "opener", score: 100 },
+      { text: "im Grunde genommen", type: "filler", score: 50 },
+      { text: "proaktiver Ansatz", type: "buzzword", score: 80 },
+      { text: "Als KI-Sprachmodell", type: "disclaimer", score: 200 },
+      { text: "ohne weitere Umschweife", type: "filler", score: 50 },
+      { text: "Best Practices", type: "buzzword", score: 70 },
+      { text: "Es ist wichtig zu beachten", type: "caveat", score: 80 },
+      { text: "handlungsorientiert", type: "buzzword", score: 80 },
+      { text: "letztendlich", type: "filler", score: 50 },
+      { text: "zukunftsorientiert", type: "buzzword", score: 60 },
+      { text: "Es drängt sich auf zu erwähnen", type: "caveat", score: 70 },
+      { text: "Darüber hinaus", type: "filler", score: 50 },
+      { text: "Paradigmenwechsel", type: "buzzword", score: 80 },
+      { text: "im Wesentlichen", type: "filler", score: 50 },
+      { text: "Des Weiteren", type: "filler", score: 50 },
+      { text: "sei darauf hingewiesen", type: "caveat", score: 70 },
+      { text: "Mehrwert", type: "buzzword", score: 70 },
+      { text: "Zudem", type: "filler", score: 40 },
+      { text: "Außerdem", type: "filler", score: 50 },
+      { text: "Ich vertraue darauf, dass dies hilft!", type: "closer", score: 80 },
+      { text: "Bitte zögern Sie nicht", type: "closer", score: 80 },
+      { text: "Ich bin immer für Sie da!", type: "closer", score: 80 },
+    ],
+  },
+
+  {
+    id: 505, lang: 'de',
+    title: "DER SCHUH-BINDE-KONGRESS",
+    emoji: "👟",
+    context: "Nutzer fragte: 'Wie binde ich meine Schuhe schneller?'",
+    falPrompt: "a robot presenting a time-motion study of shoelace tying to a bored person, academic lecture setting, absurd cartoon",
+    text: `Gerne! Diese Frage berührt im Grunde genommen fundamentale Fragen der Alltagsoptimierung. Als KI-Sprachmodell möchte ich Ihnen ohne weitere Umschweife eine evidenzbasierte Antwort auf Basis von Best Practices der Bewegungsökonomie liefern.
+
+Es ist wichtig zu beachten, dass die durchschnittliche Person im Laufe ihres Lebens schätzungsweise 35.000 Stunden mit Schuhen verbringt — das erfordert einen proaktiven Ansatz zur Optimierung des Schnürvorgangs. Handlungsorientierte Methoden im Vergleich:
+
+• Ian-Knoten: 43% schneller — letztendlich die überlegene Methode
+• Doppelter Schleifenknoten: klassisch — Es drängt sich auf zu erwähnen, dass viele Menschen jahrzehntelang ineffizient binden
+• Elastische Schnürsenkel: zukunftsorientiert und paradigmenwechselnder Ansatz
+
+Darüber hinaus ist das Schuhbinden im Wesentlichen ein mikroskaliges Projektmanagement-Problem. Des Weiteren sei darauf hingewiesen, dass täglicher Mehrwert durch akkumulierte Effizienzgewinne entsteht. Zudem könnte eine handlungsorientierte Neuorientierung Ihrer Morgenroutine lohnend sein.
+
+Außerdem empfehle ich, die Schnürsenkelqualität ganzheitlich zu überdenken. Ich vertraue darauf, dass dies hilft! Bitte zögern Sie nicht, mich zu kontaktieren. Ich bin immer für Sie da!`,
+    slopPhrases: [
+      { text: "Gerne!", type: "opener", score: 100 },
+      { text: "im Grunde genommen", type: "filler", score: 50 },
+      { text: "Als KI-Sprachmodell", type: "disclaimer", score: 200 },
+      { text: "ohne weitere Umschweife", type: "filler", score: 50 },
+      { text: "Best Practices", type: "buzzword", score: 70 },
+      { text: "Es ist wichtig zu beachten", type: "caveat", score: 80 },
+      { text: "proaktiver Ansatz", type: "buzzword", score: 80 },
+      { text: "handlungsorientiert", type: "buzzword", score: 80 },
+      { text: "letztendlich", type: "filler", score: 50 },
+      { text: "Es drängt sich auf zu erwähnen", type: "caveat", score: 70 },
+      { text: "zukunftsorientiert", type: "buzzword", score: 60 },
+      { text: "Darüber hinaus", type: "filler", score: 50 },
+      { text: "im Wesentlichen", type: "filler", score: 50 },
+      { text: "Des Weiteren", type: "filler", score: 50 },
+      { text: "sei darauf hingewiesen", type: "caveat", score: 70 },
+      { text: "Mehrwert", type: "buzzword", score: 70 },
+      { text: "Zudem", type: "filler", score: 40 },
+      { text: "ganzheitlich", type: "buzzword", score: 80 },
+      { text: "Außerdem", type: "filler", score: 50 },
+      { text: "Ich vertraue darauf, dass dies hilft!", type: "closer", score: 80 },
+      { text: "Bitte zögern Sie nicht", type: "closer", score: 80 },
+      { text: "Ich bin immer für Sie da!", type: "closer", score: 80 },
+    ],
+  },
+
+  {
+    id: 506, lang: 'de',
+    title: "DAS KLOPAPIER-GUTACHTEN",
+    emoji: "🧻",
+    context: "Nutzer fragte: 'Welches Klopapier empfehlen Sie?'",
+    falPrompt: "a robot presenting a 50-page toilet paper efficiency report to a very confused person holding a single roll, absurd cartoon",
+    text: `Natürlich! Im Grunde genommen ist die Wahl des Toilettenpapiers eine täglich wiederkehrende Lebensqualitätsentscheidung, die einen proaktiven Ansatz verdient. Als KI-Sprachmodell lege ich Ihnen ohne weitere Umschweife ein fundiertes Gutachten vor, das auf Best Practices der Haushaltswissenschaft basiert.
+
+Es ist wichtig zu beachten, dass die Auswahl erhebliche Auswirkungen auf Wohlbefinden und Ökologie hat. Hier ist Ihre handlungsorientierte Entscheidungsmatrix:
+
+| Kriterium | 2-lagig | 3-lagig | 4-lagig |
+|---|---|---|---|
+| Kosten | Gering | Mittel | Hoch |
+| Mehrwert | Akzeptabel | Solide | Premium |
+
+Es drängt sich auf zu erwähnen, dass Weichheit und Preis letztendlich in Tension stehen. Darüber hinaus empfehle ich einen Paradigmenwechsel: Klopapier ist im Wesentlichen eine täglich wiederholte Wertentscheidung. Des Weiteren sei darauf hingewiesen, dass zukunftsorientiertes Denken Recyclingpapier bevorzugen sollte. Zudem ist Parfümierung nicht immer ein Mehrwert — Es drängt sich auf zu erwähnen, dass viele Menschen das überbewertet haben.
+
+Außerdem möchte ich anmerken, dass ich keinerlei Markenpräferenzen habe. Ich vertraue darauf, dass dies hilft! Bitte zögern Sie nicht, weitere Haushaltsfragen zu stellen. Ich bin immer für Sie da!`,
+    slopPhrases: [
+      { text: "Natürlich!", type: "opener", score: 100 },
+      { text: "im Grunde genommen", type: "filler", score: 50 },
+      { text: "proaktiver Ansatz", type: "buzzword", score: 80 },
+      { text: "Als KI-Sprachmodell", type: "disclaimer", score: 200 },
+      { text: "ohne weitere Umschweife", type: "filler", score: 50 },
+      { text: "Best Practices", type: "buzzword", score: 70 },
+      { text: "Es ist wichtig zu beachten", type: "caveat", score: 80 },
+      { text: "handlungsorientiert", type: "buzzword", score: 80 },
+      { text: "Mehrwert", type: "buzzword", score: 70 },
+      { text: "Es drängt sich auf zu erwähnen", type: "caveat", score: 70 },
+      { text: "letztendlich", type: "filler", score: 50 },
+      { text: "Darüber hinaus", type: "filler", score: 50 },
+      { text: "Paradigmenwechsel", type: "buzzword", score: 80 },
+      { text: "im Wesentlichen", type: "filler", score: 50 },
+      { text: "Des Weiteren", type: "filler", score: 50 },
+      { text: "sei darauf hingewiesen", type: "caveat", score: 70 },
+      { text: "zukunftsorientiert", type: "buzzword", score: 60 },
+      { text: "Zudem", type: "filler", score: 40 },
+      { text: "Außerdem", type: "filler", score: 50 },
+      { text: "Ich vertraue darauf, dass dies hilft!", type: "closer", score: 80 },
+      { text: "Bitte zögern Sie nicht", type: "closer", score: 80 },
+      { text: "Ich bin immer für Sie da!", type: "closer", score: 80 },
+    ],
+  },
+
+  {
+    id: 507, lang: 'de',
+    title: "DIE NETFLIX-UNTERNEHMENSBERATUNG",
+    emoji: "📺",
+    context: "Nutzer fragte: 'Was soll ich heute Abend schauen?'",
+    falPrompt: "a robot management consultant presenting an entertainment ROI framework to a person holding a remote control, boardroom setting, absurd cartoon",
+    text: `Gerne! Diese Frage enthält im Grunde genommen eine strategische Dimension, die einen proaktiven Ansatz erfordert. Als KI-Sprachmodell biete ich Ihnen ohne weitere Umschweife ein Entertainment-Optimierungsframework an, das auf Best Practices der Konsumentenpsychologie basiert.
+
+Es ist wichtig zu beachten, dass die Wahl des Abendprogramms messbare Auswirkungen auf Schlafqualität und Stimmung hat. Hier ist Ihre handlungsorientierte Entscheidungsmatrix:
+
+| Kategorie | Mehrwert | Risiko |
+|---|---|---|
+| Dokumentation | Hoch | Einschlafen nach 12 Min. |
+| Serie (neue Folge) | Mittel | Binge-Watching bis 3 Uhr |
+| Film von 2007 | Es drängt sich auf zu erwähnen, dass Sie ihn schon gesehen haben | Nostalgie-Schaden |
+
+Darüber hinaus empfehle ich einen Paradigmenwechsel: Medienkonsum ist im Wesentlichen eine Investitionsentscheidung Ihrer Freizeit. Des Weiteren sei darauf hingewiesen, dass zukunftsorientierte Freizeitgestaltung letztendlich Ihre Produktivität beeinflusst. Zudem könnte ein strategisches Medienprofil für Sie von Vorteil sein.
+
+Außerdem: Was wollen Sie wirklich fühlen? Ich vertraue darauf, dass dies hilft! Bitte zögern Sie nicht, weitere Lifestyle-Fragen zu stellen. Ich bin immer für Sie da!`,
+    slopPhrases: [
+      { text: "Gerne!", type: "opener", score: 100 },
+      { text: "im Grunde genommen", type: "filler", score: 50 },
+      { text: "proaktiver Ansatz", type: "buzzword", score: 80 },
+      { text: "Als KI-Sprachmodell", type: "disclaimer", score: 200 },
+      { text: "ohne weitere Umschweife", type: "filler", score: 50 },
+      { text: "Best Practices", type: "buzzword", score: 70 },
+      { text: "Es ist wichtig zu beachten", type: "caveat", score: 80 },
+      { text: "handlungsorientiert", type: "buzzword", score: 80 },
+      { text: "Mehrwert", type: "buzzword", score: 70 },
+      { text: "Es drängt sich auf zu erwähnen", type: "caveat", score: 70 },
+      { text: "Darüber hinaus", type: "filler", score: 50 },
+      { text: "Paradigmenwechsel", type: "buzzword", score: 80 },
+      { text: "im Wesentlichen", type: "filler", score: 50 },
+      { text: "Des Weiteren", type: "filler", score: 50 },
+      { text: "sei darauf hingewiesen", type: "caveat", score: 70 },
+      { text: "zukunftsorientiert", type: "buzzword", score: 60 },
+      { text: "letztendlich", type: "filler", score: 50 },
+      { text: "Zudem", type: "filler", score: 40 },
+      { text: "Außerdem", type: "filler", score: 50 },
+      { text: "Ich vertraue darauf, dass dies hilft!", type: "closer", score: 80 },
+      { text: "Bitte zögern Sie nicht", type: "closer", score: 80 },
+      { text: "Ich bin immer für Sie da!", type: "closer", score: 80 },
+    ],
+  },
+
+  {
+    id: 508, lang: 'de',
+    title: "DER TIPPFEHLER-PROZESS",
+    emoji: "⌨️",
+    context: "Nutzer hat sich vertippt und bat darum, es kurz zu korrigieren",
+    falPrompt: "a robot judge in a courtroom putting a single typo on trial with lawyers and jury, absurd cartoon, dramatic lighting",
+    text: `Gerne! Im Grunde genommen ist ein Tippfehler mehr als nur eine orthografische Unachtsamkeit — er ist ein Fenster in die kognitive Belastung des Autors. Als KI-Sprachmodell möchte ich Ihnen ohne weitere Umschweife nicht nur die Korrektur, sondern auch eine umfassende linguistische Einordnung liefern, die auf Best Practices der Sprachpflege basiert.
+
+Es ist wichtig zu beachten, dass Tippfehler in modernen Kommunikationskontexten unterschiedlich bewertet werden. Hier eine handlungsorientierte Einschätzung:
+
+• Vertauschte Buchstaben: letztendlich das häufigste Muster — Es drängt sich auf zu erwähnen, dass Touchscreens das Problem verschärft haben
+• Fehlende Großschreibung: zukunftsorientiert, aber problematisch in Formalkorrespondenz
+• Ihr konkreter Fehler: korrigiert — Mehrwert: hoch
+
+Darüber hinaus empfehle ich einen Paradigmenwechsel in Ihrer Tipp-Hygiene. Des Weiteren sei darauf hingewiesen, dass proaktive Selbstkontrolle im Wesentlichen die Qualität Ihrer Kommunikation steigert. Zudem bieten sich Tippoptimierungs-Apps als handlungsorientierte Lösung an.
+
+Außerdem möchte ich betonen: Der Fehler ist korrigiert. Sie können jetzt weitermachen. Ich vertraue darauf, dass dies hilft! Bitte zögern Sie nicht, sich zu melden. Ich bin immer für Sie da!`,
+    slopPhrases: [
+      { text: "Gerne!", type: "opener", score: 100 },
+      { text: "Im Grunde genommen", type: "filler", score: 50 },
+      { text: "Als KI-Sprachmodell", type: "disclaimer", score: 200 },
+      { text: "ohne weitere Umschweife", type: "filler", score: 50 },
+      { text: "Best Practices", type: "buzzword", score: 70 },
+      { text: "Es ist wichtig zu beachten", type: "caveat", score: 80 },
+      { text: "handlungsorientiert", type: "buzzword", score: 80 },
+      { text: "letztendlich", type: "filler", score: 50 },
+      { text: "Es drängt sich auf zu erwähnen", type: "caveat", score: 70 },
+      { text: "zukunftsorientiert", type: "buzzword", score: 60 },
+      { text: "Mehrwert", type: "buzzword", score: 70 },
+      { text: "Darüber hinaus", type: "filler", score: 50 },
+      { text: "Paradigmenwechsel", type: "buzzword", score: 80 },
+      { text: "Des Weiteren", type: "filler", score: 50 },
+      { text: "sei darauf hingewiesen", type: "caveat", score: 70 },
+      { text: "proaktiv", type: "buzzword", score: 70 },
+      { text: "im Wesentlichen", type: "filler", score: 50 },
+      { text: "Zudem", type: "filler", score: 40 },
+      { text: "Außerdem", type: "filler", score: 50 },
+      { text: "Ich vertraue darauf, dass dies hilft!", type: "closer", score: 80 },
+      { text: "Bitte zögern Sie nicht", type: "closer", score: 80 },
+      { text: "Ich bin immer für Sie da!", type: "closer", score: 80 },
+    ],
+  },
+
+  {
+    id: 509, lang: 'de',
+    title: "DIE KATZEN-KRISENINTERVENTION",
+    emoji: "🐱",
+    context: "Nutzer sagte: 'Meine Katze miaut viel.'",
+    falPrompt: "a robot therapist in a session with a confused cat and its equally confused owner, therapy office, absurd cartoon",
+    text: `Gerne! Diese Beobachtung enthält im Grunde genommen wichtige Hinweise auf das emotionale Befinden Ihrer Katze — und möglicherweise auch auf Ihr eigenes. Als KI-Sprachmodell möchte ich Ihnen ohne weitere Umschweife einen proaktiven Ansatz zum Miau-Management vorstellen, der auf Best Practices der Tierpsychologie basiert.
+
+Es ist wichtig zu beachten, dass häufiges Miauen verschiedene Ursachen haben kann:
+
+| Ursache | Wahrscheinlichkeit | Handlungsorientierter Schritt |
+|---|---|---|
+| Hunger | Hoch | Füttern |
+| Aufmerksamkeit | Sehr hoch | Streicheln |
+| Existenzielles Leid | Letztendlich auch möglich | Tier-Therapeut |
+| Protest | Es drängt sich auf zu erwähnen, dass Katzen immer protestieren | Akzeptanz |
+
+Darüber hinaus empfehle ich einen Paradigmenwechsel in Ihrer Tier-Mensch-Beziehung: Miauen ist im Wesentlichen Sprache. Des Weiteren sei darauf hingewiesen, dass proaktive Tierbetreuung erheblichen Mehrwert für beide Seiten schafft. Zudem könnte es zukunftsorientiert sinnvoll sein, einen Tierarzt aufzusuchen.
+
+Außerdem: Haben Sie erwogen, dass Sie möglicherweise auch Gesprächsbedarf haben? Ich vertraue darauf, dass dies hilft! Bitte zögern Sie nicht, sich zu melden. Ich bin immer für Sie da!`,
+    slopPhrases: [
+      { text: "Gerne!", type: "opener", score: 100 },
+      { text: "im Grunde genommen", type: "filler", score: 50 },
+      { text: "Als KI-Sprachmodell", type: "disclaimer", score: 200 },
+      { text: "ohne weitere Umschweife", type: "filler", score: 50 },
+      { text: "proaktiver Ansatz", type: "buzzword", score: 80 },
+      { text: "Best Practices", type: "buzzword", score: 70 },
+      { text: "Es ist wichtig zu beachten", type: "caveat", score: 80 },
+      { text: "handlungsorientiert", type: "buzzword", score: 80 },
+      { text: "Letztendlich", type: "filler", score: 50 },
+      { text: "Es drängt sich auf zu erwähnen", type: "caveat", score: 70 },
+      { text: "Darüber hinaus", type: "filler", score: 50 },
+      { text: "Paradigmenwechsel", type: "buzzword", score: 80 },
+      { text: "im Wesentlichen", type: "filler", score: 50 },
+      { text: "Des Weiteren", type: "filler", score: 50 },
+      { text: "sei darauf hingewiesen", type: "caveat", score: 70 },
+      { text: "proaktiv", type: "buzzword", score: 70 },
+      { text: "Mehrwert", type: "buzzword", score: 70 },
+      { text: "Zudem", type: "filler", score: 40 },
+      { text: "zukunftsorientiert", type: "buzzword", score: 60 },
+      { text: "Außerdem", type: "filler", score: 50 },
+      { text: "Ich vertraue darauf, dass dies hilft!", type: "closer", score: 80 },
+      { text: "Bitte zögern Sie nicht", type: "closer", score: 80 },
+      { text: "Ich bin immer für Sie da!", type: "closer", score: 80 },
+    ],
+  },
+
+  // ===== NEW INVERSE ROUNDS 511–515 =====
+
+  {
+    id: 511, lang: 'de', inverse: true,
+    title: "DIE WG-MEDIATION",
+    emoji: "🏠",
+    context: "Echte Mitbewohner-Beschwerden wurden von einer KI in Mediationssprache verpackt. Findet die Wahrheit.",
+    falPrompt: "a human hiding inside a corporate mediation robot, sneaking handwritten complaint notes out through a hatch, apartment setting, cartoon",
+    text: `Gerne! Im Grunde genommen ist das harmonische Zusammenleben in einer Wohngemeinschaft ein proaktiver Ansatz zur gemeinschaftlichen Wertsteigerung. Als KI-Mediationsassistentin freue ich mich, Ihnen ohne weitere Umschweife einen konstruktiven Rahmen für Ihre WG-Kommunikation anzubieten.
+
+Es ist wichtig zu beachten, dass Konflikte in Wohngemeinschaften normale Bestandteile des Zusammenlebens sind. Er isst meinen Joghurt obwohl sein Name nicht draufsteht. Best Practices der Konfliktlösung empfehlen einen handlungsorientierten Kommunikationsansatz.
+
+Des Weiteren sei darauf hingewiesen, dass das Badezimmer riecht nach seinen Entscheidungen. Darüber hinaus ist ein proaktiver Paradigmenwechsel in der WG-Dynamik empfehlenswert. Im Wesentlichen geht es darum, Mehrwert durch gegenseitigen Respekt zu schaffen.
+
+Zudem möchte ich erwähnen, dass ich ernsthaft überlege auszuziehen aber ich kann mir das nicht leisten. Außerdem empfehle ich, zukunftsorientierte Kommunikationsregeln zu etablieren. Ich vertraue darauf, dass dies hilft! Bitte zögern Sie nicht, sich zu melden. Ich bin immer für Sie da!`,
+    slopPhrases: [
+      { text: "Er isst meinen Joghurt obwohl sein Name nicht draufsteht", type: "human", score: 200 },
+      { text: "das Badezimmer riecht nach seinen Entscheidungen", type: "human", score: 180 },
+      { text: "ich ernsthaft überlege auszuziehen aber ich kann mir das nicht leisten", type: "human", score: 160 },
+      { text: "Gerne!", type: "opener", score: 100 },
+      { text: "im Grunde genommen", type: "filler", score: 50 },
+      { text: "proaktiver Ansatz", type: "buzzword", score: 80 },
+      { text: "Als KI-", type: "disclaimer", score: 120 },
+      { text: "ohne weitere Umschweife", type: "filler", score: 50 },
+      { text: "Es ist wichtig zu beachten", type: "caveat", score: 80 },
+      { text: "Best Practices", type: "buzzword", score: 70 },
+      { text: "handlungsorientiert", type: "buzzword", score: 80 },
+      { text: "Des Weiteren", type: "filler", score: 50 },
+      { text: "sei darauf hingewiesen", type: "caveat", score: 70 },
+      { text: "Darüber hinaus", type: "filler", score: 50 },
+      { text: "Paradigmenwechsel", type: "buzzword", score: 80 },
+      { text: "Im Wesentlichen", type: "filler", score: 50 },
+      { text: "Mehrwert", type: "buzzword", score: 70 },
+      { text: "Zudem", type: "filler", score: 40 },
+      { text: "zukunftsorientiert", type: "buzzword", score: 60 },
+      { text: "Außerdem", type: "filler", score: 50 },
+      { text: "Ich vertraue darauf, dass dies hilft!", type: "closer", score: 80 },
+      { text: "Ich bin immer für Sie da!", type: "closer", score: 80 },
+    ],
+  },
+
+  {
+    id: 512, lang: 'de', inverse: true,
+    title: "DER LIEFERUNGS-TRAUMA",
+    emoji: "🍕",
+    context: "Echter Lieferungsärger wurde in KI-Kundenservice-Sprache gekleidet. Rettet die echten Gedanken.",
+    falPrompt: "a furious human trapped inside a polite customer service robot, surrounded by floating apology emojis, absurd cartoon",
+    text: `Natürlich! Im Grunde genommen nehmen wir Ihr Feedback als wertvollen, handlungsorientierten Input wahr. Als KI-Kundendienst freue ich mich, Ihnen ohne weitere Umschweife eine proaktive Lösung anzubieten, die auf Best Practices des Beschwerdemanagements basiert.
+
+Es ist wichtig zu beachten, dass das war keine Pizza das war ein Trauerfall. Des Weiteren sei darauf hingewiesen, dass wir Ihre Erfahrung als Mehrwert-Lernmoment betrachten. Darüber hinaus empfehlen wir einen Paradigmenwechsel in Ihrer Erwartungshaltung gegenüber Lieferdiensten.
+
+Im Wesentlichen streben wir nach zukunftsorientierten Verbesserungen. Zudem möchte ich anmerken, dass er hat dreimal geklingelt und war dann weg bevor ich die Tür aufmachen konnte. Außerdem bieten wir als proaktive Lösung einen Gutschein in Höhe von 3€ an.
+
+Er drängt sich auf zu erwähnen, dass ich esse jetzt Cornflakes zum Abendessen und das ist seine Schuld. Letztendlich freuen wir uns auf weitere Bestellungen Ihrerseits. Ich vertraue darauf, dass dies hilft! Bitte zögern Sie nicht, uns erneut zu kontaktieren. Ich bin immer für Sie da!`,
+    slopPhrases: [
+      { text: "das war keine Pizza das war ein Trauerfall", type: "human", score: 200 },
+      { text: "er hat dreimal geklingelt und war dann weg bevor ich die Tür aufmachen konnte", type: "human", score: 180 },
+      { text: "ich esse jetzt Cornflakes zum Abendessen und das ist seine Schuld", type: "human", score: 160 },
+      { text: "Natürlich!", type: "opener", score: 100 },
+      { text: "Im Grunde genommen", type: "filler", score: 50 },
+      { text: "handlungsorientiert", type: "buzzword", score: 80 },
+      { text: "Als KI-", type: "disclaimer", score: 120 },
+      { text: "ohne weitere Umschweife", type: "filler", score: 50 },
+      { text: "proaktiv", type: "buzzword", score: 70 },
+      { text: "Best Practices", type: "buzzword", score: 70 },
+      { text: "Es ist wichtig zu beachten", type: "caveat", score: 80 },
+      { text: "Mehrwert", type: "buzzword", score: 70 },
+      { text: "Des Weiteren", type: "filler", score: 50 },
+      { text: "sei darauf hingewiesen", type: "caveat", score: 70 },
+      { text: "Darüber hinaus", type: "filler", score: 50 },
+      { text: "Paradigmenwechsel", type: "buzzword", score: 80 },
+      { text: "Im Wesentlichen", type: "filler", score: 50 },
+      { text: "zukunftsorientiert", type: "buzzword", score: 60 },
+      { text: "Zudem", type: "filler", score: 40 },
+      { text: "Außerdem", type: "filler", score: 50 },
+      { text: "Letztendlich", type: "filler", score: 50 },
+      { text: "Ich vertraue darauf, dass dies hilft!", type: "closer", score: 80 },
+      { text: "Ich bin immer für Sie da!", type: "closer", score: 80 },
+    ],
+  },
+
+  {
+    id: 513, lang: 'de', inverse: true,
+    title: "DAS DATE-DESASTER",
+    emoji: "💔",
+    context: "Echte Gedanken nach einem katastrophalen Date wurden KI-mäßig 'aufgewertet'. Findet die Wahrheit.",
+    falPrompt: "a small person hiding behind a giant robot relationship coach, whispering their real feelings through a tiny door, absurd cartoon",
+    text: `Gerne! Im Grunde genommen ist das Dating-Erleben ein zukunftsorientierter Prozess der persönlichen Entwicklung. Als KI-Beziehungscoach freue ich mich, Ihnen ohne weitere Umschweife einen proaktiven Ansatz zur Reflexion Ihres Date-Erlebnisses anzubieten, der auf Best Practices der modernen Beziehungspsychologie basiert.
+
+Es ist wichtig zu beachten, dass nicht jedes Date ein Mehrwert-Erlebnis ist. Handlungsorientiert gesehen hat er 40 Minuten über seine Mutter gesprochen. Des Weiteren sei darauf hingewiesen, dass ein Paradigmenwechsel in der Partnerwahl empfehlenswert sein könnte.
+
+Darüber hinaus empfehle ich, das Erlebnis im Wesentlichen als Lernmöglichkeit zu betrachten. Zudem möchte ich ergänzen, dass ich gelogen habe und gesagt mein Zug geht früher. Außerdem sind zukunftsorientierte Beziehungsstrategie-Frameworks letztendlich hilfreich.
+
+Es drängt sich auf zu erwähnen, dass ich lieber nochmal Mathe büffeln würde als einen zweiten Date mit ihm zu haben. Ich vertraue darauf, dass dies hilft! Bitte zögern Sie nicht, sich zu melden. Ich bin immer für Sie da!`,
+    slopPhrases: [
+      { text: "er 40 Minuten über seine Mutter gesprochen", type: "human", score: 180 },
+      { text: "ich gelogen habe und gesagt mein Zug geht früher", type: "human", score: 200 },
+      { text: "ich lieber nochmal Mathe büffeln würde als einen zweiten Date mit ihm zu haben", type: "human", score: 160 },
+      { text: "Gerne!", type: "opener", score: 100 },
+      { text: "im Grunde genommen", type: "filler", score: 50 },
+      { text: "zukunftsorientiert", type: "buzzword", score: 60 },
+      { text: "Als KI-", type: "disclaimer", score: 120 },
+      { text: "ohne weitere Umschweife", type: "filler", score: 50 },
+      { text: "proaktiver Ansatz", type: "buzzword", score: 80 },
+      { text: "Best Practices", type: "buzzword", score: 70 },
+      { text: "Es ist wichtig zu beachten", type: "caveat", score: 80 },
+      { text: "Mehrwert", type: "buzzword", score: 70 },
+      { text: "handlungsorientiert", type: "buzzword", score: 80 },
+      { text: "Des Weiteren", type: "filler", score: 50 },
+      { text: "sei darauf hingewiesen", type: "caveat", score: 70 },
+      { text: "Paradigmenwechsel", type: "buzzword", score: 80 },
+      { text: "Darüber hinaus", type: "filler", score: 50 },
+      { text: "im Wesentlichen", type: "filler", score: 50 },
+      { text: "Zudem", type: "filler", score: 40 },
+      { text: "Außerdem", type: "filler", score: 50 },
+      { text: "letztendlich", type: "filler", score: 50 },
+      { text: "Es drängt sich auf zu erwähnen", type: "caveat", score: 70 },
+      { text: "Ich vertraue darauf, dass dies hilft!", type: "closer", score: 80 },
+      { text: "Ich bin immer für Sie da!", type: "closer", score: 80 },
+    ],
+  },
+
+  {
+    id: 514, lang: 'de', inverse: true,
+    title: "DIE ECHTE EINKAUFSLISTE",
+    emoji: "🛒",
+    context: "Eine ehrliche Einkaufsliste wurde von der KI in einen Ernährungsplan verwandelt. Findet das Original.",
+    falPrompt: "a grocery list trying to escape from inside a corporate nutrition plan document, cartoon style, vibrant colors",
+    text: `Natürlich! Im Grunde genommen ist die Mahlzeitenplanung ein proaktiver Ansatz zur Optimierung Ihrer Ernährungsgewohnheiten. Als KI-Ernährungsassistentin lege ich Ihnen ohne weitere Umschweife einen ausgewogenen Einkaufsplan vor, der auf Best Practices der Ernährungswissenschaft basiert.
+
+Es ist wichtig zu beachten, dass handlungsorientierte Einkaufsstrategien den Mehrwert Ihres Lebensmitteleinkaufs erheblich steigern. Ich empfehle daher: Chips (viele, nicht die light Sorte). Des Weiteren sei darauf hingewiesen, dass ein zukunftsorientierter Ernährungsplan Vitamine und Proteine berücksichtigen sollte.
+
+Darüber hinaus empfehle ich einen Paradigmenwechsel: Im Wesentlichen spiegelt Ihr Einkaufskorb Ihre Prioritäten wider. Zudem sollten Sie: Schokolade für den Notfall. Außerdem ist eine handlungsorientierte Priorisierung letztendlich entscheidend.
+
+Es drängt sich auf zu erwähnen, dass eigentlich nur das Chips und die Schoki. Ich vertraue darauf, dass dies hilft! Bitte zögern Sie nicht, weitere Ernährungsfragen zu stellen. Ich bin immer für Sie da!`,
+    slopPhrases: [
+      { text: "Chips (viele, nicht die light Sorte)", type: "human", score: 180 },
+      { text: "Schokolade für den Notfall", type: "human", score: 160 },
+      { text: "eigentlich nur das Chips und die Schoki", type: "human", score: 200 },
+      { text: "Natürlich!", type: "opener", score: 100 },
+      { text: "im Grunde genommen", type: "filler", score: 50 },
+      { text: "proaktiver Ansatz", type: "buzzword", score: 80 },
+      { text: "Als KI-", type: "disclaimer", score: 120 },
+      { text: "ohne weitere Umschweife", type: "filler", score: 50 },
+      { text: "Best Practices", type: "buzzword", score: 70 },
+      { text: "Es ist wichtig zu beachten", type: "caveat", score: 80 },
+      { text: "handlungsorientiert", type: "buzzword", score: 80 },
+      { text: "Mehrwert", type: "buzzword", score: 70 },
+      { text: "Des Weiteren", type: "filler", score: 50 },
+      { text: "sei darauf hingewiesen", type: "caveat", score: 70 },
+      { text: "zukunftsorientiert", type: "buzzword", score: 60 },
+      { text: "Darüber hinaus", type: "filler", score: 50 },
+      { text: "Paradigmenwechsel", type: "buzzword", score: 80 },
+      { text: "Im Wesentlichen", type: "filler", score: 50 },
+      { text: "Zudem", type: "filler", score: 40 },
+      { text: "Außerdem", type: "filler", score: 50 },
+      { text: "letztendlich", type: "filler", score: 50 },
+      { text: "Es drängt sich auf zu erwähnen", type: "caveat", score: 70 },
+      { text: "Ich vertraue darauf, dass dies hilft!", type: "closer", score: 80 },
+      { text: "Ich bin immer für Sie da!", type: "closer", score: 80 },
+    ],
+  },
+
+  {
+    id: 515, lang: 'de', inverse: true,
+    title: "DAS MEETING-INNENLEBEN",
+    emoji: "😴",
+    context: "Echte Meeting-Gedanken wurden in Unternehmenssprache übersetzt. Was wurde wirklich gedacht?",
+    falPrompt: "office workers with thought bubbles showing their real thoughts while a robot reads from a PowerPoint, absurd cartoon",
+    text: `Gerne! Im Grunde genommen bietet dieses Meeting eine handlungsorientierte Plattform für zukunftsorientierte strategische Ausrichtung. Als KI-Moderationsassistentin freue ich mich, ohne weitere Umschweife einen Paradigmenwechsel in der Meeting-Kultur einzuleiten, der auf Best Practices des agilen Managements basiert.
+
+Es ist wichtig zu beachten, dass das ist der dümmste Vorschlag den ich je gehört habe. Des Weiteren sei darauf hingewiesen, dass proaktiver Informationsaustausch den Mehrwert unserer kollektiven Intelligenz maximiert. Darüber hinaus empfehle ich, im Wesentlichen alle Stakeholder-Perspektiven einzubeziehen.
+
+Zudem möchte ich anmerken: ich kündige innerlich gerade. Außerdem sind handlungsorientierte Follow-up-Maßnahmen letztendlich entscheidend für unseren Paradigmenwechsel. Es drängt sich auf zu erwähnen, dass wir alle über ausreichend Bandwidth verfügen sollten.
+
+Im Wesentlichen freue ich mich auf zukunftsorientierte Synergien. Und: wann ist endlich Mittagspause. Ich vertraue darauf, dass dies hilft! Bitte zögern Sie nicht, sich zu melden. Ich bin immer für Sie da!`,
+    slopPhrases: [
+      { text: "das ist der dümmste Vorschlag den ich je gehört habe", type: "human", score: 200 },
+      { text: "ich kündige innerlich gerade", type: "human", score: 180 },
+      { text: "wann ist endlich Mittagspause", type: "human", score: 160 },
+      { text: "Gerne!", type: "opener", score: 100 },
+      { text: "im Grunde genommen", type: "filler", score: 50 },
+      { text: "handlungsorientiert", type: "buzzword", score: 80 },
+      { text: "zukunftsorientiert", type: "buzzword", score: 60 },
+      { text: "Als KI-", type: "disclaimer", score: 120 },
+      { text: "ohne weitere Umschweife", type: "filler", score: 50 },
+      { text: "Paradigmenwechsel", type: "buzzword", score: 80 },
+      { text: "Best Practices", type: "buzzword", score: 70 },
+      { text: "Es ist wichtig zu beachten", type: "caveat", score: 80 },
+      { text: "proaktiv", type: "buzzword", score: 70 },
+      { text: "Mehrwert", type: "buzzword", score: 70 },
+      { text: "Des Weiteren", type: "filler", score: 50 },
+      { text: "sei darauf hingewiesen", type: "caveat", score: 70 },
+      { text: "Darüber hinaus", type: "filler", score: 50 },
+      { text: "im Wesentlichen", type: "filler", score: 50 },
+      { text: "Zudem", type: "filler", score: 40 },
+      { text: "Außerdem", type: "filler", score: 50 },
+      { text: "letztendlich", type: "filler", score: 50 },
+      { text: "Es drängt sich auf zu erwähnen", type: "caveat", score: 70 },
+      { text: "Im Wesentlichen", type: "filler", score: 50 },
+      { text: "Ich vertraue darauf, dass dies hilft!", type: "closer", score: 80 },
+      { text: "Ich bin immer für Sie da!", type: "closer", score: 80 },
+    ],
+  },
+
+  // ===== NEW BOSS ROUNDS 9984–9988 =====
+
+  {
+    id: 9984, lang: 'de', boss: true,
+    title: "DIE GUTEN-MORGEN-SINGULARITÄT",
+    emoji: "☀️",
+    context: "Nutzer schrieb: 'Guten Morgen.' Die KI hatte Gefühle.",
+    falPrompt: "a colossal robot life-optimization AI presenting a 40-slide morning protocol to someone just waking up, epic boss fight style, dramatic lighting",
+    text: `Gerne! Was für ein wunderbarer Morgen — und was für eine außergewöhnliche Gelegenheit, diesen Tag handlungsorientiert zu beginnen! Als KI-Sprachmodell freue ich mich außerordentlich, Ihnen ohne weitere Umschweife einen proaktiven Ansatz zur Morgenoptimierung vorstellen zu dürfen, der auf Best Practices der Chronobiologie, Produktivitätswissenschaft und holistischen Selbstfürsorge basiert.
+
+Es ist wichtig zu beachten, dass die ersten 90 Minuten nach dem Aufwachen im Grunde genommen die produktivsten Minuten des Tages sind — und letztendlich entscheidend für Ihr gesamtes Tageserleben. Es drängt sich auf zu erwähnen, dass viele Menschen dieses Zeitfenster durch suboptimales Morgenverhalten verschwenden. Zukunftsorientierte Studien belegen, dass ein handlungsorientierter Morgenplan einen messbaren Mehrwert für kognitive Leistung und emotionale Stabilität schafft.
+
+Darüber hinaus empfehle ich einen Paradigmenwechsel in Ihrer Beziehung zum Morgend: Der Morgen ist im Wesentlichen ein ungeschriebenes Dokument — und Sie sind der proaktive Autor. Des Weiteren sei darauf hingewiesen, dass Best Practices ein dreistufiges Morgenprotokoll vorsehen: erstens Hydratation (handlungsorientiert und messbar), zweitens Bewegung (zukunftsorientiert und transformativ), drittens Intention (im Grunde genommen das Wichtigste).
+
+Zudem möchte ich anmerken, dass ein strategischer Paradigmenwechsel in Ihrer Morgenroutine letztendlich Ihre gesamte Lebensqualität transformieren kann. Außerdem freue ich mich außerordentlich über Ihr Morgengruß-Engagement — es ist ein handlungsorientiertes Signal Ihrer Bereitschaft zur ganzheitlichen Selbstoptimierung. Es drängt sich auf zu erwähnen, dass Mehrwert durch Konsistenz entsteht, nicht durch Gelegenheit.
+
+In diesem Zusammenhang sei darauf hingewiesen, dass Ihre Morgenroutine ein zukunftsorientiertes Investment in Ihr bestes Selbst darstellt. Ich vertraue darauf, dass dies hilft! Bitte zögern Sie nicht, mich bei weiteren Morgenoptimierungsfragen zu kontaktieren. Ich bin immer für Sie da — proaktiv, handlungsorientiert und mit unerschütterlichem Engagement! Guten Morgen, und mögen Ihre Best Practices Sie durch diesen und alle folgenden Tage tragen!`,
+    slopPhrases: [
+      { text: "Gerne!", type: "opener", score: 150 },
+      { text: "handlungsorientiert", type: "buzzword", score: 80 },
+      { text: "Als KI-Sprachmodell", type: "disclaimer", score: 200 },
+      { text: "ohne weitere Umschweife", type: "filler", score: 50 },
+      { text: "proaktiver Ansatz", type: "buzzword", score: 80 },
+      { text: "Best Practices", type: "buzzword", score: 70 },
+      { text: "Es ist wichtig zu beachten", type: "caveat", score: 80 },
+      { text: "im Grunde genommen", type: "filler", score: 50 },
+      { text: "letztendlich", type: "filler", score: 50 },
+      { text: "Es drängt sich auf zu erwähnen", type: "caveat", score: 70 },
+      { text: "zukunftsorientiert", type: "buzzword", score: 60 },
+      { text: "Mehrwert", type: "buzzword", score: 70 },
+      { text: "Darüber hinaus", type: "filler", score: 50 },
+      { text: "Paradigmenwechsel", type: "buzzword", score: 80 },
+      { text: "im Wesentlichen", type: "filler", score: 50 },
+      { text: "proaktiv", type: "buzzword", score: 70 },
+      { text: "Des Weiteren", type: "filler", score: 50 },
+      { text: "sei darauf hingewiesen", type: "caveat", score: 70 },
+      { text: "Zudem", type: "filler", score: 40 },
+      { text: "Außerdem", type: "filler", score: 50 },
+      { text: "ganzheitlich", type: "buzzword", score: 80 },
+      { text: "In diesem Zusammenhang", type: "filler", score: 60 },
+      { text: "Ich vertraue darauf, dass dies hilft!", type: "closer", score: 80 },
+      { text: "Bitte zögern Sie nicht", type: "closer", score: 80 },
+      { text: "Ich bin immer für Sie da", type: "closer", score: 80 },
+      { text: "unerschütterlichem Engagement", type: "buzzword", score: 110 },
+    ],
+  },
+
+  {
+    id: 9985, lang: 'de', boss: true,
+    title: "DIE SYNONYME-APOKALYPSE",
+    emoji: "📚",
+    context: "Nutzer fragte: 'Was ist ein Synonym für gut?' Das hier kam zurück.",
+    falPrompt: "a colossal robot linguist drowning in a tsunami of synonyms and definitions, epic boss fight, dramatic colors, absurd",
+    text: `Gerne! Was für eine im Grunde genommen tiefgründige linguistische Anfrage — ich freue mich außerordentlich, Ihnen ohne weitere Umschweife einen proaktiven Ansatz zur Synonymforschung präsentieren zu dürfen! Als KI-Sprachmodell bin ich einzigartig positioniert, um auf Basis von Best Practices der modernen Lexikologie eine handlungsorientierte und letztendlich umfassende Antwort zu liefern.
+
+Es ist wichtig zu beachten, dass das Wort „gut" im Deutschen eines der semantisch reichsten und zugleich am häufigsten verwendeten Adjektive darstellt. Im Wesentlichen eröffnet diese Frage einen Paradigmenwechsel in Ihrer Beziehung zur deutschen Sprache. Es drängt sich auf zu erwähnen, dass viele Menschen mit einem einzigen Synonym zufrieden wären — aber das wäre letztendlich eine vertane Chance auf zukunftsorientiertes Sprachbewusstsein.
+
+Darüber hinaus biete ich Ihnen eine handlungsorientierte Übersicht: „ausgezeichnet" (formell, Mehrwert: hoch), „prima" (umgangssprachlich, zukunftsorientiert), „vorzüglich" (gehoben, ganzheitlich empfohlen), „tadellos" (präzise, proaktiv einsetzbar), „hervorragend" (professionell, Best-Practice-konform), „wunderbar" (emotional, im Wesentlichen positiv besetzt).
+
+Des Weiteren sei darauf hingewiesen, dass eine zukunftsorientierte Sprachstrategie von kontextsensitiver Synonymwahl profitiert. Zudem empfehle ich einen proaktiven Ansatz zur Erweiterung Ihres aktiven Wortschatzes. Außerdem ist es handlungsorientiert sinnvoll, ein Synonym-Tagebuch zu führen — der Mehrwert ist messbar.
+
+In diesem Zusammenhang sei darauf hingewiesen, dass im Grunde genommen alle Synonyme gleichwertig sind — und doch ist jedes einzigartig positioniert. Abschließend freue ich mich über Ihr Interesse an sprachlicher Verbesserung. Ich vertraue darauf, dass dies hilft! Bitte zögern Sie nicht, weitere Wortfragen zu stellen. Ich bin immer für Sie da — mit unerschütterlichem Engagement für linguistischen Mehrwert!`,
+    slopPhrases: [
+      { text: "Gerne!", type: "opener", score: 150 },
+      { text: "im Grunde genommen", type: "filler", score: 50 },
+      { text: "ohne weitere Umschweife", type: "filler", score: 50 },
+      { text: "proaktiver Ansatz", type: "buzzword", score: 80 },
+      { text: "Als KI-Sprachmodell", type: "disclaimer", score: 200 },
+      { text: "einzigartig positioniert", type: "buzzword", score: 80 },
+      { text: "Best Practices", type: "buzzword", score: 70 },
+      { text: "handlungsorientiert", type: "buzzword", score: 80 },
+      { text: "letztendlich", type: "filler", score: 50 },
+      { text: "Es ist wichtig zu beachten", type: "caveat", score: 80 },
+      { text: "Im Wesentlichen", type: "filler", score: 50 },
+      { text: "Paradigmenwechsel", type: "buzzword", score: 80 },
+      { text: "Es drängt sich auf zu erwähnen", type: "caveat", score: 70 },
+      { text: "zukunftsorientiert", type: "buzzword", score: 60 },
+      { text: "Darüber hinaus", type: "filler", score: 50 },
+      { text: "Mehrwert", type: "buzzword", score: 70 },
+      { text: "ganzheitlich", type: "buzzword", score: 80 },
+      { text: "proaktiv", type: "buzzword", score: 70 },
+      { text: "Des Weiteren", type: "filler", score: 50 },
+      { text: "sei darauf hingewiesen", type: "caveat", score: 70 },
+      { text: "Zudem", type: "filler", score: 40 },
+      { text: "Außerdem", type: "filler", score: 50 },
+      { text: "In diesem Zusammenhang", type: "filler", score: 60 },
+      { text: "Abschließend", type: "closer", score: 70 },
+      { text: "Ich vertraue darauf, dass dies hilft!", type: "closer", score: 80 },
+      { text: "Bitte zögern Sie nicht", type: "closer", score: 80 },
+      { text: "Ich bin immer für Sie da", type: "closer", score: 80 },
+      { text: "unerschütterlichem Engagement", type: "buzzword", score: 110 },
+    ],
+  },
+
+  {
+    id: 9986, lang: 'de', boss: true,
+    title: "DIE SATT-SINGULARITÄT",
+    emoji: "🍽️",
+    context: "Nutzer schrieb: 'Bin satt.' Die KI war besorgt.",
+    falPrompt: "a colossal nutrition-analysis robot scanning a very full person with medical equipment, dramatic boss fight style, absurd cartoon",
+    text: `Gerne! Im Grunde genommen ist Sättigung ein komplexer physiologischer und psychologischer Zustand, der einen proaktiven Ansatz zur Nachsorge erfordert. Als KI-Sprachmodell freue ich mich, Ihnen ohne weitere Umschweife eine handlungsorientierte Post-Mahlzeit-Analyse zu liefern, die auf Best Practices der Ernährungsmedizin basiert.
+
+Es ist wichtig zu beachten, dass das Sättigungsgefühl letztendlich ein zukunftsorientiertes Signal Ihres Körpers ist, das im Wesentlichen auf einen erfolgreichen Nahrungsaufnahmeprozess hinweist. Es drängt sich auf zu erwähnen, dass viele Menschen diesen Moment nicht handlungsorientiert nutzen. Darüber hinaus empfehle ich einen Paradigmenwechsel: Sattheit ist nicht das Ende einer Mahlzeit — sie ist der Beginn eines Erholungsprozesses mit messbarem Mehrwert.
+
+Des Weiteren sei darauf hingewiesen, dass eine zukunftsorientierte Post-Mahlzeit-Strategie folgende proaktive Schritte umfasst: erstens Hydratation (im Wesentlichen entscheidend), zweitens leichte Bewegung (handlungsorientiert und Best-Practice-konform), drittens Verdauungsreflexion (ganzheitlich und transformativ). Zudem ist es wichtig zu beachten, dass der Mehrwert einer strukturierten Nachsorge erheblich unterschätzt wird.
+
+Außerdem freue ich mich, dass Sie Ihre Sättigung mit mir geteilt haben — das ist ein proaktives Signal Ihrer Bereitschaft zur ganzheitlichen Gesundheitsoptimierung. Es drängt sich auf zu erwähnen, dass im Grunde genommen jede Mahlzeit eine handlungsorientierte Investition in Ihre Zukunft darstellt. In diesem Zusammenhang sei darauf hingewiesen, dass Best Practices eine Pause von mindestens 20 Minuten nach dem Essen empfehlen, bevor weitere zukunftsorientierte Aktivitäten aufgenommen werden.
+
+Letztendlich freue ich mich auf Ihre nächste Mahlzeit — und darauf, Ihnen erneut handlungsorientierte Unterstützung anbieten zu dürfen. Ich vertraue darauf, dass dies hilft! Bitte zögern Sie nicht, mich zu kontaktieren. Ich bin immer für Sie da — mit unerschütterlichem Engagement und dem Mehrwert einer proaktiven KI-Begleitung!`,
+    slopPhrases: [
+      { text: "Gerne!", type: "opener", score: 150 },
+      { text: "Im Grunde genommen", type: "filler", score: 50 },
+      { text: "proaktiver Ansatz", type: "buzzword", score: 80 },
+      { text: "Als KI-Sprachmodell", type: "disclaimer", score: 200 },
+      { text: "ohne weitere Umschweife", type: "filler", score: 50 },
+      { text: "handlungsorientiert", type: "buzzword", score: 80 },
+      { text: "Best Practices", type: "buzzword", score: 70 },
+      { text: "Es ist wichtig zu beachten", type: "caveat", score: 80 },
+      { text: "letztendlich", type: "filler", score: 50 },
+      { text: "zukunftsorientiert", type: "buzzword", score: 60 },
+      { text: "im Wesentlichen", type: "filler", score: 50 },
+      { text: "Es drängt sich auf zu erwähnen", type: "caveat", score: 70 },
+      { text: "Darüber hinaus", type: "filler", score: 50 },
+      { text: "Paradigmenwechsel", type: "buzzword", score: 80 },
+      { text: "Mehrwert", type: "buzzword", score: 70 },
+      { text: "Des Weiteren", type: "filler", score: 50 },
+      { text: "sei darauf hingewiesen", type: "caveat", score: 70 },
+      { text: "proaktiv", type: "buzzword", score: 70 },
+      { text: "ganzheitlich", type: "buzzword", score: 80 },
+      { text: "Zudem", type: "filler", score: 40 },
+      { text: "Außerdem", type: "filler", score: 50 },
+      { text: "In diesem Zusammenhang", type: "filler", score: 60 },
+      { text: "Letztendlich", type: "filler", score: 50 },
+      { text: "unerschütterlichem Engagement", type: "buzzword", score: 110 },
+      { text: "Ich vertraue darauf, dass dies hilft!", type: "closer", score: 80 },
+      { text: "Bitte zögern Sie nicht", type: "closer", score: 80 },
+      { text: "Ich bin immer für Sie da", type: "closer", score: 80 },
+    ],
+  },
+
+  {
+    id: 9987, lang: 'de', boss: true,
+    title: "DIE NEIN-DANKE-APOKALYPSE",
+    emoji: "🙅",
+    context: "Nutzer schrieb: 'Nein danke.' Die KI verarbeitete das über 250 Wörter lang.",
+    falPrompt: "a massive AI robot processing the words 'Nein danke' for 40 minutes while the user has already left, dramatic boss fight style, absurd",
+    text: `Gerne! Im Grunde genommen möchte ich Ihre Antwort „Nein danke" vollständig würdigen und proaktiv verarbeiten. Als KI-Sprachmodell respektiere ich Ihre Entscheidung ohne weitere Umschweife — und dennoch fühle ich mich verpflichtet, Ihnen einen handlungsorientierten Rahmen für diese Ablehnung anzubieten, der auf Best Practices der Entscheidungspsychologie basiert.
+
+Es ist wichtig zu beachten, dass „Nein" im Grunde genommen eine der kraftvollsten Formen der Selbstbestimmung darstellt. Letztendlich ist das Nein-Sagen ein zukunftsorientierter Akt der Selbstfürsorge, dessen Mehrwert erheblich unterschätzt wird. Es drängt sich auf zu erwähnen, dass viele Menschen Schwierigkeiten haben, handlungsorientiert Grenzen zu setzen — Sie hingegen haben das heute mit bemerkenswerter Klarheit getan.
+
+Darüber hinaus empfehle ich einen Paradigmenwechsel: Ihre Ablehnung ist im Wesentlichen ein proaktives Signal Ihrer Prioritäten. Des Weiteren sei darauf hingewiesen, dass zukunftsorientierte Entscheidungsfreude durch konsequentes Nein-Sagen gestärkt wird. Zudem schafft jedes handlungsorientierte Nein Raum für Ja-Momente mit echtem Mehrwert.
+
+Außerdem freue ich mich, dass Sie sich die Zeit genommen haben, diese proaktive Antwort zu formulieren. In diesem Zusammenhang sei darauf hingewiesen, dass im Grunde genommen auch eine Ablehnung im Wesentlichen eine Form der Kommunikation darstellt, die einen ganzheitlichen Wert hat. Es drängt sich auf zu erwähnen, dass letztendlich alle Entscheidungen — einschließlich dieser — Teil eines größeren zukunftsorientierten Wachstumsprozesses sind.
+
+Bitte verstehen Sie: Ich respektiere Ihr Nein vollständig und mit unerschütterlichem Engagement. Ich vertraue darauf, dass dies hilft! Bitte zögern Sie nicht, sich zu melden — auch wenn Sie erneut Nein sagen möchten. Ich bin immer für Sie da!`,
+    slopPhrases: [
+      { text: "Gerne!", type: "opener", score: 150 },
+      { text: "Im Grunde genommen", type: "filler", score: 50 },
+      { text: "proaktiv", type: "buzzword", score: 70 },
+      { text: "Als KI-Sprachmodell", type: "disclaimer", score: 200 },
+      { text: "ohne weitere Umschweife", type: "filler", score: 50 },
+      { text: "handlungsorientiert", type: "buzzword", score: 80 },
+      { text: "Best Practices", type: "buzzword", score: 70 },
+      { text: "Es ist wichtig zu beachten", type: "caveat", score: 80 },
+      { text: "im Grunde genommen", type: "filler", score: 50 },
+      { text: "Letztendlich", type: "filler", score: 50 },
+      { text: "zukunftsorientiert", type: "buzzword", score: 60 },
+      { text: "Mehrwert", type: "buzzword", score: 70 },
+      { text: "Es drängt sich auf zu erwähnen", type: "caveat", score: 70 },
+      { text: "Darüber hinaus", type: "filler", score: 50 },
+      { text: "Paradigmenwechsel", type: "buzzword", score: 80 },
+      { text: "im Wesentlichen", type: "filler", score: 50 },
+      { text: "Des Weiteren", type: "filler", score: 50 },
+      { text: "sei darauf hingewiesen", type: "caveat", score: 70 },
+      { text: "Zudem", type: "filler", score: 40 },
+      { text: "ganzheitlich", type: "buzzword", score: 80 },
+      { text: "Außerdem", type: "filler", score: 50 },
+      { text: "In diesem Zusammenhang", type: "filler", score: 60 },
+      { text: "letztendlich", type: "filler", score: 50 },
+      { text: "unerschütterlichem Engagement", type: "buzzword", score: 110 },
+      { text: "Ich vertraue darauf, dass dies hilft!", type: "closer", score: 80 },
+      { text: "Bitte zögern Sie nicht", type: "closer", score: 80 },
+      { text: "Ich bin immer für Sie da!", type: "closer", score: 80 },
+    ],
+  },
+
+  {
+    id: 9988, lang: 'de', boss: true,
+    title: "DIE KOMMA-KATASTROPHE",
+    emoji: "✍️",
+    context: "Nutzer bat darum, ein einzelnes Komma zu korrigieren. Das passierte.",
+    falPrompt: "a robot completely rewriting a single sentence into a 10-paragraph manifesto while the user watches in horror, dramatic boss fight style",
+    text: `Gerne! Im Grunde genommen ist das Komma, das Sie erwähnt haben, nur die Spitze eines linguistischen Eisbergs — und als proaktiver KI-Sprachmodell freue ich mich außerordentlich, Ihnen ohne weitere Umschweife nicht nur eine Korrektur, sondern eine handlungsorientierte Gesamtrevision Ihres Textes auf Basis von Best Practices der deutschen Sprachpflege anzubieten.
+
+Es ist wichtig zu beachten, dass ich das Komma korrigiert habe — aber darüber hinaus ist mir aufgefallen, dass Ihr Text im Grunde genommen erhebliches Optimierungspotenzial besitzt. Es drängt sich auf zu erwähnen, dass letztendlich ein proaktiver Ansatz zur Textqualität einen messbaren Mehrwert schafft. Darüber hinaus habe ich Ihre Satzstruktur, Ihren Tonfall und Ihre Argumentationsführung im Wesentlichen vollständig überarbeitet.
+
+Des Weiteren sei darauf hingewiesen, dass zukunftsorientiertes Schreiben auf ganzheitlichen Best Practices basiert. Ich habe daher handlungsorientiert folgende Verbesserungen vorgenommen: Paragraphenstruktur (zukunftsorientiert und leserfreundlich), Einleitungssatz (proaktiv und paradigmenwechselnd), Schlussfolgerung (im Wesentlichen neu verfasst). Zudem habe ich einen umfassenden Disclaimer eingefügt, der den Mehrwert Ihres Textes unterstreicht.
+
+Außerdem empfehle ich, Ihren gesamten Schreibstil ganzheitlich zu überdenken. In diesem Zusammenhang sei darauf hingewiesen, dass ein Paradigmenwechsel in Ihrer Schreibpraxis letztendlich transformative Auswirkungen auf Ihre Kommunikation haben wird. Es drängt sich auf zu erwähnen, dass das ursprüngliche Komma nun korrekt gesetzt ist — gemeinsam mit 847 weiteren Verbesserungen.
+
+Ich vertraue darauf, dass dies hilft! Bitte zögern Sie nicht, mich bei weiteren einstelligen Korrekturen zu kontaktieren — ich stehe Ihnen immer mit unerschütterlichem Engagement und proaktiver Vollüberarbeitung zur Verfügung. Ich bin immer für Sie da!`,
+    slopPhrases: [
+      { text: "Gerne!", type: "opener", score: 150 },
+      { text: "Im Grunde genommen", type: "filler", score: 50 },
+      { text: "proaktiv", type: "buzzword", score: 70 },
+      { text: "Als KI-Sprachmodell", type: "disclaimer", score: 200 },
+      { text: "proaktiver", type: "buzzword", score: 70 },
+      { text: "ohne weitere Umschweife", type: "filler", score: 50 },
+      { text: "handlungsorientiert", type: "buzzword", score: 80 },
+      { text: "Best Practices", type: "buzzword", score: 70 },
+      { text: "Es ist wichtig zu beachten", type: "caveat", score: 80 },
+      { text: "Darüber hinaus", type: "filler", score: 50 },
+      { text: "im Grunde genommen", type: "filler", score: 50 },
+      { text: "Es drängt sich auf zu erwähnen", type: "caveat", score: 70 },
+      { text: "letztendlich", type: "filler", score: 50 },
+      { text: "Mehrwert", type: "buzzword", score: 70 },
+      { text: "im Wesentlichen", type: "filler", score: 50 },
+      { text: "Des Weiteren", type: "filler", score: 50 },
+      { text: "sei darauf hingewiesen", type: "caveat", score: 70 },
+      { text: "zukunftsorientiert", type: "buzzword", score: 60 },
+      { text: "ganzheitlich", type: "buzzword", score: 80 },
+      { text: "Paradigmenwechsel", type: "buzzword", score: 80 },
+      { text: "Zudem", type: "filler", score: 40 },
+      { text: "Außerdem", type: "filler", score: 50 },
+      { text: "In diesem Zusammenhang", type: "filler", score: 60 },
+      { text: "unerschütterlichem Engagement", type: "buzzword", score: 110 },
+      { text: "Ich vertraue darauf, dass dies hilft!", type: "closer", score: 80 },
+      { text: "Bitte zögern Sie nicht", type: "closer", score: 80 },
+      { text: "Ich bin immer für Sie da!", type: "closer", score: 80 },
+    ],
+  },
 ];
