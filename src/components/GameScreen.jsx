@@ -2,7 +2,7 @@ import { useState, useEffect, useCallback, useRef } from 'react';
 import SlopText, { getSlopStats } from './SlopText';
 import PowerUps from './PowerUps';
 import { PopupLayer, usePopups } from './ScorePopup';
-import { playRoundComplete, playMiss, setMusicTempo, startMusic, startBossMusic, startInverseMusic, stopInverseMusic, stopMusic } from '../utils/audio';
+import { playRoundComplete, playMiss, setMusicTempo, startMusic, startBossMusic, startInverseMusic, stopInverseMusic, stopMusic, stopSummaryMusic } from '../utils/audio';
 import { t } from '../i18n/index';
 
 const ROUND_TIME_NORMAL = 45;
@@ -146,6 +146,9 @@ export default function GameScreen({ round, roundIdx, totalRounds, totalScore, o
   // Start music when round mounts. Boss/inverse use their own tracks; regular
   // rounds restart the game music (which was stopped by the previous round's cleanup).
   useEffect(() => {
+    // Defensively stop any lingering summary/inverse music from RoundIntro before
+    // starting game music — prevents overlap during the intro→game transition.
+    stopSummaryMusic();
     if (musicEnabled) {
       if (isBoss) startBossMusic();
       else if (isInverse) startInverseMusic();

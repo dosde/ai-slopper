@@ -50,8 +50,8 @@ export const setMusicStyle = (style) => {
       tg.gain.setValueAtTime(0.0001, ctx.currentTime);
       setTimeout(() => { try { tg.disconnect(); } catch (e) {} }, 60);
     }
-    // Short gap so any in-flight oscillators can reach their stop() time
-    setTimeout(() => startTitleMusic(), 40);
+    // Wait until after the old node has disconnected (25ms) before starting the new style.
+    setTimeout(() => startTitleMusic(), 30);
   }
 };
 
@@ -599,8 +599,10 @@ export const stopSummaryMusic = () => {
     const ctx = getCtx();
     sg.gain.cancelScheduledValues(ctx.currentTime);
     sg.gain.setValueAtTime(sg.gain.value, ctx.currentTime);
-    sg.gain.linearRampToValueAtTime(0.0001, ctx.currentTime + 0.05);
-    setTimeout(() => { try { sg.disconnect(); } catch (e) {} }, 70);
+    // 15ms fade — fast enough to avoid click, short enough to eliminate audible
+    // overlap with the next track that starts immediately after this cleanup.
+    sg.gain.linearRampToValueAtTime(0.0001, ctx.currentTime + 0.015);
+    setTimeout(() => { try { sg.disconnect(); } catch (e) {} }, 25);
   }
 };
 
@@ -689,8 +691,10 @@ export const startInverseMusic = () => {
     const ctx = getCtx();
     const ig = getInverseGain();
     ig.gain.cancelScheduledValues(ctx.currentTime);
+    // Very short 10ms ramp avoids click without creating a perceptible silence gap.
+    // Previously 200ms caused an audible dip when transitioning inverse→inverse.
     ig.gain.setValueAtTime(0, ctx.currentTime);
-    ig.gain.linearRampToValueAtTime(1.0, ctx.currentTime + 0.20);
+    ig.gain.linearRampToValueAtTime(1.0, ctx.currentTime + 0.01);
     restartInverseLoop();
   });
 };
@@ -704,8 +708,8 @@ export const stopInverseMusic = () => {
     const ctx = getCtx();
     ig.gain.cancelScheduledValues(ctx.currentTime);
     ig.gain.setValueAtTime(ig.gain.value, ctx.currentTime);
-    ig.gain.linearRampToValueAtTime(0.0001, ctx.currentTime + 0.05);
-    setTimeout(() => { try { ig.disconnect(); } catch (e) {} }, 70);
+    ig.gain.linearRampToValueAtTime(0.0001, ctx.currentTime + 0.015);
+    setTimeout(() => { try { ig.disconnect(); } catch (e) {} }, 25);
   }
 };
 
@@ -896,12 +900,13 @@ export const stopTitleMusic = () => {
 };
 
 export const startBossMusic = () => {
-  // Stop regular music (if any) and start boss music.
-  // Callers are responsible for checking musicEnabled.
+  // Stop all game-style tracks before starting boss music.
   isMusicPlaying = false;
   if (musicInterval) { clearInterval(musicInterval); musicInterval = null; }
-  // Disconnect gameGain so long pre-scheduled sloppy/pleasant notes don't bleed into boss music
+  // Disconnect gameGain — silences any pre-scheduled sloppy/pleasant notes instantly.
   if (gameGain) { gameGain.disconnect(); gameGain = null; }
+  // Also stop inverse music in case we're entering a boss round after an inverse round.
+  stopInverseMusic();
   isBossMusicPlaying = true;
   withRunningCtx(() => { if (isBossMusicPlaying) restartBossLoop(); });
 };
