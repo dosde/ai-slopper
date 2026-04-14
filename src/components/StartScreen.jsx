@@ -344,7 +344,7 @@ export default function StartScreen({ onStart }) {
                 ['📡', 'Power-ups usable once per game: Radar, Time Boost, Double Points'],
                 ['⏱', 'Finish early to earn TIME BONUS: seconds left × 10 pts'],
                 ['🧠', 'BRAINROT mode: wrong clicks corrupt the text — letters mutate!'],
-                ['🎲', '5 rounds per game (always 1 inverse round) from a pool of 52'],
+                ['🎲', '5 rounds per game (always 1 inverse round) from a pool of 77'],
               ].map(([icon, text]) => (
                 <div key={icon} style={{ display: 'flex', gap: '10px', marginBottom: '8px', fontSize: '0.8rem', color: '#e2e8f0', alignItems: 'flex-start' }}>
                   <span style={{ flexShrink: 0 }}>{icon}</span>
@@ -392,7 +392,7 @@ export default function StartScreen({ onStart }) {
                 🎮 START DETECTING
               </button>
               <div style={{ color: '#334155', fontSize: '0.62rem', fontFamily: "'Orbitron', sans-serif" }}>
-                52 ROUNDS POOL • REAL AI SLOP™
+                77 ROUNDS POOL • REAL AI SLOP™
               </div>
             </div>
           </>
