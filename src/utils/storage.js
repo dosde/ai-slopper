@@ -10,6 +10,8 @@ const DAILY_SCORES_KEY = 'slop_royale_daily_v1';
 const ACHIEVEMENTS_KEY = 'slop_royale_achievements_v2';
 const STATS_KEY = 'slop_royale_stats_v2';
 const DICT_KEY = 'slop_royale_dict_v1';
+const XP_KEY = 'slop_royale_xp_v1';
+const SLOP_INDEX_KEY = 'slop_royale_slop_index_v1';
 
 const getTodayKey = () => new Date().toLocaleDateString('en-CA'); // YYYY-MM-DD
 
@@ -294,3 +296,77 @@ export const updateSlopDict = (text, type) => {
 // Returns entries sorted by detection count descending
 export const getSlopDictSorted = () =>
   Object.values(getSlopDict()).sort((a, b) => b.count - a.count);
+
+// ========== XP & LEVELS ==========
+
+export const LEVELS = [
+  { level:  1, xpRequired:     0, title: 'SLOP ROOKIE' },
+  { level:  2, xpRequired:   150, title: 'PHRASE FINDER' },
+  { level:  3, xpRequired:   350, title: 'CLICHÉ HUNTER' },
+  { level:  4, xpRequired:   600, title: 'BUZZWORD BUSTER' },
+  { level:  5, xpRequired:  1000, title: 'AI DETECTOR' },
+  { level:  6, xpRequired:  1500, title: 'SLOP SLAYER' },
+  { level:  7, xpRequired:  2100, title: 'NEURAL NEMESIS' },
+  { level:  8, xpRequired:  2800, title: 'PARADIGM PULVERIZER' },
+  { level:  9, xpRequired:  3600, title: 'TOKEN TERMINATOR' },
+  { level: 10, xpRequired:  4500, title: 'SLOP SOVEREIGN' },
+  { level: 11, xpRequired:  5500, title: 'BULLET POINT BANE' },
+  { level: 12, xpRequired:  6600, title: 'DISCLAIMER DESTROYER' },
+  { level: 13, xpRequired:  7800, title: 'LEVERAGE LORD' },
+  { level: 14, xpRequired:  9100, title: 'GRAND SLOP MASTER' },
+  { level: 15, xpRequired: 10500, title: 'SLOP TRANSCENDENT' },
+  { level: 16, xpRequired: 12000, title: 'CERTAINLY SLAYER' },
+  { level: 17, xpRequired: 13600, title: 'AI EXTINCTION AGENT' },
+  { level: 18, xpRequired: 15300, title: 'SUPREME OVERLORD' },
+  { level: 19, xpRequired: 17100, title: 'HOLISTIC DESTROYER' },
+  { level: 20, xpRequired: 19000, title: 'SLOP GOD' },
+];
+
+export const getLevelFromXP = (xp) => {
+  let current = LEVELS[0];
+  for (const l of LEVELS) {
+    if (xp >= l.xpRequired) current = l;
+    else break;
+  }
+  return current;
+};
+
+export const getNextLevel = (currentLevel) =>
+  LEVELS.find(l => l.level === currentLevel + 1) || null;
+
+export const getXPData = () => {
+  try { return JSON.parse(localStorage.getItem(XP_KEY) || '{"xp":0}'); }
+  catch { return { xp: 0 }; }
+};
+
+// Adds XP and returns { xp, prevLevel, newLevel, leveledUp }
+export const addXP = (amount) => {
+  const data = getXPData();
+  const prevXP = data.xp || 0;
+  const prevLevel = getLevelFromXP(prevXP);
+  const newXP = prevXP + amount;
+  const newLevel = getLevelFromXP(newXP);
+  localStorage.setItem(XP_KEY, JSON.stringify({ xp: newXP }));
+  return { xp: newXP, prevXP, prevLevel, newLevel, leveledUp: newLevel.level > prevLevel.level };
+};
+
+// XP earned per game: score/20 + perfect bonuses, scaled by difficulty
+const DIFF_MULTI = { normal: 1.0, chaos: 1.3, brainrot: 1.2, iron: 1.5, daily: 1.1 };
+export const calculateXP = (totalScore, perfectRounds, difficulty) => {
+  const base = Math.floor(Math.max(0, totalScore) / 20);
+  const bonus = perfectRounds * 50;
+  return Math.round((base + bonus) * (DIFF_MULTI[difficulty] || 1.0));
+};
+
+// ========== SLOP INDEX ==========
+
+export const getSlopIndex = () => {
+  try { return parseInt(localStorage.getItem(SLOP_INDEX_KEY) || '0', 10); }
+  catch { return 0; }
+};
+
+export const incrementSlopIndex = (count) => {
+  const next = getSlopIndex() + Math.max(0, count);
+  localStorage.setItem(SLOP_INDEX_KEY, String(next));
+  return next;
+};

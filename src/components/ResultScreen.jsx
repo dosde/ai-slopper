@@ -3,7 +3,7 @@ import { getRoast } from '../data/slopData';
 import { playGameOver, stopMusic } from '../utils/audio';
 import FalImage from './FalImage';
 import Leaderboard from './Leaderboard';
-import { saveScoreGlobal, saveDailyScore, getLeaderboard, ACHIEVEMENTS, getUnlockedAchievements, isGlobalEnabled, getSlopDictSorted } from '../utils/storage';
+import { saveScoreGlobal, saveDailyScore, getLeaderboard, ACHIEVEMENTS, getUnlockedAchievements, isGlobalEnabled, getSlopDictSorted, LEVELS } from '../utils/storage';
 
 const SHARE_MESSAGES = [
   "I scored {score} pts destroying AI slop on AI Slop Royale! Can you beat me? 🤖💥",
@@ -11,7 +11,7 @@ const SHARE_MESSAGES = [
   "I spotted {score} pts worth of AI slop. 'Certainly!' is defeated. 🎯",
 ];
 
-export default function ResultScreen({ totalScore, roundScores, newAchievements = [], difficulty, totalRunTime = 0, ironFailedRound = null, totalRounds = 5, isDaily = false, onRestart }) {
+export default function ResultScreen({ totalScore, roundScores, newAchievements = [], difficulty, totalRunTime = 0, ironFailedRound = null, totalRounds = 5, isDaily = false, xpResult = null, rageMoments = [], onRestart }) {
   const [show, setShow] = useState(false);
   const [particles, setParticles] = useState([]);
   const [initials, setInitials] = useState('');
@@ -355,6 +355,110 @@ export default function ResultScreen({ totalScore, roundScores, newAchievements 
                 <div style={{ fontFamily: "'Orbitron', sans-serif", fontSize: '0.7rem', fontWeight: 700, color: '#fbbf24' }}>{a.name}</div>
                 <div style={{ fontSize: '0.62rem', color: '#94a3b8' }}>{a.desc}</div>
               </div>
+            </div>
+          ))}
+        </div>
+      )}
+
+      {/* XP gain */}
+      {xpResult && (
+        <div className="card" style={{
+          padding: '14px 16px',
+          maxWidth: '380px',
+          width: '100%',
+          animation: show ? 'slide-in-up 0.5s ease 0.32s both' : 'none',
+          border: xpResult.leveledUp ? '1px solid rgba(251,191,36,0.5)' : '1px solid rgba(124,58,237,0.25)',
+        }}>
+          <div style={{ fontSize: '0.62rem', color: '#a78bfa', fontFamily: "'Orbitron', sans-serif", marginBottom: '10px' }}>
+            ⚡ XP EARNED
+          </div>
+          {xpResult.leveledUp && (
+            <div style={{
+              textAlign: 'center',
+              fontFamily: "'Orbitron', sans-serif",
+              fontWeight: 900,
+              fontSize: '1rem',
+              color: '#fbbf24',
+              marginBottom: '10px',
+              animation: 'glow-pulse 1.5s ease infinite',
+              letterSpacing: '2px',
+            }}>
+              ⬆ LEVEL UP!
+            </div>
+          )}
+          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '10px' }}>
+            <span style={{ fontSize: '0.72rem', color: '#94a3b8' }}>XP Earned</span>
+            <span style={{ fontFamily: "'Orbitron', sans-serif", fontWeight: 700, fontSize: '1rem', color: '#fbbf24' }}>
+              +{xpResult.xpEarned.toLocaleString()}
+            </span>
+          </div>
+          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '8px', fontSize: '0.7rem' }}>
+            <span style={{ color: '#94a3b8' }}>Level</span>
+            <span style={{ fontFamily: "'Orbitron', sans-serif", color: '#a78bfa' }}>
+              {xpResult.prevLevel.level !== xpResult.newLevel.level ? (
+                <><span style={{ color: '#64748b' }}>LVL {xpResult.prevLevel.level}</span>{' → '}<span style={{ color: '#fbbf24', fontWeight: 700 }}>LVL {xpResult.newLevel.level}</span></>
+              ) : (
+                <span>LVL {xpResult.newLevel.level}</span>
+              )}
+            </span>
+          </div>
+          <div style={{ marginBottom: '6px', display: 'flex', justifyContent: 'space-between', fontSize: '0.62rem', color: '#64748b', fontFamily: "'Orbitron', sans-serif" }}>
+            <span>{xpResult.newLevel.title}</span>
+            <span>{xpResult.xp.toLocaleString()} XP total</span>
+          </div>
+          {(() => {
+            const nextLvl = LEVELS.find(l => l.level === xpResult.newLevel.level + 1);
+            if (!nextLvl) return null;
+            const xpIntoLevel = xpResult.xp - xpResult.newLevel.xpRequired;
+            const xpForNext = nextLvl.xpRequired - xpResult.newLevel.xpRequired;
+            const pct = Math.min(100, Math.max(0, (xpIntoLevel / xpForNext) * 100));
+            return (
+              <div style={{ height: 6, background: 'rgba(255,255,255,0.08)', borderRadius: 3, overflow: 'hidden' }}>
+                <div style={{
+                  height: '100%',
+                  width: `${pct}%`,
+                  background: 'linear-gradient(90deg, #7c3aed, #fbbf24)',
+                  borderRadius: 3,
+                  transition: 'width 0.8s ease',
+                }} />
+              </div>
+            );
+          })()}
+        </div>
+      )}
+
+      {/* Rage moments replay */}
+      {rageMoments.length > 0 && (
+        <div className="card" style={{
+          padding: '14px 16px',
+          maxWidth: '380px',
+          width: '100%',
+          animation: show ? 'slide-in-up 0.5s ease 0.35s both' : 'none',
+          border: '1px solid rgba(239,68,68,0.3)',
+        }}>
+          <div style={{ fontSize: '0.62rem', color: '#ef4444', fontFamily: "'Orbitron', sans-serif", marginBottom: '8px' }}>
+            😤 RAGE MOMENTS
+          </div>
+          <div style={{ fontSize: '0.65rem', color: '#64748b', marginBottom: '10px' }}>
+            words that fooled you:
+          </div>
+          {rageMoments.map((m, i) => (
+            <div key={i} style={{
+              display: 'flex',
+              justifyContent: 'space-between',
+              alignItems: 'center',
+              padding: '7px 10px',
+              marginBottom: i < rageMoments.length - 1 ? '6px' : 0,
+              background: 'rgba(239,68,68,0.07)',
+              border: '1px solid rgba(239,68,68,0.18)',
+              borderRadius: '8px',
+            }}>
+              <span style={{ fontFamily: "'Orbitron', sans-serif", fontSize: '0.78rem', color: '#fca5a5', fontWeight: 700 }}>
+                "{m.word}"
+              </span>
+              <span style={{ fontSize: '0.62rem', color: '#94a3b8', fontFamily: "'Orbitron', sans-serif" }}>
+                Round {m.round}
+              </span>
             </div>
           ))}
         </div>

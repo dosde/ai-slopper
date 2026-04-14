@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { initAudio, startMusic, startTitleMusic, stopTitleMusic, getMusicStyle, setMusicStyle } from '../utils/audio';
 import Leaderboard from './Leaderboard';
-import { getLeaderboard, getUnlockedAchievements, ACHIEVEMENTS, getSlopDictSorted } from '../utils/storage';
+import { getLeaderboard, getUnlockedAchievements, ACHIEVEMENTS, getSlopDictSorted, getSlopIndex, getXPData, getLevelFromXP, getNextLevel } from '../utils/storage';
 import { LANGS } from '../i18n/index';
 
 const TAGLINES = [
@@ -59,8 +59,21 @@ export default function StartScreen({ onStart }) {
   const [tab, setTab] = useState('play'); // 'play' | 'scores' | 'badges'
   const [scoresMode, setScoresMode] = useState('normal'); // 'normal' | 'chaos' | 'brainrot' | 'iron' | 'daily'
   const [titlePulse, setTitlePulse] = useState(false);
+  const [quoteIdx, setQuoteIdx] = useState(0);
 
   const unlockedIds = getUnlockedAchievements();
+
+  // Live stats — read once on mount
+  const slopIndex = getSlopIndex();
+  const xpData = getXPData();
+  const currentLevel = getLevelFromXP(xpData.xp || 0);
+  const nextLevel = getNextLevel(currentLevel.level);
+  const xpIntoLevel = (xpData.xp || 0) - currentLevel.xpRequired;
+  const xpForNext = nextLevel ? nextLevel.xpRequired - currentLevel.xpRequired : 1;
+  const xpPct = nextLevel ? Math.min(100, Math.round((xpIntoLevel / xpForNext) * 100)) : 100;
+
+  // Top caught phrases for the quotes feed
+  const topPhrases = getSlopDictSorted().slice(0, 6);
 
   useEffect(() => {
     const i = setInterval(() => setTaglineIdx(n => (n + 1) % TAGLINES.length), 2600);
@@ -80,6 +93,13 @@ export default function StartScreen({ onStart }) {
   useEffect(() => {
     const p = setInterval(() => setTitlePulse(v => !v), 900);
     return () => clearInterval(p);
+  }, []);
+
+  useEffect(() => {
+    if (topPhrases.length < 2) return;
+    const i = setInterval(() => setQuoteIdx(n => (n + 1) % topPhrases.length), 3800);
+    return () => clearInterval(i);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   // Handle music toggle after first interaction
@@ -197,6 +217,64 @@ export default function StartScreen({ onStart }) {
           textOverflow: 'ellipsis',
         }}>
           🔴 {STATUS_UPDATES[statusIdx]}
+        </div>
+
+        {/* Slop Index + quotes feed row */}
+        <div style={{ display: 'flex', justifyContent: 'center', gap: '16px', marginTop: '10px', flexWrap: 'wrap' }}>
+          {slopIndex > 0 && (
+            <div style={{
+              fontSize: '0.58rem',
+              color: '#10b981',
+              fontFamily: "'Orbitron', sans-serif",
+              background: 'rgba(16,185,129,0.08)',
+              border: '1px solid rgba(16,185,129,0.2)',
+              borderRadius: '8px',
+              padding: '4px 10px',
+              whiteSpace: 'nowrap',
+            }}>
+              🧹 {slopIndex.toLocaleString()} phrases eradicated
+            </div>
+          )}
+          {topPhrases.length > 0 && (
+            <div style={{
+              fontSize: '0.56rem',
+              color: '#a78bfa',
+              background: 'rgba(124,58,237,0.08)',
+              border: '1px solid rgba(124,58,237,0.18)',
+              borderRadius: '8px',
+              padding: '4px 10px',
+              maxWidth: '220px',
+              overflow: 'hidden',
+              whiteSpace: 'nowrap',
+              textOverflow: 'ellipsis',
+            }}>
+              🏆 Top catch: "{topPhrases[quoteIdx % topPhrases.length]?.text}" ×{topPhrases[quoteIdx % topPhrases.length]?.count}
+            </div>
+          )}
+        </div>
+
+        {/* XP level bar */}
+        <div style={{ maxWidth: '320px', margin: '10px auto 0', padding: '0 4px' }}>
+          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '4px' }}>
+            <div style={{ fontSize: '0.58rem', color: '#fbbf24', fontFamily: "'Orbitron', sans-serif", fontWeight: 700 }}>
+              LVL {currentLevel.level} · {currentLevel.title}
+            </div>
+            {nextLevel && (
+              <div style={{ fontSize: '0.52rem', color: '#64748b', fontFamily: "'Orbitron', sans-serif" }}>
+                {xpIntoLevel}/{xpForNext} XP
+              </div>
+            )}
+          </div>
+          <div style={{ height: 6, background: 'rgba(255,255,255,0.08)', borderRadius: 3, overflow: 'hidden' }}>
+            <div style={{
+              height: '100%',
+              width: `${xpPct}%`,
+              background: 'linear-gradient(90deg, #7c3aed, #fbbf24)',
+              borderRadius: 3,
+              transition: 'width 0.6s ease',
+              boxShadow: '0 0 6px rgba(251,191,36,0.5)',
+            }} />
+          </div>
         </div>
       </div>
 

@@ -336,7 +336,7 @@ export default function SlopText({
     }
 
     playMiss();
-    onWrongClick?.(x, y);
+    onWrongClick?.(x, y, token.text);
   }, [onWrongClick, brainrot]);
 
   // Render a single token (used for both text and table segments)
