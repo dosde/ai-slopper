@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { initAudio, startMusic, startTitleMusic, stopTitleMusic, getMusicStyle, setMusicStyle } from '../utils/audio';
+import { initAudio, startTitleMusic, stopTitleMusic, getMusicStyle, setMusicStyle, isAudioContextRunning } from '../utils/audio';
 import Leaderboard from './Leaderboard';
 import { getLeaderboard, getUnlockedAchievements, ACHIEVEMENTS, getSlopDictSorted, getSlopIndex, getXPData, getLevelFromXP, getNextLevel, getGlobalSlopIndex, getGlobalTopPhrases } from '../utils/storage';
 import { LANGS } from '../i18n/index';
@@ -112,14 +112,19 @@ export default function StartScreen({ onStart }) {
     getGlobalTopPhrases(6).then(phrases => { if (phrases?.length) setGlobalTopPhrases(phrases); });
   }, []);
 
-  // Handle music toggle after first interaction
+  // If returning from a game the AudioContext is already running — start title music
+  // immediately on mount without waiting for a click.
+  useEffect(() => {
+    if (musicEnabled && isAudioContextRunning()) startTitleMusic();
+    return () => stopTitleMusic();
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  // Handle music toggle and first-time-load (ctx suspended until user gesture)
   useEffect(() => {
     if (!hasInteracted) return;
     if (musicEnabled) startTitleMusic(); else stopTitleMusic();
   }, [hasInteracted, musicEnabled]);
-
-  // Always stop on unmount
-  useEffect(() => () => stopTitleMusic(), []);
 
   const handleFirstInteraction = () => {
     if (!hasInteracted) {
@@ -132,7 +137,8 @@ export default function StartScreen({ onStart }) {
   const handleStart = () => {
     stopTitleMusic();
     initAudio();
-    if (musicEnabled) startMusic();
+    // Do NOT start game music here — GameScreen starts the correct track (boss/inverse/regular)
+    // Starting it early causes old notes to mix with the new style on round 1.
     onStart({ difficulty, mode, musicEnabled, lang });
   };
 

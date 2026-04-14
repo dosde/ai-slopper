@@ -34,6 +34,8 @@ export const setMusicStyle = (style) => {
   if (isMusicPlaying) {
     isMusicPlaying = false;
     if (musicInterval) { clearInterval(musicInterval); musicInterval = null; }
+    // Disconnect gameGain so pre-scheduled notes (up to 15s) are silenced immediately
+    if (gameGain) { gameGain.disconnect(); gameGain = null; }
     startMusic();
   }
   if (isTitleMusicPlaying) {
@@ -41,9 +43,12 @@ export const setMusicStyle = (style) => {
     isTitleMusicPlaying = false;
     if (titleMusicInterval) { clearInterval(titleMusicInterval); titleMusicInterval = null; }
     if (titleGain) {
+      const tg = titleGain;
+      titleGain = null;
       const ctx = getCtx();
-      titleGain.gain.cancelScheduledValues(ctx.currentTime);
-      titleGain.gain.setValueAtTime(0.0001, ctx.currentTime);
+      tg.gain.cancelScheduledValues(ctx.currentTime);
+      tg.gain.setValueAtTime(0.0001, ctx.currentTime);
+      setTimeout(() => { try { tg.disconnect(); } catch (e) {} }, 60);
     }
     // Short gap so any in-flight oscillators can reach their stop() time
     setTimeout(() => startTitleMusic(), 40);
@@ -864,12 +869,17 @@ export const startTitleMusic = () => {
 export const stopTitleMusic = () => {
   isTitleMusicPlaying = false;
   if (titleMusicInterval) { clearInterval(titleMusicInterval); titleMusicInterval = null; }
-  // Fade out quickly — kills already-scheduled Web Audio nodes without a hard cut
+  // Null immediately so getTitleGain() creates a fresh node on next startTitleMusic().
+  // Fade and then disconnect so the long pre-scheduled notes (chill loop = 14.75s) are
+  // properly silenced rather than bleeding into game audio.
   if (titleGain) {
     const ctx = getCtx();
-    titleGain.gain.cancelScheduledValues(ctx.currentTime);
-    titleGain.gain.setValueAtTime(titleGain.gain.value, ctx.currentTime);
-    titleGain.gain.linearRampToValueAtTime(0.0001, ctx.currentTime + 0.08);
+    const tg = titleGain;
+    titleGain = null;
+    tg.gain.cancelScheduledValues(ctx.currentTime);
+    tg.gain.setValueAtTime(tg.gain.value, ctx.currentTime);
+    tg.gain.linearRampToValueAtTime(0.0001, ctx.currentTime + 0.06);
+    setTimeout(() => { try { tg.disconnect(); } catch (e) {} }, 80);
   }
 };
 
@@ -878,6 +888,8 @@ export const startBossMusic = () => {
   // Callers are responsible for checking musicEnabled.
   isMusicPlaying = false;
   if (musicInterval) { clearInterval(musicInterval); musicInterval = null; }
+  // Disconnect gameGain so long pre-scheduled sloppy/pleasant notes don't bleed into boss music
+  if (gameGain) { gameGain.disconnect(); gameGain = null; }
   isBossMusicPlaying = true;
   withRunningCtx(() => { if (isBossMusicPlaying) restartBossLoop(); });
 };
@@ -959,3 +971,7 @@ export const playGameOver = () => {
 };
 
 export const initAudio = () => { getCtx(); };
+
+// Returns true if AudioContext is running (i.e. user has already interacted).
+// StartScreen uses this to auto-start title music when returning from a game.
+export const isAudioContextRunning = () => !!(audioCtx && audioCtx.state === 'running');
