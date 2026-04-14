@@ -2,7 +2,16 @@
   "permissions": {
     "allow": [
       "Bash(npm run:*)",
-      "mcp__Claude_Preview__preview_start"
+      "mcp__Claude_Preview__preview_start",
+      "Bash(npm list:*)",
+      "Bash(npm install:*)",
+      "Bash(node -e \"require\\('sharp'\\); console.log\\('sharp ok'\\)\")",
+      "Bash(node scripts/generate-android-assets.mjs)",
+      "Bash(node -e \"require\\('puppeteer'\\); console.log\\('ok'\\)\")",
+      "Bash(grep -n \"export default\\\\|function\\\\|const.*=.*=\" /c/webserver/Apache24/htdocs/wp/wp-content/plugins/ai-slopper/src/components/*.jsx)",
+      "Bash(wc -l /c/webserver/Apache24/htdocs/wp/wp-content/plugins/ai-slopper/src/components/*.jsx)",
+      "Bash(node scripts/capture-screenshots.mjs)",
+      "Bash(node -e ':*)"
     ]
   }
 }
