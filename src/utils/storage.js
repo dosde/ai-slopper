@@ -36,12 +36,19 @@ export const getLeaderboard = (difficulty = 'normal') => {
 export const getGlobalLeaderboard = async (difficulty = 'normal') => {
   if (!API_URL) return getLeaderboard(difficulty);
   try {
-    const url = `${API_URL}?order=score.desc&limit=20${difficulty !== 'normal' ? `&difficulty=eq.${difficulty}` : ''}`;
+    if (difficulty === 'daily') {
+      const today = getTodayKey();
+      const url = `${API_URL}?order=score.desc&limit=20&date=eq.${encodeURIComponent(today)}`;
+      const res = await fetch(url, { headers: apiHeaders() });
+      if (!res.ok) throw new Error(res.status);
+      return await res.json();
+    }
+    const url = `${API_URL}?order=score.desc&limit=20&difficulty=eq.${encodeURIComponent(difficulty)}`;
     const res = await fetch(url, { headers: apiHeaders() });
     if (!res.ok) throw new Error(res.status);
     return await res.json();
   } catch {
-    return getLeaderboard(difficulty);
+    return difficulty === 'daily' ? getDailyLeaderboard() : getLeaderboard(difficulty);
   }
 };
 

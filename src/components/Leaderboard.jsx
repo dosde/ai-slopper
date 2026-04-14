@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { getGlobalLeaderboard, getDailyLeaderboard, isGlobalEnabled } from '../utils/storage';
+import { getGlobalLeaderboard, isGlobalEnabled } from '../utils/storage';
 
 // mode: 'daily' | 'normal' | 'chaos' | 'brainrot' | 'iron'
 export default function Leaderboard({ highlight = null, maxRows = 20, mode = 'normal' }) {
@@ -8,15 +8,10 @@ export default function Leaderboard({ highlight = null, maxRows = 20, mode = 'no
 
   useEffect(() => {
     setLoading(true);
-    if (mode === 'daily') {
-      setBoard(getDailyLeaderboard().slice(0, maxRows));
+    getGlobalLeaderboard(mode).then(data => {
+      setBoard((data || []).slice(0, maxRows));
       setLoading(false);
-    } else {
-      getGlobalLeaderboard(mode).then(data => {
-        setBoard((data || []).slice(0, maxRows));
-        setLoading(false);
-      });
-    }
+    });
   }, [maxRows, mode]);
 
   if (loading) {
