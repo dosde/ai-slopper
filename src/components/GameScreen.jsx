@@ -544,7 +544,11 @@ export default function GameScreen({ round, roundIdx, totalRounds, totalScore, o
         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', gap: '8px' }}>
           <SlopMeter found={foundSlop} total={totalSlop} isInverse={isInverse} />
           <PowerUps
-            used={isIronDetector ? [...usedPowerUps, 'time'] : usedPowerUps}
+            used={[
+              ...(isIronDetector ? ['time'] : []),
+              ...(isInverse ? ['radar'] : []),
+              ...usedPowerUps,
+            ]}
             active={activePowerUp}
             onUse={handlePowerUp}
           />
