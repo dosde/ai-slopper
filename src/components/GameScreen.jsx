@@ -68,7 +68,7 @@ function TimerBar({ timeLeft, total }) {
   );
 }
 
-function SlopMeter({ found, total }) {
+function SlopMeter({ found, total, isInverse = false }) {
   const pct = total > 0 ? (found / total) * 100 : 0;
   let color = '#ef4444';
   if (pct >= 50) color = '#fbbf24';
@@ -78,7 +78,7 @@ function SlopMeter({ found, total }) {
   return (
     <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
       <div style={{ fontSize: '0.6rem', color: '#64748b', fontFamily: "'Orbitron', sans-serif", whiteSpace: 'nowrap' }}>
-        SLOP {found}/{total}
+        {isInverse ? 'HUMAN' : 'SLOP'} {found}/{total}
       </div>
       <div style={{ flex: 1, height: 6, background: 'rgba(255,255,255,0.1)', borderRadius: 3, overflow: 'hidden', minWidth: 50 }}>
         <div style={{
@@ -133,8 +133,11 @@ export default function GameScreen({ round, roundIdx, totalRounds, totalScore, o
   // Always-fresh snapshot of values needed inside iron-mode callbacks
   const liveRef = useRef({});
 
-  // Slop meter stats
-  const totalSlop = round.slopPhrases.length;
+  // Slop meter stats — in inverse rounds only the human-type phrases are targets;
+  // AI-type phrases are decoys (clicking them triggers a wrong-click penalty).
+  const totalSlop = isInverse
+    ? round.slopPhrases.filter(p => p.type === 'human').length
+    : round.slopPhrases.length;
   const foundSlop = foundIds.size;
 
   // isUrgent must be declared BEFORE the music-tempo useEffect that lists it as a dependency
@@ -539,7 +542,7 @@ export default function GameScreen({ round, roundIdx, totalRounds, totalScore, o
 
         {/* Slop meter + power-ups row */}
         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', gap: '8px' }}>
-          <SlopMeter found={foundSlop} total={totalSlop} />
+          <SlopMeter found={foundSlop} total={totalSlop} isInverse={isInverse} />
           <PowerUps
             used={isIronDetector ? [...usedPowerUps, 'time'] : usedPowerUps}
             active={activePowerUp}

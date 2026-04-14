@@ -51,7 +51,11 @@ export default function RoundSummary({ round, roundScore, foundIds, foundCombos 
   // Computed once on mount — prevents re-rolling on every typewriter re-render
   const [shame] = useState(() => getWrongClickShame(wrongClicks, lang));
   const [missedMsg] = useState(() => {
-    const mc = Math.max(0, round.slopPhrases.length - foundIds.size);
+    // For inverse rounds, only human-type phrases are targets; AI-type are decoys.
+    const targetPhrases = round.inverse
+      ? round.slopPhrases.filter(p => p.type === 'human')
+      : round.slopPhrases;
+    const mc = Math.max(0, targetPhrases.length - foundIds.size);
     return mc > 0
       ? (round.inverse ? tFn('missed_human', lang)(mc) : tFn('missed_slop', lang)(mc))
       : null;
@@ -65,14 +69,20 @@ export default function RoundSummary({ round, roundScore, foundIds, foundCombos 
   }, []);
 
   const foundCount = foundIds.size;
-  const totalPhrases = round.slopPhrases.length;
+  // For inverse rounds, only human-type phrases count toward progress/accuracy.
+  const totalPhrases = round.inverse
+    ? round.slopPhrases.filter(p => p.type === 'human').length
+    : round.slopPhrases.length;
   const missedCount = Math.max(0, totalPhrases - foundCount);
   const accuracy = totalPhrases > 0 ? Math.round((foundCount / totalPhrases) * 100) : 0;
 
-  // Reconstruct which tokens were found/missed for breakdown
+  // Reconstruct which tokens were found/missed for breakdown.
+  // For inverse rounds, exclude AI-type decoy phrases from the missed list.
   const slopStats = getSlopStats(round, foundIds);
   const foundTokens = slopStats.tokens.filter(t => foundIds.has(t.id));
-  const missedTokens = slopStats.tokens.filter(t => !foundIds.has(t.id));
+  const missedTokens = round.inverse
+    ? slopStats.tokens.filter(t => !foundIds.has(t.id) && t.phraseData?.type === 'human')
+    : slopStats.tokens.filter(t => !foundIds.has(t.id));
   const timeBonus = timeLeft > 0 ? timeLeft * 10 : 0;
   const wrongPenalty = wrongClicks * 50;
 

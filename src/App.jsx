@@ -145,7 +145,10 @@ export default function App() {
 
     // Update per-game stats
     const round = rounds[roundIdx];
-    const totalPhrasesInRound = round?.slopPhrases?.length ?? 0;
+    // Inverse rounds: only the human-type phrases are targets (AI-type are decoys).
+    const totalPhrasesInRound = round?.inverse
+      ? (round.slopPhrases?.filter(p => p.type === 'human').length ?? 0)
+      : (round?.slopPhrases?.length ?? 0);
     const foundInRound = foundIds.size;
     const stats = gameStatsRef.current;
     stats.totalDetected += foundInRound;

@@ -284,6 +284,18 @@ export default function SlopText({
     const x = rect.left + rect.width / 2;
     const y = rect.top;
 
+    // In inverse rounds, AI-type phrases are decoys — clicking them is a wrong click.
+    // Only 'human' type phrases are the correct targets.
+    if (round.inverse && token.phraseData?.type !== 'human') {
+      setWrongIds(prev => new Set([...prev, token.id]));
+      setTimeout(() => {
+        setWrongIds(prev => { const n = new Set(prev); n.delete(token.id); return n; });
+      }, 500);
+      playMiss();
+      onWrongClick?.(x, y, token.text);
+      return;
+    }
+
     const newFound = new Set(found);
     newFound.add(token.id);
     onFoundChange(newFound);
@@ -300,7 +312,7 @@ export default function SlopText({
     if (newCombo > 1) playCombo(newCombo);
     onScore(score, x, y, commentary, doublePoints, multiplier, token.id);
     onCombo(newCombo);
-  }, [found, combo, onScore, onCombo, onFoundChange, doublePoints]);
+  }, [found, combo, onScore, onCombo, onFoundChange, onWrongClick, doublePoints, round.inverse]);
 
   // Wrong click — normal word clicked
   const handleNormalClick = useCallback((e, token) => {
