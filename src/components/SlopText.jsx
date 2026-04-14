@@ -50,6 +50,101 @@ function tokenize(text, slopPhrases) {
   return result;
 }
 
+/**
+ * Splits tokens into text and table segments by detecting markdown pipe-table
+ * lines (lines whose first non-space character is '|'). Each token is
+ * annotated with its absolute character offset (_s) so table cells can be
+ * mapped to token subsets.
+ */
+function buildSegments(rawText, tokens) {
+  // Annotate tokens with absolute start positions
+  let pos = 0;
+  for (const tok of tokens) {
+    tok._s = pos;
+    pos += tok.text.length;
+  }
+
+  // Parse line ranges
+  const lines = [];
+  let ls = 0;
+  for (let i = 0; i <= rawText.length; i++) {
+    if (i === rawText.length || rawText[i] === '\n') {
+      lines.push({ start: ls, end: i });
+      ls = i + 1;
+    }
+  }
+
+  const isTableLine = (start, end) => {
+    for (let i = start; i < end; i++) {
+      const c = rawText[i];
+      if (c === ' ' || c === '\t') continue;
+      return c === '|';
+    }
+    return false;
+  };
+
+  const isSepLine = (start, end) => /^\|[\s|:\-]+\|?\s*$/.test(rawText.slice(start, end).trim());
+
+  // Group consecutive lines into text vs table blocks
+  const groups = [];
+  let i = 0;
+  while (i < lines.length) {
+    if (isTableLine(lines[i].start, lines[i].end)) {
+      const g = { isTable: true, lines: [] };
+      while (i < lines.length && isTableLine(lines[i].start, lines[i].end)) {
+        g.lines.push(lines[i]); i++;
+      }
+      groups.push(g);
+    } else {
+      const g = { isTable: false, lines: [] };
+      while (i < lines.length && !isTableLine(lines[i].start, lines[i].end)) {
+        g.lines.push(lines[i]); i++;
+      }
+      groups.push(g);
+    }
+  }
+
+  // Return token indices whose _s falls in [charA, charB)
+  const tokensInRange = (charA, charB) => {
+    const result = [];
+    for (let ti = 0; ti < tokens.length; ti++) {
+      const t = tokens[ti];
+      if (t._s >= charA && t._s < charB) result.push(ti);
+    }
+    return result;
+  };
+
+  const segments = [];
+  for (const group of groups) {
+    if (!group.lines.length) continue;
+    const charStart = group.lines[0].start;
+    const lastLine = group.lines[group.lines.length - 1];
+    const charEnd = Math.min(lastLine.end + 1, rawText.length);
+
+    if (!group.isTable) {
+      segments.push({ type: 'text', tokenIndices: tokensInRange(charStart, charEnd) });
+    } else {
+      const rows = [];
+      for (const line of group.lines) {
+        const lineText = rawText.slice(line.start, line.end);
+        const sep = isSepLine(line.start, line.end);
+        const pipes = [];
+        for (let ci = 0; ci < lineText.length; ci++) {
+          if (lineText[ci] === '|') pipes.push(line.start + ci);
+        }
+        if (pipes.length < 2) { rows.push({ isSeparator: true, cells: [] }); continue; }
+        const cells = [];
+        for (let pi = 0; pi + 1 < pipes.length; pi++) {
+          cells.push(tokensInRange(pipes[pi] + 1, pipes[pi + 1]));
+        }
+        rows.push({ isSeparator: sep, cells });
+      }
+      segments.push({ type: 'table', rows });
+    }
+  }
+  return segments;
+}
+
 // ── Brainrot corruption engine ───────────────────────────────────────────────
 
 const L33T = { a:'4', e:'3', o:'0', i:'1', s:'$', t:'7', b:'8', g:'9', l:'|', z:'2' };
@@ -107,6 +202,7 @@ export default function SlopText({
   onCorruptionChange,
 }) {
   const tokens = useRef(null);
+  const segmentsRef = useRef(null);
   const [revealedCount, setRevealedCount] = useState(0);
   const [wrongIds, setWrongIds] = useState(new Set());
   const [corruptions, setCorruptions] = useState(new Map()); // tokenId → corrupted display text
@@ -117,6 +213,7 @@ export default function SlopText({
   // Build tokens once per round
   if (!tokens.current) {
     tokens.current = tokenize(round.text, round.slopPhrases);
+    segmentsRef.current = buildSegments(round.text, tokens.current);
   }
 
   // Typing animation — reveal tokens progressively
@@ -126,6 +223,7 @@ export default function SlopText({
     setCorruptions(new Map());
     revealedCountRef.current = 0;
     tokens.current = tokenize(round.text, round.slopPhrases);
+    segmentsRef.current = buildSegments(round.text, tokens.current);
 
     const totalTokens = tokens.current.length;
     const totalWords = round.text.split(/\s+/).length;
@@ -241,6 +339,83 @@ export default function SlopText({
     onWrongClick?.(x, y);
   }, [onWrongClick, brainrot]);
 
+  // Render a single token (used for both text and table segments)
+  const renderTok = (token, idx) => {
+    const isRevealed = idx < revealedCount;
+
+    if (!isRevealed) {
+      return <span key={token.id} style={{ opacity: 0 }}>{token.text}</span>;
+    }
+
+    const isCorrupted = brainrot && corruptions.has(token.id);
+    const displayText = isCorrupted ? corruptions.get(token.id) : token.text;
+
+    if (token.isSlop) {
+      const isFound = found.has(token.id);
+      const showRadar = radarActive && !isFound;
+      const isInverse = !!round.inverse;
+      const className = `slop-token${isFound ? (isInverse ? ' human-found' : ' found') : ' active'}`;
+      const extraStyle = {
+        ...(isCorrupted && !isFound ? { color: '#fb923c', transition: 'color 0.3s' } : {}),
+        ...(showRadar ? {
+          background: 'rgba(56,189,248,0.3)',
+          borderBottom: '2px solid #38bdf8',
+          boxShadow: '0 0 8px rgba(56,189,248,0.6)',
+          animation: 'radar-pulse 0.5s ease-in-out infinite alternate',
+        } : {}),
+        ...(!isFound && !showRadar && doublePoints && !isInverse ? {
+          borderBottom: `2px solid rgba(251,191,36,0.5)`,
+        } : {}),
+      };
+      if (isFound) {
+        return (
+          <span key={token.id} className={className} style={{ borderRadius: '4px', padding: '0 1px' }}>
+            {displayText}
+          </span>
+        );
+      }
+      // Not yet found — split into individual words (indistinguishable from normal text)
+      const parts = displayText.split(/(\s+)/);
+      return (
+        <React.Fragment key={token.id}>
+          {parts.map((part, pi) => {
+            if (!part) return null;
+            if (/^\s+$/.test(part)) return <span key={pi}>{part}</span>;
+            return (
+              <span
+                key={pi}
+                className={className}
+                onClick={(e) => handleSlopClick(e, token)}
+                style={extraStyle}
+              >
+                {part}
+              </span>
+            );
+          })}
+        </React.Fragment>
+      );
+    }
+
+    // Normal (non-slop) token
+    if (token.isSpace) {
+      return <span key={token.id}>{token.text}</span>;
+    }
+
+    const isWrong = wrongIds.has(token.id);
+    return (
+      <span
+        key={token.id}
+        className={`normal-token${isWrong ? ' wrong-click' : ''}`}
+        style={isCorrupted ? { color: '#fb923c', transition: 'color 0.3s' } : undefined}
+        onClick={(e) => handleNormalClick(e, token)}
+      >
+        {displayText}
+      </span>
+    );
+  };
+
+  const segments = segmentsRef.current || [];
+
   return (
     <div style={{
       fontFamily: "'Inter', sans-serif",
@@ -252,78 +427,42 @@ export default function SlopText({
       userSelect: 'none',
       WebkitUserSelect: 'none',
     }}>
-      {tokens.current.map((token, idx) => {
-        const isRevealed = idx < revealedCount;
-
-        if (!isRevealed) {
-          return <span key={token.id} style={{ opacity: 0 }}>{token.text}</span>;
-        }
-
-        const isCorrupted = brainrot && corruptions.has(token.id);
-        const displayText = isCorrupted ? corruptions.get(token.id) : token.text;
-
-        if (token.isSlop) {
-          const isFound = found.has(token.id);
-          const showRadar = radarActive && !isFound;
-          const isInverse = !!round.inverse;
-          const className = `slop-token${isFound ? (isInverse ? ' human-found' : ' found') : ' active'}`;
-          const extraStyle = {
-            ...(isCorrupted && !isFound ? { color: '#fb923c', transition: 'color 0.3s' } : {}),
-            ...(showRadar ? {
-              background: 'rgba(56,189,248,0.3)',
-              borderBottom: '2px solid #38bdf8',
-              boxShadow: '0 0 8px rgba(56,189,248,0.6)',
-              animation: 'radar-pulse 0.5s ease-in-out infinite alternate',
-            } : {}),
-            ...(!isFound && !showRadar && doublePoints && !isInverse ? {
-              borderBottom: `2px solid rgba(251,191,36,0.5)`,
-            } : {}),
-          };
-          if (isFound) {
-            // Render entire found phrase as one highlighted block
-            return (
-              <span key={token.id} className={className} style={{ borderRadius: '4px', padding: '0 1px' }}>
-                {displayText}
-              </span>
-            );
-          }
-          // Not yet found — split into individual words (indistinguishable from normal text)
-          const parts = displayText.split(/(\s+)/);
+      {segments.map((seg, si) => {
+        if (seg.type === 'text') {
           return (
-            <React.Fragment key={token.id}>
-              {parts.map((part, pi) => {
-                if (!part) return null;
-                if (/^\s+$/.test(part)) return <span key={pi}>{part}</span>;
-                return (
-                  <span
-                    key={pi}
-                    className={className}
-                    onClick={(e) => handleSlopClick(e, token)}
-                    style={extraStyle}
-                  >
-                    {part}
-                  </span>
-                );
-              })}
+            <React.Fragment key={si}>
+              {seg.tokenIndices.map(idx => renderTok(tokens.current[idx], idx))}
             </React.Fragment>
           );
         }
 
-        // Normal (non-slop) token
-        if (token.isSpace) {
-          return <span key={token.id}>{token.text}</span>;
-        }
-
-        const isWrong = wrongIds.has(token.id);
+        // Table segment — render as proper HTML table
+        const nonSepRows = seg.rows.filter(r => !r.isSeparator);
+        if (!nonSepRows.length) return null;
+        const [headerRow, ...dataRows] = nonSepRows;
         return (
-          <span
-            key={token.id}
-            className={`normal-token${isWrong ? ' wrong-click' : ''}`}
-            style={isCorrupted ? { color: '#fb923c', transition: 'color 0.3s' } : undefined}
-            onClick={(e) => handleNormalClick(e, token)}
-          >
-            {displayText}
-          </span>
+          <table key={si} className="slop-table">
+            <thead>
+              <tr>
+                {headerRow.cells.map((tokenIndices, ci) => (
+                  <th key={ci}>
+                    {tokenIndices.map(idx => renderTok(tokens.current[idx], idx))}
+                  </th>
+                ))}
+              </tr>
+            </thead>
+            <tbody>
+              {dataRows.map((row, ri) => (
+                <tr key={ri}>
+                  {row.cells.map((tokenIndices, ci) => (
+                    <td key={ci}>
+                      {tokenIndices.map(idx => renderTok(tokens.current[idx], idx))}
+                    </td>
+                  ))}
+                </tr>
+              ))}
+            </tbody>
+          </table>
         );
       })}
       <style>{`

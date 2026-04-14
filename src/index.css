@@ -241,6 +241,38 @@ html, body {
   100% { background: transparent; transform: scale(1); }
 }
 
+/* ========== MARKDOWN TABLES IN ROUND TEXT ========== */
+.slop-table {
+  border-collapse: collapse;
+  width: 100%;
+  margin: 10px 0 14px;
+  white-space: normal;
+  word-break: break-word;
+}
+
+.slop-table th,
+.slop-table td {
+  padding: 7px 12px;
+  text-align: left;
+  border: 1px solid rgba(124, 58, 237, 0.35);
+  vertical-align: top;
+  line-height: 1.6;
+}
+
+.slop-table th {
+  background: rgba(124, 58, 237, 0.22);
+  color: #a78bfa;
+  font-weight: 700;
+  font-family: 'Orbitron', sans-serif;
+  font-size: 0.72rem;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+}
+
+.slop-table tbody tr:nth-child(even) td {
+  background: rgba(124, 58, 237, 0.06);
+}
+
 /* ========== SCORE POPUPS ========== */
 .score-popup {
   position: fixed;
