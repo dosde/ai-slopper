@@ -461,12 +461,12 @@ export default function StartScreen({ onStart }) {
                 ['👆', 'Click slop phrases hiding in plain text — all words look the same!'],
                 ['⚡', 'Chain detections for COMBO MULTIPLIER up to 5x (+1s per hit)'],
                 ['📡', 'Power-ups usable once per game: Radar, Time Boost, Double Points'],
-                ['⏱', 'Finish early to earn TIME BONUS: seconds left × 10 pts'],
+                ['⏱️', 'Finish early to earn TIME BONUS: seconds left × 10 pts'],
                 ['🧠', 'BRAINROT mode: wrong clicks corrupt the text — letters mutate!'],
-                ['🎲', '5 rounds per game (always 1 inverse round) from a pool of 77'],
+                ['🎲', '6 rounds per game (always 1 inverse + 1 boss round) from a pool of 77'],
               ].map(([icon, text]) => (
                 <div key={icon} style={{ display: 'flex', gap: '10px', marginBottom: '8px', fontSize: '0.8rem', color: '#e2e8f0', alignItems: 'flex-start' }}>
-                  <span style={{ flexShrink: 0 }}>{icon}</span>
+                  <span style={{ flexShrink: 0, width: '1.4em', textAlign: 'center' }}>{icon}</span>
                   <span>{text}</span>
                 </div>
               ))}
