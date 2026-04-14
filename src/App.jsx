@@ -121,6 +121,14 @@ export default function App() {
     setGameState(STATE.PLAYING);
   }, []);
 
+  // Called at the very end of a game (normal finish or iron game-over)
+  const finaliseGame = useCallback((finalScore, stats) => {
+    const xpEarned = calculateXP(finalScore, stats.perfectRounds, difficulty);
+    const result = addXP(xpEarned);
+    setXpResult({ xpEarned, ...result });
+    incrementSlopIndex(stats.totalDetected);
+  }, [difficulty]);
+
   const handleRoundEnd = useCallback((score, foundIds, time = 0, wrongClicks = 0, isGameOver = false, foundCombos = {}) => {
     setLastRoundScore(score);
     setLastFoundIds(foundIds);
@@ -170,14 +178,6 @@ export default function App() {
 
     setGameState(STATE.ROUND_SUMMARY);
   }, [rounds, roundIdx, difficulty, totalScore, finaliseGame]);
-
-  // Called at the very end of a game (normal finish or iron game-over)
-  const finaliseGame = useCallback((finalScore, stats) => {
-    const xpEarned = calculateXP(finalScore, stats.perfectRounds, difficulty);
-    const result = addXP(xpEarned);
-    setXpResult({ xpEarned, ...result });
-    incrementSlopIndex(stats.totalDetected);
-  }, [difficulty]);
 
   const handleNextRound = useCallback(() => {
     const nextIdx = roundIdx + 1;
