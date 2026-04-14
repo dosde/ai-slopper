@@ -1,7 +1,7 @@
 import React, { useCallback, useRef, useState, useEffect } from 'react';
 import { getRandomCommentary } from '../data/slopData';
 import { playSlopDetected, playCombo, playMiss } from '../utils/audio';
-import { updateSlopDict } from '../utils/storage';
+import { updateSlopDict, submitGlobalPhrase } from '../utils/storage';
 
 /**
  * Tokenizes text into slop phrases and individual words.
@@ -295,6 +295,7 @@ export default function SlopText({
     const score = doublePoints ? baseScore * 2 : baseScore;
 
     updateSlopDict(token.phraseData.text, token.phraseData.type);
+    submitGlobalPhrase(token.phraseData.text, token.phraseData.type);
     playSlopDetected();
     if (newCombo > 1) playCombo(newCombo);
     onScore(score, x, y, commentary, doublePoints, multiplier, token.id);

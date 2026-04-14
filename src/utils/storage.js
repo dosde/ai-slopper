@@ -370,3 +370,103 @@ export const incrementSlopIndex = (count) => {
   localStorage.setItem(SLOP_INDEX_KEY, String(next));
   return next;
 };
+
+// ========== GLOBAL STATS (Supabase) ==========
+// Requires two tables in the same Supabase project as the leaderboard:
+//
+//   create table slop_stats (
+//     key text primary key,
+//     value bigint not null default 0
+//   );
+//   insert into slop_stats (key, value) values ('total_eradicated', 0) on conflict do nothing;
+//   alter table slop_stats enable row level security;
+//   create policy "Public read" on slop_stats for select using (true);
+//
+//   create table slop_phrases (
+//     phrase text primary key,
+//     phrase_type text,
+//     count bigint not null default 0,
+//     updated_at timestamptz default now()
+//   );
+//   alter table slop_phrases enable row level security;
+//   create policy "Public read" on slop_phrases for select using (true);
+//
+// And two security-definer RPC functions so anon can write atomically:
+//
+//   create or replace function inc_stat(stat_key text, amount bigint default 1)
+//   returns void language plpgsql security definer as $$
+//   begin
+//     insert into slop_stats (key, value) values (stat_key, amount)
+//     on conflict (key) do update set value = slop_stats.value + excluded.value;
+//   end; $$;
+//   grant execute on function inc_stat to anon;
+//
+//   create or replace function inc_phrase(p_phrase text, p_type text)
+//   returns void language plpgsql security definer as $$
+//   begin
+//     insert into slop_phrases (phrase, phrase_type, count, updated_at)
+//     values (p_phrase, p_type, 1, now())
+//     on conflict (phrase) do update set
+//       count = slop_phrases.count + 1,
+//       updated_at = now();
+//   end; $$;
+//   grant execute on function inc_phrase to anon;
+
+// Derive the /rest/v1 base URL from the scores table URL
+const supabaseBase = () => {
+  if (!API_URL) return null;
+  return API_URL.replace(/\/[^/?]+(\?.*)?$/, '');
+};
+
+export const getGlobalSlopIndex = async () => {
+  const base = supabaseBase();
+  if (!base) return null;
+  try {
+    const res = await fetch(
+      `${base}/slop_stats?key=eq.total_eradicated&select=value`,
+      { headers: apiHeaders() }
+    );
+    if (!res.ok) return null;
+    const data = await res.json();
+    return typeof data[0]?.value === 'number' ? data[0].value : null;
+  } catch { return null; }
+};
+
+export const submitGlobalSlopIndex = async (count) => {
+  const base = supabaseBase();
+  if (!base || count <= 0) return;
+  try {
+    await fetch(`${base}/rpc/inc_stat`, {
+      method: 'POST',
+      headers: apiHeaders(),
+      body: JSON.stringify({ stat_key: 'total_eradicated', amount: count }),
+    });
+  } catch { /* fire and forget */ }
+};
+
+export const getGlobalTopPhrases = async (limit = 10) => {
+  const base = supabaseBase();
+  if (!base) return null;
+  try {
+    const res = await fetch(
+      `${base}/slop_phrases?order=count.desc&limit=${limit}&select=phrase,phrase_type,count`,
+      { headers: apiHeaders() }
+    );
+    if (!res.ok) return null;
+    const data = await res.json();
+    if (!Array.isArray(data) || data.length === 0) return null;
+    return data.map(d => ({ text: d.phrase, type: d.phrase_type, count: Number(d.count) }));
+  } catch { return null; }
+};
+
+export const submitGlobalPhrase = async (text, type) => {
+  const base = supabaseBase();
+  if (!base) return;
+  try {
+    await fetch(`${base}/rpc/inc_phrase`, {
+      method: 'POST',
+      headers: apiHeaders(),
+      body: JSON.stringify({ p_phrase: text, p_type: type }),
+    });
+  } catch { /* fire and forget */ }
+};

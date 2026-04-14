@@ -7,7 +7,7 @@ import ResultScreen from './components/ResultScreen';
 import AchievementToastLayer, { showAchievement } from './components/AchievementToast';
 import { selectRounds, getDailyRounds } from './data/slopData';
 import { stopMusic } from './utils/audio';
-import { checkAndUnlockAchievements, updateStats, calculateXP, addXP, incrementSlopIndex } from './utils/storage';
+import { checkAndUnlockAchievements, updateStats, calculateXP, addXP, incrementSlopIndex, submitGlobalSlopIndex } from './utils/storage';
 
 function Starfield() {
   const stars = useMemo(() =>
@@ -127,6 +127,7 @@ export default function App() {
     const result = addXP(xpEarned);
     setXpResult({ xpEarned, ...result });
     incrementSlopIndex(stats.totalDetected);
+    submitGlobalSlopIndex(stats.totalDetected);
   }, [difficulty]);
 
   const handleRoundEnd = useCallback((score, foundIds, time = 0, wrongClicks = 0, isGameOver = false, foundCombos = {}) => {

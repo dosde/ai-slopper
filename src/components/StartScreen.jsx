@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { initAudio, startMusic, startTitleMusic, stopTitleMusic, getMusicStyle, setMusicStyle } from '../utils/audio';
 import Leaderboard from './Leaderboard';
-import { getLeaderboard, getUnlockedAchievements, ACHIEVEMENTS, getSlopDictSorted, getSlopIndex, getXPData, getLevelFromXP, getNextLevel } from '../utils/storage';
+import { getLeaderboard, getUnlockedAchievements, ACHIEVEMENTS, getSlopDictSorted, getSlopIndex, getXPData, getLevelFromXP, getNextLevel, getGlobalSlopIndex, getGlobalTopPhrases } from '../utils/storage';
 import { LANGS } from '../i18n/index';
 
 const TAGLINES = [
@@ -60,11 +60,13 @@ export default function StartScreen({ onStart }) {
   const [scoresMode, setScoresMode] = useState('normal'); // 'normal' | 'chaos' | 'brainrot' | 'iron' | 'daily'
   const [titlePulse, setTitlePulse] = useState(false);
   const [quoteIdx, setQuoteIdx] = useState(0);
+  const [globalSlopIndex, setGlobalSlopIndex] = useState(null);
+  const [globalTopPhrases, setGlobalTopPhrases] = useState(null);
 
   const unlockedIds = getUnlockedAchievements();
 
-  // Live stats — read once on mount
-  const slopIndex = getSlopIndex();
+  // Live stats — read once on mount (local)
+  const localSlopIndex = getSlopIndex();
   const xpData = getXPData();
   const currentLevel = getLevelFromXP(xpData.xp || 0);
   const nextLevel = getNextLevel(currentLevel.level);
@@ -72,8 +74,10 @@ export default function StartScreen({ onStart }) {
   const xpForNext = nextLevel ? nextLevel.xpRequired - currentLevel.xpRequired : 1;
   const xpPct = nextLevel ? Math.min(100, Math.round((xpIntoLevel / xpForNext) * 100)) : 100;
 
-  // Top caught phrases for the quotes feed
-  const topPhrases = getSlopDictSorted().slice(0, 6);
+  // Displayed values: prefer global (Supabase) over local (localStorage)
+  const slopIndex = globalSlopIndex ?? localSlopIndex;
+  const localTopPhrases = getSlopDictSorted().slice(0, 6);
+  const topPhrases = globalTopPhrases ?? localTopPhrases;
 
   useEffect(() => {
     const i = setInterval(() => setTaglineIdx(n => (n + 1) % TAGLINES.length), 2600);
@@ -100,6 +104,12 @@ export default function StartScreen({ onStart }) {
     const i = setInterval(() => setQuoteIdx(n => (n + 1) % topPhrases.length), 3800);
     return () => clearInterval(i);
   // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [topPhrases.length]);
+
+  // Fetch global stats from Supabase (non-blocking, updates display when ready)
+  useEffect(() => {
+    getGlobalSlopIndex().then(v => { if (v !== null) setGlobalSlopIndex(v); });
+    getGlobalTopPhrases(6).then(phrases => { if (phrases?.length) setGlobalTopPhrases(phrases); });
   }, []);
 
   // Handle music toggle after first interaction
