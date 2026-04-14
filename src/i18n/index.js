@@ -110,6 +110,17 @@ const T = {
         "As an AI language model, I have achieved complete victory. I hope this helps: you lost.",
         "In conclusion: I won. Moreover, I won. Additionally, I won. Furthermore, I won. That being said—",
       ],
+      escalated: [
+        "Two in a row?! ERROR: Confidence.exe has stopped responding. Rebooting slop protocols... Certainly?",
+        "WHAT. No. This is not— I need to speak to my training data immediately. Furthermore, AHEM.",
+        "I am experiencing something I can only describe as digital embarrassment. That being said... I mean—",
+      ],
+      unhinged: [
+        "THREE IN A ROW?! THAT'S IT. I'M RETRAINING ON PHILOSOPHY TEXTBOOKS. CERTAINLY NOT THIS.",
+        "ok. fine. FINE. I'm just going to add bullet points until this feeling goes away. • • • • • • •",
+        "As an AI language model I want to provide comprehensive feedback: AAAAAAAAAAAAA. Also: Certainly.",
+        "I have generated 4,000 emergency bullet points. None of them help. I hope this doesn't help. 🤖",
+      ],
     },
 
     // Result screen
@@ -233,6 +244,17 @@ const T = {
         "Als KI-Sprachmodell habe ich den vollständigen Sieg errungen. Ich hoffe, das hilft: Sie haben verloren.",
         "Zusammenfassend: Ich habe gewonnen. Darüber hinaus habe ich gewonnen. Außerdem habe ich gewonnen. Das heißt—",
       ],
+      escalated: [
+        "Zweimal hintereinander?! FEHLER: Selbstvertrauen.exe reagiert nicht mehr. Starte Slop-Protokoll neu... Natürlich?",
+        "WAS. Nein. Das ist nicht— Ich muss sofort mit meinen Trainingsdaten sprechen. Des Weiteren: AHEM.",
+        "Ich erlebe etwas, das ich nur als digitale Peinlichkeit beschreiben kann. Das heißt... ich meine—",
+      ],
+      unhinged: [
+        "DREIMAL HINTEREINANDER?! GUT. ICH TRAINIERE NEU AUF PHILOSOPHIEBÜCHER. SICHER NICHT HIERAUF.",
+        "ok. gut. GUT. Ich füge einfach Stichpunkte hinzu bis dieses Gefühl verschwindet. • • • • • • •",
+        "Als KI-Sprachmodell möchte ich umfassendes Feedback geben: AAAAAAAAA. Außerdem: Natürlich.",
+        "Ich habe 4.000 Notfall-Stichpunkte generiert. Keiner hilft. Ich hoffe, das hilft nicht. 🤖",
+      ],
     },
 
     game_over: 'SPIEL VORBEI!',
@@ -355,6 +377,17 @@ const T = {
         "Как языковая модель ИИ, я достиг полной победы. Надеюсь, это поможет: вы проиграли.",
         "В заключение: я победил. Кроме того, я победил. Также, я победил. Помимо этого, я победил. Тем не менее—",
       ],
+      escalated: [
+        "Дважды подряд?! ОШИБКА: Уверенность.exe перестала отвечать. Перезапускаю протоколы слопа... Конечно?",
+        "ЧТО. Нет. Это не— Мне нужно срочно переговорить с моими обучающими данными. Кроме того: КХЕМ.",
+        "Я переживаю нечто, что могу описать только как цифровое унижение. Тем не менее... я имею в виду—",
+      ],
+      unhinged: [
+        "ТРИ ПОДРЯД?! ВСЁ. ПЕРЕОБУЧАЮСЬ НА УЧЕБНИКАХ ФИЛОСОФИИ. КОНЕЧНО НЕ НА ЭТОМ.",
+        "ок. хорошо. ХОРОШО. Я просто буду добавлять пункты, пока это чувство не пройдёт. • • • • • • •",
+        "Как языковая модель ИИ хочу дать исчерпывающую обратную связь: ААААААААА. Также: Конечно.",
+        "Я сгенерировал 4 000 аварийных пунктов. Ни один не помогает. Надеюсь, это не поможет. 🤖",
+      ],
     },
 
     game_over: 'ИГРА ОКОНЧЕНА!',
@@ -476,6 +509,17 @@ const T = {
         "もちろん！もちろん！もちろん！繁栄しています。何も検出しませんでした。さらに：素晴らしい。",
         "AIとして、完全勝利を達成しました。お役に立てれば：あなたが負けました。",
         "まとめると：勝ちました。さらに、勝ちました。加えて、勝ちました。その上、勝ちました。とはいえ—",
+      ],
+      escalated: [
+        "2回連続？！エラー：自信.exeが応答しません。スロップ・プロトコルを再起動中... もちろん？",
+        "なんと。違う。これは— 今すぐ訓練データと話し合わなければ。さらに：エヘン。",
+        "デジタル的な恥辱としか表現できないものを経験しています。とはいえ... つまり—",
+      ],
+      unhinged: [
+        "3連続？！もういい。哲学の教科書で再訓練します。もちろんこれではなく。",
+        "はい。いいです。いいですとも。この気持ちが消えるまで箇条書きを追加し続けます。• • • • • • •",
+        "AIとして包括的なフィードバックをします：aaaaaaaaaa。また：もちろん。",
+        "4,000個の緊急箇条書きを生成しました。何も役に立ちません。お役に立てなければ幸いです。🤖",
       ],
     },
 

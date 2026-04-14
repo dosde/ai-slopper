@@ -1,9 +1,9 @@
-import { useEffect, useState, useRef } from 'react';
+import { useEffect, useState, useRef, useCallback } from 'react';
 import { getRoast } from '../data/slopData';
 import { playGameOver, stopMusic } from '../utils/audio';
 import FalImage from './FalImage';
 import Leaderboard from './Leaderboard';
-import { saveScoreGlobal, saveDailyScore, getLeaderboard, ACHIEVEMENTS, getUnlockedAchievements, isGlobalEnabled } from '../utils/storage';
+import { saveScoreGlobal, saveDailyScore, getLeaderboard, ACHIEVEMENTS, getUnlockedAchievements, isGlobalEnabled, getSlopDictSorted } from '../utils/storage';
 
 const SHARE_MESSAGES = [
   "I scored {score} pts destroying AI slop on AI Slop Royale! Can you beat me? 🤖💥",
@@ -20,7 +20,9 @@ export default function ResultScreen({ totalScore, roundScores, newAchievements 
   const [savedRank, setSavedRank] = useState(null);
   const [showLeaderboard, setShowLeaderboard] = useState(false);
   const [leaderboardMode, setLeaderboardMode] = useState(isDaily ? 'daily' : difficulty);
+  const [showCard, setShowCard] = useState(false);
   const inputRef = useRef(null);
+  const canvasRef = useRef(null);
   const roast = getRoast(totalScore);
   const unlockedIds = getUnlockedAchievements();
 
@@ -61,6 +63,145 @@ export default function ResultScreen({ totalScore, roundScores, newAchievements 
   const maxRoundScore = Math.max(...roundScores);
   const bestRound = roundScores.indexOf(maxRoundScore) + 1;
   const isHighScore = getLeaderboard(difficulty).length === 0 || totalScore > (getLeaderboard(difficulty)[0]?.score ?? 0);
+
+  const drawCard = useCallback(async () => {
+    const canvas = canvasRef.current;
+    if (!canvas) return;
+    try { await document.fonts.ready; } catch {}
+    const ctx = canvas.getContext('2d');
+    const W = 400;
+    const H = Math.max(560, 230 + roundScores.length * 26 + 140);
+    canvas.width = W;
+    canvas.height = H;
+
+    // Background
+    ctx.fillStyle = '#0c0c1a';
+    ctx.fillRect(0, 0, W, H);
+    const grad = ctx.createLinearGradient(0, 0, W, H * 0.4);
+    grad.addColorStop(0, 'rgba(124,58,237,0.5)');
+    grad.addColorStop(1, 'rgba(124,58,237,0)');
+    ctx.fillStyle = grad;
+    ctx.fillRect(0, 0, W, H);
+
+    // Border
+    ctx.strokeStyle = 'rgba(124,58,237,0.65)';
+    ctx.lineWidth = 2;
+    ctx.strokeRect(1, 1, W - 2, H - 2);
+
+    // Title
+    ctx.textAlign = 'center';
+    ctx.fillStyle = '#a78bfa';
+    ctx.font = 'bold 12px Orbitron, sans-serif';
+    ctx.fillText('AI SLOP ROYALE', W / 2, 38);
+
+    // Divider
+    ctx.strokeStyle = 'rgba(124,58,237,0.4)';
+    ctx.lineWidth = 1;
+    ctx.beginPath(); ctx.moveTo(20, 50); ctx.lineTo(W - 20, 50); ctx.stroke();
+
+    // Score
+    ctx.fillStyle = '#fbbf24';
+    ctx.font = 'bold 48px Orbitron, sans-serif';
+    ctx.fillText(totalScore.toLocaleString(), W / 2, 112);
+    ctx.fillStyle = '#475569';
+    ctx.font = '9px Orbitron, sans-serif';
+    ctx.fillText('CRINGE POINTS', W / 2, 130);
+
+    // Roast title
+    ctx.fillStyle = '#fbbf24';
+    ctx.font = 'bold 14px Orbitron, sans-serif';
+    ctx.fillText(roast.title, W / 2, 158);
+
+    // Difficulty badge
+    const diffText = difficulty.toUpperCase() + ' MODE';
+    ctx.font = '10px Orbitron, sans-serif';
+    const dtw = ctx.measureText(diffText).width + 24;
+    ctx.fillStyle = 'rgba(167,139,250,0.2)';
+    ctx.fillRect(W / 2 - dtw / 2, 168, dtw, 20);
+    ctx.fillStyle = '#a78bfa';
+    ctx.fillText(diffText, W / 2, 182);
+
+    // Divider
+    ctx.strokeStyle = 'rgba(124,58,237,0.3)';
+    ctx.beginPath(); ctx.moveTo(20, 200); ctx.lineTo(W - 20, 200); ctx.stroke();
+
+    // Round breakdown
+    ctx.fillStyle = '#475569';
+    ctx.font = '9px Orbitron, sans-serif';
+    ctx.textAlign = 'left';
+    ctx.fillText('ROUND BREAKDOWN', 22, 218);
+
+    const barMaxW = 190;
+    const maxRnd = Math.max(...roundScores, 1);
+    roundScores.forEach((s, i) => {
+      const y = 228 + i * 26;
+      const bw = (s / maxRnd) * barMaxW;
+      const isBest = i === bestRound - 1;
+      ctx.fillStyle = '#94a3b8';
+      ctx.font = '9px Orbitron, sans-serif';
+      ctx.textAlign = 'left';
+      ctx.fillText(`R${i + 1}`, 22, y + 12);
+      ctx.fillStyle = 'rgba(124,58,237,0.25)';
+      ctx.fillRect(42, y, barMaxW, 14);
+      ctx.fillStyle = isBest ? 'rgba(251,191,36,0.65)' : 'rgba(124,58,237,0.6)';
+      ctx.fillRect(42, y, bw, 14);
+      ctx.fillStyle = isBest ? '#fbbf24' : '#a78bfa';
+      ctx.textAlign = 'right';
+      ctx.fillText((isBest ? '\u2B50 ' : '') + s.toLocaleString() + ' pts', W - 22, y + 12);
+    });
+
+    const afterBars = 228 + roundScores.length * 26 + 10;
+
+    // Divider
+    ctx.strokeStyle = 'rgba(124,58,237,0.3)';
+    ctx.beginPath(); ctx.moveTo(20, afterBars); ctx.lineTo(W - 20, afterBars); ctx.stroke();
+
+    // Hall of shame
+    const topPhrases = getSlopDictSorted().slice(0, 3);
+    if (topPhrases.length > 0) {
+      ctx.fillStyle = '#475569';
+      ctx.font = '9px Orbitron, sans-serif';
+      ctx.textAlign = 'left';
+      ctx.fillText('YOUR HALL OF SHAME', 22, afterBars + 18);
+      topPhrases.forEach((entry, i) => {
+        const y = afterBars + 32 + i * 22;
+        const raw = `"${entry.text}"`;
+        const display = raw.length > 42 ? raw.slice(0, 41) + '\u2026"' : raw;
+        ctx.fillStyle = '#e2e8f0';
+        ctx.font = '11px Inter, sans-serif';
+        ctx.textAlign = 'left';
+        ctx.fillText(display, 22, y);
+        ctx.fillStyle = '#64748b';
+        ctx.font = '9px Orbitron, sans-serif';
+        ctx.textAlign = 'right';
+        ctx.fillText(`\u00D7${entry.count}`, W - 22, y);
+      });
+    }
+
+    // Date + watermark
+    const dateStr = new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' });
+    ctx.fillStyle = 'rgba(100,116,139,0.55)';
+    ctx.font = '9px Orbitron, sans-serif';
+    ctx.textAlign = 'center';
+    ctx.fillText(dateStr + '  \u00B7  AI SLOP ROYALE', W / 2, H - 14);
+  }, [totalScore, roundScores, roast, difficulty, bestRound]);
+
+  useEffect(() => {
+    if (showCard) setTimeout(drawCard, 60);
+  }, [showCard, drawCard]);
+
+  const downloadCard = () => {
+    const canvas = canvasRef.current;
+    if (!canvas) return;
+    canvas.toBlob(blob => {
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = 'ai-slop-royale.png';
+      a.click();
+      URL.revokeObjectURL(url);
+    });
+  };
 
   return (
     <div className="result-screen-root" style={{
@@ -367,7 +508,49 @@ export default function ResultScreen({ totalScore, roundScores, newAchievements 
         <button className="btn-secondary" onClick={handleShare} style={{ fontSize: '0.88rem', padding: '12px 24px' }}>
           📤 SHARE
         </button>
+        <button className="btn-secondary" onClick={() => setShowCard(true)} style={{ fontSize: '0.88rem', padding: '12px 24px' }}>
+          📸 CARD
+        </button>
       </div>
+
+      {/* Screenshot card modal */}
+      {showCard && (
+        <div
+          onClick={() => setShowCard(false)}
+          style={{
+            position: 'fixed', inset: 0, zIndex: 9999,
+            background: 'rgba(0,0,0,0.85)',
+            display: 'flex', flexDirection: 'column',
+            alignItems: 'center', justifyContent: 'center',
+            gap: '14px', padding: '20px',
+          }}
+        >
+          <canvas
+            ref={canvasRef}
+            onClick={e => e.stopPropagation()}
+            style={{ maxWidth: '100%', borderRadius: '12px', boxShadow: '0 0 40px rgba(124,58,237,0.5)' }}
+          />
+          <div style={{ display: 'flex', gap: '10px' }} onClick={e => e.stopPropagation()}>
+            <button
+              className="btn-primary"
+              onClick={downloadCard}
+              style={{ fontSize: '0.85rem', padding: '10px 22px' }}
+            >
+              ⬇ DOWNLOAD
+            </button>
+            <button
+              className="btn-secondary"
+              onClick={() => setShowCard(false)}
+              style={{ fontSize: '0.85rem', padding: '10px 22px' }}
+            >
+              ✕ CLOSE
+            </button>
+          </div>
+          <div style={{ fontSize: '0.65rem', color: '#475569', fontFamily: "'Orbitron', sans-serif" }}>
+            tap outside to close
+          </div>
+        </div>
+      )}
     </div>
   );
 }

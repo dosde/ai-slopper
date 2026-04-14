@@ -2,6 +2,7 @@ import { useEffect, useState, useRef } from 'react';
 import { playRoundComplete, startSummaryMusic, stopSummaryMusic } from '../utils/audio';
 import { t, tFn } from '../i18n/index';
 import { getSlopStats } from './SlopText';
+import { getRoundBest, setRoundBest } from '../utils/storage';
 
 // English-only fallback (other languages are in i18n/index.js)
 const SLOPPY_ROASTS = {
@@ -39,11 +40,12 @@ const getWrongClickShame = (count, lang = 'en') => {
   return { msg: fns[idx](count), color };
 };
 
-export default function RoundSummary({ round, roundScore, foundIds, foundCombos = {}, totalScore, isLastRound, wrongClicks = 0, timeLeft = 0, lang = 'en', musicEnabled = true, onNext }) {
+export default function RoundSummary({ round, roundScore, foundIds, foundCombos = {}, totalScore, isLastRound, wrongClicks = 0, timeLeft = 0, lang = 'en', musicEnabled = true, consecutivePerfects = 0, roundNumber = 1, difficulty = 'normal', onNext }) {
   const [show, setShow] = useState(false);
   const [roastText, setRoastText] = useState('');
   const [roastDone, setRoastDone] = useState(false);
   const [showBreakdown, setShowBreakdown] = useState(false);
+  const [isNewBest, setIsNewBest] = useState(false);
   const roastTimerRef = useRef(null);
 
   useEffect(() => {
@@ -78,6 +80,14 @@ export default function RoundSummary({ round, roundScore, foundIds, foundCombos 
 
   const getRoastMessage = () => {
     const roasts = tFn('roasts', lang) || SLOPPY_ROASTS;
+    if (accuracy === 100) {
+      if (consecutivePerfects >= 3 && roasts.unhinged?.length) {
+        return roasts.unhinged[Math.floor(Math.random() * roasts.unhinged.length)];
+      }
+      if (consecutivePerfects >= 2 && roasts.escalated?.length) {
+        return roasts.escalated[Math.floor(Math.random() * roasts.escalated.length)];
+      }
+    }
     const pool =
       accuracy === 100 ? roasts.perfect :
       accuracy >= 70   ? roasts.great :
@@ -90,6 +100,9 @@ export default function RoundSummary({ round, roundScore, foundIds, foundCombos 
   useEffect(() => {
     playRoundComplete();
     setTimeout(() => setShow(true), 100);
+    const isNew = setRoundBest(roundNumber, roundScore, difficulty);
+    setIsNewBest(isNew);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   // Start typewriter roast once stats card has appeared
@@ -175,6 +188,25 @@ export default function RoundSummary({ round, roundScore, foundIds, foundCombos 
       }}>
         {rating.text}
       </div>
+
+      {/* Personal best badge */}
+      {isNewBest && (
+        <div style={{
+          fontFamily: "'Orbitron', sans-serif",
+          fontSize: '0.72rem',
+          fontWeight: 700,
+          color: '#fbbf24',
+          textAlign: 'center',
+          padding: '8px 20px',
+          background: 'rgba(251,191,36,0.1)',
+          border: '1px solid rgba(251,191,36,0.45)',
+          borderRadius: '10px',
+          animation: show ? 'bounce-in 0.5s ease 0.25s both, pb-glow 1.6s ease-in-out infinite' : 'none',
+          letterSpacing: '1px',
+        }}>
+          🏆 NEW PERSONAL BEST!
+        </div>
+      )}
 
       {/* Stats card */}
       <div className="card" style={{
@@ -371,6 +403,7 @@ export default function RoundSummary({ round, roundScore, foundIds, foundCombos 
         @keyframes confetti-fall { 0%{transform:translateY(0) rotate(0deg);opacity:1} 100%{transform:translateY(110vh) rotate(540deg);opacity:0} }
         @keyframes perfect-pulse { 0%,100%{text-shadow:0 0 20px #a78bfa,0 0 40px #7c3aed} 50%{text-shadow:0 0 30px #ec4899,0 0 60px #ec4899} }
         @keyframes blink { 0%,100%{opacity:1} 50%{opacity:0} }
+        @keyframes pb-glow { 0%,100%{box-shadow:0 0 8px rgba(251,191,36,0.3)} 50%{box-shadow:0 0 20px rgba(251,191,36,0.7)} }
       `}</style>
     </div>
   );

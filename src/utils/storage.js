@@ -242,6 +242,35 @@ export const updateStats = (delta) => {
   return merged;
 };
 
+// ========== PER-ROUND BESTS ==========
+
+const ROUND_BESTS_KEY = 'slop_royale_round_bests_v1';
+
+export const getRoundBest = (roundNumber, difficulty = 'normal') => {
+  try {
+    const data = JSON.parse(localStorage.getItem(ROUND_BESTS_KEY) || '{}');
+    return data[`${difficulty}_${roundNumber}`] ?? 0;
+  } catch {
+    return 0;
+  }
+};
+
+// Returns true if this score beats the previous best.
+export const setRoundBest = (roundNumber, score, difficulty = 'normal') => {
+  try {
+    const data = JSON.parse(localStorage.getItem(ROUND_BESTS_KEY) || '{}');
+    const key = `${difficulty}_${roundNumber}`;
+    if (score > (data[key] ?? 0)) {
+      data[key] = score;
+      localStorage.setItem(ROUND_BESTS_KEY, JSON.stringify(data));
+      return true;
+    }
+    return false;
+  } catch {
+    return false;
+  }
+};
+
 // ========== SLOP DICTIONARY ==========
 // Tracks every unique slop phrase ever detected, with count and type.
 

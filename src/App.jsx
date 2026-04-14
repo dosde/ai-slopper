@@ -64,6 +64,8 @@ export default function App() {
   const [usedPowerUps, setUsedPowerUps] = useState([]);
   const [totalRunTime, setTotalRunTime] = useState(0);
   const [ironFailedRound, setIronFailedRound] = useState(null);
+  const consecutivePerfectsRef = useRef(0);
+  const [consecutivePerfects, setConsecutivePerfects] = useState(0);
 
   // Per-game stats for achievements
   const gameStatsRef = useRef({
@@ -97,6 +99,8 @@ export default function App() {
     setUsedPowerUps([]);
     setTotalRunTime(0);
     setIronFailedRound(null);
+    consecutivePerfectsRef.current = 0;
+    setConsecutivePerfects(0);
     const daily = mode === 'daily';
     setIsDaily(daily);
     gameStatsRef.current = {
@@ -135,7 +139,11 @@ export default function App() {
     stats.roundsCompleted += 1;
     if (score > stats.bestRoundScore) stats.bestRoundScore = score;
     if (difficulty !== 'iron' && time > stats.bestTimeLeft) stats.bestTimeLeft = time;
-    if (foundInRound >= totalPhrasesInRound && totalPhrasesInRound > 0) stats.perfectRounds += 1;
+    const wasPerfect = foundInRound >= totalPhrasesInRound && totalPhrasesInRound > 0;
+    if (wasPerfect) stats.perfectRounds += 1;
+    if (wasPerfect) consecutivePerfectsRef.current += 1;
+    else consecutivePerfectsRef.current = 0;
+    setConsecutivePerfects(consecutivePerfectsRef.current);
     if (round?.slopPhrases) {
       round.slopPhrases.forEach((p) => {
         if (p.type === 'opener') stats.openerCount = (stats.openerCount || 0) + 1;
@@ -253,6 +261,9 @@ export default function App() {
             timeLeft={lastTimeLeft}
             lang={lang}
             musicEnabled={musicEnabled}
+            consecutivePerfects={consecutivePerfects}
+            roundNumber={roundIdx + 1}
+            difficulty={difficulty}
             onNext={handleNextRound}
           />
         )}

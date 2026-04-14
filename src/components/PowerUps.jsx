@@ -25,6 +25,14 @@ export const POWERUP_DEFS = [
     color: '#fbbf24',
     glowColor: 'rgba(251,191,36,0.4)',
   },
+  {
+    id: 'streak',
+    emoji: '🛡️',
+    name: 'STREAK SAVER',
+    desc: 'Absorbs 1 wrong click — no combo break, no penalty',
+    color: '#a78bfa',
+    glowColor: 'rgba(167,139,250,0.4)',
+  },
 ];
 
 export default function PowerUps({ used, active, onUse }) {

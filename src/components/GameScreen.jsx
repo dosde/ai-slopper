@@ -119,6 +119,7 @@ export default function GameScreen({ round, roundIdx, totalRounds, totalScore, o
   const [activePowerUp, setActivePowerUp] = useState(null);
   const [radarActive, setRadarActive] = useState(false);
   const [doublePoints, setDoublePoints] = useState(false);
+  const [streakSaverActive, setStreakSaverActive] = useState(false);
   const powerUpTimerRef = useRef(null);
 
   const { popups, addPopup } = usePopups();
@@ -218,7 +219,8 @@ export default function GameScreen({ round, roundIdx, totalRounds, totalScore, o
   }, [addPopup, ROUND_TIME, isIronDetector]);
 
   const handleCombo = useCallback((newCombo) => {
-    setCombo(newCombo);
+    const capped = Math.min(newCombo, 5);
+    setCombo(capped);
     setComboDecaying(false);
     // Cancel any pending delay or in-progress decay
     clearTimeout(comboDecayDelayRef.current);
@@ -248,6 +250,13 @@ export default function GameScreen({ round, roundIdx, totalRounds, totalScore, o
 
   const WRONG_PENALTY = 50;
   const handleWrongClick = useCallback((x, y) => {
+    // Streak Saver absorbs one wrong click — no combo break, no score penalty
+    if (streakSaverActive && !isIronDetector) {
+      setStreakSaverActive(false);
+      setActivePowerUp(null);
+      addPopup(x, y, 0, '🛡️ STREAK SAVED!', false, false);
+      return;
+    }
     if (isIronDetector) {
       if (ironGameOverRef.current) return;
       ironGameOverRef.current = true;
@@ -329,6 +338,9 @@ export default function GameScreen({ round, roundIdx, totalRounds, totalScore, o
         setDoublePoints(false);
         setActivePowerUp(null);
       }, 10000);
+    } else if (id === 'streak') {
+      setStreakSaverActive(true);
+      // No timer — stays until consumed by a wrong click
     }
   };
 
