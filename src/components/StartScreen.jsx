@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { initAudio, startTitleMusic, stopTitleMusic, getMusicStyle, setMusicStyle } from '../utils/audio';
 import Leaderboard from './Leaderboard';
-import { getLeaderboard, getUnlockedAchievements, ACHIEVEMENTS, getSlopDictSorted, getSlopIndex, getXPData, getLevelFromXP, getNextLevel, getGlobalSlopIndex, getGlobalTopPhrases } from '../utils/storage';
+import { getLeaderboard, getDailyLeaderboard, getUnlockedAchievements, ACHIEVEMENTS, getSlopDictSorted, getSlopIndex, getXPData, getLevelFromXP, getNextLevel, getGlobalSlopIndex, getGlobalTopPhrases } from '../utils/storage';
 import { LANGS } from '../i18n/index';
 
 const TAGLINES = [
@@ -556,7 +556,7 @@ export default function StartScreen({ onStart }) {
               ))}
             </div>
             <Leaderboard maxRows={10} mode={scoresMode} />
-            {getLeaderboard(scoresMode === 'daily' ? undefined : scoresMode).length > 0 && (
+            {(scoresMode === 'daily' ? getDailyLeaderboard() : getLeaderboard(scoresMode)).length > 0 && (
               <div style={{ textAlign: 'center', marginTop: '12px' }}>
                 <button className="btn-primary" onClick={handleStart} style={{ fontSize: '0.85rem', padding: '12px 28px' }}>
                   🎮 BEAT THE RECORD

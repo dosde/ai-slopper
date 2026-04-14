@@ -44,8 +44,12 @@ export default function ResultScreen({ totalScore, roundScores, newAchievements 
   const handleSave = async () => {
     if (initials.trim().length === 0 || saving || saved) return;
     setSaving(true);
-    const rank = await saveScoreGlobal(totalScore, initials.trim(), roast.title, difficulty);
-    saveDailyScore(totalScore, initials.trim(), roast.title);
+    // Daily mode scores save under the 'daily' bucket, not the regular difficulty bucket.
+    // This prevents daily scores from polluting the normal/chaos/iron leaderboards.
+    const saveKey = isDaily ? 'daily' : difficulty;
+    const rank = await saveScoreGlobal(totalScore, initials.trim(), roast.title, saveKey);
+    // Only write to the daily local bucket for actual daily-mode games.
+    if (isDaily) saveDailyScore(totalScore, initials.trim(), roast.title);
     setSaved(true);
     setSavedRank(rank);
     setShowLeaderboard(true);
