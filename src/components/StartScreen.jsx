@@ -459,9 +459,10 @@ export default function StartScreen({ onStart }) {
               </div>
               {[
                 ['👆', 'Click slop phrases hiding in plain text — all words look the same!'],
-                ['⚡', 'Chain detections for COMBO MULTIPLIER up to 5x (+1s per hit)'],
-                ['📡', 'Power-ups usable once per game: Radar, Time Boost, Double Points'],
+                ['⚡', 'Chain detections for COMBO MULTIPLIER up to 5x (+3s per hit)'],
+                ['📡', 'Power-ups usable once per game: Radar, Time Boost, 2× Points, Streak Saver'],
                 ['⏱️', 'Finish early to earn TIME BONUS: seconds left × 10 pts'],
+                ['☠', 'IRON DETECTOR: one wrong click ends the run — no mercy'],
                 ['🧠', 'BRAINROT mode: wrong clicks corrupt the text — letters mutate!'],
                 ['🎲', '6 rounds per game (always 1 inverse + 1 boss round) from a pool of 77'],
               ].map(([icon, text]) => (

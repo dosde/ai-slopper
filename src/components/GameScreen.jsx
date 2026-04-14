@@ -227,7 +227,7 @@ export default function GameScreen({ round, roundIdx, totalRounds, totalScore, o
 
   const handleScore = useCallback((score, x, y, commentary, isDoubled, combo, tokenId) => {
     setRoundScore(prev => prev + score);
-    if (!isIronDetector) setTimeLeft(prev => Math.min(prev + 1, ROUND_TIME + 60));
+    if (!isIronDetector) setTimeLeft(prev => Math.min(prev + 3, ROUND_TIME + 60));
     addPopup(x, y, score, commentary, isDoubled, false, combo);
     if (tokenId !== undefined) foundCombosRef.current[tokenId] = { combo, finalScore: score };
   }, [addPopup, ROUND_TIME, isIronDetector]);
