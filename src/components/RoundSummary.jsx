@@ -34,10 +34,12 @@ const SLOPPY_ROASTS = {
 };
 
 const getWrongClickShame = (count, lang = 'en') => {
-  const fns = tFn('wrong_shame', lang);
+  const tiers = tFn('wrong_shame', lang);
   const color = count === 0 ? '#10b981' : count <= 3 ? '#fbbf24' : count <= 8 ? '#f97316' : count <= 15 ? '#ef4444' : '#ec4899';
   const idx = count === 0 ? 0 : count <= 3 ? 1 : count <= 8 ? 2 : count <= 15 ? 3 : 4;
-  return { msg: fns[idx](count), color };
+  const tier = tiers[idx];
+  const fn = Array.isArray(tier) ? tier[Math.floor(Math.random() * tier.length)] : tier;
+  return { msg: fn(count), color };
 };
 
 export default function RoundSummary({ round, roundScore, foundIds, foundCombos = {}, totalScore, isLastRound, wrongClicks = 0, timeLeft = 0, lang = 'en', musicEnabled = true, consecutivePerfects = 0, roundNumber = 1, difficulty = 'normal', onNext }) {
