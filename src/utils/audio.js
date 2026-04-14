@@ -38,6 +38,10 @@ export const setMusicStyle = (style) => {
     if (gameGain) { gameGain.disconnect(); gameGain = null; }
     startMusic();
   }
+  if (isSummaryMusicPlaying) {
+    // Restart loop so the new style's melody and correct loop duration take effect.
+    restartSummaryLoop();
+  }
   if (isTitleMusicPlaying) {
     // Cut gain immediately so old notes are silenced before new bar starts
     isTitleMusicPlaying = false;
@@ -498,7 +502,23 @@ const restartBossLoop = () => {
 };
 
 // ── Summary / between-rounds music ───────────────────────────────────────────
-// C major, upbeat victory fanfare, ~3.8s loop
+// Sloppy style: C major, upbeat victory fanfare, ~3.8s loop
+// Chill style:  C–Am slow ambient, ~3.8s loop (sine waves, no kick)
+
+// Chill summary: slow, gentle, sine-based — matches pleasant game music feel
+const SUMMARY_CHILL_MELODY = [
+  // C major — gentle rising phrase (1.90s)
+  [N.E5,0.55],[0,0.10],[N.G5,0.50],[0,0.10],[N.A5,0.45],[0,0.20],
+  // Am — soft resolution (1.90s)
+  [N.A5,0.65],[0,0.10],[N.G5,0.50],[0,0.10],[N.E5,0.45],[0,0.10],
+];
+// Total: 1.90 + 1.90 = 3.80s
+
+const SUMMARY_CHILL_BASS = [
+  [N.C3,0.95],[N.E3,0.95],   // C major  1.90s
+  [N.A3,0.95],[N.E3,0.95],   // Am       1.90s
+];
+// Total: 0.95×4 = 3.80s
 
 const SUMMARY_MELODY = [
   // Bar 1: Rising arpeggio flourish
@@ -534,7 +554,26 @@ const getSummaryGain = () => {
   return summaryGain;
 };
 
-const playSummaryBar = () => {
+const playChillSummaryBar = () => {
+  const ctx = getCtx();
+  const now = ctx.currentTime;
+  const sg = getSummaryGain();
+  let t = now;
+  for (const [freq, dur] of SUMMARY_CHILL_MELODY) {
+    if (freq > 0) {
+      playNote(freq, dur * 0.85, t, 'sine', 0.09, sg);
+      playNote(freq * 0.5, dur * 0.80, t, 'sine', 0.04, sg); // sub-octave warmth
+    }
+    t += dur;
+  }
+  t = now;
+  for (const [freq, dur] of SUMMARY_CHILL_BASS) {
+    if (freq > 0) playNote(freq, dur * 0.78, t, 'triangle', 0.11, sg);
+    t += dur;
+  }
+};
+
+const playSlopSummaryBar = () => {
   const ctx = getCtx();
   const now = ctx.currentTime;
   const sg = getSummaryGain();
@@ -565,9 +604,16 @@ const playSummaryBar = () => {
   }
 };
 
+const playSummaryBar = () => {
+  if (currentMusicStyle === 'pleasant') playChillSummaryBar();
+  else playSlopSummaryBar();
+};
+
 const restartSummaryLoop = () => {
   if (summaryMusicInterval) { clearInterval(summaryMusicInterval); summaryMusicInterval = null; }
-  const loopMs = getArrayDuration(SUMMARY_MELODY) * 1000;
+  // Pick loop duration for the current style so the interval fires at the right time.
+  const melody = currentMusicStyle === 'pleasant' ? SUMMARY_CHILL_MELODY : SUMMARY_MELODY;
+  const loopMs = getArrayDuration(melody) * 1000;
   playSummaryBar();
   summaryMusicInterval = setInterval(() => { if (isSummaryMusicPlaying) playSummaryBar(); }, loopMs);
 };
