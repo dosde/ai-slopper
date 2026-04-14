@@ -19,7 +19,7 @@ Deno.serve(async (req) => {
     });
   }
 
-  let body: { score?: unknown; initials?: unknown; rank?: unknown; date?: unknown; timestamp?: unknown };
+  let body: { score?: unknown; initials?: unknown; rank?: unknown; date?: unknown; timestamp?: unknown; difficulty?: unknown };
   try {
     body = await req.json();
   } catch {
@@ -28,7 +28,7 @@ Deno.serve(async (req) => {
     });
   }
 
-  const { score, initials, rank, date, timestamp } = body;
+  const { score, initials, rank, date, timestamp, difficulty } = body;
 
   // --- Validate score ---
   if (typeof score !== 'number' || !Number.isInteger(score) || score < 1 || score > MAX_SCORE) {
@@ -49,6 +49,12 @@ Deno.serve(async (req) => {
     });
   }
 
+  // --- Validate difficulty ---
+  const VALID_DIFFICULTIES = ['normal', 'chaos', 'brainrot', 'iron', 'daily'];
+  const safeDifficulty = VALID_DIFFICULTIES.includes(difficulty as string)
+    ? (difficulty as string)
+    : 'normal';
+
   // --- Validate timestamp (reject stale/replayed submissions) ---
   if (typeof timestamp !== 'number' || Math.abs(Date.now() - timestamp) > MAX_TIMESTAMP_AGE_MS) {
     return new Response(JSON.stringify({ error: 'Timestamp expired' }), {
@@ -68,6 +74,7 @@ Deno.serve(async (req) => {
     rank: typeof rank === 'string' ? rank.slice(0, 64) : null,
     date: typeof date === 'string' ? date.slice(0, 32) : null,
     timestamp,
+    difficulty: safeDifficulty,
   });
 
   if (error) {
