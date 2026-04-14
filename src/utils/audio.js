@@ -574,9 +574,15 @@ export const startSummaryMusic = () => {
   if (ctx.state === 'suspended') ctx.resume();
   const sg = getSummaryGain();
   sg.gain.cancelScheduledValues(ctx.currentTime);
-  sg.gain.setValueAtTime(0, ctx.currentTime);
-  sg.gain.linearRampToValueAtTime(1.0, ctx.currentTime + 0.12);
-  restartSummaryLoop();
+  const curGain = sg.gain.value;
+  sg.gain.setValueAtTime(curGain, ctx.currentTime);
+  // If gain is already near full (e.g. RoundSummary → RoundIntro handoff),
+  // skip the fade-in so there's no audible dip or restart.
+  if (curGain < 0.9) {
+    sg.gain.linearRampToValueAtTime(1.0, ctx.currentTime + 0.12);
+  }
+  // Only restart the loop if the interval was cleared (e.g. stopSummaryMusic ran)
+  if (!summaryMusicInterval) restartSummaryLoop();
 };
 
 export const stopSummaryMusic = () => {
