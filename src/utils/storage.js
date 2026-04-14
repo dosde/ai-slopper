@@ -10,6 +10,8 @@ const DAILY_SCORES_KEY = 'slop_royale_daily_v1';
 const ACHIEVEMENTS_KEY = 'slop_royale_achievements_v2';
 const STATS_KEY = 'slop_royale_stats_v2';
 const DICT_KEY = 'slop_royale_dict_v1';
+const XP_KEY = 'slop_royale_xp_v1';
+const SLOP_INDEX_KEY = 'slop_royale_slop_index_v1';
 
 const getTodayKey = () => new Date().toLocaleDateString('en-CA'); // YYYY-MM-DD
 
@@ -294,3 +296,177 @@ export const updateSlopDict = (text, type) => {
 // Returns entries sorted by detection count descending
 export const getSlopDictSorted = () =>
   Object.values(getSlopDict()).sort((a, b) => b.count - a.count);
+
+// ========== XP & LEVELS ==========
+
+export const LEVELS = [
+  { level:  1, xpRequired:     0, title: 'SLOP ROOKIE' },
+  { level:  2, xpRequired:   150, title: 'PHRASE FINDER' },
+  { level:  3, xpRequired:   350, title: 'CLICHÉ HUNTER' },
+  { level:  4, xpRequired:   600, title: 'BUZZWORD BUSTER' },
+  { level:  5, xpRequired:  1000, title: 'AI DETECTOR' },
+  { level:  6, xpRequired:  1500, title: 'SLOP SLAYER' },
+  { level:  7, xpRequired:  2100, title: 'NEURAL NEMESIS' },
+  { level:  8, xpRequired:  2800, title: 'PARADIGM PULVERIZER' },
+  { level:  9, xpRequired:  3600, title: 'TOKEN TERMINATOR' },
+  { level: 10, xpRequired:  4500, title: 'SLOP SOVEREIGN' },
+  { level: 11, xpRequired:  5500, title: 'BULLET POINT BANE' },
+  { level: 12, xpRequired:  6600, title: 'DISCLAIMER DESTROYER' },
+  { level: 13, xpRequired:  7800, title: 'LEVERAGE LORD' },
+  { level: 14, xpRequired:  9100, title: 'GRAND SLOP MASTER' },
+  { level: 15, xpRequired: 10500, title: 'SLOP TRANSCENDENT' },
+  { level: 16, xpRequired: 12000, title: 'CERTAINLY SLAYER' },
+  { level: 17, xpRequired: 13600, title: 'AI EXTINCTION AGENT' },
+  { level: 18, xpRequired: 15300, title: 'SUPREME OVERLORD' },
+  { level: 19, xpRequired: 17100, title: 'HOLISTIC DESTROYER' },
+  { level: 20, xpRequired: 19000, title: 'SLOP GOD' },
+];
+
+export const getLevelFromXP = (xp) => {
+  let current = LEVELS[0];
+  for (const l of LEVELS) {
+    if (xp >= l.xpRequired) current = l;
+    else break;
+  }
+  return current;
+};
+
+export const getNextLevel = (currentLevel) =>
+  LEVELS.find(l => l.level === currentLevel + 1) || null;
+
+export const getXPData = () => {
+  try { return JSON.parse(localStorage.getItem(XP_KEY) || '{"xp":0}'); }
+  catch { return { xp: 0 }; }
+};
+
+// Adds XP and returns { xp, prevLevel, newLevel, leveledUp }
+export const addXP = (amount) => {
+  const data = getXPData();
+  const prevXP = data.xp || 0;
+  const prevLevel = getLevelFromXP(prevXP);
+  const newXP = prevXP + amount;
+  const newLevel = getLevelFromXP(newXP);
+  localStorage.setItem(XP_KEY, JSON.stringify({ xp: newXP }));
+  return { xp: newXP, prevXP, prevLevel, newLevel, leveledUp: newLevel.level > prevLevel.level };
+};
+
+// XP earned per game: score/20 + perfect bonuses, scaled by difficulty
+const DIFF_MULTI = { normal: 1.0, chaos: 1.3, brainrot: 1.2, iron: 1.5, daily: 1.1 };
+export const calculateXP = (totalScore, perfectRounds, difficulty) => {
+  const base = Math.floor(Math.max(0, totalScore) / 20);
+  const bonus = perfectRounds * 50;
+  return Math.round((base + bonus) * (DIFF_MULTI[difficulty] || 1.0));
+};
+
+// ========== SLOP INDEX ==========
+
+export const getSlopIndex = () => {
+  try { return parseInt(localStorage.getItem(SLOP_INDEX_KEY) || '0', 10); }
+  catch { return 0; }
+};
+
+export const incrementSlopIndex = (count) => {
+  const next = getSlopIndex() + Math.max(0, count);
+  localStorage.setItem(SLOP_INDEX_KEY, String(next));
+  return next;
+};
+
+// ========== GLOBAL STATS (Supabase) ==========
+// Requires two tables in the same Supabase project as the leaderboard:
+//
+//   create table slop_stats (
+//     key text primary key,
+//     value bigint not null default 0
+//   );
+//   insert into slop_stats (key, value) values ('total_eradicated', 0) on conflict do nothing;
+//   alter table slop_stats enable row level security;
+//   create policy "Public read" on slop_stats for select using (true);
+//
+//   create table slop_phrases (
+//     phrase text primary key,
+//     phrase_type text,
+//     count bigint not null default 0,
+//     updated_at timestamptz default now()
+//   );
+//   alter table slop_phrases enable row level security;
+//   create policy "Public read" on slop_phrases for select using (true);
+//
+// And two security-definer RPC functions so anon can write atomically:
+//
+//   create or replace function inc_stat(stat_key text, amount bigint default 1)
+//   returns void language plpgsql security definer as $$
+//   begin
+//     insert into slop_stats (key, value) values (stat_key, amount)
+//     on conflict (key) do update set value = slop_stats.value + excluded.value;
+//   end; $$;
+//   grant execute on function inc_stat to anon;
+//
+//   create or replace function inc_phrase(p_phrase text, p_type text)
+//   returns void language plpgsql security definer as $$
+//   begin
+//     insert into slop_phrases (phrase, phrase_type, count, updated_at)
+//     values (p_phrase, p_type, 1, now())
+//     on conflict (phrase) do update set
+//       count = slop_phrases.count + 1,
+//       updated_at = now();
+//   end; $$;
+//   grant execute on function inc_phrase to anon;
+
+// Derive the /rest/v1 base URL from the scores table URL
+const supabaseBase = () => {
+  if (!API_URL) return null;
+  return API_URL.replace(/\/[^/?]+(\?.*)?$/, '');
+};
+
+export const getGlobalSlopIndex = async () => {
+  const base = supabaseBase();
+  if (!base) return null;
+  try {
+    const res = await fetch(
+      `${base}/slop_stats?key=eq.total_eradicated&select=value`,
+      { headers: apiHeaders() }
+    );
+    if (!res.ok) return null;
+    const data = await res.json();
+    return typeof data[0]?.value === 'number' ? data[0].value : null;
+  } catch { return null; }
+};
+
+export const submitGlobalSlopIndex = async (count) => {
+  const base = supabaseBase();
+  if (!base || count <= 0) return;
+  try {
+    await fetch(`${base}/rpc/inc_stat`, {
+      method: 'POST',
+      headers: apiHeaders(),
+      body: JSON.stringify({ stat_key: 'total_eradicated', amount: count }),
+    });
+  } catch { /* fire and forget */ }
+};
+
+export const getGlobalTopPhrases = async (limit = 10) => {
+  const base = supabaseBase();
+  if (!base) return null;
+  try {
+    const res = await fetch(
+      `${base}/slop_phrases?order=count.desc&limit=${limit}&select=phrase,phrase_type,count`,
+      { headers: apiHeaders() }
+    );
+    if (!res.ok) return null;
+    const data = await res.json();
+    if (!Array.isArray(data) || data.length === 0) return null;
+    return data.map(d => ({ text: d.phrase, type: d.phrase_type, count: Number(d.count) }));
+  } catch { return null; }
+};
+
+export const submitGlobalPhrase = async (text, type) => {
+  const base = supabaseBase();
+  if (!base) return;
+  try {
+    await fetch(`${base}/rpc/inc_phrase`, {
+      method: 'POST',
+      headers: apiHeaders(),
+      body: JSON.stringify({ p_phrase: text, p_type: type }),
+    });
+  } catch { /* fire and forget */ }
+};

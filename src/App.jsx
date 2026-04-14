@@ -7,7 +7,7 @@ import ResultScreen from './components/ResultScreen';
 import AchievementToastLayer, { showAchievement } from './components/AchievementToast';
 import { selectRounds, getDailyRounds } from './data/slopData';
 import { stopMusic } from './utils/audio';
-import { checkAndUnlockAchievements, updateStats } from './utils/storage';
+import { checkAndUnlockAchievements, updateStats, calculateXP, addXP, incrementSlopIndex, submitGlobalSlopIndex } from './utils/storage';
 
 function Starfield() {
   const stars = useMemo(() =>
@@ -66,6 +66,8 @@ export default function App() {
   const [ironFailedRound, setIronFailedRound] = useState(null);
   const consecutivePerfectsRef = useRef(0);
   const [consecutivePerfects, setConsecutivePerfects] = useState(0);
+  const rageMomentsRef = useRef([]);
+  const [xpResult, setXpResult] = useState(null); // { xpEarned, prevLevel, newLevel, leveledUp }
 
   // Per-game stats for achievements
   const gameStatsRef = useRef({
@@ -101,6 +103,8 @@ export default function App() {
     setIronFailedRound(null);
     consecutivePerfectsRef.current = 0;
     setConsecutivePerfects(0);
+    rageMomentsRef.current = [];
+    setXpResult(null);
     const daily = mode === 'daily';
     setIsDaily(daily);
     gameStatsRef.current = {
@@ -116,6 +120,15 @@ export default function App() {
   const handleRoundReady = useCallback(() => {
     setGameState(STATE.PLAYING);
   }, []);
+
+  // Called at the very end of a game (normal finish or iron game-over)
+  const finaliseGame = useCallback((finalScore, stats) => {
+    const xpEarned = calculateXP(finalScore, stats.perfectRounds, difficulty);
+    const result = addXP(xpEarned);
+    setXpResult({ xpEarned, ...result });
+    incrementSlopIndex(stats.totalDetected);
+    submitGlobalSlopIndex(stats.totalDetected);
+  }, [difficulty]);
 
   const handleRoundEnd = useCallback((score, foundIds, time = 0, wrongClicks = 0, isGameOver = false, foundCombos = {}) => {
     setLastRoundScore(score);
@@ -157,6 +170,7 @@ export default function App() {
       stats.totalScore = totalScore + score;
       const unlocked = checkAndUnlockAchievements(stats);
       updateStats({ ...stats, gamesPlayed: 1 });
+      finaliseGame(stats.totalScore, stats);
       unlocked.forEach((ach, i) => { setTimeout(() => showAchievement(ach), i * 800); });
       setNewAchievements(unlocked);
       setGameState(STATE.RESULT);
@@ -164,7 +178,7 @@ export default function App() {
     }
 
     setGameState(STATE.ROUND_SUMMARY);
-  }, [rounds, roundIdx, difficulty, totalScore]);
+  }, [rounds, roundIdx, difficulty, totalScore, finaliseGame]);
 
   const handleNextRound = useCallback(() => {
     const nextIdx = roundIdx + 1;
@@ -182,6 +196,7 @@ export default function App() {
 
       const unlocked = checkAndUnlockAchievements(stats);
       updateStats({ ...stats, gamesPlayed: 1 });
+      finaliseGame(totalScore, stats);
 
       unlocked.forEach((ach, i) => {
         setTimeout(() => showAchievement(ach), i * 800);
@@ -192,11 +207,17 @@ export default function App() {
       setRoundIdx(nextIdx);
       setGameState(STATE.ROUND_INTRO);
     }
-  }, [roundIdx, rounds.length, totalScore, roundScores, difficulty, totalRunTime]);
+  }, [roundIdx, rounds.length, totalScore, roundScores, difficulty, totalRunTime, finaliseGame]);
 
   const handleRestart = useCallback(() => {
     stopMusic();
     setGameState(STATE.START);
+  }, []);
+
+  const handleRageClick = useCallback(({ word, round }) => {
+    if (rageMomentsRef.current.length < 3) {
+      rageMomentsRef.current = [...rageMomentsRef.current, { word, round }];
+    }
   }, []);
 
   const handlePowerUpUsed = useCallback((id) => {
@@ -246,6 +267,7 @@ export default function App() {
             onRoundEnd={handleRoundEnd}
             onPowerUpUsed={handlePowerUpUsed}
             usedPowerUps={usedPowerUps}
+            onRageClick={handleRageClick}
           />
         )}
 
@@ -278,6 +300,8 @@ export default function App() {
             ironFailedRound={ironFailedRound}
             totalRounds={rounds.length}
             isDaily={isDaily}
+            xpResult={xpResult}
+            rageMoments={rageMomentsRef.current}
             onRestart={handleRestart}
           />
         )}

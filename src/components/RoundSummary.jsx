@@ -34,10 +34,12 @@ const SLOPPY_ROASTS = {
 };
 
 const getWrongClickShame = (count, lang = 'en') => {
-  const fns = tFn('wrong_shame', lang);
+  const tiers = tFn('wrong_shame', lang);
   const color = count === 0 ? '#10b981' : count <= 3 ? '#fbbf24' : count <= 8 ? '#f97316' : count <= 15 ? '#ef4444' : '#ec4899';
   const idx = count === 0 ? 0 : count <= 3 ? 1 : count <= 8 ? 2 : count <= 15 ? 3 : 4;
-  return { msg: fns[idx](count), color };
+  const tier = tiers[idx];
+  const fn = Array.isArray(tier) ? tier[Math.floor(Math.random() * tier.length)] : tier;
+  return { msg: fn(count), color };
 };
 
 export default function RoundSummary({ round, roundScore, foundIds, foundCombos = {}, totalScore, isLastRound, wrongClicks = 0, timeLeft = 0, lang = 'en', musicEnabled = true, consecutivePerfects = 0, roundNumber = 1, difficulty = 'normal', onNext }) {
@@ -46,6 +48,14 @@ export default function RoundSummary({ round, roundScore, foundIds, foundCombos 
   const [roastDone, setRoastDone] = useState(false);
   const [showBreakdown, setShowBreakdown] = useState(false);
   const [isNewBest, setIsNewBest] = useState(false);
+  // Computed once on mount — prevents re-rolling on every typewriter re-render
+  const [shame] = useState(() => getWrongClickShame(wrongClicks, lang));
+  const [missedMsg] = useState(() => {
+    const mc = Math.max(0, round.slopPhrases.length - foundIds.size);
+    return mc > 0
+      ? (round.inverse ? tFn('missed_human', lang)(mc) : tFn('missed_slop', lang)(mc))
+      : null;
+  });
   const roastTimerRef = useRef(null);
 
   useEffect(() => {
@@ -130,7 +140,6 @@ export default function RoundSummary({ round, roundScore, foundIds, foundCombos 
     setRoastText(getRoastMessage());
   };
 
-  const shame = getWrongClickShame(wrongClicks, lang);
 
   return (
     <div style={{
@@ -253,7 +262,7 @@ export default function RoundSummary({ round, roundScore, foundIds, foundCombos 
           {shame.msg}
         </div>
 
-        {missedCount > 0 && (
+        {missedMsg && (
           <div style={{
             marginTop: '8px',
             padding: '8px',
@@ -264,7 +273,7 @@ export default function RoundSummary({ round, roundScore, foundIds, foundCombos 
             color: '#ef4444',
             textAlign: 'center',
           }}>
-            {round.inverse ? tFn('missed_human', lang)(missedCount) : tFn('missed_slop', lang)(missedCount)}
+            {missedMsg}
           </div>
         )}
 

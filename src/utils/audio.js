@@ -4,6 +4,7 @@ let audioCtx = null;
 let isMusicPlaying = false;
 let musicInterval = null;
 let masterGain = null;
+let gameGain = null;   // routes all game-music oscillators; disconnect on stopMusic
 let tempoScale = 1.0;
 let isBossMusicPlaying = false;
 let bossMusicInterval = null;
@@ -57,6 +58,17 @@ const getCtx = () => {
     masterGain.connect(audioCtx.destination);
   }
   return audioCtx;
+};
+
+// Lazy getter — all game music routes through this so stopMusic() can disconnect it
+const getGameGain = () => {
+  const ctx = getCtx();
+  if (!gameGain) {
+    gameGain = ctx.createGain();
+    gameGain.gain.value = 1.0;
+    gameGain.connect(masterGain);
+  }
+  return gameGain;
 };
 
 const playNote = (freq, duration, startTime, type = 'square', gain = 0.15, dest = null) => {
@@ -279,14 +291,15 @@ const playMusicBar = (scale = tempoScale) => {
   const s = scale;
   const loopDuration = getArrayDuration(MELODY) / s;
 
+  const gg = getGameGain();
   let t = now;
   for (const [freq, dur] of MELODY) {
-    if (freq > 0) playNote(freq, (dur / s) * 0.85, t, 'square', 0.11);
+    if (freq > 0) playNote(freq, (dur / s) * 0.85, t, 'square', 0.11, gg);
     t += dur / s;
   }
   t = now;
   for (const [freq, dur] of BASS) {
-    if (freq > 0) playNote(freq, (dur / s) * 0.78, t, 'triangle', 0.13);
+    if (freq > 0) playNote(freq, (dur / s) * 0.78, t, 'triangle', 0.13, gg);
     t += dur / s;
   }
   for (let beat = 0; beat < loopDuration; beat += 0.5 / s) {
@@ -296,7 +309,7 @@ const playMusicBar = (scale = tempoScale) => {
     ko.frequency.exponentialRampToValueAtTime(0.01, now + beat + 0.18 / s);
     kg.gain.setValueAtTime(0.30, now + beat);
     kg.gain.exponentialRampToValueAtTime(0.001, now + beat + 0.18 / s);
-    ko.connect(kg); kg.connect(masterGain);
+    ko.connect(kg); kg.connect(gg);
     ko.start(now + beat); ko.stop(now + beat + 0.20 / s);
   }
   for (let beat = 0.5 / s; beat < loopDuration; beat += 1.0 / s) {
@@ -304,7 +317,7 @@ const playMusicBar = (scale = tempoScale) => {
     so.type = 'sawtooth'; so.frequency.value = 220;
     sg.gain.setValueAtTime(0.09, now + beat);
     sg.gain.exponentialRampToValueAtTime(0.001, now + beat + 0.10 / s);
-    so.connect(sg); sg.connect(masterGain);
+    so.connect(sg); sg.connect(gg);
     so.start(now + beat); so.stop(now + beat + 0.12 / s);
   }
   for (let beat = 0; beat < loopDuration; beat += 0.25 / s) {
@@ -312,7 +325,7 @@ const playMusicBar = (scale = tempoScale) => {
     ho.type = 'square'; ho.frequency.value = 7200;
     hg.gain.setValueAtTime(0.022, now + beat);
     hg.gain.exponentialRampToValueAtTime(0.001, now + beat + 0.04 / s);
-    ho.connect(hg); hg.connect(masterGain);
+    ho.connect(hg); hg.connect(gg);
     ho.start(now + beat); ho.stop(now + beat + 0.05 / s);
   }
   // Low sub-bass rumble on beat 3 — adds tension/weight
@@ -321,7 +334,7 @@ const playMusicBar = (scale = tempoScale) => {
     ro.type = 'sine'; ro.frequency.value = 65;
     rg.gain.setValueAtTime(0.18, now + beat);
     rg.gain.exponentialRampToValueAtTime(0.001, now + beat + 0.35 / s);
-    ro.connect(rg); rg.connect(masterGain);
+    ro.connect(rg); rg.connect(gg);
     ro.start(now + beat); ro.stop(now + beat + 0.36 / s);
   }
 };
@@ -331,13 +344,14 @@ const playPleasantBar = () => {
   const ctx = getCtx();
   const now = ctx.currentTime;
   const loopDuration = getArrayDuration(PLEASANT_MELODY);
+  const gg = getGameGain();
 
   // Melody: warm sine with subtle detune for chorus effect
   let t = now;
   for (const [freq, dur] of PLEASANT_MELODY) {
     if (freq > 0) {
-      playNote(freq, dur * 0.88, t, 'sine', 0.09);
-      playNote(freq * 1.003, dur * 0.88, t, 'sine', 0.04); // detune warmth
+      playNote(freq, dur * 0.88, t, 'sine', 0.09, gg);
+      playNote(freq * 1.003, dur * 0.88, t, 'sine', 0.04, gg); // detune warmth
     }
     t += dur;
   }
@@ -345,7 +359,7 @@ const playPleasantBar = () => {
   // Bass: smooth triangle arpeggios
   t = now;
   for (const [freq, dur] of PLEASANT_BASS) {
-    if (freq > 0) playNote(freq, dur * 0.72, t, 'triangle', 0.11);
+    if (freq > 0) playNote(freq, dur * 0.72, t, 'triangle', 0.11, gg);
     t += dur;
   }
 
@@ -359,7 +373,7 @@ const playPleasantBar = () => {
   for (let i = 0; i < 4; i++) {
     const padStart = now + i * 3.0;
     for (const f of chordSets[i]) {
-      playNote(f, 2.60, padStart, 'sine', 0.028);
+      playNote(f, 2.60, padStart, 'sine', 0.028, gg);
     }
   }
 
@@ -370,13 +384,13 @@ const playPleasantBar = () => {
     ho.type = 'sine'; ho.frequency.value = 3200;
     hg.gain.setValueAtTime(0.012, beat);
     hg.gain.exponentialRampToValueAtTime(0.001, beat + 0.35);
-    ho.connect(hg); hg.connect(masterGain);
+    ho.connect(hg); hg.connect(gg);
     ho.start(beat); ho.stop(beat + 0.36);
   }
   // Tension pulse — soft Dm7 dissonance on bar 4 before looping back
   const tensionStart = now + 9.0;
   [N.D3, N.F3, N.C4].forEach(f => {
-    playNote(f, 2.80, tensionStart, 'sine', 0.018);
+    playNote(f, 2.80, tensionStart, 'sine', 0.018, gg);
   });
 };
 
@@ -385,11 +399,12 @@ const playBossBar = () => {
   const ctx = getCtx();
   const now = ctx.currentTime;
   const loopDuration = getArrayDuration(BOSS_MELODY);
+  const gg = getGameGain();
 
   // Boss lead: aggressive sawtooth
   let t = now;
   for (const [freq, dur] of BOSS_MELODY) {
-    if (freq > 0) playNote(freq, dur * 0.75, t, 'sawtooth', 0.13);
+    if (freq > 0) playNote(freq, dur * 0.75, t, 'sawtooth', 0.13, gg);
     t += dur;
   }
 
@@ -397,8 +412,8 @@ const playBossBar = () => {
   t = now;
   for (const [freq, dur] of BOSS_BASS) {
     if (freq > 0) {
-      playNote(freq, dur * 0.70, t, 'triangle', 0.22);
-      playNote(freq, dur * 0.68, t, 'sawtooth', 0.07);
+      playNote(freq, dur * 0.70, t, 'triangle', 0.22, gg);
+      playNote(freq, dur * 0.68, t, 'sawtooth', 0.07, gg);
     }
     t += dur;
   }
@@ -409,7 +424,7 @@ const playBossBar = () => {
   droneG.gain.setValueAtTime(0.09, now);
   droneG.gain.setValueAtTime(0.06, now + loopDuration * 0.5);
   droneG.gain.setValueAtTime(0.09, now + loopDuration - 0.1);
-  drone.connect(droneG); droneG.connect(masterGain);
+  drone.connect(droneG); droneG.connect(gg);
   drone.start(now); drone.stop(now + loopDuration);
 
   // Tritone sting (Eb) accent — hits on every 4th 16th note for dissonance
@@ -418,7 +433,7 @@ const playBossBar = () => {
     s.type = 'square'; s.frequency.value = N.Eb3;
     sg.gain.setValueAtTime(0.06, now + beat);
     sg.gain.exponentialRampToValueAtTime(0.001, now + beat + 0.08);
-    s.connect(sg); sg.connect(masterGain);
+    s.connect(sg); sg.connect(gg);
     s.start(now + beat); s.stop(now + beat + 0.09);
   }
 
@@ -430,7 +445,7 @@ const playBossBar = () => {
     ko.frequency.exponentialRampToValueAtTime(0.01, now + beat + 0.14);
     kg.gain.setValueAtTime(0.45, now + beat);
     kg.gain.exponentialRampToValueAtTime(0.001, now + beat + 0.14);
-    ko.connect(kg); kg.connect(masterGain);
+    ko.connect(kg); kg.connect(gg);
     ko.start(now + beat); ko.stop(now + beat + 0.15);
   }
 
@@ -440,7 +455,7 @@ const playBossBar = () => {
     so.type = 'square'; so.frequency.value = 260;
     sg.gain.setValueAtTime(0.22, now + beat);
     sg.gain.exponentialRampToValueAtTime(0.001, now + beat + 0.06);
-    so.connect(sg); sg.connect(masterGain);
+    so.connect(sg); sg.connect(gg);
     so.start(now + beat); so.stop(now + beat + 0.07);
   }
 
@@ -450,7 +465,7 @@ const playBossBar = () => {
     ho.type = 'square'; ho.frequency.value = 11000;
     hg.gain.setValueAtTime(0.018, now + beat);
     hg.gain.exponentialRampToValueAtTime(0.001, now + beat + 0.018);
-    ho.connect(hg); hg.connect(masterGain);
+    ho.connect(hg); hg.connect(gg);
     ho.start(now + beat); ho.stop(now + beat + 0.02);
   }
 };
@@ -559,9 +574,15 @@ export const startSummaryMusic = () => {
   if (ctx.state === 'suspended') ctx.resume();
   const sg = getSummaryGain();
   sg.gain.cancelScheduledValues(ctx.currentTime);
-  sg.gain.setValueAtTime(0, ctx.currentTime);
-  sg.gain.linearRampToValueAtTime(1.0, ctx.currentTime + 0.12);
-  restartSummaryLoop();
+  const curGain = sg.gain.value;
+  sg.gain.setValueAtTime(curGain, ctx.currentTime);
+  // If gain is already near full (e.g. RoundSummary → RoundIntro handoff),
+  // skip the fade-in so there's no audible dip or restart.
+  if (curGain < 0.9) {
+    sg.gain.linearRampToValueAtTime(1.0, ctx.currentTime + 0.12);
+  }
+  // Only restart the loop if the interval was cleared (e.g. stopSummaryMusic ran)
+  if (!summaryMusicInterval) restartSummaryLoop();
 };
 
 export const stopSummaryMusic = () => {
@@ -819,6 +840,8 @@ export const stopMusic = () => {
   tempoScale = 1.0;
   if (musicInterval) { clearInterval(musicInterval); musicInterval = null; }
   if (bossMusicInterval) { clearInterval(bossMusicInterval); bossMusicInterval = null; }
+  // Disconnect the game gain node — instantly silences any still-scheduled oscillators
+  if (gameGain) { gameGain.disconnect(); gameGain = null; }
 };
 
 export const startTitleMusic = () => {

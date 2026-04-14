@@ -96,7 +96,7 @@ function SlopMeter({ found, total }) {
 
 const ROUND_TIME_BOSS = 60;
 
-export default function GameScreen({ round, roundIdx, totalRounds, totalScore, onRoundEnd, difficulty = 'normal', lang = 'en', musicEnabled = true, onPowerUpUsed, usedPowerUps = [] }) {
+export default function GameScreen({ round, roundIdx, totalRounds, totalScore, onRoundEnd, difficulty = 'normal', lang = 'en', musicEnabled = true, onPowerUpUsed, usedPowerUps = [], onRageClick }) {
   const isBrainrot = difficulty === 'brainrot';
   const isIronDetector = difficulty === 'iron';
   const isBoss = !!round.boss;
@@ -114,6 +114,7 @@ export default function GameScreen({ round, roundIdx, totalRounds, totalScore, o
   const [corruptionCount, setCorruptionCount] = useState(0);
   const [wrongClickCount, setWrongClickCount] = useState(0);
   const [comboDecaying, setComboDecaying] = useState(false);
+  const [comboFlash, setComboFlash] = useState(false);
 
   // Power-ups (usedPowerUps comes from App so it persists across rounds)
   const [activePowerUp, setActivePowerUp] = useState(null);
@@ -206,6 +207,13 @@ export default function GameScreen({ round, roundIdx, totalRounds, totalScore, o
     }
   }, [shakeHeader]);
 
+  useEffect(() => {
+    if (comboFlash) {
+      const t = setTimeout(() => setComboFlash(false), 620);
+      return () => clearTimeout(t);
+    }
+  }, [comboFlash]);
+
   // Speed up music when timer hits danger zone, restore when time is added back
   useEffect(() => {
     setMusicTempo(isUrgent ? 1.4 : 1.0);
@@ -249,7 +257,7 @@ export default function GameScreen({ round, roundIdx, totalRounds, totalScore, o
   const accentGlow = isBoss ? 'rgba(239,68,68,0.5)' : isInverse ? 'rgba(56,189,248,0.5)' : 'rgba(251,191,36,0.5)';
 
   const WRONG_PENALTY = 50;
-  const handleWrongClick = useCallback((x, y) => {
+  const handleWrongClick = useCallback((x, y, tokenText) => {
     // Streak Saver absorbs one wrong click — no combo break, no score penalty
     if (streakSaverActive && !isIronDetector) {
       setStreakSaverActive(false);
@@ -270,6 +278,7 @@ export default function GameScreen({ round, roundIdx, totalRounds, totalScore, o
       return;
     }
     setRoundScore(prev => prev - WRONG_PENALTY);
+    setComboFlash(true);
     setCombo(0);
     setComboDecaying(false);
     setWrongClickCount(prev => prev + 1);
@@ -277,10 +286,11 @@ export default function GameScreen({ round, roundIdx, totalRounds, totalScore, o
     clearInterval(comboDecayIntervalRef.current);
     comboDecayDelayRef.current = null;
     comboDecayIntervalRef.current = null;
+    if (tokenText) onRageClick?.({ word: tokenText, round: roundIdx + 1 });
     const pool = isInverse ? INVERSE_MISS_TAUNTS : MISS_TAUNTS;
     const taunt = pool[Math.floor(Math.random() * pool.length)];
     addPopup(x, y, WRONG_PENALTY, taunt, false, true);
-  }, [addPopup, isInverse, isIronDetector, roundScore, foundIds, timeLeft, onRoundEnd]);
+  }, [addPopup, isInverse, isIronDetector, roundScore, foundIds, timeLeft, onRoundEnd, onRageClick, roundIdx]);
 
   const handleFinishEarly = () => {
     if (!timerRunning) return;
@@ -541,14 +551,18 @@ export default function GameScreen({ round, roundIdx, totalRounds, totalScore, o
             return (
               <>
                 <div className="combo-badge" style={{
-                  background: cs.rainbow
+                  background: comboFlash
+                    ? 'linear-gradient(135deg, #ef4444, #b91c1c)'
+                    : cs.rainbow
                     ? 'linear-gradient(135deg,#ff0080,#ff8000,#ffff00,#00ff80,#0080ff,#8000ff)'
                     : `linear-gradient(135deg, ${cs.color}, ${cs.color}bb)`,
                   color: cs.rainbow ? 'white' : '#0f0f1a',
                   textShadow: cs.rainbow ? '0 1px 3px rgba(0,0,0,0.5)' : 'none',
-                  boxShadow: `0 0 14px ${cs.color}`,
+                  boxShadow: comboFlash ? '0 0 18px #ef4444' : `0 0 14px ${cs.color}`,
                   opacity: comboDecaying ? 0.65 : 1,
-                  animation: cs.rainbow
+                  animation: comboFlash
+                    ? 'combo-break 0.62s ease forwards'
+                    : cs.rainbow
                     ? 'wiggle 0.4s ease, rainbow-bg 1s linear infinite'
                     : comboDecaying ? 'combo-decay-pulse 0.6s ease-in-out infinite' : 'wiggle 0.5s ease',
                 }}>
@@ -594,6 +608,7 @@ export default function GameScreen({ round, roundIdx, totalRounds, totalScore, o
           @keyframes slide-in-up { from{transform:translateY(12px);opacity:0} to{transform:translateY(0);opacity:1} }
           @keyframes inverse-pulse { 0%,100%{box-shadow:0 0 14px rgba(56,189,248,0.3)} 50%{box-shadow:0 0 24px rgba(56,189,248,0.65)} }
           @keyframes combo-decay-pulse { 0%,100%{opacity:0.65;transform:scale(1)} 50%{opacity:0.4;transform:scale(0.96)} }
+          @keyframes combo-break { 0%{transform:scale(1.2) rotate(-4deg);opacity:1} 25%{transform:scale(0.9) rotate(3deg)} 60%{transform:scale(1.05) rotate(-1deg)} 100%{transform:scale(1) rotate(0);opacity:0.85} }
           @keyframes boss-flicker { 0%,100%{opacity:1} 50%{opacity:0.65} }
           @keyframes boss-pulse { 0%,100%{box-shadow:0 0 14px rgba(239,68,68,0.3)} 50%{box-shadow:0 0 28px rgba(239,68,68,0.75)} }
           @keyframes all-found-pop { 0%{opacity:0;transform:scale(0.92)} 15%{opacity:1;transform:scale(1)} 80%{opacity:1;transform:scale(1)} 100%{opacity:0;transform:scale(1.04)} }

@@ -75,14 +75,59 @@ const T = {
     tap_skip: 'tap to skip',
     next_round: '▶ NEXT ROUND',
     final_results: '🏁 SEE FINAL RESULTS',
-    missed_slop: (n) => `😤 ${n} slop phrase${n > 1 ? 's' : ''} survived! The AI is still out there...`,
+    missed_slop: (n) => {
+      const p = n > 1 ? 's' : '';
+      const opts = [
+        `😤 ${n} slop phrase${p} survived! The AI is still out there...`,
+        `🤖 ${n} phrase${p} slipped through. It's already writing a follow-up bullet point.`,
+        `😬 ${n} phrase${p} escaped! "I hope this helps!" is STILL OUT THERE.`,
+        `🚨 ${n} slop phrase${p} survived the purge. It goes without saying, this is concerning.`,
+        `💀 ${n} phrase${p} got away! Somewhere an AI is adding "Furthermore..." right now.`,
+        `😰 ${n} slop phrase${p} survived. ${n > 1 ? 'They are' : 'It is'} crafting a comprehensive overview as we speak.`,
+        `⚠️ ${n} phrase${p} remain! The holistic approach to slop has... persisted.`,
+      ];
+      return opts[Math.floor(Math.random() * opts.length)];
+    },
     missed_human: (n) => `😔 ${n} human phrase${n > 1 ? 's' : ''} still trapped in the slop...`,
     wrong_shame: [
-      (n) => '🎯 Zero wrong clicks. Immaculate.',
-      (n) => `😅 ${n} wrong click${n > 1 ? 's' : ''}. The AI forgives you. Probably.`,
-      (n) => `🤦 ${n} wrong clicks. The AI is writing a concerned email about this.`,
-      (n) => `💀 ${n} wrong clicks. Are you even trying to fight the slop?`,
-      (n) => `🤖 ${n} wrong clicks. You basically ARE an AI. "Certainly! Wrong! Certainly! Wrong!"`,
+      // tier 0: zero wrong clicks
+      [
+        () => '🎯 Zero wrong clicks. Immaculate.',
+        () => '✨ Zero wrong clicks. The AI weeps in bullet points.',
+        () => '🏆 Zero wrong clicks. A pristine, holistic performance.',
+        () => '😤 Zero wrong clicks. Certainly not what the AI expected.',
+      ],
+      // tier 1: 1–3
+      [
+        (n) => `😅 ${n} wrong click${n > 1 ? 's' : ''}. The AI forgives you. Probably.`,
+        (n) => `🤏 ${n} false positive${n > 1 ? 's' : ''}. Acceptable collateral damage.`,
+        (n) => `😬 ${n} innocent word${n > 1 ? 's' : ''} wrongly accused. ${n > 1 ? 'They have' : 'It has'} retained legal counsel.`,
+        (n) => `🤷 ${n} wrong click${n > 1 ? 's' : ''}. Nobody's perfect. Except the people who got zero.`,
+      ],
+      // tier 2: 4–8
+      [
+        (n) => `🤦 ${n} wrong clicks. The AI is writing a concerned email about this.`,
+        (n) => `📋 ${n} wrong clicks. SloppyGPT™ is preparing a comprehensive bullet-point breakdown of your failures.`,
+        (n) => `🤖 ${n} wrong clicks. You're basically generating slop yourself at this point.`,
+        (n) => `😤 ${n} wrong clicks. That being said, you should holistically reconsider your approach.`,
+        (n) => `🔍 ${n} wrong clicks. The AI wants you to know it's "delighted" by this outcome.`,
+      ],
+      // tier 3: 9–15
+      [
+        (n) => `💀 ${n} wrong clicks. Are you even trying to fight the slop?`,
+        (n) => `🔥 ${n} wrong clicks. The AI isn't even scared of you anymore.`,
+        (n) => `😱 ${n} wrong clicks. SloppyGPT has filed a workplace harassment complaint on behalf of normal words.`,
+        (n) => `🧠 ${n} wrong clicks. Leveraging your misclicks as a synergistic learning opportunity.`,
+        (n) => `📊 ${n} wrong clicks. As an AI, I want to be transparent: you are the slop now.`,
+      ],
+      // tier 4: 16+
+      [
+        (n) => `🤖 ${n} wrong clicks. You basically ARE an AI. "Certainly! Wrong! Certainly! Wrong!"`,
+        (n) => `💩 ${n} wrong clicks. You have become the slop.`,
+        (n) => `😂 ${n} wrong clicks. The AI is concerned about YOU now. It has sent wellness resources.`,
+        (n) => `☠️ ${n} wrong clicks. In conclusion, you ARE the AI. Additionally, you ARE the slop. Furthermore, goodbye.`,
+        (n) => `🤯 ${n} wrong clicks. SloppyGPT™ has drafted a 14-page report. It begins with "Certainly!".`,
+      ],
     ],
     roasts: {
       perfect: [
@@ -212,11 +257,11 @@ const T = {
     missed_slop: (n) => `😤 ${n} Slop-Phrase${n > 1 ? 'n' : ''} überlebt! Die KI ist noch da draußen...`,
     missed_human: (n) => `😔 ${n} menschliche Phrase${n > 1 ? 'n' : ''} noch im Slop gefangen...`,
     wrong_shame: [
-      (n) => '🎯 Null Fehler. Makellos.',
-      (n) => `😅 ${n} Fehlklick${n > 1 ? 's' : ''}. Die KI verzeiht Ihnen. Wahrscheinlich.`,
-      (n) => `🤦 ${n} Fehlklicks. Die KI schreibt gerade eine besorgte E-Mail darüber.`,
-      (n) => `💀 ${n} Fehlklicks. Kämpfen Sie überhaupt gegen den Slop?`,
-      (n) => `🤖 ${n} Fehlklicks. Sie SIND praktisch eine KI. "Natürlich! Falsch! Natürlich! Falsch!"`,
+      [(n) => '🎯 Null Fehler. Makellos.'],
+      [(n) => `😅 ${n} Fehlklick${n > 1 ? 's' : ''}. Die KI verzeiht Ihnen. Wahrscheinlich.`],
+      [(n) => `🤦 ${n} Fehlklicks. Die KI schreibt gerade eine besorgte E-Mail darüber.`],
+      [(n) => `💀 ${n} Fehlklicks. Kämpfen Sie überhaupt gegen den Slop?`],
+      [(n) => `🤖 ${n} Fehlklicks. Sie SIND praktisch eine KI. "Natürlich! Falsch! Natürlich! Falsch!"`],
     ],
     roasts: {
       perfect: [
@@ -345,11 +390,11 @@ const T = {
     missed_slop: (n) => `😤 ${n} фраз${n === 1 ? 'а' : n < 5 ? 'ы' : ''} слопа выжили! ИИ ещё где-то там...`,
     missed_human: (n) => `😔 ${n} человеческ${n === 1 ? 'ая фраза' : 'их фразы'} ещё в ловушке слопа...`,
     wrong_shame: [
-      (n) => '🎯 Ноль ошибок. Безупречно.',
-      (n) => `😅 ${n} неверный клик. ИИ прощает вас. Наверное.`,
-      (n) => `🤦 ${n} неверных кликов. ИИ сейчас пишет вам обеспокоенное письмо.`,
-      (n) => `💀 ${n} неверных кликов. Вы вообще пытаетесь бороться со слопом?`,
-      (n) => `🤖 ${n} кликов. Вы сами практически ИИ. "Конечно! Неверно! Конечно! Неверно!"`,
+      [(n) => '🎯 Ноль ошибок. Безупречно.'],
+      [(n) => `😅 ${n} неверный клик. ИИ прощает вас. Наверное.`],
+      [(n) => `🤦 ${n} неверных кликов. ИИ сейчас пишет вам обеспокоенное письмо.`],
+      [(n) => `💀 ${n} неверных кликов. Вы вообще пытаетесь бороться со слопом?`],
+      [(n) => `🤖 ${n} кликов. Вы сами практически ИИ. "Конечно! Неверно! Конечно! Неверно!"`],
     ],
     roasts: {
       perfect: [
@@ -478,11 +523,11 @@ const T = {
     missed_slop: (n) => `😤 ${n}個のスロップフレーズが生き残った！AIはまだそこにいる...`,
     missed_human: (n) => `😔 ${n}個の人間フレーズがスロップに閉じ込められたまま...`,
     wrong_shame: [
-      (n) => '🎯 誤クリックゼロ。完璧。',
-      (n) => `😅 ${n}回の誤クリック。AIはたぶん許してくれる。`,
-      (n) => `🤦 ${n}回の誤クリック。AIが心配のメールを書いている。`,
-      (n) => `💀 ${n}回の誤クリック。スロップと戦う気があるの？`,
-      (n) => `🤖 ${n}回の誤クリック。あなた自体がAIみたい。「もちろん！ミス！もちろん！ミス！」`,
+      [(n) => '🎯 誤クリックゼロ。完璧。'],
+      [(n) => `😅 ${n}回の誤クリック。AIはたぶん許してくれる。`],
+      [(n) => `🤦 ${n}回の誤クリック。AIが心配のメールを書いている。`],
+      [(n) => `💀 ${n}回の誤クリック。スロップと戦う気があるの？`],
+      [(n) => `🤖 ${n}回の誤クリック。あなた自体がAIみたい。「もちろん！ミス！もちろん！ミス！」`],
     ],
     roasts: {
       perfect: [
