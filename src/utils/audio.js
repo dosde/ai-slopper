@@ -594,10 +594,13 @@ export const stopSummaryMusic = () => {
   isSummaryMusicPlaying = false;
   if (summaryMusicInterval) { clearInterval(summaryMusicInterval); summaryMusicInterval = null; }
   if (summaryGain) {
+    const sg = summaryGain;
+    summaryGain = null;
     const ctx = getCtx();
-    summaryGain.gain.cancelScheduledValues(ctx.currentTime);
-    summaryGain.gain.setValueAtTime(summaryGain.gain.value, ctx.currentTime);
-    summaryGain.gain.linearRampToValueAtTime(0.0001, ctx.currentTime + 0.15);
+    sg.gain.cancelScheduledValues(ctx.currentTime);
+    sg.gain.setValueAtTime(sg.gain.value, ctx.currentTime);
+    sg.gain.linearRampToValueAtTime(0.0001, ctx.currentTime + 0.05);
+    setTimeout(() => { try { sg.disconnect(); } catch (e) {} }, 70);
   }
 };
 
@@ -696,10 +699,13 @@ export const stopInverseMusic = () => {
   isInverseMusicPlaying = false;
   if (inverseMusicInterval) { clearInterval(inverseMusicInterval); inverseMusicInterval = null; }
   if (inverseGain) {
+    const ig = inverseGain;
+    inverseGain = null;
     const ctx = getCtx();
-    inverseGain.gain.cancelScheduledValues(ctx.currentTime);
-    inverseGain.gain.setValueAtTime(inverseGain.gain.value, ctx.currentTime);
-    inverseGain.gain.linearRampToValueAtTime(0.0001, ctx.currentTime + 0.15);
+    ig.gain.cancelScheduledValues(ctx.currentTime);
+    ig.gain.setValueAtTime(ig.gain.value, ctx.currentTime);
+    ig.gain.linearRampToValueAtTime(0.0001, ctx.currentTime + 0.05);
+    setTimeout(() => { try { ig.disconnect(); } catch (e) {} }, 70);
   }
 };
 
@@ -850,7 +856,13 @@ export const stopMusic = () => {
 };
 
 export const startTitleMusic = () => {
-  if (isTitleMusicPlaying) return;
+  if (isTitleMusicPlaying) {
+    // Called again while already pending (e.g. mount effect queued ctx.resume(), then
+    // user gesture fires handleFirstInteraction). Explicitly resume the context now
+    // that we have a gesture — the pending withRunningCtx promise will then resolve.
+    if (audioCtx && audioCtx.state !== 'running') audioCtx.resume().catch(() => {});
+    return;
+  }
   isTitleMusicPlaying = true;
   // Disconnect the old gain node so any still-running oscillators from the
   // previous session play into silence instead of bleeding into the new one.

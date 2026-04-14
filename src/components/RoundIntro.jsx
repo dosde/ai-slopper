@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import FalImage from './FalImage';
 import { t as tr } from '../i18n/index';
-import { playCountdownTick, playCountdownGo, startSummaryMusic, stopSummaryMusic } from '../utils/audio';
+import { playCountdownTick, playCountdownGo, startSummaryMusic, stopSummaryMusic, startInverseMusic, stopInverseMusic } from '../utils/audio';
 
 
 export default function RoundIntro({ round, totalRounds, onReady, difficulty = 'normal', lang = 'en', musicEnabled = true }) {
@@ -13,12 +13,18 @@ export default function RoundIntro({ round, totalRounds, onReady, difficulty = '
   const [readyToStart, setReadyToStart] = useState(false);
   const [thinkingIdx, setThinkingIdx] = useState(0);
 
-  // Play the between-rounds music during countdown for all round types.
-  // This gives a consistent musical bridge regardless of boss/inverse/normal.
-  // stopSummaryMusic() on unmount lets GameScreen start its own track cleanly.
+  // Inverse rounds play the haunting inverse track during countdown so there is no
+  // jarring fanfare→inverse crossfade when the round actually starts. All other
+  // round types keep the summary fanfare as a neutral between-rounds bridge.
   useEffect(() => {
-    if (musicEnabled) startSummaryMusic();
-    return () => stopSummaryMusic();
+    if (musicEnabled) {
+      if (isInverse) startInverseMusic();
+      else startSummaryMusic();
+    }
+    return () => {
+      if (isInverse) stopInverseMusic();
+      else stopSummaryMusic();
+    };
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 

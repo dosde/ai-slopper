@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { initAudio, startTitleMusic, stopTitleMusic, getMusicStyle, setMusicStyle, isAudioContextRunning } from '../utils/audio';
+import { initAudio, startTitleMusic, stopTitleMusic, getMusicStyle, setMusicStyle } from '../utils/audio';
 import Leaderboard from './Leaderboard';
 import { getLeaderboard, getUnlockedAchievements, ACHIEVEMENTS, getSlopDictSorted, getSlopIndex, getXPData, getLevelFromXP, getNextLevel, getGlobalSlopIndex, getGlobalTopPhrases } from '../utils/storage';
 import { LANGS } from '../i18n/index';
@@ -112,10 +112,14 @@ export default function StartScreen({ onStart }) {
     getGlobalTopPhrases(6).then(phrases => { if (phrases?.length) setGlobalTopPhrases(phrases); });
   }, []);
 
-  // If returning from a game the AudioContext is already running — start title music
-  // immediately on mount without waiting for a click.
+  // Try to start title music on mount:
+  // - Returning from game: AudioContext already running → starts immediately.
+  // - First load: AudioContext suspended → queues ctx.resume(). When the user's
+  //   first gesture fires handleFirstInteraction, startTitleMusic() is called again;
+  //   the retry path in startTitleMusic() calls ctx.resume() from within the gesture,
+  //   which resolves the pending withRunningCtx promise and music begins.
   useEffect(() => {
-    if (musicEnabled && isAudioContextRunning()) startTitleMusic();
+    if (musicEnabled) startTitleMusic();
     return () => stopTitleMusic();
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
