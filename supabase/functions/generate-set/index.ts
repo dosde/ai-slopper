@@ -203,7 +203,7 @@ function validateGenerated(raw: unknown, prompts: string[]): { title: string; ro
   const rounds = obj.rounds;
   if (!Array.isArray(rounds) || rounds.length !== 6) throw new Error('expected 6 rounds');
 
-  let inverseCount = 0, bossCount = 0;
+  // First pass: parse phrases without trusting the LLM's inverse flag.
   const validated: GeneratedRound[] = rounds.map((r, i) => {
     if (!r || typeof r !== 'object') throw new Error(`round ${i} not an object`);
     const rr = r as Record<string, unknown>;
@@ -221,28 +221,50 @@ function validateGenerated(raw: unknown, prompts: string[]): { title: string; ro
       if (!t || t.length > 80) continue;
       if (!VALID_TYPES.has(type)) continue;
       if (score < 10 || score > 300) continue;
-      if (!text.includes(t)) continue; // must actually appear
+      if (!text.includes(t)) continue;
       slopPhrases.push({ text: t, type, score });
     }
-    if (slopPhrases.length < 3) throw new Error(`round ${i} has too few valid phrases`);
-    const out: GeneratedRound = { prompt, text, slopPhrases };
-    if (rr.inverse === true) { out.inverse = true; inverseCount++; }
-    if (rr.boss === true || i === 5) { out.boss = true; bossCount++; }
-    return out;
+    return { prompt, text, slopPhrases } as GeneratedRound;
   });
 
-  if (inverseCount !== 1) {
-    // force one: pick the round with the most human-type phrases (not boss)
-    for (const r of validated) delete r.inverse;
-    let best = 0, bestScore = -1;
-    for (let i = 0; i < 5; i++) {
-      const humans = validated[i].slopPhrases.filter(p => p.type === 'human').length;
-      if (humans > bestScore) { bestScore = humans; best = i; }
-    }
-    validated[best].inverse = true;
+  // Boss is always the last round, period.
+  validated[5].boss = true;
+
+  // Decide the inverse round by where human-type phrases actually live (rounds 0-4 only,
+  // never the boss). The LLM frequently mismarks which round is inverse; the content is
+  // the source of truth.
+  let inverseIdx = -1;
+  let bestHumans = 0;
+  for (let i = 0; i < 5; i++) {
+    const humans = validated[i].slopPhrases.filter(p => p.type === 'human').length;
+    if (humans > bestHumans) { bestHumans = humans; inverseIdx = i; }
   }
-  // boss is always last round
-  validated.forEach((r, i) => { r.boss = i === 5; });
+  if (inverseIdx === -1) {
+    // No human phrases at all — pick whichever round the LLM flagged, else round 1 (idx 1).
+    for (let i = 0; i < 5; i++) {
+      if ((rounds[i] as Record<string, unknown>)?.inverse === true) { inverseIdx = i; break; }
+    }
+    if (inverseIdx === -1) inverseIdx = 1;
+  }
+
+  // Enforce the type/round contract:
+  // - Inverse round: keep ONLY human-type phrases (those are the targets).
+  // - Non-inverse rounds: drop human-type phrases (they confuse the player by appearing
+  //   as findable slop in a normal round).
+  validated.forEach((r, i) => {
+    if (i === inverseIdx) {
+      r.inverse = true;
+      r.slopPhrases = r.slopPhrases.filter(p => p.type === 'human');
+    } else {
+      delete r.inverse;
+      r.slopPhrases = r.slopPhrases.filter(p => p.type !== 'human');
+    }
+  });
+
+  // Final sanity: every round must have at least 3 valid phrases left.
+  validated.forEach((r, i) => {
+    if (r.slopPhrases.length < 3) throw new Error(`round ${i} has too few valid phrases after type filtering`);
+  });
 
   return { title, rounds: validated };
 }
