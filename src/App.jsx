@@ -7,7 +7,7 @@ import ResultScreen from './components/ResultScreen';
 import AchievementToastLayer, { showAchievement } from './components/AchievementToast';
 import { selectRounds, getDailyRounds } from './data/slopData';
 import { stopMusic } from './utils/audio';
-import { checkAndUnlockAchievements, updateStats, calculateXP, addXP, incrementSlopIndex, submitGlobalSlopIndex } from './utils/storage';
+import { checkAndUnlockAchievements, updateStats, calculateXP, addXP, incrementSlopIndex, submitGlobalSlopIndex, getLevelFromXP, getXPData } from './utils/storage';
 
 function Starfield() {
   const stars = useMemo(() =>
@@ -113,6 +113,16 @@ export default function App() {
       bestTimeLeft: 0, bestRoundScore: 0, totalScore: 0,
       roundsCompleted: 0, usedRadar: false, powerUpsUsed: 0,
       completedChaos: false, isDaily: daily,
+      // New tracking for added achievements
+      wrongClicksTotal: 0,
+      maxConsecutivePerfects: 0,
+      bossPerfect: false,
+      inversePerfect: false,
+      completedBrainrot: false,
+      completedIron: false,
+      ironFailedRound: null,
+      difficulty: diff,
+      newLevel: 0,
     };
     setGameState(STATE.ROUND_INTRO);
   }, []);
@@ -159,7 +169,13 @@ export default function App() {
     if (wasPerfect) stats.perfectRounds += 1;
     if (wasPerfect) consecutivePerfectsRef.current += 1;
     else consecutivePerfectsRef.current = 0;
+    if (consecutivePerfectsRef.current > (stats.maxConsecutivePerfects || 0)) {
+      stats.maxConsecutivePerfects = consecutivePerfectsRef.current;
+    }
     setConsecutivePerfects(consecutivePerfectsRef.current);
+    stats.wrongClicksTotal = (stats.wrongClicksTotal || 0) + wrongClicks;
+    if (wasPerfect && round?.boss) stats.bossPerfect = true;
+    if (wasPerfect && round?.inverse) stats.inversePerfect = true;
     if (round?.slopPhrases) {
       round.slopPhrases.forEach((p) => {
         if (p.type === 'opener') stats.openerCount = (stats.openerCount || 0) + 1;
@@ -170,10 +186,13 @@ export default function App() {
 
     if (isGameOver) {
       setIronFailedRound(roundIdx + 1);
+      stats.ironFailedRound = roundIdx + 1;
       stats.totalScore = totalScore + score;
+      // finaliseGame runs addXP — do it FIRST so level-based achievements see the new level.
+      finaliseGame(stats.totalScore, stats);
+      stats.newLevel = getLevelFromXP(getXPData().xp || 0).level;
       const unlocked = checkAndUnlockAchievements(stats);
       updateStats({ ...stats, gamesPlayed: 1 });
-      finaliseGame(stats.totalScore, stats);
       unlocked.forEach((ach, i) => { setTimeout(() => showAchievement(ach), i * 800); });
       setNewAchievements(unlocked);
       setGameState(STATE.RESULT);
@@ -190,6 +209,8 @@ export default function App() {
       const stats = gameStatsRef.current;
       stats.totalScore = totalScore;
       if (difficulty === 'chaos') stats.completedChaos = true;
+      if (difficulty === 'brainrot') stats.completedBrainrot = true;
+      if (difficulty === 'iron') stats.completedIron = true;
 
       // Iron detector: award speed bonus on successful full completion
       if (difficulty === 'iron') {
@@ -197,9 +218,11 @@ export default function App() {
         if (speedBonus > 0) setTotalScore(prev => prev + speedBonus);
       }
 
+      // finaliseGame runs addXP — do it FIRST so level-based achievements see the new level.
+      finaliseGame(totalScore, stats);
+      stats.newLevel = getLevelFromXP(getXPData().xp || 0).level;
       const unlocked = checkAndUnlockAchievements(stats);
       updateStats({ ...stats, gamesPlayed: 1 });
-      finaliseGame(totalScore, stats);
 
       unlocked.forEach((ach, i) => {
         setTimeout(() => showAchievement(ach), i * 800);

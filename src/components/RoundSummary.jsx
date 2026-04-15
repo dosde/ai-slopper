@@ -354,21 +354,24 @@ export default function RoundSummary({ round, roundScore, foundIds, foundCombos 
             </div>
           )}
 
-          {/* Missed phrases — show penalty when player finished early (timeLeft > 0) */}
-          {missedTokens.map((token, i) => {
-            const penalty = token.phraseData?.score ?? 80;
+          {/* Missed phrases — aggregated into one line so the unseen answers aren't revealed */}
+          {missedTokens.length > 0 && (() => {
             const showPenalty = timeLeft > 0;
+            const totalPenalty = missedTokens.reduce((sum, t) => sum + (t.phraseData?.score ?? 80), 0);
+            const label = round.inverse
+              ? `✗ Missed humans ×${missedTokens.length}`
+              : `✗ Missed slops ×${missedTokens.length}`;
             return (
-              <div key={i} style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '5px 0', borderBottom: '1px solid rgba(124,58,237,0.06)' }}>
-                <div style={{ fontSize: '0.65rem', color: showPenalty ? '#7f8ea3' : '#334155', flex: 1, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap', marginRight: '8px' }}>
-                  ✗ <span style={{ fontStyle: 'italic' }}>"{token.phraseData.text}"</span>
+              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '5px 0', borderBottom: '1px solid rgba(124,58,237,0.06)' }}>
+                <div style={{ fontSize: '0.68rem', color: showPenalty ? '#7f8ea3' : '#334155', flex: 1, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap', marginRight: '8px' }}>
+                  {label}
                 </div>
-                <div style={{ fontSize: '0.65rem', color: showPenalty ? '#ef4444' : '#334155', fontFamily: showPenalty ? "'Orbitron', sans-serif" : undefined, flexShrink: 0 }}>
-                  {showPenalty ? `-${penalty}` : 'missed'}
+                <div style={{ fontSize: '0.68rem', color: showPenalty ? '#ef4444' : '#334155', fontFamily: showPenalty ? "'Orbitron', sans-serif" : undefined, flexShrink: 0 }}>
+                  {showPenalty ? `-${totalPenalty}` : 'not penalized'}
                 </div>
               </div>
             );
-          })}
+          })()}
 
           <div style={{ fontSize: '0.56rem', color: '#1e293b', fontStyle: 'italic', marginTop: '8px', textAlign: 'center' }}>
             Scores include combo multiplier (up to 5×) applied at time of click

@@ -162,6 +162,26 @@ export const ACHIEVEMENTS = [
   { id: 'opener_hunter',   emoji: '🎯', name: 'OPENER HUNTER',        desc: 'Detect 20 opener phrases total' },
   { id: 'disclaimer_slayer',emoji: '🤖', name: 'DISCLAIMER SLAYER',   desc: 'Detect 15 AI disclaimer phrases total' },
   { id: 'five_games',      emoji: '🔁', name: 'FREQUENT SLOPPER',     desc: 'Complete 5 games total' },
+  // ── new achievements ──────────────────────────────────────────────────────
+  { id: 'combo_10',        emoji: '☄️', name: 'COMBO COMET',          desc: 'Reach a 10x combo in a single round' },
+  { id: 'score_15000',     emoji: '👑', name: 'SLOP EMPEROR',         desc: 'Score 15000+ total points in one game' },
+  { id: 'score_1500_round',emoji: '💠', name: 'ROUND DEMOLISHER',     desc: 'Score 1500+ in a single round' },
+  { id: 'no_wrong_clicks', emoji: '🎯', name: 'SURGICAL',             desc: 'Complete a game without a single wrong click' },
+  { id: 'three_perfects',  emoji: '🌠', name: 'FLAWLESS STREAK',      desc: '3 perfect rounds in a row in one game' },
+  { id: 'all_perfect',     emoji: '🪄', name: 'ABSOLUTE DETECTOR',    desc: 'Every round 100% in a full game' },
+  { id: 'boss_perfect',    emoji: '👾', name: 'BOSS SLAYER',          desc: 'Clear a boss round with 100% accuracy' },
+  { id: 'inverse_perfect', emoji: '🪞', name: 'MIRROR MASTER',        desc: 'Clear an inverse round with 100% accuracy' },
+  { id: 'brainrot_clear',  emoji: '🧠', name: 'ROT-RESISTANT',        desc: 'Complete a game on BRAINROT mode' },
+  { id: 'iron_clear',      emoji: '☠️', name: 'IRON WILL',            desc: 'Survive a full Iron Detector run' },
+  { id: 'iron_fail_1',     emoji: '🫠', name: 'FIRST-TRY FIASCO',     desc: 'Fail Iron Detector on round 1' },
+  { id: 'speed_demon_40',  emoji: '💨', name: 'HYPERDETECTOR',        desc: 'Finish a round with 40s left' },
+  { id: 'games_25',        emoji: '🎮', name: 'SLOP VETERAN',         desc: 'Complete 25 games total' },
+  { id: 'phrases_100',     emoji: '🧹', name: 'PHRASE PURGER',        desc: 'Detect 100 phrases across all games' },
+  { id: 'phrases_500',     emoji: '🚜', name: 'INDUSTRIAL CLEANER',   desc: 'Detect 500 phrases across all games' },
+  { id: 'all_difficulties', emoji: '🌈', name: 'EVERY FLAVOR',        desc: 'Complete a game in every difficulty' },
+  { id: 'daily_streak_3',  emoji: '📆', name: 'DAILY DISCIPLINE',     desc: 'Complete 3 Daily Challenges' },
+  { id: 'level_5',         emoji: '⭐', name: 'LEVELED UP',           desc: 'Reach player level 5' },
+  { id: 'level_10',        emoji: '🌟', name: 'SEASONED DETECTOR',    desc: 'Reach player level 10' },
 ];
 
 export const getUnlockedAchievements = () => {
@@ -215,6 +235,34 @@ export const checkAndUnlockAchievements = (gameStats) => {
   check('disclaimer_slayer',(cum.disclaimerCount || 0) + gameStats.disclaimerCount >= 15);
   check('five_games',       (cum.gamesPlayed || 0) + 1 >= 5);
 
+  // ── new checks ────────────────────────────────────────────────────────────
+  check('combo_10',         gameStats.maxCombo >= 10);
+  check('score_15000',      gameStats.totalScore >= 15000);
+  check('score_1500_round', gameStats.bestRoundScore >= 1500);
+  check('no_wrong_clicks',  gameStats.wrongClicksTotal === 0 && gameStats.roundsCompleted >= 1);
+  check('three_perfects',   gameStats.maxConsecutivePerfects >= 3);
+  check('all_perfect',      gameStats.perfectRounds >= gameStats.roundsCompleted && gameStats.roundsCompleted >= 5);
+  check('boss_perfect',     gameStats.bossPerfect);
+  check('inverse_perfect',  gameStats.inversePerfect);
+  check('brainrot_clear',   gameStats.completedBrainrot);
+  check('iron_clear',       gameStats.completedIron);
+  check('iron_fail_1',      gameStats.ironFailedRound === 1);
+  check('speed_demon_40',   gameStats.bestTimeLeft >= 40);
+  check('games_25',         (cum.gamesPlayed || 0) + 1 >= 25);
+  check('phrases_100',      (cum.totalDetected || 0) + gameStats.totalDetected >= 100);
+  check('phrases_500',      (cum.totalDetected || 0) + gameStats.totalDetected >= 500);
+  check('daily_streak_3',   (cum.dailiesCompleted || 0) + (gameStats.isDaily ? 1 : 0) >= 3);
+  // all_difficulties: bitmask of modes completed (existing + new)
+  {
+    const prior = new Set(cum.difficultiesCompleted || []);
+    if (gameStats.difficulty) prior.add(gameStats.difficulty);
+    const REQUIRED = ['normal', 'chaos', 'brainrot', 'iron'];
+    check('all_difficulties', REQUIRED.every(d => prior.has(d)));
+  }
+  // Level-based (post-XP-award). Caller passes gameStats.newLevel after addXP.
+  check('level_5',          (gameStats.newLevel || 0) >= 5);
+  check('level_10',         (gameStats.newLevel || 0) >= 10);
+
   return newlyUnlocked;
 };
 
@@ -230,6 +278,10 @@ export const getStats = () => {
 
 export const updateStats = (delta) => {
   const stats = getStats();
+  const prevDifficulties = stats.difficultiesCompleted || [];
+  const addedDiff = delta.difficulty && !prevDifficulties.includes(delta.difficulty)
+    ? [...prevDifficulties, delta.difficulty]
+    : prevDifficulties;
   const merged = {
     ...stats,
     gamesPlayed:      (stats.gamesPlayed || 0)      + (delta.gamesPlayed || 0),
@@ -239,6 +291,8 @@ export const updateStats = (delta) => {
     disclaimerCount:  (stats.disclaimerCount || 0)  + (delta.disclaimerCount || 0),
     maxCombo:         Math.max(stats.maxCombo || 0,  delta.maxCombo || 0),
     bestScore:        Math.max(stats.bestScore || 0, delta.totalScore || 0),
+    dailiesCompleted: (stats.dailiesCompleted || 0) + (delta.isDaily ? 1 : 0),
+    difficultiesCompleted: addedDiff,
   };
   localStorage.setItem(STATS_KEY, JSON.stringify(merged));
   return merged;
