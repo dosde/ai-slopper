@@ -4347,3 +4347,15 @@ export const getDailyRounds = () => {
 
 // Keep backward compat
 export const ROUNDS = ALL_ROUNDS.slice(0, 5);
+
+// Wrap rounds loaded from a community set (server-generated) so they're shaped
+// the same way selectRounds() output is. Input is an array of 6 round objects
+// already containing { prompt, text, slopPhrases, inverse?, boss? }.
+export const createRoundsFromSet = (setRounds) => {
+  if (!Array.isArray(setRounds) || setRounds.length === 0) return [];
+  return setRounds.map((r, i) => ({
+    ...r,
+    id: r.id ?? 200000 + i,
+    roundNumber: i + 1,
+  }));
+};

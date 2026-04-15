@@ -11,7 +11,7 @@ const SHARE_MESSAGES = [
   "I spotted {score} pts worth of AI slop. 'Certainly!' is defeated. 🎯",
 ];
 
-export default function ResultScreen({ totalScore, roundScores, newAchievements = [], difficulty, totalRunTime = 0, ironFailedRound = null, totalRounds = 5, isDaily = false, xpResult = null, rageMoments = [], onRestart }) {
+export default function ResultScreen({ totalScore, roundScores, newAchievements = [], difficulty, totalRunTime = 0, ironFailedRound = null, totalRounds = 5, isDaily = false, xpResult = null, rageMoments = [], communitySeed = null, onSubmitCommunityScore = null, onRestart }) {
   const [show, setShow] = useState(false);
   const [particles, setParticles] = useState([]);
   const [initials, setInitials] = useState('');
@@ -47,12 +47,18 @@ export default function ResultScreen({ totalScore, roundScores, newAchievements 
     // Daily mode scores save under the 'daily' bucket, not the regular difficulty bucket.
     // This prevents daily scores from polluting the normal/chaos/iron leaderboards.
     const saveKey = isDaily ? 'daily' : difficulty;
-    const rank = await saveScoreGlobal(totalScore, initials.trim(), roast.title, saveKey);
-    // Only write to the daily local bucket for actual daily-mode games.
-    if (isDaily) saveDailyScore(totalScore, initials.trim(), roast.title);
+    let rank = null;
+    if (onSubmitCommunityScore) {
+      // Community sets: submit to the per-set leaderboard only, skip global board.
+      await onSubmitCommunityScore(totalScore, initials.trim());
+    } else {
+      rank = await saveScoreGlobal(totalScore, initials.trim(), roast.title, saveKey);
+      // Only write to the daily local bucket for actual daily-mode games.
+      if (isDaily) saveDailyScore(totalScore, initials.trim(), roast.title);
+    }
     setSaved(true);
     setSavedRank(rank);
-    setShowLeaderboard(true);
+    setShowLeaderboard(!onSubmitCommunityScore);
   };
 
   const handleShare = () => {

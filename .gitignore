@@ -30,3 +30,6 @@ dist-ssr
 # Capacitor native projects
 android
 ios
+
+# Supabase CLI local metadata
+supabase/.temp/

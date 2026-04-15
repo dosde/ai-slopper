@@ -1,13 +1,17 @@
-import { useState, useCallback, useRef, useMemo } from 'react';
+import { useState, useCallback, useRef, useMemo, useEffect } from 'react';
 import StartScreen from './components/StartScreen';
 import RoundIntro from './components/RoundIntro';
 import GameScreen from './components/GameScreen';
 import RoundSummary from './components/RoundSummary';
 import ResultScreen from './components/ResultScreen';
+import CommunityMenu from './components/CommunityMenu';
+import CreateSet from './components/CreateSet';
+import SetDetail from './components/SetDetail';
 import AchievementToastLayer, { showAchievement } from './components/AchievementToast';
-import { selectRounds, getDailyRounds } from './data/slopData';
+import { selectRounds, getDailyRounds, createRoundsFromSet } from './data/slopData';
 import { stopMusic } from './utils/audio';
 import { checkAndUnlockAchievements, updateStats, calculateXP, addXP, incrementSlopIndex, submitGlobalSlopIndex, getLevelFromXP, getXPData } from './utils/storage';
+import { submitSetScore, normaliseSeed } from './utils/communityApi';
 
 function Starfield() {
   const stars = useMemo(() =>
@@ -42,6 +46,9 @@ const STATE = {
   PLAYING: 'playing',
   ROUND_SUMMARY: 'round_summary',
   RESULT: 'result',
+  COMMUNITY_MENU: 'community_menu',
+  COMMUNITY_CREATE: 'community_create',
+  COMMUNITY_DETAIL: 'community_detail',
 };
 
 export default function App() {
@@ -68,6 +75,23 @@ export default function App() {
   const [consecutivePerfects, setConsecutivePerfects] = useState(0);
   const rageMomentsRef = useRef([]);
   const [xpResult, setXpResult] = useState(null); // { xpEarned, prevLevel, newLevel, leveledUp }
+  const [communitySeed, setCommunitySeed] = useState(null); // non-null when playing a community set
+  const [communityDetailSeed, setCommunityDetailSeed] = useState(null);
+
+  // Deep-link: ?seed=XXXX-XXXX jumps into the community set detail screen
+  useEffect(() => {
+    try {
+      const params = new URLSearchParams(window.location.search);
+      const raw = params.get('seed');
+      if (raw) {
+        const seed = normaliseSeed(raw);
+        if (/^[0-9A-Z]{4}-[0-9A-Z]{4}$/.test(seed)) {
+          setCommunityDetailSeed(seed);
+          setGameState(STATE.COMMUNITY_DETAIL);
+        }
+      }
+    } catch { /* ignore */ }
+  }, []);
 
   // Per-game stats for achievements
   const gameStatsRef = useRef({
@@ -86,8 +110,15 @@ export default function App() {
     completedChaos: false,
   });
 
-  const handleStart = useCallback(({ difficulty: diff, mode, musicEnabled: mu, lang: l = 'en' }) => {
-    const selectedRounds = mode === 'daily' ? getDailyRounds() : selectRounds(null, l);
+  const handleStart = useCallback(({ difficulty: diff, mode, musicEnabled: mu, lang: l = 'en', communitySet = null }) => {
+    let selectedRounds;
+    if (communitySet) {
+      selectedRounds = createRoundsFromSet(communitySet.rounds);
+      setCommunitySeed(communitySet.set.seed);
+    } else {
+      selectedRounds = mode === 'daily' ? getDailyRounds() : selectRounds(null, l);
+      setCommunitySeed(null);
+    }
     setLang(l);
     setMusicEnabled(mu);
     setRounds(selectedRounds);
@@ -237,8 +268,41 @@ export default function App() {
 
   const handleRestart = useCallback(() => {
     stopMusic();
+    setCommunitySeed(null);
     setGameState(STATE.START);
   }, []);
+
+  const openCommunityMenu = useCallback(() => setGameState(STATE.COMMUNITY_MENU), []);
+  const openCommunityCreate = useCallback(() => setGameState(STATE.COMMUNITY_CREATE), []);
+  const openCommunityDetail = useCallback((seed) => {
+    setCommunityDetailSeed(seed);
+    setGameState(STATE.COMMUNITY_DETAIL);
+  }, []);
+  const handleCommunityCreated = useCallback((seed) => {
+    setCommunityDetailSeed(seed);
+    setGameState(STATE.COMMUNITY_DETAIL);
+  }, []);
+  const handleCommunityPlay = useCallback(({ set, rounds: roundsFromSet }) => {
+    handleStart({
+      difficulty: 'normal',
+      mode: 'community',
+      musicEnabled,
+      lang: set.lang || 'en',
+      communitySet: { set, rounds: roundsFromSet },
+    });
+  }, [handleStart, musicEnabled]);
+
+  // Submit community score in addition to / instead of global leaderboard
+  const submitCommunityScoreOverride = useCallback(async (score, initials) => {
+    if (!communitySeed) return null;
+    await submitSetScore({
+      seed: communitySeed,
+      score,
+      initials: initials.toUpperCase().slice(0, 6).padEnd(3, '·'),
+      timestamp: Date.now(),
+    });
+    return null; // no local rank
+  }, [communitySeed]);
 
   const handleRageClick = useCallback(({ word, round }) => {
     if (rageMomentsRef.current.length < 3) {
@@ -266,7 +330,32 @@ export default function App() {
       <div className="game-container">
         <Starfield />
         {gameState === STATE.START && (
-          <StartScreen onStart={handleStart} />
+          <StartScreen onStart={handleStart} onOpenCommunity={openCommunityMenu} />
+        )}
+
+        {gameState === STATE.COMMUNITY_MENU && (
+          <CommunityMenu
+            lang={lang}
+            onBack={() => setGameState(STATE.START)}
+            onOpenCreate={openCommunityCreate}
+            onOpenSet={openCommunityDetail}
+          />
+        )}
+
+        {gameState === STATE.COMMUNITY_CREATE && (
+          <CreateSet
+            lang={lang}
+            onBack={() => setGameState(STATE.COMMUNITY_MENU)}
+            onCreated={handleCommunityCreated}
+          />
+        )}
+
+        {gameState === STATE.COMMUNITY_DETAIL && communityDetailSeed && (
+          <SetDetail
+            seed={communityDetailSeed}
+            onBack={() => setGameState(STATE.COMMUNITY_MENU)}
+            onPlay={handleCommunityPlay}
+          />
         )}
 
         {gameState === STATE.ROUND_INTRO && currentRound && (
@@ -328,6 +417,8 @@ export default function App() {
             isDaily={isDaily}
             xpResult={xpResult}
             rageMoments={rageMomentsRef.current}
+            communitySeed={communitySeed}
+            onSubmitCommunityScore={communitySeed ? submitCommunityScoreOverride : null}
             onRestart={handleRestart}
           />
         )}
