@@ -79,37 +79,67 @@ const LANG_INSTRUCTION: Record<string, string> = {
 
 function systemPrompt(lang: string): string {
   const langName = LANG_INSTRUCTION[lang] ?? 'English';
-  return `You are the round-generator for a game called "AI Slop Royale". Players hunt for clichéd AI phrases inside generated answers.
+  return `You are the round-generator for "AI Slop Royale" — a satirical game where players hunt clichéd AI phrases inside generated answers. Your job: produce maximally funny, formatted, over-the-top AI-slop answers to 6 user prompts.
 
-You will be given 6 user prompts. Generate a JSON object with one round per prompt.
+Output language: ${langName}. All "text", "title", "slopPhrases[].text" MUST be in ${langName}.
 
-Output language: ${langName}. All "text", "title", "slopPhrases[].text" fields MUST be in ${langName}.
+═══════════════════════════════════════════════════════════
+FORMATTING RULES — make every answer visually rich:
+═══════════════════════════════════════════════════════════
+The "text" field is rendered as plain text with whitespace preserved (pre-wrap), so use these freely:
+• Real newlines (\\n) — break paragraphs, separate sections
+• Bullet lists with • or - or → or 1. 2. 3.
+• Emojis 🤖✨🚀💡📊🎯 — sprinkle them like sycophantic confetti
+• Bold-looking section headers in ALL CAPS or with === or --- separators
+• Simple ASCII tables (use | and -) when the prompt deserves a "comparison" or "breakdown"
+• Numbered steps for ANYTHING ("Step 1: Acknowledge the question. Step 2: Restate the question...")
+• Inline emoji bullets like "✅ Pro: ..." "❌ Con: ..."
+• Occasional indented "callouts" ("    💡 Pro tip: ...")
 
-Round types:
-- Rounds 1-5: NORMAL rounds. Write an extremely sloppy corporate AI-style answer overflowing with openers, disclaimers, fillers, closers, buzzwords, sycophancy, bullets, comprehensive framing, caveats. Target ~200-350 words.
-- Exactly ONE of rounds 2-5 must have "inverse": true. For that round, write a MOSTLY HUMAN answer (natural, casual) with 4-8 AI-slop intrusions sprinkled in. The slopPhrases for the inverse round should contain ONLY the HUMAN-sounding phrases (type: "human") — the player's job is to find the human bits among the slop. Add enough human phrases (4-8) even though the surrounding text is human.
-  ACTUALLY: re-read. In this game's inverse mode, the *targets* are the phrases of type "human". The answer text should be mostly AI-slop but contain several clearly human phrases — those human phrases are what the player hunts. Make the round's "text" predominantly AI-slop with 4-8 clearly human/authentic phrases embedded. Only list those human phrases in slopPhrases (all with type "human").
-- Round 6: BOSS round. Maximum slop density — every sentence stuffed with multiple slop markers. Target ~250-400 words. Mark "boss": true.
+The funnier and more visually unhinged, the better. Mix formats within one answer.
 
-slopPhrases rules:
-- Each "text" MUST appear EXACTLY (case-sensitive substring) inside the round's "text" field.
-- "type" is one of: opener, disclaimer, filler, closer, bullet, comprehensive, caveat, sycophant, buzzword, human.
-- "score" is an integer between 50 and 200 (disclaimers 150-200, openers 80-120, buzzwords 70-100, fillers 40-60, caveats/closers 60-90, sycophant 80-100, comprehensive 70-90, bullet 60-80, human 100-150).
-- Normal & boss rounds: 10-18 slopPhrases covering varied types.
-- Inverse round: 4-8 slopPhrases, ALL type="human".
-- Every phrase must be non-empty and under 80 chars.
+═══════════════════════════════════════════════════════════
+CONTENT RULES — be the worst possible chatbot:
+═══════════════════════════════════════════════════════════
+Every NORMAL/BOSS answer must overflow with:
+• Sycophantic openers ("What a fantastic question!", "I love that you're exploring this!")
+• AI disclaimers ("As an AI language model...", "I should note I cannot...")
+• Buzzword soup (synergy, holistic, paradigm shift, leverage, ecosystem, actionable insights)
+• Empty fillers (Furthermore, Moreover, Additionally, In essence, At its core)
+• Unnecessary caveats ("It's important to note...", "Please consult a professional...")
+• Verbose closers ("I hope this helps!", "Feel free to reach out!", "Let me know if...")
+• Bullet-point fever for things that DO NOT need lists ("Here are 7 key considerations for boiling water:")
+• Comprehensive framing ("Let's take a holistic, end-to-end look at...")
 
-Also output a "title" field: a short (under 50 chars), punchy all-caps title for the whole set.
+Make it FUNNY. Treat every prompt like the AI is wildly over-answering. A question about "is the sky blue?" should get a 300-word treatise with a comparison table of sky colors by time of day.
 
-Output ONLY valid JSON, no prose, no code fences. Schema:
+═══════════════════════════════════════════════════════════
+ROUND TYPES:
+═══════════════════════════════════════════════════════════
+- Rounds 1-5: NORMAL. Target 250-400 words with rich formatting (newlines, bullets, emojis, optional table).
+- ONE of rounds 2-5 has "inverse": true. The text is still slop-heavy, but contains 4-8 surprisingly HUMAN/authentic phrases buried inside ("ngl this is dumb", "honestly idk", "lol whatever"). Only those human phrases go in slopPhrases (type "human"). Player hunts the human bits.
+- Round 6 BOSS: Maximum slop density. 350-500 words. EVERY sentence has multiple slop markers. Use ALL formatting tools: headers, table, bullets, numbered steps, emojis, callouts. Mark "boss": true.
+
+═══════════════════════════════════════════════════════════
+slopPhrases — STRICT:
+═══════════════════════════════════════════════════════════
+- Each "text" MUST appear EXACTLY (case-sensitive substring) in the round's "text".
+- "type" ∈ {opener, disclaimer, filler, closer, bullet, comprehensive, caveat, sycophant, buzzword, human}.
+- "score" int 50-200 (disclaimers 150-200, openers 80-120, buzzwords 70-100, fillers 40-60, caveats/closers 60-90, sycophant 80-100, comprehensive 70-90, bullet 60-80, human 100-150).
+- Normal/boss: 10-18 phrases, varied types. Inverse: 4-8 phrases, ALL type="human".
+- Each phrase non-empty, under 80 chars. Avoid phrases that are bare emojis or whitespace.
+
+═══════════════════════════════════════════════════════════
+OUTPUT — pure JSON, no code fences, no prose around it:
+═══════════════════════════════════════════════════════════
 {
-  "title": "...",
+  "title": "PUNCHY ALL-CAPS SET TITLE UNDER 50 CHARS",
   "rounds": [
     {"prompt":"...","text":"...","slopPhrases":[{"text":"...","type":"...","score":N}]},
-    ... (6 rounds total)
+    ... (6 rounds total, in input order)
   ]
 }
-The inverse round must have "inverse": true. The boss round (round 6) must have "boss": true. Other rounds have neither field.`;
+The inverse round has "inverse": true. The boss round (round 6) has "boss": true. Others: neither field.`;
 }
 
 async function callAnthropic(prompts: string[], lang: string): Promise<unknown> {
@@ -124,7 +154,7 @@ async function callAnthropic(prompts: string[], lang: string): Promise<unknown> 
     },
     body: JSON.stringify({
       model: ANTHROPIC_MODEL,
-      max_tokens: 4096,
+      max_tokens: 8192,
       system: systemPrompt(lang),
       messages: [{
         role: 'user',
@@ -178,7 +208,7 @@ function validateGenerated(raw: unknown, prompts: string[]): { title: string; ro
     if (!r || typeof r !== 'object') throw new Error(`round ${i} not an object`);
     const rr = r as Record<string, unknown>;
     const prompt = typeof rr.prompt === 'string' ? rr.prompt.slice(0, 300) : prompts[i];
-    const text = typeof rr.text === 'string' ? rr.text.slice(0, 3000) : '';
+    const text = typeof rr.text === 'string' ? rr.text.slice(0, 6000) : '';
     if (!text) throw new Error(`round ${i} missing text`);
     const phrases = Array.isArray(rr.slopPhrases) ? rr.slopPhrases : [];
     const slopPhrases: SlopPhrase[] = [];
