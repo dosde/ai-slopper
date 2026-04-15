@@ -11,7 +11,8 @@
       "Bash(grep -n \"export default\\\\|function\\\\|const.*=.*=\" /c/webserver/Apache24/htdocs/wp/wp-content/plugins/ai-slopper/src/components/*.jsx)",
       "Bash(wc -l /c/webserver/Apache24/htdocs/wp/wp-content/plugins/ai-slopper/src/components/*.jsx)",
       "Bash(node scripts/capture-screenshots.mjs)",
-      "Bash(node -e ':*)"
+      "Bash(node -e ':*)",
+      "Bash(npx vite:*)"
     ]
   }
 }

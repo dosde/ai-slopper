@@ -239,36 +239,38 @@ export default function StartScreen({ onStart }) {
           🔴 {STATUS_UPDATES[statusIdx]}
         </div>
 
-        {/* Slop Index + quotes feed row */}
-        <div style={{ display: 'flex', justifyContent: 'center', gap: '16px', marginTop: '10px', flexWrap: 'wrap' }}>
+        {/* Slop Index + quotes feed row — stays on one line on mobile */}
+        <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', gap: '6px', marginTop: '10px', flexWrap: 'nowrap', padding: '0 8px', maxWidth: '100%' }}>
           {slopIndex > 0 && (
             <div style={{
-              fontSize: '0.58rem',
+              fontSize: 'clamp(0.48rem, 1.6vw, 0.58rem)',
               color: '#10b981',
               fontFamily: "'Orbitron', sans-serif",
               background: 'rgba(16,185,129,0.08)',
               border: '1px solid rgba(16,185,129,0.2)',
               borderRadius: '8px',
-              padding: '4px 10px',
+              padding: '4px 8px',
               whiteSpace: 'nowrap',
+              flexShrink: 0,
             }}>
-              🧹 {slopIndex.toLocaleString()} phrases eradicated
+              🧹 {slopIndex.toLocaleString()} eradicated
             </div>
           )}
           {topPhrases.length > 0 && (
             <div style={{
-              fontSize: '0.56rem',
+              fontSize: 'clamp(0.46rem, 1.5vw, 0.56rem)',
               color: '#a78bfa',
               background: 'rgba(124,58,237,0.08)',
               border: '1px solid rgba(124,58,237,0.18)',
               borderRadius: '8px',
-              padding: '4px 10px',
-              maxWidth: '220px',
+              padding: '4px 8px',
+              flex: '0 1 auto',
+              minWidth: 0,
               overflow: 'hidden',
               whiteSpace: 'nowrap',
               textOverflow: 'ellipsis',
             }}>
-              🏆 Top catch: "{topPhrases[quoteIdx % topPhrases.length]?.text}" ×{topPhrases[quoteIdx % topPhrases.length]?.count}
+              🏆 "{topPhrases[quoteIdx % topPhrases.length]?.text}" ×{topPhrases[quoteIdx % topPhrases.length]?.count}
             </div>
           )}
         </div>
@@ -346,9 +348,9 @@ export default function StartScreen({ onStart }) {
           <>
             {/* Language + Game mode (compact combined row) */}
             <div className="card" style={{ padding: '10px 14px' }}>
-              <div style={{ display: 'flex', gap: '12px', alignItems: 'flex-end' }}>
-                {/* Language dropdown */}
-                <div style={{ flex: 1 }}>
+              <div style={{ display: 'flex', gap: '10px', alignItems: 'flex-end' }}>
+                {/* Language dropdown — narrower, mode buttons get more room */}
+                <div style={{ flex: '0 0 38%', minWidth: 0 }}>
                   <div style={{ fontSize: '0.58rem', color: '#64748b', fontFamily: "'Orbitron', sans-serif", marginBottom: '5px', letterSpacing: '1px' }}>
                     LANGUAGE
                   </div>
@@ -383,7 +385,7 @@ export default function StartScreen({ onStart }) {
                   </select>
                 </div>
                 {/* Game mode */}
-                <div style={{ flex: 1 }}>
+                <div style={{ flex: '1 1 auto', minWidth: 0 }}>
                   <div style={{ fontSize: '0.58rem', color: '#64748b', fontFamily: "'Orbitron', sans-serif", marginBottom: '5px', letterSpacing: '1px' }}>
                     MODE
                   </div>

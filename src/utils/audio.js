@@ -1,4 +1,10 @@
 // Procedural chiptune + ambient music engine using Web Audio API
+// ─────────────────────────────────────────────────────────────────
+// Music design notes:
+//   SLOPPY  → Undertale-inspired (Ruins ambience → Megalovania intensity), D minor
+//   CHILL   → Super Meat Boy inspired (Forest Funk groove + Burning Squirrel warmth), G major
+//   IRON    → dedicated 3-minute epic combining both moods for the Iron Detector mode
+//   All main game loops are 90s+ (1.5min), iron is ~180s (3min).
 
 let audioCtx = null;
 let isMusicPlaying = false;
@@ -6,11 +12,18 @@ let musicInterval = null;
 let masterGain = null;
 let gameGain = null;   // routes all game-music oscillators; disconnect on stopMusic
 let tempoScale = 1.0;
+// Base BPM multipliers so in-game music feels energetic. Higher = faster.
+// These apply on top of any urgency scaling from setMusicTempo().
+const SLOP_BASE_SPEED = 1.45;   // bumped up — user wanted much higher tension
+const CHILL_BASE_SPEED = 1.30;  // chill with more drive
+const IRON_BASE_SPEED = 1.15;   // iron still stately but less sluggish
 let isBossMusicPlaying = false;
 let bossMusicInterval = null;
 let isTitleMusicPlaying = false;
 let titleMusicInterval = null;
 let titleGain = null;
+let isIronMode = false; // when true, startMusic() uses the iron-mode epic track
+
 // Lazy getter — routes all title audio through one gain node so we can fade instantly
 const getTitleGain = () => {
   const ctx = getCtx(); // ensures masterGain exists
@@ -34,16 +47,13 @@ export const setMusicStyle = (style) => {
   if (isMusicPlaying) {
     isMusicPlaying = false;
     if (musicInterval) { clearInterval(musicInterval); musicInterval = null; }
-    // Disconnect gameGain so pre-scheduled notes (up to 15s) are silenced immediately
     if (gameGain) { gameGain.disconnect(); gameGain = null; }
     startMusic();
   }
   if (isSummaryMusicPlaying) {
-    // Restart loop so the new style's melody and correct loop duration take effect.
     restartSummaryLoop();
   }
   if (isTitleMusicPlaying) {
-    // Cut gain immediately so old notes are silenced before new bar starts
     isTitleMusicPlaying = false;
     if (titleMusicInterval) { clearInterval(titleMusicInterval); titleMusicInterval = null; }
     if (titleGain) {
@@ -54,8 +64,20 @@ export const setMusicStyle = (style) => {
       tg.gain.setValueAtTime(0.0001, ctx.currentTime);
       setTimeout(() => { try { tg.disconnect(); } catch (e) {} }, 60);
     }
-    // Wait until after the old node has disconnected (25ms) before starting the new style.
     setTimeout(() => startTitleMusic(), 30);
+  }
+};
+
+// Iron-mode music toggle: GameScreen sets this before startMusic() on iron runs.
+export const setIronMode = (enabled) => {
+  const want = !!enabled;
+  if (isIronMode === want) return;
+  isIronMode = want;
+  if (isMusicPlaying) {
+    isMusicPlaying = false;
+    if (musicInterval) { clearInterval(musicInterval); musicInterval = null; }
+    if (gameGain) { gameGain.disconnect(); gameGain = null; }
+    startMusic();
   }
 };
 
@@ -98,115 +120,345 @@ const N = {
   C3:130.81, D3:146.83, E3:164.81, F3:174.61, G3:196.00, A3:220.00, B3:246.94,
   C4:261.63, D4:293.66, E4:329.63, F4:349.23, G4:392.00, A4:440.00, B4:493.88,
   C5:523.25, D5:587.33, E5:659.25, F5:698.46, G5:783.99, A5:880.00, B5:987.77,
-  C6:1046.50,
+  C6:1046.50, D6: 1174.66, E6: 1318.51,
   // Chromatic additions
-  Bb2: 116.54, A2: 110.00,
-  Eb3: 155.56, Fs3: 185.00, Ab3: 207.65, Bb3: 233.08,
+  Bb2: 116.54, A2: 110.00, D2: 73.42, F2: 87.31, G2: 98.00,
+  Eb3: 155.56, Fs3: 185.00, Ab3: 207.65, Bb3: 233.08, Cs3: 138.59,
   Cs4: 277.18, Eb4: 311.13, Fs4: 369.99, Ab4: 415.30, Bb4: 466.16,
   Cs5: 554.37, Eb5: 622.25, Fs5: 739.99, Ab5: 830.61, Bb5: 932.33,
-  D6: 1174.66,
 };
 
-// ── SLOPPY chiptune music (original) ─────────────────────────────────────────
+const getArrayDuration = (arr) => arr.reduce((sum, [, d]) => sum + d, 0);
 
-const MELODY_A = [
-  [N.C5,0.15],[N.E5,0.15],[N.G5,0.15],[N.E5,0.15],[N.C5,0.15],[N.D5,0.15],[N.F5,0.30],[0,0.10],
-  [N.G5,0.15],[N.F5,0.15],[N.E5,0.15],[N.D5,0.15],[N.C5,0.30],[N.E5,0.30],[0,0.10],
-  [N.A5,0.15],[N.G5,0.15],[N.F5,0.15],[N.E5,0.15],[N.D5,0.15],[N.C5,0.15],[N.B4,0.30],[0,0.10],
-  [N.C5,0.15],[N.D5,0.15],[N.E5,0.15],[N.G5,0.15],[N.C5,0.60],[0,0.10],
-];
-const MELODY_B = [
-  [N.E5,0.15],[N.E5,0.15],[N.F5,0.15],[N.G5,0.15],[N.G5,0.15],[N.F5,0.15],[N.E5,0.15],[N.D5,0.15],[0,0.10],
-  [N.C5,0.15],[N.C5,0.15],[N.D5,0.15],[N.E5,0.15],[N.E5,0.30],[N.D5,0.30],[0,0.10],
-  [N.E5,0.15],[N.E5,0.15],[N.F5,0.15],[N.G5,0.15],[N.G5,0.15],[N.F5,0.15],[N.E5,0.15],[N.D5,0.15],[0,0.10],
-  [N.C5,0.15],[N.D5,0.15],[N.E5,0.15],[N.C5,0.15],[N.C5,0.55],[0,0.10],
-];
-const MELODY_C = [
-  [N.G5,0.10],[N.A5,0.10],[N.B5,0.10],[N.A5,0.10],[N.G5,0.10],[N.F5,0.10],[N.E5,0.10],[N.F5,0.10],[0,0.05],
-  [N.G5,0.20],[N.E5,0.20],[N.C5,0.20],[N.E5,0.20],[0,0.10],
-  [N.A5,0.15],[N.G5,0.15],[N.F5,0.15],[N.E5,0.15],[N.D5,0.15],[N.E5,0.15],[N.F5,0.30],[0,0.10],
-  [N.G5,0.10],[N.A5,0.10],[N.G5,0.10],[N.F5,0.10],[N.E5,0.10],[N.D5,0.10],[N.C5,0.10],[N.D5,0.10],[0,0.05],
-  [N.E5,0.10],[N.G5,0.10],[N.C6,0.15],[N.B5,0.10],[N.A5,0.10],[N.G5,0.10],[N.C5,0.60],[0,0.10],
-];
-const MELODY = [...MELODY_A, ...MELODY_B, ...MELODY_C];
+// ── SLOPPY game music ─ Undertale-inspired ─────────────────────────────────
+// Section A: "Ruins" — D minor, atmospheric, slower moody intro (~24s)
+// Section B: "Rising tension" — walking bass, melody grows (~22s)
+// Section C: "Megalovania build" — syncopated riff, tritone stabs (~22s)
+// Section D: "Megalovania hook" — the iconic fast descending phrase (~22s)
+// Total ≈ 90s
 
-const BASS_A = [
-  [N.C3,0.25],[0,0.05],[N.C3,0.25],[0,0.05],
-  [N.G3,0.25],[0,0.05],[N.G3,0.25],[0,0.05],
-  [N.A3,0.25],[0,0.05],[N.A3,0.25],[0,0.05],
-  [N.E3,0.25],[0,0.05],[N.E3,0.25],[0,0.05],
-  [N.C3,0.25],[0,0.05],[N.C3,0.25],[0,0.05],
-  [N.G3,0.25],[0,0.05],[N.G3,0.25],[0,0.05],
-  [N.A3,0.25],[0,0.05],[N.A3,0.25],[0,0.05],
-  [N.E3,0.25],[0,0.05],[N.E3,0.60],[0,0.05],
+const SLOP_MELODY_A = [
+  // Ruins-style: gentle D-minor arpeggios, sparse (24s)
+  [N.D5,0.55],[0,0.10],[N.F5,0.55],[0,0.10],[N.A5,0.55],[0,0.10],[N.F5,0.55],[0,0.20],   // 2.7
+  [N.E5,0.55],[0,0.10],[N.G5,0.55],[0,0.10],[N.Bb5,0.55],[0,0.10],[N.G5,0.55],[0,0.20],  // 2.7
+  [N.F5,0.55],[0,0.10],[N.A5,0.55],[0,0.10],[N.D6,0.70],[0,0.10],[N.A5,0.55],[0,0.20],   // 2.85
+  [N.E5,0.55],[0,0.10],[N.D5,0.70],[0,0.15],[N.A4,1.10],[0,0.30],                         // 2.90
+  [N.D5,0.55],[0,0.10],[N.F5,0.55],[0,0.10],[N.A5,0.55],[0,0.10],[N.F5,0.55],[0,0.20],   // 2.7
+  [N.E5,0.55],[0,0.10],[N.G5,0.55],[0,0.10],[N.Bb5,0.55],[0,0.10],[N.A5,0.55],[0,0.20],  // 2.7
+  [N.D5,0.55],[0,0.10],[N.F5,0.55],[0,0.10],[N.Cs5,0.55],[0,0.10],[N.E5,0.55],[0,0.20],  // 2.7
+  [N.D5,1.40],[0,0.35],                                                                    // 1.75
+  [N.A4,0.70],[N.D5,0.70],[0,0.20],                                                        // 1.60
 ];
-const BASS_B = [
-  [N.C3,0.15],[N.E3,0.15],[N.G3,0.15],[0,0.05],
-  [N.C3,0.15],[N.E3,0.15],[N.G3,0.15],[0,0.05],
-  [N.F3,0.15],[N.A3,0.15],[N.C3,0.15],[0,0.05],
-  [N.G3,0.15],[N.B3,0.15],[N.D3,0.15],[0,0.05],
-  [N.C3,0.15],[N.E3,0.15],[N.G3,0.15],[0,0.05],
-  [N.C3,0.15],[N.E3,0.15],[N.G3,0.15],[0,0.05],
-  [N.F3,0.15],[N.A3,0.15],[N.C3,0.15],[0,0.05],
-  [N.G3,0.25],[0,0.05],[N.G3,0.25],[0,0.05],
-  [N.C3,0.60],[0,0.05],
+// Bar totals ~ 24.60s
+
+const SLOP_BASS_A = [
+  [N.D3,0.70],[N.A3,0.70],[N.F3,0.70],[N.A3,0.60],
+  [N.E3,0.70],[N.B3,0.70],[N.G3,0.70],[N.B3,0.60],
+  [N.F3,0.70],[N.C4,0.70],[N.A3,0.70],[N.C4,0.60],
+  [N.A3,0.70],[N.E3,0.70],[N.Cs4,0.70],[N.E3,0.65],
+  [N.D3,0.70],[N.A3,0.70],[N.F3,0.70],[N.A3,0.60],
+  [N.E3,0.70],[N.B3,0.70],[N.G3,0.70],[N.B3,0.60],
+  [N.D3,0.70],[N.F3,0.70],[N.A3,0.70],[N.Cs4,0.60],
+  [N.D3,1.40],[N.A3,0.35],
+  [N.D3,0.70],[N.A3,0.70],[0,0.20],
 ];
-const BASS_C = [
-  [N.C3,0.15],[0,0.05],[N.C3,0.10],[0,0.05],[N.G3,0.15],[0,0.05],[N.G3,0.10],[0,0.05],
-  [N.A3,0.15],[0,0.05],[N.A3,0.10],[0,0.05],[N.G3,0.15],[0,0.05],[N.G3,0.10],[0,0.05],
-  [N.F3,0.15],[0,0.05],[N.F3,0.10],[0,0.05],[N.E3,0.15],[0,0.05],[N.E3,0.10],[0,0.05],
-  [N.D3,0.15],[0,0.05],[N.E3,0.15],[0,0.05],[N.G3,0.15],[0,0.05],[N.C3,0.10],[0,0.05],
-  [N.C3,0.15],[0,0.05],[N.C3,0.10],[0,0.05],[N.G3,0.15],[0,0.05],[N.G3,0.10],[0,0.05],
-  [N.A3,0.15],[0,0.05],[N.A3,0.10],[0,0.05],[N.E3,0.15],[0,0.05],[N.E3,0.10],[0,0.05],
-  [N.G3,0.25],[0,0.05],[N.E3,0.25],[0,0.05],[N.C3,0.60],[0,0.05],
+
+const SLOP_MELODY_B = [
+  // Rising tension: eighth-note melody building, call and response (22s)
+  [N.D5,0.18],[N.F5,0.18],[N.A5,0.18],[N.D6,0.36],[0,0.10],
+  [N.C6,0.18],[N.A5,0.18],[N.F5,0.18],[N.D5,0.36],[0,0.10],
+  [N.E5,0.18],[N.G5,0.18],[N.Bb5,0.18],[N.D6,0.36],[0,0.10],
+  [N.C6,0.18],[N.Bb5,0.18],[N.A5,0.18],[N.G5,0.36],[0,0.10],
+  [N.F5,0.18],[N.A5,0.18],[N.C6,0.18],[N.F6 || N.E6,0.36],[0,0.10],
+  [N.E6,0.18],[N.D6,0.18],[N.C6,0.18],[N.A5,0.36],[0,0.10],
+  [N.A5,0.18],[N.G5,0.18],[N.F5,0.18],[N.E5,0.18],[N.D5,0.18],[N.Cs5,0.18],[0,0.10],
+  [N.D5,0.45],[N.F5,0.45],[N.A5,0.45],[0,0.15],
+  // Call/response
+  [N.D6,0.20],[N.A5,0.20],[N.F5,0.20],[N.D5,0.20],[0,0.10],
+  [N.Cs5,0.20],[N.E5,0.20],[N.G5,0.20],[N.Bb5,0.20],[0,0.10],
+  [N.A5,0.30],[N.Bb5,0.20],[N.A5,0.30],[N.G5,0.40],[0,0.10],
+  [N.F5,0.30],[N.E5,0.30],[N.D5,0.60],[0,0.20],
+  // Transition sting
+  [N.A4,0.15],[N.D5,0.15],[N.F5,0.15],[N.A5,0.15],[N.D6,0.30],[N.A5,0.15],[N.F5,0.15],[N.D5,0.30],[0,0.15],
 ];
-const BASS = [...BASS_A, ...BASS_B, ...BASS_C];
 
-// ── PLEASANT ambient music ────────────────────────────────────────────────────
-// C major: C-Am-F-G, gentle sine waves, ~12s loop
-// Each bar = 3.00s exactly
-
-const PLEASANT_MELODY = [
-  // Bar 1: C major — gentle rising phrase
-  [N.E5,0.60],[N.G5,0.45],[0,0.10],[N.A5,0.45],[0,0.10],[N.G5,0.30],[N.E5,0.60],[0,0.40],
-  // Bar 2: Am — descending resolution
-  [N.A5,0.80],[0,0.10],[N.G5,0.45],[0,0.10],[N.E5,0.45],[0,0.10],[N.C5,0.80],[0,0.20],
-  // Bar 3: F major — lift
-  [N.F5,0.60],[0,0.10],[N.A5,0.45],[0,0.10],[N.C6,0.45],[0,0.10],[N.A5,0.30],[N.G5,0.60],[0,0.30],
-  // Bar 4: G — resolve back to C (ends on D5 for tension)
-  [N.G5,0.60],[0,0.10],[N.B5,0.45],[0,0.10],[N.A5,0.45],[0,0.10],[N.G5,0.30],[N.D5,0.60],[0,0.30],
+const SLOP_BASS_B = [
+  [N.D3,0.30],[N.A3,0.30],[N.F3,0.30],[N.D3,0.30],
+  [N.D3,0.30],[N.A3,0.30],[N.F3,0.30],[N.D3,0.30],
+  [N.E3,0.30],[N.B3,0.30],[N.G3,0.30],[N.E3,0.30],
+  [N.G3,0.30],[N.D3,0.30],[N.Bb3,0.30],[N.G3,0.30],
+  [N.F3,0.30],[N.C4,0.30],[N.A3,0.30],[N.F3,0.30],
+  [N.A3,0.30],[N.E3,0.30],[N.Cs4,0.30],[N.A3,0.30],
+  [N.D3,0.30],[N.A3,0.30],[N.F3,0.30],[N.A3,0.30],
+  [N.D3,0.60],[N.A3,0.60],[0,0.15],
+  [N.D3,0.25],[N.A3,0.25],[N.F3,0.25],[N.A3,0.25],
+  [N.E3,0.25],[N.G3,0.25],[N.Bb3,0.25],[N.E3,0.25],
+  [N.F3,0.30],[N.C4,0.30],[N.A3,0.30],[N.F3,0.30],
+  [N.D3,0.30],[N.A3,0.30],[N.D3,0.60],[0,0.20],
+  [N.D3,0.30],[N.D3,0.30],[N.A3,0.30],[N.F3,0.30],[N.D3,0.30],[N.A3,0.30],[N.F3,0.30],[0,0.15],
 ];
-// Total: 4 × 3.00 = 12.00s
 
-const PLEASANT_BASS = [
-  // C major arpeggio (3.00s)
-  [N.C3,0.75],[N.E3,0.75],[N.G3,0.75],[N.E3,0.75],
-  // Am arpeggio (3.00s)
-  [N.A3,0.75],[N.C3,0.75],[N.E3,0.75],[N.A3,0.75],
-  // F major (3.00s)
-  [N.F3,0.75],[N.A3,0.75],[N.F3,0.75],[N.A3,0.75],
-  // G major (3.00s)
-  [N.G3,0.75],[N.B3,0.75],[N.D3,0.75],[N.G3,0.75],
+// Section C — original arpeggiated slop theme: triplet-feel D-minor sweeps
+// with tritone color. No Megalovania hook.
+const SLOP_MELODY_C = [
+  // Triplet arpeggios climbing Dm → Gm → A7 → Dm
+  [N.D5,0.13],[N.F5,0.13],[N.A5,0.13],[N.F5,0.13],[N.D5,0.13],[N.F5,0.13],[N.A5,0.26],[0,0.06],
+  [N.G4,0.13],[N.Bb4,0.13],[N.D5,0.13],[N.Bb4,0.13],[N.G4,0.13],[N.Bb4,0.13],[N.D5,0.26],[0,0.06],
+  [N.A4,0.13],[N.Cs5,0.13],[N.E5,0.13],[N.Cs5,0.13],[N.A4,0.13],[N.Cs5,0.13],[N.E5,0.26],[0,0.06],
+  [N.D5,0.13],[N.F5,0.13],[N.A5,0.13],[N.D6,0.26],[N.A5,0.13],[N.F5,0.13],[N.D5,0.26],[0,0.06],
+  // Answering motif: staccato call with chromatic neighbor tones
+  [N.A5,0.15],[N.G5,0.10],[N.A5,0.15],[N.Bb5,0.15],[N.A5,0.30],[0,0.08],
+  [N.F5,0.15],[N.E5,0.10],[N.F5,0.15],[N.G5,0.15],[N.F5,0.30],[0,0.08],
+  [N.D5,0.15],[N.Cs5,0.10],[N.D5,0.15],[N.E5,0.15],[N.F5,0.30],[0,0.08],
+  [N.A4,0.15],[N.D5,0.15],[N.F5,0.30],[N.A5,0.50],[0,0.12],
+  // Tritone punch + resolution
+  [N.Eb5,0.18],[N.A4,0.18],[N.Eb5,0.18],[N.A5,0.36],[0,0.10],
+  [N.D5,0.20],[N.F5,0.20],[N.A5,0.20],[N.D6,0.50],[0,0.12],
+  [N.Cs6 || N.D6,0.18],[N.D6,0.18],[N.A5,0.18],[N.F5,0.36],[N.D5,0.55],[0,0.15],
 ];
-// Total: 16 × 0.75 = 12.00s
 
-// ── BOSS music ────────────────────────────────────────────────────────────────
-// A minor, aggressive sawtooth with tritone stabs, ~5.8s loop
+const SLOP_BASS_C = [
+  // Walking bass under the arpeggios
+  [N.D3,0.26],[N.A3,0.26],[N.F3,0.26],[N.A3,0.26],
+  [N.G3,0.26],[N.D3,0.26],[N.Bb2,0.26],[N.D3,0.26],
+  [N.A2,0.26],[N.E3,0.26],[N.Cs4,0.26],[N.E3,0.26],
+  [N.D3,0.26],[N.A3,0.26],[N.F3,0.26],[N.A3,0.26],
+  [N.D3,0.30],[N.A3,0.30],[N.F3,0.30],[N.D3,0.38],
+  [N.F3,0.30],[N.C4,0.30],[N.A3,0.30],[N.F3,0.38],
+  [N.D3,0.30],[N.F3,0.30],[N.Cs4,0.30],[N.A3,0.38],
+  [N.A2,0.30],[N.D3,0.30],[N.F3,0.30],[N.A3,0.50],
+  [N.Eb3,0.18],[N.A2,0.18],[N.Eb3,0.18],[N.A2,0.36],[0,0.10],
+  [N.D3,0.20],[N.F3,0.20],[N.A3,0.20],[N.D3,0.50],[0,0.12],
+  [N.A2,0.18],[N.D3,0.18],[N.A3,0.18],[N.F3,0.36],[N.D3,0.55],[0,0.15],
+];
 
+// Section D — original urgent slop chase: syncopated call/answer, Phrygian flavor
+const SLOP_MELODY_D = [
+  // Chase motif in D Phrygian (uses Eb for distinctive tension)
+  [N.D5,0.12],[N.Eb5,0.12],[N.F5,0.12],[N.E5 || N.F5,0.12],[N.D5,0.24],[0,0.06],
+  [N.F5,0.12],[N.G5,0.12],[N.A5,0.12],[N.G5,0.12],[N.F5,0.24],[0,0.06],
+  [N.A5,0.12],[N.Bb5,0.12],[N.C6,0.12],[N.Bb5,0.12],[N.A5,0.24],[0,0.06],
+  [N.F5,0.12],[N.A5,0.12],[N.D6,0.24],[N.Bb5,0.12],[N.A5,0.30],[0,0.08],
+  // Syncopated answer
+  [N.G5,0.10],[N.A5,0.20],[N.G5,0.10],[N.F5,0.20],[N.E5,0.10],[N.D5,0.30],[0,0.08],
+  [N.A4,0.10],[N.D5,0.20],[N.F5,0.10],[N.A5,0.20],[N.D6,0.10],[N.A5,0.30],[0,0.08],
+  // Climb to climax — ascending scale in thirds
+  [N.D5,0.10],[N.F5,0.10],[N.E5,0.10],[N.G5,0.10],[N.F5,0.10],[N.A5,0.10],[N.G5,0.10],[N.Bb5,0.10],[0,0.06],
+  [N.A5,0.10],[N.C6,0.10],[N.Bb5,0.10],[N.D6,0.10],[N.C6,0.10],[N.E6,0.10],[N.D6,0.10],[N.F5,0.10],[0,0.06],
+  // Landing
+  [N.A5,0.22],[0,0.06],[N.F5,0.22],[0,0.06],[N.D5,0.22],[0,0.06],[N.A4,0.70],[0,0.20],
+  [N.D5,0.28],[N.A4,0.28],[N.D5,0.80],[0,0.25],
+];
+
+const SLOP_BASS_D = [
+  // Syncopated bass pumping root-fifth
+  [N.D3,0.12],[N.D3,0.12],[N.A3,0.12],[N.D3,0.12],[N.D3,0.24],[0,0.06],
+  [N.F3,0.12],[N.F3,0.12],[N.C4,0.12],[N.F3,0.12],[N.F3,0.24],[0,0.06],
+  [N.Bb3,0.12],[N.Bb3,0.12],[N.F3,0.12],[N.Bb3,0.12],[N.Bb3,0.24],[0,0.06],
+  [N.D3,0.12],[N.A3,0.12],[N.F3,0.24],[N.D3,0.12],[N.A3,0.30],[0,0.08],
+  [N.G3,0.10],[N.G3,0.20],[N.D3,0.10],[N.A3,0.20],[N.E3,0.10],[N.D3,0.30],[0,0.08],
+  [N.A2,0.10],[N.D3,0.20],[N.F3,0.10],[N.A3,0.20],[N.D3,0.10],[N.A3,0.30],[0,0.08],
+  [N.D3,0.20],[N.F3,0.20],[N.G3,0.20],[N.Bb3,0.20],
+  [N.A3,0.20],[N.C4,0.20],[N.D4,0.20],[N.E3,0.20],[0,0.06],
+  [N.A2,0.22],[0,0.06],[N.F2,0.22],[0,0.06],[N.D2,0.22],[0,0.06],[N.A2,0.70],[0,0.20],
+  [N.D3,0.28],[N.A2,0.28],[N.D2,0.80],[0,0.25],
+];
+
+// Joined loop for sloppy music (90s+)
+const SLOP_SECTIONS = [
+  { mel: SLOP_MELODY_A, bass: SLOP_BASS_A, intensity: 0 },
+  { mel: SLOP_MELODY_B, bass: SLOP_BASS_B, intensity: 1 },
+  { mel: SLOP_MELODY_C, bass: SLOP_BASS_C, intensity: 2 },
+  { mel: SLOP_MELODY_D, bass: SLOP_BASS_D, intensity: 2 },
+];
+
+// ── CHILL game music — Super Meat Boy Forest Funk / Burning Squirrel inspired
+// G major, warm, funky/syncopated. ~90s.
+// Section A: Burning Squirrel-style warm ballad intro (22s)
+// Section B: Forest Funk groove lift (23s)
+// Section C: Melodic bridge (22s)
+// Section D: Return to warm theme + resolution (23s)
+
+const CHILL_MELODY_A = [
+  [N.D5,0.60],[0,0.10],[N.G5,0.55],[0,0.10],[N.B5,0.55],[0,0.10],[N.A5,0.45],[0,0.15],
+  [N.G5,0.55],[0,0.10],[N.E5,0.55],[0,0.10],[N.D5,0.80],[0,0.20],
+  [N.C5,0.55],[0,0.10],[N.E5,0.55],[0,0.10],[N.G5,0.55],[0,0.10],[N.E5,0.45],[0,0.15],
+  [N.D5,0.55],[0,0.10],[N.C5,0.55],[0,0.10],[N.D5,0.80],[0,0.20],
+  [N.B4,0.55],[0,0.10],[N.D5,0.55],[0,0.10],[N.G5,0.55],[0,0.10],[N.A5,0.45],[0,0.15],
+  [N.B5,0.55],[0,0.10],[N.A5,0.55],[0,0.10],[N.G5,0.80],[0,0.30],
+  [N.E5,0.55],[0,0.10],[N.D5,0.55],[0,0.10],[N.G5,1.20],[0,0.30],
+];
+
+const CHILL_BASS_A = [
+  [N.G2,0.80],[N.D3,0.80],[N.B2,0.80],[N.D3,0.80],   // G
+  [N.C3,0.80],[N.G3,0.80],[N.E3,0.80],[N.G3,0.80],   // C/Em
+  [N.C3,0.80],[N.E3,0.80],[N.G3,0.80],[N.E3,0.80],   // C
+  [N.D3,0.80],[N.A3,0.80],[N.Fs3,0.80],[N.A3,0.80],  // D
+  [N.G2,0.80],[N.D3,0.80],[N.B2,0.80],[N.D3,0.80],   // G
+  [N.E3,0.80],[N.B3,0.80],[N.G3,0.80],[N.B3,0.80],   // Em
+  [N.C3,0.80],[N.D3,0.80],[N.G2,1.60],                // C-D-G
+];
+
+const CHILL_MELODY_B = [
+  // Forest Funk syncopated groove (23s)
+  [N.G5,0.18],[0,0.06],[N.B5,0.18],[0,0.06],[N.D6,0.30],[N.B5,0.18],[N.G5,0.30],[0,0.10],
+  [N.A5,0.18],[0,0.06],[N.C6,0.18],[0,0.06],[N.E6,0.30],[N.C6,0.18],[N.A5,0.30],[0,0.10],
+  [N.G5,0.18],[0,0.06],[N.B5,0.18],[0,0.06],[N.D6,0.30],[N.B5,0.18],[N.G5,0.30],[0,0.10],
+  [N.Fs5,0.18],[N.G5,0.18],[N.A5,0.18],[N.B5,0.36],[N.A5,0.18],[N.G5,0.36],[0,0.10],
+  // Syncopated answer
+  [N.B5,0.15],[N.A5,0.15],[N.G5,0.15],[N.E5,0.30],[0,0.08],
+  [N.D5,0.15],[N.E5,0.15],[N.G5,0.15],[N.A5,0.30],[0,0.08],
+  [N.B5,0.15],[N.D6,0.15],[N.B5,0.15],[N.A5,0.30],[N.G5,0.40],[0,0.12],
+  [N.E5,0.15],[N.Fs5,0.15],[N.G5,0.15],[N.A5,0.15],[N.B5,0.15],[N.C6,0.15],[N.D6,0.60],[0,0.15],
+  // Call
+  [N.D6,0.18],[N.B5,0.18],[N.G5,0.18],[N.D5,0.36],[0,0.10],
+  [N.E5,0.18],[N.G5,0.18],[N.B5,0.18],[N.D6,0.36],[0,0.10],
+  [N.C6,0.30],[N.B5,0.30],[N.A5,0.30],[N.G5,0.60],[0,0.20],
+];
+
+const CHILL_BASS_B = [
+  // Syncopated walking bass — funk feel
+  [N.G2,0.24],[0,0.08],[N.G2,0.16],[N.D3,0.24],[0,0.08],[N.B2,0.24],[0,0.06],
+  [N.A2,0.24],[0,0.08],[N.A2,0.16],[N.E3,0.24],[0,0.08],[N.C3,0.24],[0,0.06],
+  [N.G2,0.24],[0,0.08],[N.G2,0.16],[N.D3,0.24],[0,0.08],[N.B2,0.24],[0,0.06],
+  [N.D3,0.24],[0,0.08],[N.Fs3,0.24],[N.A3,0.24],[0,0.08],[N.D3,0.24],[0,0.06],
+  [N.C3,0.30],[N.G3,0.30],[N.E3,0.30],[N.C3,0.30],
+  [N.D3,0.30],[N.A3,0.30],[N.Fs3,0.30],[N.D3,0.30],
+  [N.G2,0.30],[N.D3,0.30],[N.B2,0.60],[N.G2,0.30],
+  [N.C3,0.30],[N.D3,0.30],[N.G2,0.60],[0,0.15],
+  [N.G2,0.50],[N.D3,0.50],[N.B2,0.50],[N.D3,0.50],
+  [N.C3,0.50],[N.G3,0.50],[N.E3,0.50],[N.G3,0.50],
+  [N.C3,0.60],[N.D3,0.60],[N.G2,1.20],[0,0.20],
+];
+
+const CHILL_MELODY_C = [
+  // Melodic bridge — sustained, emotional (22s)
+  [N.B5,0.70],[0,0.10],[N.A5,0.55],[0,0.10],[N.G5,0.55],[0,0.10],[N.E5,0.70],[0,0.20],
+  [N.D5,0.70],[0,0.10],[N.E5,0.55],[0,0.10],[N.G5,0.55],[0,0.10],[N.B5,0.90],[0,0.20],
+  [N.C6,0.70],[0,0.10],[N.B5,0.55],[0,0.10],[N.A5,0.55],[0,0.10],[N.G5,0.70],[0,0.20],
+  [N.Fs5,0.70],[0,0.10],[N.G5,0.55],[0,0.10],[N.A5,0.55],[0,0.10],[N.D5,0.90],[0,0.20],
+  // Lift
+  [N.G5,0.40],[N.B5,0.40],[N.D6,0.40],[N.B5,0.40],[N.G5,0.40],[0,0.15],
+  [N.E5,0.40],[N.G5,0.40],[N.A5,0.40],[N.G5,0.40],[N.E5,0.40],[0,0.20],
+];
+
+const CHILL_BASS_C = [
+  [N.E3,0.90],[N.B3,0.90],[N.G3,0.90],[N.B3,0.90],   // Em
+  [N.G3,0.90],[N.D3,0.90],[N.B2,0.90],[N.D3,0.90],   // G
+  [N.A3,0.90],[N.E3,0.90],[N.C3,0.90],[N.E3,0.90],   // Am
+  [N.D3,0.90],[N.A3,0.90],[N.Fs3,0.90],[N.A3,0.90],  // D
+  [N.G2,0.50],[N.D3,0.50],[N.B2,0.50],[N.G2,0.50],
+  [N.C3,0.50],[N.G3,0.50],[N.E3,0.50],[N.C3,0.50],
+];
+
+const CHILL_MELODY_D = [
+  // Warm resolution (23s)
+  [N.D5,0.55],[0,0.10],[N.G5,0.55],[0,0.10],[N.B5,0.55],[0,0.10],[N.D6,0.70],[0,0.20],
+  [N.C6,0.55],[0,0.10],[N.B5,0.55],[0,0.10],[N.A5,0.55],[0,0.10],[N.G5,0.70],[0,0.20],
+  [N.Fs5,0.55],[0,0.10],[N.G5,0.55],[0,0.10],[N.A5,0.55],[0,0.10],[N.D5,0.70],[0,0.20],
+  [N.G5,0.55],[0,0.10],[N.B5,0.55],[0,0.10],[N.G5,0.55],[0,0.10],[N.D5,0.90],[0,0.30],
+  [N.D5,0.30],[N.E5,0.30],[N.G5,0.30],[N.B5,0.30],[N.G5,0.30],[0,0.10],
+  [N.E5,0.30],[N.D5,0.30],[N.C5,0.30],[N.D5,0.30],[N.G5,0.60],[0,0.30],
+  [N.B4,0.40],[N.D5,0.40],[N.G5,1.60],[0,0.40],
+];
+
+const CHILL_BASS_D = [
+  [N.G2,0.80],[N.D3,0.80],[N.B2,0.80],[N.D3,0.80],
+  [N.C3,0.80],[N.G3,0.80],[N.E3,0.80],[N.C3,0.80],
+  [N.D3,0.80],[N.A3,0.80],[N.Fs3,0.80],[N.A3,0.80],
+  [N.G2,0.80],[N.D3,0.80],[N.B2,0.80],[N.G2,0.80],
+  [N.G2,0.40],[N.B2,0.40],[N.D3,0.40],[N.G3,0.40],[N.D3,0.40],
+  [N.C3,0.40],[N.E3,0.40],[N.G3,0.40],[N.E3,0.40],[N.G3,0.60],[0,0.30],
+  [N.D3,0.40],[N.Fs3,0.40],[N.G2,1.80],[0,0.20],
+];
+
+const CHILL_SECTIONS = [
+  { mel: CHILL_MELODY_A, bass: CHILL_BASS_A, intensity: 0 },
+  { mel: CHILL_MELODY_B, bass: CHILL_BASS_B, intensity: 2 },
+  { mel: CHILL_MELODY_C, bass: CHILL_BASS_C, intensity: 1 },
+  { mel: CHILL_MELODY_D, bass: CHILL_BASS_D, intensity: 1 },
+];
+
+// ── IRON mode music — 3-minute epic (combines Undertale + Meat Boy moods) ──
+// Section 1: Slow ominous intro (Ruins mood)            ~30s
+// Section 2: Warm counter-theme (Burning Squirrel feel) ~30s
+// Section 3: Tension build (walking bass)               ~30s
+// Section 4: Funk/forest groove                         ~30s
+// Section 5: Megalovania-style climax                   ~30s
+// Section 6: Resolution, warm outro                     ~30s
+// Total ~180s. Reuses all section arrays above plus two unique new ones.
+
+const IRON_INTRO_MEL = [
+  // Haunting slow ascending motif, A minor (30s)
+  [N.A4,1.0],[0,0.15],[N.C5,1.0],[0,0.15],[N.E5,1.4],[0,0.30],
+  [N.A5,1.4],[0,0.20],[N.G5,1.0],[0,0.15],[N.E5,1.0],[0,0.20],
+  [N.D5,1.0],[0,0.15],[N.F5,1.0],[0,0.15],[N.A5,1.4],[0,0.30],
+  [N.G5,1.2],[0,0.15],[N.F5,1.0],[0,0.15],[N.E5,1.4],[0,0.30],
+  [N.A4,1.0],[0,0.15],[N.B4,1.0],[0,0.15],[N.C5,1.4],[0,0.30],
+  [N.E5,1.2],[0,0.15],[N.D5,1.0],[0,0.15],[N.A4,1.6],[0,0.40],
+];
+
+const IRON_INTRO_BASS = [
+  [N.A2,1.5],[N.E3,1.5],
+  [N.F2,1.5],[N.C3,1.5],
+  [N.D3,1.5],[N.A3,1.5],
+  [N.E3,1.5],[N.B3,1.5],
+  [N.A2,1.5],[N.E3,1.5],
+  [N.F2,1.5],[N.G2,1.5],
+  [N.A2,1.5],[N.E3,1.5],
+  [N.D3,1.5],[N.A2,1.5],
+  [N.F2,1.5],[N.G2,1.5],
+  [N.A2,3.0],
+];
+
+const IRON_OUTRO_MEL = [
+  // Triumphant resolution theme (30s)
+  [N.C5,0.50],[N.E5,0.50],[N.G5,0.80],[0,0.15],
+  [N.A5,0.80],[N.G5,0.50],[N.E5,0.50],[0,0.15],
+  [N.F5,0.50],[N.A5,0.50],[N.C6,0.80],[0,0.15],
+  [N.B5,0.80],[N.A5,0.50],[N.G5,0.50],[0,0.15],
+  [N.E5,0.50],[N.G5,0.50],[N.B5,0.80],[0,0.15],
+  [N.C6,0.80],[N.B5,0.50],[N.A5,0.50],[0,0.15],
+  [N.G5,0.50],[N.F5,0.50],[N.E5,0.80],[0,0.15],
+  [N.D5,0.80],[N.C5,1.60],[0,0.40],
+  // Final cadence
+  [N.G5,0.40],[N.A5,0.40],[N.B5,0.40],[N.C6,1.20],[0,0.40],
+  [N.E5,0.40],[N.G5,0.40],[N.C5,2.00],[0,0.50],
+];
+
+const IRON_OUTRO_BASS = [
+  [N.C3,0.95],[N.E3,0.95],
+  [N.F3,0.95],[N.C3,0.95],
+  [N.F3,0.95],[N.A3,0.95],
+  [N.G3,0.95],[N.D3,0.95],
+  [N.C3,0.95],[N.G3,0.95],
+  [N.F3,0.95],[N.A3,0.95],
+  [N.C3,0.95],[N.E3,0.95],
+  [N.G3,0.95],[N.C3,1.95],
+  [N.G3,0.40],[N.A3,0.40],[N.B3,0.40],[N.C4,1.20],[0,0.40],
+  [N.E3,0.40],[N.G3,0.40],[N.C3,2.00],[0,0.50],
+];
+
+const IRON_SECTIONS = [
+  { mel: IRON_INTRO_MEL, bass: IRON_INTRO_BASS, intensity: 0, kind: 'intro' },
+  { mel: CHILL_MELODY_A, bass: CHILL_BASS_A, intensity: 0, kind: 'chill' },
+  { mel: SLOP_MELODY_B, bass: SLOP_BASS_B, intensity: 1, kind: 'slop' },
+  { mel: CHILL_MELODY_B, bass: CHILL_BASS_B, intensity: 2, kind: 'chill' },
+  { mel: SLOP_MELODY_D, bass: SLOP_BASS_D, intensity: 2, kind: 'slop' },
+  { mel: IRON_OUTRO_MEL, bass: IRON_OUTRO_BASS, intensity: 1, kind: 'outro' },
+];
+
+// ── BOSS music (unchanged mood) ────────────────────────────────────────────
 const BOSS_MELODY = [
-  // Riff 1 — staccato attack with tritone stabs (Eb against A)
   [N.A4,0.09],[0,0.03],[N.A4,0.09],[N.Eb5,0.12],[N.D5,0.09],[N.A4,0.09],[0,0.03],
   [N.G4,0.09],[0,0.03],[N.G4,0.09],[N.E5,0.12],[N.D5,0.09],[N.C5,0.09],[0,0.03],
   [N.F4,0.09],[0,0.03],[N.F4,0.09],[N.Bb4,0.12],[N.A4,0.09],[N.G4,0.09],[0,0.03],
   [N.E4,0.12],[0,0.03],[N.E4,0.09],[N.G4,0.09],[N.A4,0.09],[N.Bb4,0.09],[0,0.03],
-  // Chromatic descent — full chromatic run with speed
   [N.A5,0.09],[N.Ab5,0.09],[N.G5,0.09],[N.Fs5,0.09],[N.F5,0.09],[N.E5,0.09],[0,0.03],
   [N.Eb5,0.09],[N.D5,0.09],[N.Cs5,0.09],[N.C5,0.09],[N.B4,0.09],[N.A4,0.09],[0,0.03],
   [N.G4,0.09],[N.A4,0.09],[N.B4,0.09],[N.Cs5,0.09],[N.Eb5,0.09],[0,0.03],
-  // Tritone landing — A vs Eb
   [N.A5,0.24],[0,0.04],[N.Eb5,0.14],[0,0.04],[N.A4,0.24],[0,0.08],
 ];
-
 const BOSS_BASS = [
   [N.A3,0.09],[N.A3,0.09],[0,0.03],[N.A3,0.09],[N.E3,0.09],[0,0.03],[N.A3,0.09],[N.Eb3,0.09],[0,0.03],
   [N.G3,0.09],[N.G3,0.09],[0,0.03],[N.G3,0.09],[N.D3,0.09],[0,0.03],[N.G3,0.09],[0,0.03],
@@ -218,206 +470,279 @@ const BOSS_BASS = [
   [N.A3,0.24],[0,0.04],[N.Eb3,0.14],[0,0.04],[N.A2,0.24],[0,0.08],
 ];
 
-// ── TITLE SCREEN music ────────────────────────────────────────────────────────
-
-// Sloppy title: punchy arcade fanfare, ~7.57s loop
+// ── TITLE SCREEN music ──────────────────────────────────────────────────────
+// Sloppy title — original D-minor arcade fanfare with Ruins-style arpeggios
+// leading to a punchy tritone-colored hook. Undertale flavor, original pattern.
 const TITLE_SLOPPY_MELODY = [
-  // Part 1: Opening fanfare — C major arpeggio + answer (4.00s)
-  [N.C5,0.10],[N.E5,0.10],[N.G5,0.10],[N.C6,0.15],[0,0.05],               // 0.50
-  [N.B5,0.10],[N.G5,0.10],[N.E5,0.10],[N.G5,0.15],[0,0.05],               // 0.50
-  [N.A5,0.12],[N.G5,0.10],[N.F5,0.10],[N.E5,0.10],[0,0.08],               // 0.50
-  [N.D5,0.10],[N.E5,0.10],[N.G5,0.10],[N.A5,0.15],[0,0.05],               // 0.50
-  [N.F5,0.08],[N.G5,0.08],[N.A5,0.08],[N.C6,0.08],[N.A5,0.08],[0,0.10],  // 0.50
-  [N.G5,0.08],[N.F5,0.08],[N.E5,0.08],[N.D5,0.08],[N.C5,0.08],[0,0.10],  // 0.50
-  [N.E5,0.10],[N.G5,0.10],[N.A5,0.10],[N.G5,0.10],[N.E5,0.10],[0,0.05],  // 0.55
-  [N.C5,0.35],[0,0.10],                                                     // 0.45
-  // Part 2: F + G bridge (2.0s)
-  [N.F5,0.10],[N.A5,0.10],[N.C6,0.10],[N.A5,0.10],[N.F5,0.10],[0,0.05],  // 0.55
-  [N.G5,0.10],[N.B5,0.10],[N.G5,0.10],[N.E5,0.10],[N.D5,0.10],[0,0.05],  // 0.55
-  // Part 3: Chromatic fills (1.14s)
-  [N.C5,0.08],[N.D5,0.08],[N.E5,0.08],[N.F5,0.08],[N.E5,0.08],[N.D5,0.08],[0,0.08], // 0.56
-  [N.E5,0.08],[N.G5,0.08],[N.A5,0.08],[N.C6,0.10],[N.B5,0.08],[N.A5,0.08],[0,0.08], // 0.58
-  // Part 4: Grand finale sweep (1.33s)
-  [N.C6,0.10],[N.B5,0.08],[N.A5,0.08],[N.G5,0.08],[N.F5,0.08],[N.E5,0.08],[0,0.08], // 0.58
-  [N.D5,0.10],[N.C5,0.50],[0,0.15],                                                    // 0.75
+  // Phrase 1: ascending D-minor arpeggios (Ruins feel but faster)
+  [N.D5,0.12],[N.F5,0.12],[N.A5,0.12],[N.D6,0.22],[N.A5,0.12],[N.F5,0.12],[0,0.06],
+  [N.G4,0.12],[N.Bb4,0.12],[N.D5,0.12],[N.G5,0.22],[N.D5,0.12],[N.Bb4,0.12],[0,0.06],
+  // Phrase 2: call with chromatic tension
+  [N.A5,0.15],[N.G5,0.15],[N.F5,0.15],[N.E5,0.15],[N.F5,0.30],[0,0.08],
+  [N.Eb5,0.15],[N.F5,0.15],[N.A5,0.30],[N.Eb5,0.18],[0,0.08],
+  // Phrase 3: descending flourish
+  [N.D6,0.12],[N.Bb5,0.12],[N.A5,0.12],[N.F5,0.12],[N.D5,0.24],[0,0.06],
+  [N.Cs5,0.12],[N.E5,0.12],[N.G5,0.12],[N.A5,0.30],[0,0.08],
+  // Phrase 4: tritone resolution cadence
+  [N.A5,0.18],[N.Eb5,0.14],[N.A4,0.22],[N.D5,0.50],[0,0.12],
 ];
-// Total: ~7.57s
-
 const TITLE_SLOPPY_BASS = [
-  // Part 1 (4.00s = 8×0.50)
-  [N.C3,0.20],[0,0.05],[N.G3,0.20],[0,0.05],
-  [N.C3,0.20],[0,0.05],[N.G3,0.20],[0,0.05],
-  [N.A3,0.20],[0,0.05],[N.E3,0.20],[0,0.05],
-  [N.F3,0.20],[0,0.05],[N.C3,0.20],[0,0.05],
-  [N.G3,0.20],[0,0.05],[N.D3,0.20],[0,0.05],
-  [N.C3,0.20],[0,0.05],[N.E3,0.20],[0,0.05],
-  [N.F3,0.20],[0,0.05],[N.G3,0.20],[0,0.05],
-  [N.C3,0.40],[0,0.10],
-  // Part 2-4 (3.57s)
-  [N.F3,0.20],[0,0.05],[N.C3,0.20],[0,0.05],
-  [N.G3,0.20],[0,0.05],[N.D3,0.20],[0,0.05],
-  [N.C3,0.20],[0,0.05],[N.E3,0.20],[0,0.05],
-  [N.A3,0.20],[0,0.05],[N.C3,0.20],[0,0.05],
-  [N.F3,0.20],[0,0.05],[N.G3,0.20],[0,0.05],
-  [N.E3,0.20],[0,0.05],[N.G3,0.20],[0,0.05],
-  [N.C3,0.40],[0,0.17],
+  [N.D3,0.24],[N.A3,0.24],[N.F3,0.24],[N.A3,0.24],
+  [N.G3,0.24],[N.D3,0.24],[N.Bb2,0.24],[N.D3,0.24],
+  [N.F3,0.30],[N.A3,0.30],[N.C4,0.30],[N.F3,0.30],
+  [N.Bb2,0.30],[N.F3,0.30],[N.Bb3,0.56],
+  [N.D3,0.24],[N.F3,0.24],[N.A3,0.24],[N.D3,0.24],[N.A2,0.30],
+  [N.A2,0.24],[N.E3,0.24],[N.G3,0.24],[N.A3,0.30],[0,0.08],
+  [N.A2,0.18],[N.Eb3,0.14],[N.A2,0.22],[N.D3,0.50],[0,0.12],
 ];
-// Total: ~7.57s
 
-// Chill title: slow ambient C-G-Am-F-Am-C progression, ~14.75s loop
+// Chill title — Meat Boy "Forest Funk" style, syncopated major-key groove (~14s)
 const TITLE_CHILL_MELODY = [
-  // Bar 1: C major — gentle opening (2.20s)
-  [N.G5,0.60],[0,0.10],[N.E5,0.50],[0,0.10],[N.C5,0.40],[0,0.10],[N.E5,0.30],[0,0.10],
-  // Bar 2: G major — warm rise (2.00s)
-  [N.B5,0.65],[0,0.10],[N.G5,0.50],[0,0.10],[N.D5,0.55],[0,0.10],
-  // Bar 3: Am — gentle dip (2.20s)
-  [N.A5,0.60],[0,0.10],[N.C5,0.45],[0,0.10],[N.E5,0.45],[0,0.10],[N.A5,0.30],[0,0.10],
-  // Bar 4: F major — lift (2.80s)
-  [N.F5,0.65],[0,0.10],[N.A5,0.50],[0,0.10],[N.C6,0.45],[0,0.10],[N.F5,0.60],[0,0.30],
-  // Bar 5: Am descend — emotional dip (2.55s)
-  [N.E5,0.55],[0,0.10],[N.C5,0.50],[0,0.10],[N.A4,0.55],[0,0.10],[N.G4,0.55],[0,0.10],
-  // Bar 6: C major finale — warm resolution (3.00s)
-  [N.C5,0.65],[0,0.15],[N.E5,0.55],[0,0.10],[N.G5,0.60],[0,0.15],[N.C5,0.65],[0,0.15],
+  // Phrase 1 — bright ascending motif
+  [N.G5,0.18],[0,0.06],[N.B5,0.18],[0,0.06],[N.D6,0.30],[N.B5,0.18],[N.G5,0.30],[0,0.08],
+  // Phrase 2 — bright answer
+  [N.A5,0.18],[0,0.06],[N.C6,0.18],[0,0.06],[N.E6,0.30],[N.C6,0.18],[N.A5,0.30],[0,0.08],
+  // Phrase 3 — warm Burning Squirrel lift
+  [N.B5,0.35],[0,0.08],[N.A5,0.30],[N.G5,0.30],[N.E5,0.55],[0,0.10],
+  [N.D5,0.30],[N.E5,0.30],[N.G5,0.30],[N.A5,0.55],[0,0.10],
+  // Phrase 4 — funk sixteenth bounce
+  [N.B5,0.15],[N.A5,0.15],[N.G5,0.15],[N.D5,0.30],[0,0.08],
+  [N.E5,0.15],[N.G5,0.15],[N.A5,0.15],[N.B5,0.30],[0,0.08],
+  // Resolution
+  [N.D6,0.20],[N.B5,0.20],[N.G5,0.20],[N.D5,0.40],[N.G5,0.80],[0,0.20],
 ];
-// Bar durations: 2.20+2.00+2.20+2.80+2.55+3.00 = 14.75s
-
 const TITLE_CHILL_BASS = [
-  [N.C3,0.55],[N.E3,0.55],[N.G3,0.55],[N.E3,0.55],    // C major  2.20s
-  [N.G3,0.65],[N.B3,0.65],[N.D3,0.70],                 // G major  2.00s
-  [N.A3,0.55],[N.C3,0.55],[N.E3,0.55],[N.A3,0.55],    // Am       2.20s
-  [N.F3,0.70],[N.A3,0.70],[N.C3,0.70],[N.F3,0.70],    // F major  2.80s
-  [N.A3,0.64],[N.E3,0.64],[N.C3,0.64],[N.A3,0.63],    // Am       2.55s
-  [N.C3,0.75],[N.E3,0.75],[N.G3,0.75],[N.C3,0.75],    // C major  3.00s
+  // Syncopated funk: G-D skip, C-G skip
+  [N.G2,0.24],[0,0.08],[N.G2,0.16],[N.D3,0.24],[0,0.08],[N.B2,0.24],[0,0.06],
+  [N.A2,0.24],[0,0.08],[N.A2,0.16],[N.E3,0.24],[0,0.08],[N.C3,0.24],[0,0.06],
+  [N.E3,0.43],[N.B3,0.43],[N.G3,0.43],[0,0.10],
+  [N.D3,0.43],[N.A3,0.43],[N.Fs3,0.43],[0,0.10],
+  [N.G2,0.30],[N.D3,0.30],[N.B2,0.30],[N.D3,0.30],
+  [N.C3,0.30],[N.G3,0.30],[N.E3,0.30],[N.G3,0.30],
+  [N.D3,0.40],[N.Fs3,0.40],[N.G2,1.20],[0,0.20],
 ];
-// Total: 14.75s
 
-const getArrayDuration = (arr) => arr.reduce((sum, [, d]) => sum + d, 0);
-
-// ── Sloppy music playback ─────────────────────────────────────────────────────
-const playMusicBar = (scale = tempoScale) => {
+// ── Sloppy music playback (multi-section) ───────────────────────────────────
+let slopSectionIdx = 0;
+const playSlopSection = (scale = tempoScale) => {
+  const section = SLOP_SECTIONS[slopSectionIdx % SLOP_SECTIONS.length];
+  slopSectionIdx = (slopSectionIdx + 1) % SLOP_SECTIONS.length;
   const ctx = getCtx();
   const now = ctx.currentTime;
-  const s = scale;
-  const loopDuration = getArrayDuration(MELODY) / s;
+  // Combine base speed with urgency scale so the tempo always reflects both.
+  const s = scale * SLOP_BASE_SPEED;
+  const loopDuration = getArrayDuration(section.mel) / s;
 
   const gg = getGameGain();
   let t = now;
-  for (const [freq, dur] of MELODY) {
+  for (const [freq, dur] of section.mel) {
     if (freq > 0) playNote(freq, (dur / s) * 0.85, t, 'square', 0.11, gg);
     t += dur / s;
   }
   t = now;
-  for (const [freq, dur] of BASS) {
-    if (freq > 0) playNote(freq, (dur / s) * 0.78, t, 'triangle', 0.13, gg);
+  for (const [freq, dur] of section.bass) {
+    if (freq > 0) {
+      playNote(freq, (dur / s) * 0.78, t, 'triangle', 0.13, gg);
+      if (section.intensity >= 2) playNote(freq, (dur / s) * 0.70, t, 'sawtooth', 0.05, gg);
+    }
     t += dur / s;
   }
-  for (let beat = 0; beat < loopDuration; beat += 0.5 / s) {
+  // Drums — density scales with intensity
+  const kickStep = section.intensity >= 2 ? 0.25 / s : 0.5 / s;
+  for (let beat = 0; beat < loopDuration; beat += kickStep) {
     const ko = ctx.createOscillator(); const kg = ctx.createGain();
     ko.type = 'sine';
     ko.frequency.setValueAtTime(160, now + beat);
     ko.frequency.exponentialRampToValueAtTime(0.01, now + beat + 0.18 / s);
-    kg.gain.setValueAtTime(0.30, now + beat);
+    kg.gain.setValueAtTime(section.intensity >= 2 ? 0.32 : 0.22, now + beat);
     kg.gain.exponentialRampToValueAtTime(0.001, now + beat + 0.18 / s);
     ko.connect(kg); kg.connect(gg);
     ko.start(now + beat); ko.stop(now + beat + 0.20 / s);
   }
-  for (let beat = 0.5 / s; beat < loopDuration; beat += 1.0 / s) {
-    const so = ctx.createOscillator(); const sg = ctx.createGain();
-    so.type = 'sawtooth'; so.frequency.value = 220;
-    sg.gain.setValueAtTime(0.09, now + beat);
-    sg.gain.exponentialRampToValueAtTime(0.001, now + beat + 0.10 / s);
-    so.connect(sg); sg.connect(gg);
-    so.start(now + beat); so.stop(now + beat + 0.12 / s);
+  // Snare on 2 and 4 (intensity >= 1)
+  if (section.intensity >= 1) {
+    for (let beat = 0.5 / s; beat < loopDuration; beat += 1.0 / s) {
+      const so = ctx.createOscillator(); const sg = ctx.createGain();
+      so.type = 'sawtooth'; so.frequency.value = 220;
+      sg.gain.setValueAtTime(0.09, now + beat);
+      sg.gain.exponentialRampToValueAtTime(0.001, now + beat + 0.10 / s);
+      so.connect(sg); sg.connect(gg);
+      so.start(now + beat); so.stop(now + beat + 0.12 / s);
+    }
   }
-  for (let beat = 0; beat < loopDuration; beat += 0.25 / s) {
+  // Hi-hat
+  const hatStep = section.intensity >= 2 ? 0.125 / s : 0.25 / s;
+  for (let beat = 0; beat < loopDuration; beat += hatStep) {
     const ho = ctx.createOscillator(); const hg = ctx.createGain();
     ho.type = 'square'; ho.frequency.value = 7200;
-    hg.gain.setValueAtTime(0.022, now + beat);
+    hg.gain.setValueAtTime(0.020, now + beat);
     hg.gain.exponentialRampToValueAtTime(0.001, now + beat + 0.04 / s);
     ho.connect(hg); hg.connect(gg);
     ho.start(now + beat); ho.stop(now + beat + 0.05 / s);
   }
-  // Low sub-bass rumble on beat 3 — adds tension/weight
-  for (let beat = loopDuration * 0.5; beat < loopDuration; beat += loopDuration) {
-    const ro = ctx.createOscillator(); const rg = ctx.createGain();
-    ro.type = 'sine'; ro.frequency.value = 65;
-    rg.gain.setValueAtTime(0.18, now + beat);
-    rg.gain.exponentialRampToValueAtTime(0.001, now + beat + 0.35 / s);
-    ro.connect(rg); rg.connect(gg);
-    ro.start(now + beat); ro.stop(now + beat + 0.36 / s);
-  }
+  return loopDuration;
 };
 
-// ── Pleasant music playback ───────────────────────────────────────────────────
-const playPleasantBar = () => {
+// ── Chill music playback (multi-section) ────────────────────────────────────
+let chillSectionIdx = 0;
+const playChillSection = (scale = tempoScale) => {
+  const section = CHILL_SECTIONS[chillSectionIdx % CHILL_SECTIONS.length];
+  chillSectionIdx = (chillSectionIdx + 1) % CHILL_SECTIONS.length;
   const ctx = getCtx();
   const now = ctx.currentTime;
-  const loopDuration = getArrayDuration(PLEASANT_MELODY);
   const gg = getGameGain();
+  const s = scale * CHILL_BASE_SPEED;
+  const loopDuration = getArrayDuration(section.mel) / s;
 
-  // Melody: warm sine with subtle detune for chorus effect
+  // Melody: warm sine + slight detune (chorus) + triangle body on groove
   let t = now;
-  for (const [freq, dur] of PLEASANT_MELODY) {
+  for (const [freq, dur] of section.mel) {
+    const d = dur / s;
     if (freq > 0) {
-      playNote(freq, dur * 0.88, t, 'sine', 0.09, gg);
-      playNote(freq * 1.003, dur * 0.88, t, 'sine', 0.04, gg); // detune warmth
+      playNote(freq, d * 0.88, t, 'sine', 0.09, gg);
+      playNote(freq * 1.003, d * 0.88, t, 'sine', 0.04, gg);
+      if (section.intensity >= 2) playNote(freq, d * 0.80, t, 'triangle', 0.035, gg);
     }
-    t += dur;
+    t += d;
   }
-
-  // Bass: smooth triangle arpeggios
+  // Bass: triangle + light sawtooth on groove section
   t = now;
-  for (const [freq, dur] of PLEASANT_BASS) {
-    if (freq > 0) playNote(freq, dur * 0.72, t, 'triangle', 0.11, gg);
-    t += dur;
-  }
-
-  // Chord pads: very soft whole-note chords (one per 3s bar)
-  const chordSets = [
-    [N.C4, N.E4, N.G4],   // C major
-    [N.A3, N.C4, N.E4],   // Am
-    [N.F3, N.A3, N.C4],   // F major
-    [N.G3, N.B3, N.D4],   // G major — D4 = 293.66Hz (in N)
-  ];
-  for (let i = 0; i < 4; i++) {
-    const padStart = now + i * 3.0;
-    for (const f of chordSets[i]) {
-      playNote(f, 2.60, padStart, 'sine', 0.028, gg);
+  for (const [freq, dur] of section.bass) {
+    const d = dur / s;
+    if (freq > 0) {
+      playNote(freq, d * 0.72, t, 'triangle', 0.11, gg);
+      if (section.intensity >= 2) playNote(freq, d * 0.55, t, 'sawtooth', 0.03, gg);
     }
+    t += d;
   }
-
-  // Very soft, slow brush accent on beat 1 of each bar (just a faint hi shimmer)
-  for (let i = 0; i < 4; i++) {
-    const beat = now + i * 3.0;
+  // Soft shimmer
+  for (let beat = 0; beat < loopDuration; beat += 3.0 / s) {
     const ho = ctx.createOscillator(); const hg = ctx.createGain();
     ho.type = 'sine'; ho.frequency.value = 3200;
-    hg.gain.setValueAtTime(0.012, beat);
-    hg.gain.exponentialRampToValueAtTime(0.001, beat + 0.35);
+    hg.gain.setValueAtTime(0.012, now + beat);
+    hg.gain.exponentialRampToValueAtTime(0.001, now + beat + 0.30 / s);
     ho.connect(hg); hg.connect(gg);
-    ho.start(beat); ho.stop(beat + 0.36);
+    ho.start(now + beat); ho.stop(now + beat + 0.32 / s);
   }
-  // Tension pulse — soft Dm7 dissonance on bar 4 before looping back
-  const tensionStart = now + 9.0;
-  [N.D3, N.F3, N.C4].forEach(f => {
-    playNote(f, 2.80, tensionStart, 'sine', 0.018, gg);
-  });
+  // Kick on the 1-and-3, with extra hi-hats — gives every chill section drive
+  for (let beat = 0; beat < loopDuration; beat += 0.80 / s) {
+    const ko = ctx.createOscillator(); const kg = ctx.createGain();
+    ko.type = 'sine';
+    ko.frequency.setValueAtTime(130, now + beat);
+    ko.frequency.exponentialRampToValueAtTime(0.01, now + beat + 0.14 / s);
+    kg.gain.setValueAtTime(section.intensity >= 2 ? 0.22 : 0.14, now + beat);
+    kg.gain.exponentialRampToValueAtTime(0.001, now + beat + 0.14 / s);
+    ko.connect(kg); kg.connect(gg);
+    ko.start(now + beat); ko.stop(now + beat + 0.16 / s);
+  }
+  // Off-beat rim tick for groove
+  for (let beat = 0.40 / s; beat < loopDuration; beat += 0.80 / s) {
+    const so = ctx.createOscillator(); const sg = ctx.createGain();
+    so.type = 'triangle'; so.frequency.value = 1200;
+    sg.gain.setValueAtTime(section.intensity >= 2 ? 0.06 : 0.035, now + beat);
+    sg.gain.exponentialRampToValueAtTime(0.001, now + beat + 0.06 / s);
+    so.connect(sg); sg.connect(gg);
+    so.start(now + beat); so.stop(now + beat + 0.07 / s);
+  }
+  // Shaker-style hi-hat fills on all sections to make chill feel moving
+  for (let beat = 0; beat < loopDuration; beat += 0.20 / s) {
+    const ho = ctx.createOscillator(); const hg = ctx.createGain();
+    ho.type = 'square'; ho.frequency.value = 8400;
+    hg.gain.setValueAtTime(0.010, now + beat);
+    hg.gain.exponentialRampToValueAtTime(0.001, now + beat + 0.03 / s);
+    ho.connect(hg); hg.connect(gg);
+    ho.start(now + beat); ho.stop(now + beat + 0.04 / s);
+  }
+  return loopDuration;
 };
 
-// ── Boss music playback ───────────────────────────────────────────────────────
+// ── Iron mode music playback (multi-section epic) ──────────────────────────
+let ironSectionIdx = 0;
+const playIronSection = (scale = tempoScale) => {
+  const section = IRON_SECTIONS[ironSectionIdx % IRON_SECTIONS.length];
+  ironSectionIdx = (ironSectionIdx + 1) % IRON_SECTIONS.length;
+  const ctx = getCtx();
+  const now = ctx.currentTime;
+  const gg = getGameGain();
+  const s = scale * IRON_BASE_SPEED;
+  // NOTE: to avoid rewriting every timing below, we apply the speed by scaling
+  // the time offset we advance for each note. Durations use `d / s` everywhere.
+  const loopDuration = getArrayDuration(section.mel) / s;
+  const isAmbient = section.kind === 'intro' || section.kind === 'outro' || section.kind === 'chill';
+
+  // Melody — sine for ambient sections, square-ish bite for slop
+  let t = now;
+  for (const [freq, dur] of section.mel) {
+    const d = dur / s;
+    if (freq > 0) {
+      if (isAmbient) {
+        playNote(freq, d * 0.88, t, 'sine', 0.10, gg);
+        playNote(freq * 1.004, d * 0.88, t, 'sine', 0.04, gg);
+      } else {
+        playNote(freq, d * 0.82, t, 'square', 0.10, gg);
+        playNote(freq * 0.5, d * 0.80, t, 'triangle', 0.04, gg);
+      }
+    }
+    t += d;
+  }
+  // Bass
+  t = now;
+  for (const [freq, dur] of section.bass) {
+    const d = dur / s;
+    if (freq > 0) {
+      playNote(freq, d * 0.74, t, 'triangle', 0.12, gg);
+      if (!isAmbient && section.intensity >= 2) playNote(freq, d * 0.65, t, 'sawtooth', 0.05, gg);
+    }
+    t += d;
+  }
+  // Drums only in non-intro sections
+  if (!isAmbient) {
+    for (let beat = 0; beat < loopDuration; beat += 0.5 / s) {
+      const ko = ctx.createOscillator(); const kg = ctx.createGain();
+      ko.type = 'sine';
+      ko.frequency.setValueAtTime(155, now + beat);
+      ko.frequency.exponentialRampToValueAtTime(0.01, now + beat + 0.16 / s);
+      kg.gain.setValueAtTime(section.intensity >= 2 ? 0.30 : 0.22, now + beat);
+      kg.gain.exponentialRampToValueAtTime(0.001, now + beat + 0.16 / s);
+      ko.connect(kg); kg.connect(gg);
+      ko.start(now + beat); ko.stop(now + beat + 0.18 / s);
+    }
+    if (section.intensity >= 1) {
+      for (let beat = 0.25 / s; beat < loopDuration; beat += 0.5 / s) {
+        const ho = ctx.createOscillator(); const hg = ctx.createGain();
+        ho.type = 'square'; ho.frequency.value = 6200;
+        hg.gain.setValueAtTime(0.016, now + beat);
+        hg.gain.exponentialRampToValueAtTime(0.001, now + beat + 0.04 / s);
+        ho.connect(hg); hg.connect(gg);
+        ho.start(now + beat); ho.stop(now + beat + 0.05 / s);
+      }
+    }
+  } else {
+    // Ambient: soft pad shimmer
+    for (let beat = 0; beat < loopDuration; beat += 4.0 / s) {
+      const ho = ctx.createOscillator(); const hg = ctx.createGain();
+      ho.type = 'sine'; ho.frequency.value = 2600;
+      hg.gain.setValueAtTime(0.012, now + beat);
+      hg.gain.exponentialRampToValueAtTime(0.001, now + beat + 1.5 / s);
+      ho.connect(hg); hg.connect(gg);
+      ho.start(now + beat); ho.stop(now + beat + 1.6 / s);
+    }
+  }
+  return loopDuration;
+};
+
+// ── Boss music playback ─────────────────────────────────────────────────────
 const playBossBar = () => {
   const ctx = getCtx();
   const now = ctx.currentTime;
   const loopDuration = getArrayDuration(BOSS_MELODY);
   const gg = getGameGain();
 
-  // Boss lead: aggressive sawtooth
   let t = now;
   for (const [freq, dur] of BOSS_MELODY) {
     if (freq > 0) playNote(freq, dur * 0.75, t, 'sawtooth', 0.13, gg);
     t += dur;
   }
-
-  // Heavy bass: triangle + sawtooth layer for grit
   t = now;
   for (const [freq, dur] of BOSS_BASS) {
     if (freq > 0) {
@@ -426,8 +751,6 @@ const playBossBar = () => {
     }
     t += dur;
   }
-
-  // Low drone — A2 pedal tone, buzzy, creates weight
   const drone = ctx.createOscillator(); const droneG = ctx.createGain();
   drone.type = 'sawtooth'; drone.frequency.value = N.A2;
   droneG.gain.setValueAtTime(0.09, now);
@@ -436,7 +759,6 @@ const playBossBar = () => {
   drone.connect(droneG); droneG.connect(gg);
   drone.start(now); drone.stop(now + loopDuration);
 
-  // Tritone sting (Eb) accent — hits on every 4th 16th note for dissonance
   for (let beat = 0.48; beat < loopDuration; beat += 0.96) {
     const s = ctx.createOscillator(); const sg = ctx.createGain();
     s.type = 'square'; s.frequency.value = N.Eb3;
@@ -445,8 +767,6 @@ const playBossBar = () => {
     s.connect(sg); sg.connect(gg);
     s.start(now + beat); s.stop(now + beat + 0.09);
   }
-
-  // Heavy kick — syncopated pattern
   for (let beat = 0; beat < loopDuration; beat += 0.24) {
     const ko = ctx.createOscillator(); const kg = ctx.createGain();
     ko.type = 'sine';
@@ -457,8 +777,6 @@ const playBossBar = () => {
     ko.connect(kg); kg.connect(gg);
     ko.start(now + beat); ko.stop(now + beat + 0.15);
   }
-
-  // Sharp snare on 2 and 4
   for (let beat = 0.48; beat < loopDuration; beat += 0.96) {
     const so = ctx.createOscillator(); const sg = ctx.createGain();
     so.type = 'square'; so.frequency.value = 260;
@@ -467,8 +785,6 @@ const playBossBar = () => {
     so.connect(sg); sg.connect(gg);
     so.start(now + beat); so.stop(now + beat + 0.07);
   }
-
-  // Fast 32nd-note hi-hat
   for (let beat = 0; beat < loopDuration; beat += 0.06) {
     const ho = ctx.createOscillator(); const hg = ctx.createGain();
     ho.type = 'square'; ho.frequency.value = 11000;
@@ -479,66 +795,80 @@ const playBossBar = () => {
   }
 };
 
-// ── Loop managers ─────────────────────────────────────────────────────────────
-const restartMusicLoop = (scale) => {
-  if (musicInterval) { clearInterval(musicInterval); musicInterval = null; }
-  const loopMs = getArrayDuration(MELODY) * 1000 / scale;
-  playMusicBar(scale);
-  musicInterval = setInterval(() => { if (isMusicPlaying) playMusicBar(tempoScale); }, loopMs);
+// ── Section-based loop managers ─────────────────────────────────────────────
+const scheduleNext = (intervalVarName, playFn, keepPlayingGetter) => {
+  // Chain sections by scheduling the next one when the current section ends.
+  const dur = playFn();
+  const ms = dur * 1000;
+  const id = setTimeout(() => {
+    if (!keepPlayingGetter()) return;
+    scheduleNext(intervalVarName, playFn, keepPlayingGetter);
+  }, ms);
+  // Store the timeout id the same way as old intervals so stopMusic clears it
+  if (intervalVarName === 'music') musicInterval = id;
+  else if (intervalVarName === 'boss') bossMusicInterval = id;
+  else if (intervalVarName === 'title') titleMusicInterval = id;
+  else if (intervalVarName === 'summary') summaryMusicInterval = id;
+  else if (intervalVarName === 'inverse') inverseMusicInterval = id;
 };
 
-const restartPleasantLoop = () => {
-  if (musicInterval) { clearInterval(musicInterval); musicInterval = null; }
-  const loopMs = getArrayDuration(PLEASANT_MELODY) * 1000;
-  playPleasantBar();
-  musicInterval = setInterval(() => { if (isMusicPlaying) playPleasantBar(); }, loopMs);
+// keepSection: when true, don't reset the section index (used for tempo-change
+// restarts so the music picks up where it left off at the new tempo).
+const restartSlopLoop = (scale, keepSection = false) => {
+  if (musicInterval) { clearTimeout(musicInterval); clearInterval(musicInterval); musicInterval = null; }
+  if (!keepSection) slopSectionIdx = 0;
+  if (gameGain) { gameGain.disconnect(); gameGain = null; }
+  scheduleNext('music', () => playSlopSection(scale), () => isMusicPlaying);
+};
+
+const restartChillLoop = (scale = 1.0, keepSection = false) => {
+  if (musicInterval) { clearTimeout(musicInterval); clearInterval(musicInterval); musicInterval = null; }
+  if (!keepSection) chillSectionIdx = 0;
+  if (gameGain) { gameGain.disconnect(); gameGain = null; }
+  scheduleNext('music', () => playChillSection(scale), () => isMusicPlaying);
+};
+
+const restartIronLoop = (scale = 1.0, keepSection = false) => {
+  if (musicInterval) { clearTimeout(musicInterval); clearInterval(musicInterval); musicInterval = null; }
+  if (!keepSection) ironSectionIdx = 0;
+  if (gameGain) { gameGain.disconnect(); gameGain = null; }
+  scheduleNext('music', () => playIronSection(scale), () => isMusicPlaying);
 };
 
 const restartBossLoop = () => {
-  if (bossMusicInterval) { clearInterval(bossMusicInterval); bossMusicInterval = null; }
+  if (bossMusicInterval) { clearTimeout(bossMusicInterval); clearInterval(bossMusicInterval); bossMusicInterval = null; }
   const loopMs = getArrayDuration(BOSS_MELODY) * 1000;
   playBossBar();
   bossMusicInterval = setInterval(() => { if (isBossMusicPlaying) playBossBar(); }, loopMs);
 };
 
-// ── Summary / between-rounds music ───────────────────────────────────────────
-// Sloppy style: C major, upbeat victory fanfare, ~3.8s loop
-// Chill style:  C–Am slow ambient, ~3.8s loop (sine waves, no kick)
-
-// Chill summary: slow, gentle, sine-based — matches pleasant game music feel
+// ── Summary / between-rounds music (short loops, kept concise) ───────────────
+// Chill summary — Meat Boy-style brief warm hook (~4s)
 const SUMMARY_CHILL_MELODY = [
-  // C major — gentle rising phrase (1.90s)
-  [N.E5,0.55],[0,0.10],[N.G5,0.50],[0,0.10],[N.A5,0.45],[0,0.20],
-  // Am — soft resolution (1.90s)
-  [N.A5,0.65],[0,0.10],[N.G5,0.50],[0,0.10],[N.E5,0.45],[0,0.10],
+  [N.G5,0.30],[N.B5,0.30],[N.D6,0.45],[0,0.10],
+  [N.C6,0.30],[N.B5,0.30],[N.G5,0.55],[0,0.15],
+  [N.E5,0.30],[N.G5,0.30],[N.D5,0.55],[0,0.15],
 ];
-// Total: 1.90 + 1.90 = 3.80s
-
 const SUMMARY_CHILL_BASS = [
-  [N.C3,0.95],[N.E3,0.95],   // C major  1.90s
-  [N.A3,0.95],[N.E3,0.95],   // Am       1.90s
+  [N.G3,0.50],[N.D3,0.50],
+  [N.C3,0.50],[N.G2,0.50],
+  [N.E3,0.50],[N.G2,0.65],
 ];
-// Total: 0.95×4 = 3.80s
 
+// Slop summary — Undertale ruins-ish minor key with dancing D-minor hook (~4s)
 const SUMMARY_MELODY = [
-  // Bar 1: Rising arpeggio flourish
-  [N.C5,0.09],[N.E5,0.09],[N.G5,0.09],[N.C6,0.18],[0,0.06],
-  [N.B5,0.09],[N.A5,0.09],[N.G5,0.09],[0,0.06],
-  // Bar 2: F major color with 6th
-  [N.F5,0.12],[N.A5,0.12],[N.C6,0.12],[N.A5,0.20],[0,0.06],
-  [N.G5,0.09],[N.F5,0.09],[N.E5,0.09],[0,0.06],
-  // Bar 3: Tension — Am walk to G
-  [N.A5,0.10],[N.G5,0.10],[N.F5,0.10],[N.E5,0.10],[N.D5,0.10],[0,0.06],
-  [N.E5,0.10],[N.G5,0.10],[N.B5,0.10],[0,0.06],
-  // Bar 4: Bright resolution
-  [N.C6,0.22],[N.G5,0.14],[N.E5,0.14],[N.C5,0.38],[0,0.10],
+  [N.D5,0.10],[N.F5,0.10],[N.A5,0.10],[N.D6,0.18],[0,0.05],
+  [N.A5,0.10],[N.G5,0.10],[N.F5,0.10],[N.E5,0.10],[0,0.05],
+  [N.F5,0.10],[N.A5,0.10],[N.D6,0.10],[N.A5,0.18],[0,0.05],
+  [N.Cs5,0.10],[N.E5,0.10],[N.G5,0.10],[N.A5,0.10],[0,0.05],
+  [N.D6,0.14],[N.A5,0.12],[N.F5,0.12],[N.D5,0.34],[0,0.10],
 ];
-
 const SUMMARY_BASS = [
-  [N.C3,0.21],[N.G3,0.21],[N.E3,0.21],[N.G3,0.21],
-  [N.F3,0.24],[N.C4,0.24],[N.A3,0.24],[N.F3,0.25],
-  [N.A3,0.23],[N.E3,0.23],[N.C3,0.23],[N.G3,0.23],
-  [N.C3,0.25],[N.E3,0.24],[N.G3,0.24],[N.C3,0.25],
+  [N.D3,0.20],[N.A3,0.20],[N.F3,0.20],[N.A3,0.20],
+  [N.Bb2,0.20],[N.F3,0.20],[N.A3,0.20],[N.Bb3,0.20],
+  [N.F3,0.20],[N.A3,0.20],[N.D4,0.20],[N.A3,0.23],
+  [N.A2,0.20],[N.E3,0.20],[N.A3,0.20],[N.Cs4,0.23],
+  [N.D3,0.70],
 ];
 
 let isSummaryMusicPlaying = false;
@@ -562,7 +892,7 @@ const playChillSummaryBar = () => {
   for (const [freq, dur] of SUMMARY_CHILL_MELODY) {
     if (freq > 0) {
       playNote(freq, dur * 0.85, t, 'sine', 0.09, sg);
-      playNote(freq * 0.5, dur * 0.80, t, 'sine', 0.04, sg); // sub-octave warmth
+      playNote(freq * 0.5, dur * 0.80, t, 'sine', 0.04, sg);
     }
     t += dur;
   }
@@ -581,7 +911,7 @@ const playSlopSummaryBar = () => {
   for (const [freq, dur] of SUMMARY_MELODY) {
     if (freq > 0) {
       playNote(freq, dur * 0.82, t, 'square', 0.10, sg);
-      playNote(freq * 0.5, dur * 0.78, t, 'triangle', 0.05, sg); // octave lower for warmth
+      playNote(freq * 0.5, dur * 0.78, t, 'triangle', 0.05, sg);
     }
     t += dur;
   }
@@ -591,7 +921,6 @@ const playSlopSummaryBar = () => {
     t += dur;
   }
   const loopDuration = getArrayDuration(SUMMARY_MELODY);
-  // Light kick on beat 1
   for (let beat = 0; beat < loopDuration; beat += 0.95) {
     const ko = ctx.createOscillator(); const kg = ctx.createGain();
     ko.type = 'sine';
@@ -610,8 +939,7 @@ const playSummaryBar = () => {
 };
 
 const restartSummaryLoop = () => {
-  if (summaryMusicInterval) { clearInterval(summaryMusicInterval); summaryMusicInterval = null; }
-  // Pick loop duration for the current style so the interval fires at the right time.
+  if (summaryMusicInterval) { clearInterval(summaryMusicInterval); clearTimeout(summaryMusicInterval); summaryMusicInterval = null; }
   const melody = currentMusicStyle === 'pleasant' ? SUMMARY_CHILL_MELODY : SUMMARY_MELODY;
   const loopMs = getArrayDuration(melody) * 1000;
   playSummaryBar();
@@ -627,51 +955,39 @@ export const startSummaryMusic = () => {
   sg.gain.cancelScheduledValues(ctx.currentTime);
   const curGain = sg.gain.value;
   sg.gain.setValueAtTime(curGain, ctx.currentTime);
-  // If gain is already near full (e.g. RoundSummary → RoundIntro handoff),
-  // skip the fade-in so there's no audible dip or restart.
   if (curGain < 0.9) {
     sg.gain.linearRampToValueAtTime(1.0, ctx.currentTime + 0.12);
   }
-  // Only restart the loop if the interval was cleared (e.g. stopSummaryMusic ran)
   if (!summaryMusicInterval) restartSummaryLoop();
 };
 
 export const stopSummaryMusic = () => {
   isSummaryMusicPlaying = false;
-  if (summaryMusicInterval) { clearInterval(summaryMusicInterval); summaryMusicInterval = null; }
+  if (summaryMusicInterval) { clearInterval(summaryMusicInterval); clearTimeout(summaryMusicInterval); summaryMusicInterval = null; }
   if (summaryGain) {
     const sg = summaryGain;
     summaryGain = null;
     const ctx = getCtx();
     sg.gain.cancelScheduledValues(ctx.currentTime);
     sg.gain.setValueAtTime(sg.gain.value, ctx.currentTime);
-    // 15ms fade — fast enough to avoid click, short enough to eliminate audible
-    // overlap with the next track that starts immediately after this cleanup.
     sg.gain.linearRampToValueAtTime(0.0001, ctx.currentTime + 0.015);
     setTimeout(() => { try { sg.disconnect(); } catch (e) {} }, 25);
   }
 };
 
-// ── Inverse mode music ────────────────────────────────────────────────────────
-// D minor, haunting/ethereal, no drums, ~5.5s loop
-
+// ── Inverse mode music ──────────────────────────────────────────────────────
 const INVERSE_MELODY = [
-  // Dm — descending haunting motif
   [N.A5,0.22],[0,0.06],[N.F5,0.18],[N.D5,0.18],[N.C5,0.18],[N.A4,0.44],[0,0.12],
-  // Gm — Bb adds minor color
   [N.G4,0.14],[N.Bb4,0.14],[N.D5,0.14],[N.G5,0.36],[0,0.10],
   [N.F5,0.14],[N.D5,0.14],[N.Bb4,0.28],[0,0.10],
-  // A7 — tritone tension: Eb against A
   [N.E5,0.20],[N.Cs5,0.16],[N.A4,0.16],[N.G4,0.16],[N.Eb4,0.38],[0,0.12],
-  // Dm resolution with chromatic approach
   [N.D5,0.22],[N.F5,0.18],[N.A5,0.18],[N.F5,0.18],[N.D5,0.50],[0,0.12],
 ];
-
 const INVERSE_BASS = [
-  [N.D3,0.35],[N.A3,0.35],[N.F3,0.35],[N.D3,0.33],   // Dm  ~1.38s
-  [N.G3,0.39],[N.D3,0.39],[N.Bb3,0.38],[N.G3,0.38],   // Gm  ~1.54s
-  [N.A3,0.30],[N.E3,0.30],[N.Cs4,0.30],[N.A3,0.28],   // A7  ~1.18s
-  [N.D3,0.35],[N.F3,0.35],[N.A3,0.35],[N.D3,0.35],    // Dm  ~1.40s
+  [N.D3,0.35],[N.A3,0.35],[N.F3,0.35],[N.D3,0.33],
+  [N.G3,0.39],[N.D3,0.39],[N.Bb3,0.38],[N.G3,0.38],
+  [N.A3,0.30],[N.E3,0.30],[N.Cs4,0.30],[N.A3,0.28],
+  [N.D3,0.35],[N.F3,0.35],[N.A3,0.35],[N.D3,0.35],
 ];
 
 let isInverseMusicPlaying = false;
@@ -691,29 +1007,25 @@ const playInverseBar = () => {
   const ctx = getCtx();
   const now = ctx.currentTime;
   const ig = getInverseGain();
-  // Melody: warm sine with slight chorus for ethereal feel
   let t = now;
   for (const [freq, dur] of INVERSE_MELODY) {
     if (freq > 0) {
       playNote(freq, dur * 0.88, t, 'sine', 0.11, ig);
-      playNote(freq * 1.006, dur * 0.85, t, 'sine', 0.04, ig); // detune for chorus
-      playNote(freq * 0.5, dur * 0.80, t, 'sine', 0.03, ig);   // sub-octave shimmer
+      playNote(freq * 1.006, dur * 0.85, t, 'sine', 0.04, ig);
+      playNote(freq * 0.5, dur * 0.80, t, 'sine', 0.03, ig);
     }
     t += dur;
   }
-  // Bass: soft triangle
   t = now;
   for (const [freq, dur] of INVERSE_BASS) {
     if (freq > 0) playNote(freq, dur * 0.75, t, 'triangle', 0.12, ig);
     t += dur;
   }
-  // Chord pads: sustained minor chords
-  const loopDuration = getArrayDuration(INVERSE_MELODY);
   const padChords = [
-    { start: 0,    dur: 1.38, notes: [N.D3, N.F3, N.A3] },   // Dm
-    { start: 1.38, dur: 1.54, notes: [N.G3, N.Bb3, N.D4] },  // Gm
-    { start: 2.92, dur: 1.18, notes: [N.A3, N.Cs4, N.E4] },  // A7
-    { start: 4.10, dur: 1.40, notes: [N.D3, N.F3, N.A3] },   // Dm
+    { start: 0,    dur: 1.38, notes: [N.D3, N.F3, N.A3] },
+    { start: 1.38, dur: 1.54, notes: [N.G3, N.Bb3, N.D4] },
+    { start: 2.92, dur: 1.18, notes: [N.A3, N.Cs4, N.E4] },
+    { start: 4.10, dur: 1.40, notes: [N.D3, N.F3, N.A3] },
   ];
   for (const pad of padChords) {
     for (const f of pad.notes) {
@@ -723,7 +1035,7 @@ const playInverseBar = () => {
 };
 
 const restartInverseLoop = () => {
-  if (inverseMusicInterval) { clearInterval(inverseMusicInterval); inverseMusicInterval = null; }
+  if (inverseMusicInterval) { clearInterval(inverseMusicInterval); clearTimeout(inverseMusicInterval); inverseMusicInterval = null; }
   const loopMs = getArrayDuration(INVERSE_MELODY) * 1000;
   playInverseBar();
   inverseMusicInterval = setInterval(() => { if (isInverseMusicPlaying) playInverseBar(); }, loopMs);
@@ -737,8 +1049,6 @@ export const startInverseMusic = () => {
     const ctx = getCtx();
     const ig = getInverseGain();
     ig.gain.cancelScheduledValues(ctx.currentTime);
-    // Very short 10ms ramp avoids click without creating a perceptible silence gap.
-    // Previously 200ms caused an audible dip when transitioning inverse→inverse.
     ig.gain.setValueAtTime(0, ctx.currentTime);
     ig.gain.linearRampToValueAtTime(1.0, ctx.currentTime + 0.01);
     restartInverseLoop();
@@ -747,7 +1057,7 @@ export const startInverseMusic = () => {
 
 export const stopInverseMusic = () => {
   isInverseMusicPlaying = false;
-  if (inverseMusicInterval) { clearInterval(inverseMusicInterval); inverseMusicInterval = null; }
+  if (inverseMusicInterval) { clearInterval(inverseMusicInterval); clearTimeout(inverseMusicInterval); inverseMusicInterval = null; }
   if (inverseGain) {
     const ig = inverseGain;
     inverseGain = null;
@@ -759,7 +1069,7 @@ export const stopInverseMusic = () => {
   }
 };
 
-// ── Title music playback ──────────────────────────────────────────────────────
+// ── Title music playback ────────────────────────────────────────────────────
 const playTitleSloppyBar = () => {
   const ctx = getCtx();
   const now = ctx.currentTime;
@@ -776,18 +1086,16 @@ const playTitleSloppyBar = () => {
     if (freq > 0) playNote(freq, dur * 0.75, t, 'triangle', 0.14, tg);
     t += dur;
   }
-  // Kick on every half-beat
   for (let beat = 0; beat < loopDuration; beat += 0.50) {
     const ko = ctx.createOscillator(); const kg = ctx.createGain();
     ko.type = 'sine';
     ko.frequency.setValueAtTime(155, now + beat);
     ko.frequency.exponentialRampToValueAtTime(0.01, now + beat + 0.20);
-    kg.gain.setValueAtTime(0.28, now + beat);
+    kg.gain.setValueAtTime(0.26, now + beat);
     kg.gain.exponentialRampToValueAtTime(0.001, now + beat + 0.20);
     ko.connect(kg); kg.connect(tg);
     ko.start(now + beat); ko.stop(now + beat + 0.22);
   }
-  // Snare on off-beats
   for (let beat = 0.25; beat < loopDuration; beat += 0.50) {
     const so = ctx.createOscillator(); const sg = ctx.createGain();
     so.type = 'sawtooth'; so.frequency.value = 220;
@@ -796,7 +1104,6 @@ const playTitleSloppyBar = () => {
     so.connect(sg); sg.connect(tg);
     so.start(now + beat); so.stop(now + beat + 0.10);
   }
-  // Hi-hat every quarter-beat
   for (let beat = 0; beat < loopDuration; beat += 0.25) {
     const ho = ctx.createOscillator(); const hg = ctx.createGain();
     ho.type = 'square'; ho.frequency.value = 5800;
@@ -813,7 +1120,6 @@ const playTitleChillBar = () => {
   const tg = getTitleGain();
   const loopDuration = getArrayDuration(TITLE_CHILL_MELODY);
 
-  // Melody: warm sine with chorus detune
   let t = now;
   for (const [freq, dur] of TITLE_CHILL_MELODY) {
     if (freq > 0) {
@@ -822,63 +1128,37 @@ const playTitleChillBar = () => {
     }
     t += dur;
   }
-  // Bass: soft triangle arpeggios
   t = now;
   for (const [freq, dur] of TITLE_CHILL_BASS) {
     if (freq > 0) playNote(freq, dur * 0.72, t, 'triangle', 0.10, tg);
     t += dur;
   }
-  // Chord pads: C-G-Am-F-Am-C, one per bar
-  const chordSets = [
-    [N.C4, N.E4, N.G4],
-    [N.G3, N.B3, N.D4],
-    [N.A3, N.C4, N.E4],
-    [N.F3, N.A3, N.C4],
-    [N.A3, N.C4, N.E4],
-    [N.C4, N.E4, N.G4],
-  ];
-  // Bar start times derived from bass
-  const barSizes = [4, 3, 4, 4, 4, 4];
-  let bi = 0; let bt = 0;
-  for (let b = 0; b < 6; b++) {
-    const barStart = bt;
-    const barDur = barSizes[b] === 3
-      ? TITLE_CHILL_BASS.slice(bi, bi + 3).reduce((s, [, d]) => s + d, 0)
-      : TITLE_CHILL_BASS.slice(bi, bi + 4).reduce((s, [, d]) => s + d, 0);
-    for (const f of chordSets[b]) {
-      playNote(f, barDur * 0.82, now + barStart, 'sine', 0.024, tg);
-    }
-    // Soft shimmer on bar 1
+  // Soft shimmer
+  for (let beat = 0; beat < loopDuration; beat += 2.5) {
     const ho = ctx.createOscillator(); const hg = ctx.createGain();
     ho.type = 'sine'; ho.frequency.value = 2800;
-    hg.gain.setValueAtTime(0.010, now + barStart);
-    hg.gain.exponentialRampToValueAtTime(0.001, now + barStart + 0.40);
+    hg.gain.setValueAtTime(0.010, now + beat);
+    hg.gain.exponentialRampToValueAtTime(0.001, now + beat + 0.40);
     ho.connect(hg); hg.connect(tg);
-    ho.start(now + barStart); ho.stop(now + barStart + 0.42);
-    bt += barDur;
-    bi += barSizes[b];
+    ho.start(now + beat); ho.stop(now + beat + 0.42);
   }
 };
 
 const restartTitleSloppyLoop = () => {
-  if (titleMusicInterval) { clearInterval(titleMusicInterval); titleMusicInterval = null; }
+  if (titleMusicInterval) { clearInterval(titleMusicInterval); clearTimeout(titleMusicInterval); titleMusicInterval = null; }
   const loopMs = getArrayDuration(TITLE_SLOPPY_MELODY) * 1000;
   playTitleSloppyBar();
   titleMusicInterval = setInterval(() => { if (isTitleMusicPlaying) playTitleSloppyBar(); }, loopMs);
 };
 
 const restartTitleChillLoop = () => {
-  if (titleMusicInterval) { clearInterval(titleMusicInterval); titleMusicInterval = null; }
+  if (titleMusicInterval) { clearInterval(titleMusicInterval); clearTimeout(titleMusicInterval); titleMusicInterval = null; }
   const loopMs = getArrayDuration(TITLE_CHILL_MELODY) * 1000;
   playTitleChillBar();
   titleMusicInterval = setInterval(() => { if (isTitleMusicPlaying) playTitleChillBar(); }, loopMs);
 };
 
-// ── Public API ────────────────────────────────────────────────────────────────
-
-// Resume the AudioContext if needed, then call fn. Schedules fn synchronously
-// if context is already running, otherwise awaits the resume promise so notes
-// are never scheduled against a frozen AudioContext clock.
+// ── Public API ──────────────────────────────────────────────────────────────
 const withRunningCtx = (fn) => {
   const ctx = getCtx();
   if (ctx.state === 'running') { fn(); return; }
@@ -889,9 +1169,10 @@ export const startMusic = () => {
   if (isMusicPlaying) return;
   isMusicPlaying = true;
   withRunningCtx(() => {
-    if (!isMusicPlaying) return; // stopped while awaiting resume
-    if (currentMusicStyle === 'pleasant') restartPleasantLoop();
-    else restartMusicLoop(1.0);
+    if (!isMusicPlaying) return;
+    if (isIronMode) restartIronLoop(tempoScale);
+    else if (currentMusicStyle === 'pleasant') restartChillLoop(tempoScale);
+    else restartSlopLoop(tempoScale);
   });
 };
 
@@ -899,28 +1180,22 @@ export const stopMusic = () => {
   isMusicPlaying = false;
   isBossMusicPlaying = false;
   tempoScale = 1.0;
-  if (musicInterval) { clearInterval(musicInterval); musicInterval = null; }
-  if (bossMusicInterval) { clearInterval(bossMusicInterval); bossMusicInterval = null; }
-  // Disconnect the game gain node — instantly silences any still-scheduled oscillators
+  if (musicInterval) { clearInterval(musicInterval); clearTimeout(musicInterval); musicInterval = null; }
+  if (bossMusicInterval) { clearInterval(bossMusicInterval); clearTimeout(bossMusicInterval); bossMusicInterval = null; }
   if (gameGain) { gameGain.disconnect(); gameGain = null; }
 };
 
 export const startTitleMusic = () => {
   if (isTitleMusicPlaying) {
-    // Called again while already pending (e.g. mount effect queued ctx.resume(), then
-    // user gesture fires handleFirstInteraction). Explicitly resume the context now
-    // that we have a gesture — the pending withRunningCtx promise will then resolve.
     if (audioCtx && audioCtx.state !== 'running') audioCtx.resume().catch(() => {});
     return;
   }
   isTitleMusicPlaying = true;
-  // Disconnect the old gain node so any still-running oscillators from the
-  // previous session play into silence instead of bleeding into the new one.
   if (titleGain) { titleGain.disconnect(); titleGain = null; }
   withRunningCtx(() => {
     if (!isTitleMusicPlaying) return;
     const ctx = getCtx();
-    const tg = getTitleGain(); // fresh gain node connected to masterGain
+    const tg = getTitleGain();
     tg.gain.setValueAtTime(0.0001, ctx.currentTime);
     tg.gain.linearRampToValueAtTime(1.0, ctx.currentTime + 0.15);
     if (currentMusicStyle === 'pleasant') restartTitleChillLoop();
@@ -930,10 +1205,7 @@ export const startTitleMusic = () => {
 
 export const stopTitleMusic = () => {
   isTitleMusicPlaying = false;
-  if (titleMusicInterval) { clearInterval(titleMusicInterval); titleMusicInterval = null; }
-  // Null immediately so getTitleGain() creates a fresh node on next startTitleMusic().
-  // Fade and then disconnect so the long pre-scheduled notes (chill loop = 14.75s) are
-  // properly silenced rather than bleeding into game audio.
+  if (titleMusicInterval) { clearInterval(titleMusicInterval); clearTimeout(titleMusicInterval); titleMusicInterval = null; }
   if (titleGain) {
     const ctx = getCtx();
     const tg = titleGain;
@@ -946,31 +1218,30 @@ export const stopTitleMusic = () => {
 };
 
 export const startBossMusic = () => {
-  // Stop all game-style tracks before starting boss music.
   isMusicPlaying = false;
-  if (musicInterval) { clearInterval(musicInterval); musicInterval = null; }
-  // Disconnect gameGain — silences any pre-scheduled sloppy/pleasant notes instantly.
+  if (musicInterval) { clearInterval(musicInterval); clearTimeout(musicInterval); musicInterval = null; }
   if (gameGain) { gameGain.disconnect(); gameGain = null; }
-  // Also stop inverse music in case we're entering a boss round after an inverse round.
   stopInverseMusic();
   isBossMusicPlaying = true;
   withRunningCtx(() => { if (isBossMusicPlaying) restartBossLoop(); });
 };
 
-// Speed up / slow down sloppy music tempo (no-op for other styles)
+// Speed up / slow down the active game-music tempo. Applies to slop, chill,
+// and iron modes. Boss music ignores this (it has its own feel).
 export const setMusicTempo = (scale) => {
-  if (currentMusicStyle !== 'sloppy' || isBossMusicPlaying) return;
+  if (isBossMusicPlaying) return;
   if (Math.abs(tempoScale - scale) < 0.01 || !isMusicPlaying) return;
   tempoScale = scale;
-  restartMusicLoop(scale);
+  if (isIronMode) restartIronLoop(scale, true);
+  else if (currentMusicStyle === 'pleasant') restartChillLoop(scale, true);
+  else restartSlopLoop(scale, true);
 };
 
 export const setMusicVolume = (vol) => {
   if (masterGain) masterGain.gain.value = vol;
 };
 
-// ── Countdown sounds ─────────────────────────────────────────────────────────
-// Rising pitch as tension builds: 5→low, 1→high
+// ── Countdown sounds ────────────────────────────────────────────────────────
 const COUNTDOWN_FREQS = { 5: N.A3, 4: N.B3, 3: N.D4, 2: N.E4, 1: N.G4 };
 
 export const playCountdownTick = (num) => {
@@ -980,7 +1251,6 @@ export const playCountdownTick = (num) => {
   const freq = COUNTDOWN_FREQS[num] || N.C4;
   const dur = num <= 2 ? 0.22 : 0.14;
   playNote(freq, dur, now, 'sine', 0.38);
-  // Add overtone for last two ticks — urgency
   if (num <= 2) playNote(freq * 2, dur * 0.6, now, 'sine', 0.14);
   if (num === 1) playNote(freq * 3, dur * 0.4, now, 'sine', 0.06);
 };
@@ -989,14 +1259,12 @@ export const playCountdownGo = () => {
   const ctx = getCtx();
   if (ctx.state === 'suspended') ctx.resume();
   const now = ctx.currentTime;
-  // Triumphant C major arpeggio launch
   [[N.C5, 0], [N.E5, 0.07], [N.G5, 0.14], [N.C6, 0.21]].forEach(([f, delay]) => {
     playNote(f, 0.40, now + delay, 'sine', 0.38);
   });
 };
 
-// ── Sound effects ────────────────────────────────────────────────────────────
-
+// ── Sound effects ───────────────────────────────────────────────────────────
 export const playSlopDetected = () => {
   const ctx = getCtx();
   const now = ctx.currentTime;
@@ -1036,5 +1304,28 @@ export const playGameOver = () => {
 export const initAudio = () => { getCtx(); };
 
 // Returns true if AudioContext is running (i.e. user has already interacted).
-// StartScreen uses this to auto-start title music when returning from a game.
-export const isAudioContextRunning = () => !!(audioCtx && audioCtx.state === 'running');
+export const isAudioReady = () => audioCtx && audioCtx.state === 'running';
+
+// ── Android/mobile background-pause ─────────────────────────────────────────
+// When the app goes to the background on Android (or any page-hidden event),
+// suspend the AudioContext so music doesn't keep playing. Resume automatically
+// when the page is visible again.
+let wasCtxRunningBeforeHide = false;
+if (typeof document !== 'undefined') {
+  document.addEventListener('visibilitychange', () => {
+    if (!audioCtx) return;
+    if (document.hidden) {
+      wasCtxRunningBeforeHide = audioCtx.state === 'running';
+      if (wasCtxRunningBeforeHide) audioCtx.suspend().catch(() => {});
+    } else {
+      if (wasCtxRunningBeforeHide) audioCtx.resume().catch(() => {});
+    }
+  });
+  // Extra belt-and-braces: pagehide / pageshow for older Android webviews
+  window.addEventListener('pagehide', () => {
+    if (audioCtx && audioCtx.state === 'running') audioCtx.suspend().catch(() => {});
+  });
+  window.addEventListener('pageshow', () => {
+    if (audioCtx && audioCtx.state === 'suspended' && !document.hidden) audioCtx.resume().catch(() => {});
+  });
+}

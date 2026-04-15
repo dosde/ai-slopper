@@ -2,7 +2,7 @@ import { useState, useEffect, useCallback, useRef } from 'react';
 import SlopText, { getSlopStats } from './SlopText';
 import PowerUps from './PowerUps';
 import { PopupLayer, usePopups } from './ScorePopup';
-import { playRoundComplete, playMiss, setMusicTempo, startMusic, startBossMusic, startInverseMusic, stopInverseMusic, stopMusic, stopSummaryMusic } from '../utils/audio';
+import { playRoundComplete, playMiss, setMusicTempo, startMusic, startBossMusic, startInverseMusic, stopInverseMusic, stopMusic, stopSummaryMusic, setIronMode } from '../utils/audio';
 import { t } from '../i18n/index';
 
 const ROUND_TIME_NORMAL = 45;
@@ -141,7 +141,7 @@ export default function GameScreen({ round, roundIdx, totalRounds, totalScore, o
   const foundSlop = foundIds.size;
 
   // isUrgent must be declared BEFORE the music-tempo useEffect that lists it as a dependency
-  const isUrgent = !isIronDetector && timeLeft <= 10;
+  const isUrgent = !isIronDetector && timeLeft <= 20;
 
   // Keep liveRef in sync every render so effects always have fresh values
   liveRef.current = { roundScore, foundIds, timeLeft, wrongClickCount, onRoundEnd, addPopup };
@@ -152,12 +152,14 @@ export default function GameScreen({ round, roundIdx, totalRounds, totalScore, o
     // Defensively stop any lingering summary/inverse music from RoundIntro before
     // starting game music — prevents overlap during the intro→game transition.
     stopSummaryMusic();
+    // Iron mode gets its own dedicated 3-minute epic track (not boss/inverse rounds).
+    setIronMode(isIronDetector && !isBoss && !isInverse);
     if (musicEnabled) {
       if (isBoss) startBossMusic();
       else if (isInverse) startInverseMusic();
       else startMusic();
     }
-    return () => { stopMusic(); stopInverseMusic(); };
+    return () => { stopMusic(); stopInverseMusic(); setIronMode(false); };
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
@@ -241,7 +243,7 @@ export default function GameScreen({ round, roundIdx, totalRounds, totalScore, o
     clearInterval(comboDecayIntervalRef.current);
     comboDecayDelayRef.current = null;
     comboDecayIntervalRef.current = null;
-    // Start decay: after 2s of inactivity, reduce combo by 1 every 1.2s
+    // Start decay: after 2s of inactivity, reduce combo by 1 every 2.4s
     comboDecayDelayRef.current = setTimeout(() => {
       setComboDecaying(true);
       comboDecayIntervalRef.current = setInterval(() => {
@@ -254,7 +256,7 @@ export default function GameScreen({ round, roundIdx, totalRounds, totalScore, o
           }
           return prev - 1;
         });
-      }, 1200);
+      }, 2400);
     }, 2000);
   }, []);
 
