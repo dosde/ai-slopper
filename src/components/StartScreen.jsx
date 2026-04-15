@@ -48,7 +48,7 @@ const SLOP_FACTS = [
   "The phrase 'game-changing' has not changed a single game.",
 ];
 
-export default function StartScreen({ onStart }) {
+export default function StartScreen({ onStart, onOpenCommunity }) {
   const [taglineIdx, setTaglineIdx] = useState(0);
   const [factIdx, setFactIdx] = useState(0);
   const [statusIdx, setStatusIdx] = useState(0);
@@ -581,6 +581,15 @@ export default function StartScreen({ onStart }) {
               <button className="btn-primary" onClick={handleStart} style={{ fontSize: '1rem', padding: '14px 36px' }}>
                 🎮 START DETECTING
               </button>
+              {onOpenCommunity && (
+                <button
+                  className="btn-secondary"
+                  onClick={onOpenCommunity}
+                  style={{ fontSize: '0.75rem', padding: '9px 20px' }}
+                >
+                  🌍 COMMUNITY SETS
+                </button>
+              )}
               <div style={{ color: '#334155', fontSize: '0.62rem', fontFamily: "'Orbitron', sans-serif" }}>
                 77 ROUNDS POOL • REAL AI SLOP™
               </div>
