@@ -309,9 +309,12 @@ export default function GameScreen({ round, roundIdx, totalRounds, totalScore, o
       return;
     }
 
-    // Penalty for each unfound slop phrase (deduct its full score value)
+    // Penalty for each unfound TARGET phrase (in inverse rounds, only humans count).
     const stats = getSlopStats(round, foundIds);
-    const missedTokens = stats.tokens.filter(t => !foundIds.has(t.id));
+    const targetTokens = round.inverse
+      ? stats.tokens.filter(t => t.phraseData?.type === 'human')
+      : stats.tokens;
+    const missedTokens = targetTokens.filter(t => !foundIds.has(t.id));
     const missPenalty = missedTokens.reduce((sum, t) => sum + (t.phraseData?.score ?? 80), 0);
     const cx = Math.round(window.innerWidth / 2);
 
@@ -323,14 +326,8 @@ export default function GameScreen({ round, roundIdx, totalRounds, totalScore, o
       addPopup(cx, 200, missPenalty, `💀 MISSED ${missedTokens.length} — PENALTY!`, false, true);
       delay = 1600;
     }
-
-    // Early finish: time bonus is ÷10 (1pt/s) as a penalty for skipping
-    const timeBonus = timeLeft;
-    if (timeBonus > 0) {
-      finalScore += timeBonus;
-      addPopup(cx, 160, timeBonus, `⏱ ${timeLeft}s TIME BONUS (÷10)`, false, false);
-      delay = 1800;
-    }
+    // Time bonus is intentionally NOT awarded on early finish — only a perfect
+    // clear (handled in the allFound effect above) earns the per-second bonus.
 
     setTimeout(() => onRoundEnd(finalScore, foundIds, timeLeft, wrongClickCount, false, foundCombosRef.current), delay);
   };

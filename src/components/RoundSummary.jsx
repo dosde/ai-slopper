@@ -83,7 +83,10 @@ export default function RoundSummary({ round, roundScore, foundIds, foundCombos 
   const missedTokens = round.inverse
     ? slopStats.tokens.filter(t => !foundIds.has(t.id) && t.phraseData?.type === 'human')
     : slopStats.tokens.filter(t => !foundIds.has(t.id));
-  const timeBonus = timeLeft > 0 ? timeLeft * 10 : 0;
+  // Time bonus is only awarded on a perfect clear (all targets found).
+  // Finishing early without clearing earns no bonus and triggers per-miss penalties.
+  const isPerfectClear = foundCount >= totalPhrases && totalPhrases > 0;
+  const timeBonus = isPerfectClear && timeLeft > 0 ? timeLeft * 10 : 0;
   const wrongPenalty = wrongClicks * 50;
 
   const getRating = () => {
