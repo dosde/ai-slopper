@@ -1,15 +1,15 @@
 // Supporter Tip Jar
 // ─────────────────────────────────────────────────────────────────
-// Thin abstraction that works in three environments:
-//   1. Android (Capacitor + Play Billing plugin installed) — real IAP
-//   2. Capacitor without the plugin — opens external link
-//   3. Web / PWA — opens external link (Ko-Fi / BuyMeACoffee / etc.)
+// Routing:
+//   1. Native (Capacitor + RevenueCat SDK initialised) — real IAP via Play / App Store
+//   2. Web / PWA / Capacitor without RevenueCat configured — opens external link
 //
-// To wire up real Play Billing later, install:
-//   npm i @capacitor-community/in-app-purchases
-// and create three consumable products in the Play Console with IDs:
-//   tip_small, tip_medium, tip_large  (see PRODUCT_IDS below)
-// then this module will automatically route through the plugin.
+// Wire-up:
+//   npm install @revenuecat/purchases-capacitor
+//   Set VITE_REVENUECAT_ANDROID_KEY / VITE_REVENUECAT_IOS_KEY in .env
+//   Configure products with IDs tip_small / tip_medium / tip_large in
+//   Play Console + App Store Connect + RevenueCat dashboard.
+//   initIAP() is called once from main.jsx on app boot.
 
 const TIPS_KEY = 'slop_royale_tips_v1';
 
@@ -54,21 +54,26 @@ const isCapacitorNative = () => {
   }
 };
 
-// Look up the IAP plugin at runtime via Capacitor's plugin registry.
-// This avoids a compile-time import (so the web build doesn't break) and
-// works with any community Play Billing plugin that registers itself, e.g.:
-//   - @capacitor-community/in-app-purchases  → window.Capacitor.Plugins.InAppPurchases
-//   - cordova-plugin-purchase                → window.CdvPurchase / window.store
-// Install one of them and rebuild the Android app to enable real IAPs.
-const getIAPPlugin = () => {
-  if (!isCapacitorNative()) return null;
-  try {
-    const reg = window.Capacitor?.Plugins || {};
-    return reg.InAppPurchases || reg.Purchases || reg.Billing || null;
-  } catch {
-    return null;
-  }
+// RevenueCat SDK cache — loaded on demand so the web bundle doesn't import
+// native-only modules at build time.
+let _rcPromise = null;
+const loadRevenueCat = () => {
+  if (!isCapacitorNative()) return Promise.resolve(null);
+  if (_rcPromise) return _rcPromise;
+  _rcPromise = import(
+    /* @vite-ignore */
+    '@revenuecat/purchases-capacitor'
+  ).then(mod => mod?.Purchases || null).catch(() => null);
+  return _rcPromise;
 };
+
+// Track SDK configuration status — must call Purchases.configure() once before
+// any other API. initIAP() below sets this.
+let _iapReady = false;
+
+// Cache the three StoreProduct objects once fetched. RevenueCat requires the
+// actual StoreProduct (not just an ID) to be passed to purchaseStoreProduct().
+const _productCache = new Map(); // productId -> StoreProduct
 
 // ── Persistence ─────────────────────────────────────────────────────────────
 const readTips = () => {
@@ -108,37 +113,65 @@ const recordTip = (tier) => {
 
 // ── Public API ──────────────────────────────────────────────────────────────
 
-// Attempt a tip. Returns { status: 'purchased' | 'external' | 'error', ... }
-// 'purchased' = native IAP completed. 'external' = opened fallback link. 'error' = failed.
-export const tip = async (tier) => {
-  const plugin = getIAPPlugin();
-  if (plugin) {
+// Called once from main.jsx on app boot. No-op on web.
+// Picks the right RevenueCat API key based on platform.
+export const initIAP = async () => {
+  if (!isCapacitorNative()) return;
+  const Purchases = await loadRevenueCat();
+  if (!Purchases) return;
+  try {
+    const platform = window.Capacitor?.getPlatform?.() ?? 'android';
+    const apiKey = platform === 'ios'
+      ? import.meta.env.VITE_REVENUECAT_IOS_KEY
+      : import.meta.env.VITE_REVENUECAT_ANDROID_KEY;
+    if (!apiKey) return; // no key configured → fall back to external URL
+    await Purchases.configure({ apiKey });
+    _iapReady = true;
+    // Pre-fetch products so the first tap doesn't need to round-trip the store.
     try {
-      // Plugin API varies slightly by version — use a forgiving shape.
-      const purchase = plugin.purchaseProduct
-        ? await plugin.purchaseProduct({ productId: tier.id })
-        : plugin.purchase
-          ? await plugin.purchase({ productId: tier.id })
-          : null;
-      if (purchase && (purchase.success || purchase.purchaseToken || purchase.transactionId)) {
-        // Consume so the user can tip again later
-        try {
-          if (plugin.consume) await plugin.consume({ productId: tier.id, purchaseToken: purchase.purchaseToken });
-          else if (plugin.finishTransaction) await plugin.finishTransaction({ transactionId: purchase.transactionId });
-        } catch {}
-        recordTip(tier);
-        return { status: 'purchased' };
+      const ids = TIP_TIERS.map(t => t.id);
+      const res = await Purchases.getProducts({ productIdentifiers: ids });
+      const products = res?.products ?? res ?? [];
+      for (const p of products) _productCache.set(p.identifier, p);
+    } catch { /* non-fatal; we'll retry at purchase time */ }
+  } catch { /* swallow; tip() will fall back to external URL */ }
+};
+
+// Attempt a tip. Returns { status: 'purchased' | 'external' | 'cancelled' | 'error', ... }
+export const tip = async (tier) => {
+  if (isCapacitorNative() && _iapReady) {
+    const Purchases = await loadRevenueCat();
+    if (Purchases) {
+      try {
+        let product = _productCache.get(tier.id);
+        if (!product) {
+          const res = await Purchases.getProducts({ productIdentifiers: [tier.id] });
+          const products = res?.products ?? res ?? [];
+          product = products[0];
+          if (product) _productCache.set(tier.id, product);
+        }
+        if (!product) return { status: 'error', reason: 'product_not_found' };
+
+        const purchase = await Purchases.purchaseStoreProduct({ product });
+        // RevenueCat responses vary by platform; accept any truthy transaction indicator.
+        const ok = !!(purchase?.transaction || purchase?.customerInfo || purchase?.productIdentifier);
+        if (ok) {
+          recordTip(tier);
+          return { status: 'purchased' };
+        }
+        return { status: 'error', reason: 'unknown_result' };
+      } catch (e) {
+        // RevenueCat throws with userCancelled flag on cancel
+        if (e?.userCancelled || e?.code === 'PURCHASE_CANCELLED') {
+          return { status: 'cancelled' };
+        }
+        return { status: 'error', reason: e?.message || 'iap_error' };
       }
-      return { status: 'error', reason: 'cancelled_or_unknown' };
-    } catch (e) {
-      return { status: 'error', reason: e?.message || 'iap_error' };
     }
   }
-  // Fallback: open external tip page
+  // Fallback: open external tip page (web, or native without RevenueCat configured)
   try {
     window.open(EXTERNAL_TIP_URL, '_blank', 'noopener,noreferrer');
-    // Optimistically record as "external" — don't credit toward supporter badge
-    // because we can't verify the transaction actually happened.
     return { status: 'external', url: EXTERNAL_TIP_URL };
   } catch {
     return { status: 'error', reason: 'no_window_open' };
