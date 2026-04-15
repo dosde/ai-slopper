@@ -105,15 +105,7 @@ export default function CreateSet({ lang, onBack, onCreated }) {
             ))}
           </div>
 
-          <button
-            className="btn-secondary"
-            onClick={useExamples}
-            style={{ fontSize: '0.65rem', padding: '6px 10px', marginBottom: 14 }}
-          >
-            USE EXAMPLES
-          </button>
-
-          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 8, marginBottom: 12 }}>
+<div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 8, marginBottom: 12 }}>
             <div>
               <label style={{ fontSize: '0.65rem', color: '#94a3b8', display: 'block', marginBottom: 4 }}>TITLE (OPTIONAL)</label>
               <input type="text" value={title} onChange={e => setTitle(e.target.value)} maxLength={60} style={inputStyle} placeholder="Auto-generated" />
