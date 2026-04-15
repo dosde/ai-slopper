@@ -3,6 +3,8 @@ import { initAudio, startTitleMusic, stopTitleMusic, getMusicStyle, setMusicStyl
 import Leaderboard from './Leaderboard';
 import { getLeaderboard, getDailyLeaderboard, getUnlockedAchievements, ACHIEVEMENTS, getSlopDictSorted, getSlopIndex, getXPData, getLevelFromXP, getNextLevel, getGlobalSlopIndex, getGlobalTopPhrases } from '../utils/storage';
 import { LANGS } from '../i18n/index';
+import TipJar from './TipJar';
+import { getSupporterBadge } from '../utils/tipjar';
 
 const TAGLINES = [
   "CAN YOU SPOT THE AI GARBAGE?",
@@ -62,6 +64,9 @@ export default function StartScreen({ onStart }) {
   const [quoteIdx, setQuoteIdx] = useState(0);
   const [globalSlopIndex, setGlobalSlopIndex] = useState(null);
   const [globalTopPhrases, setGlobalTopPhrases] = useState(null);
+  const [tipJarOpen, setTipJarOpen] = useState(false);
+  const [howToPlayOpen, setHowToPlayOpen] = useState(false);
+  const supporterBadge = getSupporterBadge();
 
   const unlockedIds = getUnlockedAchievements();
 
@@ -273,6 +278,27 @@ export default function StartScreen({ onStart }) {
               🏆 "{topPhrases[quoteIdx % topPhrases.length]?.text}" ×{topPhrases[quoteIdx % topPhrases.length]?.count}
             </div>
           )}
+          {supporterBadge && (
+            <div
+              onClick={() => setTipJarOpen(true)}
+              title="Thanks for supporting — tap to tip again"
+              style={{
+                fontSize: 'clamp(0.46rem, 1.5vw, 0.56rem)',
+                color: supporterBadge.color,
+                background: `${supporterBadge.color}14`,
+                border: `1px solid ${supporterBadge.color}44`,
+                borderRadius: '8px',
+                padding: '4px 8px',
+                whiteSpace: 'nowrap',
+                flexShrink: 0,
+                cursor: 'pointer',
+                fontFamily: "'Orbitron', sans-serif",
+                fontWeight: 700,
+              }}
+            >
+              {supporterBadge.emoji} {supporterBadge.label}
+            </div>
+          )}
         </div>
 
         {/* XP level bar */}
@@ -454,25 +480,47 @@ export default function StartScreen({ onStart }) {
               </div>
             </div>
 
-            {/* How to play */}
-            <div className="card" style={{ padding: '14px' }}>
-              <div style={{ fontSize: '0.62rem', color: '#94a3b8', fontFamily: "'Orbitron', sans-serif", marginBottom: '10px', letterSpacing: '1px' }}>
-                HOW TO PLAY
-              </div>
-              {[
-                ['👆', 'Click slop phrases hiding in plain text — all words look the same!'],
-                ['⚡', 'Chain detections for COMBO MULTIPLIER up to 5x (+3s per hit)'],
-                ['📡', 'Power-ups usable once per game: Radar, Time Boost, 2× Points, Streak Saver'],
-                ['⏱️', 'Finish early to earn TIME BONUS: seconds left × 10 pts'],
-                ['☠', 'IRON DETECTOR: one wrong click ends the run — no mercy'],
-                ['🧠', 'BRAINROT mode: wrong clicks corrupt the text — letters mutate!'],
-                ['🎲', '6 rounds per game (always 1 inverse + 1 boss round) from a pool of 77'],
-              ].map(([icon, text]) => (
-                <div key={icon} style={{ display: 'flex', gap: '10px', marginBottom: '8px', fontSize: '0.8rem', color: '#e2e8f0', alignItems: 'flex-start' }}>
-                  <span style={{ flexShrink: 0, width: '1.4em', textAlign: 'center' }}>{icon}</span>
-                  <span>{text}</span>
+            {/* How to play — collapsible, closed by default */}
+            <div className="card" style={{ padding: howToPlayOpen ? '14px' : '10px 14px' }}>
+              <button
+                onClick={() => setHowToPlayOpen(o => !o)}
+                style={{
+                  width: '100%',
+                  background: 'transparent',
+                  border: 'none',
+                  padding: 0,
+                  cursor: 'pointer',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'space-between',
+                  fontSize: '0.62rem',
+                  color: '#94a3b8',
+                  fontFamily: "'Orbitron', sans-serif",
+                  letterSpacing: '1px',
+                }}
+                aria-expanded={howToPlayOpen}
+              >
+                <span>HOW TO PLAY</span>
+                <span style={{ fontSize: '0.65rem', transition: 'transform 0.2s', transform: howToPlayOpen ? 'rotate(90deg)' : 'rotate(0deg)' }}>▶</span>
+              </button>
+              {howToPlayOpen && (
+                <div style={{ marginTop: '10px' }}>
+                  {[
+                    ['👆', 'Click slop phrases hiding in plain text — all words look the same!'],
+                    ['⚡', 'Chain detections for COMBO MULTIPLIER up to 5x (+3s per hit)'],
+                    ['📡', 'Power-ups usable once per game: Radar, Time Boost, 2× Points, Streak Saver'],
+                    ['⏱️', 'Finish early to earn TIME BONUS: seconds left × 10 pts'],
+                    ['☠', 'IRON DETECTOR: one wrong click ends the run — no mercy'],
+                    ['🧠', 'BRAINROT mode: wrong clicks corrupt the text — letters mutate!'],
+                    ['🎲', '6 rounds per game (always 1 inverse + 1 boss round) from a pool of 77'],
+                  ].map(([icon, text]) => (
+                    <div key={icon} style={{ display: 'flex', gap: '10px', marginBottom: '8px', fontSize: '0.8rem', color: '#e2e8f0', alignItems: 'flex-start' }}>
+                      <span style={{ flexShrink: 0, width: '1.4em', textAlign: 'center' }}>{icon}</span>
+                      <span>{text}</span>
+                    </div>
+                  ))}
                 </div>
-              ))}
+              )}
             </div>
 
             {/* Slop examples */}
@@ -492,24 +540,43 @@ export default function StartScreen({ onStart }) {
 
             {/* Music + start */}
             <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '10px', paddingBottom: '8px' }}>
-              <div style={{ display: 'flex', gap: '8px' }}>
-                <button className="btn-secondary" onClick={() => setMusicEnabled(m => !m)} style={{ fontSize: '0.7rem', padding: '7px 14px' }}>
-                  {musicEnabled ? '🎵 MUSIC: ON' : '🔇 MUSIC: OFF'}
-                </button>
-                {musicEnabled && (
-                  <button
-                    className="btn-secondary"
-                    onClick={() => {
-                      const next = musicStyle === 'sloppy' ? 'pleasant' : 'sloppy';
-                      setMusicStyle(next);
-                      setMusicStyleState(next);
-                    }}
-                    title="Switch music style — hear it live!"
-                    style={{ fontSize: '0.7rem', padding: '7px 14px' }}
-                  >
-                    {musicStyle === 'sloppy' ? '🎮 SLOPPY' : '🎶 CHILL'}
+              {/* Controls row: music cluster on left, SUPPORT pinned right */}
+              <div style={{ display: 'flex', gap: '8px', alignItems: 'center', justifyContent: 'space-between', width: '100%', flexWrap: 'nowrap' }}>
+                <div style={{ display: 'flex', gap: '6px', flexWrap: 'wrap', flex: '1 1 auto', minWidth: 0 }}>
+                  <button className="btn-secondary" onClick={() => setMusicEnabled(m => !m)} style={{ fontSize: '0.68rem', padding: '7px 12px', whiteSpace: 'nowrap' }}>
+                    {musicEnabled ? '🎵 ON' : '🔇 OFF'}
                   </button>
-                )}
+                  {musicEnabled && (
+                    <button
+                      className="btn-secondary"
+                      onClick={() => {
+                        const next = musicStyle === 'sloppy' ? 'pleasant' : 'sloppy';
+                        setMusicStyle(next);
+                        setMusicStyleState(next);
+                      }}
+                      title="Switch music style — hear it live!"
+                      style={{ fontSize: '0.68rem', padding: '7px 12px', whiteSpace: 'nowrap' }}
+                    >
+                      {musicStyle === 'sloppy' ? '🎮 SLOPPY' : '🎶 CHILL'}
+                    </button>
+                  )}
+                </div>
+                <button
+                  className="btn-secondary"
+                  onClick={() => setTipJarOpen(true)}
+                  title="Support the developer — keeps this game free and ad-free"
+                  style={{
+                    fontSize: '0.68rem',
+                    padding: '7px 12px',
+                    background: 'rgba(236,72,153,0.12)',
+                    border: '1px solid rgba(236,72,153,0.35)',
+                    color: '#ec4899',
+                    whiteSpace: 'nowrap',
+                    flexShrink: 0,
+                  }}
+                >
+                  💝 SUPPORT
+                </button>
               </div>
               <button className="btn-primary" onClick={handleStart} style={{ fontSize: '1rem', padding: '14px 36px' }}>
                 🎮 START DETECTING
@@ -675,6 +742,7 @@ export default function StartScreen({ onStart }) {
           );
         })()}
       </div>
+      {tipJarOpen && <TipJar onClose={() => setTipJarOpen(false)} />}
     </div>
   );
 }

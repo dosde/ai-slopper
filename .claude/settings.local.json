@@ -12,7 +12,8 @@
       "Bash(wc -l /c/webserver/Apache24/htdocs/wp/wp-content/plugins/ai-slopper/src/components/*.jsx)",
       "Bash(node scripts/capture-screenshots.mjs)",
       "Bash(node -e ':*)",
-      "Bash(npx vite:*)"
+      "Bash(npx vite:*)",
+      "Bash(grep -n \"Capacitor\\\\|isNativePlatform\" C:/webserver/Apache24/htdocs/wp/wp-content/plugins/ai-slopper/src/**/*.js C:/webserver/Apache24/htdocs/wp/wp-content/plugins/ai-slopper/src/**/*.jsx)"
     ]
   }
 }
