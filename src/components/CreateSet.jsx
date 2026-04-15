@@ -1,5 +1,6 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { generateSet } from '../utils/communityApi';
+import { startTitleMusic, stopTitleMusic } from '../utils/audio';
 
 const EXAMPLE_PROMPTS = [
   'How do I boil an egg?',
@@ -29,6 +30,11 @@ export default function CreateSet({ lang, onBack, onCreated }) {
   const [visibility, setVisibility] = useState('public');
   const [submitting, setSubmitting] = useState(false);
   const [error, setError] = useState('');
+
+  useEffect(() => {
+    startTitleMusic();
+    return () => stopTitleMusic();
+  }, []);
 
   const updatePrompt = (i, v) => {
     setPrompts(prev => prev.map((p, idx) => (idx === i ? v : p)));

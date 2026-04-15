@@ -1,10 +1,16 @@
 import { useEffect, useState } from 'react';
 import { getSet } from '../utils/communityApi';
+import { startTitleMusic, stopTitleMusic } from '../utils/audio';
 
 export default function SetDetail({ seed, onBack, onPlay }) {
   const [data, setData] = useState(null);
   const [error, setError] = useState('');
   const [copied, setCopied] = useState(false);
+
+  useEffect(() => {
+    startTitleMusic();
+    return () => stopTitleMusic();
+  }, []);
 
   useEffect(() => {
     let cancelled = false;

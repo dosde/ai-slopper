@@ -4349,13 +4349,25 @@ export const getDailyRounds = () => {
 export const ROUNDS = ALL_ROUNDS.slice(0, 5);
 
 // Wrap rounds loaded from a community set (server-generated) so they're shaped
-// the same way selectRounds() output is. Input is an array of 6 round objects
-// already containing { prompt, text, slopPhrases, inverse?, boss? }.
+// the same way selectRounds() output is. The LLM produces { prompt, text,
+// slopPhrases, inverse?, boss? } — components expect { context, title, emoji,
+// text, slopPhrases, ... }, so we map field names + supply defaults here.
+const COMMUNITY_EMOJI_POOL = ['🤖', '💬', '📝', '🧠', '🎯', '🔮', '⚡', '🪄', '🎲', '🚀', '🍕', '🐱'];
 export const createRoundsFromSet = (setRounds) => {
   if (!Array.isArray(setRounds) || setRounds.length === 0) return [];
-  return setRounds.map((r, i) => ({
-    ...r,
-    id: r.id ?? 200000 + i,
-    roundNumber: i + 1,
-  }));
+  return setRounds.map((r, i) => {
+    const promptText = r.prompt || r.context || '';
+    const ctx = promptText.startsWith('User asked')
+      ? promptText
+      : `User asked: "${promptText}"`;
+    return {
+      ...r,
+      id: r.id ?? 200000 + i,
+      roundNumber: i + 1,
+      title: r.title || (r.boss ? 'THE BOSS ROUND' : r.inverse ? 'THE HUMAN HUNT' : `ROUND ${i + 1}`),
+      emoji: r.emoji || (r.boss ? '👹' : COMMUNITY_EMOJI_POOL[i % COMMUNITY_EMOJI_POOL.length]),
+      context: ctx,
+      falPrompt: r.falPrompt || null, // FalImage falls back to placeholder bot
+    };
+  });
 };

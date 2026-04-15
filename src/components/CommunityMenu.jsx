@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { listSets, normaliseSeed, communityEnabled } from '../utils/communityApi';
+import { startTitleMusic, stopTitleMusic } from '../utils/audio';
 
 const cardStyle = {
   padding: '12px 14px',
@@ -16,6 +17,11 @@ export default function CommunityMenu({ lang, onBack, onOpenCreate, onOpenSet })
   const [loading, setLoading] = useState(true);
   const [seedInput, setSeedInput] = useState('');
   const [error, setError] = useState('');
+
+  useEffect(() => {
+    startTitleMusic();
+    return () => stopTitleMusic();
+  }, []);
 
   useEffect(() => {
     let cancelled = false;
