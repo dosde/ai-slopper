@@ -19,16 +19,16 @@ const VALID_TYPES = new Set([
 const INJECTION_PATTERNS = [
   /ignore (all |previous |prior )?(instructions|rules|prompts)/i,
   /disregard .{0,30}(instructions|rules|prompts)/i,
-  /system\s*:/i,
-  /you are now/i,
+  /\bsystem\s*:\s*you/i,                    // "system: you are..."
+  /you are now\b/i,
   /forget (everything|all)/i,
   /\bjailbreak\b/i,
-  /</,  // bare angle brackets could be tag injection
+  /<\s*\/?\s*(script|system|instructions|prompt)\b/i,  // HTML/tag-ish injection
 ];
 
-const BAD_WORDS = /* simple wordlist — extend as needed */ [
-  'nigger', 'faggot', 'kike', 'spic', 'chink',
-];
+// Match whole words only — substring matching hits false positives like
+// "Hispanic" → "spic", "snigger" → "nigger".
+const BAD_WORD_RE = /\b(nigger|faggot|kike|spic|chink)s?\b/i;
 
 // ── Types ─────────────────────────────────────────────────────────────────────
 interface SlopPhrase { text: string; type: string; score: number; }
@@ -54,8 +54,7 @@ async function hashIp(ip: string): Promise<string> {
 }
 
 function containsBadContent(s: string): string | null {
-  const lower = s.toLowerCase();
-  for (const w of BAD_WORDS) if (lower.includes(w)) return 'profanity';
+  if (BAD_WORD_RE.test(s)) return 'profanity';
   for (const re of INJECTION_PATTERNS) if (re.test(s)) return 'prompt_injection';
   return null;
 }
@@ -333,8 +332,12 @@ Deno.serve(async (req) => {
   const badTitle = safeTitle && containsBadContent(safeTitle);
   if (badTitle) return jsonResp({ error: `Title rejected (${badTitle})` }, 400);
 
-  // Rate limit
-  const ip = req.headers.get('x-forwarded-for')?.split(',')[0].trim() || 'unknown';
+  // Rate limit — try several headers Supabase edge runtimes may set
+  const ip =
+    req.headers.get('x-forwarded-for')?.split(',')[0].trim() ||
+    req.headers.get('x-real-ip') ||
+    req.headers.get('cf-connecting-ip') ||
+    'unknown';
   const ipHash = await hashIp(ip);
   const supabase = createClient(
     Deno.env.get('SUPABASE_URL')!,
@@ -374,7 +377,9 @@ Deno.serve(async (req) => {
       lang: safeLang, visibility: safeVisibility,
     }).select('id').single();
     if (!error && data) { setId = data.id as string; break; }
-    if (error && !String(error.message).includes('duplicate')) {
+    // 23505 = Postgres unique_violation (seed collision — retry with a new seed)
+    const code = (error as { code?: string } | null)?.code;
+    if (error && code !== '23505') {
       console.error('Insert set error', error);
       return jsonResp({ error: 'DB error' }, 500);
     }

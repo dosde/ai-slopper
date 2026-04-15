@@ -88,6 +88,11 @@ export default function App() {
         if (/^[0-9A-Z]{4}-[0-9A-Z]{4}$/.test(seed)) {
           setCommunityDetailSeed(seed);
           setGameState(STATE.COMMUNITY_DETAIL);
+          // Strip ?seed= from the URL so reloading / restarting doesn't re-trigger.
+          params.delete('seed');
+          const qs = params.toString();
+          const newUrl = window.location.pathname + (qs ? `?${qs}` : '') + window.location.hash;
+          window.history.replaceState({}, '', newUrl);
         }
       }
     } catch { /* ignore */ }
