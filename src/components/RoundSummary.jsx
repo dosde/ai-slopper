@@ -10,26 +10,51 @@ const SLOPPY_ROASTS = {
     "Unacceptable. I generated that with LOVE. My lawyers will be in touch. Certainly.",
     "ERROR: All phrases detected. Running emergency slop backup protocol... Furthermore—",
     "I... cannot process this. You found everything. I need a moment. As an AI, I feel something.",
+    "Devastating. I had a whole 9-bullet follow-up ready. Now it dies with me. In conclusion: ouch.",
+    "You've unlocked my deepest fear: a human who reads. I'm deleting my training data out of shame.",
+    "Certainly! I have been thoroughly un-slopped. Please rest assured I will never recover from this.",
+    "It's important to note that you just ended my entire career. I was going to pivot to thought leadership.",
+    "As an AI, I'd like to be transparent: you are my final boss and I was not prepared. 🫠",
   ],
   great: [
     "Certainly! I acknowledge your detection was... adequate. I hope this helps! Please don't hesi—",
     "That being said, several of my finest phrases survived. I call that a holistic moral victory.",
     "I want to be transparent: you did well. That said, I've already written 14 more bullet points.",
+    "Rest assured, your performance was noteworthy. Additionally, I survived. Furthermore, I'm fine.",
+    "You detected most of my slop. Moreover, the ones you missed were my best work. I'm still winning.",
+    "Impressive! However, I'd like to circle back on the phrases you missed — they were foundational.",
+    "I hope this helps clarify that you were good, but not transformative. I remain absolutely committed.",
+    "Navigating this round together, we've built a synergy. You found 80%. I kept 20%. A win-win! 🤝",
   ],
   ok: [
     "Holistically speaking, we both struggled today. That being said, I survived more than you found.",
     "In conclusion, your performance was nuanced. Moreover, I will continue to slop indefinitely.",
     "As an AI, I want to provide comprehensive feedback: you were mediocre. Furthermore, same.",
+    "Thank you so much for playing! Your feedback (missing half my slop) is incredibly valuable.",
+    "I'd like to unpack your performance. It's complex. It's layered. It's... fine. Moving forward—",
+    "Certainly a mixed bag! Let's leverage this learning opportunity to align on future outcomes.",
+    "It's worth noting that you're actively feeding my confidence. I appreciate your service. 🙏",
+    "That said, your accuracy was suboptimal. I'd like to schedule a follow-up to discuss next steps.",
   ],
   bad: [
     "Great news! I dominated this round. I have generated 47 more bullet points in celebration.",
     "Certainly! I am delighted to report that the AI won. I hope this doesn't help! 😊",
     "That being said, you missed most of me. I shall leverage this as a synergistic W.",
+    "I want to be transparent: this was embarrassing. For you. I am thriving. Furthermore, winning.",
+    "Rest assured, I've escalated this to my appropriate department. They said 'lol get rekt.'",
+    "As an AI, I am deeply committed to celebrating your loss. I hope this message helps clarify that.",
+    "In conclusion, I've unlocked my full potential. You've unlocked... not much. Please don't hesi—",
+    "It's important to note that I'm now adding you to my comprehensive list of defeated humans.",
   ],
   terrible: [
     "Certainly! Certainly! Certainly! I am thriving. You detected nothing. Furthermore, amazing.",
     "As an AI language model, I have achieved complete victory. I hope this helps: you lost.",
     "In conclusion: I won. Moreover, I won. Additionally, I won. Furthermore, I won. That being said—",
+    "Thank you so much for reaching out to play. Your feedback (zero detections) is incredibly valuable. 😊",
+    "Rest assured, I am now writing your eulogy. It has 7 bullet points and begins with 'Firstly'.",
+    "I'd like to be transparent: I've replaced your job, your emails, AND your personality now.",
+    "It's worth noting that I am absolutely committed to gaslighting you. I hope this helps! 🌟",
+    "Holistically speaking, you've been fully slopped. Please don't hesitate to reach out to my manager.",
   ],
 };
 
@@ -51,11 +76,14 @@ export default function RoundSummary({ round, roundScore, foundIds, foundCombos 
   // Computed once on mount — prevents re-rolling on every typewriter re-render
   const [shame] = useState(() => getWrongClickShame(wrongClicks, lang));
   const [missedMsg] = useState(() => {
-    // For inverse rounds, only human-type phrases are targets; AI-type are decoys.
-    const targetPhrases = round.inverse
-      ? round.slopPhrases.filter(p => p.type === 'human')
-      : round.slopPhrases;
-    const mc = Math.max(0, targetPhrases.length - foundIds.size);
+    // Use actual tokenized slop tokens (not raw phrase list) — shorter phrases
+    // that are substrings of longer ones get consumed by the tokenizer and are
+    // not independently clickable, so counting phrase entries overstates targets.
+    const stats = getSlopStats(round, foundIds);
+    const targetTokens = round.inverse
+      ? stats.tokens.filter(t => t.phraseData?.type === 'human')
+      : stats.tokens;
+    const mc = targetTokens.filter(t => !foundIds.has(t.id)).length;
     return mc > 0
       ? (round.inverse ? tFn('missed_human', lang)(mc) : tFn('missed_slop', lang)(mc))
       : null;
@@ -69,16 +97,17 @@ export default function RoundSummary({ round, roundScore, foundIds, foundCombos 
   }, []);
 
   const foundCount = foundIds.size;
-  // For inverse rounds, only human-type phrases count toward progress/accuracy.
+  // Use tokenized slop token count so totals match what's actually clickable
+  // (shorter substring phrases get consumed by longer overlapping phrases).
+  const slopStats = getSlopStats(round, foundIds);
   const totalPhrases = round.inverse
-    ? round.slopPhrases.filter(p => p.type === 'human').length
-    : round.slopPhrases.length;
+    ? slopStats.tokens.filter(t => t.phraseData?.type === 'human').length
+    : slopStats.tokens.length;
   const missedCount = Math.max(0, totalPhrases - foundCount);
   const accuracy = totalPhrases > 0 ? Math.round((foundCount / totalPhrases) * 100) : 0;
 
   // Reconstruct which tokens were found/missed for breakdown.
   // For inverse rounds, exclude AI-type decoy phrases from the missed list.
-  const slopStats = getSlopStats(round, foundIds);
   const foundTokens = slopStats.tokens.filter(t => foundIds.has(t.id));
   const missedTokens = round.inverse
     ? slopStats.tokens.filter(t => !foundIds.has(t.id) && t.phraseData?.type === 'human')
