@@ -35,8 +35,15 @@ export default function FalImage({ prompt, roundId, size = 200 }) {
       });
   }, [prompt, roundId]);
 
-  const botEmoji = PLACEHOLDER_BOTS[(roundId - 1) % PLACEHOLDER_BOTS.length];
-  const botColor = BOT_COLORS[(roundId - 1) % BOT_COLORS.length];
+  // roundId is numeric for curated rounds (1-9999) but community-set rounds
+  // can slip in with a non-numeric/undefined id. Coerce safely so the modulo
+  // doesn't produce NaN and the fallback art still renders. Use a
+  // positive-modulo pattern so negative / zero / null all land on a real index.
+  const rawIdx = Number.isFinite(Number(roundId)) ? Number(roundId) - 1 : 0;
+  const safeEmojiIdx = ((rawIdx % PLACEHOLDER_BOTS.length) + PLACEHOLDER_BOTS.length) % PLACEHOLDER_BOTS.length;
+  const safeColorIdx = ((rawIdx % BOT_COLORS.length) + BOT_COLORS.length) % BOT_COLORS.length;
+  const botEmoji = PLACEHOLDER_BOTS[safeEmojiIdx];
+  const botColor = BOT_COLORS[safeColorIdx];
 
   if (imageUrl) {
     return (

@@ -10,7 +10,7 @@ import SetDetail from './components/SetDetail';
 import AchievementToastLayer, { showAchievement } from './components/AchievementToast';
 import { selectRounds, getDailyRounds, createRoundsFromSet } from './data/slopData';
 import { stopMusic } from './utils/audio';
-import { checkAndUnlockAchievements, updateStats, calculateXP, addXP, incrementSlopIndex, submitGlobalSlopIndex, getLevelFromXP, getXPData } from './utils/storage';
+import { checkAndUnlockAchievements, updateStats, calculateXP, addXP, incrementSlopIndex, submitGlobalSlopIndex, getLevelFromXP, getXPData, getRecentRounds, pushRecentRounds } from './utils/storage';
 import { submitSetScore, normaliseSeed } from './utils/communityApi';
 
 function Starfield() {
@@ -120,9 +120,16 @@ export default function App() {
     if (communitySet) {
       selectedRounds = createRoundsFromSet(communitySet.rounds);
       setCommunitySeed(communitySet.set.seed);
-    } else {
-      selectedRounds = mode === 'daily' ? getDailyRounds() : selectRounds(null, l);
+    } else if (mode === 'daily') {
+      selectedRounds = getDailyRounds();
       setCommunitySeed(null);
+    } else {
+      // Pass the recently-seen round IDs so the selector biases away from them.
+      // Keeps successive free-play runs feeling fresh even with a ~40-round pool.
+      selectedRounds = selectRounds(null, l, getRecentRounds());
+      setCommunitySeed(null);
+      // Record these IDs for the next run's bias.
+      pushRecentRounds(selectedRounds.map(r => r.id));
     }
     setLang(l);
     setMusicEnabled(mu);
@@ -159,6 +166,12 @@ export default function App() {
       ironFailedRound: null,
       difficulty: diff,
       newLevel: 0,
+      // Mechanic hit counters (morph/rizz/autocorrect/madlibs achievements)
+      rizzHits: 0,
+      morphFastHits: 0,
+      autocorrectLocks: 0,
+      madlibsCursedPicks: 0,
+      madlibsSlotsFilled: 0,
     };
     setGameState(STATE.ROUND_INTRO);
   }, []);
@@ -322,6 +335,16 @@ export default function App() {
     if (id === 'radar') stats.usedRadar = true;
   }, []);
 
+  // Mechanic hit counters — fed from SlopText/MadLibs for achievement unlocks.
+  const handleMechanicHit = useCallback((type) => {
+    const stats = gameStatsRef.current;
+    if (type === 'rizz')               stats.rizzHits = (stats.rizzHits || 0) + 1;
+    else if (type === 'morph_fast')    stats.morphFastHits = (stats.morphFastHits || 0) + 1;
+    else if (type === 'autocorrect_lock') stats.autocorrectLocks = (stats.autocorrectLocks || 0) + 1;
+    else if (type === 'madlibs_cursed') stats.madlibsCursedPicks = (stats.madlibsCursedPicks || 0) + 1;
+    else if (type === 'madlibs_slot')   stats.madlibsSlotsFilled = (stats.madlibsSlotsFilled || 0) + 1;
+  }, []);
+
   const handleComboUpdate = useCallback((combo) => {
     if (combo > gameStatsRef.current.maxCombo) {
       gameStatsRef.current.maxCombo = combo;
@@ -388,6 +411,7 @@ export default function App() {
             onPowerUpUsed={handlePowerUpUsed}
             usedPowerUps={usedPowerUps}
             onRageClick={handleRageClick}
+            onMechanicHit={handleMechanicHit}
           />
         )}
 

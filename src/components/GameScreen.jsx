@@ -1,5 +1,6 @@
 import { useState, useEffect, useCallback, useRef } from 'react';
 import SlopText, { getSlopStats } from './SlopText';
+import MadLibs from './MadLibs';
 import PowerUps from './PowerUps';
 import { PopupLayer, usePopups } from './ScorePopup';
 import { playRoundComplete, playMiss, setMusicTempo, startMusic, startBossMusic, startInverseMusic, stopInverseMusic, stopMusic, stopSummaryMusic, setIronMode } from '../utils/audio';
@@ -96,7 +97,23 @@ function SlopMeter({ found, total, isInverse = false }) {
 
 const ROUND_TIME_BOSS = 60;
 
-export default function GameScreen({ round, roundIdx, totalRounds, totalScore, onRoundEnd, difficulty = 'normal', lang = 'en', musicEnabled = true, onPowerUpUsed, usedPowerUps = [], onRageClick }) {
+export default function GameScreen({ round, roundIdx, totalRounds, totalScore, onRoundEnd, difficulty = 'normal', lang = 'en', musicEnabled = true, onPowerUpUsed, usedPowerUps = [], onRageClick, onMechanicHit }) {
+  // Mad Libs rounds have a completely different UI — delegate.
+  if (round.madlibs) {
+    return (
+      <MadLibs
+        round={round}
+        roundIdx={roundIdx}
+        totalRounds={totalRounds}
+        totalScore={totalScore}
+        onRoundEnd={onRoundEnd}
+        lang={lang}
+        musicEnabled={musicEnabled}
+        onMechanicHit={onMechanicHit}
+      />
+    );
+  }
+
   const isBrainrot = difficulty === 'brainrot';
   const isIronDetector = difficulty === 'iron';
   const isBoss = !!round.boss;
@@ -149,9 +166,15 @@ export default function GameScreen({ round, roundIdx, totalRounds, totalScore, o
   // Start music when round mounts. Boss/inverse use their own tracks; regular
   // rounds restart the game music (which was stopped by the previous round's cleanup).
   useEffect(() => {
-    // Defensively stop any lingering summary/inverse music from RoundIntro before
-    // starting game music — prevents overlap during the intro→game transition.
+    // Defensively stop ALL music loops from the prior state before starting the
+    // round's own track. Previously we only stopped summary music here, which
+    // left a narrow window where a lingering slop loop could overlap with
+    // startBossMusic — making boss rounds sound like they were still playing
+    // the regular slop tune. Belt-and-braces reset is cheap and eliminates
+    // the overlap.
     stopSummaryMusic();
+    stopMusic();
+    stopInverseMusic();
     // Iron mode gets its own dedicated 3-minute epic track (not boss/inverse rounds).
     setIronMode(isIronDetector && !isBoss && !isInverse);
     if (musicEnabled) {
@@ -635,7 +658,7 @@ export default function GameScreen({ round, roundIdx, totalRounds, totalScore, o
         flexShrink: 0,
         transition: 'background 0.3s, border-color 0.3s, color 0.3s',
       }}>
-        💬 {round.context}
+        💬 {round.context || round.prompt /* fallback for legacy rounds that used `prompt` instead */}
       </div>
 
       {/* Scrollable text area */}
@@ -813,6 +836,7 @@ export default function GameScreen({ round, roundIdx, totalRounds, totalScore, o
           lang={lang}
           onCorruptionChange={setCorruptionCount}
           onTypingComplete={() => setTypingDone(true)}
+          onMechanicHit={onMechanicHit}
         />
       </div>
 

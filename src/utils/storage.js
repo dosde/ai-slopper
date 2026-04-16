@@ -12,8 +12,35 @@ const STATS_KEY = 'slop_royale_stats_v2';
 const DICT_KEY = 'slop_royale_dict_v1';
 const XP_KEY = 'slop_royale_xp_v1';
 const SLOP_INDEX_KEY = 'slop_royale_slop_index_v1';
+const RECENT_ROUNDS_KEY = 'slop_royale_recent_rounds_v1';
+// How many round IDs to remember across games. Larger = more variety but may
+// exhaust small pools. 12 is about 2 games' worth of 6-round runs.
+const RECENT_ROUNDS_CAP = 12;
 
 const getTodayKey = () => new Date().toLocaleDateString('en-CA'); // YYYY-MM-DD
+
+// ========== RECENTLY PLAYED ROUNDS ==========
+// Tracks the last N round IDs the player has seen. `selectRounds` reads this
+// to bias picks AWAY from recent rounds, so successive games don't feel repetitive
+// even when the pool is small (30-40 rounds per language).
+
+export const getRecentRounds = () => {
+  try {
+    return JSON.parse(localStorage.getItem(RECENT_ROUNDS_KEY) || '[]');
+  } catch {
+    return [];
+  }
+};
+
+export const pushRecentRounds = (ids) => {
+  try {
+    const prior = getRecentRounds();
+    const merged = [...ids, ...prior].slice(0, RECENT_ROUNDS_CAP);
+    localStorage.setItem(RECENT_ROUNDS_KEY, JSON.stringify(merged));
+  } catch {
+    // noop — quota / privacy mode
+  }
+};
 
 const API_URL    = import.meta.env.VITE_SCORES_URL;  // REST read endpoint
 const API_KEY    = import.meta.env.VITE_SCORES_KEY;  // Supabase anon key
@@ -182,6 +209,11 @@ export const ACHIEVEMENTS = [
   { id: 'daily_streak_3',  emoji: '📆', name: 'DAILY DISCIPLINE',     desc: 'Complete 3 Daily Challenges' },
   { id: 'level_5',         emoji: '⭐', name: 'LEVELED UP',           desc: 'Reach player level 5' },
   { id: 'level_10',        emoji: '🌟', name: 'SEASONED DETECTOR',    desc: 'Reach player level 10' },
+  // ── mechanic achievements (rizz / morph / autocorrect / madlibs) ─────────
+  { id: 'rizz_master',     emoji: '🔥', name: 'RIZZ MASTER',          desc: 'Catch 3 rizz phrases in one game' },
+  { id: 'morph_catcher',   emoji: '⚡', name: 'MORPH CATCHER',        desc: 'Catch 3 Double Agent phrases before they shift' },
+  { id: 'autocorrect_lock',emoji: '🔁', name: 'TERMINAL SLOPPER',     desc: 'Fully chain-lock 2 autocorrect phrases' },
+  { id: 'madlibs_perfect', emoji: '📝', name: 'MAD LIBS MAESTRO',     desc: 'Pick all cursed words in a Mad Libs round' },
 ];
 
 export const getUnlockedAchievements = () => {
@@ -262,6 +294,14 @@ export const checkAndUnlockAchievements = (gameStats) => {
   // Level-based (post-XP-award). Caller passes gameStats.newLevel after addXP.
   check('level_5',          (gameStats.newLevel || 0) >= 5);
   check('level_10',         (gameStats.newLevel || 0) >= 10);
+
+  // Mechanic-specific achievements — counters populated by SlopText/MadLibs.
+  check('rizz_master',      (gameStats.rizzHits || 0) >= 3);
+  check('morph_catcher',    (gameStats.morphFastHits || 0) >= 3);
+  check('autocorrect_lock', (gameStats.autocorrectLocks || 0) >= 2);
+  // Mad Libs perfect: all slots filled AND all picks were cursed.
+  check('madlibs_perfect',  (gameStats.madlibsSlotsFilled || 0) >= 8
+                            && (gameStats.madlibsCursedPicks || 0) >= 8);
 
   return newlyUnlocked;
 };

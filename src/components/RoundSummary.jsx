@@ -80,6 +80,12 @@ export default function RoundSummary({ round, roundScore, foundIds, foundCombos 
     // that are substrings of longer ones get consumed by the tokenizer and are
     // not independently clickable, so counting phrase entries overstates targets.
     const stats = getSlopStats(round, foundIds);
+    // Mad Libs rounds: different mechanic, no tokens — compute missed slots
+    // directly from the slot count so the summary line is still meaningful.
+    if (round.madlibs) {
+      const missed = Math.max(0, stats.total - foundIds.size);
+      return missed > 0 ? `📝 ${missed} slot${missed === 1 ? '' : 's'} left blank` : null;
+    }
     const targetTokens = round.inverse
       ? stats.tokens.filter(t => t.phraseData?.type === 'human')
       : stats.tokens;
@@ -99,10 +105,16 @@ export default function RoundSummary({ round, roundScore, foundIds, foundCombos 
   const foundCount = foundIds.size;
   // Use tokenized slop token count so totals match what's actually clickable
   // (shorter substring phrases get consumed by longer overlapping phrases).
+  // Mad Libs rounds are different: tokens[] is empty, but slopStats.total
+  // carries the slot count from the wordBank. Use that as the denominator
+  // so the summary reads "SLOTS FILLED 6/8" instead of a nonsensical "6/0".
   const slopStats = getSlopStats(round, foundIds);
-  const totalPhrases = round.inverse
-    ? slopStats.tokens.filter(t => t.phraseData?.type === 'human').length
-    : slopStats.tokens.length;
+  const isMadlibs = !!round.madlibs;
+  const totalPhrases = isMadlibs
+    ? slopStats.total
+    : round.inverse
+      ? slopStats.tokens.filter(t => t.phraseData?.type === 'human').length
+      : slopStats.tokens.length;
   const missedCount = Math.max(0, totalPhrases - foundCount);
   const accuracy = totalPhrases > 0 ? Math.round((foundCount / totalPhrases) * 100) : 0;
 
@@ -270,7 +282,11 @@ export default function RoundSummary({ round, roundScore, foundIds, foundCombos 
           {[
             { label: t('round_score', lang), value: roundScore >= 0 ? `+${roundScore.toLocaleString()}` : roundScore.toLocaleString(), color: roundScore >= 0 ? '#fbbf24' : '#ef4444' },
             { label: t('total_score', lang), value: totalScore.toLocaleString(), color: '#a78bfa' },
-            { label: round.inverse ? t('humans_found', lang) : t('slop_found', lang), value: `${foundCount}/${totalPhrases}`, color: round.inverse ? '#38bdf8' : '#10b981' },
+            {
+              label: isMadlibs ? 'SLOTS FILLED' : round.inverse ? t('humans_found', lang) : t('slop_found', lang),
+              value: `${foundCount}/${totalPhrases}`,
+              color: isMadlibs ? '#a855f7' : round.inverse ? '#38bdf8' : '#10b981',
+            },
             { label: t('accuracy', lang), value: `${accuracy}%`, color: accuracy >= 70 ? '#10b981' : accuracy >= 40 ? '#fbbf24' : '#ef4444' },
           ].map(({ label, value, color }) => (
             <div key={label} style={{

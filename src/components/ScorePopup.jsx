@@ -25,11 +25,19 @@ export const PopupLayer = ({ popups }) => (
           style={{
             left: p.x,
             top: p.y - 20,
-            fontSize: p.isMiss ? '1.1rem' : p.score >= 300 ? '2rem' : p.score >= 150 ? '1.6rem' : '1.2rem',
-            color: p.isMiss ? '#ef4444' : p.isDoubled ? '#ec4899' : '#fbbf24',
+            /* Extra tiers so cursed/rizz hits (500-8000 after 10× + combo) feel
+               like an event. Below 150 stays small; above 2000 is a "jackpot" size. */
+            fontSize: p.isMiss
+              ? '1.1rem'
+              : p.score >= 2000 ? '2.6rem'
+              : p.score >= 800 ? '2.15rem'
+              : p.score >= 300 ? '1.85rem'
+              : p.score >= 150 ? '1.55rem'
+              : '1.2rem',
+            color: p.isMiss ? '#ef4444' : p.isDoubled ? '#ec4899' : p.score >= 800 ? '#f9a8d4' : '#fbbf24',
             textShadow: p.isMiss
               ? '0 0 8px #ef4444'
-              : p.isDoubled ? '0 0 10px #ec4899' : '0 0 10px #fbbf24',
+              : p.isDoubled ? '0 0 10px #ec4899' : p.score >= 800 ? '0 0 14px #f9a8d4, 0 0 28px rgba(236,72,153,0.5)' : '0 0 10px #fbbf24',
           }}
         >
           {p.isMiss

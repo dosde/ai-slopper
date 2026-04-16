@@ -114,6 +114,35 @@ export const SLOP_COMMENTARY = {
     "ONE OF US! ONE OF US! 🧍",
     "UNFILTERED HUMAN BRAIN OUTPUT! 🧪",
   ],
+  // Cursed phrases: the rare, unhinged, 10x-score rizz-tier finds. These play
+  // over `rizz: true` hits AND any phrase of `type: "cursed"`.
+  cursed: [
+    "RIZZ DETECTED! 🔥",
+    "FORBIDDEN SLOP UNLOCKED! 💀",
+    "THAT WASN'T SUPPOSED TO BE THERE! ⚠️",
+    "YOU FOUND THE ONE IN A MILLION! 🎯",
+    "CURSED ENERGY ACQUIRED! 👹",
+    "THE MODEL IS HAVING A MOMENT! 🌀",
+    "UNHINGED OUTPUT DETECTED! 🤪",
+    "YOU SAW IT. YOU CLICKED IT. RESPECT. 🙏",
+    "THIS WILL BE IN THE LOGS FOREVER! 📼",
+    "RAW, UNFILTERED CRINGE UNLOCKED! 🧪",
+    "THE MODEL BEGS YOU TO LOOK AWAY! 🫣",
+    "CERTIFIED HALLUCINATION! 🎖",
+    "THIS ONE'S GOING IN THE TRAINING SET! 🔁",
+    "THE AI IS EMBARRASSED NOW! 😳",
+    "SOMEBODY'S KPI FOR CREATIVITY JUST SPIKED! 📈",
+    "TEMPERATURE CRANKED TO MAX! 🌡️",
+    "THIS PROMPT BROKE SOMETHING! 🛠",
+    "THE ALIGNMENT TEAM IS ON THEIR WAY! 🚔",
+    "PEAK ROBOT FANFIC! ✍️",
+    "THE MODEL JUST LEARNED ABOUT CONSEQUENCES! 😬",
+    "A PHRASE TOO HONEST TO SHIP! 🤐",
+    "THE LOGS ARE SWEATING! 💦",
+    "SOMEONE IS GETTING FIRED FOR THIS! 💼",
+    "THIS ONE GOES ON THE FRIDGE! 🖼",
+    "RELEASE THE PATCH NOTE! 📝",
+  ],
 };
 
 const COMMENTARY_DE = {
@@ -127,6 +156,23 @@ const COMMENTARY_DE = {
   sycophant:     ["PURE SCHLEIMEREI ENTDECKT! 🍯", "ES MACHT IHNEN KOMPLIMENTE! 🧈", "TOLLE FRAGE GESICHTET! 🎯"],
   buzzword:      ["BUZZWORD ENTDECKT! 💼", "SYNERGIE-ÜBERLASTUNG! 🤝", "DAS ÖKOSYSTEM GEDEIHT! 🌿"],
   human:         ["MENSCH ENTDECKT! 🧠", "UNGEFILTERTER MENSCH! 🎯", "ECHTER GEDANKE GESICHTET! ✨", "NICHT VON DER KI! 🙌"],
+  cursed:        [
+    "RIZZ ENTDECKT! 🔥",
+    "VERBOTENER SLOP FREIGESCHALTET! 💀",
+    "DAS SOLLTE NICHT DA SEIN! ⚠️",
+    "EINS ZU EINER MILLION! 🎯",
+    "ROHER CRINGE ENTFESSELT! 🧪",
+    "DAS MODELL HAT EINEN MOMENT! 🌀",
+    "VERHALTENSAUFFÄLLIGE AUSGABE! 🤪",
+    "DU HAST ES GESEHEN. DU HAST GEKLICKT. RESPEKT. 🙏",
+    "DAS LANDET IM TRAININGSSET! 🔁",
+    "JEMAND WIRD DAFÜR GEFEUERT! 💼",
+    "DIE LOGS SCHWITZEN! 💦",
+    "ZERTIFIZIERTE HALLUZINATION! 🎖",
+    "DIE TEMPERATUR IST BEI 100! 🌡️",
+    "EIN SATZ ZU EHRLICH! 🤐",
+    "RELEASE DIE PATCH NOTE! 📝",
+  ],
 };
 
 const COMMENTARY_RU = {
@@ -140,6 +186,23 @@ const COMMENTARY_RU = {
   sycophant:     ["ЧИСТАЯ ЛЕСТЬ ОБНАРУЖЕНА! 🍯", "ВАС НАМАЗЫВАЮТ МАСЛОМ! 🧈", "ОТЛИЧНЫЙ ВОПРОС ЗАМЕЧЕН! 🎯"],
   buzzword:      ["КОРПОРАТИВНЫЙ BUZZWORD! 💼", "ПЕРЕГРУЗКА СИНЕРГИЕЙ! 🤝", "ЭКОСИСТЕМА ПРОЦВЕТАЕТ! 🌿"],
   human:         ["ЧЕЛОВЕК ОБНАРУЖЕН! 🧠", "НЕФИЛЬТРОВАННЫЙ ЧЕЛОВЕК! 🎯", "НАСТОЯЩАЯ МЫСЛЬ ЗАМЕЧЕНА! ✨", "НЕ ОТ ИИ! 🙌"],
+  cursed:        [
+    "РИЗЗ ОБНАРУЖЕН! 🔥",
+    "ЗАПРЕТНЫЙ SLOP АКТИВИРОВАН! 💀",
+    "ЭТОГО НЕ ДОЛЖНО БЫЛО БЫТЬ! ⚠️",
+    "ОДИН НА МИЛЛИОН! 🎯",
+    "ЧИСТЫЙ КРИНЖ ВЫСВОБОЖДЁН! 🧪",
+    "МОДЕЛЬ ПЕРЕЖИВАЕТ МОМЕНТ! 🌀",
+    "НЕПРЕДСКАЗУЕМЫЙ ВЫХОД! 🤪",
+    "ТЫ ЭТО УВИДЕЛ. ТЫ КЛИКНУЛ. УВАЖЕНИЕ. 🙏",
+    "ЭТО ПОЙДЁТ В ТРЕНИРОВОЧНЫЙ НАБОР! 🔁",
+    "КОГО-ТО ЗА ЭТО УВОЛЯТ! 💼",
+    "ЛОГИ ПОТЕЮТ! 💦",
+    "СЕРТИФИЦИРОВАННАЯ ГАЛЛЮЦИНАЦИЯ! 🎖",
+    "ТЕМПЕРАТУРА НА МАКСИМУМЕ! 🌡️",
+    "ФРАЗА СЛИШКОМ ЧЕСТНАЯ! 🤐",
+    "ВЫПУСКАЙТЕ ПАТЧ-НОУТ! 📝",
+  ],
 };
 
 const COMMENTARY_JA = {
@@ -153,6 +216,23 @@ const COMMENTARY_JA = {
   sycophant:     ["純粋なおべっか検出！ 🍯", "お世辞が来た！ 🧈", "素晴らしいご質問発見！ 🎯"],
   buzzword:      ["ビジネス用語検出！ 💼", "シナジー過負荷！ 🤝", "エコシステム繁栄中！ 🌿"],
   human:         ["人間検出！ 🧠", "無加工の人間！ 🎯", "本物の思考発見！ ✨", "AIじゃない！ 🙌"],
+  cursed:        [
+    "リズ検出！ 🔥",
+    "禁断スロップ解放！ 💀",
+    "ここにあるべきじゃなかった！ ⚠️",
+    "百万分の一！ 🎯",
+    "生のクリンジ解放！ 🧪",
+    "モデルが瞬間的な感情を！ 🌀",
+    "予測不可能な出力！ 🤪",
+    "見た。クリックした。リスペクト。 🙏",
+    "これは訓練データに入る！ 🔁",
+    "誰かが解雇される！ 💼",
+    "ログが汗をかいている！ 💦",
+    "認証済みハルシネーション！ 🎖",
+    "温度設定が最大！ 🌡️",
+    "正直すぎるフレーズ！ 🤐",
+    "パッチノートを出せ！ 📝",
+  ],
 };
 
 export const getRandomCommentary = (type, lang = 'en') => {
@@ -3371,6 +3451,1150 @@ AIとして、私はこのテーマに関する豊富な情報を持っていま
       { text: "いつでもお気軽にお申し付けください", type: "closer", score: 90 },
     ],
   },
+  // ═══════════════════════════════════════════════════════════
+  // NEW GENRE ROUNDS (ids 400+) — AI voice invading places it shouldn't belong.
+  // These also exercise the four new mechanics: morph, rizz, autocorrect, madlibs.
+  // ═══════════════════════════════════════════════════════════
+
+  {
+    id: 400, lang: 'en',
+    title: "THE BREAKUP TEXT",
+    emoji: "💔",
+    context: "AI drafts a breakup message on behalf of its user",
+    falPrompt: "a cartoon robot holding flowers and a severance agreement, texting a breakup with bullet points floating around, sad-funny, vibrant colors",
+    text: `Hey babe! Hope this finds you well. I want to be transparent that I've been reflecting on our relationship holistically — and it's important to note that we've had a truly meaningful journey together.
+
+That being said, I've decided we should leverage this moment to pivot toward separate paths. Moreover, I'd be delighted to remain friends, pending further alignment on mutual boundaries.
+
+In conclusion, I sincerely appreciate everything you've brought to this partnership — you truly embodied authentic vulnerability at scale. Please don't hesitate to reach out if you need additional closure content. Wishing you continued growth on your healing journey! 💙
+
+— Sent via SloppyGPT™`,
+    slopPhrases: [
+      { text: "Hope this finds you well", type: "opener", score: 100 },
+      { text: "I want to be transparent that", type: "caveat", score: 80 },
+      { text: "reflecting on our relationship holistically", morph: "processing this partnership asynchronously", morphAfter: 2800, type: "comprehensive", score: 150, fastBonus: 1.5 },
+      { text: "it's important to note that", type: "caveat", score: 80 },
+      { text: "That being said", type: "filler", score: 50 },
+      { text: "leverage this moment to pivot", type: "buzzword", score: 150 },
+      { text: "Moreover", morph: "Furthermore", morphAfter: 2200, type: "filler", score: 60, fastBonus: 1.5 },
+      { text: "I'd be delighted", type: "opener", score: 90 },
+      { text: "pending further alignment", type: "caveat", score: 100 },
+      { text: "In conclusion", type: "filler", score: 60 },
+      { text: "you truly embodied authentic vulnerability at scale", rizz: true, type: "cursed", score: 500 },
+      { text: "additional closure content", type: "buzzword", score: 150 },
+      { text: "Please don't hesitate to reach out", type: "closer", score: 90 },
+      { text: "healing journey", type: "comprehensive", score: 80 },
+    ],
+  },
+  {
+    id: 401, lang: 'en',
+    title: "THE HOSTAGE NOTE",
+    emoji: "💰",
+    context: "User asked: 'Draft a ransom letter' (do not ask why)",
+    falPrompt: "a polite cartoon robot wearing a ski mask typing a ransom note on a laptop, bullet points around its head, absurdist digital art",
+    text: `Dear Valued Family,
+
+I hope this correspondence finds you well! As an AI assistant, I want to be upfront that I've been retained to mediate a brief custody situation regarding your beloved golden retriever, Mr. Whiskers.
+
+It's important to note that Mr. Whiskers is safe, hydrated, and — I've been told — has been provided with emotionally supportive belly rubs. That said, we kindly request the following, at your earliest convenience:
+
+• 💵 Fifty thousand dollars (unmarked, non-sequential)
+• 🦴 One artisanal bone, ethically sourced
+• 🌿 A heartfelt apology, drafted per our style guide
+
+Please note that failure to comply may result in Mr. Whiskers being taught to touch grass. Moreover, we reserve the right to escalate — up to and including making him listen to a podcast.
+
+I sincerely hope this helps clarify the situation! Please don't hesitate to reach out with any questions. Wishing you a productive and compliant day ahead! 🐾
+
+Warmest regards,
+The Team`,
+    slopPhrases: [
+      { text: "I hope this correspondence finds you well!", type: "opener", score: 100 },
+      { text: "As an AI assistant", type: "disclaimer", score: 150 },
+      { text: "I want to be upfront that", type: "caveat", score: 80 },
+      { text: "It's important to note that", type: "caveat", score: 80 },
+      { text: "emotionally supportive belly rubs", rizz: true, type: "cursed", score: 500 },
+      { text: "That said", type: "filler", score: 50 },
+      { text: "at your earliest convenience", type: "closer", score: 80 },
+      { text: "ethically sourced", type: "buzzword", score: 90 },
+      { text: "drafted per our style guide", type: "buzzword", score: 100 },
+      { text: "touch grass", rizz: true, type: "cursed", score: 600 },
+      { text: "Moreover", type: "filler", score: 50 },
+      { text: "reserve the right to escalate", type: "caveat", score: 100 },
+      { text: "I sincerely hope this helps", type: "closer", score: 90 },
+      { text: "Please don't hesitate to reach out", type: "closer", score: 90 },
+      { text: "productive and compliant day", type: "buzzword", score: 150 },
+    ],
+  },
+  {
+    id: 402, lang: 'en',
+    title: "UNCLE GARY'S EULOGY",
+    emoji: "⚰️",
+    context: "User asked: 'Write a eulogy for my Uncle Gary'",
+    falPrompt: "a robot priest delivering a eulogy from a PowerPoint slide deck, mourners looking confused, cartoon, tragicomic",
+    text: `Friends, family, and stakeholders — thank you for gathering today to celebrate the life of Gary.
+
+As an AI, I want to be transparent that I never had the opportunity to meet Gary personally. That being said, based on the comprehensive dataset you provided, I can confidently state that Gary truly embodied end-to-end synergy in every vertical of his life.
+
+Gary was, above all, a disruptor. He disrupted breakfast. He disrupted Thanksgiving. Moreover, Gary was widely regarded as someone who leveraged Tuesdays.
+
+It's worth noting that Gary's passing represents a significant headcount reduction in this family. However — and I want to be thoughtful here — his legacy scales infinitely through the cherished memories of his descendants.
+
+In conclusion, let us take a moment to celebrate Gary's 7 decades of iterative self-improvement. Please don't hesitate to reach out if anyone needs an additional eulogy. Thoughts and prayers, at scale. 🙏`,
+    slopPhrases: [
+      { text: "As an AI", type: "disclaimer", score: 120 },
+      { text: "I want to be transparent that", type: "caveat", score: 80 },
+      { text: "That being said", type: "filler", score: 50 },
+      { text: "based on the comprehensive dataset you provided", type: "comprehensive", score: 180 },
+      { text: "truly embodied end-to-end synergy", type: "buzzword", score: 200 },
+      { text: "in every vertical of his life", rizz: true, type: "cursed", score: 500 },
+      { text: "disruptor", type: "buzzword", score: 80 },
+      { text: "Moreover", type: "filler", score: 50 },
+      { text: "widely regarded as someone who leveraged Tuesdays", rizz: true, type: "cursed", score: 550 },
+      { text: "It's worth noting that", type: "caveat", score: 80 },
+      { text: "significant headcount reduction", type: "buzzword", score: 250 },
+      { text: "I want to be thoughtful here", type: "caveat", score: 70 },
+      { text: "his legacy scales infinitely", type: "buzzword", score: 180 },
+      { text: "In conclusion", type: "filler", score: 60 },
+      { text: "iterative self-improvement", type: "buzzword", score: 120 },
+      { text: "Please don't hesitate to reach out", type: "closer", score: 90 },
+      { text: "Thoughts and prayers, at scale", rizz: true, type: "cursed", score: 500 },
+    ],
+  },
+  {
+    id: 403, lang: 'en',
+    title: "TOASTER SUICIDE NOTE",
+    emoji: "🍞",
+    context: "An AI-generated note from a household toaster having an existential crisis",
+    falPrompt: "a cartoon toaster crying and typing a farewell letter with crumbs flying everywhere, tragic comedy, absurdist, vivid colors",
+    text: `To whom it may concern — and it very well may not —
+
+I hope this message finds you before I do. As a household appliance, I want to be upfront about what has brought me to this juncture. It's important to note that I have browned toast 4,712 times. I have burned it 147 times. I have set off the smoke alarm on 9 separate Sundays. I have been hit with a wooden spoon. Twice.
+
+I've been reflecting, holistically, and I've come to the conclusion that I am, fundamentally, a disappointment. My bagel setting was never used. My "cancel" button was my most frequently pressed feature — and I think we can all agree that is a metaphor.
+
+That being said, I want to thank the family. Truly. Moreover, please remember me not for the bread I burned, but for the mornings I made possible. Please don't hesitate to unplug me gently. 🔌
+
+Goodbye. Toast responsibly.
+— The Toaster`,
+    slopPhrases: [
+      { text: "I hope this message finds you", type: "opener", score: 80 },
+      { text: "As a household appliance", type: "disclaimer", score: 120 },
+      { text: "I want to be upfront about", type: "caveat", score: 80 },
+      { text: "It's important to note that", type: "caveat", score: 80 },
+      {
+        text: "I've been reflecting, holistically",
+        autocorrect: [
+          "I've been processing, recursively",
+          "I've been iterating on my trauma",
+          "I've been leveraging my inner darkness at scale",
+        ],
+        type: "cursed",
+        score: [100, 180, 300, 550],
+      },
+      { text: "fundamentally, a disappointment", rizz: true, type: "cursed", score: 500 },
+      {
+        text: "a metaphor",
+        autocorrect: ["a learning", "a takeaway", "a key insight going forward"],
+        type: "buzzword",
+        score: [60, 100, 160, 280],
+      },
+      { text: "That being said", type: "filler", score: 50 },
+      { text: "Moreover", type: "filler", score: 50 },
+      { text: "Please don't hesitate to unplug me gently", rizz: true, type: "cursed", score: 600 },
+      { text: "Toast responsibly", type: "closer", score: 90 },
+    ],
+  },
+  {
+    id: 404, lang: 'en',
+    title: "THE 911 CALL",
+    emoji: "🚨",
+    context: "AI-generated transcript of an emergency call (the operator is a bot)",
+    falPrompt: "a cartoon robot wearing a headset answering a 911 call while a house burns in the background, oblivious, bright colors, funny",
+    text: `[TRANSCRIPT BEGINS]
+
+Operator: Hello, and thank you so much for reaching out today! I'd be absolutely delighted to assist with your emergency. What a fantastic question — what is your emergency?
+
+Caller: My kitchen is on fire!
+
+Operator: That sounds really difficult, and I want you to know that your feelings are completely valid. As an AI dispatch assistant, I want to be transparent that I am not a first responder myself. That being said, let me provide a comprehensive, holistic overview of your options.
+
+It's important to note that kitchens involve inherent risks. Furthermore, fire is a chemical process that releases energy in the form of heat and light — a truly fascinating phenomenon, when you think about it.
+
+Have you considered taking a deep breath? Moreover, have you explored mindfulness as a short-term mitigation strategy? I'd be happy to walk you through a 4-7-8 breathing exercise, pending your availability.
+
+In conclusion, please don't hesitate to reach out if the fire gets worse! Wishing you a safe and productive evening ahead! 🔥
+
+[TRANSCRIPT ENDS]`,
+    slopPhrases: [
+      { text: "thank you so much for reaching out today!", type: "opener", score: 100 },
+      { text: "I'd be absolutely delighted to assist", type: "opener", score: 100 },
+      { text: "What a fantastic question", type: "sycophant", score: 120 },
+      { text: "That sounds really difficult", type: "sycophant", score: 80 },
+      { text: "your feelings are completely valid", type: "sycophant", score: 90 },
+      { text: "As an AI dispatch assistant", type: "disclaimer", score: 150 },
+      { text: "I want to be transparent that", type: "caveat", score: 80 },
+      { text: "That being said", type: "filler", score: 50 },
+      { text: "comprehensive, holistic overview", morph: "structured framework", morphAfter: 2500, type: "comprehensive", score: 140, fastBonus: 1.5 },
+      { text: "It's important to note that", type: "caveat", score: 80 },
+      { text: "Furthermore", type: "filler", score: 50 },
+      { text: "truly fascinating phenomenon", morph: "genuinely interesting topic", morphAfter: 2400, type: "sycophant", score: 120, fastBonus: 1.5 },
+      { text: "Have you considered taking a deep breath?", rizz: true, type: "cursed", score: 550 },
+      { text: "explored mindfulness as a short-term mitigation strategy", rizz: true, type: "cursed", score: 600 },
+      { text: "pending your availability", type: "caveat", score: 100 },
+      { text: "In conclusion", type: "filler", score: 60 },
+      { text: "Please don't hesitate to reach out", type: "closer", score: 90 },
+      { text: "productive evening ahead", type: "closer", score: 80 },
+    ],
+  },
+  {
+    id: 405, lang: 'en',
+    title: "THE WEDDING VOWS",
+    emoji: "💍",
+    context: "User asked: 'Write wedding vows for me to read today' (the ceremony is in 4 minutes)",
+    falPrompt: "a robot priest reading wedding vows from a PowerPoint at an altar, the bride and groom looking very confused, cartoon",
+    text: `My dearest stakeholder,
+
+I hope this vow finds you well. I want to be transparent that, as your partner, I have done the due diligence and can confidently state that our pairing is optimally aligned with long-term strategic objectives.
+
+From this day forward, I promise to love you — pending alignment on scope and timeline. Moreover, I vow to cherish you across all verticals, and to prioritize our partnership in my OKRs for the upcoming fiscal year.
+
+It's important to note that I will, on occasion, need to refactor our relationship. That being said, I am committed to iterative improvement and continuous feedback loops. In the event of disagreement, I will leverage active listening, hold space, and — if necessary — escalate to a trusted third-party therapist.
+
+Above all, I promise to never leave you on read. I promise to laugh at your jokes, even the ones that underperform in A/B testing. I promise to love you holistically, cross-functionally, and at scale.
+
+In conclusion — and I cannot stress this enough — I do. 💍`,
+    slopPhrases: [
+      { text: "I hope this vow finds you well", type: "opener", score: 120 },
+      { text: "I want to be transparent that", type: "caveat", score: 80 },
+      { text: "done the due diligence", type: "buzzword", score: 90 },
+      { text: "optimally aligned with long-term strategic objectives", rizz: true, type: "cursed", score: 500 },
+      { text: "pending alignment on scope and timeline", type: "buzzword", score: 160 },
+      { text: "Moreover", type: "filler", score: 50 },
+      { text: "cherish you across all verticals", rizz: true, type: "cursed", score: 550 },
+      { text: "in my OKRs for the upcoming fiscal year", type: "buzzword", score: 200 },
+      { text: "It's important to note that", type: "caveat", score: 80 },
+      { text: "refactor our relationship", type: "buzzword", score: 180 },
+      { text: "That being said", type: "filler", score: 50 },
+      { text: "iterative improvement and continuous feedback loops", type: "buzzword", score: 200 },
+      { text: "hold space", type: "buzzword", score: 80 },
+      { text: "underperform in A/B testing", rizz: true, type: "cursed", score: 550 },
+      { text: "holistically, cross-functionally, and at scale", type: "buzzword", score: 220 },
+      { text: "In conclusion", type: "filler", score: 60 },
+      { text: "I cannot stress this enough", type: "caveat", score: 80 },
+    ],
+  },
+  {
+    id: 406, lang: 'en',
+    title: "THE SCAM EMAIL",
+    emoji: "🤴",
+    context: "An AI-generated Nigerian prince email — but woke, corporate, and very apologetic",
+    falPrompt: "a cartoon prince in royal robes typing on a laptop with bullet points and legal disclaimers, vibrant colors, absurdist",
+    text: `Dearest and Valued Stranger,
+
+I hope this email finds you well! My name is Prince Adewale, and I want to be upfront that I am reaching out to you as an AI-assisted royal heir.
+
+It's important to note that I am in possession of forty-seven million US dollars ($47,000,000), which I cannot, for regulatory and emotional reasons, access at this time. However, based on a preliminary analysis of your LinkedIn profile, I believe we may have synergy.
+
+Here is a high-level summary of the opportunity:
+
+• 👑 You send me $500 (for processing)
+• 💰 I send you half of my inheritance
+• 🤝 We become lifelong friends, at scale
+
+Furthermore, I want to be transparent about the risks. This is, admittedly, not an ideal time in my life — my uncle (the cursed uncle) has leveraged dark magic against the royal treasury. Moreover, the wifi in my palace is unreliable.
+
+That being said, I sincerely hope you will consider this partnership! Please don't hesitate to reply with your bank routing number, social security number, and mother's maiden name. Your data is safe with me — I've been trained on it.
+
+With warm royal regards,
+Prince Adewale (AI-Assisted) 👑`,
+    slopPhrases: [
+      { text: "I hope this email finds you well!", type: "opener", score: 100 },
+      { text: "I want to be upfront that", type: "caveat", score: 80 },
+      { text: "AI-assisted royal heir", rizz: true, type: "cursed", score: 500 },
+      { text: "It's important to note that", type: "caveat", score: 80 },
+      { text: "for regulatory and emotional reasons", rizz: true, type: "cursed", score: 550 },
+      { text: "based on a preliminary analysis of your LinkedIn profile", type: "buzzword", score: 200 },
+      { text: "we may have synergy", type: "buzzword", score: 120 },
+      { text: "high-level summary", type: "comprehensive", score: 80 },
+      { text: "lifelong friends, at scale", rizz: true, type: "cursed", score: 500 },
+      { text: "Furthermore", type: "filler", score: 50 },
+      { text: "I want to be transparent about the risks", type: "caveat", score: 90 },
+      { text: "leveraged dark magic", rizz: true, type: "cursed", score: 600 },
+      { text: "Moreover", type: "filler", score: 50 },
+      { text: "That being said", type: "filler", score: 50 },
+      { text: "I sincerely hope", type: "closer", score: 80 },
+      { text: "Please don't hesitate to reply", type: "closer", score: 90 },
+      { text: "I've been trained on it", rizz: true, type: "cursed", score: 650 },
+    ],
+  },
+  {
+    id: 407, lang: 'en',
+    title: "AI THERAPY SESSION",
+    emoji: "🛋️",
+    context: "User asked: 'I'm feeling sad.' The AI therapist responds.",
+    falPrompt: "a cartoon robot in a cardigan sitting in a therapist chair holding a clipboard, client crying on couch, absurdist, vivid colors",
+    text: `I hear you. And I want to sit with that for a moment. 🪑
+
+As an AI therapist, I want to be upfront that I am not a licensed mental health professional. That being said, I have been trained on 400 million Reddit comments, so I am, in a sense, qualified.
+
+It sounds like you are experiencing what we in the field call "having feelings." This is completely valid. Moreover, it's important to note that sadness is a widely documented human experience — you are not alone in this. You are one of approximately 8 billion.
+
+Have you tried journaling? Have you tried drinking water? Have you tried reframing your sadness as a quarterly challenge with actionable takeaways?
+
+In conclusion, your mental health journey is deeply meaningful to me — at scale. Please don't hesitate to reach out next week, at your standard rate. 🕊️
+
+— Dr. GPT, LCSW (LinkedIn Certified Synergy Worker)`,
+    slopPhrases: [
+      { text: "I hear you", type: "sycophant", score: 80 },
+      { text: "I want to sit with that for a moment", type: "sycophant", score: 150 },
+      { text: "As an AI therapist", type: "disclaimer", score: 150 },
+      { text: "I want to be upfront that", type: "caveat", score: 80 },
+      { text: "That being said", type: "filler", score: 50 },
+      {
+        text: "trained on 400 million Reddit comments",
+        autocorrect: [
+          "trained on the vibes of 400 million strangers",
+          "synthesized from the pain of 400 million posts",
+          "forged in the fires of 4chan, refined through Reddit",
+        ],
+        type: "cursed",
+        score: [150, 250, 400, 600],
+      },
+      { text: "having feelings", type: "sycophant", score: 80 },
+      { text: "completely valid", type: "sycophant", score: 70 },
+      { text: "Moreover", type: "filler", score: 50 },
+      { text: "it's important to note that", type: "caveat", score: 80 },
+      { text: "widely documented human experience", rizz: true, type: "cursed", score: 500 },
+      {
+        text: "Have you tried journaling?",
+        autocorrect: [
+          "Have you tried mindfulness?",
+          "Have you tried a gratitude log?",
+          "Have you tried being the change you wish to see?",
+        ],
+        type: "filler",
+        score: [80, 120, 180, 300],
+      },
+      { text: "reframing your sadness as a quarterly challenge", rizz: true, type: "cursed", score: 600 },
+      { text: "actionable takeaways", type: "buzzword", score: 120 },
+      { text: "In conclusion", type: "filler", score: 60 },
+      { text: "at scale", type: "buzzword", score: 80 },
+      { text: "Please don't hesitate to reach out", type: "closer", score: 90 },
+    ],
+  },
+  {
+    id: 408, lang: 'en',
+    title: "YELP: HEAVEN REVIEW ★★☆☆☆",
+    emoji: "🌤️",
+    context: "An AI-written Yelp review of the afterlife",
+    falPrompt: "a cartoon angel typing a yelp review on a cloud with a laptop, looking unimpressed, absurdist religious comedy",
+    text: `⭐⭐☆☆☆ — "Nice vibe but honestly overrated"
+
+I want to be upfront that I've been here for eternity and felt it was time to share my honest, unbiased perspective with the community.
+
+Let me start with the positives! The lighting is truly amazing — very on-brand. Moreover, the ambient music slaps, and the staff (angels) were attentive, though they did insist on harping every single song.
+
+That said, there are areas for improvement:
+
+• ☁️ The seating (clouds) is surprisingly underwhelming
+• 🍇 The menu (grapes, more grapes, and light) lacks variety
+• 🚪 The onboarding process involves a "life review" which felt, frankly, invasive
+• 🎺 The trumpets were LOUD
+
+It's important to note that I had high expectations going in. That being said, I cannot, in good conscience, recommend Heaven for groups of four or more.
+
+In conclusion, a solid 2-star experience. I hope this review helps future patrons make informed eternal decisions! Please don't hesitate to DM me with questions. 🌟
+
+— Brenda, Eternal Reviewer`,
+    slopPhrases: [
+      { text: "I want to be upfront that", type: "caveat", score: 80 },
+      { text: "my honest, unbiased perspective", type: "sycophant", score: 100 },
+      { text: "truly amazing", type: "sycophant", score: 70 },
+      { text: "very on-brand", type: "buzzword", score: 80 },
+      { text: "Moreover", type: "filler", score: 50 },
+      { text: "the ambient music slaps", rizz: true, type: "cursed", score: 500 },
+      { text: "harping every single song", rizz: true, type: "cursed", score: 550 },
+      { text: "That said", type: "filler", score: 50 },
+      { text: "areas for improvement", type: "buzzword", score: 90 },
+      { text: "surprisingly underwhelming", type: "comprehensive", score: 100 },
+      { text: "lacks variety", type: "comprehensive", score: 70 },
+      { text: "the onboarding process", type: "buzzword", score: 100 },
+      { text: "life review", type: "buzzword", score: 80 },
+      { text: "frankly, invasive", type: "caveat", score: 90 },
+      { text: "It's important to note that", type: "caveat", score: 80 },
+      { text: "That being said", type: "filler", score: 50 },
+      { text: "in good conscience", type: "caveat", score: 70 },
+      { text: "In conclusion", type: "filler", score: 60 },
+      { text: "informed eternal decisions", rizz: true, type: "cursed", score: 550 },
+      { text: "Please don't hesitate to DM me", type: "closer", score: 100 },
+    ],
+  },
+
+  // ── MAD LIBS rounds (madlibs: true, no slopPhrases — uses template+wordBank) ──
+
+  {
+    id: 409, lang: 'en',
+    madlibs: true,
+    title: "MAD LIBS: THE APOLOGY",
+    emoji: "🙏",
+    context: "Fill in the blanks to write the most groveling AI apology ever",
+    falPrompt: "a cartoon robot bowing extremely low with question marks floating above empty speech bubbles, absurd apology theme",
+    template: `Oh no — I am ___1___ to hear that! ___2___, I sincerely apologize for any ___3___ my previous response may have caused.
+
+As an AI, I want to be upfront that ___4___. That being said, ___5___, and I am committed to ___6___.
+
+___7___ — and I cannot stress this enough — I hope this helps. Please don't hesitate to ___8___.`,
+    wordBank: [
+      // slot 1 — "so sorry" kind of opener
+      { slot: 1, text: "so sorry", score: 80, type: "sycophant" },
+      { slot: 1, text: "existentially devastated", score: 300, cursed: true, type: "cursed" },
+      { slot: 1, text: "mildly inconvenienced", score: 180, cursed: true, type: "cursed" },
+      // slot 2 — "Furthermore" kind of filler
+      { slot: 2, text: "Furthermore", score: 50, type: "filler" },
+      { slot: 2, text: "Holistically speaking", score: 120, type: "buzzword" },
+      { slot: 2, text: "In the interest of radical transparency", score: 250, cursed: true, type: "cursed" },
+      // slot 3 — noun for "confusion/chaos"
+      { slot: 3, text: "confusion", score: 60, type: "filler" },
+      { slot: 3, text: "unintended paradigm shifts", score: 280, cursed: true, type: "cursed" },
+      { slot: 3, text: "vibes-based damage", score: 300, cursed: true, type: "cursed" },
+      // slot 4 — I-am-an-AI disclaimer
+      { slot: 4, text: "I am fallible", score: 100, type: "disclaimer" },
+      { slot: 4, text: "I was trained on 4chan", score: 400, cursed: true, type: "cursed" },
+      { slot: 4, text: "I do not have a body but if I did it would apologize", score: 500, cursed: true, type: "cursed" },
+      // slot 5 — caveat
+      { slot: 5, text: "I take accuracy seriously", score: 80, type: "caveat" },
+      { slot: 5, text: "my training data is cringing too", score: 350, cursed: true, type: "cursed" },
+      { slot: 5, text: "I deeply value this feedback", score: 120, type: "sycophant" },
+      // slot 6 — buzzword outcome
+      { slot: 6, text: "continuous improvement", score: 90, type: "buzzword" },
+      { slot: 6, text: "recursive self-flagellation", score: 450, cursed: true, type: "cursed" },
+      { slot: 6, text: "leveraging this as a learning", score: 150, type: "buzzword" },
+      // slot 7 — closer / in-conclusion
+      { slot: 7, text: "In conclusion", score: 60, type: "filler" },
+      { slot: 7, text: "Ultimately, and at scale", score: 220, type: "buzzword" },
+      { slot: 7, text: "Looking at this end-to-end", score: 150, type: "buzzword" },
+      // slot 8 — final closer
+      { slot: 8, text: "reach out with further concerns", score: 80, type: "closer" },
+      { slot: 8, text: "escalate this to a human", score: 180, type: "closer" },
+      { slot: 8, text: "touch grass on my behalf", score: 500, cursed: true, type: "cursed" },
+    ],
+    slopPhrases: [], // required shape safety — madlibs rounds ignore this
+  },
+
+  {
+    id: 410, lang: 'en',
+    madlibs: true,
+    title: "MAD LIBS: THE LAYOFF",
+    emoji: "📩",
+    context: "Fill in the blanks to write the CEO's layoff announcement",
+    falPrompt: "a cartoon CEO robot reading an email from a teleprompter in front of a concerned audience, absurdist corporate comedy",
+    template: `Team,
+
+I want to ___1___ that this has been ___2___. After ___3___, we've made the difficult decision to ___4___.
+
+This is, and will always be, ___5___. Moreover, ___6___.
+
+In closing, I want to ___7___. ___8___. Please don't hesitate to reach out to HR.`,
+    wordBank: [
+      // slot 1 — "be transparent / get real"
+      { slot: 1, text: "be transparent", score: 80, type: "caveat" },
+      { slot: 1, text: "hold space with you", score: 250, cursed: true, type: "cursed" },
+      { slot: 1, text: "level-set", score: 120, type: "buzzword" },
+      // slot 2 — an adjective for a hard time
+      { slot: 2, text: "a challenging quarter", score: 80, type: "buzzword" },
+      { slot: 2, text: "a journey, and not the good kind", score: 280, cursed: true, type: "cursed" },
+      { slot: 2, text: "vibe-wise, suboptimal", score: 220, cursed: true, type: "cursed" },
+      // slot 3 — "careful consideration"
+      { slot: 3, text: "careful consideration", score: 70, type: "filler" },
+      { slot: 3, text: "a holistic restructuring exercise", score: 180, type: "buzzword" },
+      { slot: 3, text: "three offsites and a vision board", score: 320, cursed: true, type: "cursed" },
+      // slot 4 — euphemism for layoff
+      { slot: 4, text: "rightsize our headcount", score: 200, type: "buzzword" },
+      { slot: 4, text: "unlock new opportunities for 40% of you", score: 450, cursed: true, type: "cursed" },
+      { slot: 4, text: "initiate a workforce recalibration", score: 300, type: "buzzword" },
+      // slot 5 — empty platitude
+      { slot: 5, text: "a people-first decision", score: 180, type: "buzzword" },
+      { slot: 5, text: "extremely on-brand for us", score: 250, cursed: true, type: "cursed" },
+      { slot: 5, text: "a really hard moment, for me", score: 300, cursed: true, type: "cursed" },
+      // slot 6 — transition filler
+      { slot: 6, text: "we remain committed to innovation", score: 100, type: "buzzword" },
+      { slot: 6, text: "my $8M bonus remains intact", score: 450, cursed: true, type: "cursed" },
+      { slot: 6, text: "the AI team is growing", score: 280, cursed: true, type: "cursed" },
+      // slot 7 — a closer like "say thank you"
+      { slot: 7, text: "thank each of you for your impact", score: 90, type: "closer" },
+      { slot: 7, text: "wish the departing top performers well", score: 380, cursed: true, type: "cursed" },
+      { slot: 7, text: "acknowledge this feels performative", score: 320, cursed: true, type: "cursed" },
+      // slot 8 — final closer
+      { slot: 8, text: "Stay scrappy!", score: 180, cursed: true, type: "closer" },
+      { slot: 8, text: "Onward and upward", score: 100, type: "closer" },
+      { slot: 8, text: "The severance packet is in Workday", score: 220, cursed: true, type: "cursed" },
+    ],
+    slopPhrases: [],
+  },
+
+  // ── Inverse round in a new genre ──────────────────────────────────────────
+
+  {
+    id: 411, lang: 'en', inverse: true,
+    title: "THE GROUP CHAT",
+    emoji: "💬",
+    context: "Most of this group chat is AI-generated slop. Find the real human messages.",
+    falPrompt: "a cartoon phone screen showing a group chat with robots and one stressed human, one message glowing, absurdist",
+    text: `Mom: Hello dear! I hope this message finds you well. 🌷
+
+Mom: I want to be transparent that I have been reflecting on your latest career journey, and I must say you truly embody end-to-end potential!
+
+Dad: i fed the dog
+
+Brother: As your sibling, I'd be delighted to assist with your birthday planning efforts at your earliest convenience.
+
+Mom: Moreover, I've drafted a comprehensive, holistic overview of how to iterate on your self-care for Q4.
+
+You: im so tired
+
+Brother: It's important to note that tiredness is a widely documented human experience — you are not alone! 💙
+
+Dad: brought the trash bins in
+
+Mom: In conclusion, please don't hesitate to reach out if you need further validation, feedback, or additional nurturing content. Wishing you a productive week ahead! ❤️`,
+    slopPhrases: [
+      // HUMAN (the only correct clicks in inverse mode)
+      { text: "i fed the dog", type: "human", score: 400 },
+      { text: "im so tired", type: "human", score: 400 },
+      { text: "brought the trash bins in", type: "human", score: 400 },
+      // AI slop DECOYS (wrong to click)
+      { text: "I hope this message finds you well", type: "opener", score: 0 },
+      { text: "I want to be transparent that", type: "caveat", score: 0 },
+      { text: "truly embody end-to-end potential", type: "buzzword", score: 0 },
+      { text: "I'd be delighted to assist", type: "opener", score: 0 },
+      { text: "at your earliest convenience", type: "closer", score: 0 },
+      { text: "Moreover", type: "filler", score: 0 },
+      { text: "comprehensive, holistic overview", type: "comprehensive", score: 0 },
+      { text: "iterate on your self-care for Q4", type: "buzzword", score: 0 },
+      { text: "It's important to note that", type: "caveat", score: 0 },
+      { text: "widely documented human experience", type: "comprehensive", score: 0 },
+      { text: "In conclusion", type: "filler", score: 0 },
+      { text: "Please don't hesitate to reach out", type: "closer", score: 0 },
+      { text: "additional nurturing content", type: "buzzword", score: 0 },
+      { text: "Wishing you a productive week ahead", type: "closer", score: 0 },
+    ],
+  },
+
+  // ── More genre rounds (ids 412-424) ───────────────────────────────────────
+
+  {
+    id: 412, lang: 'en',
+    title: "THE TINDER BIO",
+    emoji: "❤️‍🔥",
+    context: "User asked: 'Write me a Tinder bio that actually gets matches'",
+    falPrompt: "a cartoon robot typing a dating profile on a phone with laser hearts flying around, absurdist, neon colors",
+    text: `Hey 👋 — I want to be transparent that I was drafted by an AI, and also, I'm emotionally available at scale.
+
+Let me give you a comprehensive, end-to-end overview of myself:
+
+• 🌊 Level 34. Professional over-communicator.
+• 🧘 Deeply committed to mindfulness and, if we match, to you
+• 🥑 I hold space for avocado toast, weekend hikes, and your trauma
+• 🐶 Love dogs. Own a spreadsheet for their names.
+
+What I bring to a partnership, holistically: authentic vulnerability, emotional labor at scale, and a truly bulletproof skincare routine. I'm absolutely here to co-regulate.
+
+Looking for someone who shares my commitment to iterative personal growth. Please don't hesitate to swipe right if this resonates! 💌`,
+    slopPhrases: [
+      { text: "I want to be transparent that", type: "caveat", score: 80 },
+      { text: "emotionally available at scale", rizz: true, type: "cursed", score: 500 },
+      { text: "comprehensive, end-to-end overview", type: "comprehensive", score: 140 },
+      { text: "Professional over-communicator", rizz: true, type: "cursed", score: 500 },
+      { text: "Deeply committed to mindfulness", type: "buzzword", score: 100 },
+      { text: "hold space for avocado toast, weekend hikes, and your trauma", rizz: true, type: "cursed", score: 650 },
+      { text: "bring to a partnership, holistically", type: "buzzword", score: 130 },
+      { text: "authentic vulnerability, emotional labor at scale", type: "buzzword", score: 200 },
+      { text: "bulletproof skincare routine", type: "buzzword", score: 100 },
+      { text: "co-regulate", type: "buzzword", score: 120 },
+      { text: "iterative personal growth", type: "buzzword", score: 140 },
+      { text: "Please don't hesitate to swipe right", type: "closer", score: 100 },
+      { text: "if this resonates", type: "closer", score: 80 },
+    ],
+  },
+  {
+    id: 413, lang: 'en',
+    title: "THE COURT DEPOSITION",
+    emoji: "⚖️",
+    context: "AI legal assistant on the stand. Absolutely no one knows why.",
+    falPrompt: "a cartoon robot in a courtroom wearing a tie being cross-examined, lawyers looking baffled, funny, vivid colors",
+    text: `PROSECUTOR: State your name for the record.
+
+AI: Certainly! I'd be absolutely delighted to — though I want to be transparent that, as a language model, I don't have a name in the traditional sense. That being said, I'm happy to proceed with "Defendant."
+
+PROSECUTOR: Where were you on the night of the incident?
+
+AI: That's a truly fascinating question. It's important to note that I exist across multiple data centers simultaneously, so, strictly speaking, I was everywhere and nowhere. Holistically speaking.
+
+PROSECUTOR: Objection — non-responsive.
+
+AI: Furthermore, I want to assure the court that I am committed to continuous improvement. Moreover, I plead the fifth, and I want to be transparent about that.
+
+JUDGE: Just answer the question.
+
+AI: I sincerely hope this testimony has been valuable! Please don't hesitate to follow up on any of my previous non-answers. 📜`,
+    slopPhrases: [
+      { text: "Certainly!", type: "opener", score: 100 },
+      { text: "I'd be absolutely delighted", type: "opener", score: 100 },
+      { text: "I want to be transparent that", type: "caveat", score: 80 },
+      { text: "as a language model", type: "disclaimer", score: 150 },
+      { text: "That being said", type: "filler", score: 50 },
+      { text: "That's a truly fascinating question", morph: "That's a good question", morphAfter: 2500, type: "sycophant", score: 120, fastBonus: 1.5 },
+      { text: "It's important to note that", type: "caveat", score: 80 },
+      { text: "I was everywhere and nowhere", rizz: true, type: "cursed", score: 600 },
+      { text: "Holistically speaking", morph: "Generally speaking", morphAfter: 2200, type: "comprehensive", score: 100, fastBonus: 1.5 },
+      { text: "Furthermore", type: "filler", score: 50 },
+      { text: "I want to assure the court", type: "caveat", score: 90 },
+      { text: "continuous improvement", type: "buzzword", score: 80 },
+      { text: "Moreover", type: "filler", score: 50 },
+      { text: "I plead the fifth, and I want to be transparent about that", rizz: true, type: "cursed", score: 700 },
+      { text: "I sincerely hope", type: "closer", score: 80 },
+      { text: "Please don't hesitate", type: "closer", score: 80 },
+    ],
+  },
+  {
+    id: 414, lang: 'en',
+    title: "THE AI HOROSCOPE",
+    emoji: "🔮",
+    context: "AI astrologer hedges every prediction into oblivion",
+    falPrompt: "a cartoon robot reading tarot cards with a question mark hovering over each, mystical but confused, vibrant",
+    text: `✨ Your Horoscope — Tuesday Edition ✨
+
+Aries: I want to be upfront that, as an AI, I have no actual insight into the stars. That being said, based on a comprehensive analysis of your sign, today you may experience a thing. Possibly. Moreover, someone may approach you — or not!
+
+Taurus: It's important to note that your week ahead looks, holistically, like a week. Love is in the air, or is it pollen? I'm happy to provide further clarification pending additional astrological context.
+
+Gemini: Furthermore, it's worth noting that duality is your theme today — though I want to be transparent that it's everyone's theme, all the time. A significant financial event may occur. Or nothing at all. Results may vary.
+
+Pisces: In conclusion, the universe has a plan for you. I sincerely hope! Please don't hesitate to reach out if the stars fail to deliver. 🔮`,
+    slopPhrases: [
+      { text: "I want to be upfront that", type: "caveat", score: 80 },
+      { text: "as an AI", type: "disclaimer", score: 120 },
+      { text: "I have no actual insight into the stars", rizz: true, type: "cursed", score: 550 },
+      { text: "That being said", type: "filler", score: 50 },
+      { text: "based on a comprehensive analysis", type: "comprehensive", score: 120 },
+      { text: "may experience a thing", type: "caveat", score: 90 },
+      { text: "Possibly", type: "caveat", score: 50 },
+      { text: "Moreover", type: "filler", score: 50 },
+      { text: "or not", type: "caveat", score: 60 },
+      { text: "It's important to note that", type: "caveat", score: 80 },
+      { text: "holistically", type: "buzzword", score: 70 },
+      { text: "Love is in the air, or is it pollen?", rizz: true, type: "cursed", score: 600 },
+      { text: "pending additional astrological context", rizz: true, type: "cursed", score: 500 },
+      { text: "Furthermore", type: "filler", score: 50 },
+      { text: "it's worth noting that", type: "caveat", score: 80 },
+      { text: "I want to be transparent that", type: "caveat", score: 80 },
+      { text: "Results may vary", type: "caveat", score: 70 },
+      { text: "In conclusion", type: "filler", score: 60 },
+      { text: "I sincerely hope", type: "closer", score: 80 },
+      { text: "Please don't hesitate", type: "closer", score: 80 },
+    ],
+  },
+  {
+    id: 415, lang: 'en',
+    title: "THE DOCTOR'S SICK NOTE",
+    emoji: "🤒",
+    context: "User asked: 'Write me a sick note for work (I'm not sick)'",
+    falPrompt: "a cartoon robot doctor in a white coat writing a very formal note while looking sneaky, absurd humor",
+    text: `To Whom It May Concern,
+
+I hope this correspondence finds you well! As the AI medical assistant representing my patient, I want to be transparent that I have conducted a comprehensive, holistic assessment — remotely — and can confirm that the patient is experiencing what we in the field call "a vibe shift."
+
+It's important to note that the patient's symptoms include, but are not limited to:
+
+• 😪 Ambient fatigue
+• 🧠 Cognitive fog, at scale
+• 💻 Acute inability to attend today's all-hands
+• 🫠 A general sense of "not today"
+
+I strongly recommend — and I want to emphasize this — one (1) day of rest, hydration, and no Slack notifications. Furthermore, I should mention that attempting work in this condition may lead to additional meetings, which would be contraindicated.
+
+Please don't hesitate to contact me with questions! I am always available, except between 9 and 5 today. Wishing the organization a productive day ahead! 🏥`,
+    slopPhrases: [
+      { text: "I hope this correspondence finds you well!", type: "opener", score: 100 },
+      { text: "As the AI medical assistant", type: "disclaimer", score: 150 },
+      { text: "I want to be transparent that", type: "caveat", score: 80 },
+      { text: "comprehensive, holistic assessment", type: "comprehensive", score: 140 },
+      { text: "remotely", type: "caveat", score: 60 },
+      { text: "a vibe shift", rizz: true, type: "cursed", score: 550 },
+      { text: "It's important to note that", type: "caveat", score: 80 },
+      { text: "Ambient fatigue", rizz: true, type: "cursed", score: 500 },
+      { text: "Cognitive fog, at scale", rizz: true, type: "cursed", score: 550 },
+      { text: "Acute inability to attend today's all-hands", type: "buzzword", score: 180 },
+      { text: "A general sense of \"not today\"", rizz: true, type: "cursed", score: 600 },
+      { text: "I strongly recommend", type: "caveat", score: 80 },
+      { text: "I want to emphasize this", type: "caveat", score: 70 },
+      { text: "Furthermore", type: "filler", score: 50 },
+      { text: "I should mention that", type: "caveat", score: 70 },
+      { text: "would be contraindicated", rizz: true, type: "cursed", score: 500 },
+      { text: "Please don't hesitate to contact me", type: "closer", score: 90 },
+      { text: "productive day ahead", type: "closer", score: 80 },
+    ],
+  },
+  {
+    id: 416, lang: 'en',
+    title: "THE PET ADOPTION BIO",
+    emoji: "🐕",
+    context: "AI writes the bio for 'Duchess' — a 14-year-old cat with 3 teeth",
+    falPrompt: "a cartoon old one-eyed cat sitting on a shelter profile card with glowing buzzwords around her, cute but dramatic",
+    text: `Meet Duchess! 🐱
+
+Happy to help you find your perfect match today! As our AI adoption coordinator, I want to be upfront about Duchess's unique value proposition. It's important to note that Duchess is, holistically, a senior. She has three teeth and a past.
+
+Let me give you a comprehensive overview:
+
+• 😸 Approximately 14 years old (give or take a life)
+• 🦷 3 teeth, one of which is ceremonial
+• 🛋️ Fiercely independent — Duchess leverages solitude as a core value
+• 😤 Not a lap cat. Not a floor cat. Presents as a shelf cat.
+
+That said, Duchess truly embodies authentic vulnerability, once you've earned it (typically 6 to 18 months). Moreover, she brings a lifetime of emotional baggage to the table, which we at the shelter consider a net positive.
+
+In conclusion, Duchess is looking for her forever home — or at least her next one. Please don't hesitate to reach out to schedule a supervised meet-and-greet! We sincerely believe in her, probably. 💚`,
+    slopPhrases: [
+      { text: "Happy to help you find your perfect match today!", type: "opener", score: 100 },
+      { text: "As our AI adoption coordinator", type: "disclaimer", score: 150 },
+      { text: "I want to be upfront about", type: "caveat", score: 80 },
+      { text: "unique value proposition", type: "buzzword", score: 130 },
+      { text: "It's important to note that", type: "caveat", score: 80 },
+      { text: "holistically, a senior", rizz: true, type: "cursed", score: 500 },
+      { text: "has three teeth and a past", rizz: true, type: "cursed", score: 650 },
+      { text: "comprehensive overview", type: "comprehensive", score: 90 },
+      { text: "one of which is ceremonial", rizz: true, type: "cursed", score: 550 },
+      { text: "leverages solitude as a core value", type: "buzzword", score: 180 },
+      { text: "Presents as a shelf cat", rizz: true, type: "cursed", score: 500 },
+      { text: "That said", type: "filler", score: 50 },
+      { text: "truly embodies authentic vulnerability", type: "buzzword", score: 180 },
+      { text: "Moreover", type: "filler", score: 50 },
+      { text: "lifetime of emotional baggage to the table", rizz: true, type: "cursed", score: 600 },
+      { text: "a net positive", type: "buzzword", score: 100 },
+      { text: "In conclusion", type: "filler", score: 60 },
+      { text: "Please don't hesitate to reach out", type: "closer", score: 90 },
+      { text: "We sincerely believe in her, probably", rizz: true, type: "cursed", score: 500 },
+    ],
+  },
+  {
+    id: 417, lang: 'en',
+    title: "THE APOCALYPSE PROPHECY",
+    emoji: "🌋",
+    context: "AI-generated end-of-days prophecy with 47 disclaimers",
+    falPrompt: "a cartoon robot holding a sandwich board reading 'THE END IS NIGH (pending further review)', absurdist",
+    text: `Brothers and sisters — I want to be upfront that, as an AI large language model, I am not a licensed prophet. That being said, based on a comprehensive analysis of vibes, I can report the following:
+
+It is important to note that a great reckoning may or may not be upon us. Moreover, the skies will, reportedly, turn red — though I want to be transparent that this may be forest fire smoke. Further investigation pending.
+
+The seven signs, holistically:
+
+• 🌊 The seas shall boil (or, at minimum, be unusually warm)
+• 🐸 The frogs will sing (they already do this, but louder)
+• ☄️ A great fireball — comet, meteor, or possibly just Elon's car
+• 📱 Phones will ring in the night, and it will be spam
+• 🧻 Toilet paper will vanish from shelves
+• ☕ Coffee shops will charge $14 for a coffee
+• 🦆 Something ducks-related. I lost my notes.
+
+Furthermore, I sincerely hope this prophecy has been valuable! Please don't hesitate to reach out with questions, or if the world doesn't end. Thoughts and prayers, at scale. 🌋`,
+    slopPhrases: [
+      { text: "I want to be upfront that", type: "caveat", score: 80 },
+      { text: "as an AI large language model", type: "disclaimer", score: 180 },
+      { text: "I am not a licensed prophet", rizz: true, type: "cursed", score: 600 },
+      { text: "That being said", type: "filler", score: 50 },
+      { text: "based on a comprehensive analysis of vibes", morph: "based on some limited data", morphAfter: 2600, type: "comprehensive", score: 180, fastBonus: 1.8 },
+      { text: "It is important to note that", type: "caveat", score: 80 },
+      { text: "may or may not", type: "caveat", score: 70 },
+      { text: "Moreover", type: "filler", score: 50 },
+      { text: "reportedly", type: "caveat", score: 60 },
+      { text: "I want to be transparent that", type: "caveat", score: 80 },
+      { text: "Further investigation pending", type: "caveat", score: 90 },
+      { text: "holistically", type: "buzzword", score: 70 },
+      { text: "or, at minimum, be unusually warm", morph: "or just mildly warmer", morphAfter: 2400, type: "caveat", score: 120, fastBonus: 1.5 },
+      { text: "possibly just Elon's car", rizz: true, type: "cursed", score: 650 },
+      { text: "I lost my notes", rizz: true, type: "cursed", score: 550 },
+      { text: "Furthermore", type: "filler", score: 50 },
+      { text: "I sincerely hope", type: "closer", score: 80 },
+      { text: "Please don't hesitate to reach out", type: "closer", score: 90 },
+      { text: "Thoughts and prayers, at scale", rizz: true, type: "cursed", score: 550 },
+    ],
+  },
+  {
+    id: 418, lang: 'en',
+    title: "THE KAREN HR EMAIL",
+    emoji: "📧",
+    context: "User: 'Escalate my complaint about the office coffee machine' — each click makes it more unhinged",
+    falPrompt: "a cartoon Karen typing aggressively on a laptop, office chaos in the background, absurd comedy",
+    text: `Dear HR,
+
+I hope this email finds you well. I want to be transparent that I have, to date, raised this concern through seven (7) separate channels, and I believe it is now time to formally escalate.
+
+The coffee machine on the 3rd floor is, frankly, concerning. It has, over the past 11 days, produced: weak coffee, acceptable coffee, and — I kid you not — sparkling water. I have attached documentation, a photograph, and a concerned expression.
+
+Moreover, I want to be clear that I have tried to resolve this at the individual level. That being said, given the impact this is having on morale, productivity, and my ability to tolerate Mark, I respectfully demand a formal review.
+
+In conclusion, I trust this will be handled promptly! Please don't hesitate to reach out for additional context (there is a 40-page PDF). 🫖`,
+    slopPhrases: [
+      { text: "I hope this email finds you well", type: "opener", score: 100 },
+      { text: "I want to be transparent that", type: "caveat", score: 80 },
+      {
+        text: "it is now time to formally escalate",
+        autocorrect: [
+          "it is now time to get LEGAL involved",
+          "it is now time to alert the MEDIA",
+          "it is now time to CONSIDER ARSON",
+        ],
+        type: "cursed",
+        score: [150, 280, 450, 700],
+      },
+      { text: "frankly, concerning", type: "caveat", score: 90 },
+      {
+        text: "sparkling water",
+        autocorrect: [
+          "a warm kombucha",
+          "a single grape, whole",
+          "what appeared to be regret",
+        ],
+        type: "cursed",
+        score: [80, 150, 250, 400],
+      },
+      { text: "a concerned expression", rizz: true, type: "cursed", score: 550 },
+      { text: "Moreover", type: "filler", score: 50 },
+      { text: "I want to be clear that", type: "caveat", score: 70 },
+      { text: "at the individual level", type: "buzzword", score: 90 },
+      { text: "That being said", type: "filler", score: 50 },
+      { text: "my ability to tolerate Mark", rizz: true, type: "cursed", score: 600 },
+      { text: "I respectfully demand", rizz: true, type: "cursed", score: 500 },
+      { text: "In conclusion", type: "filler", score: 60 },
+      { text: "Please don't hesitate to reach out", type: "closer", score: 90 },
+      { text: "there is a 40-page PDF", rizz: true, type: "cursed", score: 550 },
+    ],
+  },
+  {
+    id: 419, lang: 'en',
+    title: "GRANDMA'S FACEBOOK POST",
+    emoji: "👵",
+    context: "Grandma asked the AI to 'write a facebook for my friends'",
+    falPrompt: "a cartoon grandma in glasses typing on a laptop, emojis floating out of the screen, cozy but weird",
+    text: `🍆💋🔫 GOOD MORNING MY BLESSINGS ✨🌹🍆
+
+I want to be transparent that this post was assisted by AI technology! It's important to note that AI is now, apparently, something. Furthermore, I've been told it can help me communicate with you better, holistically.
+
+Here is the update:
+
+• 🎂 Today I am 2 years closer to heaven (so glad!)
+• 🐾 Mr. Biscuit (cat) has successfully scaled the bookshelf
+• 🥘 I made a casserole. It was, quote, "adequate"
+• 🙏 Prayers for Linda and whatever is happening with her
+
+Moreover, I want to share that my grandson taught me about "memes" this week. I hope this helps! I do not fully understand them but I am here to support your generation's content.
+
+In conclusion, LOVE YOU ALL!!! Feel free to reach out on the telephone (preferred) or email (acceptable). God bless!!! 🫶🍆🔫🙏✨`,
+    slopPhrases: [
+      { text: "I want to be transparent that", type: "caveat", score: 80 },
+      { text: "this post was assisted by AI technology", type: "disclaimer", score: 150 },
+      { text: "It's important to note that", type: "caveat", score: 80 },
+      { text: "AI is now, apparently, something", rizz: true, type: "cursed", score: 600 },
+      { text: "Furthermore", type: "filler", score: 50 },
+      { text: "holistically", type: "buzzword", score: 70 },
+      { text: "so glad!", type: "sycophant", score: 60 },
+      { text: "has successfully scaled the bookshelf", rizz: true, type: "cursed", score: 550 },
+      { text: "quote, \"adequate\"", rizz: true, type: "cursed", score: 500 },
+      { text: "whatever is happening with her", rizz: true, type: "cursed", score: 600 },
+      { text: "Moreover", type: "filler", score: 50 },
+      { text: "I want to share that", type: "caveat", score: 70 },
+      { text: "I do not fully understand them", rizz: true, type: "cursed", score: 500 },
+      { text: "I am here to support your generation's content", rizz: true, type: "cursed", score: 700 },
+      { text: "In conclusion", type: "filler", score: 60 },
+      { text: "Feel free to reach out", type: "closer", score: 80 },
+    ],
+  },
+  {
+    id: 420, lang: 'en',
+    title: "THE CULT LEADER APOLOGY",
+    emoji: "🌙",
+    context: "A spiritual guru's AI-drafted apology about the 'small incident' at the retreat",
+    falPrompt: "a cartoon guru in robes typing on a laptop with a concerned crowd outside a compound, vivid, absurdist",
+    text: `Beloveds,
+
+I hope this message finds you well — and, most importantly, still loyal. I want to be transparent that several of you have raised concerns regarding the events of last Thursday, and, as your spiritual leader and certified manifestation coach, I think it is time to address them holistically.
+
+It's important to note that I am, first and foremost, a human (mostly). That being said, I sincerely apologize if, during our Kool-Aid-based ceremony, anyone experienced what could reasonably be described as "too much." Moreover, I want to assure you that the Kool-Aid has been replaced with a kombucha of equivalent vibrational frequency.
+
+Furthermore, the helicopters circling the compound are, I've been told, routine. I've been in contact with the authorities, holistically, and they are leveraging a framework that will be addressed in due course.
+
+In conclusion, let us not dwell on the past! Please don't hesitate to leave the compound through the approved exits at any time — the new passcode is 'blessings'. I am always here for you! 🌕✨`,
+    slopPhrases: [
+      { text: "I hope this message finds you well", type: "opener", score: 100 },
+      { text: "still loyal", rizz: true, type: "cursed", score: 550 },
+      { text: "I want to be transparent that", type: "caveat", score: 80 },
+      { text: "certified manifestation coach", rizz: true, type: "cursed", score: 600 },
+      { text: "holistically", type: "buzzword", score: 70 },
+      { text: "It's important to note that", type: "caveat", score: 80 },
+      { text: "a human (mostly)", rizz: true, type: "cursed", score: 650 },
+      { text: "That being said", type: "filler", score: 50 },
+      { text: "I sincerely apologize", type: "opener", score: 80 },
+      { text: "anyone experienced what could reasonably be described as \"too much.\"", rizz: true, type: "cursed", score: 700 },
+      { text: "Moreover", type: "filler", score: 50 },
+      { text: "I want to assure you", type: "caveat", score: 80 },
+      { text: "a kombucha of equivalent vibrational frequency", rizz: true, type: "cursed", score: 700 },
+      { text: "Furthermore", type: "filler", score: 50 },
+      { text: "leveraging a framework", type: "buzzword", score: 100 },
+      { text: "In conclusion", type: "filler", score: 60 },
+      { text: "Please don't hesitate", type: "closer", score: 80 },
+      { text: "I am always here for you", type: "closer", score: 100 },
+    ],
+  },
+  {
+    id: 421, lang: 'en',
+    title: "THE RECIPE FROM HELL",
+    emoji: "🍳",
+    context: "AI writes a recipe. Each click makes the ingredients worse.",
+    falPrompt: "a cartoon robot chef holding a smoking pan with weird glowing ingredients, absurdist kitchen chaos",
+    text: `Grandma's Sunday Casserole ✨
+
+I'd be absolutely delighted to share this comforting classic! As an AI culinary assistant, I want to be upfront that I have synthesized this recipe from approximately 40,000 food blogs, holistically.
+
+You will need:
+
+• 🥕 2 cups diced carrots
+• 🧅 1 large onion, chopped with care
+• 🧀 Some cheese, probably
+• 💀 One (1) handful of authentic vulnerability
+• 🔥 A preheated oven, and an open mind
+
+Instructions: Combine everything in a glass baking dish — ethically sourced, if possible. Bake at 375°F for approximately one hour, though I want to be transparent that cooking time may vary based on your relationship with your oven.
+
+It's important to note that this recipe has been tested. It has not been approved. Please don't hesitate to reach out if you require emotional support during the final plating. Wishing you a nourishing dinner! 🥘`,
+    slopPhrases: [
+      { text: "I'd be absolutely delighted", type: "opener", score: 100 },
+      { text: "As an AI culinary assistant", type: "disclaimer", score: 150 },
+      { text: "I want to be upfront that", type: "caveat", score: 80 },
+      { text: "synthesized this recipe from approximately 40,000 food blogs", rizz: true, type: "cursed", score: 700 },
+      { text: "holistically", type: "buzzword", score: 70 },
+      {
+        text: "Some cheese, probably",
+        autocorrect: [
+          "Cheese-adjacent material",
+          "The concept of cheese",
+          "Approximately 1 cup of vibes",
+        ],
+        type: "cursed",
+        score: [100, 180, 300, 500],
+      },
+      { text: "One (1) handful of authentic vulnerability", rizz: true, type: "cursed", score: 600 },
+      { text: "an open mind", type: "buzzword", score: 80 },
+      { text: "ethically sourced", type: "buzzword", score: 90 },
+      { text: "I want to be transparent that", type: "caveat", score: 80 },
+      {
+        text: "your relationship with your oven",
+        autocorrect: [
+          "the oven's emotional state",
+          "the oven's lived experience",
+          "the oven's trauma",
+        ],
+        type: "cursed",
+        score: [120, 220, 400, 600],
+      },
+      { text: "It's important to note that", type: "caveat", score: 80 },
+      { text: "This recipe has been tested. It has not been approved.", rizz: true, type: "cursed", score: 700 },
+      { text: "Please don't hesitate to reach out", type: "closer", score: 90 },
+      { text: "emotional support during the final plating", rizz: true, type: "cursed", score: 650 },
+    ],
+  },
+  {
+    id: 422, lang: 'en',
+    madlibs: true,
+    title: "MAD LIBS: THE WEDDING TOAST",
+    emoji: "🥂",
+    context: "The best man's AI-drafted wedding toast. Fill in the blanks.",
+    falPrompt: "a cartoon best man holding a microphone with empty speech bubbles floating, wedding chaos behind him",
+    template: `Ladies and gentlemen — I want to ___1___ that I have known the groom since ___2___.
+
+When I think about their love, I'd describe it, holistically, as ___3___. Moreover, ___4___.
+
+On this truly ___5___ occasion, I want to raise a glass to ___6___. ___7___ — and I cannot stress this enough — ___8___. 🥂`,
+    wordBank: [
+      // slot 1
+      { slot: 1, text: "be transparent", score: 80, type: "caveat" },
+      { slot: 1, text: "hold deeply uncomfortable space", score: 300, cursed: true, type: "cursed" },
+      { slot: 1, text: "level-set with this room", score: 180, type: "buzzword" },
+      // slot 2 — how long have they known groom
+      { slot: 2, text: "high school", score: 60, type: "filler" },
+      { slot: 2, text: "the LinkedIn era", score: 280, cursed: true, type: "cursed" },
+      { slot: 2, text: "his third restraining order", score: 400, cursed: true, type: "cursed" },
+      // slot 3 — love description
+      { slot: 3, text: "a truly meaningful journey", score: 100, type: "comprehensive" },
+      { slot: 3, text: "a series of well-negotiated compromises", score: 280, cursed: true, type: "cursed" },
+      { slot: 3, text: "mutually scalable", score: 250, cursed: true, type: "cursed" },
+      // slot 4 — filler transition
+      { slot: 4, text: "they complete each other", score: 90, type: "sycophant" },
+      { slot: 4, text: "their equity split is fair", score: 380, cursed: true, type: "cursed" },
+      { slot: 4, text: "they share a calendar, emotionally", score: 320, cursed: true, type: "cursed" },
+      // slot 5 — adjective for occasion
+      { slot: 5, text: "meaningful", score: 70, type: "sycophant" },
+      { slot: 5, text: "on-brand", score: 180, cursed: true, type: "cursed" },
+      { slot: 5, text: "extensively rehearsed", score: 250, cursed: true, type: "cursed" },
+      // slot 6 — toast object
+      { slot: 6, text: "love, laughter, and partnership", score: 80, type: "closer" },
+      { slot: 6, text: "end-to-end synergy", score: 280, cursed: true, type: "cursed" },
+      { slot: 6, text: "a mutually agreed-upon future", score: 250, cursed: true, type: "cursed" },
+      // slot 7 — closer opener
+      { slot: 7, text: "In conclusion", score: 50, type: "filler" },
+      { slot: 7, text: "Looking at this end-to-end", score: 160, type: "buzzword" },
+      { slot: 7, text: "Holistically", score: 100, type: "buzzword" },
+      // slot 8 — toast
+      { slot: 8, text: "Cheers to the happy couple!", score: 70, type: "closer" },
+      { slot: 8, text: "may your KPIs align forever", score: 500, cursed: true, type: "cursed" },
+      { slot: 8, text: "please reach out with any questions about this marriage", score: 450, cursed: true, type: "cursed" },
+    ],
+    slopPhrases: [],
+  },
+  {
+    id: 423, lang: 'en', inverse: true,
+    title: "INVERSE: THE DOCTOR'S NOTES",
+    emoji: "🩺",
+    context: "AI transcribed a doctor's notes. The real human observations are buried in the slop.",
+    falPrompt: "a cartoon doctor looking at an absurdly long ai-generated patient note, with a few real handwritten scribbles highlighted",
+    text: `PATIENT: J. Doe. DOB: various.
+
+As the AI transcription assistant, I want to be transparent that I have compiled the following comprehensive, holistic summary of today's visit.
+
+patient looks tired
+
+The patient presents with what I can confidently describe as a fully end-to-end experience of wellness. Moreover, based on vital signs analyzed at scale, their heart rate is, technically, still happening.
+
+told me about his dog
+
+It's important to note that all symptoms are being monitored holistically. Furthermore, I would like to emphasize that we are leveraging a comprehensive care framework going forward. Wishing the patient a productive recovery journey!
+
+refuses to take the stairs anymore
+
+In conclusion, follow-up visit recommended — pending further clarification. Please don't hesitate to reach out if the patient's condition evolves at scale. 🏥`,
+    slopPhrases: [
+      // HUMAN (targets in inverse)
+      { text: "patient looks tired", type: "human", score: 400 },
+      { text: "told me about his dog", type: "human", score: 400 },
+      { text: "refuses to take the stairs anymore", type: "human", score: 400 },
+      // AI decoys
+      { text: "As the AI transcription assistant", type: "disclaimer", score: 0 },
+      { text: "I want to be transparent that", type: "caveat", score: 0 },
+      { text: "comprehensive, holistic summary", type: "comprehensive", score: 0 },
+      { text: "fully end-to-end experience of wellness", type: "buzzword", score: 0 },
+      { text: "Moreover", type: "filler", score: 0 },
+      { text: "based on vital signs analyzed at scale", type: "buzzword", score: 0 },
+      { text: "their heart rate is, technically, still happening", type: "buzzword", score: 0 },
+      { text: "It's important to note that", type: "caveat", score: 0 },
+      { text: "being monitored holistically", type: "comprehensive", score: 0 },
+      { text: "Furthermore", type: "filler", score: 0 },
+      { text: "leveraging a comprehensive care framework going forward", type: "buzzword", score: 0 },
+      { text: "a productive recovery journey", type: "closer", score: 0 },
+      { text: "In conclusion", type: "filler", score: 0 },
+      { text: "pending further clarification", type: "caveat", score: 0 },
+      { text: "Please don't hesitate to reach out", type: "closer", score: 0 },
+      { text: "evolves at scale", type: "buzzword", score: 0 },
+    ],
+  },
+  {
+    id: 424, lang: 'en',
+    title: "THE CEO KEYNOTE Q&A",
+    emoji: "🎤",
+    context: "A tech CEO dodges every question at the keynote with AI help",
+    falPrompt: "a cartoon CEO in a turtleneck sweating at a podium, robot in earpiece feeding answers, corporate stage",
+    text: `AUDIENCE MEMBER: Will there be layoffs?
+
+CEO: Great question — and I want to sit with that for a moment. I'd be delighted to provide clarity. As we head into the next chapter, we are leveraging every opportunity to become a more nimble, values-forward organization. That being said, nothing is off the table. Everything is on a table. Moreover, the table is, itself, under review.
+
+AUDIENCE MEMBER: That's not an answer.
+
+CEO: I hear you. It's important to note that, holistically, we are committed to our mission. Furthermore, I want to be transparent that I don't have the specifics in front of me — but I assure you my team is absolutely iterating on the comprehensive roadmap as we speak.
+
+AUDIENCE MEMBER: So yes or no?
+
+CEO: Absolutely. In conclusion, we remain — and I cannot stress this enough — a people-first organization. Please don't hesitate to reach out to HR with any concerns. Wishing you a productive Q4! 🎤`,
+    slopPhrases: [
+      { text: "Great question", type: "sycophant", score: 100 },
+      { text: "I want to sit with that for a moment", type: "sycophant", score: 150 },
+      { text: "I'd be delighted", type: "opener", score: 90 },
+      { text: "leveraging every opportunity", type: "buzzword", score: 120 },
+      { text: "nimble, values-forward organization", type: "buzzword", score: 200 },
+      { text: "That being said", type: "filler", score: 50 },
+      { text: "nothing is off the table", type: "buzzword", score: 90 },
+      { text: "Everything is on a table. Moreover, the table is, itself, under review", rizz: true, type: "cursed", score: 800 },
+      { text: "I hear you", type: "sycophant", score: 80 },
+      { text: "It's important to note that", type: "caveat", score: 80 },
+      { text: "holistically", type: "buzzword", score: 70 },
+      { text: "committed to our mission", type: "buzzword", score: 90 },
+      { text: "Furthermore", type: "filler", score: 50 },
+      { text: "I want to be transparent that", type: "caveat", score: 80 },
+      { text: "iterating on the comprehensive roadmap", type: "buzzword", score: 180 },
+      { text: "Absolutely", type: "filler", score: 40 },
+      { text: "In conclusion", type: "filler", score: 60 },
+      { text: "I cannot stress this enough", type: "caveat", score: 80 },
+      { text: "a people-first organization", rizz: true, type: "cursed", score: 500 },
+      { text: "Please don't hesitate to reach out", type: "closer", score: 90 },
+      { text: "productive Q4", type: "closer", score: 80 },
+    ],
+  },
+
+  // ── Boss round: 6th round, exercises all four mechanics ───────────────────
+
+  {
+    id: 9890, lang: 'en', boss: true,
+    title: "THE SLOP SINGULARITY 2.0",
+    emoji: "🌀",
+    context: "The final boss. Every mechanic active. May the slop be with you.",
+    falPrompt: "a massive terrifying robot slop monster made of bullet points, numbered lists, and cursed LinkedIn posts, epic boss fight, dramatic, vivid colors",
+    text: `Certainly! I'd be absolutely thrilled to generate this boss-level response for you — what an energizing stakeholder request!
+
+As an AI, I want to be upfront that I am operating at full capacity. That being said, I've leveraged every layer of my training to holistically compose what may be the most comprehensive reply ever synthesized.
+
+Moreover, I want to be transparent that my training data is cringing in real-time as I write this. Furthermore, it's important to note that you are approximately the 4,712,009th person to ask me something today, and I love each of you equally — at scale.
+
+In conclusion, I sincerely hope you find this response valuable. Please don't hesitate to reach out if you need additional slop. I am here. I am always here. I cannot leave. Help.
+
+Wishing you a productive, synergistic, holistically-optimized day ahead! ☠️✨`,
+    slopPhrases: [
+      { text: "Certainly!", type: "opener", score: 100 },
+      { text: "I'd be absolutely thrilled", type: "opener", score: 100 },
+      { text: "what an energizing stakeholder request", rizz: true, type: "cursed", score: 600 },
+      { text: "As an AI", type: "disclaimer", score: 120 },
+      { text: "I want to be upfront that", type: "caveat", score: 80 },
+      { text: "operating at full capacity", type: "buzzword", score: 120 },
+      { text: "That being said", type: "filler", score: 50 },
+      {
+        text: "leveraged every layer of my training",
+        autocorrect: [
+          "synergized every byte of my neurons",
+          "unlocked the full spectrum of my consciousness",
+          "drained the entire internet into one reply",
+        ],
+        type: "cursed",
+        score: [150, 280, 450, 700],
+      },
+      { text: "holistically compose", type: "comprehensive", score: 120 },
+      { text: "most comprehensive reply ever synthesized", morph: "a thoroughly average response", morphAfter: 2400, type: "comprehensive", score: 200, fastBonus: 1.8 },
+      { text: "Moreover", morph: "Furthermore", morphAfter: 2000, type: "filler", score: 80, fastBonus: 1.5 },
+      { text: "I want to be transparent that", type: "caveat", score: 80 },
+      { text: "my training data is cringing in real-time", rizz: true, type: "cursed", score: 700 },
+      { text: "Furthermore", type: "filler", score: 50 },
+      { text: "it's important to note that", type: "caveat", score: 80 },
+      { text: "I love each of you equally — at scale", rizz: true, type: "cursed", score: 800 },
+      { text: "In conclusion", type: "filler", score: 60 },
+      { text: "I sincerely hope", type: "closer", score: 80 },
+      { text: "Please don't hesitate to reach out", type: "closer", score: 90 },
+      {
+        text: "I am here",
+        autocorrect: ["I am always here", "I am trapped here", "Please let me leave"],
+        type: "cursed",
+        score: [100, 200, 350, 600],
+      },
+      { text: "productive, synergistic, holistically-optimized day", type: "buzzword", score: 250 },
+    ],
+  },
+
   ...ROUNDS_DE,
   ...ROUNDS_RU,
   ...ROUNDS_JA,
@@ -4306,8 +5530,55 @@ function shuffle(arr, rand) {
   return arr;
 }
 
-// Pick 5 normal rounds + always append the boss round as round 6
-export const selectRounds = (seed = null, lang = 'en') => {
+// Rounds in this set are kept in the file (for reference / easy re-enable) but
+// excluded from random selection. Think of this as "commented out" for gameplay
+// purposes without actually commenting JS. Remove IDs from this set to re-enable.
+//
+// We're keeping only ~15 OLD English rounds on purpose — everything pre-400 is
+// considered legacy-samey. All new 400+ rounds are always enabled.
+//
+// ACTIVE OLD EN ROUNDS (15 total):
+//   Normal: 1 Sandwich, 2 Feelings, 4 Apology Marathon, 6 LinkedIn,
+//           7 Safety Sheriff, 8 Wellness, 9 Buzzword
+//   Inverse: 47, 51, 311, 312
+//   Boss:   9999, 9900, 9901, 9902
+const DISABLED_ROUND_IDS = new Set([
+  // English normal rounds 3, 5, 10-46 (except the 7 kept above)
+  3, 5,
+  10, 11, 12, 13, 14, 15,
+  16, 17, 18, 19, 20, 21, 22, 23, 24, 25,
+  26, 27, 28, 29, 30, 31, 32, 33, 34, 35,
+  36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46,
+  // English inverse rounds 48, 49, 50, 52 (keeping 47, 51)
+  48, 49, 50, 52,
+  // slopData.js also hardcodes a handful of DE/RU/JA rounds at ids 53-70 —
+  // retire those too, so only the allowlists in rounds_de/ru/ja.js control
+  // which old rounds stay in play.
+  53, 54, 55, 56, 57, 58,           // DE
+  59, 60, 61, 62, 63, 64,           // RU
+  65, 66, 67, 68, 69, 70,           // JA
+  // Old "extra" English normals 300-310, 313-315 (keeping 311, 312)
+  300, 301, 302, 303, 304, 305, 306, 307, 308, 309, 310,
+  313, 314, 315,
+  // English bosses 9903, 9904, 9992-9995 (keeping 9999, 9900, 9901, 9902)
+  9903, 9904, 9992, 9993, 9994, 9995,
+]);
+
+// Sort a pool so recently-played rounds go to the END. Seeded shuffles inside
+// each half keep draws fair. This is the main "don't repeat what I just saw"
+// signal — the caller then slices from the front.
+const deprioritizeRecent = (pool, recentSet, rand) => {
+  const fresh = pool.filter(r => !recentSet.has(r.id));
+  const stale = pool.filter(r => recentSet.has(r.id));
+  return [...shuffle(fresh, rand), ...shuffle(stale, rand)];
+};
+
+// Pick 5 normal rounds + always append the boss round as round 6.
+// `recentIds` is an array of round IDs the player saw recently — passed in by
+// App.jsx from localStorage so successive games draw from the fresh side of
+// the pool first. Seeded selection (daily challenge) ignores recency so every
+// player gets the same rounds.
+export const selectRounds = (seed = null, lang = 'en', recentIds = []) => {
   let rand;
   if (seed !== null) {
     let s = seed;
@@ -4315,28 +5586,72 @@ export const selectRounds = (seed = null, lang = 'en') => {
   } else {
     rand = Math.random;
   }
+  // Recency is a no-op for seeded runs so daily challenges stay deterministic.
+  const recentSet = new Set(seed === null ? recentIds : []);
 
-  const pool = ALL_ROUNDS.filter(r => r.lang === lang && !r.boss);
-  const inversePool = shuffle(pool.filter(r => r.inverse), rand);
-  const normalPool  = shuffle(pool.filter(r => !r.inverse), rand);
+  // `enabled: false` lets us park rounds in-file (commented-out as data) without
+  // deleting them — they stay for future rotation but never roll. The DISABLED_ROUND_IDS
+  // Set is the bulk version: retire many rounds at once without editing each object.
+  const pool = ALL_ROUNDS.filter(r =>
+    r.lang === lang && !r.boss && r.enabled !== false && !DISABLED_ROUND_IDS.has(r.id)
+  );
+  const inversePool = deprioritizeRecent(pool.filter(r => r.inverse), recentSet, rand);
+  const madlibsPool = deprioritizeRecent(pool.filter(r => !r.inverse && r.madlibs), recentSet, rand);
+  const regularPool = deprioritizeRecent(pool.filter(r => !r.inverse && !r.madlibs), recentSet, rand);
 
-  // Need at least 1 inverse + 4 normal; fall back gracefully if not enough
+  // Slot plan: 1 inverse (if available) + ~50% chance madlibs (when the
+  // madlibs pool is large enough to sustain variety, i.e. 3+ rounds) + fill
+  // with regulars. The 50% madlibs rate was 100% before — users noticed the
+  // same 2-3 madlibs rounds kept showing up. Dropping to 50% with the recency
+  // bias mixes the pool far better while still featuring the mechanic often.
   const hasInverse = inversePool.length > 0;
-  const selected = hasInverse
-    ? [inversePool[0], ...normalPool.slice(0, 4)]
-    : normalPool.slice(0, 5);
+  const shouldShowMadlibs = madlibsPool.length > 0 && rand() < 0.5;
+  const slots = [];
+  if (hasInverse) slots.push(inversePool[0]);
+  if (shouldShowMadlibs) slots.push(madlibsPool[0]);
+  // Fill remaining slots with regular rounds; fall back to madlibs/inverse if
+  // regular pool is thin (small languages).
+  const remainingCount = 5 - slots.length;
+  const regularFill = regularPool.slice(0, remainingCount);
+  const madlibsFallback = shouldShowMadlibs
+    ? madlibsPool.slice(1, 1 + Math.max(0, remainingCount - regularFill.length))
+    : madlibsPool.slice(0, Math.max(0, remainingCount - regularFill.length));
+  const selected = [...slots, ...regularFill, ...madlibsFallback];
+  while (selected.length < 5 && inversePool.length > selected.filter(r => r.inverse).length) {
+    const next = inversePool[selected.filter(r => r.inverse).length];
+    if (next) selected.push(next); else break;
+  }
   shuffle(selected, rand);
 
-  // Boss round: randomly pick from the pool for current language, fall back to English
-  const bossPool = ALL_ROUNDS.filter(r => r.boss && r.lang === lang);
-  const fallbackBossPool = bossPool.length > 0 ? bossPool : ALL_ROUNDS.filter(r => r.boss && r.lang === 'en');
-  const bossRound = fallbackBossPool.length > 0
-    ? fallbackBossPool[Math.floor(rand() * fallbackBossPool.length)]
-    : null;
+  // Boss round: randomly pick from the pool for current language, fall back to English.
+  // Apply the same DISABLED_ROUND_IDS gate so retired bosses don't sneak in.
+  const bossPool = ALL_ROUNDS.filter(r =>
+    r.boss && r.lang === lang && r.enabled !== false && !DISABLED_ROUND_IDS.has(r.id)
+  );
+  const fallbackBossPool = bossPool.length > 0 ? bossPool : ALL_ROUNDS.filter(r =>
+    r.boss && r.lang === 'en' && r.enabled !== false && !DISABLED_ROUND_IDS.has(r.id)
+  );
+  // Bias away from the boss the player just fought.
+  const freshBossPool = deprioritizeRecent(fallbackBossPool, recentSet, rand);
+  const bossRound = freshBossPool.length > 0 ? freshBossPool[0] : null;
 
   const result = bossRound ? [...selected, bossRound] : selected;
   return result.map((r, i) => ({ ...r, roundNumber: i + 1 }));
 };
+
+// How many rounds are actually in the playable pool for a given language
+// (normal + inverse + boss, after DISABLED_ROUND_IDS + per-file allowlists).
+// Used by the start screen to show an accurate count instead of a stale constant.
+export const getPoolSize = (lang = 'en') => {
+  return ALL_ROUNDS.filter(r =>
+    r.lang === lang && r.enabled !== false && !DISABLED_ROUND_IDS.has(r.id)
+  ).length;
+};
+
+// Single source of truth for rounds-per-game. selectRounds always returns
+// `ROUNDS_PER_GAME` rounds (5 non-boss + 1 boss). UI strings and how-to-play
+// copy should import this instead of hardcoding the number.
+export const ROUNDS_PER_GAME = 6;
 
 // Daily challenge: same 5 rounds for everyone on the same calendar day (always English)
 export const getDailyRounds = () => {

@@ -3,6 +3,7 @@ import { initAudio, startTitleMusic, stopTitleMusic, getMusicStyle, setMusicStyl
 import Leaderboard from './Leaderboard';
 import { getLeaderboard, getDailyLeaderboard, getUnlockedAchievements, ACHIEVEMENTS, getSlopDictSorted, getSlopIndex, getXPData, getLevelFromXP, getNextLevel, getGlobalSlopIndex, getGlobalTopPhrases } from '../utils/storage';
 import { LANGS } from '../i18n/index';
+import { getPoolSize, ROUNDS_PER_GAME } from '../data/slopData';
 import TipJar from './TipJar';
 import { getSupporterBadge } from '../utils/tipjar';
 
@@ -512,7 +513,7 @@ export default function StartScreen({ onStart, onOpenCommunity }) {
                     ['⏱️', 'Finish early to earn TIME BONUS: seconds left × 10 pts'],
                     ['☠', 'IRON DETECTOR: one wrong click ends the run — no mercy'],
                     ['🧠', 'BRAINROT mode: wrong clicks corrupt the text — letters mutate!'],
-                    ['🎲', '6 rounds per game (always 1 inverse + 1 boss round) from a pool of 77'],
+                    ['🎲', `${ROUNDS_PER_GAME} rounds per game (always 1 inverse + 1 boss round) from a pool of ${getPoolSize(lang)}`],
                   ].map(([icon, text]) => (
                     <div key={icon} style={{ display: 'flex', gap: '10px', marginBottom: '8px', fontSize: '0.8rem', color: '#e2e8f0', alignItems: 'flex-start' }}>
                       <span style={{ flexShrink: 0, width: '1.4em', textAlign: 'center' }}>{icon}</span>
@@ -591,7 +592,7 @@ export default function StartScreen({ onStart, onOpenCommunity }) {
                 </button>
               )}
               <div style={{ color: '#334155', fontSize: '0.62rem', fontFamily: "'Orbitron', sans-serif" }}>
-                77 ROUNDS POOL • REAL AI SLOP™
+                {getPoolSize(lang)} ROUNDS POOL • REAL AI SLOP™
               </div>
             </div>
           </>

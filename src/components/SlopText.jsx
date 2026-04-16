@@ -200,15 +200,22 @@ export default function SlopText({
   lang = 'en',
   onTypingComplete,
   onCorruptionChange,
+  onMechanicHit,
 }) {
   const tokens = useRef(null);
   const segmentsRef = useRef(null);
   const [revealedCount, setRevealedCount] = useState(0);
   const [wrongIds, setWrongIds] = useState(new Set());
-  const [corruptions, setCorruptions] = useState(new Map()); // tokenId → corrupted display text
+  const [corruptions, setCorruptions] = useState(new Map()); // tokenId → current display text
+  const [autocorrectPhases, setAutocorrectPhases] = useState(new Map()); // tokenId → phase index
+  const [justMorphed, setJustMorphed] = useState(new Set()); // tokens that just shifted — for the Double Agent flash
   const intervalRef = useRef(null);
   const brainrotTimerRef = useRef(null);
   const revealedCountRef = useRef(0);
+  const morphTimersRef = useRef(new Map()); // tokenId → timeout handle for Double Agent morph
+  const morphFlashTimersRef = useRef(new Set()); // outstanding clear-flash timeouts, so we can cancel on unmount
+  const foundRef = useRef(null);
+  foundRef.current = found;
 
   // Build tokens once per round
   if (!tokens.current) {
@@ -221,7 +228,16 @@ export default function SlopText({
     setRevealedCount(0);
     setWrongIds(new Set());
     setCorruptions(new Map());
+    setAutocorrectPhases(new Map());
+    setJustMorphed(new Set());
     revealedCountRef.current = 0;
+    // Clear any pending Double Agent morph timers + flash timers from the
+    // previous round so they don't trigger state updates after this effect
+    // has already reset the round.
+    morphTimersRef.current.forEach(t => clearTimeout(t));
+    morphTimersRef.current.clear();
+    morphFlashTimersRef.current.forEach(t => clearTimeout(t));
+    morphFlashTimersRef.current.clear();
     tokens.current = tokenize(round.text, round.slopPhrases);
     segmentsRef.current = buildSegments(round.text, tokens.current);
 
@@ -239,10 +255,54 @@ export default function SlopText({
       if (count >= totalTokens) {
         clearInterval(intervalRef.current);
         onTypingComplete?.();
+        // Double Agent: schedule each morph phrase to auto-swap if the player doesn't
+        // click it in time. Works on desktop + mobile since there's no hover required.
+        const morphTokens = tokens.current.filter(t => t.phraseData?.morph);
+        morphTokens.forEach(token => {
+          const after = token.phraseData.morphAfter || 2500;
+          const handle = setTimeout(() => {
+            let didMorph = false;
+            setCorruptions(prev => {
+              if (prev.has(token.id)) return prev; // already morphed or autocorrected
+              if (foundRef.current?.has(token.id)) return prev; // already caught
+              const next = new Map(prev);
+              next.set(token.id, token.phraseData.morph);
+              didMorph = true;
+              return next;
+            });
+            morphTimersRef.current.delete(token.id);
+            // Visual hint so the player notices the phrase shifted —
+            // brief pulse that auto-clears in 900ms. We track the clear-timer
+            // handle so the reset/unmount cleanup below can cancel it and
+            // avoid a "set state on unmounted component" leak when the round
+            // changes while a flash is still fading.
+            if (didMorph) {
+              setJustMorphed(prev => new Set(prev).add(token.id));
+              const clearH = setTimeout(() => {
+                setJustMorphed(prev => {
+                  const n = new Set(prev);
+                  n.delete(token.id);
+                  return n;
+                });
+                morphFlashTimersRef.current.delete(clearH);
+              }, 900);
+              morphFlashTimersRef.current.add(clearH);
+            }
+          }, after);
+          morphTimersRef.current.set(token.id, handle);
+        });
       }
     }, delay);
 
-    return () => clearInterval(intervalRef.current);
+    return () => {
+      clearInterval(intervalRef.current);
+      morphTimersRef.current.forEach(t => clearTimeout(t));
+      morphTimersRef.current.clear();
+      // Cancel any pending morph-flash clear timers so they don't call
+      // setJustMorphed on an unmounted/next-round component.
+      morphFlashTimersRef.current.forEach(t => clearTimeout(t));
+      morphFlashTimersRef.current.clear();
+    };
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [round.id]);
 
@@ -296,23 +356,99 @@ export default function SlopText({
       return;
     }
 
+    const pd = token.phraseData;
+
+    // Cancel any pending Double Agent morph for this token — the player caught it.
+    const pendingMorph = morphTimersRef.current.get(token.id);
+    if (pendingMorph) {
+      clearTimeout(pendingMorph);
+      morphTimersRef.current.delete(token.id);
+    }
+
+    // ── Mechanic: Slop Autocorrect ──────────────────────────────────────────
+    // Phrase has `autocorrect: [v2, v3, ...]`. Each click mutates text to the
+    // next worse version. Only the FINAL click marks it found.
+    if (pd.autocorrect && Array.isArray(pd.autocorrect) && pd.autocorrect.length > 0) {
+      const currentPhase = autocorrectPhases.get(token.id) ?? 0;
+      const nextPhase = currentPhase + 1;
+      const nextText = pd.autocorrect[currentPhase];
+      const scoreArr = Array.isArray(pd.score) ? pd.score : [pd.score];
+      const stepScore = scoreArr[currentPhase] ?? (scoreArr[scoreArr.length - 1] ?? 80);
+      const isFinal = nextPhase >= pd.autocorrect.length;
+
+      setCorruptions(prev => {
+        const next = new Map(prev);
+        next.set(token.id, nextText);
+        return next;
+      });
+      setAutocorrectPhases(prev => {
+        const next = new Map(prev);
+        next.set(token.id, nextPhase);
+        return next;
+      });
+
+      const commentary = isFinal
+        ? 'TERMINAL SLOP! ☠️'
+        : currentPhase === 0 ? 'IT GOT WORSE! 🤢' : 'EVEN WORSE! 🤮';
+
+      const newCombo = (combo || 0) + 1;
+      const multiplier = Math.min(newCombo, 5);
+      const baseScore = stepScore * multiplier;
+      const score = doublePoints ? baseScore * 2 : baseScore;
+
+      playSlopDetected();
+      if (newCombo > 1) playCombo(newCombo);
+      onScore(score, x, y, commentary, doublePoints, multiplier, token.id);
+      onCombo(newCombo);
+
+      if (isFinal) {
+        const newFound = new Set(found);
+        newFound.add(token.id);
+        onFoundChange(newFound);
+        updateSlopDict(pd.text, pd.type);
+        submitGlobalPhrase(pd.text, pd.type);
+        onMechanicHit?.('autocorrect_lock');
+      }
+      return;
+    }
+
+    // ── Mechanic: Rizz Detector + Double Agent modifiers ────────────────────
+    let scoreMultiplier = 1;
+    let forcedCommentary = null;
+
+    if (pd.rizz) {
+      scoreMultiplier *= 10;
+      forcedCommentary = getRandomCommentary('cursed', lang);
+      onMechanicHit?.('rizz');
+    }
+
+    // Double Agent: if the phrase hasn't morphed yet (player caught it fast).
+    // Bumped default fast-bonus from 1.5× to 2× so the "caught it!" moment feels
+    // meaningfully more rewarding than just tapping a normal phrase.
+    const caughtBeforeMorph = pd.morph && !corruptions.has(token.id);
+    if (caughtBeforeMorph) {
+      scoreMultiplier *= (pd.fastBonus ?? 2.0);
+      if (!forcedCommentary) forcedCommentary = '⚡ CAUGHT IT FAST!';
+      onMechanicHit?.('morph_fast');
+    }
+
     const newFound = new Set(found);
     newFound.add(token.id);
     onFoundChange(newFound);
 
-    const commentary = getRandomCommentary(token.phraseData.type, lang);
+    const commentary = forcedCommentary || getRandomCommentary(pd.type, lang);
     const newCombo = (combo || 0) + 1;
     const multiplier = Math.min(newCombo, 5);
-    const baseScore = token.phraseData.score * multiplier;
-    const score = doublePoints ? baseScore * 2 : baseScore;
+    const baseScore = pd.score * multiplier * scoreMultiplier;
+    const score = Math.round(doublePoints ? baseScore * 2 : baseScore);
 
-    updateSlopDict(token.phraseData.text, token.phraseData.type);
-    submitGlobalPhrase(token.phraseData.text, token.phraseData.type);
+    updateSlopDict(pd.text, pd.type);
+    submitGlobalPhrase(pd.text, pd.type);
     playSlopDetected();
     if (newCombo > 1) playCombo(newCombo);
     onScore(score, x, y, commentary, doublePoints, multiplier, token.id);
     onCombo(newCombo);
-  }, [found, combo, onScore, onCombo, onFoundChange, onWrongClick, doublePoints, round.inverse]);
+  }, [found, combo, onScore, onCombo, onFoundChange, onWrongClick, doublePoints, round.inverse, lang, autocorrectPhases, corruptions, onMechanicHit]);
 
   // Wrong click — normal word clicked
   const handleNormalClick = useCallback((e, token) => {
@@ -360,16 +496,22 @@ export default function SlopText({
       return <span key={token.id} style={{ opacity: 0 }}>{token.text}</span>;
     }
 
-    const isCorrupted = brainrot && corruptions.has(token.id);
-    const displayText = isCorrupted ? corruptions.get(token.id) : token.text;
+    // Corruptions now serve three purposes: brainrot text-decay, Double Agent
+    // morph swaps, and Autocorrect phase progression. Only brainrot wants the
+    // orange "decaying" tint — the other two should blend seamlessly.
+    const hasCorruption = corruptions.has(token.id);
+    const displayText = hasCorruption ? corruptions.get(token.id) : token.text;
+    const isBrainrotCorrupted = brainrot && hasCorruption;
 
     if (token.isSlop) {
       const isFound = found.has(token.id);
       const showRadar = radarActive && !isFound;
       const isInverse = !!round.inverse;
-      const className = `slop-token${isFound ? (isInverse ? ' human-found' : ' found') : ' active'}`;
+      const isRizz = token.phraseData?.rizz && !isFound;
+      const isFlashing = justMorphed.has(token.id) && !isFound;
+      const className = `slop-token${isFound ? (isInverse ? ' human-found' : ' found') : ' active'}${isRizz ? ' rizz-hint' : ''}${isFlashing ? ' morph-flash' : ''}`;
       const extraStyle = {
-        ...(isCorrupted && !isFound ? { color: '#fb923c', transition: 'color 0.3s' } : {}),
+        ...(isBrainrotCorrupted && !isFound ? { color: '#fb923c', transition: 'color 0.3s' } : {}),
         ...(showRadar ? {
           background: 'rgba(56,189,248,0.3)',
           borderBottom: '2px solid #38bdf8',
@@ -416,7 +558,7 @@ export default function SlopText({
       <span
         key={token.id}
         className={`normal-token${isWrong ? ' wrong-click' : ''}`}
-        style={isCorrupted ? { color: '#fb923c', transition: 'color 0.3s' } : undefined}
+        style={isBrainrotCorrupted ? { color: '#fb923c', transition: 'color 0.3s' } : undefined}
         onClick={(e) => handleNormalClick(e, token)}
       >
         {displayText}
@@ -490,12 +632,40 @@ export default function SlopText({
           cursor: default;
           animation: pop-in 0.25s ease;
         }
+        /* Rizz Detector: subtle pink shimmer hints that something unhinged
+           is hiding in this phrase. Easy to miss if you're not looking. */
+        @keyframes rizz-shimmer {
+          0%, 100% { text-shadow: none; }
+          50% { text-shadow: 0 0 4px rgba(236,72,153,0.45), 0 0 10px rgba(236,72,153,0.18); }
+        }
+        .rizz-hint {
+          animation: rizz-shimmer 3.2s ease-in-out infinite;
+        }
+        /* Double Agent: brief cyan pulse when a phrase morphs so the player
+           actually notices the swap instead of it happening silently. */
+        @keyframes morph-flash-anim {
+          0% { background: rgba(56,189,248,0.45); box-shadow: 0 0 14px rgba(56,189,248,0.6); }
+          60% { background: rgba(56,189,248,0.15); box-shadow: 0 0 6px rgba(56,189,248,0.25); }
+          100% { background: transparent; box-shadow: none; }
+        }
+        .morph-flash {
+          animation: morph-flash-anim 0.9s ease-out;
+          border-radius: 3px;
+        }
       `}</style>
     </div>
   );
 }
 
 export function getSlopStats(round, found) {
+  // Mad Libs rounds use `template` instead of `text` and have no tokenizable
+  // slop phrases. Return empty stats so callers (RoundSummary) don't crash.
+  if (!round?.text || round.madlibs) {
+    const slotCount = Array.isArray(round?.wordBank)
+      ? new Set(round.wordBank.map(w => w.slot)).size
+      : 0;
+    return { total: slotCount, found: found?.size ?? 0, missed: Math.max(0, slotCount - (found?.size ?? 0)), tokens: [] };
+  }
   const tokens = tokenize(round.text, round.slopPhrases);
   const slopTokens = tokens.filter(t => t.isSlop);
   const foundCount = slopTokens.filter(t => found.has(t.id)).length;

@@ -4,11 +4,35 @@ import { t as tr } from '../i18n/index';
 import { playCountdownTick, playCountdownGo, startSummaryMusic, stopSummaryMusic, startInverseMusic, stopInverseMusic } from '../utils/audio';
 
 
+// Which special mechanics does this round use? Returns an array of
+// { key, label, emoji, color, hint } for each active mechanic so the intro
+// can tease the player before the round starts. Pure inspection — no mutation.
+function detectMechanics(round) {
+  if (!round) return [];
+  const out = [];
+  if (round.madlibs) {
+    out.push({ key: 'madlibs', label: 'MAD LIBS', emoji: '📝', color: '#a855f7', hint: 'Tap a word, tap a slot — fill in the blanks' });
+    return out; // madlibs takes over the whole round — no other mechanics coexist
+  }
+  const phs = round.slopPhrases || [];
+  if (phs.some(p => p.rizz)) {
+    out.push({ key: 'rizz', label: 'RIZZ ROUND', emoji: '🔥', color: '#ec4899', hint: 'A phrase is hiding in here. Find it — it pays 10×' });
+  }
+  if (phs.some(p => p.morph)) {
+    out.push({ key: 'morph', label: 'DOUBLE AGENT', emoji: '⚡', color: '#38bdf8', hint: 'Some phrases change after a moment — catch them fast for a bonus' });
+  }
+  if (phs.some(p => p.autocorrect)) {
+    out.push({ key: 'autocorrect', label: 'AUTOCORRECT', emoji: '🔁', color: '#fb923c', hint: 'Chain-click a phrase to make it worse — lock in for massive score' });
+  }
+  return out;
+}
+
 export default function RoundIntro({ round, totalRounds, onReady, difficulty = 'normal', lang = 'en', musicEnabled = true }) {
   const isInverse = !!round?.inverse;
   const isBoss = !!round?.boss;
   const isBrainrot = difficulty === 'brainrot';
   const isIronDetector = difficulty === 'iron';
+  const mechanics = detectMechanics(round);
   const [countdown, setCountdown] = useState(5);
   const [readyToStart, setReadyToStart] = useState(false);
   const [thinkingIdx, setThinkingIdx] = useState(0);
@@ -133,6 +157,41 @@ export default function RoundIntro({ round, totalRounds, onReady, difficulty = '
         </div>
       )}
 
+      {/* Mechanic badges — tell the player what's special about this round.
+          Rendered above the context box so they see it before the prompt. */}
+      {mechanics.length > 0 && (
+        <div style={{
+          display: 'flex', flexDirection: 'column', gap: '6px',
+          maxWidth: '380px', width: '100%',
+          animation: 'bounce-in 0.5s ease',
+        }}>
+          {mechanics.map(m => (
+            <div key={m.key} style={{
+              display: 'flex', alignItems: 'center', gap: '10px',
+              padding: '8px 14px',
+              background: `linear-gradient(135deg, ${m.color}22, ${m.color}08)`,
+              border: `1.5px solid ${m.color}99`,
+              borderRadius: '10px',
+              boxShadow: `0 0 12px ${m.color}33`,
+            }}>
+              <div style={{ fontSize: '1.3rem', flexShrink: 0 }}>{m.emoji}</div>
+              <div style={{ flex: 1, textAlign: 'left' }}>
+                <div style={{
+                  fontFamily: "'Press Start 2P', monospace",
+                  fontSize: '0.6rem', letterSpacing: '1.5px',
+                  color: m.color, textShadow: `0 0 6px ${m.color}`,
+                }}>
+                  {m.label}
+                </div>
+                <div style={{ fontSize: '0.7rem', color: '#cbd5e1', marginTop: '2px', lineHeight: 1.4 }}>
+                  {m.hint}
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+      )}
+
       {/* Context box */}
       <div className="card" style={{
         padding: '12px 20px',
@@ -144,7 +203,7 @@ export default function RoundIntro({ round, totalRounds, onReady, difficulty = '
           {tr('the_prompt', lang)}
         </div>
         <div style={{ color: '#e2e8f0', fontSize: '0.9rem', fontStyle: 'italic' }}>
-          {round.context}
+          {round.context || round.prompt /* legacy rounds (311-315 + some ru) use `prompt` */}
         </div>
       </div>
 
@@ -167,9 +226,6 @@ export default function RoundIntro({ round, totalRounds, onReady, difficulty = '
       }}>
         {isBoss ? (
           <>
-            <div style={{ fontSize: '0.8rem', color: '#ef4444', fontWeight: 700, textShadow: '0 0 8px #ef4444' }}>
-              ⚔️ THE SLOP SINGULARITY
-            </div>
             <div style={{ fontSize: '0.78rem', color: '#fca5a5' }}>
               This is it. The AI gave 100% slop. Find <strong>every single phrase</strong>.
             </div>

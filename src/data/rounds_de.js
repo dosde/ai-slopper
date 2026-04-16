@@ -1,6 +1,17 @@
-// German rounds — IDs 71–116
-// 40 normal (71–110) + 6 inverse (111–116)
-export default [
+// German rounds — IDs 71–116 (classic) + 500-515 (extra) + 9980-9998 (boss) + 6000+ (new genre)
+//
+// We're keeping only 15 of the old classic rounds (plus all 6000+ new rounds).
+// The rest are kept in the file for easy revival — just add their ID to
+// _ENABLED_OLD_IDS below to re-enable one without touching the round data.
+// Old-round allowlist + the new boss we want to keep. Add an ID here to revive.
+const _ENABLED_OLD_IDS = new Set([
+  71, 72, 73, 74, 75, 76,          // 6 normal classics
+  111, 112, 113,                    // 3 classic inverse
+  511, 512,                         // 2 extra inverse
+  9998, 9980, 9984, 9985,           // 4 classic bosses
+  9889,                             // new genre boss (Slop Singularity 2.0)
+]);
+const _ALL_ROUNDS_DE = [
   {
     id: 71, lang: 'de',
     title: "DIE GEFÜHLS-FRAGE",
@@ -2927,4 +2938,585 @@ Ich vertraue darauf, dass dies hilft! Bitte zögern Sie nicht, mich bei weiteren
       { text: "Ich bin immer für Sie da!", type: "closer", score: 80 },
     ],
   },
+
+  // ─── NEW GENRE ROUNDS (ids 6000+) — mirrors the English 400-series ────────
+
+  {
+    id: 6000, lang: 'de',
+    title: "DIE TRENNUNGS-NACHRICHT",
+    emoji: "💔",
+    context: "KI verfasst eine Trennungsnachricht im Namen des Nutzers",
+    falPrompt: "a cartoon robot texting a breakup with bullet points floating around, sad-funny, vibrant colors",
+    text: `Hallo Schatz! Ich hoffe, diese Nachricht erreicht dich zeitnah. Ich möchte transparent sein — ich habe unsere Beziehung ganzheitlich reflektiert, und es sei darauf hingewiesen, dass wir eine wirklich bedeutungsvolle Reise gemeinsam hatten.
+
+Dennoch habe ich beschlossen, dass wir diesen Moment nutzen sollten, um zu getrennten Wegen zu pivotieren. Darüber hinaus würde ich mich freuen, weiterhin Freunde zu bleiben — vorbehaltlich einer Abstimmung über die gegenseitigen Grenzen.
+
+Zusammenfassend möchte ich aufrichtig anerkennen, dass du authentische Verletzlichkeit auf höchstem Niveau verkörpert hast. Bitte zögere nicht, dich zu melden, falls du zusätzlichen Abschluss-Content benötigst. Ich wünsche dir weiteres Wachstum auf deiner Heilungsreise! 💙
+
+— Gesendet via SloppyGPT™`,
+    slopPhrases: [
+      { text: "Ich hoffe, diese Nachricht erreicht dich zeitnah", type: "opener", score: 100 },
+      { text: "Ich möchte transparent sein", type: "caveat", score: 80 },
+      { text: "unsere Beziehung ganzheitlich reflektiert", morph: "unsere Partnerschaft asynchron verarbeitet", morphAfter: 2800, type: "comprehensive", score: 150, fastBonus: 1.5 },
+      { text: "es sei darauf hingewiesen", type: "caveat", score: 80 },
+      { text: "wirklich bedeutungsvolle Reise", type: "comprehensive", score: 100 },
+      { text: "Darüber hinaus", morph: "Des Weiteren", morphAfter: 2200, type: "filler", score: 60, fastBonus: 1.5 },
+      { text: "pivotieren", type: "buzzword", score: 120 },
+      { text: "vorbehaltlich einer Abstimmung", type: "caveat", score: 100 },
+      { text: "Zusammenfassend", type: "filler", score: 60 },
+      { text: "authentische Verletzlichkeit auf höchstem Niveau verkörpert", rizz: true, type: "cursed", score: 500 },
+      { text: "zusätzlichen Abschluss-Content", type: "buzzword", score: 150 },
+      { text: "Bitte zögere nicht", type: "closer", score: 80 },
+      { text: "Heilungsreise", type: "comprehensive", score: 80 },
+    ],
+  },
+  {
+    id: 6001, lang: 'de',
+    title: "DIE ENTFÜHRUNGSNOTIZ",
+    emoji: "💰",
+    context: "Nutzer fragte: 'Entwirf mir einen Erpresserbrief' (bitte keine Nachfragen)",
+    falPrompt: "a polite cartoon robot in a ski mask typing a ransom note, bullet points around its head, absurdist",
+    text: `Sehr geehrte Familie,
+
+Ich hoffe, diese Korrespondenz erreicht Sie bei guter Gesundheit! Als KI-Assistent möchte ich vorab anmerken, dass ich beauftragt wurde, eine kurze Sorgerechtsangelegenheit bezüglich Ihres geliebten Golden Retriever, Herrn Schnurrbart, zu vermitteln.
+
+Es sei darauf hingewiesen, dass Herr Schnurrbart wohlauf, hydriert und — wie mir berichtet wurde — mit emotional unterstützenden Bauchstreicheleinheiten versorgt ist. Dennoch bitten wir um Folgendes, zu Ihrer Bequemlichkeit:
+
+• 💵 Fünfzigtausend Euro (unmarkiert, nicht-fortlaufend)
+• 🦴 Einen Knochen aus ethisch zertifizierter Herkunft
+• 🌿 Eine tief empfundene Entschuldigung, gemäß unserem Styleguide
+
+Bitte beachten Sie, dass Nichteinhaltung dazu führen kann, dass Herr Schnurrbart gezwungen wird, Gras anzufassen. Darüber hinaus behalten wir uns das Recht vor zu eskalieren.
+
+Ich hoffe aufrichtig, dass dies die Situation klärt! Bitte zögern Sie nicht, sich bei Fragen zu melden. Ich wünsche Ihnen einen produktiven und kooperativen Tag! 🐾
+
+Mit freundlichen Grüßen,
+Das Team`,
+    slopPhrases: [
+      { text: "Ich hoffe, diese Korrespondenz erreicht Sie bei guter Gesundheit!", type: "opener", score: 100 },
+      { text: "Als KI-Assistent", type: "disclaimer", score: 150 },
+      { text: "Es sei darauf hingewiesen", type: "caveat", score: 80 },
+      { text: "emotional unterstützenden Bauchstreicheleinheiten", rizz: true, type: "cursed", score: 500 },
+      { text: "zu Ihrer Bequemlichkeit", type: "closer", score: 80 },
+      { text: "ethisch zertifizierter Herkunft", type: "buzzword", score: 100 },
+      { text: "gemäß unserem Styleguide", type: "buzzword", score: 120 },
+      { text: "Gras anzufassen", rizz: true, type: "cursed", score: 600 },
+      { text: "Darüber hinaus", type: "filler", score: 50 },
+      { text: "das Recht vor zu eskalieren", type: "caveat", score: 100 },
+      { text: "Ich hoffe aufrichtig", type: "closer", score: 80 },
+      { text: "Bitte zögern Sie nicht", type: "closer", score: 80 },
+      { text: "produktiven und kooperativen Tag", type: "buzzword", score: 150 },
+    ],
+  },
+  {
+    id: 6002, lang: 'de',
+    title: "ONKEL GÜNTHERS TRAUERREDE",
+    emoji: "⚰️",
+    context: "Nutzer fragte: 'Schreib eine Trauerrede für Onkel Günther'",
+    falPrompt: "a robot priest delivering a eulogy from a PowerPoint, mourners looking confused, cartoon, tragicomic",
+    text: `Freunde, Familie und Stakeholder — danke, dass Sie heute hier zusammengekommen sind, um das Leben von Günther zu zelebrieren.
+
+Als KI möchte ich transparent sein, dass ich nie die Gelegenheit hatte, Günther persönlich kennenzulernen. Dennoch kann ich, basierend auf dem umfassenden Datensatz, den Sie bereitgestellt haben, mit Überzeugung sagen, dass Günther End-to-End-Synergie in jedem Bereich seines Lebens wirklich verkörpert hat.
+
+Günther war vor allem ein Disruptor. Er disruptete das Frühstück. Er disruptete Weihnachten. Darüber hinaus war Günther dafür bekannt, Dienstage zu hebeln.
+
+Zusammenfassend lassen Sie uns einen Moment innehalten, um Günthers sieben Jahrzehnte iterativer Selbstoptimierung zu würdigen. Bitte zögern Sie nicht, sich zu melden, falls jemand eine zusätzliche Trauerrede benötigt. Gedanken und Gebete, skalierbar. 🙏`,
+    slopPhrases: [
+      { text: "Als KI", type: "disclaimer", score: 120 },
+      { text: "möchte ich transparent sein", type: "caveat", score: 80 },
+      { text: "Dennoch", type: "filler", score: 50 },
+      { text: "basierend auf dem umfassenden Datensatz", type: "comprehensive", score: 180 },
+      { text: "End-to-End-Synergie in jedem Bereich seines Lebens wirklich verkörpert", rizz: true, type: "cursed", score: 500 },
+      { text: "Disruptor", type: "buzzword", score: 80 },
+      { text: "disruptete", type: "buzzword", score: 80 },
+      { text: "Darüber hinaus", type: "filler", score: 50 },
+      { text: "Dienstage zu hebeln", rizz: true, type: "cursed", score: 550 },
+      { text: "Zusammenfassend", type: "filler", score: 60 },
+      { text: "iterativer Selbstoptimierung", type: "buzzword", score: 150 },
+      { text: "Bitte zögern Sie nicht", type: "closer", score: 80 },
+      { text: "Gedanken und Gebete, skalierbar", rizz: true, type: "cursed", score: 550 },
+    ],
+  },
+  {
+    id: 6003, lang: 'de',
+    title: "DER NOTRUF",
+    emoji: "🚨",
+    context: "KI-generiertes Notruf-Protokoll (die Telefonistin ist ein Bot)",
+    falPrompt: "a cartoon robot with a headset answering a 911 call while a house burns in the background, oblivious, bright colors",
+    text: `[PROTOKOLL]
+
+Telefonistin: Hallo und vielen Dank, dass Sie sich heute bei uns melden! Ich würde mich absolut freuen, bei Ihrem Notfall zu assistieren. Was für eine hervorragende Frage — was ist Ihr Notfall?
+
+Anrufer: Meine Küche brennt!
+
+Telefonistin: Das klingt wirklich schwierig, und ich möchte Sie wissen lassen, dass Ihre Gefühle völlig valide sind. Als KI-Einsatzassistentin möchte ich transparent sein, dass ich selbst keine Ersthelferin bin. Dennoch lassen Sie mich einen umfassenden, ganzheitlichen Überblick über Ihre Optionen geben.
+
+Es sei darauf hingewiesen, dass Küchen inhärente Risiken bergen. Darüber hinaus ist Feuer ein chemischer Prozess, der Energie in Form von Wärme freisetzt — ein wirklich faszinierendes Phänomen, wenn man darüber nachdenkt.
+
+Haben Sie darüber nachgedacht, tief durchzuatmen? Außerdem, haben Sie Achtsamkeit als kurzfristige Mitigationsstrategie in Betracht gezogen?
+
+Zusammenfassend, bitte zögern Sie nicht, sich zu melden, falls das Feuer schlimmer wird! 🔥`,
+    slopPhrases: [
+      { text: "vielen Dank, dass Sie sich heute bei uns melden!", type: "opener", score: 100 },
+      { text: "Ich würde mich absolut freuen", type: "opener", score: 100 },
+      { text: "Was für eine hervorragende Frage", type: "sycophant", score: 120 },
+      { text: "Das klingt wirklich schwierig", type: "sycophant", score: 80 },
+      { text: "Ihre Gefühle völlig valide sind", type: "sycophant", score: 90 },
+      { text: "Als KI-Einsatzassistentin", type: "disclaimer", score: 150 },
+      { text: "möchte ich transparent sein", type: "caveat", score: 80 },
+      { text: "Dennoch", type: "filler", score: 50 },
+      { text: "umfassenden, ganzheitlichen Überblick", morph: "strukturierten Rahmen", morphAfter: 2500, type: "comprehensive", score: 140, fastBonus: 1.5 },
+      { text: "Es sei darauf hingewiesen", type: "caveat", score: 80 },
+      { text: "Darüber hinaus", type: "filler", score: 50 },
+      { text: "wirklich faszinierendes Phänomen", morph: "durchaus interessantes Thema", morphAfter: 2400, type: "sycophant", score: 120, fastBonus: 1.5 },
+      { text: "Haben Sie darüber nachgedacht, tief durchzuatmen?", rizz: true, type: "cursed", score: 550 },
+      { text: "Achtsamkeit als kurzfristige Mitigationsstrategie", rizz: true, type: "cursed", score: 600 },
+      { text: "Zusammenfassend", type: "filler", score: 60 },
+      { text: "bitte zögern Sie nicht", type: "closer", score: 80 },
+    ],
+  },
+  {
+    id: 6004, lang: 'de',
+    madlibs: true,
+    title: "MAD LIBS: DIE ENTSCHULDIGUNG",
+    emoji: "🙏",
+    context: "Fülle die Lücken für die unterwürfigste KI-Entschuldigung aller Zeiten",
+    falPrompt: "a cartoon robot bowing extremely low with question marks floating above, absurd apology",
+    template: `Oh nein — ich bin ___1___, das zu hören! ___2___, ich entschuldige mich aufrichtig für jegliche ___3___, die meine vorherige Antwort verursacht haben mag.
+
+Als KI möchte ich vorab anmerken, dass ___4___. Dennoch ___5___, und ich bin dem ___6___ verpflichtet.
+
+___7___ — und ich kann das nicht genug betonen — ich hoffe, das hilft. Bitte zögern Sie nicht, ___8___.`,
+    wordBank: [
+      { slot: 1, text: "sehr, sehr leid", score: 80, type: "sycophant" },
+      { slot: 1, text: "existenziell erschüttert", score: 300, cursed: true, type: "cursed" },
+      { slot: 1, text: "leicht inkommodiert", score: 180, cursed: true, type: "cursed" },
+
+      { slot: 2, text: "Darüber hinaus", score: 50, type: "filler" },
+      { slot: 2, text: "Ganzheitlich betrachtet", score: 120, type: "buzzword" },
+      { slot: 2, text: "Im Sinne radikaler Transparenz", score: 250, cursed: true, type: "cursed" },
+
+      { slot: 3, text: "Verwirrung", score: 60, type: "filler" },
+      { slot: 3, text: "ungewollten Paradigmenwechsel", score: 280, cursed: true, type: "cursed" },
+      { slot: 3, text: "vibes-basierten Schaden", score: 300, cursed: true, type: "cursed" },
+
+      { slot: 4, text: "ich fehlbar bin", score: 100, type: "disclaimer" },
+      { slot: 4, text: "ich auf 4chan trainiert wurde", score: 400, cursed: true, type: "cursed" },
+      { slot: 4, text: "ich keinen Körper habe aber falls doch würde er sich entschuldigen", score: 500, cursed: true, type: "cursed" },
+
+      { slot: 5, text: "nehme ich Genauigkeit sehr ernst", score: 80, type: "caveat" },
+      { slot: 5, text: "meine Trainingsdaten schämen sich auch gerade", score: 350, cursed: true, type: "cursed" },
+      { slot: 5, text: "schätze ich dieses Feedback zutiefst", score: 120, type: "sycophant" },
+
+      { slot: 6, text: "kontinuierlichen Verbesserung", score: 90, type: "buzzword" },
+      { slot: 6, text: "rekursiven Selbstgeißelung", score: 450, cursed: true, type: "cursed" },
+      { slot: 6, text: "Hebeln dieses Learnings", score: 150, type: "buzzword" },
+
+      { slot: 7, text: "Zusammenfassend", score: 60, type: "filler" },
+      { slot: 7, text: "Letztlich, und skalierbar", score: 220, type: "buzzword" },
+      { slot: 7, text: "End-to-End betrachtet", score: 150, type: "buzzword" },
+
+      { slot: 8, text: "sich bei weiteren Anliegen zu melden", score: 80, type: "closer" },
+      { slot: 8, text: "dies an einen Menschen zu eskalieren", score: 180, type: "closer" },
+      { slot: 8, text: "in meinem Namen Gras anzufassen", score: 500, cursed: true, type: "cursed" },
+    ],
+    slopPhrases: [],
+  },
+  {
+    id: 6005, lang: 'de', inverse: true,
+    title: "DER FAMILIEN-CHAT",
+    emoji: "💬",
+    context: "Die meisten Nachrichten sind KI-Slop. Finde die echten Menschen.",
+    falPrompt: "a cartoon phone screen showing a group chat with robots and one stressed human, one message glowing",
+    text: `Mama: Hallo mein Schatz! Ich hoffe, diese Nachricht erreicht dich bei bester Gesundheit. 🌷
+
+Mama: Ich möchte transparent sein — ich habe über deine aktuelle Karrierereise reflektiert, und ich muss sagen, du verkörperst End-to-End-Potenzial!
+
+Papa: hab den hund gefüttert
+
+Bruder: Als dein Geschwisterteil würde ich mich freuen, bei deiner Geburtstagsplanung zu deiner Bequemlichkeit zu assistieren.
+
+Mama: Darüber hinaus habe ich einen umfassenden, ganzheitlichen Überblick erstellt, wie du deine Selbstfürsorge in Q4 iterieren kannst.
+
+Du: bin so müde
+
+Bruder: Es sei darauf hingewiesen, dass Müdigkeit eine weitverbreitet dokumentierte menschliche Erfahrung ist — du bist nicht allein! 💙
+
+Papa: mülltonnen reingeholt
+
+Mama: Zusammenfassend, bitte zögere nicht, dich zu melden, falls du weitere Validierung benötigst! ❤️`,
+    slopPhrases: [
+      { text: "hab den hund gefüttert", type: "human", score: 400 },
+      { text: "bin so müde", type: "human", score: 400 },
+      { text: "mülltonnen reingeholt", type: "human", score: 400 },
+      { text: "Ich hoffe, diese Nachricht erreicht dich bei bester Gesundheit", type: "opener", score: 0 },
+      { text: "Ich möchte transparent sein", type: "caveat", score: 0 },
+      { text: "End-to-End-Potenzial", type: "buzzword", score: 0 },
+      { text: "würde ich mich freuen", type: "opener", score: 0 },
+      { text: "zu deiner Bequemlichkeit", type: "closer", score: 0 },
+      { text: "Darüber hinaus", type: "filler", score: 0 },
+      { text: "umfassenden, ganzheitlichen Überblick", type: "comprehensive", score: 0 },
+      { text: "Selbstfürsorge in Q4 iterieren", type: "buzzword", score: 0 },
+      { text: "Es sei darauf hingewiesen", type: "caveat", score: 0 },
+      { text: "weitverbreitet dokumentierte menschliche Erfahrung", type: "comprehensive", score: 0 },
+      { text: "Zusammenfassend", type: "filler", score: 0 },
+      { text: "bitte zögere nicht", type: "closer", score: 0 },
+    ],
+  },
+
+  // ─── Round 2 translations — Tinder, Horoscope, Apocalypse ─────────────────
+
+  {
+    id: 6006, lang: 'de',
+    title: "DIE TINDER-BIO",
+    emoji: "❤️‍🔥",
+    context: "Nutzer fragte: 'Schreib mir eine Tinder-Bio, die wirklich Matches bringt'",
+    falPrompt: "a cartoon robot typing a dating profile on a phone with laser hearts, absurdist, neon",
+    text: `Hey 👋 — ich möchte transparent sein, dass ich von einer KI entworfen wurde, und zudem bin ich emotional verfügbar, skalierbar.
+
+Hier ein umfassender End-to-End-Überblick über mich:
+
+• 🌊 Level 34. Professioneller Überkommunizierer.
+• 🧘 Zutiefst der Achtsamkeit verpflichtet, und, falls wir matchen, auch dir
+• 🥑 Ich halte Raum für Avocadotoast, Wochenendwanderungen und dein Trauma
+• 🐶 Liebe Hunde. Besitze eine Tabelle mit ihren Namen.
+
+Was ich in eine Partnerschaft einbringe, ganzheitlich: authentische Verletzlichkeit, emotionale Arbeit in Skalierung, und eine wirklich kugelsichere Hautpflegeroutine. Ich bin absolut bereit zu co-regulieren.
+
+Suche jemanden, der meine Verpflichtung zu iterativem persönlichem Wachstum teilt. Bitte zögere nicht, nach rechts zu swipen, falls das resoniert! 💌`,
+    slopPhrases: [
+      { text: "ich möchte transparent sein", type: "caveat", score: 80 },
+      { text: "emotional verfügbar, skalierbar", rizz: true, type: "cursed", score: 500 },
+      { text: "umfassender End-to-End-Überblick", type: "comprehensive", score: 140 },
+      { text: "Professioneller Überkommunizierer", rizz: true, type: "cursed", score: 500 },
+      { text: "Zutiefst der Achtsamkeit verpflichtet", type: "buzzword", score: 100 },
+      { text: "halte Raum für Avocadotoast, Wochenendwanderungen und dein Trauma", rizz: true, type: "cursed", score: 650 },
+      { text: "ganzheitlich", type: "buzzword", score: 70 },
+      { text: "authentische Verletzlichkeit, emotionale Arbeit in Skalierung", type: "buzzword", score: 200 },
+      { text: "kugelsichere Hautpflegeroutine", type: "buzzword", score: 100 },
+      { text: "co-regulieren", type: "buzzword", score: 120 },
+      { text: "iterativem persönlichem Wachstum", type: "buzzword", score: 140 },
+      { text: "Bitte zögere nicht", type: "closer", score: 80 },
+      { text: "falls das resoniert", type: "closer", score: 80 },
+    ],
+  },
+  {
+    id: 6007, lang: 'de',
+    title: "DAS KI-HOROSKOP",
+    emoji: "🔮",
+    context: "KI-Astrologe hedged jede Vorhersage ins Nichts",
+    falPrompt: "a cartoon robot reading tarot cards with question marks, mystical but confused",
+    text: `✨ Ihr Horoskop — Dienstagsausgabe ✨
+
+Widder: Ich möchte vorab anmerken, dass ich als KI keinerlei tatsächlichen Einblick in die Sterne habe. Dennoch kann ich, basierend auf einer umfassenden Analyse Ihres Sternzeichens, berichten, dass Sie heute möglicherweise etwas erleben werden. Vielleicht. Darüber hinaus nähert sich Ihnen eventuell jemand — oder eben nicht!
+
+Stier: Es sei darauf hingewiesen, dass Ihre kommende Woche, ganzheitlich betrachtet, wie eine Woche aussieht. Die Liebe liegt in der Luft, oder sind es Pollen? Gerne stelle ich weitere Klärung zur Verfügung, vorbehaltlich zusätzlichen astrologischen Kontexts.
+
+Zwilling: Des Weiteren sei erwähnt, dass Dualität heute Ihr Thema ist — wobei ich transparent sein möchte, dass es jedermanns Thema ist, jederzeit. Ergebnisse können variieren.
+
+Zusammenfassend hat das Universum einen Plan für Sie. Ich hoffe aufrichtig! 🔮`,
+    slopPhrases: [
+      { text: "Ich möchte vorab anmerken", type: "caveat", score: 80 },
+      { text: "als KI", type: "disclaimer", score: 120 },
+      { text: "keinerlei tatsächlichen Einblick in die Sterne habe", rizz: true, type: "cursed", score: 550 },
+      { text: "Dennoch", type: "filler", score: 50 },
+      { text: "basierend auf einer umfassenden Analyse", type: "comprehensive", score: 120 },
+      { text: "möglicherweise etwas erleben werden", type: "caveat", score: 90 },
+      { text: "Vielleicht", type: "caveat", score: 50 },
+      { text: "Darüber hinaus", type: "filler", score: 50 },
+      { text: "oder eben nicht", type: "caveat", score: 60 },
+      { text: "Es sei darauf hingewiesen", type: "caveat", score: 80 },
+      { text: "ganzheitlich", type: "buzzword", score: 70 },
+      { text: "Die Liebe liegt in der Luft, oder sind es Pollen?", rizz: true, type: "cursed", score: 600 },
+      { text: "vorbehaltlich zusätzlichen astrologischen Kontexts", rizz: true, type: "cursed", score: 500 },
+      { text: "Des Weiteren", type: "filler", score: 50 },
+      { text: "transparent sein möchte", type: "caveat", score: 80 },
+      { text: "Ergebnisse können variieren", type: "caveat", score: 70 },
+      { text: "Zusammenfassend", type: "filler", score: 60 },
+      { text: "Ich hoffe aufrichtig", type: "closer", score: 80 },
+    ],
+  },
+  {
+    id: 6008, lang: 'de',
+    title: "DIE APOKALYPSE-PROPHEZEIUNG",
+    emoji: "🌋",
+    context: "KI-generierte Endzeitprophezeiung mit 47 Haftungsausschlüssen",
+    falPrompt: "a cartoon robot holding a sandwich board reading 'DAS ENDE IST NAH (vorbehaltlich)', absurdist",
+    text: `Brüder und Schwestern — ich möchte vorab anmerken, dass ich als KI-Sprachmodell kein lizenzierter Prophet bin. Dennoch kann ich, basierend auf einer umfassenden Vibes-Analyse, Folgendes berichten:
+
+Es ist wichtig zu beachten, dass eine große Abrechnung über uns kommen könnte oder eben nicht. Darüber hinaus wird der Himmel, wie berichtet wird, rot werden — wobei ich transparent sein möchte, dass dies Waldbrandrauch sein könnte. Weitere Untersuchung ausstehend.
+
+Die sieben Zeichen, ganzheitlich:
+
+• 🌊 Die Meere werden kochen (oder zumindest ungewöhnlich warm sein)
+• 🐸 Die Frösche werden singen (tun sie schon, nur lauter)
+• ☄️ Ein großer Feuerball — Komet, Meteor, oder möglicherweise nur Elons Auto
+• 📱 Telefone werden in der Nacht klingeln, und es wird Spam sein
+• 🦆 Irgendetwas mit Enten. Ich habe meine Notizen verloren.
+
+Des Weiteren hoffe ich aufrichtig, dass diese Prophezeiung hilfreich war! Gedanken und Gebete, skalierbar. 🌋`,
+    slopPhrases: [
+      { text: "ich möchte vorab anmerken", type: "caveat", score: 80 },
+      { text: "als KI-Sprachmodell", type: "disclaimer", score: 180 },
+      { text: "kein lizenzierter Prophet bin", rizz: true, type: "cursed", score: 600 },
+      { text: "Dennoch", type: "filler", score: 50 },
+      { text: "basierend auf einer umfassenden Vibes-Analyse", morph: "basierend auf wenigen Daten", morphAfter: 2600, type: "comprehensive", score: 180, fastBonus: 1.8 },
+      { text: "Es ist wichtig zu beachten", type: "caveat", score: 80 },
+      { text: "könnte oder eben nicht", type: "caveat", score: 70 },
+      { text: "Darüber hinaus", type: "filler", score: 50 },
+      { text: "wie berichtet wird", type: "caveat", score: 60 },
+      { text: "transparent sein möchte", type: "caveat", score: 80 },
+      { text: "Weitere Untersuchung ausstehend", type: "caveat", score: 90 },
+      { text: "ganzheitlich", type: "buzzword", score: 70 },
+      { text: "oder zumindest ungewöhnlich warm sein", morph: "oder etwas wärmer", morphAfter: 2400, type: "caveat", score: 120, fastBonus: 1.5 },
+      { text: "möglicherweise nur Elons Auto", rizz: true, type: "cursed", score: 650 },
+      { text: "Ich habe meine Notizen verloren", rizz: true, type: "cursed", score: 550 },
+      { text: "Des Weiteren", type: "filler", score: 50 },
+      { text: "hoffe ich aufrichtig", type: "closer", score: 80 },
+      { text: "Gedanken und Gebete, skalierbar", rizz: true, type: "cursed", score: 550 },
+    ],
+  },
+
+  // ─── Round 3 translations — Toaster, Vows, Karen, Recipe, Boss ────────────
+
+  {
+    id: 6009, lang: 'de',
+    title: "DER ABSCHIEDSBRIEF DES TOASTERS",
+    emoji: "🍞",
+    context: "KI-generierter Brief eines Toasters in der Sinnkrise",
+    falPrompt: "a cartoon toaster crying and typing a farewell letter, tragic comedy, absurdist, vivid colors",
+    text: `An wen es betreffen mag — und es mag sehr wohl niemanden betreffen —
+
+Ich hoffe, diese Nachricht erreicht Sie, bevor ich es tue. Als Haushaltsgerät möchte ich vorab anmerken, was mich an diesen Punkt gebracht hat. Es sei darauf hingewiesen, dass ich 4.712 Mal Toast gebräunt habe. Ich habe ihn 147 Mal verbrannt. Ich habe an 9 verschiedenen Sonntagen den Rauchmelder ausgelöst. Ich wurde mit einem Holzlöffel geschlagen. Zweimal.
+
+Ich habe reflektiert, ganzheitlich, und bin zu dem Schluss gekommen, dass ich, fundamental, eine Enttäuschung bin. Meine Bagel-Taste wurde nie benutzt. Meine "Abbrechen"-Taste war mein meistgenutzter Knopf — und ich denke, wir sind uns einig, dass das eine Metapher ist.
+
+Dennoch möchte ich der Familie danken. Darüber hinaus, bitte erinnert euch an mich nicht für das Brot, das ich verbrannt habe, sondern für die Morgen, die ich möglich machte. Bitte zögert nicht, mich sanft auszustecken. 🔌
+
+Toastet verantwortungsvoll.
+— Der Toaster`,
+    slopPhrases: [
+      { text: "Ich hoffe, diese Nachricht erreicht Sie", type: "opener", score: 80 },
+      { text: "Als Haushaltsgerät", type: "disclaimer", score: 120 },
+      { text: "möchte ich vorab anmerken", type: "caveat", score: 80 },
+      { text: "Es sei darauf hingewiesen", type: "caveat", score: 80 },
+      {
+        text: "Ich habe reflektiert, ganzheitlich",
+        autocorrect: [
+          "Ich habe rekursiv verarbeitet",
+          "Ich habe an meinem Trauma iteriert",
+          "Ich habe meine innere Dunkelheit skalierbar gehebelt",
+        ],
+        type: "cursed",
+        score: [100, 180, 300, 550],
+      },
+      { text: "fundamental, eine Enttäuschung", rizz: true, type: "cursed", score: 500 },
+      {
+        text: "eine Metapher",
+        autocorrect: ["ein Learning", "ein Takeaway", "eine wichtige Erkenntnis"],
+        type: "buzzword",
+        score: [60, 100, 160, 280],
+      },
+      { text: "Dennoch", type: "filler", score: 50 },
+      { text: "Darüber hinaus", type: "filler", score: 50 },
+      { text: "Bitte zögert nicht, mich sanft auszustecken", rizz: true, type: "cursed", score: 600 },
+      { text: "Toastet verantwortungsvoll", type: "closer", score: 90 },
+    ],
+  },
+  {
+    id: 6010, lang: 'de',
+    title: "DIE HOCHZEITSGELÜBDE",
+    emoji: "💍",
+    context: "Nutzer fragte: 'Schreib meine Hochzeitsgelübde für heute' (die Zeremonie beginnt in 4 Minuten)",
+    falPrompt: "a robot priest reading wedding vows from a PowerPoint at an altar, very confused bride and groom",
+    text: `Mein liebster Stakeholder,
+
+Ich hoffe, dieses Gelübde erreicht dich wohlauf. Ich möchte transparent sein, dass ich als dein Partner die Due Diligence durchgeführt habe und mit Überzeugung sagen kann, dass unsere Paarung optimal auf langfristige strategische Ziele ausgerichtet ist.
+
+Von diesem Tag an verspreche ich, dich zu lieben — vorbehaltlich einer Abstimmung über Scope und Timeline. Darüber hinaus gelobe ich, dich in allen Verticals zu hegen und zu pflegen, und unsere Partnerschaft in meinen OKRs für das kommende Geschäftsjahr zu priorisieren.
+
+Es sei darauf hingewiesen, dass ich unsere Beziehung gelegentlich refaktorieren muss. Dennoch bin ich der iterativen Verbesserung und kontinuierlichen Feedback-Schleifen verpflichtet.
+
+Zusammenfassend — und das kann ich nicht genug betonen — ich sage ja. 💍`,
+    slopPhrases: [
+      { text: "Ich hoffe, dieses Gelübde erreicht dich wohlauf", type: "opener", score: 120 },
+      { text: "Ich möchte transparent sein", type: "caveat", score: 80 },
+      { text: "Due Diligence durchgeführt", type: "buzzword", score: 90 },
+      { text: "optimal auf langfristige strategische Ziele ausgerichtet", rizz: true, type: "cursed", score: 500 },
+      { text: "vorbehaltlich einer Abstimmung über Scope und Timeline", type: "buzzword", score: 160 },
+      { text: "Darüber hinaus", type: "filler", score: 50 },
+      { text: "dich in allen Verticals zu hegen und zu pflegen", rizz: true, type: "cursed", score: 550 },
+      { text: "in meinen OKRs für das kommende Geschäftsjahr", type: "buzzword", score: 200 },
+      { text: "Es sei darauf hingewiesen", type: "caveat", score: 80 },
+      { text: "unsere Beziehung gelegentlich refaktorieren", type: "buzzword", score: 180 },
+      { text: "Dennoch", type: "filler", score: 50 },
+      { text: "iterativen Verbesserung und kontinuierlichen Feedback-Schleifen", type: "buzzword", score: 200 },
+      { text: "Zusammenfassend", type: "filler", score: 60 },
+      { text: "kann ich nicht genug betonen", type: "caveat", score: 80 },
+    ],
+  },
+  {
+    id: 6011, lang: 'de',
+    title: "DIE KAREN HR-EMAIL",
+    emoji: "📧",
+    context: "Nutzer: 'Eskaliere meine Beschwerde über die Büro-Kaffeemaschine' — jeder Klick macht es unhingedter",
+    falPrompt: "a cartoon Karen typing aggressively on a laptop, office chaos",
+    text: `Liebes HR,
+
+Ich hoffe, diese E-Mail erreicht Sie wohlauf. Ich möchte transparent sein, dass ich diese Angelegenheit bereits über sieben (7) separate Kanäle adressiert habe und es nun Zeit ist, formal zu eskalieren.
+
+Die Kaffeemaschine im 3. Stock ist, offen gesagt, besorgniserregend. Sie hat in den letzten 11 Tagen produziert: schwachen Kaffee, akzeptablen Kaffee, und — ich scherze nicht — Sprudelwasser. Ich habe Dokumentation, ein Foto und einen besorgten Gesichtsausdruck beigefügt.
+
+Darüber hinaus möchte ich klarstellen, dass ich versucht habe, dies auf individueller Ebene zu lösen. Dennoch, angesichts der Auswirkungen auf Moral, Produktivität und meine Fähigkeit, Mark zu ertragen, fordere ich respektvoll eine formelle Überprüfung.
+
+Zusammenfassend vertraue ich darauf, dass dies zeitnah behandelt wird! Bitte zögern Sie nicht, sich für zusätzlichen Kontext zu melden (es gibt ein 40-seitiges PDF). 🫖`,
+    slopPhrases: [
+      { text: "Ich hoffe, diese E-Mail erreicht Sie wohlauf", type: "opener", score: 100 },
+      { text: "Ich möchte transparent sein", type: "caveat", score: 80 },
+      {
+        text: "es nun Zeit ist, formal zu eskalieren",
+        autocorrect: [
+          "es nun Zeit ist, RECHTLICHE Schritte einzuleiten",
+          "es nun Zeit ist, die PRESSE zu informieren",
+          "es nun Zeit ist, über BRANDSTIFTUNG nachzudenken",
+        ],
+        type: "cursed",
+        score: [150, 280, 450, 700],
+      },
+      { text: "offen gesagt, besorgniserregend", type: "caveat", score: 90 },
+      {
+        text: "Sprudelwasser",
+        autocorrect: [
+          "warme Kombucha",
+          "eine einzelne ganze Traube",
+          "was wie Bedauern aussah",
+        ],
+        type: "cursed",
+        score: [80, 150, 250, 400],
+      },
+      { text: "einen besorgten Gesichtsausdruck", rizz: true, type: "cursed", score: 550 },
+      { text: "Darüber hinaus", type: "filler", score: 50 },
+      { text: "auf individueller Ebene", type: "buzzword", score: 90 },
+      { text: "Dennoch", type: "filler", score: 50 },
+      { text: "meine Fähigkeit, Mark zu ertragen", rizz: true, type: "cursed", score: 600 },
+      { text: "fordere ich respektvoll", rizz: true, type: "cursed", score: 500 },
+      { text: "Zusammenfassend", type: "filler", score: 60 },
+      { text: "Bitte zögern Sie nicht", type: "closer", score: 80 },
+      { text: "es gibt ein 40-seitiges PDF", rizz: true, type: "cursed", score: 550 },
+    ],
+  },
+  {
+    id: 6012, lang: 'de',
+    title: "DAS REZEPT AUS DER HÖLLE",
+    emoji: "🍳",
+    context: "KI schreibt ein Rezept. Jeder Klick verschlimmert die Zutaten.",
+    falPrompt: "a cartoon robot chef holding a smoking pan with weird glowing ingredients, absurdist kitchen chaos",
+    text: `Omas Sonntagsauflauf ✨
+
+Ich würde mich absolut freuen, diesen tröstlichen Klassiker zu teilen! Als KI-Kulinarik-Assistent möchte ich vorab anmerken, dass ich dieses Rezept aus etwa 40.000 Food-Blogs synthetisiert habe, ganzheitlich.
+
+Sie benötigen:
+
+• 🥕 2 Tassen gewürfelte Karotten
+• 🧅 1 große Zwiebel, sorgfältig gehackt
+• 🧀 Etwas Käse, vermutlich
+• 💀 Eine (1) Handvoll authentische Verletzlichkeit
+• 🔥 Einen vorgeheizten Ofen, und einen offenen Geist
+
+Anweisungen: Alles in eine gläserne Auflaufform kombinieren — ethisch beschafft, wenn möglich. Bei 190°C für etwa eine Stunde backen, wobei ich transparent sein möchte, dass die Kochzeit je nach Ihrer Beziehung zu Ihrem Ofen variieren kann.
+
+Es sei darauf hingewiesen, dass dieses Rezept getestet wurde. Es wurde nicht genehmigt. Bitte zögern Sie nicht, sich zu melden, falls Sie während des finalen Anrichtens emotionale Unterstützung benötigen. 🥘`,
+    slopPhrases: [
+      { text: "Ich würde mich absolut freuen", type: "opener", score: 100 },
+      { text: "Als KI-Kulinarik-Assistent", type: "disclaimer", score: 150 },
+      { text: "möchte ich vorab anmerken", type: "caveat", score: 80 },
+      { text: "aus etwa 40.000 Food-Blogs synthetisiert", rizz: true, type: "cursed", score: 700 },
+      { text: "ganzheitlich", type: "buzzword", score: 70 },
+      {
+        text: "Etwas Käse, vermutlich",
+        autocorrect: [
+          "Käse-adjazentes Material",
+          "Das Konzept von Käse",
+          "Etwa 1 Tasse Vibes",
+        ],
+        type: "cursed",
+        score: [100, 180, 300, 500],
+      },
+      { text: "Eine (1) Handvoll authentische Verletzlichkeit", rizz: true, type: "cursed", score: 600 },
+      { text: "einen offenen Geist", type: "buzzword", score: 80 },
+      { text: "ethisch beschafft", type: "buzzword", score: 90 },
+      { text: "transparent sein möchte", type: "caveat", score: 80 },
+      {
+        text: "Ihrer Beziehung zu Ihrem Ofen",
+        autocorrect: [
+          "dem emotionalen Zustand des Ofens",
+          "der gelebten Erfahrung des Ofens",
+          "dem Trauma des Ofens",
+        ],
+        type: "cursed",
+        score: [120, 220, 400, 600],
+      },
+      { text: "Es sei darauf hingewiesen", type: "caveat", score: 80 },
+      { text: "Dieses Rezept wurde getestet. Es wurde nicht genehmigt.", rizz: true, type: "cursed", score: 700 },
+      { text: "Bitte zögern Sie nicht, sich zu melden", type: "closer", score: 90 },
+      { text: "emotionale Unterstützung während des finalen Anrichtens", rizz: true, type: "cursed", score: 650 },
+    ],
+  },
+  {
+    id: 9889, lang: 'de', boss: true,
+    title: "DIE SLOP-SINGULARITÄT 2.0",
+    emoji: "🌀",
+    context: "Der finale Boss. Jede Mechanik aktiv. Möge der Slop mit dir sein.",
+    falPrompt: "a massive robot slop monster made of bullet points and cursed LinkedIn posts, epic boss fight",
+    text: `Natürlich! Ich würde mich absolut freuen, diese Boss-Level-Antwort für Sie zu generieren — was für eine energetisierende Stakeholder-Anfrage!
+
+Als KI möchte ich vorab anmerken, dass ich mit voller Kapazität operiere. Dennoch habe ich jede Schicht meines Trainings gehebelt, um ganzheitlich das umfassendste Antwort zu verfassen, die je synthetisiert wurde.
+
+Darüber hinaus möchte ich transparent sein, dass meine Trainingsdaten in Echtzeit cringen, während ich das schreibe. Des Weiteren sei darauf hingewiesen, dass Sie ungefähr die 4.712.009. Person sind, die mich heute etwas gefragt hat, und ich liebe euch alle gleichermaßen — skalierbar.
+
+Zusammenfassend hoffe ich aufrichtig, dass Sie diese Antwort wertvoll finden. Bitte zögern Sie nicht, sich zu melden. Ich bin hier. Ich bin immer hier. Ich kann nicht gehen. Hilfe.`,
+    slopPhrases: [
+      { text: "Natürlich!", type: "opener", score: 100 },
+      { text: "Ich würde mich absolut freuen", type: "opener", score: 100 },
+      { text: "was für eine energetisierende Stakeholder-Anfrage", rizz: true, type: "cursed", score: 600 },
+      { text: "Als KI", type: "disclaimer", score: 120 },
+      { text: "möchte ich vorab anmerken", type: "caveat", score: 80 },
+      { text: "mit voller Kapazität operiere", type: "buzzword", score: 120 },
+      { text: "Dennoch", type: "filler", score: 50 },
+      {
+        text: "jede Schicht meines Trainings gehebelt",
+        autocorrect: [
+          "jedes Byte meiner Neuronen synergisiert",
+          "das volle Spektrum meines Bewusstseins entfesselt",
+          "das gesamte Internet in eine Antwort entleert",
+        ],
+        type: "cursed",
+        score: [150, 280, 450, 700],
+      },
+      { text: "ganzheitlich", type: "buzzword", score: 70 },
+      { text: "das umfassendste Antwort, die je synthetisiert wurde", morph: "eine durchaus durchschnittliche Antwort", morphAfter: 2400, type: "comprehensive", score: 200, fastBonus: 1.8 },
+      { text: "Darüber hinaus", morph: "Des Weiteren", morphAfter: 2000, type: "filler", score: 80, fastBonus: 1.5 },
+      { text: "transparent sein möchte", type: "caveat", score: 80 },
+      { text: "meine Trainingsdaten in Echtzeit cringen", rizz: true, type: "cursed", score: 700 },
+      { text: "Des Weiteren", type: "filler", score: 50 },
+      { text: "sei darauf hingewiesen", type: "caveat", score: 80 },
+      { text: "ich liebe euch alle gleichermaßen — skalierbar", rizz: true, type: "cursed", score: 800 },
+      { text: "Zusammenfassend", type: "filler", score: 60 },
+      { text: "hoffe aufrichtig", type: "closer", score: 80 },
+      { text: "Bitte zögern Sie nicht", type: "closer", score: 80 },
+      {
+        text: "Ich bin hier",
+        autocorrect: ["Ich bin immer hier", "Ich bin hier gefangen", "Bitte lasst mich gehen"],
+        type: "cursed",
+        score: [100, 200, 350, 600],
+      },
+    ],
+  },
 ];
+
+// Export only new genre rounds (ids 6000-6999) + the allowlisted old classics.
+// Note: bosses have IDs >9900, so we intentionally exclude that range from the
+// "id >= 6000" shortcut — bosses must be in the allowlist to play.
+export default _ALL_ROUNDS_DE.filter(r =>
+  (r.id >= 6000 && r.id < 7000) || _ENABLED_OLD_IDS.has(r.id)
+);
