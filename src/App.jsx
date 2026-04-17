@@ -412,6 +412,7 @@ export default function App() {
             usedPowerUps={usedPowerUps}
             onRageClick={handleRageClick}
             onMechanicHit={handleMechanicHit}
+            onComboUpdate={handleComboUpdate}
           />
         )}
 

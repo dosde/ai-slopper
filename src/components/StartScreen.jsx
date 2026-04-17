@@ -507,10 +507,20 @@ export default function StartScreen({ onStart, onOpenCommunity }) {
               {howToPlayOpen && (
                 <div style={{ marginTop: '10px' }}>
                   {[
+                    // Basics
                     ['👆', 'Click slop phrases hiding in plain text — all words look the same!'],
-                    ['⚡', 'Chain detections for COMBO MULTIPLIER up to 5x (+3s per hit)'],
+                    ['⚡', 'Chain detections for COMBO MULTIPLIER up to 3x (+3s per hit)'],
                     ['📡', 'Power-ups usable once per game: Radar, Time Boost, 2× Points, Streak Saver'],
                     ['⏱️', 'Finish early to earn TIME BONUS: seconds left × 10 pts'],
+                    // Round types
+                    ['🔄', 'INVERSE rounds: text is mostly AI slop — find the HUMAN phrases hiding inside (2× points!)'],
+                    ['⚔️', 'FINAL BOSS: 60 seconds, 25+ phrases, miss-penalty on DONE — the AI unloads full slop at you'],
+                    // New mechanics
+                    ['🔥', 'RIZZ: a rare unhinged phrase glows faintly in some rounds — clicking pays 3× and fires a cursed popup'],
+                    ['💥', 'DOUBLE AGENT: watch some phrases — they MORPH into safer wording after a few seconds. Catch fast for a 1.5× bonus!'],
+                    ['🔁', 'AUTOCORRECT: chain-click the same phrase to mutate it worse and worse — final click locks in the jackpot'],
+                    ['📝', 'MAD LIBS: special rounds with blanks. Tap or DRAG a word chip into a slot — cursed words score the highest'],
+                    // Difficulties
                     ['☠', 'IRON DETECTOR: one wrong click ends the run — no mercy'],
                     ['🧠', 'BRAINROT mode: wrong clicks corrupt the text — letters mutate!'],
                     ['🎲', `${ROUNDS_PER_GAME} rounds per game (always 1 inverse + 1 boss round) from a pool of ${getPoolSize(lang)}`],

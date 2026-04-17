@@ -170,8 +170,7 @@ export const getPlayerRank = (score, difficulty = 'normal') => {
 
 export const ACHIEVEMENTS = [
   { id: 'first_slop',      emoji: '🔍', name: 'SLOP SPOTTER',        desc: 'Detect your first slop phrase' },
-  { id: 'combo_3',         emoji: '🔥', name: 'ON FIRE',              desc: 'Get a 3x combo' },
-  { id: 'combo_5',         emoji: '⚡', name: 'COMBO KING',           desc: 'Get a 5x combo' },
+  { id: 'combo_3',         emoji: '⚡', name: 'COMBO KING',           desc: 'Hit the max 3x combo' },
   { id: 'perfect_round',   emoji: '💯', name: 'PERFECTIONIST',        desc: 'Find 100% of slop in a round' },
   { id: 'speed_demon',     emoji: '🏃', name: 'SPEED DEMON',          desc: 'Finish a round with 25s left' },
   { id: 'score_3000',      emoji: '💥', name: 'SLOP DESTROYER',       desc: 'Score 3000+ total points' },
@@ -190,7 +189,7 @@ export const ACHIEVEMENTS = [
   { id: 'disclaimer_slayer',emoji: '🤖', name: 'DISCLAIMER SLAYER',   desc: 'Detect 15 AI disclaimer phrases total' },
   { id: 'five_games',      emoji: '🔁', name: 'FREQUENT SLOPPER',     desc: 'Complete 5 games total' },
   // ── new achievements ──────────────────────────────────────────────────────
-  { id: 'combo_10',        emoji: '☄️', name: 'COMBO COMET',          desc: 'Reach a 10x combo in a single round' },
+  // combo_10 retired — combo now caps at 3×. Players who earned it keep it in localStorage.
   { id: 'score_15000',     emoji: '👑', name: 'SLOP EMPEROR',         desc: 'Score 15000+ total points in one game' },
   { id: 'score_1500_round',emoji: '💠', name: 'ROUND DEMOLISHER',     desc: 'Score 1500+ in a single round' },
   { id: 'no_wrong_clicks', emoji: '🎯', name: 'SURGICAL',             desc: 'Complete a game without a single wrong click' },
@@ -214,6 +213,15 @@ export const ACHIEVEMENTS = [
   { id: 'morph_catcher',   emoji: '⚡', name: 'MORPH CATCHER',        desc: 'Catch 3 Double Agent phrases before they shift' },
   { id: 'autocorrect_lock',emoji: '🔁', name: 'TERMINAL SLOPPER',     desc: 'Fully chain-lock 2 autocorrect phrases' },
   { id: 'madlibs_perfect', emoji: '📝', name: 'MAD LIBS MAESTRO',     desc: 'Pick all cursed words in a Mad Libs round' },
+  // ── cumulative mechanic + variety achievements ────────────────────────────
+  { id: 'rizz_connoisseur',   emoji: '💎', name: 'RIZZ CONNOISSEUR',   desc: 'Find 20 rizz phrases across all games' },
+  { id: 'shapeshifter_hunter',emoji: '🦎', name: 'SHAPESHIFTER HUNTER',desc: 'Catch 15 Double Agent phrases fast across all games' },
+  { id: 'chain_locker',       emoji: '⛓️', name: 'CHAIN LOCKER',       desc: 'Lock 10 autocorrect phrases across all games' },
+  { id: 'madlibs_veteran',    emoji: '📚', name: 'MAD LIBS VETERAN',   desc: 'Complete 5 Mad Libs rounds' },
+  { id: 'cursed_harvester',   emoji: '💀', name: 'CURSED HARVESTER',   desc: 'Pick 30 cursed Mad Libs words across all games' },
+  { id: 'mechanic_sweep',     emoji: '🎛️', name: 'MECHANIC SWEEP',     desc: 'Unlock all 4 per-game mechanic achievements in one run' },
+  { id: 'triple_threat',      emoji: '🏅', name: 'TRIPLE THREAT',      desc: 'Clear boss, inverse AND Mad Libs perfect in the same run' },
+  { id: 'level_20',           emoji: '🌠', name: 'ASCENDED',           desc: 'Reach player level 20' },
 ];
 
 export const getUnlockedAchievements = () => {
@@ -247,7 +255,7 @@ export const checkAndUnlockAchievements = (gameStats) => {
 
   check('first_slop',       gameStats.totalDetected >= 1);
   check('combo_3',          gameStats.maxCombo >= 3);
-  check('combo_5',          gameStats.maxCombo >= 5);
+  // combo_5 / combo_10 checks retired — combo caps at 3× post-rebalance.
   check('perfect_round',    gameStats.perfectRounds >= 1);
   check('two_perfect',      gameStats.perfectRounds >= 2);
   check('speed_demon',      gameStats.bestTimeLeft >= 25);
@@ -268,7 +276,7 @@ export const checkAndUnlockAchievements = (gameStats) => {
   check('five_games',       (cum.gamesPlayed || 0) + 1 >= 5);
 
   // ── new checks ────────────────────────────────────────────────────────────
-  check('combo_10',         gameStats.maxCombo >= 10);
+  // combo_10 retired (see above)
   check('score_15000',      gameStats.totalScore >= 15000);
   check('score_1500_round', gameStats.bestRoundScore >= 1500);
   check('no_wrong_clicks',  gameStats.wrongClicksTotal === 0 && gameStats.roundsCompleted >= 1);
@@ -296,12 +304,35 @@ export const checkAndUnlockAchievements = (gameStats) => {
   check('level_10',         (gameStats.newLevel || 0) >= 10);
 
   // Mechanic-specific achievements — counters populated by SlopText/MadLibs.
-  check('rizz_master',      (gameStats.rizzHits || 0) >= 3);
-  check('morph_catcher',    (gameStats.morphFastHits || 0) >= 3);
-  check('autocorrect_lock', (gameStats.autocorrectLocks || 0) >= 2);
-  // Mad Libs perfect: all slots filled AND all picks were cursed.
-  check('madlibs_perfect',  (gameStats.madlibsSlotsFilled || 0) >= 8
-                            && (gameStats.madlibsCursedPicks || 0) >= 8);
+  const hitRizz   = (gameStats.rizzHits || 0) >= 3;
+  const hitMorph  = (gameStats.morphFastHits || 0) >= 3;
+  const hitAuto   = (gameStats.autocorrectLocks || 0) >= 2;
+  const hitMadLib = (gameStats.madlibsSlotsFilled || 0) >= 8
+                    && (gameStats.madlibsCursedPicks || 0) >= 8;
+  check('rizz_master',      hitRizz);
+  check('morph_catcher',    hitMorph);
+  check('autocorrect_lock', hitAuto);
+  check('madlibs_perfect',  hitMadLib);
+
+  // Cumulative mechanic achievements — read rolling totals from `cum` +
+  // whatever this game added (same pattern as opener_hunter etc).
+  check('rizz_connoisseur',    (cum.rizzHitsTotal || 0)       + (gameStats.rizzHits || 0)       >= 20);
+  check('shapeshifter_hunter', (cum.morphFastHitsTotal || 0)  + (gameStats.morphFastHits || 0)  >= 15);
+  check('chain_locker',        (cum.autocorrectLocksTotal || 0)+ (gameStats.autocorrectLocks || 0)>= 10);
+  // Mad Libs veteran: counts completed mad-libs rounds (any fills this game = +1).
+  const playedMadlibsThisGame = (gameStats.madlibsSlotsFilled || 0) > 0 ? 1 : 0;
+  check('madlibs_veteran',   (cum.madlibsRoundsPlayed || 0) + playedMadlibsThisGame >= 5);
+  check('cursed_harvester',  (cum.madlibsCursedTotal || 0)  + (gameStats.madlibsCursedPicks || 0) >= 30);
+
+  // MECHANIC SWEEP: all four per-game mechanic achievements in one run.
+  check('mechanic_sweep',    hitRizz && hitMorph && hitAuto && hitMadLib);
+
+  // TRIPLE THREAT: perfect boss AND inverse AND mad libs all in one run.
+  // `madlibs_perfect` already implies 8/8 cursed — reuse for clarity.
+  check('triple_threat',     !!gameStats.bossPerfect && !!gameStats.inversePerfect && hitMadLib);
+
+  // Extra level milestone.
+  check('level_20',          (gameStats.newLevel || 0) >= 20);
 
   return newlyUnlocked;
 };
@@ -322,6 +353,10 @@ export const updateStats = (delta) => {
   const addedDiff = delta.difficulty && !prevDifficulties.includes(delta.difficulty)
     ? [...prevDifficulties, delta.difficulty]
     : prevDifficulties;
+  // Count a completed madlibs round: a run contributes 1 if it filled any
+  // madlibs slots this game (the UI only reaches that state if a madlibs round
+  // was played — partial fills still count toward the veteran achievement).
+  const playedMadlibsThisGame = (delta.madlibsSlotsFilled || 0) > 0 ? 1 : 0;
   const merged = {
     ...stats,
     gamesPlayed:      (stats.gamesPlayed || 0)      + (delta.gamesPlayed || 0),
@@ -333,6 +368,12 @@ export const updateStats = (delta) => {
     bestScore:        Math.max(stats.bestScore || 0, delta.totalScore || 0),
     dailiesCompleted: (stats.dailiesCompleted || 0) + (delta.isDaily ? 1 : 0),
     difficultiesCompleted: addedDiff,
+    // Cumulative mechanic counters — feed the "_total" achievements below.
+    rizzHitsTotal:       (stats.rizzHitsTotal || 0)       + (delta.rizzHits || 0),
+    morphFastHitsTotal:  (stats.morphFastHitsTotal || 0)  + (delta.morphFastHits || 0),
+    autocorrectLocksTotal:(stats.autocorrectLocksTotal||0)+ (delta.autocorrectLocks || 0),
+    madlibsRoundsPlayed: (stats.madlibsRoundsPlayed || 0) + playedMadlibsThisGame,
+    madlibsCursedTotal:  (stats.madlibsCursedTotal || 0)  + (delta.madlibsCursedPicks || 0),
   };
   localStorage.setItem(STATS_KEY, JSON.stringify(merged));
   return merged;

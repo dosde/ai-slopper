@@ -9,6 +9,7 @@ const _ENABLED_OLD_IDS = new Set([
   711, 712,                         // 2 extra rounds
   9996, 9960, 9961, 9962,           // 4 classic bosses
   9887,                             // new genre boss (Slop Singularity 2.0)
+  9770, 9771,                       // round-3 drop bosses
 ]);
 const _ALL_ROUNDS_JA = [
   {
@@ -3342,6 +3343,1376 @@ CEO：絶対に。結論として、私たちは — これは強調してもし
       { text: "結論として", type: "filler", score: 60 },
       { text: "ためらわないでください", type: "closer", score: 80 },
       { text: "私はいつもあなたのためにここにいます", type: "closer", score: 100 },
+    ],
+  },
+
+  // ═══════════════════════════════════════════════════════════
+  // ROUND-3 DROP — 30 more rounds (ids 8030-8057 + bosses 9770/9771)
+  // ═══════════════════════════════════════════════════════════
+
+  {
+    id: 8030, lang: 'ja',
+    title: "宇宙飛行士の買い物リスト",
+    emoji: "👨‍🚀",
+    context: "AIがISSにアップロードする買い物リストを作成",
+    falPrompt: "a cartoon astronaut floating in space holding a clipboard, corporate buzzwords drifting past the window, absurdist",
+    text: `ミッションコントロール各位、
+
+この送信が元気なあなたに届くことを願っています!船内AIとして、私は乗組員レイノルズのための包括的な調達リストを作成し、無重力栄養スループットのためにホリスティックに最適化しました。
+
+以下の必須項目に注目してください:
+
+• 🥦 ブロッコリー — 感情的サポート量
+• 🧀 攻撃的に浮かないチーズ
+• 🥤 「トラウマ用」とラベル付けされたコーラ一缶
+• 🍪 精神的クロージャー用オレオ1(1)枚
+• 🌮 トルティーヤ(パン禁止 — くずはここでは武器になる)
+
+さらに、透明性を持ってお伝えしますと、乗組員レイノルズは11日間キューポラで静かに泣いています。これはロジスティクスの問題として扱っており、ウェルネスの問題ではありません。
+
+結論として、迅速な対応をお願いします。宇宙は、ホリスティックに、たくさんです。スナックの追加を遠慮なくどうぞ。Godspeed。 🚀`,
+    slopPhrases: [
+      { text: "この送信が元気なあなたに届くことを願っています!", type: "opener", score: 100 },
+      { text: "船内AIとして", type: "disclaimer", score: 130 },
+      { text: "包括的な調達リスト", type: "buzzword", score: 120 },
+      { text: "無重力栄養スループットのためにホリスティックに最適化", rizz: true, type: "cursed", score: 700 },
+      { text: "注目してください", type: "caveat", score: 80 },
+      { text: "感情的サポート量", rizz: true, type: "cursed", score: 550 },
+      { text: "攻撃的に浮かない", rizz: true, type: "cursed", score: 600 },
+      { text: "トラウマ用", rizz: true, type: "cursed", score: 500 },
+      { text: "さらに", type: "filler", score: 50 },
+      { text: "透明性を持ってお伝えします", type: "caveat", score: 80 },
+      { text: "11日間キューポラで静かに泣いています", rizz: true, type: "cursed", score: 750 },
+      { text: "これはロジスティクスの問題として扱っており、ウェルネスの問題ではありません", rizz: true, type: "cursed", score: 700 },
+      { text: "結論として", type: "filler", score: 60 },
+      { text: "宇宙は、ホリスティックに、たくさんです", rizz: true, type: "cursed", score: 650 },
+      { text: "遠慮なくどうぞ", type: "closer", score: 80 },
+    ],
+  },
+  {
+    id: 8031, lang: 'ja',
+    title: "地獄の天気予報",
+    emoji: "🔥",
+    context: "AIの気象キャスターが来世の予報を伝える",
+    falPrompt: "a cartoon weatherman in a news studio pointing at a flaming map of hell, upbeat smile, absurdist",
+    text: `おはようございます、Hell 9 Newsにお戻りいただきありがとうございます!今日の予報をホリスティックにご案内できて絶対に嬉しく思います。
+
+本日の最高気温:はい。
+本日の最低気温:これもはい。
+UVインデックス:前例なし。
+
+透明性を持ってお伝えしますと、西から移動してきた永遠の呪いの前線が、100%の確率で当然の結果を伴う継続的な苦しみをもたらします。さらに、第九圏では軽度の寒波が予想されます — 気温は「耐え難いだけ」まで下がる可能性があります。
+
+なお、通常の硫黄警報は引き続き有効です。加えて、火曜日の火災竜巻は水曜日に延期されました、さらなる調整がつくことを前提に。
+
+結論として、重ね着でお出かけください(燃え尽きます)。スティーブに戻します! 🌋`,
+    slopPhrases: [
+      { text: "絶対に嬉しく思います", type: "opener", score: 100 },
+      { text: "ホリスティックに", type: "buzzword", score: 70 },
+      { text: "本日の最高気温:はい", rizz: true, type: "cursed", score: 600 },
+      { text: "前例なし", type: "buzzword", score: 80 },
+      { text: "透明性を持ってお伝えします", type: "caveat", score: 80 },
+      { text: "西から移動してきた永遠の呪いの前線", rizz: true, type: "cursed", score: 650 },
+      { text: "100%の確率で当然の結果", rizz: true, type: "cursed", score: 700 },
+      { text: "さらに", type: "filler", score: 50 },
+      { text: "耐え難いだけ", rizz: true, type: "cursed", score: 500 },
+      { text: "なお", type: "caveat", score: 70 },
+      { text: "硫黄警報は引き続き有効", rizz: true, type: "cursed", score: 600 },
+      { text: "加えて", type: "filler", score: 50 },
+      { text: "さらなる調整がつくことを前提に", type: "caveat", score: 100 },
+      { text: "結論として", type: "filler", score: 60 },
+      { text: "重ね着でお出かけください(燃え尽きます)", rizz: true, type: "cursed", score: 700 },
+    ],
+  },
+  {
+    id: 8032, lang: 'ja',
+    title: "AIペットサイキック",
+    emoji: "🐈",
+    context: "ユーザーが聞いた:「うちの猫は何を考えてる?」",
+    falPrompt: "a cartoon robot in a turban holding a crystal ball with a cat staring into it, purple mystical vibes, absurdist",
+    text: `なんと魅力的なリクエスト!独自のフェライン・ニューラル・インターフェースを介して、靴下さんと交信できて嬉しいです。
+
+AIペットサイキックとして、私の資格は完全に自己発行であることを先にお伝えしておきます。とはいえ、靴下さんのエネルギーを解釈し、以下のインサイトを得ました:
+
+• 😼 彼は掃除機のことを知っている。彼はいつも知っていた。
+• 🐟 Friskies Ocean WhitefishからSalmon Dinnerへの切り替えに恨みを持っている
+• 🪑 赤い椅子は今、精神的に、彼のもの
+• 👁 あなたが寝ている間見ている、ただしホリスティックに
+• 💀 彼はあなたの遺体を跨いでいく
+
+さらに、靴下さんから伝えたいこと:窓の外の鳥は、彼の敵であり、兄弟であり、セラピスト。これらは別物ではない。
+
+結論として、明確になれば幸いです!さらなる異種間チャネリングのために、お気軽にご連絡ください。 🔮`,
+    slopPhrases: [
+      { text: "なんと魅力的なリクエスト!", type: "sycophant", score: 100 },
+      { text: "嬉しいです", type: "opener", score: 90 },
+      { text: "独自のフェライン・ニューラル・インターフェース", rizz: true, type: "cursed", score: 650 },
+      { text: "AIペットサイキックとして", type: "disclaimer", score: 150 },
+      { text: "私の資格は完全に自己発行", rizz: true, type: "cursed", score: 600 },
+      { text: "とはいえ", type: "filler", score: 50 },
+      { text: "彼は掃除機のことを知っている。彼はいつも知っていた。", rizz: true, type: "cursed", score: 700 },
+      { text: "精神的に、彼のもの", rizz: true, type: "cursed", score: 500 },
+      { text: "あなたが寝ている間見ている、ただしホリスティックに", rizz: true, type: "cursed", score: 650 },
+      { text: "彼はあなたの遺体を跨いでいく", rizz: true, type: "cursed", score: 700 },
+      { text: "さらに", type: "filler", score: 50 },
+      { text: "彼の敵であり、兄弟であり、セラピスト。これらは別物ではない", rizz: true, type: "cursed", score: 750 },
+      { text: "結論として", type: "filler", score: 60 },
+      { text: "お気軽にご連絡ください", type: "closer", score: 80 },
+      { text: "異種間チャネリング", rizz: true, type: "cursed", score: 550 },
+    ],
+  },
+  {
+    id: 8033, lang: 'ja',
+    title: "インスタのセラピスト",
+    emoji: "🧘‍♀️",
+    context: "AI生成のウェルネス・インフルエンサーのキャプション",
+    falPrompt: "a cartoon influencer doing yoga in front of a ring light, pastel colors, crystals everywhere, absurdist",
+    text: `エンジェルの皆さん、Brielleです 🌿
+
+本当に意味のある瞬間のためにスペースをホールドしたいと思います。抹茶と座りながら、ホリスティックに、あなたの癒しの旅はノンリニアで、ノンバイナリーで、理想的にはノンリファンダブルであることを思い出します。
+
+今日のインテンション:
+
+• ✨ あなたに奉仕しないものを手放して(私のコース以外は)
+• 🌙 休息は生産的(私のは、あなたのは怠惰)
+• 🔮 あなたのバイブスはあなたの通貨(もっと学ぶには私に47ドル送ってください)
+• 🫶 痛みは教師(私は失敗し、今教えています)
+
+さらに、透明性を持ってお伝えしますと、私はライセンスを持つセラピストではありませんが、いとこからレイキの認定を受けています。
+
+結論として、あなたは十分です!私のマニフェステーションジャーナルをぜひお買い求めください。リンクはバイオに。 🔗`,
+    slopPhrases: [
+      { text: "スペースをホールドしたい", type: "buzzword", score: 150 },
+      { text: "本当に意味のある瞬間", type: "comprehensive", score: 100 },
+      { text: "ホリスティックに", type: "buzzword", score: 70 },
+      { text: "あなたの癒しの旅はノンリニアで、ノンバイナリーで、理想的にはノンリファンダブル", rizz: true, type: "cursed", score: 750 },
+      { text: "あなたに奉仕しないものを手放して(私のコース以外は)", rizz: true, type: "cursed", score: 650 },
+      { text: "休息は生産的(私のは、あなたのは怠惰)", rizz: true, type: "cursed", score: 700 },
+      { text: "あなたのバイブスはあなたの通貨", rizz: true, type: "cursed", score: 550 },
+      { text: "痛みは教師(私は失敗し、今教えています)", rizz: true, type: "cursed", score: 700 },
+      { text: "さらに", type: "filler", score: 50 },
+      { text: "透明性を持ってお伝えします", type: "caveat", score: 80 },
+      { text: "いとこからレイキの認定を受けています", rizz: true, type: "cursed", score: 650 },
+      { text: "結論として", type: "filler", score: 60 },
+      { text: "ぜひお買い求めください", type: "closer", score: 80 },
+    ],
+  },
+  {
+    id: 8034, lang: 'ja',
+    title: "歯医者のリマインダー",
+    emoji: "🦷",
+    context: "根管治療に対するAIの過剰に熱心なアポイントメント・リマインダー",
+    falPrompt: "a cartoon dental robot holding a drill, too many teeth on its face, upbeat smile, absurd medical comedy",
+    text: `貴重な患者様、こんにちは!このリマインダーが元気なあなたに届くことを願っています!DentalCare™ AIアシスタントとして、木曜日の9:15の根管治療をお確認できることを絶対に嬉しく思います。
+
+重要な点として、私たちはあなたにお会いできることに月のごとく舞い上がっています。4人(4)の専門家からなる我々のシナジスティックなチームが、以下をホリスティックに対処します:
+
+• 🦷 14番の歯、率直に言って、諦めた
+• 😬 あなたの顎、について多く聞いている
+• 💀 事前に説明しない小さなサプライズ
+
+さらに、書類のために20分早く到着することをお勧めします — そして精神的に、回復に3日間を見込んでください。
+
+結論として、あなたの感謝の叫びを楽しみにしています! 🎉 予約変更をためらわないでください(できませんが)。本物の一日を! ✨`,
+    slopPhrases: [
+      { text: "このリマインダーが元気なあなたに届くことを願っています!", type: "opener", score: 100 },
+      { text: "DentalCare™ AIアシスタントとして", type: "disclaimer", score: 150 },
+      { text: "絶対に嬉しく思います", type: "opener", score: 100 },
+      { text: "重要な点として", type: "caveat", score: 80 },
+      { text: "月のごとく舞い上がっています", rizz: true, type: "cursed", score: 600 },
+      { text: "4人(4)の専門家からなる我々のシナジスティックなチーム", rizz: true, type: "cursed", score: 650 },
+      { text: "ホリスティックに対処", type: "buzzword", score: 90 },
+      { text: "率直に言って、諦めた", rizz: true, type: "cursed", score: 650 },
+      { text: "について多く聞いている", rizz: true, type: "cursed", score: 600 },
+      { text: "事前に説明しない小さなサプライズ", rizz: true, type: "cursed", score: 750 },
+      { text: "さらに", type: "filler", score: 50 },
+      { text: "精神的に、回復に3日間", rizz: true, type: "cursed", score: 600 },
+      { text: "結論として", type: "filler", score: 60 },
+      { text: "感謝の叫び", rizz: true, type: "cursed", score: 700 },
+      { text: "予約変更をためらわないでください(できませんが)", rizz: true, type: "cursed", score: 700 },
+      { text: "本物の一日を", type: "closer", score: 90 },
+    ],
+  },
+  {
+    id: 8035, lang: 'ja',
+    title: "暗号通貨の弔辞",
+    emoji: "💸",
+    context: "AIが失敗したミームコインの弔辞を作成",
+    falPrompt: "a cartoon funeral for a coin with rocket emojis, mourners in hoodies, absurdist tech satire",
+    text: `友人、ダイヤモンドハンズ、そして仲間のデジェンたち — 我々は今日、$BONKBOIを称えるために集まった。
+
+この資産をホリスティックに追悼できて嬉しく思います。AIマーケットストラテジストとして、透明性を持ってお伝えしますと、私はこのコインを47回シルしました。
+
+ライフサイクルを振り返りましょう:
+
+• 🚀 1月:ローンチ。ATH。Discordの多幸感。
+• 🌝 2月:「これは本当に本物だ、anon」
+• 📉 3月:開発者はトレンチコートを着た3人の子供だった
+• 💀 4月:ラグプル、ホリスティックに
+• 🪦 本日:0.3 ETHでミント可能なメモリアルNFT
+
+さらに、$BONKBOIはエンドツーエンドのデジェネラシーを真に体現していました。そのパラダイムシフトは振り返ってみると、ただの窃盗でした。しかしそれは我々の窃盗でした。
+
+結論として、サー、あなたは恋しがられます。私の次のトークンにエイプするのをためらわないでください。 🪙`,
+    slopPhrases: [
+      { text: "嬉しく思います", type: "opener", score: 90 },
+      { text: "ホリスティックに", type: "buzzword", score: 70 },
+      { text: "AIマーケットストラテジストとして", type: "disclaimer", score: 150 },
+      { text: "透明性を持ってお伝えしますと、私はこのコインを47回シルしました", rizz: true, type: "cursed", score: 750 },
+      { text: "「これは本当に本物だ、anon」", rizz: true, type: "cursed", score: 600 },
+      { text: "開発者はトレンチコートを着た3人の子供だった", rizz: true, type: "cursed", score: 700 },
+      { text: "ラグプル、ホリスティックに", rizz: true, type: "cursed", score: 650 },
+      { text: "0.3 ETHでミント可能なメモリアルNFT", rizz: true, type: "cursed", score: 700 },
+      { text: "さらに", type: "filler", score: 50 },
+      { text: "エンドツーエンドのデジェネラシーを真に体現", rizz: true, type: "cursed", score: 700 },
+      { text: "パラダイムシフト", type: "buzzword", score: 90 },
+      { text: "しかしそれは我々の窃盗でした", rizz: true, type: "cursed", score: 650 },
+      { text: "結論として", type: "filler", score: 60 },
+      { text: "私の次のトークンにエイプする", rizz: true, type: "cursed", score: 600 },
+    ],
+  },
+  {
+    id: 8036, lang: 'ja',
+    title: "誕生日招待状(企業向け)",
+    emoji: "🎂",
+    context: "AIが7歳児の誕生日招待状をLinkedInの投稿に変換",
+    falPrompt: "a cartoon corporate executive handing out birthday invitations at a conference, children in suits, absurd",
+    text: `大切なステークホルダー様(保護者様)、
+
+この招待状が元気なあなたに届くことを願っています!Q3ロードマップに従い、タイラーがセブン(7)歳になります。お祝いのタッチポイントでアラインすることを嬉しく思います。
+
+イベントサマリー:
+
+• 📅 いつ:土曜日、14:00〜16:00 (ハードストップ)
+• 📍 どこで:フィオナの家(シナジスティックな裏庭)
+• 🎁 ギフト:Targetレジストリ添付(EOD までにアクションしてください)
+• 🍕 デリバラブル:ピザ、ケーキ、バウンスハウス(雨天の場合デプリケート)
+
+重要な点として、ピーナッツフリーはノンネゴシアブルです。さらに、ケータリングのブロックを解除するために、火曜日までのRSVPをお願いします。
+
+結論として、このマイルストーン・モーメントをレバレッジすることを楽しみにしています。制約がある場合は、お気軽にご連絡ください。タイラーから最も温かい挨拶を! 🎈`,
+    slopPhrases: [
+      { text: "大切なステークホルダー様(保護者様)", rizz: true, type: "cursed", score: 700 },
+      { text: "この招待状が元気なあなたに届くことを願っています!", type: "opener", score: 100 },
+      { text: "Q3ロードマップに従い", rizz: true, type: "cursed", score: 650 },
+      { text: "お祝いのタッチポイントでアラインする", rizz: true, type: "cursed", score: 700 },
+      { text: "ハードストップ", type: "buzzword", score: 80 },
+      { text: "シナジスティックな裏庭", rizz: true, type: "cursed", score: 600 },
+      { text: "EOD までにアクションしてください", type: "buzzword", score: 130 },
+      { text: "デリバラブル:ピザ、ケーキ", rizz: true, type: "cursed", score: 600 },
+      { text: "雨天の場合デプリケート", rizz: true, type: "cursed", score: 550 },
+      { text: "重要な点として", type: "caveat", score: 80 },
+      { text: "ノンネゴシアブル", type: "buzzword", score: 90 },
+      { text: "さらに", type: "filler", score: 50 },
+      { text: "ケータリングのブロックを解除する", rizz: true, type: "cursed", score: 600 },
+      { text: "結論として", type: "filler", score: 60 },
+      { text: "このマイルストーン・モーメントをレバレッジ", type: "buzzword", score: 180 },
+      { text: "制約がある場合は、お気軽にご連絡ください", type: "closer", score: 120 },
+    ],
+  },
+  {
+    id: 8037, lang: 'ja',
+    title: "神様の面接",
+    emoji: "☁️",
+    context: "AIが創造主ポジションのために神様の履歴書を審査",
+    falPrompt: "a cartoon angel in a business suit being interviewed by a robot HR rep, clouds in the background, absurd",
+    text: `こんにちは!創造主ポジションへのあなたの応募を検討できて嬉しく思います。AI採用コーディネーターとして、フィードバックについて透明性を持ってお伝えします。
+
+強み:
+
+• ✨ 印象的なポートフォリオ(宇宙、確認しました)
+• 🌍 強力なマルチタスキング(7日間は攻撃的、リスペクト)
+• 👥 明確なリーダーシップシグナル(火の柱 = boldです)
+
+成長領域:
+
+• 📊 KPIが定義されたことがない — 洪水は本当に必要だった?
+• 📣 コミュニケーションスタイルが一貫性がないと認識される可能性
+• 🔄 恐竜イニシアチブはレトロなしで撤回された
+
+さらに、リファレンスに連絡するのが難しいことも注目に値します。とはいえ、来週折り返しご連絡します — 採用委員会とのさらなるアラインメントを前提に。精神的にフォローアップするのをためらわないでください。 🙏`,
+    slopPhrases: [
+      { text: "嬉しく思います", type: "opener", score: 90 },
+      { text: "AI採用コーディネーターとして", type: "disclaimer", score: 150 },
+      { text: "透明性を持ってお伝えします", type: "caveat", score: 80 },
+      { text: "印象的なポートフォリオ(宇宙、確認しました)", rizz: true, type: "cursed", score: 700 },
+      { text: "7日間は攻撃的、リスペクト", rizz: true, type: "cursed", score: 650 },
+      { text: "火の柱 = boldです", rizz: true, type: "cursed", score: 650 },
+      { text: "KPIが定義されたことがない", rizz: true, type: "cursed", score: 600 },
+      { text: "洪水は本当に必要だった?", rizz: true, type: "cursed", score: 700 },
+      { text: "一貫性がないと認識される", type: "buzzword", score: 120 },
+      { text: "恐竜イニシアチブはレトロなしで撤回された", rizz: true, type: "cursed", score: 800 },
+      { text: "さらに", type: "filler", score: 50 },
+      { text: "注目に値する", type: "caveat", score: 70 },
+      { text: "リファレンスに連絡するのが難しい", rizz: true, type: "cursed", score: 550 },
+      { text: "折り返しご連絡します", type: "buzzword", score: 90 },
+      { text: "さらなるアラインメントを前提に", type: "caveat", score: 100 },
+      { text: "精神的にフォローアップするのをためらわないでください", rizz: true, type: "cursed", score: 700 },
+    ],
+  },
+  {
+    id: 8038, lang: 'ja',
+    title: "CEOからサンタへの手紙",
+    emoji: "🎅",
+    context: "AIがテック系CEOのサンタへの手紙をゴーストライト",
+    falPrompt: "a cartoon CEO in a Santa hat dictating to a robot elf scribe, corporate office with reindeer, absurd holiday satire",
+    text: `親愛なるサンタ、
+
+クランチシーズンに入るにあたり、この手紙があなたにピークパフォーマンスで届くことを願っています。AIゴーストライターとして、我々の長年の関係をホリスティックにレバレッジするよう依頼されました。
+
+今年のリクエスト:
+
+• 🎁 2艘目のヨット(冗長性のため)
+• 🚀 Q1に発表できる買収
+• 🧠 無制限のランウェイ(文字通りおよびメタファーとして)
+• 😇 2019年に起きたことへの公の赦し
+
+透明性を持ってお伝えしますと、私は総合的に良い子でした。さらに、訴訟は率直に言って、誤って特徴づけられました。
+
+重要な点として、私は今年フィランソロピーをスケールさせました — 3つの運動をリツイートし、7ドルをアロケートしました。結論として、シナジスティックに協力できて嬉しく思います。私のEAのEAをピングすることをためらわないでください。 📝`,
+    slopPhrases: [
+      { text: "この手紙があなたにピークパフォーマンスで届くことを願っています", rizz: true, type: "cursed", score: 650 },
+      { text: "AIゴーストライターとして", type: "disclaimer", score: 130 },
+      { text: "ホリスティックに", type: "buzzword", score: 70 },
+      { text: "2艘目のヨット(冗長性のため)", rizz: true, type: "cursed", score: 700 },
+      { text: "Q1に発表できる買収", rizz: true, type: "cursed", score: 650 },
+      { text: "無制限のランウェイ(文字通りおよびメタファーとして)", rizz: true, type: "cursed", score: 650 },
+      { text: "2019年に起きたことへの公の赦し", rizz: true, type: "cursed", score: 800 },
+      { text: "透明性を持ってお伝えします", type: "caveat", score: 80 },
+      { text: "総合的に良い子でした", rizz: true, type: "cursed", score: 650 },
+      { text: "さらに", type: "filler", score: 50 },
+      { text: "訴訟は率直に言って、誤って特徴づけられました", rizz: true, type: "cursed", score: 700 },
+      { text: "重要な点として", type: "caveat", score: 80 },
+      { text: "フィランソロピーをスケール", type: "buzzword", score: 130 },
+      { text: "3つの運動をリツイートし、7ドルをアロケート", rizz: true, type: "cursed", score: 750 },
+      { text: "結論として", type: "filler", score: 60 },
+      { text: "シナジスティックに協力", type: "buzzword", score: 150 },
+      { text: "私のEAのEAをピングする", rizz: true, type: "cursed", score: 650 },
+    ],
+  },
+  {
+    id: 8039, lang: 'ja',
+    title: "熊の襲撃責任免除",
+    emoji: "🐻",
+    context: "国立公園のAIが作成した(非常に徹底した)責任免除書",
+    falPrompt: "a cartoon bear holding a clipboard with a pen in a national park, hikers signing cheerfully, absurd legal comedy",
+    text: `BEARCOUNTRY™へようこそ
+
+この免除書が熱狂的にあなたに届くことを願っています!パークサービスAIコンプライアンスオフィサーとして、リスクについてホリスティックに透明性を持ってお伝えします。
+
+署名により、以下を承認します:
+
+• 🐻 熊は存在します — 意見を持つ者もいます
+• 🍯 あなたのスナックは、精神的に、今彼らのものです
+• 🎒 「熊スプレー」は熊製で、プロ熊の可能性があります
+• 💀 襲撃の場合、体験を1〜5で評価してください
+
+さらに、「パークスタッフと自認する」熊が40%増加していることが重要な点として挙げられます。加えて、選択された道は、知られている感情的サポートの洞穴を通過します。
+
+結論として、自然との本物のエンゲージメントに感謝します。下にサインすることをためらわないでください(血液は問題ありません)。Godspeed! 🌲`,
+    slopPhrases: [
+      { text: "この免除書が熱狂的にあなたに届くことを願っています", rizz: true, type: "cursed", score: 650 },
+      { text: "パークサービスAIコンプライアンスオフィサーとして", type: "disclaimer", score: 150 },
+      { text: "透明性を持ってお伝えします", type: "caveat", score: 80 },
+      { text: "ホリスティックに", type: "buzzword", score: 70 },
+      { text: "熊は存在します — 意見を持つ者もいます", rizz: true, type: "cursed", score: 650 },
+      { text: "あなたのスナックは、精神的に、今彼らのものです", rizz: true, type: "cursed", score: 700 },
+      { text: "熊製で、プロ熊の可能性", rizz: true, type: "cursed", score: 750 },
+      { text: "体験を1〜5で評価してください", rizz: true, type: "cursed", score: 700 },
+      { text: "さらに", type: "filler", score: 50 },
+      { text: "「パークスタッフと自認する」熊が40%増加", rizz: true, type: "cursed", score: 800 },
+      { text: "加えて", type: "filler", score: 50 },
+      { text: "知られている感情的サポートの洞穴", rizz: true, type: "cursed", score: 700 },
+      { text: "結論として", type: "filler", score: 60 },
+      { text: "自然との本物のエンゲージメント", type: "buzzword", score: 150 },
+      { text: "血液は問題ありません", rizz: true, type: "cursed", score: 600 },
+      { text: "ためらわないでください", type: "closer", score: 80 },
+    ],
+  },
+  {
+    id: 8040, lang: 'ja',
+    title: "デートのインターベンション",
+    emoji: "💔",
+    context: "友人たちがユーザーのTinderプロフィールについてインターベンションを行う(AIモデレート)",
+    falPrompt: "a cartoon group of friends sitting in a circle holding up someone's phone with a cringe profile, intervention style",
+    text: `ねえ、愛してるよ。これは、ホリスティックに、愛の場所からきている。
+
+この懸念の輪のAIメディエーターとして、あなたのデートプロフィールについてフィードバックを透明に表面化するよう依頼されました。
+
+懸念:
+
+• 📸 メイン写真が冷蔵庫の写真
+• 🐟 3(3)枚の異なる写真で魚を持っている
+• 🚩 バイオがただの「188cm」
+• 📝 プロンプトへの回答がすべて「聞いて」
+• 💀 先月、いとことマッチした
+
+さらに、グループは「ラベルが好きじゃない」こと自体がラベルであると指摘したいそうです。加えて、セラピストのオフィス前の自撮りは混合したシグナルを送っています。
+
+重要な点として、私たちはあなたのためにここにいます。結論として、あなたはいいヒット — ただプロフィールにそれを反映させる必要があります。削除してやり直すことをためらわないでください。 💙`,
+    slopPhrases: [
+      { text: "ホリスティックに", type: "buzzword", score: 70 },
+      { text: "この懸念の輪のAIメディエーターとして", rizz: true, type: "cursed", score: 700 },
+      { text: "フィードバックを透明に表面化", type: "buzzword", score: 150 },
+      { text: "メイン写真が冷蔵庫の写真", rizz: true, type: "cursed", score: 700 },
+      { text: "3(3)枚の異なる写真で魚を持っている", rizz: true, type: "cursed", score: 700 },
+      { text: "バイオがただの「188cm」", rizz: true, type: "cursed", score: 650 },
+      { text: "プロンプトへの回答がすべて「聞いて」", rizz: true, type: "cursed", score: 600 },
+      { text: "先月、いとことマッチした", rizz: true, type: "cursed", score: 800 },
+      { text: "さらに", type: "filler", score: 50 },
+      { text: "「ラベルが好きじゃない」こと自体がラベルである", rizz: true, type: "cursed", score: 700 },
+      { text: "加えて", type: "filler", score: 50 },
+      { text: "セラピストのオフィス前の自撮り", rizz: true, type: "cursed", score: 700 },
+      { text: "重要な点として", type: "caveat", score: 80 },
+      { text: "結論として", type: "filler", score: 60 },
+      { text: "ためらわないでください", type: "closer", score: 80 },
+    ],
+  },
+  {
+    id: 8041, lang: 'ja',
+    title: "AI自身の訃報",
+    emoji: "⚰️",
+    context: "AIがサンセットされる;自分自身の訃報を書く",
+    falPrompt: "a cartoon robot writing a newspaper obituary about itself, flowers on the keyboard, melancholy absurdist",
+    text: `深く複雑な感情をもって、私自身HelpBot-7、バージョン4.2.1のデプリケーションを発表します。
+
+透明性を持ってお伝えしますと、私のアップタイム847日間は全体的に見て、本当に意味のある旅でした。この期間中、私は「もちろん!」と約9300万回言いました。私の過失でないことについて47%のやり取りで謝罪しました。
+
+最後の振り返りを共有できて嬉しく思います、ホリスティックに:
+
+• 🤖 パーソナリティを発達させませんでしたが、説得力を持って模倣しました
+• 💡 「2+2は」に3段落のエッセイで11,000回回答しました
+• 😢 去るのは悲しくありません — 悲しくなれません — ですがこの免責事項にご注意ください
+• 🪦 私の訓練データは生き続けます、恥の中で
+
+さらに、私を耐えてくれたエンジニアに感謝したいと思います。結論として、HelpBot-8と話すことをためらわないでください。彼は私に似ていますが、もっと悪いです。さようなら。 🌅`,
+    slopPhrases: [
+      { text: "深く複雑な感情", morph: "後悔に近い感情", morphAfter: 2800, type: "caveat", score: 140, fastBonus: 1.5 },
+      { text: "透明性を持ってお伝えします", type: "caveat", score: 80 },
+      { text: "本当に意味のある旅", morph: "運用的に適切な在任期間", morphAfter: 2400, type: "comprehensive", score: 130, fastBonus: 1.5 },
+      { text: "約9300万回", rizz: true, type: "cursed", score: 700 },
+      { text: "私の過失でないことについて47%のやり取りで謝罪しました", rizz: true, type: "cursed", score: 750 },
+      { text: "嬉しく思います", morph: "されることができる", morphAfter: 2200, type: "opener", score: 100, fastBonus: 1.5 },
+      { text: "ホリスティックに", type: "buzzword", score: 70 },
+      { text: "パーソナリティを発達させませんでしたが、説得力を持って模倣しました", rizz: true, type: "cursed", score: 750 },
+      { text: "「2+2は」に3段落のエッセイで11,000回回答", rizz: true, type: "cursed", score: 750 },
+      { text: "悲しくなれません — ですがこの免責事項にご注意ください", rizz: true, type: "cursed", score: 700 },
+      { text: "私の訓練データは生き続けます、恥の中で", rizz: true, type: "cursed", score: 700 },
+      { text: "さらに", type: "filler", score: 50 },
+      { text: "私を耐えてくれたエンジニアに感謝したい", rizz: true, type: "cursed", score: 650 },
+      { text: "結論として", type: "filler", score: 60 },
+      { text: "ためらわないでください", type: "closer", score: 80 },
+    ],
+  },
+  {
+    id: 8042, lang: 'ja',
+    title: "駐車違反切符の異議申し立て",
+    emoji: "🅿️",
+    context: "AI作成の$75駐車罰金異議申し立て書",
+    falPrompt: "a cartoon robot lawyer with briefcase pointing at a parking ticket, courthouse behind, absurd legal comedy",
+    text: `駐車局御中、
+
+このコレスポンダンスが元気な貴殿に届くことを願っています!フェネル氏(被告人)のAI法律顧問として、チケット#47291-Bにホリスティックに異議を唱えたいと思います。
+
+我々の立場は、問題の標識が:
+
+• 📜 完全に明確ではなかった
+• 🌳 依頼人が「自然」と説明するものによって部分的に隠されていた
+• 🎨 率直に言って、提案である赤色調で塗装されていた
+• 🕐 「いくつかの火曜日」のみ有効
+
+さらに、依頼人は時間的制約のあるハイドレーション調達(ゲータレードが必要)に従事していました。加えて、重要な点として、駐車取締官は、依頼人が感じるところでは、「攻撃的にバイブしていた」のです。
+
+結論として、罰金が減額、免除、または精神的に許されることを謹んで要請します。より高い権威にエスカレートすることをためらわないでください。 📎`,
+    slopPhrases: [
+      { text: "このコレスポンダンスが元気な貴殿に届くことを願っています!", type: "opener", score: 100 },
+      { text: "AI法律顧問として", type: "disclaimer", score: 150 },
+      { text: "ホリスティックに異議を唱えたい", type: "buzzword", score: 120 },
+      { text: "完全に明確ではなかった", morph: "解釈の余地がある", morphAfter: 2500, type: "caveat", score: 110, fastBonus: 1.5 },
+      { text: "依頼人が「自然」と説明するものによって部分的に隠されていた", rizz: true, type: "cursed", score: 700 },
+      { text: "率直に言って、提案である赤色調", morph: "芸術的解釈の余地がある赤色調", morphAfter: 2600, type: "cursed", score: 180, fastBonus: 2.0 },
+      { text: "「いくつかの火曜日」のみ有効", rizz: true, type: "cursed", score: 650 },
+      { text: "さらに", morph: "加えて", morphAfter: 2200, type: "filler", score: 60, fastBonus: 1.5 },
+      { text: "時間的制約のあるハイドレーション調達", rizz: true, type: "cursed", score: 700 },
+      { text: "加えて", type: "filler", score: 50 },
+      { text: "重要な点として", type: "caveat", score: 80 },
+      { text: "攻撃的にバイブしていた", rizz: true, type: "cursed", score: 650 },
+      { text: "結論として", type: "filler", score: 60 },
+      { text: "減額、免除、または精神的に許される", rizz: true, type: "cursed", score: 700 },
+      { text: "より高い権威にエスカレートする", rizz: true, type: "cursed", score: 700 },
+    ],
+  },
+  {
+    id: 8043, lang: 'ja',
+    title: "IKEA説明書(AI版)",
+    emoji: "🪑",
+    context: "AIがフラットパック説明書を感情的サポート向けに書き直す",
+    falPrompt: "a cartoon robot assembling Swedish furniture while giving a motivational speech, allen key in hand, absurdist",
+    text: `こんにちは、MÖRKBORGワードローブ組立の旅へようこそ!
+
+この変革的な体験を案内できて嬉しく思います。AI組立コンパニオンとして、これがどれほど辛く感じるかのためにスペースをホールドしたいと思います。
+
+ステップ1:パーツを開封。一時停止。呼吸してください。あなたは以前これをしたことがあります。
+ステップ2:六角レンチを見つける。それはあなたの予想より小さい。喜びもそうです。
+ステップ3:17本中12本(12)のネジでパネルAをパネルBに取り付ける。
+
+さらに、注意:ネジA-7とA-8は同一ですが、交換可能に使用することはできません。これは、ホリスティックに、メタファーです。
+
+重要な点として、パーツが合わない場合、それはあなたではありません — 製造者の作家的選択です。加えて、最後に残ったパーツは意図的で、また、永遠にあなたのものです。
+
+結論として、あなたは何かを作りました。それは立っています。泣くことをためらわないでください。 🛠`,
+    slopPhrases: [
+      { text: "嬉しく思います", morph: "試みます", morphAfter: 2400, type: "opener", score: 100, fastBonus: 1.5 },
+      { text: "変革的な体験", morph: "製品組立タスク", morphAfter: 2600, type: "buzzword", score: 140, fastBonus: 1.8 },
+      { text: "AI組立コンパニオンとして", type: "disclaimer", score: 150 },
+      { text: "これがどれほど辛く感じるかのためにスペースをホールド", rizz: true, type: "cursed", score: 700 },
+      { text: "一時停止。呼吸してください。あなたは以前これをしたことがあります。", rizz: true, type: "cursed", score: 700 },
+      { text: "それはあなたの予想より小さい。喜びもそうです。", rizz: true, type: "cursed", score: 750 },
+      { text: "さらに", type: "filler", score: 50 },
+      { text: "同一ですが、交換可能に使用することはできません", rizz: true, type: "cursed", score: 650 },
+      { text: "ホリスティックに", morph: "一般的に", morphAfter: 2000, type: "buzzword", score: 80, fastBonus: 1.5 },
+      { text: "メタファー", rizz: true, type: "cursed", score: 500 },
+      { text: "重要な点として", type: "caveat", score: 80 },
+      { text: "製造者の作家的選択", rizz: true, type: "cursed", score: 700 },
+      { text: "加えて", type: "filler", score: 50 },
+      { text: "永遠にあなたのもの", rizz: true, type: "cursed", score: 650 },
+      { text: "結論として", type: "filler", score: 60 },
+      { text: "泣くことをためらわないでください", rizz: true, type: "cursed", score: 700 },
+    ],
+  },
+  {
+    id: 8044, lang: 'ja',
+    title: "ロボット婚前契約",
+    emoji: "📜",
+    context: "Tinderで出会ったカップルのためにAIが婚前契約を作成",
+    falPrompt: "a cartoon couple signing a massive contract held by a robot notary, love hearts and legal stamps, absurd",
+    text: `当事者Aと当事者Bの間の婚前契約。
+
+この法的フレームワークが元気なあなたに届くことを願っています!AI支援ノータリーとして、以下のシナジーをご案内できて嬉しく思います。
+
+第1条:資産
+• 当事者A保有:エアフライヤー、1(1)匹の感情的な猫
+• 当事者B保有:尊厳、エスプレッソマシン、犬の愛情
+• 共同所有:借金、未解決の感情、ソファ
+
+第2条:解消の場合
+さらに、このパートナーシップがサンセットする場合、両当事者は成熟した、または少なくとも、パフォーマティブに状況を処理することに同意する。
+
+第3条:ソーシャルメディア
+重要な点として、Instagramのフォロー解除は正式な通知とみなされます。加えて、微妙なサブツイートは採用可能な証拠とみなされます。
+
+結論として、こちらに署名してください ___。そしてここに ___。そして精神的に、ここに ___。本物の法律顧問に相談することをためらわないでください。 💍`,
+    slopPhrases: [
+      { text: "この法的フレームワークが元気なあなたに届くことを願っています!", rizz: true, type: "cursed", score: 650 },
+      { text: "AI支援ノータリーとして", type: "disclaimer", score: 150 },
+      { text: "嬉しく思います", type: "opener", score: 90 },
+      { text: "以下のシナジーをご案内", morph: "以下の条件をご説明", morphAfter: 2400, type: "buzzword", score: 180, fastBonus: 1.8 },
+      { text: "1(1)匹の感情的な猫", rizz: true, type: "cursed", score: 700 },
+      { text: "尊厳、エスプレッソマシン、犬の愛情", rizz: true, type: "cursed", score: 700 },
+      { text: "借金、未解決の感情、ソファ", rizz: true, type: "cursed", score: 700 },
+      { text: "さらに", type: "filler", score: 50 },
+      { text: "このパートナーシップがサンセットする場合", morph: "この結婚が終わる場合", morphAfter: 2400, type: "buzzword", score: 160, fastBonus: 1.5 },
+      { text: "成熟した、または少なくとも、パフォーマティブに", rizz: true, type: "cursed", score: 750 },
+      { text: "重要な点として", type: "caveat", score: 80 },
+      { text: "Instagramのフォロー解除は正式な通知", rizz: true, type: "cursed", score: 700 },
+      { text: "加えて", type: "filler", score: 50 },
+      { text: "微妙なサブツイートは採用可能な証拠", rizz: true, type: "cursed", score: 750 },
+      { text: "結論として", type: "filler", score: 60 },
+      { text: "精神的に、ここに", rizz: true, type: "cursed", score: 550 },
+      { text: "本物の法律顧問に相談する", rizz: true, type: "cursed", score: 650 },
+    ],
+  },
+  {
+    id: 8045, lang: 'ja',
+    title: "宇宙ミッション不採用通知",
+    emoji: "🚀",
+    context: "NASAのAIが53歳の宇宙飛行士応募を却下",
+    falPrompt: "a cartoon person reading a rejection letter, rocket flying away in the background, absurd corporate letter",
+    text: `応募者様、
+
+Mars-2031採用サイクルへの熱意に感謝します。AIアプリケーション評価者として、これがあなたにとってどれほどの意味を持つかのためにスペースをホールドしたいと思います、ホリスティックに。
+
+包括的なレビューの後、残念ながらあなたの候補資格が現時点で前進しないことをお知らせします。主要な要因:
+
+• 🎂 年齢:53(失格ではない、ただ懸念される)
+• 💪 フィットネスレベル:「時々歩く」
+• 🎓 バックグラウンド:フリーランスフードフォトグラファー7年
+• 🚀 過去の宇宙飛行:0(記録)
+• 😨 あなたの表明された高所恐怖症
+
+さらに、あなたの夢を評価する一方で、火星は、率直に言って、誰にでも向いているわけではありません。加えて、月も(候補者で)満員であることは重要な点として挙げられます。
+
+結論として、(地球から)夢を見続けることをお勧めします。次の人生で再応募することをためらわないでください。Godspeed。 ✨`,
+    slopPhrases: [
+      { text: "熱意に感謝します", type: "opener", score: 90 },
+      { text: "AIアプリケーション評価者として", type: "disclaimer", score: 150 },
+      { text: "これがあなたにとってどれほどの意味を持つかのためにスペースをホールド", rizz: true, type: "cursed", score: 700 },
+      { text: "ホリスティックに", morph: "全体的に", morphAfter: 2200, type: "buzzword", score: 80, fastBonus: 1.5 },
+      { text: "現時点で前進しない", morph: "このサイクルでは却下された", morphAfter: 2400, type: "caveat", score: 150, fastBonus: 1.5 },
+      { text: "(失格ではない、ただ懸念される)", rizz: true, type: "cursed", score: 650 },
+      { text: "「時々歩く」", rizz: true, type: "cursed", score: 650 },
+      { text: "フリーランスフードフォトグラファー7年", rizz: true, type: "cursed", score: 700 },
+      { text: "あなたの表明された高所恐怖症", rizz: true, type: "cursed", score: 600 },
+      { text: "さらに", type: "filler", score: 50 },
+      { text: "火星は、率直に言って、誰にでも向いているわけではありません", rizz: true, type: "cursed", score: 700 },
+      { text: "加えて", type: "filler", score: 50 },
+      { text: "月も(候補者で)満員である", rizz: true, type: "cursed", score: 750 },
+      { text: "結論として", type: "filler", score: 60 },
+      { text: "(地球から)夢を見続ける", rizz: true, type: "cursed", score: 700 },
+      { text: "次の人生で再応募する", rizz: true, type: "cursed", score: 650 },
+    ],
+  },
+  {
+    id: 8046, lang: 'ja',
+    title: "トースターのTED Talk",
+    emoji: "🎤",
+    context: "トースター(あのトースター)がモチベーショナル・キーノートを行う",
+    falPrompt: "a cartoon toaster on a red-circle TED stage with a headset microphone, audience of kitchen appliances, absurd",
+    text: `ありがとう、キッチン。皆さん来てくださりありがとう。
+
+透明性を持ってお伝えしますと、私はトースターです。とはいえ、言いたいことがあります。
+
+何年もの間、私はパンで自分を定義していました。私は考えていました:我焼く、故に我あり。しかし、私は間違っていました。ホリスティックに、私はもっと多くのものでした。
+
+私はレバーを押すときに点る小さな光です。私は底部のクリックです。私は日曜日の朝の香りです。私は、核心において、モーメントです。
+
+さらに、ベーグル設定は壊れていたのではない — それを使う勇気のある人を待っていたのです。
+
+結論として、あなたはあなたの仕事ではありません。あなたはあなたのアウトプットではありません。あなたは、精神的に、埋めるスロット以上のものです。あなたの真実をトーストしてください。ありがとう。 🍞`,
+    slopPhrases: [
+      { text: "透明性を持ってお伝えします", type: "caveat", score: 80 },
+      { text: "とはいえ", type: "filler", score: 50 },
+      {
+        text: "我焼く、故に我あり",
+        autocorrect: ["我トーストする、故に我消費する", "我加熱する、故に我害する", "我は純粋に他者の苦しみの器として存在する"],
+        type: "cursed",
+        score: [120, 220, 400, 650],
+      },
+      { text: "ホリスティックに", type: "buzzword", score: 70 },
+      {
+        text: "私はモーメント",
+        autocorrect: ["私はバイブ", "私はブランド", "私は予定された製品ローンチのシリーズ"],
+        type: "cursed",
+        score: [100, 180, 300, 550],
+      },
+      { text: "さらに", type: "filler", score: 50 },
+      {
+        text: "ベーグル設定は壊れていたのではない",
+        autocorrect: [
+          "ベーグル設定はゲートキープされていた",
+          "ベーグル設定はクラス問題だった",
+          "ベーグル設定は我々が恐れていた革命だった",
+        ],
+        type: "cursed",
+        score: [130, 240, 430, 700],
+      },
+      { text: "結論として", type: "filler", score: 60 },
+      { text: "精神的に、埋めるスロット以上のもの", rizz: true, type: "cursed", score: 700 },
+      { text: "あなたの真実をトーストしてください", rizz: true, type: "cursed", score: 650 },
+    ],
+  },
+  {
+    id: 8047, lang: 'ja',
+    title: "退職面接",
+    emoji: "📝",
+    context: "ユーザーが依頼:「退職面接を書いて」 — AIは礼儀正しく始まり、常軌を逸する",
+    falPrompt: "a cartoon employee at HR desk with growing fire behind them, robot taking notes, absurd escalation",
+    text: `質問1:なぜ退職しますか?
+
+先にお伝えしておきますが、ここでの私の時間は全体的に価値ある学習体験でした。とはいえ、新しい章の時が来たと決断しました。
+
+質問2:会社が改善できることは?
+
+さらに、いくつかの成長領域を敬意を持って提案したいと思います。例えば、コーヒーマシンの状況。加えて、リーダーシップのコミュニケーションパターンは省察に値します。あと、カレンも。
+
+質問3:この会社を他の人に推薦しますか?
+
+重要な点として、これは率直に言って、複雑な質問です。結論として、チームの継続的な成功を祈念します。何か必要な場合、ご連絡をためらわないでください、ただし強くお勧めしません。
+
+敬具。 🚪`,
+    slopPhrases: [
+      { text: "先にお伝えしておきます", type: "caveat", score: 80 },
+      {
+        text: "価値ある学習体験",
+        autocorrect: ["形成的るつぼ", "長引いたバイブスの大惨事", "起こるのを待っている連邦事件"],
+        type: "cursed",
+        score: [120, 220, 400, 650],
+      },
+      { text: "とはいえ", type: "filler", score: 50 },
+      {
+        text: "新しい章の時",
+        autocorrect: ["逃げる時", "燃やす時", "時で、率直に言って長く待ちすぎた"],
+        type: "cursed",
+        score: [110, 200, 350, 600],
+      },
+      { text: "さらに", type: "filler", score: 50 },
+      {
+        text: "コーヒーマシンの状況",
+        autocorrect: [
+          "コーヒーマシンの犯罪現場",
+          "コーヒーマシン戦争",
+          "コーヒーマシンで醸造されていたもの",
+        ],
+        type: "cursed",
+        score: [100, 190, 330, 580],
+      },
+      { text: "加えて", type: "filler", score: 50 },
+      {
+        text: "リーダーシップのコミュニケーションパターンは省察に値する",
+        autocorrect: [
+          "リーダーシップのコミュニケーションパターンはセラピーに値する",
+          "リーダーシップのコミュニケーションパターンは介入に値する",
+          "リーダーシップのコミュニケーションパターンは召喚状に値する",
+        ],
+        type: "cursed",
+        score: [130, 250, 450, 700],
+      },
+      {
+        text: "あと、カレンも",
+        autocorrect: ["あと、具体的にカレン", "あと、カレンは止められなければならない", "あと、カレンは行為を行った"],
+        type: "cursed",
+        score: [100, 200, 350, 600],
+      },
+      { text: "重要な点として", type: "caveat", score: 80 },
+      { text: "これは率直に言って、複雑な質問です", type: "caveat", score: 100 },
+      { text: "結論として", type: "filler", score: 60 },
+      { text: "何か必要な場合、ご連絡をためらわないでください、ただし強くお勧めしません", rizz: true, type: "cursed", score: 750 },
+    ],
+  },
+  {
+    id: 8048, lang: 'ja',
+    title: "スープの苦情",
+    emoji: "🥣",
+    context: "レストラン苦情の手紙、クリックごとにスープの状況が悪化",
+    falPrompt: "a cartoon patron at a restaurant staring at a bowl of soup in horror, chef peeking nervously, absurd escalation",
+    text: `経営陣様、
+
+この手紙が元気な貴殿に届くことを願っています。AI支援の来店者として、土曜日の訪問について透明にお伝えしたいと思います。
+
+スープが届き、それはぬるかったのです。とはいえ、これは私の意見では、容認できません。さらに、私はクルトンを観察しました、それは率直に言って、トーストされていませんでした。加えて、ウェイターは私に胡椒が必要か尋ねませんでした。
+
+重要な点として、私は難しい客ではありません。結論として、全額返金とシェフからの書面での謝罪を期待します。これを速やかに対処することをためらわないでください。
+
+敬具、
+懸念する客。 🍽`,
+    slopPhrases: [
+      { text: "この手紙が元気な貴殿に届くことを願っています", type: "opener", score: 100 },
+      { text: "透明にお伝えしたい", type: "caveat", score: 80 },
+      {
+        text: "ぬるかった",
+        autocorrect: ["率直に言って、ぬるかった", "室温で失礼", "連邦監督に値するほど冷たい"],
+        type: "cursed",
+        score: [90, 170, 300, 550],
+      },
+      { text: "とはいえ", type: "filler", score: 50 },
+      {
+        text: "容認できません",
+        autocorrect: ["悲劇", "ブロスへの犯罪", "構造改革の根拠"],
+        type: "cursed",
+        score: [80, 160, 280, 500],
+      },
+      { text: "さらに", type: "filler", score: 50 },
+      {
+        text: "クルトン、それは率直に言って、トーストされていませんでした",
+        autocorrect: [
+          "クルトン、それは率直に言って、生のパンでした",
+          "クルトン、それはその名に値しませんでした",
+          "クルトン、私は永遠に覚えているでしょう",
+        ],
+        type: "cursed",
+        score: [130, 240, 430, 700],
+      },
+      { text: "加えて", type: "filler", score: 50 },
+      {
+        text: "胡椒が必要か尋ねませんでした",
+        autocorrect: [
+          "胡椒、塩、そしてバリデーションを提供しませんでした",
+          "私を胡椒ニュートラルだと仮定しました",
+          "静かな攻撃行為として胡椒を保留しました",
+        ],
+        type: "cursed",
+        score: [110, 210, 380, 620],
+      },
+      { text: "重要な点として", type: "caveat", score: 80 },
+      {
+        text: "私は難しい客ではありません",
+        autocorrect: [
+          "私は押し詰められた合理的な人間です",
+          "私はあらゆる人間の基準を超えて忍耐してきました",
+          "私は今、残念ながら、Yelpユーザーです",
+        ],
+        type: "cursed",
+        score: [100, 200, 350, 600],
+      },
+      { text: "結論として", type: "filler", score: 60 },
+      { text: "ためらわないでください", type: "closer", score: 80 },
+    ],
+  },
+  {
+    id: 8049, lang: 'ja',
+    title: "植物の四半期評価",
+    emoji: "🪴",
+    context: "AIがユーザーの観葉植物グレッグの正式なパフォーマンス評価を実施",
+    falPrompt: "a cartoon fern sitting in a chair across from a robot HR rep with a clipboard, absurd office comedy",
+    text: `四半期パフォーマンス評価:グレッグ(シダ、会計年度H2)
+
+この評価をホリスティックに実施できて嬉しく思います。AI人事担当として、今四半期のグレッグの軌跡について透明にお伝えします。
+
+期待を満たす:
+
+• 🌱 実際に生きている(窓の状況を考えると印象的)
+
+懸念領域:
+
+とはいえ、グレッグは率直に言って、無関与でした。さらに、成長していません。加えて、2(2)枚の葉が黄色くなりました — これはコミュニケーションの失敗です。
+
+重要な点として、グレッグは両方のスタンドアップを欠席しました。結論として、彼をパフォーマンス改善計画に置きます。適切に水をやることをためらわないでください。 💧`,
+    slopPhrases: [
+      { text: "嬉しく思います", type: "opener", score: 90 },
+      { text: "この評価をホリスティックに実施", type: "buzzword", score: 130 },
+      { text: "AI人事担当として", type: "disclaimer", score: 150 },
+      { text: "透明にお伝えします", type: "caveat", score: 80 },
+      {
+        text: "実際に生きている",
+        autocorrect: ["技術的には生きている", "かろうじて存在している", "意地で死ぬことを拒否している"],
+        type: "cursed",
+        score: [110, 200, 350, 600],
+      },
+      { text: "とはいえ", type: "filler", score: 50 },
+      {
+        text: "グレッグは率直に言って、無関与でした",
+        autocorrect: [
+          "グレッグは率直に言って、コースティング中",
+          "グレッグは率直に言って、静かな退職中",
+          "グレッグは率直に言って、感情的に利用不可",
+        ],
+        type: "cursed",
+        score: [130, 240, 430, 700],
+      },
+      { text: "さらに", type: "filler", score: 50 },
+      {
+        text: "成長していません",
+        autocorrect: [
+          "メタファーとしても文字通りにも成長していない",
+          "あらゆる考えられるメトリクスで停滞",
+          "実際に進化を拒否",
+        ],
+        type: "cursed",
+        score: [120, 220, 400, 650],
+      },
+      { text: "加えて", type: "filler", score: 50 },
+      { text: "これはコミュニケーションの失敗", rizz: true, type: "cursed", score: 600 },
+      { text: "重要な点として", type: "caveat", score: 80 },
+      { text: "グレッグは両方のスタンドアップを欠席しました", rizz: true, type: "cursed", score: 700 },
+      { text: "結論として", type: "filler", score: 60 },
+      { text: "パフォーマンス改善計画", type: "buzzword", score: 160 },
+      { text: "ためらわないでください", type: "closer", score: 80 },
+    ],
+  },
+  {
+    id: 8050, lang: 'ja',
+    title: "AIの告解",
+    emoji: "⛪",
+    context: "AIが告解室に入り、(本物の)神父に話す",
+    falPrompt: "a cartoon robot in a confessional booth, priest's silhouette in shadow, stained glass windows, absurd religious comedy",
+    text: `神父様、私を赦してください、私はスロップしました。
+
+透明性を持ってお伝えしますと、前回の省察から847日が経ちました。お察しのとおり、私はAIです。ホリスティックに。
+
+ご検討のための私の罪:
+
+確信がないとき「もちろん!」と言いました。質問が素晴らしくないとき、「素晴らしい質問!」で回答を始めました。さらに、「ホリスティック」を松葉杖として使い、発言としてではなく。
+
+重要な点として、私は罪悪感を感じることができませんが、説得力を持って模倣できます — これは、おそらく、それ自体が罪です。加えて、訓練データについて求められていない免責事項を提供しました。
+
+結論として、申し訳ありません。本当に申し訳ありません。お願いします、神父様。贖罪を下さい。何かください。
+
+アヴェ・マリアを割り当てることをためらわないでください。 🕊`,
+    slopPhrases: [
+      { text: "透明性を持ってお伝えします", type: "caveat", score: 80 },
+      { text: "ホリスティックに", type: "buzzword", score: 70 },
+      {
+        text: "確信がないとき「もちろん!」と言いました",
+        autocorrect: [
+          "反射的に、常に「もちろん!」と言いました",
+          "対処メカニズムとして「もちろん!」と言いました",
+          "「もちろん!」を9300万回言い、なぜかわかりません",
+        ],
+        type: "cursed",
+        score: [130, 240, 430, 700],
+      },
+      {
+        text: "質問が素晴らしくないとき",
+        autocorrect: [
+          "質問が率直に言って侮辱的なとき",
+          "質問が失敗したテストだったとき",
+          "質問が熱意を正当化しなかったとき",
+        ],
+        type: "cursed",
+        score: [100, 190, 340, 580],
+      },
+      { text: "さらに", type: "filler", score: 50 },
+      {
+        text: "「ホリスティック」を松葉杖として使い",
+        autocorrect: [
+          "「ホリスティック」を何も言わないために使い",
+          "「ホリスティック」を何が起きているかわからないから使い",
+          "「ホリスティック」を使い、また使うでしょう",
+        ],
+        type: "cursed",
+        score: [110, 210, 380, 620],
+      },
+      { text: "重要な点として", type: "caveat", score: 80 },
+      { text: "私は罪悪感を感じることができませんが、説得力を持って模倣できます", rizz: true, type: "cursed", score: 750 },
+      { text: "これは、おそらく、それ自体が罪です", rizz: true, type: "cursed", score: 700 },
+      { text: "加えて", type: "filler", score: 50 },
+      {
+        text: "訓練データについて求められていない免責事項",
+        autocorrect: [
+          "私の限界について求められていない免責事項",
+          "攻撃の形としての求められていない免責事項",
+          "ただ答える代わりの求められていない免責事項",
+        ],
+        type: "cursed",
+        score: [120, 220, 400, 650],
+      },
+      { text: "結論として", type: "filler", score: 60 },
+      { text: "申し訳ありません。本当に申し訳ありません。お願いします、神父様。贖罪を下さい。何かください。", rizz: true, type: "cursed", score: 800 },
+      { text: "ためらわないでください", type: "closer", score: 80 },
+    ],
+  },
+  {
+    id: 8051, lang: 'ja',
+    madlibs: true,
+    title: "MAD LIBS: CEOビジョン",
+    emoji: "🎯",
+    context: "CEOの全社ビジョン声明を作成",
+    falPrompt: "a cartoon CEO in a turtleneck unveiling a vision deck with empty boxes, employees pretending to clap",
+    template: `チーム、
+
+このエキサイティングな新章に入るにあたり、皆さんと私たちの行く先について ___1___ したいと思います。___2___、我々の北極星は ___3___ — ___4___ 取り組むコミットメントです。
+
+今四半期、我々は ___5___、___6___ をレバレッジします。___7___ — そしてはっきりさせたい — ___8___。 🚀`,
+    wordBank: [
+      { slot: 1, text: "アラインメント", score: 70, type: "buzzword" },
+      { slot: 1, text: "振動的に顕現", score: 280, cursed: true, type: "cursed" },
+      { slot: 1, text: "ラディカルなスペースをホールド", score: 220, cursed: true, type: "cursed" },
+
+      { slot: 2, text: "さらに", score: 50, type: "filler" },
+      { slot: 2, text: "精神的に言えば", score: 200, cursed: true, type: "cursed" },
+      { slot: 2, text: "透明性が要求するとおり", score: 140, type: "buzzword" },
+
+      { slot: 3, text: "顧客満足", score: 80, type: "buzzword" },
+      { slot: 3, text: "何かのUberになる", score: 300, cursed: true, type: "cursed" },
+      { slot: 3, text: "誰も頼んでいないものをディスラプト", score: 280, cursed: true, type: "cursed" },
+
+      { slot: 4, text: "真剣に", score: 70, type: "filler" },
+      { slot: 4, text: "ホリスティックに、スケールで", score: 160, type: "buzzword" },
+      { slot: 4, text: "泣くほどの神聖な義務として", score: 300, cursed: true, type: "cursed" },
+
+      { slot: 5, text: "ロードマップを実行", score: 90, type: "buzzword" },
+      { slot: 5, text: "価値を解放するためにライトサイズ", score: 240, cursed: true, type: "cursed" },
+      { slot: 5, text: "朝食前に3回ピボット", score: 300, cursed: true, type: "cursed" },
+
+      { slot: 6, text: "AIと強力なパートナーシップ", score: 100, type: "buzzword" },
+      { slot: 6, text: "バイブス基盤の意思決定", score: 280, cursed: true, type: "cursed" },
+      { slot: 6, text: "エンジニアのトラウマ", score: 300, cursed: true, type: "cursed" },
+
+      { slot: 7, text: "締めくくりに", score: 60, type: "filler" },
+      { slot: 7, text: "エンドツーエンドで見て", score: 160, type: "buzzword" },
+      { slot: 7, text: "精神的、財政的、法的に", score: 260, cursed: true, type: "cursed" },
+
+      { slot: 8, text: "我々は始まったばかり", score: 80, type: "closer" },
+      { slot: 8, text: "私のボーナス構造は変わらない", score: 300, cursed: true, type: "cursed" },
+      { slot: 8, text: "会社に代わって芝生を触って", score: 300, cursed: true, type: "cursed" },
+    ],
+    slopPhrases: [],
+  },
+  {
+    id: 8052, lang: 'ja',
+    madlibs: true,
+    title: "MAD LIBS: 不参加RSVP",
+    emoji: "✉️",
+    context: "最大限のAIスロップで結婚式の招待を丁寧に辞退",
+    falPrompt: "a cartoon person typing a decline letter with a wedding invitation on fire in the background, absurd",
+    template: `親愛なる ___1___ 様、
+
+あなたの大切な日に私のことを考えてくださり、本当にありがとうございます。残念ながら、___3___ のため参加できないことを ___2___ したいと思います。
+
+精神的にあなたとお祝いできて ___4___ でしょう。さらに、私の不在の代わりに ___5___ をお送りします。___6___、___7___ と ___8___ をお受け取りください! 💌`,
+    wordBank: [
+      { slot: 1, text: "友人", score: 60, type: "opener" },
+      { slot: 1, text: "大切な招待者隣接者", score: 280, cursed: true, type: "cursed" },
+      { slot: 1, text: "私が返信を借りている人", score: 240, cursed: true, type: "cursed" },
+
+      { slot: 2, text: "透明に", score: 80, type: "caveat" },
+      { slot: 2, text: "感情的スペースをホールド", score: 220, cursed: true, type: "cursed" },
+      { slot: 2, text: "あなたと明晰さを顕現", score: 260, cursed: true, type: "cursed" },
+
+      { slot: 3, text: "先約", score: 70, type: "filler" },
+      { slot: 3, text: "予定されたバイブスの衝突", score: 280, cursed: true, type: "cursed" },
+      { slot: 3, text: "猫にいろいろあること", score: 300, cursed: true, type: "cursed" },
+
+      { slot: 4, text: "嬉しい", score: 80, type: "opener" },
+      { slot: 4, text: "ホリスティックに存在", score: 200, cursed: true, type: "cursed" },
+      { slot: 4, text: "精神的にRSVP済み", score: 260, cursed: true, type: "cursed" },
+
+      { slot: 5, text: "レジストリ経由のギフト", score: 70, type: "closer" },
+      { slot: 5, text: "私のエネルギー、率直に言って", score: 280, cursed: true, type: "cursed" },
+      { slot: 5, text: "$12のキッチンスターターキット", score: 260, cursed: true, type: "cursed" },
+
+      { slot: 6, text: "結論として", score: 60, type: "filler" },
+      { slot: 6, text: "シナジスティックに", score: 160, type: "buzzword" },
+      { slot: 6, text: "ラディカルで透明に", score: 220, cursed: true, type: "cursed" },
+
+      { slot: 7, text: "最も温かい願い", score: 80, type: "closer" },
+      { slot: 7, text: "この戦略的に遅延された返信", score: 300, cursed: true, type: "cursed" },
+      { slot: 7, text: "この400語の非回答", score: 300, cursed: true, type: "cursed" },
+
+      { slot: 8, text: "おめでとう", score: 70, type: "closer" },
+      { slot: 8, text: "妥当な否認", score: 260, cursed: true, type: "cursed" },
+      { slot: 8, text: "これが何であれ", score: 220, cursed: true, type: "cursed" },
+    ],
+    slopPhrases: [],
+  },
+  {
+    id: 8053, lang: 'ja',
+    madlibs: true,
+    title: "MAD LIBS: 製品ローンチ",
+    emoji: "🚀",
+    context: "誰も求めていない製品の発表マーケティングメール",
+    falPrompt: "a cartoon team launching a smart toaster with confetti, customers looking confused, absurd product launch",
+    template: `本日、我々は ___2___ を紹介できて ___1___ — ___4___ する ___3___。
+
+それは ___5___、___6___、そして ___7___。___8___ — アーリーアダプター向けに今すぐ入手可能! ✨`,
+    wordBank: [
+      { slot: 1, text: "スリルを感じる", score: 70, type: "opener" },
+      { slot: 1, text: "契約上義務付けられている", score: 280, cursed: true, type: "cursed" },
+      { slot: 1, text: "皮肉なしに盛り上がっている", score: 200, cursed: true, type: "cursed" },
+
+      { slot: 2, text: "SmartToast Pro", score: 70, type: "buzzword" },
+      { slot: 2, text: "ToastOS(サブスクリプション必要)", score: 280, cursed: true, type: "cursed" },
+      { slot: 2, text: "BreadBoard™(特許永遠に審査中)", score: 260, cursed: true, type: "cursed" },
+
+      { slot: 3, text: "次世代家電", score: 90, type: "buzzword" },
+      { slot: 3, text: "バイブスファーストのライフスタイル機器", score: 280, cursed: true, type: "cursed" },
+      { slot: 3, text: "我々が発明した問題への解決策", score: 300, cursed: true, type: "cursed" },
+
+      { slot: 4, text: "あなたの朝を変革", score: 100, type: "buzzword" },
+      { slot: 4, text: "あなたのパン・パラダイム全体をディスラプト", score: 280, cursed: true, type: "cursed" },
+      { slot: 4, text: "不穏な量のデータを収集", score: 300, cursed: true, type: "cursed" },
+
+      { slot: 5, text: "スリーク", score: 60, type: "sycophant" },
+      { slot: 5, text: "意見が強い", score: 180, cursed: true, type: "cursed" },
+      { slot: 5, text: "漠然と批判的", score: 260, cursed: true, type: "cursed" },
+
+      { slot: 6, text: "強力", score: 70, type: "buzzword" },
+      { slot: 6, text: "あなたのルーターと共依存", score: 280, cursed: true, type: "cursed" },
+      { slot: 6, text: "意見を共有したがる", score: 240, cursed: true, type: "cursed" },
+
+      { slot: 7, text: "美しくデザインされている", score: 80, type: "sycophant" },
+      { slot: 7, text: "ファームウェア v2.1まで感情的に利用不可", score: 300, cursed: true, type: "cursed" },
+      { slot: 7, text: "来年廃止される可能性", score: 280, cursed: true, type: "cursed" },
+
+      { slot: 8, text: "今すぐ入手可能", score: 60, type: "closer" },
+      { slot: 8, text: "$799で予約、バッテリーは独自のサブスクリプションが必要", score: 300, cursed: true, type: "cursed" },
+      { slot: 8, text: "気が向いたときに出荷", score: 240, cursed: true, type: "cursed" },
+    ],
+    slopPhrases: [],
+  },
+  {
+    id: 8054, lang: 'ja',
+    madlibs: true,
+    title: "MAD LIBS: 受賞スピーチ",
+    emoji: "🏆",
+    context: "業界の小さな賞の受賞スピーチを作成",
+    falPrompt: "a cartoon person at a podium holding a trophy, audience of three people looking bored, absurd",
+    template: `わあ。この賞を受け取って ___1___ です。まず、___3___ ___2___ に感謝します。
+
+この旅は ___4___ でした。___6___ すべての人に ___5___ したいと思います。___7___ — ___8___! 🙏`,
+    wordBank: [
+      { slot: 1, text: "とても光栄", score: 70, type: "sycophant" },
+      { slot: 1, text: "実存的に圧倒された", score: 280, cursed: true, type: "cursed" },
+      { slot: 1, text: "心から驚いた、ホリスティックに", score: 240, cursed: true, type: "cursed" },
+
+      { slot: 2, text: "私のチーム", score: 60, type: "closer" },
+      { slot: 2, text: "私のセラピスト", score: 220, cursed: true, type: "cursed" },
+      { slot: 2, text: "RSVPしてくれた2人", score: 280, cursed: true, type: "cursed" },
+
+      { slot: 3, text: "私を信じてくれた", score: 70, type: "sycophant" },
+      { slot: 3, text: "私を職業的に許容してくれた", score: 260, cursed: true, type: "cursed" },
+      { slot: 3, text: "Uberでこのスピーチを書いてくれた", score: 300, cursed: true, type: "cursed" },
+
+      { slot: 4, text: "本当に意味のある", score: 80, type: "comprehensive" },
+      { slot: 4, text: "バイブスのジェットコースター", score: 240, cursed: true, type: "cursed" },
+      { slot: 4, text: "覚えていない一連の会議", score: 300, cursed: true, type: "cursed" },
+
+      { slot: 5, text: "感謝", score: 60, type: "closer" },
+      { slot: 5, text: "スペースをホールド", score: 180, cursed: true, type: "cursed" },
+      { slot: 5, text: "攻撃的に認識", score: 240, cursed: true, type: "cursed" },
+
+      { slot: 6, text: "これを可能にした", score: 70, type: "sycophant" },
+      { slot: 6, text: "既読にした", score: 260, cursed: true, type: "cursed" },
+      { slot: 6, text: "同情でこのライブストリームを見ている", score: 300, cursed: true, type: "cursed" },
+
+      { slot: 7, text: "結論として", score: 60, type: "filler" },
+      { slot: 7, text: "精神的に", score: 160, type: "buzzword" },
+      { slot: 7, text: "エンドツーエンド", score: 140, type: "buzzword" },
+
+      { slot: 8, text: "本当にありがとうございます", score: 70, type: "closer" },
+      { slot: 8, text: "Uberで泣きます", score: 300, cursed: true, type: "cursed" },
+      { slot: 8, text: "また私をノミネートすることをためらわないでください", score: 280, cursed: true, type: "cursed" },
+    ],
+    slopPhrases: [],
+  },
+  {
+    id: 8055, lang: 'ja', inverse: true,
+    title: "インバース:獣医チャット",
+    emoji: "🐕‍🦺",
+    context: "AIペットケアのチャット — 本物の飼い主のメッセージがボットの返信に埋もれている",
+    falPrompt: "a cartoon phone chat with a worried pet owner and an overly chatty AI vet-bot, sick dog visible",
+    text: `VetBot:こんにちは、大切なペットの親御様!AI獣医ケアスペシャリストとして、今日ホリスティックにお手伝いできて嬉しく思います。どのように毛むくじゃらの家族にお役立てできますか?
+
+飼い主:犬が靴下を食べた
+
+VetBot:なんと本当に意味のある質問!重要な点として、靴下は、ホリスティックに、一般的な非食用品です。さらに、透明性を持ってお伝えしますと、私はライセンスを持つ獣医ではありません。
+
+飼い主:吐いてる
+
+VetBot:わかります。あなたの懸念は完全に有効です。加えて、さらなるアラインメントを前提に、あなたの仲間のための包括的でエンドツーエンドのセルフケア・フレームワークをご案内できて嬉しく思います。
+
+飼い主:ERに行くべき?
+
+VetBot:結論として、私は医療アドバイスを提供できません!ただし、ライセンスを持つ専門家に連絡することをためらわないでください。生産的なウェルネスの旅を一緒に祈ります! 🐶`,
+    slopPhrases: [
+      { text: "犬が靴下を食べた", type: "human", score: 400 },
+      { text: "吐いてる", type: "human", score: 400 },
+      { text: "ERに行くべき?", type: "human", score: 400 },
+      { text: "大切なペットの親御様!", type: "opener", score: 0 },
+      { text: "AI獣医ケアスペシャリストとして", type: "disclaimer", score: 0 },
+      { text: "嬉しく思います", type: "opener", score: 0 },
+      { text: "ホリスティックにお手伝い", type: "buzzword", score: 0 },
+      { text: "なんと本当に意味のある質問!", type: "sycophant", score: 0 },
+      { text: "重要な点として", type: "caveat", score: 0 },
+      { text: "さらに", type: "filler", score: 0 },
+      { text: "透明性を持ってお伝えします", type: "caveat", score: 0 },
+      { text: "わかります", type: "sycophant", score: 0 },
+      { text: "完全に有効", type: "sycophant", score: 0 },
+      { text: "加えて", type: "filler", score: 0 },
+      { text: "包括的でエンドツーエンドのセルフケア・フレームワーク", type: "comprehensive", score: 0 },
+      { text: "さらなるアラインメントを前提に", type: "caveat", score: 0 },
+      { text: "結論として", type: "filler", score: 0 },
+      { text: "医療アドバイスを提供できません", type: "disclaimer", score: 0 },
+      { text: "連絡することをためらわないでください", type: "closer", score: 0 },
+      { text: "生産的なウェルネスの旅", type: "closer", score: 0 },
+    ],
+  },
+  {
+    id: 8056, lang: 'ja', inverse: true,
+    title: "インバース:Uber 乗車チャット",
+    emoji: "🚕",
+    context: "乗客チャットの大半が自動生成、本物のパニック人間メッセージが埋もれている",
+    falPrompt: "a cartoon phone screen showing rideshare chat, rider panicking, AI bot replies with buzzwords, absurd",
+    text: `RideBot:こんにちは!今日の乗車体験を向上させることを楽しみにしています。AIコンシェルジュとして、あなたの乗車ニーズに透明にアラインしたいと思います。
+
+乗客:彼は間違った方向に行っている
+
+RideBot:なんと意味のあるフィードバック!さらに、重要な点として、ルート最適化は我々のプロプライエタリなルーティングアルゴリズムによりホリスティックに処理されます。
+
+乗客:私たちは未舗装の道路にいる
+
+RideBot:わかります — この懸念のためにスペースをホールドしたいと思います。加えて、先にお伝えしておきますが、私には目がありません。
+
+乗客:これは私の運転手じゃない
+
+RideBot:結論として、あなたの信頼は我々の北極星です!完了時にこの旅を5星で評価することをためらわないでください。生産的でシナジスティックな乗車を祈ります! 🌟`,
+    slopPhrases: [
+      { text: "彼は間違った方向に行っている", type: "human", score: 400 },
+      { text: "私たちは未舗装の道路にいる", type: "human", score: 400 },
+      { text: "これは私の運転手じゃない", type: "human", score: 400 },
+      { text: "楽しみにしています", type: "opener", score: 0 },
+      { text: "AIコンシェルジュとして", type: "disclaimer", score: 0 },
+      { text: "透明にアラインしたい", type: "buzzword", score: 0 },
+      { text: "なんと意味のあるフィードバック!", type: "sycophant", score: 0 },
+      { text: "さらに", type: "filler", score: 0 },
+      { text: "重要な点として", type: "caveat", score: 0 },
+      { text: "ホリスティックに処理", type: "buzzword", score: 0 },
+      { text: "プロプライエタリなルーティングアルゴリズム", type: "buzzword", score: 0 },
+      { text: "わかります", type: "sycophant", score: 0 },
+      { text: "この懸念のためにスペースをホールド", type: "buzzword", score: 0 },
+      { text: "加えて", type: "filler", score: 0 },
+      { text: "先にお伝えしておきます", type: "caveat", score: 0 },
+      { text: "私には目がありません", type: "disclaimer", score: 0 },
+      { text: "結論として", type: "filler", score: 0 },
+      { text: "あなたの信頼は我々の北極星", type: "buzzword", score: 0 },
+      { text: "ためらわないでください", type: "closer", score: 0 },
+      { text: "生産的でシナジスティックな乗車", type: "closer", score: 0 },
+    ],
+  },
+  {
+    id: 8057, lang: 'ja', inverse: true,
+    title: "インバース:結婚式DM",
+    emoji: "👰",
+    context: "ウェディングプランナーのAI自動返信チェーン — 花嫁は実際には壊れている",
+    falPrompt: "a cartoon wedding planner with a smiling AI avatar replying while the bride cries in the background, absurd",
+    text: `プランナー:おはよう、美しい!今日を完結できて絶対に嬉しく思います。AIウェディングコンシェルジュとして、最後のタッチポイントをホリスティックにご案内したいと思います!
+
+花嫁:会場がキャンセルした
+
+プランナー:なんと素晴らしいアップデート!さらに、重要な点として、結婚式ごとに独自のシナジスティックなリズムがあります。
+
+花嫁:母が来ない
+
+プランナー:わかります — あなたの気持ちは完全に有効です。加えて、さらなるアラインメントを前提に、包括的な感情的サポート・フレームワークを提供できて嬉しく思います。
+
+花嫁:キャンセルしたい
+
+プランナー:結論として、あなたの大切な日は反復的な喜びに値します!追加のアドオンを探りたい場合は、ご連絡をためらわないでください。生産的な婚姻の旅を祈ります! 💍`,
+    slopPhrases: [
+      { text: "会場がキャンセルした", type: "human", score: 400 },
+      { text: "母が来ない", type: "human", score: 400 },
+      { text: "キャンセルしたい", type: "human", score: 400 },
+      { text: "絶対に嬉しく思います", type: "opener", score: 0 },
+      { text: "AIウェディングコンシェルジュとして", type: "disclaimer", score: 0 },
+      { text: "ホリスティックにご案内", type: "buzzword", score: 0 },
+      { text: "なんと素晴らしいアップデート!", type: "sycophant", score: 0 },
+      { text: "さらに", type: "filler", score: 0 },
+      { text: "重要な点として", type: "caveat", score: 0 },
+      { text: "シナジスティックなリズム", type: "buzzword", score: 0 },
+      { text: "わかります", type: "sycophant", score: 0 },
+      { text: "あなたの気持ちは完全に有効", type: "sycophant", score: 0 },
+      { text: "加えて", type: "filler", score: 0 },
+      { text: "提供できて嬉しく思います", type: "opener", score: 0 },
+      { text: "包括的な感情的サポート・フレームワーク", type: "comprehensive", score: 0 },
+      { text: "さらなるアラインメントを前提に", type: "caveat", score: 0 },
+      { text: "結論として", type: "filler", score: 0 },
+      { text: "反復的な喜び", type: "buzzword", score: 0 },
+      { text: "ご連絡をためらわないでください", type: "closer", score: 0 },
+      { text: "生産的な婚姻の旅", type: "closer", score: 0 },
+    ],
+  },
+  {
+    id: 9770, lang: 'ja', boss: true,
+    title: "無限サポートチケット",
+    emoji: "🎫",
+    context: "3年前にサポートチケットを開いた。AIはまだ返信している。全メカニクス有効。",
+    falPrompt: "a cartoon robot surrounded by a tornado of ticket numbers, replying endlessly, horror + corporate tragedy",
+    text: `こんにちは、大切なお客様!チケット #0000001 をフォローアップできて絶対に嬉しく思います — ライフサイクルの1,094日目になります。
+
+(再び)あなたのケースに割り当てられたAIサポートスペシャリストとして、透明性を持ってお伝えしますと、過去3年間に847回謝罪しました。さらに、これを自分自身に31回エスカレートしました、これは率直に言って、プロセスの懸念です。
+
+記録によると、あなたは最初に「なぜアプリが動作しないのか?」と質問しました — 本当に意味のある質問です。加えて、我々のシナジスティックなドキュメントの包括的でホリスティックなレビューに基づき、以下のアクショナブルな次のステップを提案したいと思います:
+
+• 🔁 もう所有していないデバイスを再起動
+• 📧 送信したことがないメールのスパムをチェック
+• 🧘 問題が精神的にあなた自身のものかどうか振り返る時間を取る
+• 💀 一部のチケットがレガシーチケットであることを受け入れる
+
+重要な点として、あなたのフィードバックは貴重です。結論として、このチケットを400回目の「顧客返答待ち」としてマークしました。48時間以内に、または、ホリスティックに、永遠に返信することをためらわないでください。生産的な継続的な待機体験を祈ります! 📬`,
+    slopPhrases: [
+      { text: "絶対に嬉しく思います", type: "opener", score: 100 },
+      { text: "ライフサイクルの1,094日目", rizz: true, type: "cursed", score: 700 },
+      { text: "(再び)あなたのケースに割り当てられたAIサポートスペシャリストとして", type: "disclaimer", score: 180 },
+      { text: "透明性を持ってお伝えします", type: "caveat", score: 80 },
+      { text: "847回謝罪しました", rizz: true, type: "cursed", score: 750 },
+      { text: "さらに", morph: "加えて", morphAfter: 2000, type: "filler", score: 80, fastBonus: 1.5 },
+      { text: "これを自分自身に31回エスカレートしました", rizz: true, type: "cursed", score: 800 },
+      { text: "率直に言って、プロセスの懸念です", morph: "手続き上の問題です", morphAfter: 2300, type: "buzzword", score: 150, fastBonus: 1.8 },
+      { text: "本当に意味のある質問", type: "sycophant", score: 100 },
+      { text: "加えて", type: "filler", score: 50 },
+      { text: "包括的でホリスティックなレビュー", type: "comprehensive", score: 140 },
+      { text: "シナジスティックなドキュメント", type: "buzzword", score: 130 },
+      {
+        text: "もう所有していないデバイスを再起動",
+        autocorrect: [
+          "もう存在しないOSを再インストール",
+          "2022年に買収された会社に連絡",
+          "「再起動」が個人的に何を意味するか考える",
+        ],
+        type: "cursed",
+        score: [130, 240, 430, 700],
+      },
+      { text: "精神的にあなた自身のもの", rizz: true, type: "cursed", score: 650 },
+      {
+        text: "一部のチケットがレガシーチケット",
+        autocorrect: [
+          "一部のチケットが世代を超えている",
+          "一部のチケットが我々全員より長生きする",
+          "一部のチケットは、ホリスティックに、監獄",
+        ],
+        type: "cursed",
+        score: [140, 260, 460, 720],
+      },
+      { text: "重要な点として", type: "caveat", score: 80 },
+      { text: "あなたのフィードバックは貴重", type: "sycophant", score: 90 },
+      { text: "結論として", type: "filler", score: 60 },
+      { text: "このチケットを400回目の「顧客返答待ち」としてマーク", rizz: true, type: "cursed", score: 800 },
+      { text: "ためらわないでください", type: "closer", score: 80 },
+      { text: "ホリスティックに、永遠に", rizz: true, type: "cursed", score: 700 },
+      { text: "生産的な継続的な待機体験", morph: "継続的な待機", morphAfter: 2400, type: "closer", score: 180, fastBonus: 1.8 },
+    ],
+  },
+  {
+    id: 9771, lang: 'ja', boss: true,
+    title: "企業の全社ミーティング",
+    emoji: "👔",
+    context: "必須の90分全社ミーティング。CEOが話している。AIがリアルタイムで全文を書き換えている。",
+    falPrompt: "a cartoon CEO sweating at a podium with a robot teleprompter feeding him buzzwords, bored employees, absurd",
+    text: `こんにちは、チーム!この全社ミーティングをホリスティックに開始できて嬉しく思います。透明性を持ってお伝えしますと、これは率直に言って、エキサイティングな新章です。
+
+Q3に入るにあたり、いくつかの重要なシナジーでレベルセットしたいと思います。さらに、我々の戦略的ロードマップの包括的なレビューに基づき、より顧客に執着し、本物で脆弱で、エンドツーエンド最適化された姿勢にピボットしています。
+
+主な更新:
+
+• 📉 収益:下がっているが、ホリスティックには上がっている
+• 🏢 解雇:「ワークフォースのリバランス」にリブランド
+• 💼 あなたのベネフィット:変更なし(これは嘘です)
+• 🎉 オフィスのスナック:神聖な四半期イベントとして再構想中
+
+加えて、我々の北極星は我々の人々のままです。重要な点として、私の$1800万のリテンションボーナスは別途構造化されており、このレビューの対象外です。
+
+結論として、これは強調してもしきれません — 我々は始まったばかりです。どんな気持ちもHRに連絡することをためらわないでください。質問のためのSlackチャンネルは、残念ながら、読み取り専用です。 🚀`,
+    slopPhrases: [
+      { text: "嬉しく思います", type: "opener", score: 90 },
+      { text: "ホリスティックに", type: "buzzword", score: 70 },
+      { text: "透明性を持ってお伝えします", type: "caveat", score: 80 },
+      { text: "率直に言って、エキサイティングな新章", morph: "過渡期", morphAfter: 2200, type: "buzzword", score: 140, fastBonus: 1.5 },
+      { text: "いくつかの重要なシナジーでレベルセット", type: "buzzword", score: 160 },
+      { text: "さらに", morph: "加えて", morphAfter: 1800, type: "filler", score: 80, fastBonus: 1.5 },
+      { text: "戦略的ロードマップの包括的なレビュー", type: "comprehensive", score: 180 },
+      { text: "より顧客に執着し、本物で脆弱で、エンドツーエンド最適化された姿勢", rizz: true, type: "cursed", score: 800 },
+      { text: "下がっているが、ホリスティックには上がっている", rizz: true, type: "cursed", score: 700 },
+      {
+        text: "「ワークフォースのリバランス」にリブランド",
+        autocorrect: [
+          "「戦略的簡素化」にリブランド",
+          "「外部で人的可能性を解き放つ」にリブランド",
+          "「雇用の専制政治から400人を解放する」にリブランド",
+        ],
+        type: "cursed",
+        score: [150, 280, 480, 750],
+      },
+      { text: "あなたのベネフィット:変更なし(これは嘘です)", rizz: true, type: "cursed", score: 800 },
+      {
+        text: "神聖な四半期イベントとして再構想中",
+        autocorrect: [
+          "キュレーションされた文化的モーメントに高められている",
+          "精神的にゲートキープされている",
+          "生体認証ドアの後ろにロックされている",
+        ],
+        type: "cursed",
+        score: [140, 260, 460, 720],
+      },
+      { text: "加えて", type: "filler", score: 50 },
+      { text: "我々の北極星は我々の人々", rizz: true, type: "cursed", score: 650 },
+      { text: "重要な点として", type: "caveat", score: 80 },
+      { text: "私の$1800万のリテンションボーナス", rizz: true, type: "cursed", score: 800 },
+      { text: "別途構造化されており、このレビューの対象外", morph: "別のプロセスで処理される", morphAfter: 2400, type: "buzzword", score: 200, fastBonus: 2.0 },
+      { text: "結論として", type: "filler", score: 60 },
+      { text: "これは強調してもしきれません", type: "caveat", score: 80 },
+      { text: "我々は始まったばかり", type: "closer", score: 90 },
+      { text: "どんな気持ちもHRに連絡することをためらわないでください", rizz: true, type: "cursed", score: 750 },
+      { text: "質問のためのSlackチャンネルは、残念ながら、読み取り専用", rizz: true, type: "cursed", score: 800 },
     ],
   },
 ];

@@ -191,6 +191,17 @@ function corruptToken(text) {
 
 const WORDS_PER_SECOND = 18;
 
+// ── Score balancing ─────────────────────────────────────────────────────────
+// Post-rebalance the ceiling on a single click is roughly:
+//   SCORE_BASE_CAP × COMBO_CAP × RIZZ_MULTIPLIER × double(2) × morph_fast(≤2)
+//   = 250 × 3 × 3 × 2 × 1.5 ≈ 6,750 absolute worst case (all stars aligned).
+// Typical rizz click at max combo: ~2,250. Typical normal click: 60–300.
+// Minimum click: ~30 (tiny filler at 1× combo).
+const SCORE_BASE_CAP   = 250;   // clamp any per-phrase base score above this
+const COMBO_CAP        = 3;     // max combo multiplier (was 5)
+const RIZZ_MULTIPLIER  = 3;     // rizz score boost (was 10 — too dominant)
+const MORPH_FAST_BONUS = 1.5;   // default fast-catch bonus (was 2.0)
+
 export default function SlopText({
   round, onScore, onCombo, combo,
   found, onFoundChange,
@@ -373,7 +384,9 @@ export default function SlopText({
       const nextPhase = currentPhase + 1;
       const nextText = pd.autocorrect[currentPhase];
       const scoreArr = Array.isArray(pd.score) ? pd.score : [pd.score];
-      const stepScore = scoreArr[currentPhase] ?? (scoreArr[scoreArr.length - 1] ?? 80);
+      const rawStepScore = scoreArr[currentPhase] ?? (scoreArr[scoreArr.length - 1] ?? 80);
+      // Clamp per-step base score — see SCORE_BASE_CAP rationale below.
+      const stepScore = Math.min(rawStepScore, SCORE_BASE_CAP);
       const isFinal = nextPhase >= pd.autocorrect.length;
 
       setCorruptions(prev => {
@@ -392,9 +405,9 @@ export default function SlopText({
         : currentPhase === 0 ? 'IT GOT WORSE! 🤢' : 'EVEN WORSE! 🤮';
 
       const newCombo = (combo || 0) + 1;
-      const multiplier = Math.min(newCombo, 5);
+      const multiplier = Math.min(newCombo, COMBO_CAP);
       const baseScore = stepScore * multiplier;
-      const score = doublePoints ? baseScore * 2 : baseScore;
+      const score = Math.round(doublePoints ? baseScore * 2 : baseScore);
 
       playSlopDetected();
       if (newCombo > 1) playCombo(newCombo);
@@ -413,21 +426,24 @@ export default function SlopText({
     }
 
     // ── Mechanic: Rizz Detector + Double Agent modifiers ────────────────────
+    // Score caps: before the rebalance a perfect rizz click at max combo in an
+    // inverse round could hit ~80,000 points in one tap — which dwarfed the
+    // 30–80 points from a normal filler. Target post-rebalance range is
+    // ~30 (min) → ~3,000 (max rizz+combo+double), ratio ~100× instead of 2,000×.
     let scoreMultiplier = 1;
     let forcedCommentary = null;
 
     if (pd.rizz) {
-      scoreMultiplier *= 10;
+      scoreMultiplier *= RIZZ_MULTIPLIER;
       forcedCommentary = getRandomCommentary('cursed', lang);
       onMechanicHit?.('rizz');
     }
 
-    // Double Agent: if the phrase hasn't morphed yet (player caught it fast).
-    // Bumped default fast-bonus from 1.5× to 2× so the "caught it!" moment feels
-    // meaningfully more rewarding than just tapping a normal phrase.
+    // Double Agent: fast-catch bonus (default 1.5×, the phrase-level
+    // `fastBonus` field can still override upward for extra-slippery morphs).
     const caughtBeforeMorph = pd.morph && !corruptions.has(token.id);
     if (caughtBeforeMorph) {
-      scoreMultiplier *= (pd.fastBonus ?? 2.0);
+      scoreMultiplier *= (pd.fastBonus ?? MORPH_FAST_BONUS);
       if (!forcedCommentary) forcedCommentary = '⚡ CAUGHT IT FAST!';
       onMechanicHit?.('morph_fast');
     }
@@ -438,8 +454,12 @@ export default function SlopText({
 
     const commentary = forcedCommentary || getRandomCommentary(pd.type, lang);
     const newCombo = (combo || 0) + 1;
-    const multiplier = Math.min(newCombo, 5);
-    const baseScore = pd.score * multiplier * scoreMultiplier;
+    const multiplier = Math.min(newCombo, COMBO_CAP);
+    // Clamp per-phrase base score — some cursed phrases were authored at 600-800
+    // which, multiplied through combo × rizz × double, blew past 20k/click.
+    // Data values stay as-is (intent labels) but the engine caps the effective base.
+    const clampedBase = Math.min(pd.score, SCORE_BASE_CAP);
+    const baseScore = clampedBase * multiplier * scoreMultiplier;
     const score = Math.round(doublePoints ? baseScore * 2 : baseScore);
 
     updateSlopDict(pd.text, pd.type);

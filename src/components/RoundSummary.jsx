@@ -419,7 +419,7 @@ export default function RoundSummary({ round, roundScore, foundIds, foundCombos 
           })()}
 
           <div style={{ fontSize: '0.56rem', color: '#1e293b', fontStyle: 'italic', marginTop: '8px', textAlign: 'center' }}>
-            Scores include combo multiplier (up to 5×) applied at time of click
+            Scores include combo multiplier (up to 3×) applied at time of click
           </div>
         </div>
       )}

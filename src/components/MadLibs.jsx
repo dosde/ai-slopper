@@ -5,6 +5,10 @@ import { getRandomCommentary } from '../data/slopData';
 import { t } from '../i18n/index';
 
 const ROUND_TIME = 60;
+// Mirror the per-click cap in SlopText so Mad Libs rewards stay in the same
+// ballpark as the tap-slop game. Cursed words authored at 400–500 get clamped
+// to 300 per pick; a full 8/8 cursed round therefore tops out around 2,400 pts.
+const MADLIBS_WORD_CAP = 300;
 
 /**
  * Mad Libs mode — whole round is fill-in-the-blanks. The round object provides
@@ -118,11 +122,14 @@ export default function MadLibs({ round, roundIdx, totalRounds, totalScore, onRo
     const commentary = word.cursed
       ? getRandomCommentary('cursed', lang)
       : getRandomCommentary(word.type || 'filler', lang);
-    setFilled(prev => ({ ...prev, [slotNum]: { wordIdx, score: word.score, cursed: word.cursed } }));
-    setRoundScore(prev => prev + word.score);
+    // Clamp award so a single cursed Mad Libs pick can't overshadow a whole
+    // tap-slop round. `word.score` stays as the authored intent value.
+    const award = Math.min(word.score, MADLIBS_WORD_CAP);
+    setFilled(prev => ({ ...prev, [slotNum]: { wordIdx, score: award, cursed: word.cursed } }));
+    setRoundScore(prev => prev + award);
     setSelectedWordIdx(null);
     playSlopDetected();
-    addPopup(anchorX, anchorY, word.score, commentary, false, false, 1);
+    addPopup(anchorX, anchorY, award, commentary, false, false, 1);
     if (word.cursed) onMechanicHit?.('madlibs_cursed');
     onMechanicHit?.('madlibs_slot');
     return true;

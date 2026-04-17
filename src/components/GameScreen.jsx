@@ -46,10 +46,12 @@ const INVERSE_MISS_TAUNTS = [
   "Holistically speaking: robot wrote that part.",
 ];
 
+// Combo now caps at 3× in the scoring engine. Max tier gets the rainbow to
+// reward reaching the cap; 2× is the mid tier; 1× (displayed when combo > 1
+// starts) stays on the warm yellow.
 const getComboStyle = (c) => {
-  if (c >= 5) return { emoji: '🌈', color: '#a78bfa', rainbow: true };
-  if (c >= 4) return { emoji: '💥', color: '#ec4899', rainbow: false };
-  if (c >= 3) return { emoji: '⚡', color: '#38bdf8', rainbow: false };
+  if (c >= 3) return { emoji: '🌈', color: '#a78bfa', rainbow: true };
+  if (c >= 2) return { emoji: '⚡', color: '#38bdf8', rainbow: false };
   return { emoji: '🔥', color: '#fbbf24', rainbow: false };
 };
 
@@ -97,7 +99,7 @@ function SlopMeter({ found, total, isInverse = false }) {
 
 const ROUND_TIME_BOSS = 60;
 
-export default function GameScreen({ round, roundIdx, totalRounds, totalScore, onRoundEnd, difficulty = 'normal', lang = 'en', musicEnabled = true, onPowerUpUsed, usedPowerUps = [], onRageClick, onMechanicHit }) {
+export default function GameScreen({ round, roundIdx, totalRounds, totalScore, onRoundEnd, difficulty = 'normal', lang = 'en', musicEnabled = true, onPowerUpUsed, usedPowerUps = [], onRageClick, onMechanicHit, onComboUpdate }) {
   // Mad Libs rounds have a completely different UI — delegate.
   if (round.madlibs) {
     return (
@@ -258,8 +260,15 @@ export default function GameScreen({ round, roundIdx, totalRounds, totalScore, o
   }, [addPopup, ROUND_TIME, isIronDetector]);
 
   const handleCombo = useCallback((newCombo) => {
-    const capped = Math.min(newCombo, 5);
+    // UI cap aligned with the scoring engine (SlopText COMBO_CAP = 3). This was
+    // previously 5, which made the badge display a higher number than the
+    // multiplier actually paid out.
+    const capped = Math.min(newCombo, 3);
     setCombo(capped);
+    // Notify the parent so it can record maxCombo for achievements. Without
+    // this hook the `combo_3` achievement was unreachable because gameStats.maxCombo
+    // stayed at 0 for the whole run.
+    onComboUpdate?.(capped);
     setComboDecaying(false);
     // Cancel any pending delay or in-progress decay
     clearTimeout(comboDecayDelayRef.current);
@@ -281,7 +290,7 @@ export default function GameScreen({ round, roundIdx, totalRounds, totalScore, o
         });
       }, 2400);
     }, 2000);
-  }, []);
+  }, [onComboUpdate]);
 
   const isDoubleActive = doublePoints || isInverse;
   const accentColor = isBoss ? '#ef4444' : isInverse ? '#38bdf8' : '#fbbf24';
