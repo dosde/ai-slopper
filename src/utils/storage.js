@@ -213,6 +213,7 @@ export const ACHIEVEMENTS = [
   { id: 'morph_catcher',   emoji: '⚡', name: 'MORPH CATCHER',        desc: 'Catch 3 Double Agent phrases before they shift' },
   { id: 'autocorrect_lock',emoji: '🔁', name: 'TERMINAL SLOPPER',     desc: 'Fully chain-lock 2 autocorrect phrases' },
   { id: 'madlibs_perfect', emoji: '📝', name: 'MAD LIBS MAESTRO',     desc: 'Pick all cursed words in a Mad Libs round' },
+  { id: 'slop_connoisseur',emoji: '🔍', name: 'SLOP CONNOISSEUR',     desc: 'Find 15 dictionary-tier slop phrases in one game' },
   // ── cumulative mechanic + variety achievements ────────────────────────────
   { id: 'rizz_connoisseur',   emoji: '💎', name: 'RIZZ CONNOISSEUR',   desc: 'Find 20 rizz phrases across all games' },
   { id: 'shapeshifter_hunter',emoji: '🦎', name: 'SHAPESHIFTER HUNTER',desc: 'Catch 15 Double Agent phrases fast across all games' },
@@ -313,6 +314,7 @@ export const checkAndUnlockAchievements = (gameStats) => {
   check('morph_catcher',    hitMorph);
   check('autocorrect_lock', hitAuto);
   check('madlibs_perfect',  hitMadLib);
+  check('slop_connoisseur', (gameStats.dictHits || 0) >= 15);
 
   // Cumulative mechanic achievements — read rolling totals from `cum` +
   // whatever this game added (same pattern as opener_hunter etc).

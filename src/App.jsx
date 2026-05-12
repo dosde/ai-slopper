@@ -62,6 +62,7 @@ export default function App() {
   const [lastFoundCombos, setLastFoundCombos] = useState({});
   const [lastWrongClicks, setLastWrongClicks] = useState(0);
   const [lastTimeLeft, setLastTimeLeft] = useState(0);
+  const [lastDictBonus, setLastDictBonus] = useState(0);
   const [difficulty, setDifficulty] = useState('normal');
   const [musicEnabled, setMusicEnabled] = useState(true);
   const [lang, setLang] = useState('en');
@@ -166,12 +167,13 @@ export default function App() {
       ironFailedRound: null,
       difficulty: diff,
       newLevel: 0,
-      // Mechanic hit counters (morph/rizz/autocorrect/madlibs achievements)
+      // Mechanic hit counters (morph/rizz/autocorrect/madlibs/dict achievements)
       rizzHits: 0,
       morphFastHits: 0,
       autocorrectLocks: 0,
       madlibsCursedPicks: 0,
       madlibsSlotsFilled: 0,
+      dictHits: 0,
     };
     setGameState(STATE.ROUND_INTRO);
   }, []);
@@ -189,12 +191,13 @@ export default function App() {
     submitGlobalSlopIndex(stats.totalDetected);
   }, [difficulty]);
 
-  const handleRoundEnd = useCallback((score, foundIds, time = 0, wrongClicks = 0, isGameOver = false, foundCombos = {}) => {
+  const handleRoundEnd = useCallback((score, foundIds, time = 0, wrongClicks = 0, isGameOver = false, foundCombos = {}, dictBonus = 0) => {
     setLastRoundScore(score);
     setLastFoundIds(foundIds);
     setLastFoundCombos(foundCombos);
     setLastWrongClicks(wrongClicks);
     setLastTimeLeft(time);
+    setLastDictBonus(dictBonus);
     setTotalScore(prev => prev + score);
     setRoundScores(prev => [...prev, score]);
 
@@ -343,6 +346,7 @@ export default function App() {
     else if (type === 'autocorrect_lock') stats.autocorrectLocks = (stats.autocorrectLocks || 0) + 1;
     else if (type === 'madlibs_cursed') stats.madlibsCursedPicks = (stats.madlibsCursedPicks || 0) + 1;
     else if (type === 'madlibs_slot')   stats.madlibsSlotsFilled = (stats.madlibsSlotsFilled || 0) + 1;
+    else if (type === 'dict_hit')       stats.dictHits = (stats.dictHits || 0) + 1;
   }, []);
 
   const handleComboUpdate = useCallback((combo) => {
@@ -426,6 +430,7 @@ export default function App() {
             isLastRound={roundIdx >= rounds.length - 1}
             wrongClicks={lastWrongClicks}
             timeLeft={lastTimeLeft}
+            dictBonus={lastDictBonus}
             lang={lang}
             musicEnabled={musicEnabled}
             consecutivePerfects={consecutivePerfects}

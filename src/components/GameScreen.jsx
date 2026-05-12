@@ -123,6 +123,10 @@ export default function GameScreen({ round, roundIdx, totalRounds, totalScore, o
   const ROUND_TIME = isBoss ? ROUND_TIME_BOSS : difficulty === 'chaos' ? ROUND_TIME_CHAOS : isBrainrot ? ROUND_TIME_BRAINROT : ROUND_TIME_NORMAL;
   const [timeLeft, setTimeLeft] = useState(isIronDetector ? 0 : ROUND_TIME);
   const [roundScore, setRoundScore] = useState(0);
+  // Bonus points earned from dictionary-tier slop clicks this round. Tracked
+  // separately so RoundSummary can break it out — gameplay-wise it's already
+  // included in roundScore.
+  const [dictBonus, setDictBonus] = useState(0);
   const [combo, setCombo] = useState(0);
   const [foundIds, setFoundIds] = useState(new Set());
   const [timerRunning, setTimerRunning] = useState(true);
@@ -163,7 +167,7 @@ export default function GameScreen({ round, roundIdx, totalRounds, totalScore, o
   const isUrgent = !isIronDetector && timeLeft <= 20;
 
   // Keep liveRef in sync every render so effects always have fresh values
-  liveRef.current = { roundScore, foundIds, timeLeft, wrongClickCount, onRoundEnd, addPopup };
+  liveRef.current = { roundScore, dictBonus, foundIds, timeLeft, wrongClickCount, onRoundEnd, addPopup };
 
   // Start music when round mounts. Boss/inverse use their own tracks; regular
   // rounds restart the game music (which was stopped by the previous round's cleanup).
@@ -199,8 +203,8 @@ export default function GameScreen({ round, roundIdx, totalRounds, totalScore, o
       setTimerRunning(false);
       // Use liveRef so any click registered in the 600ms gap is included in the final score.
       setTimeout(() => {
-        const { roundScore: rs, foundIds: fi, wrongClickCount: wc, onRoundEnd: cb } = liveRef.current;
-        cb(rs, fi, 0, wc, false, foundCombosRef.current);
+        const { roundScore: rs, dictBonus: db, foundIds: fi, wrongClickCount: wc, onRoundEnd: cb } = liveRef.current;
+        cb(rs, fi, 0, wc, false, foundCombosRef.current, db);
       }, 600);
       return;
     }
@@ -220,15 +224,15 @@ export default function GameScreen({ round, roundIdx, totalRounds, totalScore, o
     playRoundComplete();
     setTimeout(() => {
       setAllFoundFlash(false);
-      const { roundScore: rs, foundIds: fi, timeLeft: tl, wrongClickCount: wc, onRoundEnd: cb, addPopup: ap } = liveRef.current;
-      if (isIronDetector) { cb(rs, fi, tl, wc, false, foundCombosRef.current); return; }
+      const { roundScore: rs, dictBonus: db, foundIds: fi, timeLeft: tl, wrongClickCount: wc, onRoundEnd: cb, addPopup: ap } = liveRef.current;
+      if (isIronDetector) { cb(rs, fi, tl, wc, false, foundCombosRef.current, db); return; }
       const timeBonus = tl * TIME_BONUS_PER_SEC;
       let finalScore = rs;
       if (timeBonus > 0) {
         finalScore += timeBonus;
         ap(Math.round(window.innerWidth / 2), 160, timeBonus, `⏱ ${tl}s TIME BONUS!`, false, false);
       }
-      setTimeout(() => cb(finalScore, fi, tl, wc, false, foundCombosRef.current), timeBonus > 0 ? 1000 : 200);
+      setTimeout(() => cb(finalScore, fi, tl, wc, false, foundCombosRef.current, db), timeBonus > 0 ? 1000 : 200);
     }, 1800);
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [foundSlop, totalSlop]);
@@ -252,8 +256,9 @@ export default function GameScreen({ round, roundIdx, totalRounds, totalScore, o
     setMusicTempo(isUrgent ? 1.4 : 1.0);
   }, [isUrgent]);
 
-  const handleScore = useCallback((score, x, y, commentary, isDoubled, combo, tokenId) => {
+  const handleScore = useCallback((score, x, y, commentary, isDoubled, combo, tokenId, isDict) => {
     setRoundScore(prev => prev + score);
+    if (isDict) setDictBonus(prev => prev + score);
     if (!isIronDetector) setTimeLeft(prev => Math.min(prev + 3, ROUND_TIME + 60));
     addPopup(x, y, score, commentary, isDoubled, false, combo);
     if (tokenId !== undefined) foundCombosRef.current[tokenId] = { combo, finalScore: score };
@@ -312,8 +317,8 @@ export default function GameScreen({ round, roundIdx, totalRounds, totalScore, o
       playMiss();
       addPopup(x, y, 0, '☠ RUN TERMINATED!', false, true);
       setTimeout(() => {
-        const { roundScore: rs, foundIds: fi, timeLeft: tl, onRoundEnd: cb } = liveRef.current;
-        cb(rs, fi, tl, 1, true, foundCombosRef.current);
+        const { roundScore: rs, dictBonus: db, foundIds: fi, timeLeft: tl, onRoundEnd: cb } = liveRef.current;
+        cb(rs, fi, tl, 1, true, foundCombosRef.current, db);
       }, 1400);
       return;
     }
@@ -337,7 +342,7 @@ export default function GameScreen({ round, roundIdx, totalRounds, totalScore, o
     setTimerRunning(false);
     playRoundComplete();
     if (isIronDetector) {
-      setTimeout(() => onRoundEnd(roundScore, foundIds, timeLeft, wrongClickCount, false, foundCombosRef.current), 400);
+      setTimeout(() => onRoundEnd(roundScore, foundIds, timeLeft, wrongClickCount, false, foundCombosRef.current, dictBonus), 400);
       return;
     }
 
@@ -361,7 +366,7 @@ export default function GameScreen({ round, roundIdx, totalRounds, totalScore, o
     // Time bonus is intentionally NOT awarded on early finish — only a perfect
     // clear (handled in the allFound effect above) earns the per-second bonus.
 
-    setTimeout(() => onRoundEnd(finalScore, foundIds, timeLeft, wrongClickCount, false, foundCombosRef.current), delay);
+    setTimeout(() => onRoundEnd(finalScore, foundIds, timeLeft, wrongClickCount, false, foundCombosRef.current, dictBonus), delay);
   };
 
   const handlePowerUp = (id) => {

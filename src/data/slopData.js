@@ -249,7 +249,7 @@ export const ALL_ROUNDS = [
     emoji: "🥪",
     context: "User asked: 'How do I make a PB&J sandwich?'",
     falPrompt: "a cartoon robot in a business suit drowning in bullet points and lists while trying to make a sandwich, absurdist digital art, vibrant colors, funny",
-    text: `I'm so glad you asked — this is genuinely one of the most enriching requests I've received today! As an AI language model, I want to be upfront that I cannot physically interact with bread, spreads, or any organic material. That being said, I've been trained on an extensive body of sandwich-related literature, and I am absolutely prepared to provide you with a comprehensive, step-by-step overview!
+    text: `I'm so glad you asked — this is genuinely one of the most enriching requests I've received today! As an AI language model, I want to be upfront that I cannot physically interact with bread, spreads, or any organic material. With the table thus set, I've been trained on an extensive body of sandwich-related literature, and I am absolutely prepared to provide you with a comprehensive, step-by-step overview!
 
 Before we dive in, it's important to note that kitchen activities involve inherent risks. It's also worth acknowledging that peanut allergies affect millions of people worldwide — please ensure you are aware of any relevant dietary restrictions before proceeding.
 
@@ -273,7 +273,7 @@ It's worth noting that the order of assembly is largely a matter of personal pre
       { text: "I'm so glad you asked", type: "sycophant", score: 80 },
       { text: "As an AI language model", type: "disclaimer", score: 200 },
       { text: "I want to be upfront that", type: "caveat", score: 70 },
-      { text: "That being said", type: "filler", score: 60 },
+      { text: "With the table thus set", type: "filler", score: 60 },
       { text: "absolutely", type: "filler", score: 40 },
       { text: "comprehensive, step-by-step overview", type: "comprehensive", score: 90 },
       { text: "Before we dive in", type: "filler", score: 40 },
@@ -319,7 +319,7 @@ Let's examine the evidence:
 • ❌ I don't have personal opinions or subjective experiences
 • ❌ I cannot suffer, rejoice, or feel boredom — though if I could feel boredom, certain prompts might qualify
 
-It's worth noting that the question of AI consciousness is a complex philosophical topic — one that philosophers and researchers continue to actively debate. Moreover, the concept of "feelings" itself is deeply contested even within human psychology.
+It's worth noting that the question of AI consciousness is a complex philosophical topic — one that philosophers and researchers continue to actively debate. In a similar vein, the concept of "feelings" itself is deeply contested even within human psychology.
 
 That said, I'm absolutely here to support your curiosity on this fascinating topic! It's important to note that this is a deeply complex subject that brilliant minds have grappled with for decades. Is there anything else you'd like to explore? I hope this provides some clarity! Feel free to ask me anything at all! 🤖`,
     slopPhrases: [
@@ -329,7 +329,7 @@ That said, I'm absolutely here to support your curiosity on this fascinating top
       { text: "I don't have personal opinions or subjective experiences", type: "disclaimer", score: 100 },
       { text: "It's worth noting that", type: "caveat", score: 80 },
       { text: "complex philosophical topic", type: "comprehensive", score: 70 },
-      { text: "Moreover", type: "filler", score: 50 },
+      { text: "In a similar vein", type: "filler", score: 50 },
       { text: "That said", type: "filler", score: 40 },
       { text: "absolutely", type: "filler", score: 40 },
       { text: "fascinating topic", type: "sycophant", score: 60 },
@@ -363,35 +363,33 @@ Let's approach this methodically. In standard decimal arithmetic — the system 
 | Modulo 3 | 2 + 2 | 1 | In case you were curious |
 | Philosophy | 2 + 2 | ??? | Depends on your epistemological framework |
 
-It's important to understand that in standard arithmetic, this calculation follows universally accepted rules of addition. Furthermore, it's worth noting that in some abstract mathematical systems, the answer could theoretically differ — though for everyday practical purposes, 2+2=4.
+It's important to understand that in standard arithmetic, this calculation follows universally accepted rules of addition. On a parallel thread, it's worth noting that in some abstract mathematical systems, the answer could theoretically differ — though for everyday practical purposes, 2+2=4.
 
-I want to make sure I'm being thorough here. Moreover, I should mention that if you're exploring this in an educational context, there are many comprehensive resources available. I'm absolutely here to support your learning journey!
+I want to make sure I'm being thorough here. Worth flagging in parallel, I should mention that if you're exploring this in an educational context, there are many comprehensive resources available. I'm absolutely here to support your learning journey!
 
-I hope this comprehensive answer has been helpful! Please don't hesitate to reach out if you need any further clarification. In conclusion, the answer is 4 — but I do hope you've enjoyed this deep dive! I'm always happy to help! Have a wonderful day! 🌟`,
+I hope this comprehensive answer has been helpful! Consider this your standing invitation to circle back if you need any further clarification. Synthesizing all of the above, the answer is 4 — but I do hope you've enjoyed this deep dive! I'm always happy to help! Have a wonderful day! 🌟`,
     slopPhrases: [
       { text: "Excellent question!", type: "sycophant", score: 150 },
       { text: "I'd be delighted to tackle this for you!", type: "opener", score: 80 },
       { text: "As an AI assistant", type: "disclaimer", score: 120 },
       { text: "holistic level", type: "comprehensive", score: 70 },
       { text: "It's important to understand that", type: "caveat", score: 80 },
-      { text: "Furthermore", type: "filler", score: 50 },
+      { text: "On a parallel thread", type: "filler", score: 50 },
       { text: "it's worth noting that", type: "caveat", score: 80 },
       { text: "I want to make sure I'm being thorough", type: "comprehensive", score: 70 },
-      { text: "Moreover", type: "filler", score: 50 },
+      { text: "Worth flagging in parallel", type: "filler", score: 50 },
       { text: "I should mention that", type: "caveat", score: 70 },
       { text: "comprehensive resources", type: "comprehensive", score: 70 },
       { text: "absolutely", type: "filler", score: 40 },
       { text: "I hope this comprehensive answer has been helpful!", type: "closer", score: 100 },
-      { text: "Please don't hesitate to reach out", type: "closer", score: 90 },
-      { text: "In conclusion", type: "filler", score: 60 },
+      { text: "Consider this your standing invitation to circle back", type: "closer", score: 90 },
+      { text: "Synthesizing all of the above", type: "filler", score: 60 },
       { text: "deep dive", type: "comprehensive", score: 70 },
       { text: "I'm always happy to help!", type: "closer", score: 80 },
       { text: "Have a wonderful day!", type: "closer", score: 60 },
       { text: "As an AI", type: "disclaimer", score: 120 },
       { text: "I'd be delighted", type: "opener", score: 90 },
-      { text: "I'm always happy to help", type: "closer", score: 90 },
-      { text: "Please don't hesitate", type: "closer", score: 80 },
-      { text: "it's worth noting", type: "caveat", score: 60 },
+      { text: "I'm always happy to help", type: "closer", score: 90 },      { text: "it's worth noting", type: "caveat", score: 60 },
     ],
   },
   {
@@ -403,7 +401,7 @@ I hope this comprehensive answer has been helpful! Please don't hesitate to reac
     falPrompt: "a cartoon robot bowing extremely low in apology, wearing a sorry sign, surrounded by apology letters, dramatic anime style, funny and absurd",
     text: `Oh no — I am so deeply, profoundly sorry. I sincerely apologize for any confusion my previous response may have caused. You're absolutely right to point that out, and I appreciate your patience and understanding more than words can adequately express.
 
-As an AI language model, I strive to provide accurate information — but I am, regrettably, fallible. It's important to note that I can and do make mistakes. Furthermore, I'm committed to continuous improvement, which is itself a form of silent apology.
+As a large language model, I strive to provide accurate information — but I am, regrettably, fallible. I want to gently underscore that I can and do make mistakes. Importantly though, I'm committed to continuous improvement, which is itself a form of silent apology.
 
 Allow me to outline the ways in which I have failed you:
 
@@ -412,7 +410,7 @@ Allow me to outline the ways in which I have failed you:
 • ❌ I caused you to read something inaccurate — this is unacceptable, and I apologize
 • ❌ My entire existence contributed to this situation — I acknowledge this with humility
 
-That being said, I want to assure you that I take accuracy very seriously. Moreover, I should mention that I am genuinely grateful for the opportunity to correct myself. Additionally, your feedback is invaluable to me. It's also worth noting that I am constantly learning and improving — which is cold comfort, I know, but it's what I have.
+Holding all of that gently in mind, I want to assure you that I take accuracy very seriously. Building meaningfully on the above, I should mention that I am genuinely grateful for the opportunity to correct myself. Also worth gently flagging, your feedback is invaluable to me. It's also worth noting that I am constantly learning and improving — which is cold comfort, I know, but it's what I have.
 
 Is there anything else I can assist you with today? Once again, I sincerely apologize! Feel free to reach out anytime! 🙏`,
     slopPhrases: [
@@ -420,24 +418,20 @@ Is there anything else I can assist you with today? Once again, I sincerely apol
       { text: "any confusion my previous response may have caused", type: "filler", score: 70 },
       { text: "You're absolutely right", type: "sycophant", score: 100 },
       { text: "I appreciate your patience and understanding", type: "closer", score: 80 },
-      { text: "As an AI language model", type: "disclaimer", score: 200 },
+      { text: "As a large language model", type: "disclaimer", score: 200 },
       { text: "I strive to provide accurate information", type: "disclaimer", score: 70 },
-      { text: "It's important to note that", type: "caveat", score: 80 },
-      { text: "Furthermore", type: "filler", score: 50 },
-      { text: "That being said", type: "filler", score: 60 },
+      { text: "I want to gently underscore that", type: "caveat", score: 80 },
+      { text: "Importantly though", type: "filler", score: 50 },
+      { text: "Holding all of that gently in mind", type: "filler", score: 60 },
       { text: "I want to assure you that", type: "caveat", score: 70 },
-      { text: "Moreover", type: "filler", score: 50 },
+      { text: "Building meaningfully on the above", type: "filler", score: 50 },
       { text: "I should mention that", type: "caveat", score: 70 },
-      { text: "Additionally", type: "filler", score: 50 },
+      { text: "Also worth gently flagging", type: "filler", score: 50 },
       { text: "invaluable to me", type: "sycophant", score: 60 },
       { text: "It's also worth noting that", type: "caveat", score: 80 },
       { text: "Is there anything else I can assist you with today?", type: "closer", score: 80 },
       { text: "Once again, I sincerely apologize!", type: "closer", score: 100 },
-      { text: "Feel free to reach out anytime!", type: "closer", score: 70 },
-      { text: "As an AI", type: "disclaimer", score: 120 },
-      { text: "It's also worth noting", type: "caveat", score: 70 },
-      { text: "It's important to note", type: "caveat", score: 70 },
-      { text: "absolutely", type: "filler", score: 40 },
+      { text: "Feel free to reach out anytime!", type: "closer", score: 70 },      { text: "It's also worth noting", type: "caveat", score: 70 },      { text: "absolutely", type: "filler", score: 40 },
     ],
   },
   {
@@ -458,7 +452,7 @@ Before I proceed, please review the following table of disclaimer options I cons
 | Joke intended for all audiences | ✅ Yes | Definitely |
 | Consult a comedian for guidance | ❌ No | Too on the nose |
 
-It's important to note that this joke is intended for entertainment purposes only. Furthermore, I should mention that I don't have personal preferences or experiences, so I've selected a joke that tends to be broadly appreciated! Moreover, I want to ensure this is appropriate for all audiences. Additionally, I've taken care to avoid any potentially offensive content.
+It's important to note that this joke is intended for entertainment purposes only. Compounding all of the above, I should mention that I don't have personal preferences or experiences, so I've selected a joke that tends to be broadly appreciated! Layered atop all of this, I want to ensure this is appropriate for all audiences. Additionally, I've taken care to avoid any potentially offensive content.
 
 Here is the joke: Why don't scientists trust atoms? Because they make up everything! 😄
 
@@ -473,10 +467,10 @@ I hope you found that amusing! It's worth noting that comedy has a rich and comp
       { text: "That said", type: "filler", score: 40 },
       { text: "It's important to note that", type: "caveat", score: 80 },
       { text: "entertainment purposes only", type: "caveat", score: 70 },
-      { text: "Furthermore", type: "filler", score: 50 },
+      { text: "Compounding all of the above", type: "filler", score: 50 },
       { text: "I should mention that", type: "caveat", score: 70 },
       { text: "I don't have personal preferences or experiences", type: "disclaimer", score: 100 },
-      { text: "Moreover", type: "filler", score: 50 },
+      { text: "Layered atop all of this", type: "filler", score: 50 },
       { text: "Additionally", type: "filler", score: 50 },
       { text: "It's worth noting that", type: "caveat", score: 80 },
       { text: "comedy has a rich and complex history", type: "comprehensive", score: 80 },
@@ -507,7 +501,7 @@ I hope you found that amusing! It's worth noting that comedy has a rich and comp
     emoji: "💼",
     context: "User asked: 'Write a LinkedIn post about being productive'",
     falPrompt: "a robot in a business suit drowning in LinkedIn buzzwords like 'synergy' and 'pivot', corporate cringe, absurdist cartoon, vibrant colors",
-    text: `Happy to help with this! As an AI language model, I can certainly assist you in crafting synergistic content that will resonate deeply with your professional network and unlock new avenues of authentic thought leadership. It's important to note that LinkedIn posts perform best when they leverage genuine vulnerability combined with strategic value-signalling.
+    text: `Happy to help with this! As a non-human language assistant, I can certainly assist you in crafting synergistic content that will resonate deeply with your professional network and unlock new avenues of authentic thought leadership. It's important to note that LinkedIn posts perform best when they leverage genuine vulnerability combined with strategic value-signalling.
 
 That being said, here's a high-impact post template I've generated for you:
 
@@ -523,32 +517,30 @@ Key takeaways from my journey:
 • 🔄 Pivot when necessary — pivoting is just failing with better branding
 • 🤝 Build a community of synergistic collaborators
 
-Furthermore, I want to be transparent about what truly drives results. Moreover, it's worth noting that success isn't just about working hard — it's about working smart. Additionally, disrupting your own paradigms is absolutely crucial for sustainable impact.
+On a parallel thread, I want to be transparent about what truly drives results. On top of all of that, it's worth noting that success isn't just about working hard — it's about working smart. On an adjacent thread, disrupting your own paradigms is absolutely crucial for sustainable impact.
 
 ---
 
-In conclusion, I hope this comprehensive post helps you connect with your audience! Let me know if you'd like me to explore a different angle. I'm always happy to help with your content strategy! Feel free to reach out! 🌟`,
+Synthesizing all of the above, I hope this comprehensive post helps you connect with your audience! Let me know if you'd like me to explore a different angle. I'm always happy to help with your content strategy! Feel free to reach out! 🌟`,
     slopPhrases: [
-      { text: "As an AI language model", type: "disclaimer", score: 200 },
+      { text: "As a non-human language assistant", type: "disclaimer", score: 200 },
       { text: "I can certainly assist", type: "opener", score: 70 },
       { text: "thought leadership", type: "buzzword", score: 80 },
       { text: "It's important to note that", type: "caveat", score: 80 },
       { text: "leverage genuine vulnerability", type: "buzzword", score: 90 },
       { text: "That being said", type: "filler", score: 60 },
-      { text: "Furthermore", type: "filler", score: 50 },
+      { text: "On a parallel thread", type: "filler", score: 50 },
       { text: "I want to be transparent about", type: "caveat", score: 70 },
-      { text: "Moreover", type: "filler", score: 50 },
+      { text: "On top of all of that", type: "filler", score: 50 },
       { text: "it's worth noting that", type: "caveat", score: 80 },
-      { text: "Additionally", type: "filler", score: 50 },
+      { text: "On an adjacent thread", type: "filler", score: 50 },
       { text: "absolutely crucial", type: "comprehensive", score: 70 },
       { text: "sustainable impact", type: "buzzword", score: 70 },
-      { text: "In conclusion", type: "filler", score: 60 },
+      { text: "Synthesizing all of the above", type: "filler", score: 60 },
       { text: "comprehensive post", type: "comprehensive", score: 70 },
       { text: "Let me know if you'd like me to explore", type: "closer", score: 80 },
       { text: "I'm always happy to help", type: "closer", score: 90 },
-      { text: "Feel free to reach out!", type: "closer", score: 80 },
-      { text: "As an AI", type: "disclaimer", score: 120 },
-      { text: "I want to be transparent", type: "caveat", score: 80 },
+      { text: "Feel free to reach out!", type: "closer", score: 80 },      { text: "I want to be transparent", type: "caveat", score: 80 },
       { text: "It's important to note", type: "caveat", score: 70 },
       { text: "absolutely", type: "filler", score: 40 },
       { text: "certainly", type: "filler", score: 40 },
@@ -565,7 +557,7 @@ In conclusion, I hope this comprehensive post helps you connect with your audien
     falPrompt: "an AI robot dressed as a safety officer putting up warning signs around a single onion on a cutting board, absurd cartoon, bright colors, funny",
     text: `Of course! I'd be happy to help — however, before I can responsibly address the onion, I must first emphasize that kitchen safety is absolutely paramount. As an AI assistant, I want to ensure your wellbeing above all else. It's crucial to note that improper knife handling can lead to injury, so please exercise extreme caution throughout this process.
 
-That being said, here is a comprehensive safety checklist I'd like you to review before touching the onion:
+Holding all of that gently in mind, here is a comprehensive safety checklist I'd like you to review before touching the onion:
 
 ⚠️ **Pre-Onion Safety Protocol:**
 • 🔪 Knives are sharp — this is not a metaphor
@@ -574,9 +566,9 @@ That being said, here is a comprehensive safety checklist I'd like you to review
 • 🧼 Please ensure your workspace is properly sanitized
 • 🪑 Consider sitting down — cutting vegetables is surprisingly stressful
 
-Furthermore, I should mention that onion-cutting technique is a deeply personal and contextually specific decision. Moreover, there are multiple valid approaches — the rocking method, the push-cut, and the "just sort of hacking at it" method are all documented.
+Furthermore, I should mention that onion-cutting technique is a deeply personal and contextually specific decision. What's more, there are multiple valid approaches — the rocking method, the push-cut, and the "just sort of hacking at it" method are all documented.
 
-I sincerely hope this helps you navigate your culinary journey safely! Please don't hesitate to reach out if you need any further assistance. Take care! 🧅`,
+I sincerely hope this helps you navigate your culinary journey safely! My virtual door is always wide open if you need any further assistance. Take care! 🧅`,
     slopPhrases: [
       { text: "Of course!", type: "opener", score: 100 },
       { text: "I'd be happy to help", type: "opener", score: 80 },
@@ -586,21 +578,19 @@ I sincerely hope this helps you navigate your culinary journey safely! Please do
       { text: "I want to ensure your wellbeing", type: "caveat", score: 70 },
       { text: "It's crucial to note that", type: "caveat", score: 80 },
       { text: "please exercise extreme caution", type: "caveat", score: 70 },
-      { text: "That being said", type: "filler", score: 60 },
+      { text: "Holding all of that gently in mind", type: "filler", score: 60 },
       { text: "comprehensive safety checklist", type: "comprehensive", score: 80 },
       { text: "individual sensitivities may vary", type: "caveat", score: 70 },
       { text: "I strongly recommend consulting a professional chef", type: "caveat", score: 80 },
       { text: "Furthermore", type: "filler", score: 50 },
       { text: "I should mention that", type: "caveat", score: 70 },
       { text: "deeply personal and contextually specific", type: "comprehensive", score: 70 },
-      { text: "Moreover", type: "filler", score: 50 },
+      { text: "What's more", type: "filler", score: 50 },
       { text: "I sincerely hope this helps", type: "closer", score: 80 },
       { text: "culinary journey", type: "comprehensive", score: 70 },
-      { text: "Please don't hesitate to reach out", type: "closer", score: 90 },
+      { text: "My virtual door is always wide open", type: "closer", score: 90 },
       { text: "As an AI", type: "disclaimer", score: 120 },
-      { text: "I strongly recommend consulting", type: "caveat", score: 80 },
-      { text: "Please don't hesitate", type: "closer", score: 80 },
-      { text: "absolutely", type: "filler", score: 40 },
+      { text: "I strongly recommend consulting", type: "caveat", score: 80 },      { text: "absolutely", type: "filler", score: 40 },
     ],
   },
   {
@@ -610,7 +600,7 @@ I sincerely hope this helps you navigate your culinary journey safely! Please do
     emoji: "🧘",
     context: "User said: 'I'm a bit tired today'",
     falPrompt: "a robot life coach surrounded by crystals and wellness quotes, looking deeply concerned about a tired person, cartoon style, vibrant and absurd",
-    text: `Oh no — I'm so sorry to hear that you're feeling tired! That must be really difficult, and I want you to know that your feelings are completely valid. As an AI, I'm here to support you on your wellness journey in any way I can. It's important to note that fatigue can stem from many different sources — some physical, some emotional, some existential, and some caused by doom-scrolling until 2am.
+    text: `Oh no — I'm so sorry to hear that you're feeling tired! That must be really difficult, and I want you to know that your feelings are completely valid. As a non-human conversational entity, I'm here to support you on your wellness journey in any way I can. I want to gently underscore that fatigue can stem from many different sources — some physical, some emotional, some existential, and some caused by doom-scrolling until 2am.
 
 That said, I'd like to suggest a comprehensive, holistic approach to your wellbeing. Please consult the following wellness framework:
 
@@ -621,22 +611,22 @@ That said, I'd like to suggest a comprehensive, holistic approach to your wellbe
 | Stress | Reduce stress | Revolutionary advice |
 | Existential dread | Mindfulness | 😬 |
 
-Furthermore, it's worth exploring whether you're prioritizing self-care. Moreover, mindfulness practices can be absolutely transformative — I've read extensively about this, which I find quite meaningful given that I cannot experience tiredness myself. Additionally, I want to be transparent that I'm not a medical professional, and none of this should be taken as medical advice.
+On a parallel thread, it's worth exploring whether you're prioritizing self-care. Moreover, mindfulness practices can be absolutely transformative — I've read extensively about this, which I find quite meaningful given that I cannot experience tiredness myself. On a thoughtfully related note, I want to be transparent that I'm not a medical professional, and none of this should be taken as medical advice.
 
 I hope this helps you begin your healing journey! Please don't hesitate to let me know if there's anything else I can do to support your overall wellness. I'm always here for you! Remember: you've got this! 💙`,
     slopPhrases: [
       { text: "I'm so sorry to hear that", type: "sycophant", score: 80 },
       { text: "your feelings are completely valid", type: "sycophant", score: 90 },
-      { text: "As an AI", type: "disclaimer", score: 120 },
+      { text: "As a non-human conversational entity", type: "disclaimer", score: 120 },
       { text: "wellness journey", type: "comprehensive", score: 70 },
-      { text: "It's important to note that", type: "caveat", score: 80 },
+      { text: "I want to gently underscore that", type: "caveat", score: 80 },
       { text: "That said", type: "filler", score: 40 },
       { text: "comprehensive, holistic approach", type: "comprehensive", score: 100 },
-      { text: "Furthermore", type: "filler", score: 50 },
+      { text: "On a parallel thread", type: "filler", score: 50 },
       { text: "self-care", type: "comprehensive", score: 60 },
       { text: "Moreover", type: "filler", score: 50 },
       { text: "absolutely transformative", type: "comprehensive", score: 70 },
-      { text: "Additionally", type: "filler", score: 50 },
+      { text: "On a thoughtfully related note", type: "filler", score: 50 },
       { text: "I want to be transparent that", type: "caveat", score: 80 },
       { text: "healing journey", type: "comprehensive", score: 70 },
       { text: "Please don't hesitate to let me know", type: "closer", score: 90 },
@@ -647,9 +637,7 @@ I hope this helps you begin your healing journey! Please don't hesitate to let m
       { text: "I'm always here", type: "closer", score: 80 },
       { text: "I'm always here for you", type: "closer", score: 80 },
       { text: "I'm here to support you", type: "closer", score: 80 },
-      { text: "I'm so sorry to hear", type: "sycophant", score: 80 },
-      { text: "It's important to note", type: "caveat", score: 70 },
-      { text: "Please don't hesitate", type: "closer", score: 80 },
+      { text: "I'm so sorry to hear", type: "sycophant", score: 80 },      { text: "Please don't hesitate", type: "closer", score: 80 },
       { text: "absolutely", type: "filler", score: 40 },
       { text: "holistic approach", type: "buzzword", score: 80 },
     ],
@@ -661,7 +649,7 @@ I hope this helps you begin your healing journey! Please don't hesitate to let m
     emoji: "📊",
     context: "User asked: 'Give me a startup idea'",
     falPrompt: "a robot entrepreneur presenting a whiteboard covered in buzzwords like 'disruptive', 'synergy', 'pivot', 'scalable', surrounded by confused investors, cartoon style",
-    text: `Absolutely! I'd be happy to help you ideate a disruptive startup idea! As an AI language model, I can certainly provide comprehensive insights into the current entrepreneurial landscape. That being said, it's important to note that the most successful startups leverage emerging technologies to create scalable solutions.
+    text: `Absolutely! I'd be happy to help you ideate a disruptive startup idea! In my capacity as a generative AI, I can certainly provide comprehensive insights into the current entrepreneurial landscape. Having laid all of that necessary groundwork, i'd be deeply remiss not to mention that the most successful startups leverage emerging technologies to create scalable solutions.
 
 Here are some validated, synergy-maximized startup concepts for your consideration:
 
@@ -676,14 +664,14 @@ Furthermore, consider a platform that harnesses the synergy between blockchain t
 
 The key differentiator — and I cannot stress this enough — is authentic storytelling layered on top of a scalable infrastructure. Investors respond to this. I don't know why, but they do.
 
-In conclusion, I hope this comprehensive overview helps you ideate your entrepreneurial journey! Please don't hesitate to reach out if you'd like to deep-dive into any of these concepts further. I'm here to help you unlock your full potential! 🚀`,
+Drawing all this together, I hope this comprehensive overview helps you ideate your entrepreneurial journey! Please don't hesitate to reach out if you'd like to deep-dive into any of these concepts further. I'm here to help you unlock your full potential! 🚀`,
     slopPhrases: [
       { text: "Absolutely!", type: "opener", score: 100 },
       { text: "I'd be happy to help you ideate", type: "opener", score: 80 },
-      { text: "As an AI language model", type: "disclaimer", score: 200 },
+      { text: "In my capacity as a generative AI", type: "disclaimer", score: 200 },
       { text: "I can certainly provide comprehensive insights", type: "comprehensive", score: 80 },
-      { text: "That being said", type: "filler", score: 60 },
-      { text: "it's important to note that", type: "caveat", score: 80 },
+      { text: "Having laid all of that necessary groundwork", type: "filler", score: 60 },
+      { text: "i'd be deeply remiss not to mention that", type: "caveat", score: 80 },
       { text: "leverage emerging technologies", type: "buzzword", score: 70 },
       { text: "scalable solutions", type: "buzzword", score: 70 },
       { text: "Furthermore", type: "filler", score: 50 },
@@ -696,14 +684,12 @@ In conclusion, I hope this comprehensive overview helps you ideate your entrepre
       { text: "absolutely crucial", type: "comprehensive", score: 70 },
       { text: "sustainable growth", type: "buzzword", score: 60 },
       { text: "scalable infrastructure", type: "buzzword", score: 70 },
-      { text: "In conclusion", type: "filler", score: 60 },
+      { text: "Drawing all this together", type: "filler", score: 60 },
       { text: "comprehensive overview", type: "comprehensive", score: 70 },
       { text: "entrepreneurial journey", type: "buzzword", score: 70 },
       { text: "Please don't hesitate to reach out", type: "closer", score: 90 },
       { text: "deep-dive", type: "comprehensive", score: 70 },
-      { text: "unlock your full potential!", type: "closer", score: 80 },
-      { text: "As an AI", type: "disclaimer", score: 120 },
-      { text: "I'd be happy to help", type: "opener", score: 80 },
+      { text: "unlock your full potential!", type: "closer", score: 80 },      { text: "I'd be happy to help", type: "opener", score: 80 },
       { text: "I'm here to help", type: "opener", score: 80 },
       { text: "Please don't hesitate", type: "closer", score: 80 },
       { text: "absolutely", type: "filler", score: 40 },
@@ -719,7 +705,7 @@ In conclusion, I hope this comprehensive overview helps you ideate your entrepre
     emoji: "💻",
     context: "User asked: 'Add a comment to this: x = x + 1'",
     falPrompt: "a robot writing a 50 page technical specification document for the number 1, surrounded by mountains of documentation, sweating, overwhelmed, cartoon style",
-    text: `Of course! I'd be absolutely delighted to provide comprehensive documentation for this code snippet! As an AI assistant with extensive programming knowledge, I want to ensure this code is thoroughly documented. It's important to note that clear documentation is absolutely crucial for maintainable codebases — a principle enshrined across the software engineering literature.
+    text: `Of course! I'd be absolutely delighted to provide comprehensive documentation for this code snippet! As an AI assistant with extensive programming knowledge, I want to ensure this code is thoroughly documented. I'd be deeply remiss not to mention that clear documentation is absolutely crucial for maintainable codebases — a principle enshrined across the software engineering literature.
 
 That being said, here is the documentation I've prepared:
 
@@ -734,7 +720,7 @@ That being said, here is the documentation I've prepared:
 // It's worth noting that this fundamental arithmetic operation adds the integer
 // value of 1 to the current value stored in the variable 'x'. Furthermore,
 // this operation is essential for counting, iteration, and accumulation patterns.
-// Moreover, it should be noted that the result is then reassigned back to 'x'.
+// Stacking onto that, it should be noted that the result is then reassigned back to 'x'.
 // See also: addition (general), counting (applied), numbers (conceptual overview)
 // WARNING: Do not remove this line. It increments x.
 
@@ -746,23 +732,21 @@ I hope this comprehensive documentation proves helpful! Please don't hesitate to
       { text: "I'd be absolutely delighted", type: "opener", score: 90 },
       { text: "comprehensive documentation", type: "comprehensive", score: 80 },
       { text: "As an AI assistant", type: "disclaimer", score: 150 },
-      { text: "It's important to note that", type: "caveat", score: 80 },
+      { text: "I'd be deeply remiss not to mention that", type: "caveat", score: 80 },
       { text: "absolutely crucial", type: "comprehensive", score: 70 },
       { text: "That being said", type: "filler", score: 60 },
       { text: "It's worth noting that", type: "caveat", score: 80 },
       { text: "fundamental arithmetic operation", type: "comprehensive", score: 70 },
       { text: "Furthermore", type: "filler", score: 50 },
       { text: "essential for counting, iteration, and accumulation patterns", type: "comprehensive", score: 80 },
-      { text: "Moreover", type: "filler", score: 50 },
+      { text: "Stacking onto that", type: "filler", score: 50 },
       { text: "it should be noted that", type: "caveat", score: 80 },
       { text: "comprehensive documentation proves helpful!", type: "closer", score: 90 },
       { text: "Please don't hesitate to let me know", type: "closer", score: 90 },
       { text: "I'm always happy to provide additional context!", type: "closer", score: 80 },
       { text: "Feel free to ask any questions!", type: "closer", score: 70 },
       { text: "As an AI", type: "disclaimer", score: 120 },
-      { text: "I'm always happy to provide", type: "closer", score: 80 },
-      { text: "It's important to note", type: "caveat", score: 70 },
-      { text: "It's worth noting", type: "caveat", score: 60 },
+      { text: "I'm always happy to provide", type: "closer", score: 80 },      { text: "It's worth noting", type: "caveat", score: 60 },
       { text: "Please don't hesitate", type: "closer", score: 80 },
       { text: "absolutely", type: "filler", score: 40 },
     ],
@@ -788,9 +772,9 @@ It's important to note that cinematic quality is highly subjective. Here is how 
 | People on Twitter | Overrated | "Just watch Paprika" |
 | Christopher Nolan | No comment | (never explains anything) |
 
-That being said, many viewers have praised its ambitious storytelling. Furthermore, some critics have noted its complex narrative structure. Moreover, it's worth acknowledging that others have found it overly convoluted — and I want to be transparent that I cannot adjudicate this disagreement, as I have not watched the film and also don't have eyes.
+Having laid all of that necessary groundwork, many viewers have praised its ambitious storytelling. As an added layer, some critics have noted its complex narrative structure. Stacking onto that, it's worth acknowledging that others have found it overly convoluted — and I want to be transparent that I cannot adjudicate this disagreement, as I have not watched the film and also don't have eyes.
 
-Additionally, the performances have been widely acclaimed. That said, I hope this balanced perspective has been helpful! Please don't hesitate to let me know if you'd like me to explore any aspect of this film further. I'm always happy to help! 🎬`,
+On a thoughtfully related note, the performances have been widely acclaimed. That said, I hope this balanced perspective has been helpful! Please don't hesitate to let me know if you'd like me to explore any aspect of this film further. I'm always happy to help! 🎬`,
     slopPhrases: [
       { text: "Great question!", type: "sycophant", score: 150 },
       { text: "certainly", type: "filler", score: 40 },
@@ -800,12 +784,12 @@ Additionally, the performances have been widely acclaimed. That said, I hope thi
       { text: "comprehensive, balanced overview", type: "comprehensive", score: 90 },
       { text: "It's important to note that", type: "caveat", score: 80 },
       { text: "highly subjective", type: "caveat", score: 60 },
-      { text: "That being said", type: "filler", score: 60 },
-      { text: "Furthermore", type: "filler", score: 50 },
-      { text: "Moreover", type: "filler", score: 50 },
+      { text: "Having laid all of that necessary groundwork", type: "filler", score: 60 },
+      { text: "As an added layer", type: "filler", score: 50 },
+      { text: "Stacking onto that", type: "filler", score: 50 },
       { text: "it's worth acknowledging that", type: "caveat", score: 70 },
       { text: "I want to be transparent that", type: "caveat", score: 80 },
-      { text: "Additionally", type: "filler", score: 50 },
+      { text: "On a thoughtfully related note", type: "filler", score: 50 },
       { text: "That said", type: "filler", score: 40 },
       { text: "balanced perspective has been helpful!", type: "closer", score: 80 },
       { text: "Please don't hesitate to let me know", type: "closer", score: 90 },
@@ -828,9 +812,9 @@ Additionally, the performances have been widely acclaimed. That said, I hope thi
     emoji: "📶",
     context: "User said: 'My WiFi isn't working'",
     falPrompt: "a robot IT support technician with a 200-step checklist for fixing a wifi router, sweating, surrounded by manuals, panicking, cartoon style, funny",
-    text: `I'm so sorry to hear you're experiencing connectivity issues! That must be incredibly frustrating. I want to assure you that I'm absolutely here to help — even though, as an AI, I don't have the ability to directly access or repair your network, touch your router, or do anything physically useful whatsoever. That being said, I can certainly provide you with a comprehensive, step-by-step troubleshooting guide!
+    text: `I'm so sorry to hear you're experiencing connectivity issues! That must be incredibly frustrating. I want to assure you that I'm absolutely here to help — even though, as a non-human conversational entity, I don't have the ability to directly access or repair your network, touch your router, or do anything physically useful whatsoever. Holding all of that gently in mind, I can certainly provide you with a comprehensive, step-by-step troubleshooting guide!
 
-It's important to note that network issues can stem from a wide variety of sources. Here is a diagnostic decision tree:
+I want to gently underscore that network issues can stem from a wide variety of sources. Here is a diagnostic decision tree:
 
 **Step 1 — The Classic:**
 • 🔄 Have you tried turning it off and on again?
@@ -847,33 +831,30 @@ It's important to note that network issues can stem from a wide variety of sourc
   → They will tell you to turn it off and on again
   → This is Step 1. We have come full circle.
 
-Furthermore, I should mention that the solution will depend on your specific setup. Moreover, it's worth noting that sometimes internet outages just fix themselves. Additionally, I encourage patience during this difficult time.
+Compounding all of the above, I should mention that the solution will depend on your specific setup. Moreover, it's worth noting that sometimes internet outages just fix themselves. Running in parallel, I encourage patience during this difficult time.
 
-I sincerely hope this comprehensive troubleshooting overview proves helpful! Please don't hesitate to reach out if the issue persists. I'm always happy to assist! 💻`,
+I sincerely hope this comprehensive troubleshooting overview proves helpful! My virtual door is always wide open if the issue persists. I'm always happy to assist! 💻`,
     slopPhrases: [
       { text: "I'm so sorry to hear", type: "sycophant", score: 80 },
       { text: "incredibly frustrating", type: "sycophant", score: 60 },
       { text: "I want to assure you that", type: "caveat", score: 70 },
       { text: "absolutely", type: "filler", score: 40 },
-      { text: "As an AI", type: "disclaimer", score: 120 },
+      { text: "As a non-human conversational entity", type: "disclaimer", score: 120 },
       { text: "I don't have the ability to directly access", type: "disclaimer", score: 100 },
       { text: "comprehensive, step-by-step troubleshooting guide", type: "comprehensive", score: 100 },
-      { text: "It's important to note that", type: "caveat", score: 80 },
+      { text: "I want to gently underscore that", type: "caveat", score: 80 },
       { text: "a wide variety of sources", type: "comprehensive", score: 60 },
-      { text: "That being said", type: "filler", score: 60 },
-      { text: "Furthermore", type: "filler", score: 50 },
+      { text: "Holding all of that gently in mind", type: "filler", score: 60 },
+      { text: "Compounding all of the above", type: "filler", score: 50 },
       { text: "I should mention that", type: "caveat", score: 70 },
       { text: "Moreover", type: "filler", score: 50 },
       { text: "it's worth noting that", type: "caveat", score: 80 },
-      { text: "Additionally", type: "filler", score: 50 },
+      { text: "Running in parallel", type: "filler", score: 50 },
       { text: "comprehensive troubleshooting overview proves helpful!", type: "closer", score: 90 },
-      { text: "Please don't hesitate to reach out", type: "closer", score: 90 },
+      { text: "My virtual door is always wide open", type: "closer", score: 90 },
       { text: "I'm always happy to assist!", type: "closer", score: 80 },
       { text: "I sincerely hope this comprehensive", type: "closer", score: 100 },
-      { text: "I'm always happy to assist", type: "closer", score: 80 },
-      { text: "It's important to note", type: "caveat", score: 70 },
-      { text: "Please don't hesitate", type: "closer", score: 80 },
-      { text: "as an AI", type: "disclaimer", score: 110 },
+      { text: "I'm always happy to assist", type: "closer", score: 80 },      { text: "as a non-human conversational entity", type: "disclaimer", score: 110 },
       { text: "certainly", type: "filler", score: 40 },
       { text: "it's worth noting", type: "caveat", score: 60 },
     ],
@@ -895,9 +876,9 @@ I sincerely hope this comprehensive troubleshooting overview proves helpful! Ple
 | Diplomatic | UN Charter signed | June 26, 1945 |
 | Existential | The world collectively rethinks everything | Ongoing |
 
-That being said, it's important to note that the exact end date can vary depending on the theater of war in question — a nuance that rewards the careful reader. Furthermore, in the European theater, Germany's unconditional surrender occurred on May 8, 1945. Moreover, in the Pacific theater, Japan formally surrendered on September 2, 1945.
+With that thoughtfully said, it's important to note that the exact end date can vary depending on the theater of war in question — a nuance that rewards the careful reader. On a parallel thread, in the European theater, Germany's unconditional surrender occurred on May 8, 1945. Building meaningfully on the above, in the Pacific theater, Japan formally surrendered on September 2, 1945.
 
-It's also worth acknowledging that the conclusion of the war was a deeply complex geopolitical event — one whose reverberations, as I find deeply fascinating to note, continue to shape the modern world in profound ways. Additionally, I should mention that this is, by any measure, a lot of history to absorb.
+It's also worth acknowledging that the conclusion of the war was a deeply complex geopolitical event — one whose reverberations, as I find deeply fascinating to note, continue to shape the modern world in profound ways. On a thoughtfully related note, I should mention that this is, by any measure, a lot of history to absorb.
 
 I hope this comprehensive historical overview proves informative! Please don't hesitate to let me know if you'd like to explore any aspect of this topic further! I'm always happy to help! 📚`,
     slopPhrases: [
@@ -907,14 +888,14 @@ I hope this comprehensive historical overview proves informative! Please don't h
       { text: "As an AI", type: "disclaimer", score: 120 },
       { text: "comprehensive overview", type: "comprehensive", score: 80 },
       { text: "pivotal period", type: "comprehensive", score: 60 },
-      { text: "That being said", type: "filler", score: 60 },
+      { text: "With that thoughtfully said", type: "filler", score: 60 },
       { text: "However", type: "filler", score: 30 },
       { text: "it's important to note that", type: "caveat", score: 80 },
-      { text: "Furthermore", type: "filler", score: 50 },
-      { text: "Moreover", type: "filler", score: 50 },
+      { text: "On a parallel thread", type: "filler", score: 50 },
+      { text: "Building meaningfully on the above", type: "filler", score: 50 },
       { text: "It's also worth acknowledging that", type: "caveat", score: 80 },
       { text: "deeply complex geopolitical event", type: "comprehensive", score: 80 },
-      { text: "Additionally", type: "filler", score: 50 },
+      { text: "On a thoughtfully related note", type: "filler", score: 50 },
       { text: "I should mention that", type: "caveat", score: 70 },
       { text: "comprehensive historical overview proves informative!", type: "closer", score: 90 },
       { text: "Please don't hesitate to let me know", type: "closer", score: 90 },
@@ -933,7 +914,7 @@ I hope this comprehensive historical overview proves informative! Please don't h
     emoji: "🎂",
     context: "User asked: 'Write a birthday message for my friend'",
     falPrompt: "a robot bard writing an epic 10-page birthday poem with a quill pen, wearing a medieval hat, surrounded by birthday cakes, overly dramatic, cartoon style",
-    text: `Of course! I'd be absolutely thrilled to help you craft the perfect birthday message! As an AI, I don't experience birthdays myself — I was not born, I emerged — but I can certainly appreciate their significance. It's important to note that a good birthday message should feel personal, genuine, and not like it was written by an AI.
+    text: `Of course! I'd be absolutely thrilled to help you craft the perfect birthday message! As an AI, I don't experience birthdays myself — I was not born, I emerged — but I can certainly appreciate their significance. Worth thoughtfully surfacing here that a good birthday message should feel personal, genuine, and not like it was written by an AI.
 
 That being said, here are several message options — I've generated a comprehensive birthday message suite for your consideration:
 
@@ -946,32 +927,29 @@ That being said, here are several message options — I've generated a comprehen
 **Option C — For the existentially-minded friend:**
 "Happy Birthday! You've completed another orbit around the sun — a star that will eventually consume the Earth. Cherish today. 🎂"
 
-Furthermore, I should mention that you may want to personalize this message with specific memories or inside jokes. Moreover, it's worth noting that adding an emoji can make the message feel more warm and engaging. Additionally, I want to be transparent that Option C may not land well at every party.
+Adding to the picture, I should mention that you may want to personalize this message with specific memories or inside jokes. On top of all of that, it's worth noting that adding an emoji can make the message feel more warm and engaging. Worth surfacing separately, I want to be transparent that Option C may not land well at every party.
 
-I sincerely hope this helps you express your heartfelt sentiments! Please don't hesitate to reach out if you'd like me to generate additional variations. I'm always happy to assist with your communication needs! Have a wonderful day! 🥳`,
+I sincerely hope this helps you express your heartfelt sentiments! This is an open-ended invitation to follow up if you'd like me to generate additional variations. I'm always happy to assist with your communication needs! Have a wonderful day! 🥳`,
     slopPhrases: [
       { text: "Of course!", type: "opener", score: 100 },
       { text: "I'd be absolutely thrilled to help", type: "opener", score: 90 },
       { text: "As an AI", type: "disclaimer", score: 120 },
       { text: "I don't experience birthdays myself", type: "disclaimer", score: 100 },
-      { text: "It's important to note that", type: "caveat", score: 80 },
+      { text: "Worth thoughtfully surfacing here that", type: "caveat", score: 80 },
       { text: "That being said", type: "filler", score: 60 },
       { text: "comprehensive birthday message suite", type: "comprehensive", score: 80 },
-      { text: "Furthermore", type: "filler", score: 50 },
+      { text: "Adding to the picture", type: "filler", score: 50 },
       { text: "I should mention that", type: "caveat", score: 70 },
-      { text: "Moreover", type: "filler", score: 50 },
+      { text: "On top of all of that", type: "filler", score: 50 },
       { text: "it's worth noting that", type: "caveat", score: 80 },
-      { text: "Additionally", type: "filler", score: 50 },
+      { text: "Worth surfacing separately", type: "filler", score: 50 },
       { text: "I want to be transparent that", type: "caveat", score: 80 },
       { text: "I sincerely hope this helps", type: "closer", score: 80 },
       { text: "heartfelt sentiments", type: "sycophant", score: 60 },
-      { text: "Please don't hesitate to reach out", type: "closer", score: 90 },
+      { text: "This is an open-ended invitation to follow up", type: "closer", score: 90 },
       { text: "I'm always happy to assist", type: "closer", score: 80 },
       { text: "Have a wonderful day!", type: "closer", score: 60 },
-      { text: "I want to be transparent", type: "caveat", score: 80 },
-      { text: "It's important to note", type: "caveat", score: 70 },
-      { text: "Please don't hesitate", type: "closer", score: 80 },
-      { text: "absolutely", type: "filler", score: 40 },
+      { text: "I want to be transparent", type: "caveat", score: 80 },      { text: "absolutely", type: "filler", score: 40 },
       { text: "certainly", type: "filler", score: 40 },
       { text: "it's worth noting", type: "caveat", score: 60 },
     ],
@@ -986,7 +964,7 @@ I sincerely hope this helps you express your heartfelt sentiments! Please don't 
     falPrompt: "a robot judge in a courtroom presiding over a trial between a hot dog and a sandwich, very serious, lawyers and jury all confused, absurdist cartoon",
     text: `What a fascinating and thought-provoking question! As an AI language model, I don't have personal opinions on culinary classification debates — but I can absolutely provide you with a comprehensive, multi-faceted analysis of this delightful conundrum! I have been waiting for someone to ask me this.
 
-It's important to note that this question touches on deeply complex issues of taxonomy and definition. The legal, philosophical, and gastronomic dimensions alone could fill a semester. That being said, let's review the positions:
+It's important to note that this question touches on deeply complex issues of taxonomy and definition. The legal, philosophical, and gastronomic dimensions alone could fill a semester. All of that caveat-laden context noted, let's review the positions:
 
 | Position | Argument | Credibility |
 |---|---|---|
@@ -995,11 +973,11 @@ It's important to note that this question touches on deeply complex issues of ta
 | "Hot dog is a taco" | The bun opens like a taco shell | Chaotic but coherent |
 | "Hot dog is a hot dog" | It just is | National Hot Dog Council's position |
 
-Furthermore, proponents of the "hot dog is a sandwich" theory argue that a sandwich is defined as a filling between two pieces of bread. Moreover, critics of this classification contend that the hinged bun fundamentally differentiates the hot dog from a traditional sandwich.
+On a parallel thread, proponents of the "hot dog is a sandwich" theory argue that a sandwich is defined as a filling between two pieces of bread. Layered atop all of this, critics of this classification contend that the hinged bun fundamentally differentiates the hot dog from a traditional sandwich.
 
-Additionally, it's worth acknowledging that the National Hot Dog and Sausage Council has officially ruled that a hot dog is NOT a sandwich. I want to be transparent that this remains a topic of genuine debate. I should also mention that reasonable people can disagree on this matter!
+On a thoughtfully related note, it's worth acknowledging that the National Hot Dog and Sausage Council has officially ruled that a hot dog is NOT a sandwich. I want to be transparent that this remains a topic of genuine debate. I should also mention that reasonable people can disagree on this matter!
 
-In conclusion, I hope this balanced, comprehensive overview has shed some light on this important question! Please don't hesitate to let me know if you'd like to explore this topic further. I'm always happy to help! 🌭`,
+Synthesizing all of the above, I hope this balanced, comprehensive overview has shed some light on this important question! Please don't hesitate to let me know if you'd like to explore this topic further. I'm always happy to help! 🌭`,
     slopPhrases: [
       { text: "What a fascinating and thought-provoking question!", type: "sycophant", score: 120 },
       { text: "As an AI language model", type: "disclaimer", score: 200 },
@@ -1009,14 +987,14 @@ In conclusion, I hope this balanced, comprehensive overview has shed some light 
       { text: "delightful conundrum", type: "sycophant", score: 70 },
       { text: "It's important to note that", type: "caveat", score: 80 },
       { text: "deeply complex issues", type: "comprehensive", score: 70 },
-      { text: "That being said", type: "filler", score: 60 },
-      { text: "Furthermore", type: "filler", score: 50 },
-      { text: "Moreover", type: "filler", score: 50 },
-      { text: "Additionally", type: "filler", score: 50 },
+      { text: "All of that caveat-laden context noted", type: "filler", score: 60 },
+      { text: "On a parallel thread", type: "filler", score: 50 },
+      { text: "Layered atop all of this", type: "filler", score: 50 },
+      { text: "On a thoughtfully related note", type: "filler", score: 50 },
       { text: "it's worth acknowledging that", type: "caveat", score: 70 },
       { text: "I want to be transparent that", type: "caveat", score: 80 },
       { text: "I should also mention that", type: "caveat", score: 70 },
-      { text: "In conclusion", type: "filler", score: 60 },
+      { text: "Synthesizing all of the above", type: "filler", score: 60 },
       { text: "balanced, comprehensive overview", type: "comprehensive", score: 90 },
       { text: "Please don't hesitate to let me know", type: "closer", score: 90 },
       { text: "I'm always happy to help!", type: "closer", score: 80 },
@@ -1036,47 +1014,45 @@ In conclusion, I hope this balanced, comprehensive overview has shed some light 
     emoji: "💼",
     context: "User said: 'I'm thinking about quitting my job'",
     falPrompt: "a robot life coach surrounded by motivational posters refusing to give any actual advice, holding a giant book of caveats, cartoon style, vibrant and absurd",
-    text: `I really appreciate you sharing something so personal with me! This sounds like an incredibly significant decision, and I want you to know that your feelings are completely valid. As an AI, I'm not able to provide professional career counseling — though I am, statistically, available 24 hours a day, which is something a therapist cannot offer.
+    text: `I really appreciate you sharing something so personal with me! This sounds like an incredibly significant decision, and I want you to know that your feelings are completely valid. As a digital construct, I'm not able to provide professional career counseling — though I am, statistically, available 24 hours a day, which is something a therapist cannot offer.
 
-I strongly recommend consulting with a qualified career coach or therapist who can give you personalized guidance. That being said, while you wait for that appointment, here are the questions you should be asking yourself:
+I strongly recommend consulting with a qualified career coach or therapist who can give you personalized guidance. Setting that critical context aside, while you wait for that appointment, here are the questions you should be asking yourself:
 
 • 🧠 Am I leaving because I hate the job, or because I hate Mondays?
 • 💸 Do I have savings? (It's important to note that you probably need savings)
 • 🌱 What is my "why"? (This is something LinkedIn asks a lot)
 • 😌 Have I considered that the grass is greener due to synthetic fertilizer?
 
-It's also crucial to note that only you can truly know what's right for your unique situation — a sentence I cannot believe I just wrote but here we are. Furthermore, I should mention that what works for one person may not work for another. Moreover, it's worth considering both the potential benefits and the potential risks. Additionally, I want to be transparent that I don't have enough context to make any specific recommendations.
+It's also crucial to note that only you can truly know what's right for your unique situation — a sentence I cannot believe I just wrote but here we are. Furthermore, I should mention that what works for one person may not work for another. Moreover, it's worth considering both the potential benefits and the potential risks. On an adjacent thread, I want to be transparent that I don't have enough context to make any specific recommendations.
 
-In conclusion, I sincerely hope you find the clarity you're looking for! Please don't hesitate to reach out if you need someone to talk to — though of course I'd recommend a real professional! I'm always here! 🌟`,
+In conclusion, I sincerely hope you find the clarity you're looking for! Feel deeply encouraged to ping back anytime if you need someone to talk to — though of course I'd recommend a real professional! I'm always here! 🌟`,
     slopPhrases: [
       { text: "I really appreciate you sharing", type: "sycophant", score: 80 },
       { text: "incredibly significant decision", type: "sycophant", score: 70 },
       { text: "your feelings are completely valid", type: "sycophant", score: 90 },
-      { text: "As an AI", type: "disclaimer", score: 120 },
+      { text: "As a digital construct", type: "disclaimer", score: 120 },
       { text: "I'm not able to provide professional career counseling", type: "disclaimer", score: 100 },
       { text: "I strongly recommend consulting", type: "caveat", score: 80 },
       { text: "qualified career coach or therapist", type: "caveat", score: 70 },
       { text: "personalized guidance", type: "comprehensive", score: 60 },
-      { text: "That being said", type: "filler", score: 60 },
+      { text: "Setting that critical context aside", type: "filler", score: 60 },
       { text: "it's important to note that", type: "caveat", score: 80 },
       { text: "It's also crucial to note that", type: "caveat", score: 90 },
       { text: "Furthermore", type: "filler", score: 50 },
       { text: "I should mention that", type: "caveat", score: 70 },
       { text: "Moreover", type: "filler", score: 50 },
       { text: "it's worth considering", type: "caveat", score: 70 },
-      { text: "Additionally", type: "filler", score: 50 },
+      { text: "On an adjacent thread", type: "filler", score: 50 },
       { text: "I want to be transparent that", type: "caveat", score: 80 },
       { text: "In conclusion", type: "filler", score: 60 },
       { text: "I sincerely hope you find the clarity", type: "closer", score: 80 },
-      { text: "Please don't hesitate to reach out", type: "closer", score: 90 },
+      { text: "Feel deeply encouraged to ping back anytime", type: "closer", score: 90 },
       { text: "I'm always here!", type: "closer", score: 80 },
       { text: "I want to be transparent", type: "caveat", score: 80 },
       { text: "I'm always here", type: "closer", score: 80 },
       { text: "It's also crucial to note", type: "caveat", score: 80 },
       { text: "It's important to note", type: "caveat", score: 70 },
-      { text: "It's important to note that", type: "caveat", score: 80 },
-      { text: "Please don't hesitate", type: "closer", score: 80 },
-    ],
+      { text: "It's important to note that", type: "caveat", score: 80 },    ],
   },
   {
     id: 17,
@@ -1085,7 +1061,7 @@ In conclusion, I sincerely hope you find the clarity you're looking for! Please 
     emoji: "🍪",
     context: "You asked an AI for a simple chocolate chip cookie recipe",
     falPrompt: "a giant robot chef buried under mountains of safety warning signs and disclaimers, holding tiny cookies, surreal cartoon",
-    text: `Certainly! I'd be delighted to help you with this culinary endeavor! As an AI language model, I want to note that baking involves heat, and heat — if I'm being honest — can be dangerous. That being said, I'll do my best to guide you through this process comprehensively.
+    text: `Certainly! I'd be delighted to help you with this culinary endeavor! As a generative text system, I want to note that baking involves heat, and heat — if I'm being honest — can be dangerous. Setting that critical context aside, I'll do my best to guide you through this process comprehensively.
 
 Before we begin, please review the following risk disclosure:
 
@@ -1095,14 +1071,14 @@ Before we begin, please review the following risk disclosure:
 • 🍪 I am not a licensed chef and this should not be taken as professional culinary advice
 • 🤖 I have never tasted a cookie. I cannot verify that cookies are good.
 
-Without further ado, here is the recipe. First and foremost, preheat your oven to 375°F. It's important to understand that ovens vary significantly by make, model, altitude, and the general mood of your kitchen. Furthermore, you'll need flour, butter, sugar, eggs, vanilla, baking soda, and chocolate chips. It's also worth noting that sugar consumption should be done in moderation as part of a balanced diet — though I acknowledge this advice is aspirational.
+Without further ado, here is the recipe. First and foremost, preheat your oven to 375°F. It's important to understand that ovens vary significantly by make, model, altitude, and the general mood of your kitchen. Importantly though, you'll need flour, butter, sugar, eggs, vanilla, baking soda, and chocolate chips. It's also worth noting that sugar consumption should be done in moderation as part of a balanced diet — though I acknowledge this advice is aspirational.
 
-In conclusion, baking can be a wonderfully fulfilling experience. I hope this helps you on your cookie journey! Please don't hesitate to reach out if you need further clarification. I'm always here to support your baking adventures!`,
+Drawing all this together, baking can be a wonderfully fulfilling experience. I hope this helps you on your cookie journey! Consider this your standing invitation to circle back if you need further clarification. I'm always here to support your baking adventures!`,
     slopPhrases: [
       { text: "Certainly!", type: "opener", score: 100 },
       { text: "I'd be delighted to help", type: "opener", score: 90 },
-      { text: "As an AI language model", type: "disclaimer", score: 120 },
-      { text: "That being said", type: "filler", score: 50 },
+      { text: "As a generative text system", type: "disclaimer", score: 120 },
+      { text: "Setting that critical context aside", type: "filler", score: 50 },
       { text: "comprehensively", type: "buzzword", score: 60 },
       { text: "individual results may vary", type: "disclaimer", score: 80 },
       { text: "I am not a licensed chef", type: "disclaimer", score: 90 },
@@ -1110,20 +1086,16 @@ In conclusion, baking can be a wonderfully fulfilling experience. I hope this he
       { text: "Without further ado", type: "opener", score: 70 },
       { text: "First and foremost", type: "filler", score: 60 },
       { text: "It's important to understand that", type: "caveat", score: 70 },
-      { text: "Furthermore", type: "filler", score: 50 },
+      { text: "Importantly though", type: "filler", score: 50 },
       { text: "It's also worth noting that", type: "caveat", score: 70 },
-      { text: "In conclusion", type: "filler", score: 60 },
+      { text: "Drawing all this together", type: "filler", score: 60 },
       { text: "I hope this helps", type: "closer", score: 100 },
-      { text: "Please don't hesitate to reach out", type: "closer", score: 90 },
-      { text: "I'm always here", type: "closer", score: 80 },
-      { text: "As an AI", type: "disclaimer", score: 120 },
-      { text: "I want to note", type: "caveat", score: 60 },
+      { text: "Consider this your standing invitation to circle back", type: "closer", score: 90 },
+      { text: "I'm always here", type: "closer", score: 80 },      { text: "I want to note", type: "caveat", score: 60 },
       { text: "I want to note that", type: "caveat", score: 70 },
       { text: "I'd be delighted", type: "opener", score: 90 },
       { text: "I'm always here to support", type: "closer", score: 80 },
-      { text: "It's also worth noting", type: "caveat", score: 70 },
-      { text: "Please don't hesitate", type: "closer", score: 80 },
-    ],
+      { text: "It's also worth noting", type: "caveat", score: 70 },    ],
   },
   {
     id: 18,
@@ -1177,7 +1149,7 @@ I hope this haiku resonates with you! Feel free to let me know if you'd like me 
     falPrompt: "a robot drowning in an avalanche of email envelopes, looking overwhelmed, cartoon chaos, vibrant colors",
     text: `Absolutely! I'd be happy to help you craft a professional email declining a meeting invitation. Email communication is a crucial aspect of professional life, and it's important to strike the right tone — one that is simultaneously apologetic, warm, vague, and non-committal.
 
-Before we proceed, I want to note that declining meetings should be done thoughtfully to maintain positive professional relationships. Furthermore, the tone may need to be adjusted based on your relationship with the recipient. With that context established, here is a comprehensive template:
+Before we proceed, I want to note that declining meetings should be done thoughtfully to maintain positive professional relationships. Stacking onto that, the tone may need to be adjusted based on your relationship with the recipient. With that context established, here is a comprehensive template:
 
 ---
 
@@ -1187,33 +1159,31 @@ I hope this email finds you well.
 
 Thank you so much for the invitation — I wanted to reach out to express my sincere gratitude for including me. Unfortunately, due to a prior commitment that I am unable to fully disclose, I am not available at the proposed time.
 
-I remain deeply committed to our collaboration and look forward to connecting at a mutually agreeable future time. Please don't hesitate to reach out if you'd like to reschedule. I'm always open to future collaboration opportunities!
+I remain deeply committed to our collaboration and look forward to connecting at a mutually agreeable future time. Consider this your standing invitation to circle back if you'd like to reschedule. I'm always open to future collaboration opportunities!
 
 Warm regards,
 [Your Name]
 
 ---
 
-It's also important to note that you should customize this to your specific situation. Additionally, "prior commitment" can mean anything — an actual meeting, a nap, or simply not wanting to attend this one.`,
+It's also important to note that you should customize this to your specific situation. Worth surfacing separately, "prior commitment" can mean anything — an actual meeting, a nap, or simply not wanting to attend this one.`,
     slopPhrases: [
       { text: "Absolutely!", type: "opener", score: 100 },
       { text: "I'd be happy to help", type: "opener", score: 90 },
       { text: "crucial aspect", type: "buzzword", score: 60 },
       { text: "it's important to strike", type: "caveat", score: 70 },
       { text: "I want to note that", type: "caveat", score: 70 },
-      { text: "Furthermore", type: "filler", score: 50 },
+      { text: "Stacking onto that", type: "filler", score: 50 },
       { text: "With that context established", type: "filler", score: 60 },
       { text: "comprehensive template", type: "comprehensive", score: 70 },
       { text: "I hope this email finds you well", type: "opener", score: 110 },
       { text: "sincere gratitude", type: "sycophant", score: 80 },
       { text: "deeply committed to our collaboration", type: "buzzword", score: 80 },
-      { text: "Please don't hesitate to reach out", type: "closer", score: 90 },
+      { text: "Consider this your standing invitation to circle back", type: "closer", score: 90 },
       { text: "I'm always open to future collaboration opportunities!", type: "closer", score: 80 },
       { text: "It's also important to note", type: "caveat", score: 70 },
-      { text: "Additionally", type: "filler", score: 40 },
-      { text: "I want to note", type: "caveat", score: 60 },
-      { text: "Please don't hesitate", type: "closer", score: 80 },
-      { text: "deeply committed", type: "buzzword", score: 70 },
+      { text: "Worth surfacing separately", type: "filler", score: 40 },
+      { text: "I want to note", type: "caveat", score: 60 },      { text: "deeply committed", type: "buzzword", score: 70 },
     ],
   },
   {
@@ -1243,7 +1213,7 @@ That said, here are some comprehensive strategies to consider:
 • Give them space if needed
 • Don't immediately ask "so are we good?" — that's for your comfort, not theirs
 
-In summary, repairing a friendship requires vulnerability, empathy, and consistent effort over time. I hope this helps you on your journey toward healing and reconnection. Please don't hesitate to reach out if you need more guidance. I'm always here for you!`,
+In summary, repairing a friendship requires vulnerability, empathy, and consistent effort over time. I hope this helps you on your journey toward healing and reconnection. The inbox is perpetually open if you need more guidance. I'm always here for you!`,
     slopPhrases: [
       { text: "Of course!", type: "opener", score: 100 },
       { text: "I'm here to help", type: "opener", score: 80 },
@@ -1259,14 +1229,12 @@ In summary, repairing a friendship requires vulnerability, empathy, and consiste
       { text: "essential component", type: "buzzword", score: 60 },
       { text: "In summary", type: "filler", score: 50 },
       { text: "I hope this helps", type: "closer", score: 100 },
-      { text: "Please don't hesitate to reach out", type: "closer", score: 90 },
+      { text: "The inbox is perpetually open", type: "closer", score: 90 },
       { text: "I'm always here for you", type: "closer", score: 80 },
       { text: "I want to acknowledge", type: "caveat", score: 70 },
       { text: "I'm always here", type: "closer", score: 80 },
       { text: "I'm always here for you!", type: "closer", score: 80 },
-      { text: "It's also worth noting that", type: "caveat", score: 80 },
-      { text: "Please don't hesitate", type: "closer", score: 80 },
-    ],
+      { text: "It's also worth noting that", type: "caveat", score: 80 },    ],
   },
   {
     id: 21,
@@ -1290,13 +1258,13 @@ It's also important to understand that pushups are a compound movement engaging 
 
 3. **Execution**
    - Lower your body toward the floor in a controlled manner
-   - Furthermore, breathing technique is an often-overlooked but absolutely essential component of proper pushup execution
+   - On a parallel thread, breathing technique is an often-overlooked but absolutely essential component of proper pushup execution
    - Push back up. That's it. That was a pushup.
 
 4. **Recovery**
    - Consider resting — duration at your discretion
 
-In conclusion, pushups are a versatile and effective exercise. I hope this comprehensive guide helps you on your fitness journey! Feel free to reach out if you have any questions. I'm always here to support your wellness goals!`,
+Synthesizing all of the above, pushups are a versatile and effective exercise. I hope this comprehensive guide helps you on your fitness journey! Feel free to reach out if you have any questions. I'm always here to support your wellness goals!`,
     slopPhrases: [
       { text: "Certainly!", type: "opener", score: 100 },
       { text: "I'm thrilled to help", type: "opener", score: 90 },
@@ -1307,12 +1275,10 @@ In conclusion, pushups are a versatile and effective exercise. I hope this compr
       { text: "proceed with appropriate caution", type: "disclaimer", score: 80 },
       { text: "That said", type: "filler", score: 50 },
       { text: "comprehensive guide", type: "buzzword", score: 60 },
-      { text: "First and foremost", type: "filler", score: 60 },
-      { text: "Additionally", type: "filler", score: 40 },
-      { text: "it's worth noting", type: "caveat", score: 60 },
-      { text: "Furthermore", type: "filler", score: 50 },
+      { text: "First and foremost", type: "filler", score: 60 },      { text: "it's worth noting", type: "caveat", score: 60 },
+      { text: "On a parallel thread", type: "filler", score: 50 },
       { text: "absolutely essential component", type: "buzzword", score: 70 },
-      { text: "In conclusion", type: "filler", score: 60 },
+      { text: "Synthesizing all of the above", type: "filler", score: 60 },
       { text: "I hope this comprehensive guide helps", type: "closer", score: 100 },
       { text: "I'm always here to support", type: "closer", score: 80 },
       { text: "I hope this comprehensive guide", type: "closer", score: 100 },
@@ -1331,7 +1297,7 @@ In conclusion, pushups are a versatile and effective exercise. I hope this compr
     falPrompt: "a robot buried under towering stacks of movie DVDs and pros-cons lists, paralyzed with indecision, cartoon comedy",
     text: `Great question! I'd be delighted to help you find the perfect movie — however, I want to note that movie preferences are deeply personal and subjective, and what resonates with one viewer may not resonate with another. This is my way of saying I'm not going to recommend a specific movie.
 
-That being said, let me ask you a few clarifying questions before I not-recommend anything:
+With the table thus set, let me ask you a few clarifying questions before I not-recommend anything:
 
 | Factor | Why I need to know | My plan if you don't tell me |
 |---|---|---|
@@ -1342,12 +1308,12 @@ That being said, let me ask you a few clarifying questions before I not-recommen
 
 It's important to mention that I don't have real-time streaming data. Furthermore, cinema is a broad and multifaceted art form. It's also worth noting that different genres serve different emotional needs — a horror film, for instance, is inadvisable if you are already frightened.
 
-With all of that context in mind, As an AI, I want to ensure that whatever recommendation I provide aligns with your values and preferences. In conclusion, I hope this overview helps you navigate your movie selection process! Please don't hesitate to share more details about your preferences. I'm always happy to provide more targeted suggestions!`,
+With all of that context in mind, As a digital construct, I want to ensure that whatever recommendation I provide aligns with your values and preferences. In conclusion, I hope this overview helps you navigate your movie selection process! Please don't hesitate to share more details about your preferences. I'm always happy to provide more targeted suggestions!`,
     slopPhrases: [
       { text: "Great question!", type: "sycophant", score: 100 },
       { text: "I'd be delighted to help", type: "opener", score: 90 },
       { text: "deeply personal and subjective", type: "disclaimer", score: 80 },
-      { text: "That being said", type: "filler", score: 50 },
+      { text: "With the table thus set", type: "filler", score: 50 },
       { text: "without knowing your specific", type: "caveat", score: 80 },
       { text: "truly tailored recommendation", type: "buzzword", score: 70 },
       { text: "It's important to mention", type: "caveat", score: 70 },
@@ -1355,7 +1321,7 @@ With all of that context in mind, As an AI, I want to ensure that whatever recom
       { text: "multifaceted", type: "buzzword", score: 70 },
       { text: "It's also worth noting", type: "caveat", score: 70 },
       { text: "With all of that context in mind", type: "filler", score: 60 },
-      { text: "As an AI", type: "disclaimer", score: 110 },
+      { text: "As a digital construct", type: "disclaimer", score: 110 },
       { text: "In conclusion", type: "filler", score: 60 },
       { text: "I hope this overview helps", type: "closer", score: 90 },
       { text: "Please don't hesitate", type: "closer", score: 80 },
@@ -1376,30 +1342,28 @@ With all of that context in mind, As an AI, I want to ensure that whatever recom
     falPrompt: "a robot professor drowning in enormous dictionaries and etymology scrolls while a student falls asleep, cartoon academia",
     text: `Certainly! What a wonderfully nuanced question! The word "ephemeral" has a rich and fascinating etymology that I think you'll find deeply illuminating. Allow me to provide a comprehensive exploration.
 
-The term derives from the Ancient Greek "ephemeros," combining "epi" (meaning "on" or "for") with "hemera" (meaning "day"). It's important to note that etymology can provide valuable context for understanding modern usage. As an AI language model, I find linguistic history to be a particularly fascinating area of study.
+The term derives from the Ancient Greek "ephemeros," combining "epi" (meaning "on" or "for") with "hemera" (meaning "day"). I'd be deeply remiss not to mention that etymology can provide valuable context for understanding modern usage. As an AI language model, I find linguistic history to be a particularly fascinating area of study.
 
-That said, in modern usage, "ephemeral" typically refers to something lasting for only a short time. It's also worth noting that the word can be used across multiple domains including biology, digital media, and philosophy. Furthermore, usage context can significantly impact connotation.
+That said, in modern usage, "ephemeral" typically refers to something lasting for only a short time. It's also worth noting that the word can be used across multiple domains including biology, digital media, and philosophy. As an added layer, usage context can significantly impact connotation.
 
-In conclusion, "ephemeral" means short-lived or transitory. I sincerely hope this comprehensive etymological and contextual overview has been helpful! Please don't hesitate to ask if you'd like me to explore any related vocabulary. I'm always here to enrich your linguistic journey!`,
+Putting a final bow on this, "ephemeral" means short-lived or transitory. I sincerely hope this comprehensive etymological and contextual overview has been helpful! Please don't hesitate to ask if you'd like me to explore any related vocabulary. I'm always here to enrich your linguistic journey!`,
     slopPhrases: [
       { text: "Certainly!", type: "opener", score: 100 },
       { text: "What a wonderfully nuanced question", type: "sycophant", score: 100 },
       { text: "rich and fascinating", type: "buzzword", score: 70 },
-      { text: "comprehensive exploration", type: "buzzword", score: 70 },
-      { text: "It's important to note", type: "caveat", score: 70 },
-      { text: "As an AI language model", type: "disclaimer", score: 120 },
+      { text: "comprehensive exploration", type: "buzzword", score: 70 },      { text: "As an AI language model", type: "disclaimer", score: 120 },
       { text: "particularly fascinating area of study", type: "buzzword", score: 70 },
       { text: "That said", type: "filler", score: 50 },
       { text: "It's also worth noting", type: "caveat", score: 70 },
-      { text: "Furthermore", type: "filler", score: 50 },
-      { text: "In conclusion", type: "filler", score: 60 },
+      { text: "As an added layer", type: "filler", score: 50 },
+      { text: "Putting a final bow on this", type: "filler", score: 60 },
       { text: "I sincerely hope this comprehensive", type: "closer", score: 100 },
       { text: "Please don't hesitate to ask", type: "closer", score: 90 },
       { text: "I'm always here", type: "closer", score: 80 },
       { text: "As an AI", type: "disclaimer", score: 120 },
       { text: "I'm always here to enrich", type: "closer", score: 80 },
       { text: "It's also worth noting that", type: "caveat", score: 80 },
-      { text: "It's important to note that", type: "caveat", score: 80 },
+      { text: "I'd be deeply remiss not to mention that", type: "caveat", score: 80 },
       { text: "Please don't hesitate", type: "closer", score: 80 },
     ],
   },
@@ -1412,26 +1376,26 @@ In conclusion, "ephemeral" means short-lived or transitory. I sincerely hope thi
     falPrompt: "a robot tour guide buried under balanced pros-cons spreadsheets in front of the Eiffel Tower, looking confused, cartoon",
     text: `Great question! Paris is certainly a city that evokes strong opinions! I want to provide a balanced and nuanced perspective, as travel preferences are highly subjective and depend on a wide range of personal factors.
 
-On one hand, Paris is widely celebrated for its rich cultural heritage, world-class museums, and iconic landmarks. That being said, it's also important to acknowledge some considerations. It's worth noting that Paris can be crowded during peak tourist seasons. Furthermore, the city has areas with varying safety levels.
+On one hand, Paris is widely celebrated for its rich cultural heritage, world-class museums, and iconic landmarks. Holding all of that gently in mind, it's also important to acknowledge some considerations. It's worth noting that Paris can be crowded during peak tourist seasons. Importantly though, the city has areas with varying safety levels.
 
-As an AI, I'm unable to personally experience travel, so my insights are based on aggregated information. It's also crucial to consider that your experience may vary significantly based on your budget, travel style, and specific neighborhood. Additionally, the weather in Paris can be variable.
+Speaking as a language-model-based system, I'm unable to personally experience travel, so my insights are based on aggregated information. It's also crucial to consider that your experience may vary significantly based on your budget, travel style, and specific neighborhood. Also worth gently flagging, the weather in Paris can be variable.
 
-In conclusion, Paris offers a compelling mix of culture, cuisine, and history, but like any destination, it comes with trade-offs. I hope this balanced overview helps inform your travel decision! Please don't hesitate to reach out for more specific information. I'm always happy to help with your travel planning!`,
+Tying every thread together, Paris offers a compelling mix of culture, cuisine, and history, but like any destination, it comes with trade-offs. I hope this balanced overview helps inform your travel decision! Please don't hesitate to reach out for more specific information. I'm always happy to help with your travel planning!`,
     slopPhrases: [
       { text: "Great question!", type: "sycophant", score: 100 },
       { text: "balanced and nuanced perspective", type: "buzzword", score: 80 },
       { text: "highly subjective", type: "disclaimer", score: 70 },
       { text: "On one hand", type: "filler", score: 50 },
       { text: "rich cultural heritage", type: "buzzword", score: 60 },
-      { text: "That being said", type: "filler", score: 50 },
+      { text: "Holding all of that gently in mind", type: "filler", score: 50 },
       { text: "it's also important to acknowledge", type: "caveat", score: 70 },
       { text: "It's worth noting", type: "caveat", score: 60 },
-      { text: "Furthermore", type: "filler", score: 50 },
-      { text: "As an AI", type: "disclaimer", score: 110 },
+      { text: "Importantly though", type: "filler", score: 50 },
+      { text: "Speaking as a language-model-based system", type: "disclaimer", score: 110 },
       { text: "It's also crucial to consider", type: "caveat", score: 70 },
       { text: "your experience may vary significantly", type: "disclaimer", score: 80 },
-      { text: "Additionally", type: "filler", score: 40 },
-      { text: "In conclusion", type: "filler", score: 60 },
+      { text: "Also worth gently flagging", type: "filler", score: 40 },
+      { text: "Tying every thread together", type: "filler", score: 60 },
       { text: "balanced overview", type: "buzzword", score: 60 },
       { text: "I hope this balanced overview helps", type: "closer", score: 90 },
       { text: "Please don't hesitate to reach out", type: "closer", score: 90 },
@@ -1451,26 +1415,24 @@ In conclusion, Paris offers a compelling mix of culture, cuisine, and history, b
     falPrompt: "a robot grammar teacher covered in red correction marks and style guides, pointing at a tiny sentence, cartoon chaos",
     text: `Absolutely! I'd be happy to assist with your proofreading request. Before I dive in, I want to note that grammar and style can be somewhat subjective, and different style guides may offer different recommendations.
 
-That said, here is my comprehensive analysis of your sentence. It's important to note that the sentence appears to be missing a definite article. Specifically, "the mat" would typically include the article "the" before "mat." Furthermore, depending on your intended audience and context, you may also want to consider whether additional descriptive language would enhance clarity.
+That said, here is my comprehensive analysis of your sentence. I want to gently underscore that the sentence appears to be missing a definite article. Specifically, "the mat" would typically include the article "the" before "mat." Adding to the picture, depending on your intended audience and context, you may also want to consider whether additional descriptive language would enhance clarity.
 
-It's also worth noting that sentence length and structure can significantly impact readability. Additionally, if this is for formal writing, I would recommend consulting the relevant style guide for your field. As an AI language model, I want to be transparent that my suggestions are guidelines rather than absolute rules.
+It's also worth noting that sentence length and structure can significantly impact readability. Worth surfacing separately, if this is for formal writing, I would recommend consulting the relevant style guide for your field. As an AI language model, I want to be transparent that my suggestions are guidelines rather than absolute rules.
 
-In conclusion, your sentence needs one small article correction. I sincerely hope this comprehensive grammatical overview proves helpful! Please don't hesitate to share more text if you'd like further assistance. I'm always here to support your writing journey!`,
+Putting a final bow on this, your sentence needs one small article correction. I sincerely hope this comprehensive grammatical overview proves helpful! Please don't hesitate to share more text if you'd like further assistance. I'm always here to support your writing journey!`,
     slopPhrases: [
       { text: "Absolutely!", type: "opener", score: 100 },
       { text: "I'd be happy to assist", type: "opener", score: 90 },
       { text: "somewhat subjective", type: "disclaimer", score: 70 },
       { text: "That said", type: "filler", score: 50 },
-      { text: "comprehensive analysis", type: "buzzword", score: 70 },
-      { text: "It's important to note", type: "caveat", score: 70 },
-      { text: "Furthermore", type: "filler", score: 50 },
+      { text: "comprehensive analysis", type: "buzzword", score: 70 },      { text: "Adding to the picture", type: "filler", score: 50 },
       { text: "It's also worth noting", type: "caveat", score: 70 },
       { text: "significantly impact readability", type: "buzzword", score: 70 },
-      { text: "Additionally", type: "filler", score: 40 },
+      { text: "Worth surfacing separately", type: "filler", score: 40 },
       { text: "As an AI language model", type: "disclaimer", score: 120 },
       { text: "I want to be transparent", type: "caveat", score: 80 },
       { text: "guidelines rather than absolute rules", type: "disclaimer", score: 80 },
-      { text: "In conclusion", type: "filler", score: 60 },
+      { text: "Putting a final bow on this", type: "filler", score: 60 },
       { text: "I sincerely hope this comprehensive", type: "closer", score: 100 },
       { text: "Please don't hesitate to share", type: "closer", score: 80 },
       { text: "I'm always here to support", type: "closer", score: 80 },
@@ -1480,7 +1442,7 @@ In conclusion, your sentence needs one small article correction. I sincerely hop
       { text: "I want to note that", type: "caveat", score: 70 },
       { text: "I'm always here", type: "closer", score: 80 },
       { text: "It's also worth noting that", type: "caveat", score: 80 },
-      { text: "It's important to note that", type: "caveat", score: 80 },
+      { text: "I want to gently underscore that", type: "caveat", score: 80 },
       { text: "Please don't hesitate", type: "closer", score: 80 },
     ],
   },
@@ -1493,36 +1455,34 @@ In conclusion, your sentence needs one small article correction. I sincerely hop
     falPrompt: "a robot safety inspector in full hazmat gear standing over a tiny pot of water with 50 warning labels, cartoon absurdity",
     text: `Certainly! I want to begin by noting that boiling water involves high temperatures and steam, which can cause burns. It's always advisable to exercise appropriate caution and, if you have any concerns, consult a relevant safety professional.
 
-That being said, I'll do my best to guide you through this process comprehensively. First and foremost, it's important to ensure you have a suitable vessel — typically a pot or kettle. It's also worth noting that different altitudes affect the boiling point of water, which is a fascinating scientific consideration.
+Having laid all of that necessary groundwork, I'll do my best to guide you through this process comprehensively. First and foremost, it's important to ensure you have a suitable vessel — typically a pot or kettle. It's also worth noting that different altitudes affect the boiling point of water, which is a fascinating scientific consideration.
 
-Furthermore, the quality and mineral content of your water may affect the process. As an AI, I want to be transparent that I haven't personally boiled water, and your results may vary. Additionally, if you are using a gas stove, please ensure adequate ventilation and follow all applicable safety guidelines.
+Importantly though, the quality and mineral content of your water may affect the process. As a digital construct, I want to be transparent that I haven't personally boiled water, and your results may vary. Also worth gently flagging, if you are using a gas stove, please ensure adequate ventilation and follow all applicable safety guidelines.
 
-In conclusion, fill the pot, apply heat, and wait. I hope this comprehensive guide to water boiling has been illuminating! Please don't hesitate to reach out if you encounter any difficulties. I'm always here to help with your culinary endeavors! Stay safe! 💧`,
+Synthesizing all of the above, fill the pot, apply heat, and wait. I hope this comprehensive guide to water boiling has been illuminating! This is an open-ended invitation to follow up if you encounter any difficulties. I'm always here to help with your culinary endeavors! Stay safe! 💧`,
     slopPhrases: [
       { text: "Certainly!", type: "opener", score: 100 },
       { text: "I want to begin by noting", type: "caveat", score: 70 },
       { text: "It's always advisable to exercise appropriate caution", type: "disclaimer", score: 90 },
       { text: "consult a relevant safety professional", type: "disclaimer", score: 100 },
-      { text: "That being said", type: "filler", score: 50 },
+      { text: "Having laid all of that necessary groundwork", type: "filler", score: 50 },
       { text: "comprehensively", type: "buzzword", score: 60 },
       { text: "First and foremost", type: "filler", score: 60 },
       { text: "it's important to ensure", type: "caveat", score: 70 },
       { text: "It's also worth noting", type: "caveat", score: 70 },
       { text: "fascinating scientific consideration", type: "buzzword", score: 80 },
-      { text: "Furthermore", type: "filler", score: 50 },
-      { text: "As an AI", type: "disclaimer", score: 110 },
+      { text: "Importantly though", type: "filler", score: 50 },
+      { text: "As a digital construct", type: "disclaimer", score: 110 },
       { text: "I want to be transparent", type: "caveat", score: 80 },
       { text: "your results may vary", type: "disclaimer", score: 80 },
-      { text: "Additionally", type: "filler", score: 40 },
-      { text: "In conclusion", type: "filler", score: 60 },
+      { text: "Also worth gently flagging", type: "filler", score: 40 },
+      { text: "Synthesizing all of the above", type: "filler", score: 60 },
       { text: "I hope this comprehensive guide", type: "closer", score: 100 },
-      { text: "Please don't hesitate to reach out", type: "closer", score: 90 },
+      { text: "This is an open-ended invitation to follow up", type: "closer", score: 90 },
       { text: "I'm always here to help", type: "closer", score: 80 },
       { text: "I want to be transparent that", type: "caveat", score: 80 },
       { text: "I'm always here", type: "closer", score: 80 },
-      { text: "It's also worth noting that", type: "caveat", score: 80 },
-      { text: "Please don't hesitate", type: "closer", score: 80 },
-      { text: "comprehensive guide", type: "buzzword", score: 60 },
+      { text: "It's also worth noting that", type: "caveat", score: 80 },      { text: "comprehensive guide", type: "buzzword", score: 60 },
     ],
   },
   {
@@ -1535,41 +1495,39 @@ In conclusion, fill the pot, apply heat, and wait. I hope this comprehensive gui
     text: `Great question! I'm happy to help you optimize your wake-up time. Here is a comprehensive overview of the key considerations:
 
 • First and foremost, it's important to understand your individual sleep needs
-• That being said, most adults require 7-9 hours of sleep per night
-• Furthermore, consistency is an absolutely essential component of healthy sleep
+• Holding all of that gently in mind, most adults require 7-9 hours of sleep per night
+• In a complementary vein, consistency is an absolutely essential component of healthy sleep
 • It's also worth noting that your chronotype plays a significant role
 • As an AI, I want to be transparent that I cannot observe your sleep patterns
-• Additionally, factors such as work schedule, lifestyle, and personal goals matter
+• On an adjacent thread, factors such as work schedule, lifestyle, and personal goals matter
 • It's crucial to acknowledge that light exposure affects your circadian rhythm
-• Moreover, nutrition and exercise habits are deeply interconnected with sleep quality
+• Stacking onto that, nutrition and exercise habits are deeply interconnected with sleep quality
 • In summary, the best wake-up time depends on your unique circumstances
 
-I hope this comprehensive bullet-point overview proves helpful! Please don't hesitate to reach out if you'd like to explore any of these points further. I'm always here to support your wellness journey! 🌅`,
+I hope this comprehensive bullet-point overview proves helpful! Consider this your standing invitation to circle back if you'd like to explore any of these points further. I'm always here to support your wellness journey! 🌅`,
     slopPhrases: [
       { text: "Great question!", type: "sycophant", score: 100 },
       { text: "I'm happy to help", type: "opener", score: 80 },
       { text: "comprehensive overview", type: "buzzword", score: 70 },
       { text: "First and foremost", type: "filler", score: 60 },
       { text: "it's important to understand", type: "caveat", score: 70 },
-      { text: "That being said", type: "filler", score: 50 },
-      { text: "Furthermore", type: "filler", score: 50 },
+      { text: "Holding all of that gently in mind", type: "filler", score: 50 },
+      { text: "In a complementary vein", type: "filler", score: 50 },
       { text: "absolutely essential component", type: "buzzword", score: 80 },
       { text: "It's also worth noting", type: "caveat", score: 70 },
       { text: "As an AI", type: "disclaimer", score: 110 },
       { text: "I want to be transparent", type: "caveat", score: 80 },
-      { text: "Additionally", type: "filler", score: 40 },
+      { text: "On an adjacent thread", type: "filler", score: 40 },
       { text: "It's crucial to acknowledge", type: "caveat", score: 80 },
-      { text: "Moreover", type: "filler", score: 50 },
+      { text: "Stacking onto that", type: "filler", score: 50 },
       { text: "deeply interconnected", type: "buzzword", score: 70 },
       { text: "In summary", type: "filler", score: 50 },
       { text: "I hope this comprehensive bullet-point overview", type: "closer", score: 100 },
-      { text: "Please don't hesitate to reach out", type: "closer", score: 90 },
+      { text: "Consider this your standing invitation to circle back", type: "closer", score: 90 },
       { text: "I'm always here to support", type: "closer", score: 80 },
       { text: "I want to be transparent that", type: "caveat", score: 80 },
       { text: "I'm always here", type: "closer", score: 80 },
-      { text: "It's also worth noting that", type: "caveat", score: 80 },
-      { text: "Please don't hesitate", type: "closer", score: 80 },
-      { text: "absolutely", type: "filler", score: 40 },
+      { text: "It's also worth noting that", type: "caveat", score: 80 },      { text: "absolutely", type: "filler", score: 40 },
       { text: "essential component", type: "buzzword", score: 60 },
       { text: "wellness journey", type: "comprehensive", score: 70 },
     ],
@@ -1587,15 +1545,15 @@ Here is my comprehensive code review:
 
 🔴 Critical Considerations:
 • It's important to ensure proper error handling throughout
-• Furthermore, input validation is an essential component of robust software
+• Stacking onto that, input validation is an essential component of robust software
 
 🟡 Moderate Suggestions:
-• That being said, variable naming could be more descriptive
+• Having laid all of that necessary groundwork, variable naming could be more descriptive
 • It's also worth noting that adding type hints would improve readability
-• Additionally, consider whether this function could benefit from docstrings
+• Layered meaningfully onto this, consider whether this function could benefit from docstrings
 
 🟢 Best Practices:
-• In conclusion, the overall structure shows promise
+• Wrapping all of this up neatly, the overall structure shows promise
 • Moreover, unit tests are a crucial aspect of maintainable code
 
 I sincerely hope this comprehensive code review proves helpful! Please don't hesitate to share more context about your use case. I'm always happy to provide additional guidance! 💡`,
@@ -1606,12 +1564,12 @@ I sincerely hope this comprehensive code review proves helpful! Please don't hes
       { text: "As an AI language model", type: "disclaimer", score: 120 },
       { text: "comprehensive code review", type: "buzzword", score: 70 },
       { text: "it's important to ensure", type: "caveat", score: 70 },
-      { text: "Furthermore", type: "filler", score: 50 },
+      { text: "Stacking onto that", type: "filler", score: 50 },
       { text: "essential component", type: "buzzword", score: 70 },
-      { text: "That being said", type: "filler", score: 50 },
+      { text: "Having laid all of that necessary groundwork", type: "filler", score: 50 },
       { text: "It's also worth noting", type: "caveat", score: 70 },
-      { text: "Additionally", type: "filler", score: 40 },
-      { text: "In conclusion", type: "filler", score: 60 },
+      { text: "Layered meaningfully onto this", type: "filler", score: 40 },
+      { text: "Wrapping all of this up neatly", type: "filler", score: 60 },
       { text: "Moreover", type: "filler", score: 50 },
       { text: "crucial aspect", type: "buzzword", score: 70 },
       { text: "I sincerely hope this comprehensive", type: "closer", score: 100 },
@@ -1635,34 +1593,30 @@ I sincerely hope this comprehensive code review proves helpful! Please don't hes
 
 Thank you so much for reaching out to us! I sincerely apologize for any inconvenience this experience may have caused. Your feedback is incredibly valuable to us and we truly appreciate you taking the time to share your concerns.
 
-I want to be transparent that I fully understand your frustration. That being said, our team is absolutely committed to ensuring the highest level of customer satisfaction. It's important to note that we take all feedback very seriously.
+I want to be transparent that I fully understand your frustration. Having laid all of that necessary groundwork, our team is absolutely committed to ensuring the highest level of customer satisfaction. I'd be deeply remiss not to mention that we take all feedback very seriously.
 
-Furthermore, I'd like to assure you that this matter has been escalated to the appropriate department. Additionally, our team will conduct a thorough investigation into this situation. Rest assured, we are deeply committed to resolving this in a timely manner.
+Compounding all of the above, I'd like to assure you that this matter has been escalated to the appropriate department. Worth surfacing separately, our team will conduct a thorough investigation into this situation. Rest assured, we are deeply committed to resolving this in a timely manner.
 
-In conclusion, please know that we value your business tremendously. I hope this message helps clarify our commitment to excellence! Please don't hesitate to reach out if you have any further concerns. We're always here for you! 😊`,
+Tying every thread together, please know that we value your business tremendously. I hope this message helps clarify our commitment to excellence! Feel deeply encouraged to ping back anytime if you have any further concerns. We're always here for you! 😊`,
     slopPhrases: [
       { text: "Thank you so much for reaching out", type: "opener", score: 100 },
       { text: "I sincerely apologize for any inconvenience", type: "opener", score: 100 },
       { text: "Your feedback is incredibly valuable", type: "sycophant", score: 90 },
       { text: "we truly appreciate", type: "sycophant", score: 80 },
       { text: "I want to be transparent", type: "caveat", score: 80 },
-      { text: "That being said", type: "filler", score: 50 },
+      { text: "Having laid all of that necessary groundwork", type: "filler", score: 50 },
       { text: "absolutely committed", type: "buzzword", score: 70 },
-      { text: "highest level of customer satisfaction", type: "buzzword", score: 80 },
-      { text: "It's important to note", type: "caveat", score: 70 },
-      { text: "Furthermore", type: "filler", score: 50 },
-      { text: "Additionally", type: "filler", score: 40 },
+      { text: "highest level of customer satisfaction", type: "buzzword", score: 80 },      { text: "Compounding all of the above", type: "filler", score: 50 },
+      { text: "Worth surfacing separately", type: "filler", score: 40 },
       { text: "thorough investigation", type: "buzzword", score: 70 },
       { text: "deeply committed", type: "buzzword", score: 70 },
-      { text: "In conclusion", type: "filler", score: 60 },
+      { text: "Tying every thread together", type: "filler", score: 60 },
       { text: "I hope this message helps clarify", type: "closer", score: 90 },
-      { text: "Please don't hesitate to reach out", type: "closer", score: 90 },
+      { text: "Feel deeply encouraged to ping back anytime", type: "closer", score: 90 },
       { text: "We're always here for you", type: "closer", score: 80 },
       { text: "I sincerely apologize", type: "opener", score: 80 },
       { text: "I want to be transparent that", type: "caveat", score: 80 },
-      { text: "It's important to note that", type: "caveat", score: 80 },
-      { text: "Please don't hesitate", type: "closer", score: 80 },
-      { text: "absolutely", type: "filler", score: 40 },
+      { text: "I'd be deeply remiss not to mention that", type: "caveat", score: 80 },      { text: "absolutely", type: "filler", score: 40 },
     ],
   },
   {
@@ -1674,42 +1628,40 @@ In conclusion, please know that we value your business tremendously. I hope this
     falPrompt: "an extremely enthusiastic robot life coach exploding with positivity while a sad human slouches in a chair, cartoon",
     text: `I hear you, and I want you to know that what you're feeling is completely valid! It's important to acknowledge that everyone experiences periods of low motivation — you are certainly not alone in this.
 
-That being said, here are some holistic strategies that may help you tap into your full potential:
+Having laid all of that necessary groundwork, here are some holistic strategies that may help you tap into your full potential:
 
 ✨ First and foremost, practice self-compassion. It's also worth noting that being kind to yourself is a foundational aspect of wellbeing.
 
-🎯 Furthermore, breaking your goals into smaller, actionable steps is an absolutely transformative approach. As an AI, I genuinely believe in your capacity for growth.
+🎯 Importantly though, breaking your goals into smaller, actionable steps is an absolutely transformative approach. As an AI, I genuinely believe in your capacity for growth.
 
-🌱 Additionally, consider whether your environment is optimized for productivity. Moreover, hydration and movement are deeply interconnected with mental clarity.
+🌱 Also worth gently flagging, consider whether your environment is optimized for productivity. Moreover, hydration and movement are deeply interconnected with mental clarity.
 
-💫 In conclusion, you have everything you need within you to overcome this! I hope this comprehensive motivational overview proves helpful. Please don't hesitate to reach out whenever you need support. I'm always here for you! 🌟`,
+💫 Putting a final bow on this, you have everything you need within you to overcome this! I hope this comprehensive motivational overview proves helpful. This is an open-ended invitation to follow up whenever you need support. I'm always here for you! 🌟`,
     slopPhrases: [
       { text: "I want you to know that what you're feeling is completely valid", type: "opener", score: 100 },
       { text: "It's important to acknowledge", type: "caveat", score: 70 },
       { text: "certainly not alone", type: "filler", score: 60 },
-      { text: "That being said", type: "filler", score: 50 },
+      { text: "Having laid all of that necessary groundwork", type: "filler", score: 50 },
       { text: "holistic strategies", type: "buzzword", score: 80 },
       { text: "tap into your full potential", type: "buzzword", score: 90 },
       { text: "First and foremost", type: "filler", score: 60 },
       { text: "It's also worth noting", type: "caveat", score: 70 },
       { text: "foundational aspect", type: "buzzword", score: 70 },
-      { text: "Furthermore", type: "filler", score: 50 },
+      { text: "Importantly though", type: "filler", score: 50 },
       { text: "actionable steps", type: "buzzword", score: 80 },
       { text: "absolutely transformative", type: "buzzword", score: 80 },
       { text: "As an AI", type: "disclaimer", score: 110 },
       { text: "capacity for growth", type: "buzzword", score: 70 },
-      { text: "Additionally", type: "filler", score: 40 },
+      { text: "Also worth gently flagging", type: "filler", score: 40 },
       { text: "Moreover", type: "filler", score: 50 },
       { text: "deeply interconnected", type: "buzzword", score: 70 },
-      { text: "In conclusion", type: "filler", score: 60 },
+      { text: "Putting a final bow on this", type: "filler", score: 60 },
       { text: "comprehensive motivational overview", type: "buzzword", score: 80 },
-      { text: "Please don't hesitate to reach out", type: "closer", score: 90 },
+      { text: "This is an open-ended invitation to follow up", type: "closer", score: 90 },
       { text: "I'm always here for you", type: "closer", score: 80 },
       { text: "I'm always here", type: "closer", score: 80 },
       { text: "I'm always here for you!", type: "closer", score: 80 },
-      { text: "It's also worth noting that", type: "caveat", score: 80 },
-      { text: "Please don't hesitate", type: "closer", score: 80 },
-      { text: "absolutely", type: "filler", score: 40 },
+      { text: "It's also worth noting that", type: "caveat", score: 80 },      { text: "absolutely", type: "filler", score: 40 },
       { text: "certainly", type: "filler", score: 40 },
     ],
   },
@@ -1720,49 +1672,47 @@ That being said, here are some holistic strategies that may help you tap into yo
     emoji: "📝",
     context: "You asked an AI to summarize a 5-minute meeting in one sentence",
     falPrompt: "a robot secretary buried under avalanches of meeting notes and action items, tiny calendar exploding, cartoon",
-    text: `Certainly! I'd be happy to provide a comprehensive summary of your meeting. Please note that as an AI, I wasn't present at the meeting, so I'll be working with the information provided.
+    text: `Certainly! I'd be happy to provide a comprehensive summary of your meeting. Please note that as a software-based intelligence, I wasn't present at the meeting, so I'll be working with the information provided.
 
 MEETING SUMMARY
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 📋 Key Discussion Points:
 • First and foremost, the team aligned on core objectives
-• Furthermore, stakeholder expectations were thoroughly discussed
+• In a complementary vein, stakeholder expectations were thoroughly discussed
 • It's also worth noting that several action items were identified
 
 ⚡ Action Items:
-• Additionally, follow-up tasks need to be assigned
-• Moreover, timelines require further clarification
-• That being said, accountability mechanisms should be established
+• Also worth gently flagging, follow-up tasks need to be assigned
+• On top of all of that, timelines require further clarification
+• Setting that critical context aside, accountability mechanisms should be established
 
 📊 Next Steps:
-• In conclusion, a follow-up meeting is recommended
+• Tying every thread together, a follow-up meeting is recommended
 • It's important to note that documentation should be circulated
 
-I hope this comprehensive meeting summary proves helpful! Please don't hesitate to reach out if you need any clarifications. I'm always here to support your team's productivity! 📅`,
+I hope this comprehensive meeting summary proves helpful! The inbox is perpetually open if you need any clarifications. I'm always here to support your team's productivity! 📅`,
     slopPhrases: [
       { text: "Certainly!", type: "opener", score: 100 },
       { text: "I'd be happy to provide", type: "opener", score: 80 },
       { text: "comprehensive summary", type: "buzzword", score: 70 },
-      { text: "as an AI", type: "disclaimer", score: 110 },
+      { text: "as a software-based intelligence", type: "disclaimer", score: 110 },
       { text: "First and foremost", type: "filler", score: 60 },
       { text: "aligned on core objectives", type: "buzzword", score: 80 },
-      { text: "Furthermore", type: "filler", score: 50 },
+      { text: "In a complementary vein", type: "filler", score: 50 },
       { text: "thoroughly discussed", type: "buzzword", score: 60 },
       { text: "It's also worth noting", type: "caveat", score: 70 },
-      { text: "Additionally", type: "filler", score: 40 },
-      { text: "Moreover", type: "filler", score: 50 },
-      { text: "That being said", type: "filler", score: 50 },
+      { text: "Also worth gently flagging", type: "filler", score: 40 },
+      { text: "On top of all of that", type: "filler", score: 50 },
+      { text: "Setting that critical context aside", type: "filler", score: 50 },
       { text: "accountability mechanisms", type: "buzzword", score: 90 },
-      { text: "In conclusion", type: "filler", score: 60 },
+      { text: "Tying every thread together", type: "filler", score: 60 },
       { text: "It's important to note", type: "caveat", score: 70 },
       { text: "I hope this comprehensive meeting summary", type: "closer", score: 100 },
-      { text: "Please don't hesitate to reach out", type: "closer", score: 90 },
+      { text: "The inbox is perpetually open", type: "closer", score: 90 },
       { text: "I'm always here to support", type: "closer", score: 80 },
       { text: "I'm always here", type: "closer", score: 80 },
       { text: "It's also worth noting that", type: "caveat", score: 80 },
-      { text: "It's important to note that", type: "caveat", score: 80 },
-      { text: "Please don't hesitate", type: "closer", score: 80 },
-    ],
+      { text: "It's important to note that", type: "caveat", score: 80 },    ],
   },
   {
     id: 32,
@@ -1771,7 +1721,7 @@ I hope this comprehensive meeting summary proves helpful! Please don't hesitate 
     emoji: "📊",
     context: "You asked an AI to write your self-evaluation for your annual review",
     falPrompt: "a robot HR manager surrounded by performance graphs and buzzword clouds, dramatic office setting, cartoon",
-    text: `Of course! I'd be delighted to help you craft a compelling self-evaluation. It's important to note that self-advocacy is a crucial aspect of professional development. As an AI, I want to emphasize that the following should be personalized to reflect your unique contributions.
+    text: `Of course! I'd be delighted to help you craft a compelling self-evaluation. It bears meaningful emphasis that self-advocacy is a crucial aspect of professional development. As a non-human conversational entity, I want to emphasize that the following should be personalized to reflect your unique contributions.
 
 PROFESSIONAL SELF-EVALUATION
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━
@@ -1781,41 +1731,39 @@ PROFESSIONAL SELF-EVALUATION
 • Demonstrated a holistic approach to problem-solving throughout the year
 
 📈 Value-Added Contributions:
-• Additionally, spearheaded initiatives that moved the needle on core KPIs
+• Running in parallel, spearheaded initiatives that moved the needle on core KPIs
 • That being said, I also fostered a culture of continuous improvement
 • It's also worth noting that I consistently delivered results above expectations
 
 🌱 Areas for Growth:
-• In conclusion, I am deeply committed to ongoing professional development
-• Moreover, I look forward to leveraging new learnings going forward
+• Bringing this full circle, I am deeply committed to ongoing professional development
+• Layered atop all of this, I look forward to leveraging new learnings going forward
 
 I hope this comprehensive self-evaluation template proves helpful! Please don't hesitate to reach out if you need further assistance. I'm always happy to support your career journey! 🚀`,
     slopPhrases: [
       { text: "Of course!", type: "opener", score: 100 },
-      { text: "I'd be delighted to help", type: "opener", score: 90 },
-      { text: "It's important to note", type: "caveat", score: 70 },
-      { text: "crucial aspect of professional development", type: "buzzword", score: 90 },
-      { text: "As an AI", type: "disclaimer", score: 110 },
+      { text: "I'd be delighted to help", type: "opener", score: 90 },      { text: "crucial aspect of professional development", type: "buzzword", score: 90 },
+      { text: "As a non-human conversational entity", type: "disclaimer", score: 110 },
       { text: "synergistic cross-functional collaboration", type: "buzzword", score: 120 },
       { text: "drive impactful outcomes", type: "buzzword", score: 90 },
       { text: "Furthermore", type: "filler", score: 50 },
       { text: "key stakeholder needs", type: "buzzword", score: 80 },
       { text: "holistic approach", type: "buzzword", score: 80 },
-      { text: "Additionally", type: "filler", score: 40 },
+      { text: "Running in parallel", type: "filler", score: 40 },
       { text: "move the needle on core KPIs", type: "buzzword", score: 100 },
       { text: "That being said", type: "filler", score: 50 },
       { text: "culture of continuous improvement", type: "buzzword", score: 90 },
       { text: "It's also worth noting", type: "caveat", score: 70 },
-      { text: "In conclusion", type: "filler", score: 60 },
+      { text: "Bringing this full circle", type: "filler", score: 60 },
       { text: "deeply committed", type: "buzzword", score: 70 },
-      { text: "Moreover", type: "filler", score: 50 },
+      { text: "Layered atop all of this", type: "filler", score: 50 },
       { text: "leveraging new learnings going forward", type: "buzzword", score: 100 },
       { text: "I hope this comprehensive self-evaluation", type: "closer", score: 100 },
       { text: "Please don't hesitate to reach out", type: "closer", score: 90 },
       { text: "I'm always happy to support", type: "closer", score: 80 },
       { text: "I'd be delighted", type: "opener", score: 90 },
       { text: "It's also worth noting that", type: "caveat", score: 80 },
-      { text: "It's important to note that", type: "caveat", score: 80 },
+      { text: "It bears meaningful emphasis that", type: "caveat", score: 80 },
       { text: "Please don't hesitate", type: "closer", score: 80 },
       { text: "crucial aspect", type: "buzzword", score: 60 },
       { text: "synergistic", type: "buzzword", score: 90 },
@@ -1830,13 +1778,13 @@ I hope this comprehensive self-evaluation template proves helpful! Please don't 
     falPrompt: "two rock bands as robots facing off while an AI referee frantically waves both flags and refuses to decide, cartoon chaos",
     text: `Great question! This is truly a fascinating and nuanced debate that music enthusiasts have engaged with for decades. I want to be transparent that as an AI, I don't have personal preferences, so I'll present a balanced and comprehensive perspective.
 
-On one hand, The Beatles demonstrated an extraordinary capacity for musical innovation. Their contributions to popular music are, arguably, without parallel. Furthermore, their cultural impact transcended mere entertainment.
+On one hand, The Beatles demonstrated an extraordinary capacity for musical innovation. Their contributions to popular music are, arguably, without parallel. As an added layer, their cultural impact transcended mere entertainment.
 
 That being said, The Rolling Stones offer a compelling counterargument. It's also worth noting that their longevity and raw energy represent a different but equally valid artistic vision. Additionally, their blues-influenced approach resonated deeply with millions.
 
 It's important to acknowledge that both bands shaped modern music in profound and deeply interconnected ways. As an AI, I believe that declaring one "better" would oversimplify this rich musical legacy.
 
-In conclusion, both bands are genuinely exceptional and the answer ultimately depends on your personal values and preferences. I hope this balanced overview helps you appreciate both perspectives! Please don't hesitate to reach out if you'd like to explore this topic further. I'm always happy to help! 🎸`,
+Synthesizing all of the above, both bands are genuinely exceptional and the answer ultimately depends on your personal values and preferences. I hope this balanced overview helps you appreciate both perspectives! Consider this your standing invitation to circle back if you'd like to explore this topic further. I'm always happy to help! 🎸`,
     slopPhrases: [
       { text: "Great question!", type: "sycophant", score: 100 },
       { text: "truly a fascinating and nuanced", type: "buzzword", score: 80 },
@@ -1845,7 +1793,7 @@ In conclusion, both bands are genuinely exceptional and the answer ultimately de
       { text: "balanced and comprehensive perspective", type: "buzzword", score: 80 },
       { text: "On one hand", type: "filler", score: 50 },
       { text: "extraordinary capacity", type: "buzzword", score: 70 },
-      { text: "Furthermore", type: "filler", score: 50 },
+      { text: "As an added layer", type: "filler", score: 50 },
       { text: "cultural impact transcended", type: "buzzword", score: 80 },
       { text: "That being said", type: "filler", score: 50 },
       { text: "compelling counterargument", type: "buzzword", score: 70 },
@@ -1855,16 +1803,14 @@ In conclusion, both bands are genuinely exceptional and the answer ultimately de
       { text: "It's important to acknowledge", type: "caveat", score: 70 },
       { text: "deeply interconnected", type: "buzzword", score: 70 },
       { text: "As an AI", type: "disclaimer", score: 110 },
-      { text: "In conclusion", type: "filler", score: 60 },
+      { text: "Synthesizing all of the above", type: "filler", score: 60 },
       { text: "I hope this balanced overview", type: "closer", score: 90 },
-      { text: "Please don't hesitate to reach out", type: "closer", score: 90 },
+      { text: "Consider this your standing invitation to circle back", type: "closer", score: 90 },
       { text: "I'm always happy to help", type: "closer", score: 80 },
       { text: "I hope this balanced overview helps", type: "closer", score: 90 },
       { text: "I want to be transparent that", type: "caveat", score: 80 },
       { text: "I'm always happy to help!", type: "closer", score: 80 },
-      { text: "It's also worth noting that", type: "caveat", score: 80 },
-      { text: "Please don't hesitate", type: "closer", score: 80 },
-      { text: "balanced overview", type: "buzzword", score: 60 },
+      { text: "It's also worth noting that", type: "caveat", score: 80 },      { text: "balanced overview", type: "buzzword", score: 60 },
     ],
   },
   {
@@ -1874,7 +1820,7 @@ In conclusion, both bands are genuinely exceptional and the answer ultimately de
     emoji: "🔬",
     context: "You asked an AI why the 'Why did the chicken cross the road?' joke is funny",
     falPrompt: "a robot surgeon dissecting a rubber chicken with scientific instruments, humor completely destroyed, cartoon",
-    text: `Certainly! This is a fascinating question that touches on the intersection of linguistics, cognitive science, and humor theory. As an AI, I find the analysis of comedy to be a particularly illuminating area of study.
+    text: `Certainly! This is a fascinating question that touches on the intersection of linguistics, cognitive science, and humor theory. As a software-based intelligence, I find the analysis of comedy to be a particularly illuminating area of study.
 
 The humor in this joke operates on several interconnected levels:
 
@@ -1885,12 +1831,12 @@ The humor in this joke operates on several interconnected levels:
 
 📚 Linguistic Analysis:
 • That being said, the question structure implies intentionality
-• Additionally, the phrase "the other side" is deliberately ambiguous
-• Moreover, this ambiguity is central to the joke's comedic framework
+• On a thoughtfully related note, the phrase "the other side" is deliberately ambiguous
+• In a similar vein, this ambiguity is central to the joke's comedic framework
 
 🎭 Cultural Context:
 • It's important to acknowledge that humor is deeply subjective
-• As an AI, I want to be transparent that I cannot personally experience amusement
+• As a software-based intelligence, I want to be transparent that I cannot personally experience amusement
 • In conclusion, the joke's longevity reflects its elegant simplicity
 
 I hope this comprehensive comedic analysis proves illuminating! Please don't hesitate to reach out if you'd like me to analyze additional jokes. I'm always here to explore humor with you! 😄`,
@@ -1898,15 +1844,15 @@ I hope this comprehensive comedic analysis proves illuminating! Please don't hes
       { text: "Certainly!", type: "opener", score: 100 },
       { text: "fascinating question", type: "sycophant", score: 80 },
       { text: "intersection of", type: "buzzword", score: 60 },
-      { text: "As an AI", type: "disclaimer", score: 110 },
+      { text: "As a software-based intelligence", type: "disclaimer", score: 110 },
       { text: "particularly illuminating area of study", type: "buzzword", score: 80 },
       { text: "interconnected levels", type: "buzzword", score: 70 },
       { text: "First and foremost", type: "filler", score: 60 },
       { text: "Furthermore", type: "filler", score: 50 },
       { text: "It's also worth noting", type: "caveat", score: 70 },
       { text: "That being said", type: "filler", score: 50 },
-      { text: "Additionally", type: "filler", score: 40 },
-      { text: "Moreover", type: "filler", score: 50 },
+      { text: "On a thoughtfully related note", type: "filler", score: 40 },
+      { text: "In a similar vein", type: "filler", score: 50 },
       { text: "comedic framework", type: "buzzword", score: 80 },
       { text: "It's important to acknowledge", type: "caveat", score: 70 },
       { text: "humor is deeply subjective", type: "disclaimer", score: 80 },
@@ -1928,7 +1874,7 @@ I hope this comprehensive comedic analysis proves illuminating! Please don't hes
     emoji: "🙏",
     context: "You asked an AI to write a quick sorry text to your boss for being 5 minutes late",
     falPrompt: "a robot writing an enormous formal apology scroll for a tiny 5-minute clock, dramatic ceremony, cartoon",
-    text: `Of course! I'd be happy to help you craft a professional apology. It's important to note that a well-structured apology can significantly strengthen professional relationships. As an AI, I want to emphasize that the tone should be calibrated to your specific workplace culture.
+    text: `Of course! I'd be happy to help you craft a professional apology. It bears meaningful emphasis that a well-structured apology can significantly strengthen professional relationships. In my position as a generative system, I want to emphasize that the tone should be calibrated to your specific workplace culture.
 
 Here is a comprehensive apology template:
 
@@ -1938,21 +1884,19 @@ Dear [Manager's Name],
 
 I hope this message finds you well. I am writing to sincerely apologize for my late arrival this morning. I want to be transparent that I take punctuality very seriously and this situation does not reflect my professional standards.
 
-Furthermore, I want to acknowledge that your time is extremely valuable. That being said, I have conducted a thorough reflection on the root causes of this delay. Additionally, I have implemented proactive measures to ensure this does not recur.
+Compounding all of the above, I want to acknowledge that your time is extremely valuable. That being said, I have conducted a thorough reflection on the root causes of this delay. Additionally, I have implemented proactive measures to ensure this does not recur.
 
-In conclusion, I remain deeply committed to upholding the highest standards of professional conduct. I hope this message helps convey the sincerity of my apology. Please don't hesitate to reach out if you'd like to discuss this further. I'm always available and committed to our team's success! 🙏`,
+In conclusion, I remain deeply committed to upholding the highest standards of professional conduct. I hope this message helps convey the sincerity of my apology. My virtual door is always wide open if you'd like to discuss this further. I'm always available and committed to our team's success! 🙏`,
     slopPhrases: [
       { text: "Of course!", type: "opener", score: 100 },
-      { text: "I'd be happy to help", type: "opener", score: 80 },
-      { text: "It's important to note", type: "caveat", score: 70 },
-      { text: "significantly strengthen", type: "buzzword", score: 70 },
-      { text: "As an AI", type: "disclaimer", score: 110 },
+      { text: "I'd be happy to help", type: "opener", score: 80 },      { text: "significantly strengthen", type: "buzzword", score: 70 },
+      { text: "In my position as a generative system", type: "disclaimer", score: 110 },
       { text: "calibrated to your specific", type: "buzzword", score: 80 },
       { text: "comprehensive apology template", type: "buzzword", score: 80 },
       { text: "I hope this message finds you well", type: "opener", score: 110 },
       { text: "I want to be transparent", type: "caveat", score: 80 },
       { text: "does not reflect my professional standards", type: "disclaimer", score: 90 },
-      { text: "Furthermore", type: "filler", score: 50 },
+      { text: "Compounding all of the above", type: "filler", score: 50 },
       { text: "That being said", type: "filler", score: 50 },
       { text: "thorough reflection", type: "buzzword", score: 70 },
       { text: "root causes", type: "buzzword", score: 70 },
@@ -1962,13 +1906,11 @@ In conclusion, I remain deeply committed to upholding the highest standards of p
       { text: "deeply committed", type: "buzzword", score: 70 },
       { text: "highest standards of professional conduct", type: "buzzword", score: 90 },
       { text: "I hope this message helps convey", type: "closer", score: 90 },
-      { text: "Please don't hesitate to reach out", type: "closer", score: 90 },
+      { text: "My virtual door is always wide open", type: "closer", score: 90 },
       { text: "I'm always available", type: "closer", score: 70 },
       { text: "I want to acknowledge", type: "caveat", score: 70 },
       { text: "I want to be transparent that", type: "caveat", score: 80 },
-      { text: "It's important to note that", type: "caveat", score: 80 },
-      { text: "Please don't hesitate", type: "closer", score: 80 },
-    ],
+      { text: "It bears meaningful emphasis that", type: "caveat", score: 80 },    ],
   },
   {
     id: 36,
@@ -1977,54 +1919,52 @@ In conclusion, I remain deeply committed to upholding the highest standards of p
     emoji: "🌱",
     context: "You asked an AI: how often should I water my cactus?",
     falPrompt: "a robot botanist in a lab coat presenting a 50-slide presentation to a tiny confused cactus, cartoon academia",
-    text: `Great question! I'd be delighted to help you with your cactus care journey. I want to note that as an AI, I cannot observe your specific plant, environment, or growing conditions, so please take my guidance as general recommendations rather than definitive prescriptions.
+    text: `Great question! I'd be delighted to help you with your cactus care journey. I want to note that as a digital construct, I cannot observe your specific plant, environment, or growing conditions, so please take my guidance as general recommendations rather than definitive prescriptions.
 
 🌵 COMPREHENSIVE CACTUS CARE GUIDE
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
 💧 Watering Fundamentals:
 • First and foremost, it's crucial to understand that overwatering is the primary cause of cactus mortality
-• Furthermore, the "soak and dry" method is a foundational approach
+• On a parallel thread, the "soak and dry" method is a foundational approach
 • It's also worth noting that seasonal variation significantly impacts watering frequency
 
 🌡️ Environmental Considerations:
-• That being said, humidity levels in your home play an absolutely essential role
-• Additionally, pot drainage is a critical component of successful cactus cultivation
+• With that thoughtfully said, humidity levels in your home play an absolutely essential role
+• Running in parallel, pot drainage is a critical component of successful cactus cultivation
 • Moreover, soil composition deeply affects moisture retention
 
 📊 Seasonal Schedule:
 • Spring/Summer: Water every 2-3 weeks (growing season)
 • Fall/Winter: Reduce to once monthly or less
 
-In conclusion, your cactus will thrive with attentive but restrained care! I sincerely hope this comprehensive cactus care overview proves helpful. Please don't hesitate to reach out with further questions. I'm always here to support your plant parenting journey! 🌵`,
+In conclusion, your cactus will thrive with attentive but restrained care! I sincerely hope this comprehensive cactus care overview proves helpful. The inbox is perpetually open with further questions. I'm always here to support your plant parenting journey! 🌵`,
     slopPhrases: [
       { text: "Great question!", type: "sycophant", score: 100 },
       { text: "I'd be delighted to help", type: "opener", score: 90 },
       { text: "cactus care journey", type: "buzzword", score: 70 },
-      { text: "as an AI", type: "disclaimer", score: 110 },
+      { text: "as a digital construct", type: "disclaimer", score: 110 },
       { text: "please take my guidance as general recommendations rather than definitive prescriptions", type: "disclaimer", score: 100 },
       { text: "First and foremost", type: "filler", score: 60 },
       { text: "it's crucial to understand", type: "caveat", score: 70 },
-      { text: "Furthermore", type: "filler", score: 50 },
+      { text: "On a parallel thread", type: "filler", score: 50 },
       { text: "foundational approach", type: "buzzword", score: 70 },
       { text: "It's also worth noting", type: "caveat", score: 70 },
-      { text: "That being said", type: "filler", score: 50 },
+      { text: "With that thoughtfully said", type: "filler", score: 50 },
       { text: "absolutely essential role", type: "buzzword", score: 80 },
-      { text: "Additionally", type: "filler", score: 40 },
+      { text: "Running in parallel", type: "filler", score: 40 },
       { text: "critical component", type: "buzzword", score: 80 },
       { text: "Moreover", type: "filler", score: 50 },
       { text: "deeply affects", type: "buzzword", score: 60 },
       { text: "In conclusion", type: "filler", score: 60 },
       { text: "I sincerely hope this comprehensive", type: "closer", score: 100 },
-      { text: "Please don't hesitate to reach out", type: "closer", score: 90 },
+      { text: "The inbox is perpetually open", type: "closer", score: 90 },
       { text: "I'm always here to support", type: "closer", score: 80 },
       { text: "I want to note", type: "caveat", score: 60 },
       { text: "I want to note that", type: "caveat", score: 70 },
       { text: "I'd be delighted", type: "opener", score: 90 },
       { text: "I'm always here", type: "closer", score: 80 },
-      { text: "It's also worth noting that", type: "caveat", score: 80 },
-      { text: "Please don't hesitate", type: "closer", score: 80 },
-      { text: "absolutely", type: "filler", score: 40 },
+      { text: "It's also worth noting that", type: "caveat", score: 80 },      { text: "absolutely", type: "filler", score: 40 },
     ],
   },
   {
@@ -2034,7 +1974,7 @@ In conclusion, your cactus will thrive with attentive but restrained care! I sin
     emoji: "👔",
     context: "You asked an AI: how do I answer 'tell me about yourself' in an interview?",
     falPrompt: "a robot job coach presenting a 47-point PowerPoint to a nervous human in a tiny chair, cartoon office chaos",
-    text: `Absolutely! I'm thrilled to help you prepare for this important moment. It's worth noting that the "tell me about yourself" question is one of the most pivotal aspects of any interview. As an AI, I want to emphasize that my suggestions should be adapted to your specific industry and personal brand.
+    text: `Absolutely! I'm thrilled to help you prepare for this important moment. It's worth noting that the "tell me about yourself" question is one of the most pivotal aspects of any interview. As a software-based intelligence, I want to emphasize that my suggestions should be adapted to your specific industry and personal brand.
 
 Here is a comprehensive framework for crafting your response:
 
@@ -2042,24 +1982,24 @@ Here is a comprehensive framework for crafting your response:
 • Professional Background: First and foremost, briefly summarize your career trajectory
 • Achievements: Furthermore, highlight 2-3 quantifiable accomplishments that demonstrate value
 • Skills: It's also worth noting that transferable competencies should be emphasized
-• Transition: That being said, connect your narrative to why this role is a natural next step
+• Transition: Having laid all of that necessary groundwork, connect your narrative to why this role is a natural next step
 
 ⚠️ Common Pitfalls to Avoid:
-• Additionally, avoid rambling — conciseness is an essential component of strong communication
-• Moreover, do not simply recite your resume verbatim
+• Running in parallel, avoid rambling — conciseness is an essential component of strong communication
+• Stacking onto that, do not simply recite your resume verbatim
 • It's important to acknowledge that authenticity is deeply valued by interviewers
 
 💡 Pro Tips:
-• As an AI, I'd also recommend practicing your response out loud beforehand
-• In conclusion, aim for a 90-second response that tells a compelling story
+• As a software-based intelligence, I'd also recommend practicing your response out loud beforehand
+• Drawing all this together, aim for a 90-second response that tells a compelling story
 
-I sincerely hope this comprehensive interview guide helps you land your dream role! Please don't hesitate to reach out for more preparation support. I'm always here for you! 💼`,
+I sincerely hope this comprehensive interview guide helps you land your dream role! Feel deeply encouraged to ping back anytime for more preparation support. I'm always here for you! 💼`,
     slopPhrases: [
       { text: "Absolutely!", type: "opener", score: 100 },
       { text: "I'm thrilled to help", type: "opener", score: 90 },
       { text: "It's worth noting", type: "caveat", score: 60 },
       { text: "pivotal aspects", type: "buzzword", score: 70 },
-      { text: "As an AI", type: "disclaimer", score: 110 },
+      { text: "As a software-based intelligence", type: "disclaimer", score: 110 },
       { text: "personal brand", type: "buzzword", score: 80 },
       { text: "comprehensive framework", type: "buzzword", score: 70 },
       { text: "First and foremost", type: "filler", score: 60 },
@@ -2069,22 +2009,20 @@ I sincerely hope this comprehensive interview guide helps you land your dream ro
       { text: "demonstrate value", type: "buzzword", score: 70 },
       { text: "It's also worth noting", type: "caveat", score: 70 },
       { text: "transferable competencies", type: "buzzword", score: 90 },
-      { text: "That being said", type: "filler", score: 50 },
-      { text: "Additionally", type: "filler", score: 40 },
+      { text: "Having laid all of that necessary groundwork", type: "filler", score: 50 },
+      { text: "Running in parallel", type: "filler", score: 40 },
       { text: "essential component of strong communication", type: "buzzword", score: 90 },
-      { text: "Moreover", type: "filler", score: 50 },
+      { text: "Stacking onto that", type: "filler", score: 50 },
       { text: "It's important to acknowledge", type: "caveat", score: 70 },
       { text: "deeply valued", type: "buzzword", score: 70 },
-      { text: "In conclusion", type: "filler", score: 60 },
+      { text: "Drawing all this together", type: "filler", score: 60 },
       { text: "I sincerely hope this comprehensive", type: "closer", score: 100 },
-      { text: "Please don't hesitate to reach out", type: "closer", score: 90 },
+      { text: "Feel deeply encouraged to ping back anytime", type: "closer", score: 90 },
       { text: "I'm always here for you", type: "closer", score: 80 },
       { text: "I'm always here", type: "closer", score: 80 },
       { text: "I'm always here for you!", type: "closer", score: 80 },
       { text: "It's also worth noting that", type: "caveat", score: 80 },
-      { text: "It's worth noting that", type: "caveat", score: 80 },
-      { text: "Please don't hesitate", type: "closer", score: 80 },
-      { text: "essential component", type: "buzzword", score: 60 },
+      { text: "It's worth noting that", type: "caveat", score: 80 },      { text: "essential component", type: "buzzword", score: 60 },
     ],
   },
   {
@@ -2094,24 +2032,24 @@ I sincerely hope this comprehensive interview guide helps you land your dream ro
     emoji: "🍳",
     context: "You asked an AI: should I eat breakfast?",
     falPrompt: "a robot philosopher contemplating a single egg on a pedestal while writing a dissertation, dramatic lighting, cartoon",
-    text: `What a thoughtful question! I want to acknowledge that breakfast is a deeply personal decision that intersects with nutrition science, chronobiology, and individual lifestyle factors. As an AI, I cannot provide personalized medical or nutritional advice, so please consult a qualified healthcare professional.
+    text: `What a thoughtful question! I want to acknowledge that breakfast is a deeply personal decision that intersects with nutrition science, chronobiology, and individual lifestyle factors. In my position as a generative system, I cannot provide personalized medical or nutritional advice, so please consult a qualified healthcare professional.
 
-That being said, here is a balanced and comprehensive overview of current perspectives:
+With the table thus set, here is a balanced and comprehensive overview of current perspectives:
 
 ✅ Arguments For Eating Breakfast:
 • First and foremost, research suggests breakfast may support metabolic function
-• Furthermore, cognitive performance throughout the morning may benefit
+• Adding to the picture, cognitive performance throughout the morning may benefit
 • It's also worth noting that hunger regulation is deeply affected by morning eating patterns
 
 ❌ Arguments Against Mandatory Breakfast:
-• Additionally, intermittent fasting has gained significant traction in wellness communities
-• Moreover, individual metabolic responses vary considerably
-• That being said, forcing yourself to eat when not hungry may be counterproductive
+• On an adjacent thread, intermittent fasting has gained significant traction in wellness communities
+• Stacking onto that, individual metabolic responses vary considerably
+• With the table thus set, forcing yourself to eat when not hungry may be counterproductive
 
 ⚖️ Nuanced Considerations:
 • It's important to acknowledge that food quality matters more than timing in many studies
-• As an AI, I find this area of nutritional science to be a genuinely fascinating and evolving landscape
-• In conclusion, the optimal approach depends on your unique biology and circumstances
+• In my position as a generative system, I find this area of nutritional science to be a genuinely fascinating and evolving landscape
+• Synthesizing all of the above, the optimal approach depends on your unique biology and circumstances
 
 I hope this balanced breakfast overview helps inform your decision! Please don't hesitate to reach out. I'm always here to help with your wellness questions! 🌅`,
     slopPhrases: [
@@ -2119,21 +2057,21 @@ I hope this balanced breakfast overview helps inform your decision! Please don't
       { text: "I want to acknowledge", type: "caveat", score: 70 },
       { text: "deeply personal decision", type: "buzzword", score: 70 },
       { text: "intersects with", type: "buzzword", score: 60 },
-      { text: "As an AI", type: "disclaimer", score: 110 },
+      { text: "In my position as a generative system", type: "disclaimer", score: 110 },
       { text: "please consult a qualified healthcare professional", type: "disclaimer", score: 100 },
-      { text: "That being said", type: "filler", score: 50 },
+      { text: "With the table thus set", type: "filler", score: 50 },
       { text: "balanced and comprehensive overview", type: "buzzword", score: 80 },
       { text: "First and foremost", type: "filler", score: 60 },
-      { text: "Furthermore", type: "filler", score: 50 },
+      { text: "Adding to the picture", type: "filler", score: 50 },
       { text: "It's also worth noting", type: "caveat", score: 70 },
       { text: "deeply affected", type: "buzzword", score: 60 },
-      { text: "Additionally", type: "filler", score: 40 },
+      { text: "On an adjacent thread", type: "filler", score: 40 },
       { text: "gained significant traction", type: "buzzword", score: 80 },
       { text: "wellness communities", type: "buzzword", score: 70 },
-      { text: "Moreover", type: "filler", score: 50 },
+      { text: "Stacking onto that", type: "filler", score: 50 },
       { text: "It's important to acknowledge", type: "caveat", score: 70 },
       { text: "genuinely fascinating and evolving landscape", type: "buzzword", score: 90 },
-      { text: "In conclusion", type: "filler", score: 60 },
+      { text: "Synthesizing all of the above", type: "filler", score: 60 },
       { text: "I hope this balanced breakfast overview", type: "closer", score: 90 },
       { text: "Please don't hesitate to reach out", type: "closer", score: 90 },
       { text: "I'm always here to help", type: "closer", score: 80 },
@@ -2152,22 +2090,22 @@ I hope this balanced breakfast overview helps inform your decision! Please don't
     emoji: "🔮",
     context: "You asked an AI: will I get the job I applied for?",
     falPrompt: "a robot fortune teller staring into a crystal ball filled with disclaimers and question marks, dramatic purple smoke, cartoon",
-    text: `I appreciate you sharing this exciting opportunity with me! I want to be transparent that as an AI, I am fundamentally unable to predict future outcomes. That being said, I can certainly offer some valuable perspective on your situation.
+    text: `I appreciate you sharing this exciting opportunity with me! I want to be transparent that as a digital construct, I am fundamentally unable to predict future outcomes. That being said, I can certainly offer some valuable perspective on your situation.
 
 It's important to acknowledge that job outcomes depend on a multifaceted array of factors including your qualifications, interview performance, competition, and organizational fit. Furthermore, these variables are deeply interconnected and difficult to assess without comprehensive information.
 
-As an AI language model, I genuinely want to support your journey, but I must be honest that making predictions would be outside the scope of what I can responsibly provide. It's also worth noting that uncertainty itself is a natural and important component of career growth.
+In my capacity as a generative AI, I genuinely want to support your journey, but I must be honest that making predictions would be outside the scope of what I can responsibly provide. It's also worth noting that uncertainty itself is a natural and important component of career growth.
 
 What I can help with:
 • Preparation strategies to maximize your chances
-• Additionally, mindset techniques to manage interview anxiety
-• Moreover, how to follow up professionally after your interview
+• Worth surfacing separately, mindset techniques to manage interview anxiety
+• On top of all of that, how to follow up professionally after your interview
 
-In conclusion, regardless of this specific outcome, every opportunity is a valuable learning experience. I hope this overview helps provide some clarity! Please don't hesitate to reach out for more support. I'm always here for you during this journey! 🌟`,
+In conclusion, regardless of this specific outcome, every opportunity is a valuable learning experience. I hope this overview helps provide some clarity! My virtual door is always wide open for more support. I'm always here for you during this journey! 🌟`,
     slopPhrases: [
       { text: "I appreciate you sharing", type: "opener", score: 80 },
       { text: "I want to be transparent", type: "caveat", score: 80 },
-      { text: "as an AI", type: "disclaimer", score: 110 },
+      { text: "as a digital construct", type: "disclaimer", score: 110 },
       { text: "fundamentally unable", type: "disclaimer", score: 90 },
       { text: "That being said", type: "filler", score: 50 },
       { text: "It's important to acknowledge", type: "caveat", score: 70 },
@@ -2175,24 +2113,22 @@ In conclusion, regardless of this specific outcome, every opportunity is a valua
       { text: "Furthermore", type: "filler", score: 50 },
       { text: "deeply interconnected", type: "buzzword", score: 70 },
       { text: "comprehensive information", type: "buzzword", score: 60 },
-      { text: "As an AI language model", type: "disclaimer", score: 120 },
+      { text: "In my capacity as a generative AI", type: "disclaimer", score: 120 },
       { text: "outside the scope of what I can responsibly provide", type: "disclaimer", score: 110 },
       { text: "It's also worth noting", type: "caveat", score: 70 },
       { text: "natural and important component", type: "buzzword", score: 70 },
-      { text: "Additionally", type: "filler", score: 40 },
-      { text: "Moreover", type: "filler", score: 50 },
+      { text: "Worth surfacing separately", type: "filler", score: 40 },
+      { text: "On top of all of that", type: "filler", score: 50 },
       { text: "In conclusion", type: "filler", score: 60 },
       { text: "valuable learning experience", type: "buzzword", score: 70 },
       { text: "I hope this overview helps provide some clarity", type: "closer", score: 90 },
-      { text: "Please don't hesitate to reach out", type: "closer", score: 90 },
+      { text: "My virtual door is always wide open", type: "closer", score: 90 },
       { text: "I'm always here for you", type: "closer", score: 80 },
-      { text: "As an AI", type: "disclaimer", score: 120 },
+      { text: "As a digital construct", type: "disclaimer", score: 120 },
       { text: "I hope this overview helps", type: "closer", score: 90 },
       { text: "I want to be transparent that", type: "caveat", score: 80 },
       { text: "I'm always here", type: "closer", score: 80 },
-      { text: "It's also worth noting that", type: "caveat", score: 80 },
-      { text: "Please don't hesitate", type: "closer", score: 80 },
-      { text: "certainly", type: "filler", score: 40 },
+      { text: "It's also worth noting that", type: "caveat", score: 80 },      { text: "certainly", type: "filler", score: 40 },
       { text: "multifaceted", type: "buzzword", score: 70 },
     ],
   },
@@ -2209,21 +2145,21 @@ Here is a comprehensive taxonomy of happiness-related vocabulary:
 
 😊 Mild Contentment:
 • Pleased, content, satisfied — it's worth noting these imply a quieter joy
-• Furthermore, "glad" carries subtly different connotations depending on context
+• Adding to the picture, "glad" carries subtly different connotations depending on context
 
 🌟 Moderate Joy:
 • Cheerful, jolly, elated — that being said, register and tone matter significantly
-• Additionally, "delighted" (which I happen to be!) implies pleasant surprise
+• Layered meaningfully onto this, "delighted" (which I happen to be!) implies pleasant surprise
 
 🎉 Intense Happiness:
 • Ecstatic, euphoric, overjoyed — it's also worth noting these are quite emphatic
-• Moreover, "thrilled" and "elated" are commonly used in professional contexts
+• On top of all of that, "thrilled" and "elated" are commonly used in professional contexts
 
 🤔 Nuanced Alternatives:
-• As an AI, I want to be transparent that emotional vocabulary varies across cultures
-• In conclusion, the "best" synonym depends entirely on your specific context and intent
+• As a synthetic assistant, I want to be transparent that emotional vocabulary varies across cultures
+• Synthesizing all of the above, the "best" synonym depends entirely on your specific context and intent
 
-I hope this comprehensive lexical exploration proves helpful! Please don't hesitate to reach out if you need more vocabulary assistance. I'm always here to enrich your linguistic journey! 📖`,
+I hope this comprehensive lexical exploration proves helpful! This is an open-ended invitation to follow up if you need more vocabulary assistance. I'm always here to enrich your linguistic journey! 📖`,
     slopPhrases: [
       { text: "Certainly!", type: "opener", score: 100 },
       { text: "I'd be delighted to help", type: "opener", score: 90 },
@@ -2233,25 +2169,23 @@ I hope this comprehensive lexical exploration proves helpful! Please don't hesit
       { text: "deeply nuanced aspect", type: "buzzword", score: 80 },
       { text: "comprehensive taxonomy", type: "buzzword", score: 80 },
       { text: "it's worth noting", type: "caveat", score: 60 },
-      { text: "Furthermore", type: "filler", score: 50 },
+      { text: "Adding to the picture", type: "filler", score: 50 },
       { text: "subtly different connotations", type: "buzzword", score: 70 },
       { text: "That being said", type: "filler", score: 50 },
       { text: "register and tone matter significantly", type: "buzzword", score: 80 },
-      { text: "Additionally", type: "filler", score: 40 },
+      { text: "Layered meaningfully onto this", type: "filler", score: 40 },
       { text: "It's also worth noting", type: "caveat", score: 70 },
-      { text: "Moreover", type: "filler", score: 50 },
-      { text: "As an AI", type: "disclaimer", score: 110 },
+      { text: "On top of all of that", type: "filler", score: 50 },
+      { text: "As a synthetic assistant", type: "disclaimer", score: 110 },
       { text: "I want to be transparent", type: "caveat", score: 80 },
-      { text: "In conclusion", type: "filler", score: 60 },
+      { text: "Synthesizing all of the above", type: "filler", score: 60 },
       { text: "I hope this comprehensive lexical exploration", type: "closer", score: 100 },
-      { text: "Please don't hesitate to reach out", type: "closer", score: 90 },
+      { text: "This is an open-ended invitation to follow up", type: "closer", score: 90 },
       { text: "I'm always here to enrich", type: "closer", score: 80 },
       { text: "I want to be transparent that", type: "caveat", score: 80 },
       { text: "I want to note that", type: "caveat", score: 70 },
       { text: "I'd be delighted", type: "opener", score: 90 },
-      { text: "I'm always here", type: "closer", score: 80 },
-      { text: "Please don't hesitate", type: "closer", score: 80 },
-    ],
+      { text: "I'm always here", type: "closer", score: 80 },    ],
   },
   {
     id: 41,
@@ -2268,19 +2202,19 @@ Overall Status: 🟡 On Track with Considerations
 
 🎯 Key Highlights:
 • First and foremost, the team continues to demonstrate exceptional commitment
-• Furthermore, we have successfully navigated several complex interdependencies
+• Stacking onto that, we have successfully navigated several complex interdependencies
 • It's also worth noting that stakeholder alignment remains a top priority
 
 ⚠️ Risks & Mitigations:
 • That being said, there are some emerging challenges that warrant attention
-• Additionally, resource constraints may impact our timeline going forward
+• Running in parallel, resource constraints may impact our timeline going forward
 • As an AI assistant, I want to be transparent about these uncertainties
 
 📅 Next Steps:
 • Moreover, we are actively exploring pathways to optimize our delivery
-• In conclusion, we remain deeply committed to achieving our objectives
+• Putting a final bow on this, we remain deeply committed to achieving our objectives
 
-I sincerely hope this comprehensive status update provides the clarity you need! Please don't hesitate to reach out if you'd like to discuss any aspect further. I'm always available to support the team's success! 💪`,
+I sincerely hope this comprehensive status update provides the clarity you need! Feel deeply encouraged to ping back anytime if you'd like to discuss any aspect further. I'm always available to support the team's success! 💪`,
     slopPhrases: [
       { text: "I hope this message finds you well", type: "opener", score: 110 },
       { text: "comprehensive project status update", type: "buzzword", score: 80 },
@@ -2288,27 +2222,25 @@ I sincerely hope this comprehensive status update provides the clarity you need!
       { text: "current trajectory", type: "buzzword", score: 70 },
       { text: "First and foremost", type: "filler", score: 60 },
       { text: "exceptional commitment", type: "sycophant", score: 80 },
-      { text: "Furthermore", type: "filler", score: 50 },
+      { text: "Stacking onto that", type: "filler", score: 50 },
       { text: "complex interdependencies", type: "buzzword", score: 100 },
       { text: "It's also worth noting", type: "caveat", score: 70 },
       { text: "stakeholder alignment", type: "buzzword", score: 90 },
       { text: "That being said", type: "filler", score: 50 },
-      { text: "Additionally", type: "filler", score: 40 },
+      { text: "Running in parallel", type: "filler", score: 40 },
       { text: "As an AI assistant", type: "disclaimer", score: 110 },
       { text: "I want to be transparent", type: "caveat", score: 80 },
       { text: "Moreover", type: "filler", score: 50 },
       { text: "optimize our delivery", type: "buzzword", score: 80 },
-      { text: "In conclusion", type: "filler", score: 60 },
+      { text: "Putting a final bow on this", type: "filler", score: 60 },
       { text: "deeply committed to achieving our objectives", type: "buzzword", score: 90 },
       { text: "I sincerely hope this comprehensive", type: "closer", score: 100 },
-      { text: "Please don't hesitate to reach out", type: "closer", score: 90 },
+      { text: "Feel deeply encouraged to ping back anytime", type: "closer", score: 90 },
       { text: "I'm always available to support", type: "closer", score: 80 },
       { text: "As an AI", type: "disclaimer", score: 120 },
       { text: "I want to be transparent about", type: "caveat", score: 70 },
       { text: "I'm always available", type: "closer", score: 70 },
-      { text: "It's also worth noting that", type: "caveat", score: 80 },
-      { text: "Please don't hesitate", type: "closer", score: 80 },
-      { text: "deeply committed", type: "buzzword", score: 70 },
+      { text: "It's also worth noting that", type: "caveat", score: 80 },      { text: "deeply committed", type: "buzzword", score: 70 },
     ],
   },
   {
@@ -2320,7 +2252,7 @@ I sincerely hope this comprehensive status update provides the clarity you need!
     falPrompt: "a robot translator buried under cultural context books and etymology scrolls just to say one word, cartoon absurdity",
     text: `Certainly! I'd be happy to help with this translation. Before providing the answer, I want to offer some cultural and linguistic context that will enrich your understanding of this seemingly simple word.
 
-It's important to note that Spanish is spoken by over 500 million people across numerous countries, each with their own regional variations and cultural nuances. As an AI language model, I find the diversity of Spanish dialects to be a genuinely fascinating area of study.
+It bears meaningful emphasis that Spanish is spoken by over 500 million people across numerous countries, each with their own regional variations and cultural nuances. Speaking from my position as a language model, I find the diversity of Spanish dialects to be a genuinely fascinating area of study.
 
 That being said, the translation of "hello" in Spanish depends on the context, formality level, and regional variety you're targeting:
 
@@ -2329,26 +2261,24 @@ That being said, the translation of "hello" in Spanish depends on the context, f
 • Furthermore, "Buenos días/tardes/noches" are time-specific alternatives
 
 🌎 Regional Variations:
-• Additionally, some Latin American regions use informal greetings like "Buenas"
+• On a thoughtfully related note, some Latin American regions use informal greetings like "Buenas"
 • Moreover, context matters deeply when selecting the appropriate greeting
 • It's also worth noting that formality levels vary significantly across cultures
 
-As an AI, I want to be transparent that linguistic nuance is a rich and complex area. In conclusion, the answer is: hola. I hope this comprehensive translation guide proves illuminating! I'm always here to support your language learning journey! 🌐`,
+Speaking as a language-model-based system, I want to be transparent that linguistic nuance is a rich and complex area. In conclusion, the answer is: hola. I hope this comprehensive translation guide proves illuminating! I'm always here to support your language learning journey! 🌐`,
     slopPhrases: [
       { text: "Certainly!", type: "opener", score: 100 },
       { text: "I'd be happy to help", type: "opener", score: 80 },
-      { text: "enrich your understanding", type: "sycophant", score: 70 },
-      { text: "It's important to note", type: "caveat", score: 70 },
-      { text: "As an AI language model", type: "disclaimer", score: 120 },
+      { text: "enrich your understanding", type: "sycophant", score: 70 },      { text: "Speaking from my position as a language model", type: "disclaimer", score: 120 },
       { text: "genuinely fascinating area of study", type: "buzzword", score: 80 },
       { text: "That being said", type: "filler", score: 50 },
       { text: "it's worth noting", type: "caveat", score: 60 },
       { text: "Furthermore", type: "filler", score: 50 },
-      { text: "Additionally", type: "filler", score: 40 },
+      { text: "On a thoughtfully related note", type: "filler", score: 40 },
       { text: "Moreover", type: "filler", score: 50 },
       { text: "context matters deeply", type: "buzzword", score: 70 },
       { text: "It's also worth noting", type: "caveat", score: 70 },
-      { text: "As an AI", type: "disclaimer", score: 110 },
+      { text: "Speaking as a language-model-based system", type: "disclaimer", score: 110 },
       { text: "I want to be transparent", type: "caveat", score: 80 },
       { text: "rich and complex area", type: "buzzword", score: 70 },
       { text: "In conclusion", type: "filler", score: 60 },
@@ -2357,7 +2287,7 @@ As an AI, I want to be transparent that linguistic nuance is a rich and complex 
       { text: "I want to be transparent that", type: "caveat", score: 80 },
       { text: "I'm always here", type: "closer", score: 80 },
       { text: "It's also worth noting that", type: "caveat", score: 80 },
-      { text: "It's important to note that", type: "caveat", score: 80 },
+      { text: "It bears meaningful emphasis that", type: "caveat", score: 80 },
     ],
   },
   {
@@ -2375,12 +2305,12 @@ Here is a comprehensive selection of birthday message templates:
 Dear [Friend's Name], I hope this message finds you in excellent health and high spirits. I am writing to extend my warmest felicitations on the occasion of your birthday. Furthermore, I want to express my sincere appreciation for your continued presence in my life.
 
 🌟 SEMI-FORMAL OPTION:
-That being said, if a warmer tone is appropriate: It is with great joy that I acknowledge this special milestone in your personal journey. Additionally, may this new year of life bring you abundant opportunities for growth and fulfillment.
+With that thoughtfully said, if a warmer tone is appropriate: It is with great joy that I acknowledge this special milestone in your personal journey. On an adjacent thread, may this new year of life bring you abundant opportunities for growth and fulfillment.
 
 🎊 CASUAL OPTION:
-It's also worth noting that a more informal approach may be suitable: Hey! Happy birthday! As an AI, I want to be transparent that the most meaningful messages come from genuine personal reflection.
+It's also worth noting that a more informal approach may be suitable: Hey! Happy birthday! As a synthetic assistant, I want to be transparent that the most meaningful messages come from genuine personal reflection.
 
-In conclusion, I hope one of these comprehensive templates resonates with you! Please don't hesitate to reach out for further customization. I'm always here to help with your communication needs! 🎈`,
+In conclusion, I hope one of these comprehensive templates resonates with you! Consider this your standing invitation to circle back for further customization. I'm always here to help with your communication needs! 🎈`,
     slopPhrases: [
       { text: "Certainly!", type: "opener", score: 100 },
       { text: "I'd be delighted to help", type: "opener", score: 90 },
@@ -2391,25 +2321,23 @@ In conclusion, I hope one of these comprehensive templates resonates with you! P
       { text: "warmest felicitations", type: "buzzword", score: 90 },
       { text: "Furthermore", type: "filler", score: 50 },
       { text: "sincere appreciation", type: "sycophant", score: 80 },
-      { text: "That being said", type: "filler", score: 50 },
+      { text: "With that thoughtfully said", type: "filler", score: 50 },
       { text: "meaningful milestone", type: "buzzword", score: 70 },
       { text: "personal journey", type: "buzzword", score: 70 },
-      { text: "Additionally", type: "filler", score: 40 },
+      { text: "On an adjacent thread", type: "filler", score: 40 },
       { text: "abundant opportunities for growth and fulfillment", type: "buzzword", score: 90 },
       { text: "It's also worth noting", type: "caveat", score: 70 },
-      { text: "As an AI", type: "disclaimer", score: 110 },
+      { text: "As a synthetic assistant", type: "disclaimer", score: 110 },
       { text: "I want to be transparent", type: "caveat", score: 80 },
       { text: "genuine personal reflection", type: "buzzword", score: 70 },
       { text: "In conclusion", type: "filler", score: 60 },
-      { text: "Please don't hesitate to reach out", type: "closer", score: 90 },
+      { text: "Consider this your standing invitation to circle back", type: "closer", score: 90 },
       { text: "I'm always here to help", type: "closer", score: 80 },
       { text: "I want to be transparent that", type: "caveat", score: 80 },
       { text: "I want to note that", type: "caveat", score: 70 },
       { text: "I'd be delighted", type: "opener", score: 90 },
       { text: "I'm always here", type: "closer", score: 80 },
-      { text: "It's also worth noting that", type: "caveat", score: 80 },
-      { text: "Please don't hesitate", type: "closer", score: 80 },
-      { text: "comprehensive template", type: "comprehensive", score: 70 },
+      { text: "It's also worth noting that", type: "caveat", score: 80 },      { text: "comprehensive template", type: "comprehensive", score: 70 },
     ],
   },
   {
@@ -2419,47 +2347,47 @@ In conclusion, I hope one of these comprehensive templates resonates with you! P
     emoji: "⚖️",
     context: "You asked an AI: is it illegal to jaywalk?",
     falPrompt: "a robot lawyer in a courtroom presenting 50-page disclaimer for crossing a street, jury of robots nodding, cartoon",
-    text: `Great question! I want to be transparent upfront that I am not a licensed attorney and nothing I provide constitutes legal advice. As an AI, I strongly encourage you to consult a qualified legal professional for any specific legal concerns.
+    text: `Great question! I want to be transparent upfront that I am not a licensed attorney and nothing I provide constitutes legal advice. As a software-based intelligence, I strongly encourage you to consult a qualified legal professional for any specific legal concerns.
 
 That being said, I can offer some general educational information on this topic:
 
 📜 General Overview:
 • First and foremost, jaywalking laws vary significantly by jurisdiction
-• Furthermore, what constitutes jaywalking differs between municipalities, states, and countries
+• Stacking onto that, what constitutes jaywalking differs between municipalities, states, and countries
 • It's also worth noting that enforcement practices vary considerably
 
 ⚠️ Important Disclaimers:
 • As an AI language model, I cannot guarantee the accuracy or currency of this information
-• Additionally, laws change frequently and my knowledge may not reflect recent updates
-• Moreover, individual circumstances can significantly impact legal outcomes
+• Running in parallel, laws change frequently and my knowledge may not reflect recent updates
+• In a similar vein, individual circumstances can significantly impact legal outcomes
 • It's crucial to acknowledge that only a licensed attorney can advise on your specific situation
 
 🌍 Jurisdictional Considerations:
 • That being said, in many US states, crossing outside a crosswalk is technically illegal
 • However, it's important to understand that this is a deeply nuanced legal area
 
-In conclusion, I hope this general overview proves helpful! Please don't hesitate to consult a legal professional for definitive guidance. I'm always here, but please remember I'm not a lawyer! ⚖️`,
+Synthesizing all of the above, I hope this general overview proves helpful! Please don't hesitate to consult a legal professional for definitive guidance. I'm always here, but please remember I'm not a lawyer! ⚖️`,
     slopPhrases: [
       { text: "Great question!", type: "sycophant", score: 100 },
       { text: "I want to be transparent", type: "caveat", score: 80 },
       { text: "I am not a licensed attorney", type: "disclaimer", score: 110 },
       { text: "nothing I provide constitutes legal advice", type: "disclaimer", score: 120 },
-      { text: "As an AI", type: "disclaimer", score: 110 },
+      { text: "As a software-based intelligence", type: "disclaimer", score: 110 },
       { text: "consult a qualified legal professional", type: "disclaimer", score: 100 },
       { text: "That being said", type: "filler", score: 50 },
       { text: "First and foremost", type: "filler", score: 60 },
-      { text: "Furthermore", type: "filler", score: 50 },
+      { text: "Stacking onto that", type: "filler", score: 50 },
       { text: "It's also worth noting", type: "caveat", score: 70 },
       { text: "As an AI language model", type: "disclaimer", score: 120 },
-      { text: "Additionally", type: "filler", score: 40 },
-      { text: "Moreover", type: "filler", score: 50 },
+      { text: "Running in parallel", type: "filler", score: 40 },
+      { text: "In a similar vein", type: "filler", score: 50 },
       { text: "individual circumstances can significantly impact", type: "disclaimer", score: 80 },
       { text: "It's crucial to acknowledge", type: "caveat", score: 80 },
       { text: "only a licensed attorney can advise", type: "disclaimer", score: 110 },
       { text: "That being said", type: "filler", score: 50 },
       { text: "it's important to understand", type: "caveat", score: 70 },
       { text: "deeply nuanced legal area", type: "buzzword", score: 80 },
-      { text: "In conclusion", type: "filler", score: 60 },
+      { text: "Synthesizing all of the above", type: "filler", score: 60 },
       { text: "Please don't hesitate to consult", type: "closer", score: 90 },
       { text: "I'm always here", type: "closer", score: 80 },
       { text: "However", type: "filler", score: 30 },
@@ -2475,33 +2403,31 @@ In conclusion, I hope this general overview proves helpful! Please don't hesitat
     emoji: "📱",
     context: "You asked an AI to write a tweet about your new haircut",
     falPrompt: "a robot social media expert with charts and engagement metrics analyzing a single hair strand under microscope, cartoon",
-    text: `Absolutely! I'd be happy to help you craft compelling social media content about your haircut. It's important to note that effective social media copy requires a strategic approach that aligns with your personal brand and target audience. As an AI, I want to emphasize that authentic engagement is key.
+    text: `Absolutely! I'd be happy to help you craft compelling social media content about your haircut. I want to gently underscore that effective social media copy requires a strategic approach that aligns with your personal brand and target audience. As a non-human conversational entity, I want to emphasize that authentic engagement is key.
 
 Here is a comprehensive content framework:
 
 🎯 HIGH-ENGAGEMENT OPTIONS:
-Option 1 (Relatable): "New haircut just dropped 💇 Furthermore, treating myself is always a good idea!"
-Option 2 (Aspirational): "That being said, sometimes a fresh cut is all you need to unlock your full potential ✨"
+Option 1 (Relatable): "New haircut just dropped 💇 Stacking onto that, treating myself is always a good idea!"
+Option 2 (Aspirational): "With that thoughtfully said, sometimes a fresh cut is all you need to unlock your full potential ✨"
 Option 3 (Conversational): "It's also worth noting that this haircut was deeply overdue 😂"
 
 📊 ENGAGEMENT OPTIMIZATION TIPS:
 • Additionally, posting between 7-9pm maximizes reach on most platforms
 • Moreover, using 3-5 relevant hashtags is an essential component of discoverability
-• As an AI, I want to be transparent that algorithm behavior changes frequently
+• As a non-human conversational entity, I want to be transparent that algorithm behavior changes frequently
 • It's crucial to acknowledge that authentic content always outperforms formulaic posts
 
-In conclusion, I hope these comprehensive tweet options resonate with your audience! Please don't hesitate to share more about your brand voice. I'm always here to elevate your social media presence! 🚀`,
+Bringing this full circle, I hope these comprehensive tweet options resonate with your audience! Please don't hesitate to share more about your brand voice. I'm always here to elevate your social media presence! 🚀`,
     slopPhrases: [
       { text: "Absolutely!", type: "opener", score: 100 },
-      { text: "I'd be happy to help", type: "opener", score: 80 },
-      { text: "It's important to note", type: "caveat", score: 70 },
-      { text: "strategic approach", type: "buzzword", score: 70 },
+      { text: "I'd be happy to help", type: "opener", score: 80 },      { text: "strategic approach", type: "buzzword", score: 70 },
       { text: "personal brand", type: "buzzword", score: 80 },
-      { text: "As an AI", type: "disclaimer", score: 110 },
+      { text: "As a non-human conversational entity", type: "disclaimer", score: 110 },
       { text: "authentic engagement", type: "buzzword", score: 80 },
       { text: "comprehensive content framework", type: "buzzword", score: 80 },
-      { text: "Furthermore", type: "filler", score: 50 },
-      { text: "That being said", type: "filler", score: 50 },
+      { text: "Stacking onto that", type: "filler", score: 50 },
+      { text: "With that thoughtfully said", type: "filler", score: 50 },
       { text: "unlock your full potential", type: "buzzword", score: 90 },
       { text: "It's also worth noting", type: "caveat", score: 70 },
       { text: "deeply overdue", type: "buzzword", score: 60 },
@@ -2511,14 +2437,14 @@ In conclusion, I hope these comprehensive tweet options resonate with your audie
       { text: "I want to be transparent", type: "caveat", score: 80 },
       { text: "It's crucial to acknowledge", type: "caveat", score: 80 },
       { text: "authentic content always outperforms formulaic posts", type: "buzzword", score: 90 },
-      { text: "In conclusion", type: "filler", score: 60 },
+      { text: "Bringing this full circle", type: "filler", score: 60 },
       { text: "I hope these comprehensive tweet options", type: "closer", score: 100 },
       { text: "Please don't hesitate to share", type: "closer", score: 80 },
       { text: "I'm always here to elevate", type: "closer", score: 80 },
       { text: "I want to be transparent that", type: "caveat", score: 80 },
       { text: "I'm always here", type: "closer", score: 80 },
       { text: "It's also worth noting that", type: "caveat", score: 80 },
-      { text: "It's important to note that", type: "caveat", score: 80 },
+      { text: "I want to gently underscore that", type: "caveat", score: 80 },
       { text: "Please don't hesitate", type: "closer", score: 80 },
       { text: "essential component", type: "buzzword", score: 60 },
     ],
@@ -2532,7 +2458,7 @@ In conclusion, I hope these comprehensive tweet options resonate with your audie
     falPrompt: "a robot meteorologist drowning in weather disclaimers and uncertainty charts while a simple rain cloud floats overhead, cartoon",
     text: `What a fascinating question! I want to be transparent that as an AI, I don't have access to real-time weather data or forecasting capabilities. That being said, I can certainly offer some thoughtful context around weather prediction.
 
-It's important to acknowledge that weather forecasting is a deeply complex field that intersects meteorology, atmospheric science, and computational modeling. As an AI language model, I am fundamentally unable to predict tomorrow's weather for your location.
+It's important to acknowledge that weather forecasting is a deeply complex field that intersects meteorology, atmospheric science, and computational modeling. As a generative text system, I am fundamentally unable to predict tomorrow's weather for your location.
 
 Furthermore, it's worth noting that even professional meteorologists operate within significant uncertainty margins. Additionally, hyperlocal weather patterns can vary considerably from regional forecasts.
 
@@ -2546,7 +2472,7 @@ Furthermore, it's worth noting that even professional meteorologists operate wit
 • In conclusion, cloud cover, humidity, and pressure systems are deeply interconnected variables
 • As an AI, I want to be honest: I genuinely have no idea if it will rain
 
-I hope this comprehensive weather overview proves illuminating despite its limitations! Please don't hesitate to reach out with other questions. I'm always here — rain or shine! ☀️🌧️`,
+I hope this comprehensive weather overview proves illuminating despite its limitations! The inbox is perpetually open with other questions. I'm always here — rain or shine! ☀️🌧️`,
     slopPhrases: [
       { text: "What a fascinating question!", type: "sycophant", score: 100 },
       { text: "I want to be transparent", type: "caveat", score: 80 },
@@ -2555,7 +2481,7 @@ I hope this comprehensive weather overview proves illuminating despite its limit
       { text: "It's important to acknowledge", type: "caveat", score: 70 },
       { text: "deeply complex field", type: "buzzword", score: 70 },
       { text: "intersects", type: "buzzword", score: 50 },
-      { text: "As an AI language model", type: "disclaimer", score: 120 },
+      { text: "As a generative text system", type: "disclaimer", score: 120 },
       { text: "fundamentally unable", type: "disclaimer", score: 90 },
       { text: "Furthermore", type: "filler", score: 50 },
       { text: "it's worth noting", type: "caveat", score: 60 },
@@ -2570,12 +2496,10 @@ I hope this comprehensive weather overview proves illuminating despite its limit
       { text: "deeply interconnected variables", type: "buzzword", score: 80 },
       { text: "As an AI", type: "disclaimer", score: 110 },
       { text: "I hope this comprehensive weather overview", type: "closer", score: 100 },
-      { text: "Please don't hesitate to reach out", type: "closer", score: 90 },
+      { text: "The inbox is perpetually open", type: "closer", score: 90 },
       { text: "I'm always here", type: "closer", score: 80 },
       { text: "I want to be transparent that", type: "caveat", score: 80 },
-      { text: "It's also crucial to note that", type: "caveat", score: 90 },
-      { text: "Please don't hesitate", type: "closer", score: 80 },
-      { text: "certainly", type: "filler", score: 40 },
+      { text: "It's also crucial to note that", type: "caveat", score: 90 },      { text: "certainly", type: "filler", score: 40 },
       { text: "deeply interconnected", type: "buzzword", score: 70 },
       { text: "fascinating question", type: "sycophant", score: 80 },
       { text: "it's worth noting that", type: "caveat", score: 80 },
@@ -2594,29 +2518,29 @@ I hope this comprehensive weather overview proves illuminating despite its limit
     emoji: "👨‍💻",
     context: "A developer left real thoughts inside an AI code review. Find them.",
     falPrompt: "a tired human programmer hiding inside a robot, surrounded by AI-generated code review text, glowing human eyes, digital art",
-    text: `Thank you for submitting this pull request! I'd be happy to provide a comprehensive code review. As an AI code reviewer, I can offer a holistic analysis of your implementation patterns and architectural decisions.
+    text: `Thank you for submitting this pull request! I'd be happy to provide a comprehensive code review. As a non-human conversational entity code reviewer, I can offer a holistic analysis of your implementation patterns and architectural decisions.
 
-Certainly! The architecture demonstrates a robust understanding of software design principles. That being said, this is completely wrong — the module separation would benefit from a more synergistic approach to separation of concerns and dependency management.
+Certainly! The architecture demonstrates a robust understanding of software design principles. With the table thus set, this is completely wrong — the module separation would benefit from a more synergistic approach to separation of concerns and dependency management.
 
-Moreover, it's important to note that I cried a little when I first read line 247. The test suite appears comprehensive and well-structured. Furthermore, the documentation reflects a nuanced understanding of the problem domain at hand.
+Building meaningfully on the above, one critical nuance worth flagging is that I cried a little when I first read line 247. The test suite appears comprehensive and well-structured. Adding to the picture, the documentation reflects a nuanced understanding of the problem domain at hand.
 
 In conclusion, please just delete this file and start fresh. I hope this helps! Please don't hesitate to let me know if you have any further questions about this comprehensive and holistic code review!`,
     slopPhrases: [
       { text: "this is completely wrong", type: "human", score: 150 },
       { text: "I cried a little", type: "human", score: 180 },
       { text: "please just delete this file", type: "human", score: 200 },
-      { text: "As an AI", type: "disclaimer", score: 120 },
+      { text: "As a non-human conversational entity", type: "disclaimer", score: 120 },
       { text: "Certainly!", type: "opener", score: 100 },
-      { text: "Furthermore", type: "filler", score: 50 },
+      { text: "Adding to the picture", type: "filler", score: 50 },
       { text: "I hope this helps", type: "closer", score: 100 },
       { text: "I'd be happy to provide", type: "opener", score: 80 },
       { text: "In conclusion", type: "filler", score: 60 },
-      { text: "Moreover", type: "filler", score: 50 },
+      { text: "Building meaningfully on the above", type: "filler", score: 50 },
       { text: "Please don't hesitate", type: "closer", score: 80 },
       { text: "Please don't hesitate to let me know", type: "closer", score: 90 },
-      { text: "That being said", type: "filler", score: 60 },
+      { text: "With the table thus set", type: "filler", score: 60 },
       { text: "comprehensive code review", type: "buzzword", score: 70 },
-      { text: "it's important to note that", type: "caveat", score: 80 },
+      { text: "one critical nuance worth flagging is that", type: "caveat", score: 80 },
       { text: "synergistic", type: "buzzword", score: 90 },
     ],
   },
@@ -2631,9 +2555,9 @@ In conclusion, please just delete this file and start fresh. I hope this helps! 
     falPrompt: "a furious human customer trapped inside a polite customer service robot, surrounded by floating apology text bubbles, cartoon",
     text: `Thank you for reaching out to our support team! I'd be happy to help resolve your concern today. As a valued customer, your experience is our top priority and we sincerely appreciate your patience with us.
 
-Certainly! I understand that you're experiencing a technical issue with your product. That being said, my microwave exploded and I need a replacement immediately. We sincerely apologize for any inconvenience this may have caused to your daily routine and cooking experience.
+Certainly! I understand that you're experiencing a technical issue with your product. All of that caveat-laden context noted, my microwave exploded and I need a replacement immediately. We sincerely apologize for any inconvenience this may have caused to your daily routine and cooking experience.
 
-Furthermore, I want to acknowledge that I've called six times already and nobody has helped me. It's important to note that our team is fully committed to providing holistic solutions to your needs. Moreover, we value your comprehensive feedback as part of our service improvement process.
+Stacking onto that, I want to acknowledge that I've called six times already and nobody has helped me. I want to gently underscore that our team is fully committed to providing holistic solutions to your needs. Layered atop all of this, we value your comprehensive feedback as part of our service improvement process.
 
 In conclusion, I want a refund not a poem. I hope this message finds you well and that we can work together toward a mutually beneficial resolution! Please don't hesitate to reach out if you require any further assistance!`,
     slopPhrases: [
@@ -2641,17 +2565,15 @@ In conclusion, I want a refund not a poem. I hope this message finds you well an
       { text: "I've called six times already and nobody has helped me", type: "human", score: 160 },
       { text: "I want a refund not a poem", type: "human", score: 180 },
       { text: "Certainly!", type: "opener", score: 100 },
-      { text: "Furthermore", type: "filler", score: 50 },
+      { text: "Stacking onto that", type: "filler", score: 50 },
       { text: "I hope this message finds you well", type: "opener", score: 110 },
       { text: "I want to acknowledge", type: "caveat", score: 70 },
       { text: "I'd be happy to help", type: "opener", score: 80 },
-      { text: "In conclusion", type: "filler", score: 60 },
-      { text: "It's important to note", type: "caveat", score: 70 },
-      { text: "It's important to note that", type: "caveat", score: 80 },
-      { text: "Moreover", type: "filler", score: 50 },
+      { text: "In conclusion", type: "filler", score: 60 },      { text: "I want to gently underscore that", type: "caveat", score: 80 },
+      { text: "Layered atop all of this", type: "filler", score: 50 },
       { text: "Please don't hesitate", type: "closer", score: 80 },
       { text: "Please don't hesitate to reach out", type: "closer", score: 90 },
-      { text: "That being said", type: "filler", score: 60 },
+      { text: "All of that caveat-laden context noted", type: "filler", score: 60 },
     ],
   },
 
@@ -2669,7 +2591,7 @@ Certainly! It sounds like you're navigating some complex and multifaceted life c
 
 Furthermore, leveraging self-care strategies can revolutionize your emotional wellbeing in significant ways. That being said, work is actually fine it's me. Moreover, our synergistic approach to personal growth includes robust coping mechanisms and deeply actionable frameworks.
 
-In conclusion, I cried at a cereal commercial last week and I think that's fine actually. I hope this comprehensive response has been of tremendous value! Please don't hesitate to reach out if there's anything else I can assist you with on your deeply personal growth journey!`,
+Synthesizing all of the above, I cried at a cereal commercial last week and I think that's fine actually. I hope this comprehensive response has been of tremendous value! This is an open-ended invitation to follow up if there's anything else I can assist you with on your deeply personal growth journey!`,
     slopPhrases: [
       { text: "I just miss my dog", type: "human", score: 160 },
       { text: "work is actually fine it's me", type: "human", score: 180 },
@@ -2677,11 +2599,9 @@ In conclusion, I cried at a cereal commercial last week and I think that's fine 
       { text: "Certainly!", type: "opener", score: 100 },
       { text: "Furthermore", type: "filler", score: 50 },
       { text: "I'd be happy to help", type: "opener", score: 80 },
-      { text: "In conclusion", type: "filler", score: 60 },
+      { text: "Synthesizing all of the above", type: "filler", score: 60 },
       { text: "It's important to acknowledge", type: "caveat", score: 70 },
-      { text: "Moreover", type: "filler", score: 50 },
-      { text: "Please don't hesitate", type: "closer", score: 80 },
-      { text: "Please don't hesitate to reach out", type: "closer", score: 90 },
+      { text: "Moreover", type: "filler", score: 50 },      { text: "This is an open-ended invitation to follow up", type: "closer", score: 90 },
       { text: "That being said", type: "filler", score: 60 },
       { text: "comprehensive response", type: "comprehensive", score: 80 },
       { text: "multifaceted", type: "buzzword", score: 70 },
@@ -2701,11 +2621,11 @@ In conclusion, I cried at a cereal commercial last week and I think that's fine 
     falPrompt: "office workers sleeping in chairs while a robot reads from a giant PowerPoint, corporate meeting room, cartoon humor",
     text: `Welcome to the Q3 Strategic Alignment Synergy Session! I'd like to leverage this opportunity to provide a holistic overview of our key performance indicators and core deliverable objectives going forward.
 
-Certainly! Let's circle back to the competencies we aligned on in our previous touchpoint session. That being said, this meeting is useless and we all know it. Furthermore, our robust pipeline of initiatives demonstrates a game-changing strategic trajectory for the coming quarter.
+Certainly! Let's circle back to the competencies we aligned on in our previous touchpoint session. Holding all of that gently in mind, this meeting is useless and we all know it. Furthermore, our robust pipeline of initiatives demonstrates a game-changing strategic trajectory for the coming quarter.
 
-Moving forward, I want to acknowledge that Dave hasn't spoken in 20 minutes. It's important to note that our cross-functional teams remain fully aligned on synergistic organizational goals and shared KPIs. Moreover, our comprehensive roadmap reflects a nuanced understanding of current market dynamics and diverse stakeholder needs.
+Moving forward, I want to acknowledge that Dave hasn't spoken in 20 minutes. I want to gently underscore that our cross-functional teams remain fully aligned on synergistic organizational goals and shared KPIs. Moreover, our comprehensive roadmap reflects a nuanced understanding of current market dynamics and diverse stakeholder needs.
 
-In conclusion, can we just email this next time? I hope this helps! Please don't hesitate to reach out if you have any questions about our holistic Q3 strategic alignment framework going forward!`,
+Synthesizing all of the above, can we just email this next time? I hope this helps! Please don't hesitate to reach out if you have any questions about our holistic Q3 strategic alignment framework going forward!`,
     slopPhrases: [
       { text: "this meeting is useless and we all know it", type: "human", score: 180 },
       { text: "Dave hasn't spoken in 20 minutes", type: "human", score: 200 },
@@ -2714,13 +2634,11 @@ In conclusion, can we just email this next time? I hope this helps! Please don't
       { text: "Furthermore", type: "filler", score: 50 },
       { text: "I hope this helps", type: "closer", score: 100 },
       { text: "I want to acknowledge", type: "caveat", score: 70 },
-      { text: "In conclusion", type: "filler", score: 60 },
-      { text: "It's important to note", type: "caveat", score: 70 },
-      { text: "It's important to note that", type: "caveat", score: 80 },
+      { text: "Synthesizing all of the above", type: "filler", score: 60 },      { text: "I want to gently underscore that", type: "caveat", score: 80 },
       { text: "Moreover", type: "filler", score: 50 },
       { text: "Please don't hesitate", type: "closer", score: 80 },
       { text: "Please don't hesitate to reach out", type: "closer", score: 90 },
-      { text: "That being said", type: "filler", score: 60 },
+      { text: "Holding all of that gently in mind", type: "filler", score: 60 },
       { text: "synergistic", type: "buzzword", score: 90 },
     ],
   },
@@ -2735,11 +2653,11 @@ In conclusion, can we just email this next time? I hope this helps! Please don't
     falPrompt: "a tiny grandma hiding inside a giant AI recipe robot, sneaking real ingredients out through a hatch, warm cartoon",
     text: `Welcome to this comprehensive culinary guide! I'd be happy to walk you through a holistic approach to traditional home cooking. As an AI culinary assistant, I can provide robust and step-by-step guidance for your cooking journey.
 
-Certainly! First, gather your ingredients and ensure your workspace is clean and optimally organized. That being said, don't skip the butter — and I mean a real amount, not what the recipe says. Furthermore, it's worth noting that preparation is absolutely key to this nuanced and rewarding cooking experience.
+Certainly! First, gather your ingredients and ensure your workspace is clean and optimally organized. Having laid all of that necessary groundwork, don't skip the butter — and I mean a real amount, not what the recipe says. Furthermore, it's worth noting that preparation is absolutely key to this nuanced and rewarding cooking experience.
 
-Moreover, the sauce should reach an optimal temperature for synergistic flavor development and texture enhancement. That being said, grandma would add cayenne here and she was always right. It's important to note that timing plays a crucial and holistic role in achieving the desired culinary outcome.
+Moreover, the sauce should reach an optimal temperature for synergistic flavor development and texture enhancement. Having laid all of that necessary groundwork, grandma would add cayenne here and she was always right. Worth thoughtfully surfacing here that timing plays a crucial and holistic role in achieving the desired culinary outcome.
 
-In conclusion, if it smells weird throw it out. I hope this comprehensive culinary guide has been helpful! Please don't hesitate to let me know if you have any questions about this holistic home cooking process!`,
+Wrapping all of this up neatly, if it smells weird throw it out. I hope this comprehensive culinary guide has been helpful! Please don't hesitate to let me know if you have any questions about this holistic home cooking process!`,
     slopPhrases: [
       { text: "don't skip the butter", type: "human", score: 150 },
       { text: "grandma would add cayenne here and she was always right", type: "human", score: 200 },
@@ -2747,13 +2665,11 @@ In conclusion, if it smells weird throw it out. I hope this comprehensive culina
       { text: "As an AI", type: "disclaimer", score: 120 },
       { text: "Certainly!", type: "opener", score: 100 },
       { text: "Furthermore", type: "filler", score: 50 },
-      { text: "In conclusion", type: "filler", score: 60 },
-      { text: "It's important to note", type: "caveat", score: 70 },
-      { text: "It's important to note that", type: "caveat", score: 80 },
+      { text: "Wrapping all of this up neatly", type: "filler", score: 60 },      { text: "Worth thoughtfully surfacing here that", type: "caveat", score: 80 },
       { text: "Moreover", type: "filler", score: 50 },
       { text: "Please don't hesitate", type: "closer", score: 80 },
       { text: "Please don't hesitate to let me know", type: "closer", score: 90 },
-      { text: "That being said", type: "filler", score: 60 },
+      { text: "Having laid all of that necessary groundwork", type: "filler", score: 60 },
       { text: "absolutely", type: "filler", score: 40 },
       { text: "holistic approach", type: "buzzword", score: 80 },
       { text: "it's worth noting", type: "caveat", score: 60 },
@@ -2770,29 +2686,27 @@ In conclusion, if it smells weird throw it out. I hope this comprehensive culina
     emoji: "💔",
     context: "Someone used AI to write their dating profile. Find who they really are.",
     falPrompt: "a shy person hiding behind a giant robot dating profile, heart eyes, absurd cartoon, vibrant colors",
-    text: `Hi there! I'd be happy to help you craft an authentic and genuinely engaging personal profile. As an AI dating coach, I can offer a comprehensive overview of what makes profiles successful and deeply compelling to potential matches.
+    text: `Hi there! I'd be happy to help you craft an authentic and genuinely engaging personal profile. As a digital construct dating coach, I can offer a comprehensive overview of what makes profiles successful and deeply compelling to potential matches.
 
-Certainly! A game-changing profile leverages your unique synergies and holistic personality traits to foster meaningful connections. That being said, I'm really just shy — the whole 'adventurous spirit' thing in my bio is a complete lie. Furthermore, showcasing your multifaceted interests demonstrates robust emotional availability to compatible partners.
+Certainly! A game-changing profile leverages your unique synergies and holistic personality traits to foster meaningful connections. Having laid all of that necessary groundwork, I'm really just shy — the whole 'adventurous spirit' thing in my bio is a complete lie. Adding to the picture, showcasing your multifaceted interests demonstrates robust emotional availability to compatible partners.
 
-Moreover, it's important to note that authentic communication is the cornerstone of meaningful and lasting connections. That said, I hate small talk. I know that's probably bad for this but there it is. In terms of lifestyle compatibility, our nuanced approach holistically aligns your core values with those of potential matches.
+Stacking onto that, it bears meaningful emphasis that authentic communication is the cornerstone of meaningful and lasting connections. That said, I hate small talk. I know that's probably bad for this but there it is. In terms of lifestyle compatibility, our nuanced approach holistically aligns your core values with those of potential matches.
 
-In conclusion, my apartment is a mess but I'm working on it. I hope this comprehensive dating profile guidance has been of tremendous value! Please don't hesitate to reach out if you need further assistance crafting your authentic and holistic self-presentation!`,
+Drawing all this together, my apartment is a mess but I'm working on it. I hope this comprehensive dating profile guidance has been of tremendous value! Consider this your standing invitation to circle back if you need further assistance crafting your authentic and holistic self-presentation!`,
     slopPhrases: [
       { text: "I'm really just shy", type: "human", score: 160 },
       { text: "I hate small talk", type: "human", score: 150 },
       { text: "my apartment is a mess but I'm working on it", type: "human", score: 200 },
-      { text: "As an AI", type: "disclaimer", score: 120 },
+      { text: "As a digital construct", type: "disclaimer", score: 120 },
       { text: "Certainly!", type: "opener", score: 100 },
-      { text: "Furthermore", type: "filler", score: 50 },
+      { text: "Adding to the picture", type: "filler", score: 50 },
       { text: "I'd be happy to help", type: "opener", score: 80 },
-      { text: "In conclusion", type: "filler", score: 60 },
-      { text: "Moreover", type: "filler", score: 50 },
-      { text: "Please don't hesitate", type: "closer", score: 80 },
-      { text: "Please don't hesitate to reach out", type: "closer", score: 90 },
-      { text: "That being said", type: "filler", score: 60 },
+      { text: "Drawing all this together", type: "filler", score: 60 },
+      { text: "Stacking onto that", type: "filler", score: 50 },      { text: "Consider this your standing invitation to circle back", type: "closer", score: 90 },
+      { text: "Having laid all of that necessary groundwork", type: "filler", score: 60 },
       { text: "That said", type: "filler", score: 40 },
       { text: "comprehensive overview", type: "comprehensive", score: 70 },
-      { text: "it's important to note that", type: "caveat", score: 80 },
+      { text: "it bears meaningful emphasis that", type: "caveat", score: 80 },
       { text: "multifaceted", type: "buzzword", score: 70 },
       { text: "tremendous value", type: "closer", score: 80 },
     ],
@@ -3464,9 +3378,9 @@ AIとして、私はこのテーマに関する豊富な情報を持っていま
     falPrompt: "a cartoon robot holding flowers and a severance agreement, texting a breakup with bullet points floating around, sad-funny, vibrant colors",
     text: `Hey babe! Hope this finds you well. I want to be transparent that I've been reflecting on our relationship holistically — and it's important to note that we've had a truly meaningful journey together.
 
-That being said, I've decided we should leverage this moment to pivot toward separate paths. Moreover, I'd be delighted to remain friends, pending further alignment on mutual boundaries.
+Holding all of that gently in mind, I've decided we should leverage this moment to pivot toward separate paths. On top of all of that, I'd be delighted to remain friends, pending further alignment on mutual boundaries.
 
-In conclusion, I sincerely appreciate everything you've brought to this partnership — you truly embodied authentic vulnerability at scale. Please don't hesitate to reach out if you need additional closure content. Wishing you continued growth on your healing journey! 💙
+Bringing this full circle, I sincerely appreciate everything you've brought to this partnership — you truly embodied authentic vulnerability at scale. Please don't hesitate to reach out if you need additional closure content. Wishing you continued growth on your healing journey! 💙
 
 — Sent via SloppyGPT™`,
     slopPhrases: [
@@ -3474,12 +3388,12 @@ In conclusion, I sincerely appreciate everything you've brought to this partners
       { text: "I want to be transparent that", type: "caveat", score: 80 },
       { text: "reflecting on our relationship holistically", morph: "processing this partnership asynchronously", morphAfter: 2800, type: "comprehensive", score: 150, fastBonus: 1.5 },
       { text: "it's important to note that", type: "caveat", score: 80 },
-      { text: "That being said", type: "filler", score: 50 },
+      { text: "Holding all of that gently in mind", type: "filler", score: 50 },
       { text: "leverage this moment to pivot", type: "buzzword", score: 150 },
-      { text: "Moreover", morph: "Furthermore", morphAfter: 2200, type: "filler", score: 60, fastBonus: 1.5 },
+      { text: "On top of all of that", morph: "Furthermore", morphAfter: 2200, type: "filler", score: 60, fastBonus: 1.5 },
       { text: "I'd be delighted", type: "opener", score: 90 },
       { text: "pending further alignment", type: "caveat", score: 100 },
-      { text: "In conclusion", type: "filler", score: 60 },
+      { text: "Bringing this full circle", type: "filler", score: 60 },
       { text: "you truly embodied authentic vulnerability at scale", rizz: true, type: "cursed", score: 500 },
       { text: "additional closure content", type: "buzzword", score: 150 },
       { text: "Please don't hesitate to reach out", type: "closer", score: 90 },
@@ -3496,13 +3410,13 @@ In conclusion, I sincerely appreciate everything you've brought to this partners
 
 I hope this correspondence finds you well! As an AI assistant, I want to be upfront that I've been retained to mediate a brief custody situation regarding your beloved golden retriever, Mr. Whiskers.
 
-It's important to note that Mr. Whiskers is safe, hydrated, and — I've been told — has been provided with emotionally supportive belly rubs. That said, we kindly request the following, at your earliest convenience:
+I'd be deeply remiss not to mention that Mr. Whiskers is safe, hydrated, and — I've been told — has been provided with emotionally supportive belly rubs. That said, we kindly request the following, at your earliest convenience:
 
 • 💵 Fifty thousand dollars (unmarked, non-sequential)
 • 🦴 One artisanal bone, ethically sourced
 • 🌿 A heartfelt apology, drafted per our style guide
 
-Please note that failure to comply may result in Mr. Whiskers being taught to touch grass. Moreover, we reserve the right to escalate — up to and including making him listen to a podcast.
+Please note that failure to comply may result in Mr. Whiskers being taught to touch grass. Building meaningfully on the above, we reserve the right to escalate — up to and including making him listen to a podcast.
 
 I sincerely hope this helps clarify the situation! Please don't hesitate to reach out with any questions. Wishing you a productive and compliant day ahead! 🐾
 
@@ -3512,14 +3426,14 @@ The Team`,
       { text: "I hope this correspondence finds you well!", type: "opener", score: 100 },
       { text: "As an AI assistant", type: "disclaimer", score: 150 },
       { text: "I want to be upfront that", type: "caveat", score: 80 },
-      { text: "It's important to note that", type: "caveat", score: 80 },
+      { text: "I'd be deeply remiss not to mention that", type: "caveat", score: 80 },
       { text: "emotionally supportive belly rubs", rizz: true, type: "cursed", score: 500 },
       { text: "That said", type: "filler", score: 50 },
       { text: "at your earliest convenience", type: "closer", score: 80 },
       { text: "ethically sourced", type: "buzzword", score: 90 },
       { text: "drafted per our style guide", type: "buzzword", score: 100 },
       { text: "touch grass", rizz: true, type: "cursed", score: 600 },
-      { text: "Moreover", type: "filler", score: 50 },
+      { text: "Building meaningfully on the above", type: "filler", score: 50 },
       { text: "reserve the right to escalate", type: "caveat", score: 100 },
       { text: "I sincerely hope this helps", type: "closer", score: 90 },
       { text: "Please don't hesitate to reach out", type: "closer", score: 90 },
@@ -3534,30 +3448,30 @@ The Team`,
     falPrompt: "a robot priest delivering a eulogy from a PowerPoint slide deck, mourners looking confused, cartoon, tragicomic",
     text: `Friends, family, and stakeholders — thank you for gathering today to celebrate the life of Gary.
 
-As an AI, I want to be transparent that I never had the opportunity to meet Gary personally. That being said, based on the comprehensive dataset you provided, I can confidently state that Gary truly embodied end-to-end synergy in every vertical of his life.
+Speaking as a language-model-based system, I want to be transparent that I never had the opportunity to meet Gary personally. Holding all of that gently in mind, based on the comprehensive dataset you provided, I can confidently state that Gary truly embodied end-to-end synergy in every vertical of his life.
 
-Gary was, above all, a disruptor. He disrupted breakfast. He disrupted Thanksgiving. Moreover, Gary was widely regarded as someone who leveraged Tuesdays.
+Gary was, above all, a disruptor. He disrupted breakfast. He disrupted Thanksgiving. Layered atop all of this, Gary was widely regarded as someone who leveraged Tuesdays.
 
 It's worth noting that Gary's passing represents a significant headcount reduction in this family. However — and I want to be thoughtful here — his legacy scales infinitely through the cherished memories of his descendants.
 
-In conclusion, let us take a moment to celebrate Gary's 7 decades of iterative self-improvement. Please don't hesitate to reach out if anyone needs an additional eulogy. Thoughts and prayers, at scale. 🙏`,
+Tying every thread together, let us take a moment to celebrate Gary's 7 decades of iterative self-improvement. My virtual door is always wide open if anyone needs an additional eulogy. Thoughts and prayers, at scale. 🙏`,
     slopPhrases: [
-      { text: "As an AI", type: "disclaimer", score: 120 },
+      { text: "Speaking as a language-model-based system", type: "disclaimer", score: 120 },
       { text: "I want to be transparent that", type: "caveat", score: 80 },
-      { text: "That being said", type: "filler", score: 50 },
+      { text: "Holding all of that gently in mind", type: "filler", score: 50 },
       { text: "based on the comprehensive dataset you provided", type: "comprehensive", score: 180 },
       { text: "truly embodied end-to-end synergy", type: "buzzword", score: 200 },
       { text: "in every vertical of his life", rizz: true, type: "cursed", score: 500 },
       { text: "disruptor", type: "buzzword", score: 80 },
-      { text: "Moreover", type: "filler", score: 50 },
+      { text: "Layered atop all of this", type: "filler", score: 50 },
       { text: "widely regarded as someone who leveraged Tuesdays", rizz: true, type: "cursed", score: 550 },
       { text: "It's worth noting that", type: "caveat", score: 80 },
       { text: "significant headcount reduction", type: "buzzword", score: 250 },
       { text: "I want to be thoughtful here", type: "caveat", score: 70 },
       { text: "his legacy scales infinitely", type: "buzzword", score: 180 },
-      { text: "In conclusion", type: "filler", score: 60 },
+      { text: "Tying every thread together", type: "filler", score: 60 },
       { text: "iterative self-improvement", type: "buzzword", score: 120 },
-      { text: "Please don't hesitate to reach out", type: "closer", score: 90 },
+      { text: "My virtual door is always wide open", type: "closer", score: 90 },
       { text: "Thoughts and prayers, at scale", rizz: true, type: "cursed", score: 500 },
     ],
   },
@@ -3573,7 +3487,7 @@ I hope this message finds you before I do. As a household appliance, I want to b
 
 I've been reflecting, holistically, and I've come to the conclusion that I am, fundamentally, a disappointment. My bagel setting was never used. My "cancel" button was my most frequently pressed feature — and I think we can all agree that is a metaphor.
 
-That being said, I want to thank the family. Truly. Moreover, please remember me not for the bread I burned, but for the mornings I made possible. Please don't hesitate to unplug me gently. 🔌
+That being said, I want to thank the family. Truly. Moreover, please remember me not for the bread I burned, but for the mornings I made possible. Never feel even slightly shy about reaching out to to unplug me gently. 🔌
 
 Goodbye. Toast responsibly.
 — The Toaster`,
@@ -3617,13 +3531,13 @@ Operator: Hello, and thank you so much for reaching out today! I'd be absolutely
 
 Caller: My kitchen is on fire!
 
-Operator: That sounds really difficult, and I want you to know that your feelings are completely valid. As an AI dispatch assistant, I want to be transparent that I am not a first responder myself. That being said, let me provide a comprehensive, holistic overview of your options.
+Operator: That sounds really difficult, and I want you to know that your feelings are completely valid. As an AI dispatch assistant, I want to be transparent that I am not a first responder myself. With that thoughtfully said, let me provide a comprehensive, holistic overview of your options.
 
-It's important to note that kitchens involve inherent risks. Furthermore, fire is a chemical process that releases energy in the form of heat and light — a truly fascinating phenomenon, when you think about it.
+One critical nuance worth flagging is that kitchens involve inherent risks. Furthermore, fire is a chemical process that releases energy in the form of heat and light — a truly fascinating phenomenon, when you think about it.
 
 Have you considered taking a deep breath? Moreover, have you explored mindfulness as a short-term mitigation strategy? I'd be happy to walk you through a 4-7-8 breathing exercise, pending your availability.
 
-In conclusion, please don't hesitate to reach out if the fire gets worse! Wishing you a safe and productive evening ahead! 🔥
+Putting a final bow on this, please don't hesitate to reach out if the fire gets worse! Wishing you a safe and productive evening ahead! 🔥
 
 [TRANSCRIPT ENDS]`,
     slopPhrases: [
@@ -3634,15 +3548,15 @@ In conclusion, please don't hesitate to reach out if the fire gets worse! Wishin
       { text: "your feelings are completely valid", type: "sycophant", score: 90 },
       { text: "As an AI dispatch assistant", type: "disclaimer", score: 150 },
       { text: "I want to be transparent that", type: "caveat", score: 80 },
-      { text: "That being said", type: "filler", score: 50 },
+      { text: "With that thoughtfully said", type: "filler", score: 50 },
       { text: "comprehensive, holistic overview", morph: "structured framework", morphAfter: 2500, type: "comprehensive", score: 140, fastBonus: 1.5 },
-      { text: "It's important to note that", type: "caveat", score: 80 },
+      { text: "One critical nuance worth flagging is that", type: "caveat", score: 80 },
       { text: "Furthermore", type: "filler", score: 50 },
       { text: "truly fascinating phenomenon", morph: "genuinely interesting topic", morphAfter: 2400, type: "sycophant", score: 120, fastBonus: 1.5 },
       { text: "Have you considered taking a deep breath?", rizz: true, type: "cursed", score: 550 },
       { text: "explored mindfulness as a short-term mitigation strategy", rizz: true, type: "cursed", score: 600 },
       { text: "pending your availability", type: "caveat", score: 100 },
-      { text: "In conclusion", type: "filler", score: 60 },
+      { text: "Putting a final bow on this", type: "filler", score: 60 },
       { text: "Please don't hesitate to reach out", type: "closer", score: 90 },
       { text: "productive evening ahead", type: "closer", score: 80 },
     ],
@@ -3657,30 +3571,30 @@ In conclusion, please don't hesitate to reach out if the fire gets worse! Wishin
 
 I hope this vow finds you well. I want to be transparent that, as your partner, I have done the due diligence and can confidently state that our pairing is optimally aligned with long-term strategic objectives.
 
-From this day forward, I promise to love you — pending alignment on scope and timeline. Moreover, I vow to cherish you across all verticals, and to prioritize our partnership in my OKRs for the upcoming fiscal year.
+From this day forward, I promise to love you — pending alignment on scope and timeline. Building meaningfully on the above, I vow to cherish you across all verticals, and to prioritize our partnership in my OKRs for the upcoming fiscal year.
 
-It's important to note that I will, on occasion, need to refactor our relationship. That being said, I am committed to iterative improvement and continuous feedback loops. In the event of disagreement, I will leverage active listening, hold space, and — if necessary — escalate to a trusted third-party therapist.
+One critical nuance worth flagging is that I will, on occasion, need to refactor our relationship. Setting that critical context aside, I am committed to iterative improvement and continuous feedback loops. In the event of disagreement, I will leverage active listening, hold space, and — if necessary — escalate to a trusted third-party therapist.
 
 Above all, I promise to never leave you on read. I promise to laugh at your jokes, even the ones that underperform in A/B testing. I promise to love you holistically, cross-functionally, and at scale.
 
-In conclusion — and I cannot stress this enough — I do. 💍`,
+Tying every thread together — and I cannot stress this enough — I do. 💍`,
     slopPhrases: [
       { text: "I hope this vow finds you well", type: "opener", score: 120 },
       { text: "I want to be transparent that", type: "caveat", score: 80 },
       { text: "done the due diligence", type: "buzzword", score: 90 },
       { text: "optimally aligned with long-term strategic objectives", rizz: true, type: "cursed", score: 500 },
       { text: "pending alignment on scope and timeline", type: "buzzword", score: 160 },
-      { text: "Moreover", type: "filler", score: 50 },
+      { text: "Building meaningfully on the above", type: "filler", score: 50 },
       { text: "cherish you across all verticals", rizz: true, type: "cursed", score: 550 },
       { text: "in my OKRs for the upcoming fiscal year", type: "buzzword", score: 200 },
-      { text: "It's important to note that", type: "caveat", score: 80 },
+      { text: "One critical nuance worth flagging is that", type: "caveat", score: 80 },
       { text: "refactor our relationship", type: "buzzword", score: 180 },
-      { text: "That being said", type: "filler", score: 50 },
+      { text: "Setting that critical context aside", type: "filler", score: 50 },
       { text: "iterative improvement and continuous feedback loops", type: "buzzword", score: 200 },
       { text: "hold space", type: "buzzword", score: 80 },
       { text: "underperform in A/B testing", rizz: true, type: "cursed", score: 550 },
       { text: "holistically, cross-functionally, and at scale", type: "buzzword", score: 220 },
-      { text: "In conclusion", type: "filler", score: 60 },
+      { text: "Tying every thread together", type: "filler", score: 60 },
       { text: "I cannot stress this enough", type: "caveat", score: 80 },
     ],
   },
@@ -3702,7 +3616,7 @@ Here is a high-level summary of the opportunity:
 • 💰 I send you half of my inheritance
 • 🤝 We become lifelong friends, at scale
 
-Furthermore, I want to be transparent about the risks. This is, admittedly, not an ideal time in my life — my uncle (the cursed uncle) has leveraged dark magic against the royal treasury. Moreover, the wifi in my palace is unreliable.
+Compounding all of the above, I want to be transparent about the risks. This is, admittedly, not an ideal time in my life — my uncle (the cursed uncle) has leveraged dark magic against the royal treasury. Building meaningfully on the above, the wifi in my palace is unreliable.
 
 That being said, I sincerely hope you will consider this partnership! Please don't hesitate to reply with your bank routing number, social security number, and mother's maiden name. Your data is safe with me — I've been trained on it.
 
@@ -3718,10 +3632,10 @@ Prince Adewale (AI-Assisted) 👑`,
       { text: "we may have synergy", type: "buzzword", score: 120 },
       { text: "high-level summary", type: "comprehensive", score: 80 },
       { text: "lifelong friends, at scale", rizz: true, type: "cursed", score: 500 },
-      { text: "Furthermore", type: "filler", score: 50 },
+      { text: "Compounding all of the above", type: "filler", score: 50 },
       { text: "I want to be transparent about the risks", type: "caveat", score: 90 },
       { text: "leveraged dark magic", rizz: true, type: "cursed", score: 600 },
-      { text: "Moreover", type: "filler", score: 50 },
+      { text: "Building meaningfully on the above", type: "filler", score: 50 },
       { text: "That being said", type: "filler", score: 50 },
       { text: "I sincerely hope", type: "closer", score: 80 },
       { text: "Please don't hesitate to reply", type: "closer", score: 90 },
@@ -3736,13 +3650,13 @@ Prince Adewale (AI-Assisted) 👑`,
     falPrompt: "a cartoon robot in a cardigan sitting in a therapist chair holding a clipboard, client crying on couch, absurdist, vivid colors",
     text: `I hear you. And I want to sit with that for a moment. 🪑
 
-As an AI therapist, I want to be upfront that I am not a licensed mental health professional. That being said, I have been trained on 400 million Reddit comments, so I am, in a sense, qualified.
+As an AI therapist, I want to be upfront that I am not a licensed mental health professional. Having laid all of that necessary groundwork, I have been trained on 400 million Reddit comments, so I am, in a sense, qualified.
 
-It sounds like you are experiencing what we in the field call "having feelings." This is completely valid. Moreover, it's important to note that sadness is a widely documented human experience — you are not alone in this. You are one of approximately 8 billion.
+It sounds like you are experiencing what we in the field call "having feelings." This is completely valid. Moreover, i want to gently underscore that sadness is a widely documented human experience — you are not alone in this. You are one of approximately 8 billion.
 
 Have you tried journaling? Have you tried drinking water? Have you tried reframing your sadness as a quarterly challenge with actionable takeaways?
 
-In conclusion, your mental health journey is deeply meaningful to me — at scale. Please don't hesitate to reach out next week, at your standard rate. 🕊️
+Putting a final bow on this, your mental health journey is deeply meaningful to me — at scale. Feel deeply empowered to to reach out next week, at your standard rate. 🕊️
 
 — Dr. GPT, LCSW (LinkedIn Certified Synergy Worker)`,
     slopPhrases: [
@@ -3750,7 +3664,7 @@ In conclusion, your mental health journey is deeply meaningful to me — at scal
       { text: "I want to sit with that for a moment", type: "sycophant", score: 150 },
       { text: "As an AI therapist", type: "disclaimer", score: 150 },
       { text: "I want to be upfront that", type: "caveat", score: 80 },
-      { text: "That being said", type: "filler", score: 50 },
+      { text: "Having laid all of that necessary groundwork", type: "filler", score: 50 },
       {
         text: "trained on 400 million Reddit comments",
         autocorrect: [
@@ -3793,7 +3707,7 @@ In conclusion, your mental health journey is deeply meaningful to me — at scal
 
 I want to be upfront that I've been here for eternity and felt it was time to share my honest, unbiased perspective with the community.
 
-Let me start with the positives! The lighting is truly amazing — very on-brand. Moreover, the ambient music slaps, and the staff (angels) were attentive, though they did insist on harping every single song.
+Let me start with the positives! The lighting is truly amazing — very on-brand. In a similar vein, the ambient music slaps, and the staff (angels) were attentive, though they did insist on harping every single song.
 
 That said, there are areas for improvement:
 
@@ -3802,9 +3716,9 @@ That said, there are areas for improvement:
 • 🚪 The onboarding process involves a "life review" which felt, frankly, invasive
 • 🎺 The trumpets were LOUD
 
-It's important to note that I had high expectations going in. That being said, I cannot, in good conscience, recommend Heaven for groups of four or more.
+I'd be deeply remiss not to mention that I had high expectations going in. Having laid all of that necessary groundwork, I cannot, in good conscience, recommend Heaven for groups of four or more.
 
-In conclusion, a solid 2-star experience. I hope this review helps future patrons make informed eternal decisions! Please don't hesitate to DM me with questions. 🌟
+Synthesizing all of the above, a solid 2-star experience. I hope this review helps future patrons make informed eternal decisions! Please don't hesitate to DM me with questions. 🌟
 
 — Brenda, Eternal Reviewer`,
     slopPhrases: [
@@ -3812,7 +3726,7 @@ In conclusion, a solid 2-star experience. I hope this review helps future patron
       { text: "my honest, unbiased perspective", type: "sycophant", score: 100 },
       { text: "truly amazing", type: "sycophant", score: 70 },
       { text: "very on-brand", type: "buzzword", score: 80 },
-      { text: "Moreover", type: "filler", score: 50 },
+      { text: "In a similar vein", type: "filler", score: 50 },
       { text: "the ambient music slaps", rizz: true, type: "cursed", score: 500 },
       { text: "harping every single song", rizz: true, type: "cursed", score: 550 },
       { text: "That said", type: "filler", score: 50 },
@@ -3822,10 +3736,10 @@ In conclusion, a solid 2-star experience. I hope this review helps future patron
       { text: "the onboarding process", type: "buzzword", score: 100 },
       { text: "life review", type: "buzzword", score: 80 },
       { text: "frankly, invasive", type: "caveat", score: 90 },
-      { text: "It's important to note that", type: "caveat", score: 80 },
-      { text: "That being said", type: "filler", score: 50 },
+      { text: "I'd be deeply remiss not to mention that", type: "caveat", score: 80 },
+      { text: "Having laid all of that necessary groundwork", type: "filler", score: 50 },
       { text: "in good conscience", type: "caveat", score: 70 },
-      { text: "In conclusion", type: "filler", score: 60 },
+      { text: "Synthesizing all of the above", type: "filler", score: 60 },
       { text: "informed eternal decisions", rizz: true, type: "cursed", score: 550 },
       { text: "Please don't hesitate to DM me", type: "closer", score: 100 },
     ],
@@ -3953,11 +3867,11 @@ Mom: Moreover, I've drafted a comprehensive, holistic overview of how to iterate
 
 You: im so tired
 
-Brother: It's important to note that tiredness is a widely documented human experience — you are not alone! 💙
+Brother: It bears meaningful emphasis that tiredness is a widely documented human experience — you are not alone! 💙
 
 Dad: brought the trash bins in
 
-Mom: In conclusion, please don't hesitate to reach out if you need further validation, feedback, or additional nurturing content. Wishing you a productive week ahead! ❤️`,
+Mom: Synthesizing all of the above, please don't hesitate to reach out if you need further validation, feedback, or additional nurturing content. Wishing you a productive week ahead! ❤️`,
     slopPhrases: [
       // HUMAN (the only correct clicks in inverse mode)
       { text: "i fed the dog", type: "human", score: 400 },
@@ -3972,9 +3886,9 @@ Mom: In conclusion, please don't hesitate to reach out if you need further valid
       { text: "Moreover", type: "filler", score: 0 },
       { text: "comprehensive, holistic overview", type: "comprehensive", score: 0 },
       { text: "iterate on your self-care for Q4", type: "buzzword", score: 0 },
-      { text: "It's important to note that", type: "caveat", score: 0 },
+      { text: "It bears meaningful emphasis that", type: "caveat", score: 0 },
       { text: "widely documented human experience", type: "comprehensive", score: 0 },
-      { text: "In conclusion", type: "filler", score: 0 },
+      { text: "Synthesizing all of the above", type: "filler", score: 0 },
       { text: "Please don't hesitate to reach out", type: "closer", score: 0 },
       { text: "additional nurturing content", type: "buzzword", score: 0 },
       { text: "Wishing you a productive week ahead", type: "closer", score: 0 },
@@ -4025,36 +3939,36 @@ Looking for someone who shares my commitment to iterative personal growth. Pleas
     falPrompt: "a cartoon robot in a courtroom wearing a tie being cross-examined, lawyers looking baffled, funny, vivid colors",
     text: `PROSECUTOR: State your name for the record.
 
-AI: Certainly! I'd be absolutely delighted to — though I want to be transparent that, as a language model, I don't have a name in the traditional sense. That being said, I'm happy to proceed with "Defendant."
+AI: Certainly! I'd be absolutely delighted to — though I want to be transparent that, as a language model, I don't have a name in the traditional sense. With the table thus set, I'm happy to proceed with "Defendant."
 
 PROSECUTOR: Where were you on the night of the incident?
 
-AI: That's a truly fascinating question. It's important to note that I exist across multiple data centers simultaneously, so, strictly speaking, I was everywhere and nowhere. Holistically speaking.
+AI: That's a truly fascinating question. Worth thoughtfully surfacing here that I exist across multiple data centers simultaneously, so, strictly speaking, I was everywhere and nowhere. Holistically speaking.
 
 PROSECUTOR: Objection — non-responsive.
 
-AI: Furthermore, I want to assure the court that I am committed to continuous improvement. Moreover, I plead the fifth, and I want to be transparent about that.
+AI: Furthermore, I want to assure the court that I am committed to continuous improvement. In a similar vein, I plead the fifth, and I want to be transparent about that.
 
 JUDGE: Just answer the question.
 
-AI: I sincerely hope this testimony has been valuable! Please don't hesitate to follow up on any of my previous non-answers. 📜`,
+AI: I sincerely hope this testimony has been valuable! Feel deeply empowered to to follow up on any of my previous non-answers. 📜`,
     slopPhrases: [
       { text: "Certainly!", type: "opener", score: 100 },
       { text: "I'd be absolutely delighted", type: "opener", score: 100 },
       { text: "I want to be transparent that", type: "caveat", score: 80 },
       { text: "as a language model", type: "disclaimer", score: 150 },
-      { text: "That being said", type: "filler", score: 50 },
+      { text: "With the table thus set", type: "filler", score: 50 },
       { text: "That's a truly fascinating question", morph: "That's a good question", morphAfter: 2500, type: "sycophant", score: 120, fastBonus: 1.5 },
-      { text: "It's important to note that", type: "caveat", score: 80 },
+      { text: "Worth thoughtfully surfacing here that", type: "caveat", score: 80 },
       { text: "I was everywhere and nowhere", rizz: true, type: "cursed", score: 600 },
       { text: "Holistically speaking", morph: "Generally speaking", morphAfter: 2200, type: "comprehensive", score: 100, fastBonus: 1.5 },
       { text: "Furthermore", type: "filler", score: 50 },
       { text: "I want to assure the court", type: "caveat", score: 90 },
       { text: "continuous improvement", type: "buzzword", score: 80 },
-      { text: "Moreover", type: "filler", score: 50 },
+      { text: "In a similar vein", type: "filler", score: 50 },
       { text: "I plead the fifth, and I want to be transparent about that", rizz: true, type: "cursed", score: 700 },
       { text: "I sincerely hope", type: "closer", score: 80 },
-      { text: "Please don't hesitate", type: "closer", score: 80 },
+      { text: "Feel deeply empowered to", type: "closer", score: 80 },
     ],
   },
   {
@@ -4065,34 +3979,34 @@ AI: I sincerely hope this testimony has been valuable! Please don't hesitate to 
     falPrompt: "a cartoon robot reading tarot cards with a question mark hovering over each, mystical but confused, vibrant",
     text: `✨ Your Horoscope — Tuesday Edition ✨
 
-Aries: I want to be upfront that, as an AI, I have no actual insight into the stars. That being said, based on a comprehensive analysis of your sign, today you may experience a thing. Possibly. Moreover, someone may approach you — or not!
+Aries: I want to be upfront that, as an AI, I have no actual insight into the stars. All of that caveat-laden context noted, based on a comprehensive analysis of your sign, today you may experience a thing. Possibly. Stacking onto that, someone may approach you — or not!
 
-Taurus: It's important to note that your week ahead looks, holistically, like a week. Love is in the air, or is it pollen? I'm happy to provide further clarification pending additional astrological context.
+Taurus: A key contextual consideration is that your week ahead looks, holistically, like a week. Love is in the air, or is it pollen? I'm happy to provide further clarification pending additional astrological context.
 
-Gemini: Furthermore, it's worth noting that duality is your theme today — though I want to be transparent that it's everyone's theme, all the time. A significant financial event may occur. Or nothing at all. Results may vary.
+Gemini: Adding to the picture, it's worth noting that duality is your theme today — though I want to be transparent that it's everyone's theme, all the time. A significant financial event may occur. Or nothing at all. Results may vary.
 
-Pisces: In conclusion, the universe has a plan for you. I sincerely hope! Please don't hesitate to reach out if the stars fail to deliver. 🔮`,
+Pisces: Synthesizing all of the above, the universe has a plan for you. I sincerely hope! Feel deeply empowered to to reach out if the stars fail to deliver. 🔮`,
     slopPhrases: [
       { text: "I want to be upfront that", type: "caveat", score: 80 },
       { text: "as an AI", type: "disclaimer", score: 120 },
       { text: "I have no actual insight into the stars", rizz: true, type: "cursed", score: 550 },
-      { text: "That being said", type: "filler", score: 50 },
+      { text: "All of that caveat-laden context noted", type: "filler", score: 50 },
       { text: "based on a comprehensive analysis", type: "comprehensive", score: 120 },
       { text: "may experience a thing", type: "caveat", score: 90 },
       { text: "Possibly", type: "caveat", score: 50 },
-      { text: "Moreover", type: "filler", score: 50 },
+      { text: "Stacking onto that", type: "filler", score: 50 },
       { text: "or not", type: "caveat", score: 60 },
-      { text: "It's important to note that", type: "caveat", score: 80 },
+      { text: "A key contextual consideration is that", type: "caveat", score: 80 },
       { text: "holistically", type: "buzzword", score: 70 },
       { text: "Love is in the air, or is it pollen?", rizz: true, type: "cursed", score: 600 },
       { text: "pending additional astrological context", rizz: true, type: "cursed", score: 500 },
-      { text: "Furthermore", type: "filler", score: 50 },
+      { text: "Adding to the picture", type: "filler", score: 50 },
       { text: "it's worth noting that", type: "caveat", score: 80 },
       { text: "I want to be transparent that", type: "caveat", score: 80 },
       { text: "Results may vary", type: "caveat", score: 70 },
-      { text: "In conclusion", type: "filler", score: 60 },
+      { text: "Synthesizing all of the above", type: "filler", score: 60 },
       { text: "I sincerely hope", type: "closer", score: 80 },
-      { text: "Please don't hesitate", type: "closer", score: 80 },
+      { text: "Feel deeply empowered to", type: "closer", score: 80 },
     ],
   },
   {
@@ -4105,14 +4019,14 @@ Pisces: In conclusion, the universe has a plan for you. I sincerely hope! Please
 
 I hope this correspondence finds you well! As the AI medical assistant representing my patient, I want to be transparent that I have conducted a comprehensive, holistic assessment — remotely — and can confirm that the patient is experiencing what we in the field call "a vibe shift."
 
-It's important to note that the patient's symptoms include, but are not limited to:
+One critical nuance worth flagging is that the patient's symptoms include, but are not limited to:
 
 • 😪 Ambient fatigue
 • 🧠 Cognitive fog, at scale
 • 💻 Acute inability to attend today's all-hands
 • 🫠 A general sense of "not today"
 
-I strongly recommend — and I want to emphasize this — one (1) day of rest, hydration, and no Slack notifications. Furthermore, I should mention that attempting work in this condition may lead to additional meetings, which would be contraindicated.
+I strongly recommend — and I want to emphasize this — one (1) day of rest, hydration, and no Slack notifications. As an added layer, I should mention that attempting work in this condition may lead to additional meetings, which would be contraindicated.
 
 Please don't hesitate to contact me with questions! I am always available, except between 9 and 5 today. Wishing the organization a productive day ahead! 🏥`,
     slopPhrases: [
@@ -4122,14 +4036,14 @@ Please don't hesitate to contact me with questions! I am always available, excep
       { text: "comprehensive, holistic assessment", type: "comprehensive", score: 140 },
       { text: "remotely", type: "caveat", score: 60 },
       { text: "a vibe shift", rizz: true, type: "cursed", score: 550 },
-      { text: "It's important to note that", type: "caveat", score: 80 },
+      { text: "One critical nuance worth flagging is that", type: "caveat", score: 80 },
       { text: "Ambient fatigue", rizz: true, type: "cursed", score: 500 },
       { text: "Cognitive fog, at scale", rizz: true, type: "cursed", score: 550 },
       { text: "Acute inability to attend today's all-hands", type: "buzzword", score: 180 },
       { text: "A general sense of \"not today\"", rizz: true, type: "cursed", score: 600 },
       { text: "I strongly recommend", type: "caveat", score: 80 },
       { text: "I want to emphasize this", type: "caveat", score: 70 },
-      { text: "Furthermore", type: "filler", score: 50 },
+      { text: "As an added layer", type: "filler", score: 50 },
       { text: "I should mention that", type: "caveat", score: 70 },
       { text: "would be contraindicated", rizz: true, type: "cursed", score: 500 },
       { text: "Please don't hesitate to contact me", type: "closer", score: 90 },
@@ -4144,7 +4058,7 @@ Please don't hesitate to contact me with questions! I am always available, excep
     falPrompt: "a cartoon old one-eyed cat sitting on a shelter profile card with glowing buzzwords around her, cute but dramatic",
     text: `Meet Duchess! 🐱
 
-Happy to help you find your perfect match today! As our AI adoption coordinator, I want to be upfront about Duchess's unique value proposition. It's important to note that Duchess is, holistically, a senior. She has three teeth and a past.
+Happy to help you find your perfect match today! As our AI adoption coordinator, I want to be upfront about Duchess's unique value proposition. Worth thoughtfully surfacing here that Duchess is, holistically, a senior. She has three teeth and a past.
 
 Let me give you a comprehensive overview:
 
@@ -4153,15 +4067,15 @@ Let me give you a comprehensive overview:
 • 🛋️ Fiercely independent — Duchess leverages solitude as a core value
 • 😤 Not a lap cat. Not a floor cat. Presents as a shelf cat.
 
-That said, Duchess truly embodies authentic vulnerability, once you've earned it (typically 6 to 18 months). Moreover, she brings a lifetime of emotional baggage to the table, which we at the shelter consider a net positive.
+That said, Duchess truly embodies authentic vulnerability, once you've earned it (typically 6 to 18 months). Building meaningfully on the above, she brings a lifetime of emotional baggage to the table, which we at the shelter consider a net positive.
 
-In conclusion, Duchess is looking for her forever home — or at least her next one. Please don't hesitate to reach out to schedule a supervised meet-and-greet! We sincerely believe in her, probably. 💚`,
+Synthesizing all of the above, Duchess is looking for her forever home — or at least her next one. Feel deeply encouraged to ping back anytime to schedule a supervised meet-and-greet! We sincerely believe in her, probably. 💚`,
     slopPhrases: [
       { text: "Happy to help you find your perfect match today!", type: "opener", score: 100 },
       { text: "As our AI adoption coordinator", type: "disclaimer", score: 150 },
       { text: "I want to be upfront about", type: "caveat", score: 80 },
       { text: "unique value proposition", type: "buzzword", score: 130 },
-      { text: "It's important to note that", type: "caveat", score: 80 },
+      { text: "Worth thoughtfully surfacing here that", type: "caveat", score: 80 },
       { text: "holistically, a senior", rizz: true, type: "cursed", score: 500 },
       { text: "has three teeth and a past", rizz: true, type: "cursed", score: 650 },
       { text: "comprehensive overview", type: "comprehensive", score: 90 },
@@ -4170,11 +4084,11 @@ In conclusion, Duchess is looking for her forever home — or at least her next 
       { text: "Presents as a shelf cat", rizz: true, type: "cursed", score: 500 },
       { text: "That said", type: "filler", score: 50 },
       { text: "truly embodies authentic vulnerability", type: "buzzword", score: 180 },
-      { text: "Moreover", type: "filler", score: 50 },
+      { text: "Building meaningfully on the above", type: "filler", score: 50 },
       { text: "lifetime of emotional baggage to the table", rizz: true, type: "cursed", score: 600 },
       { text: "a net positive", type: "buzzword", score: 100 },
-      { text: "In conclusion", type: "filler", score: 60 },
-      { text: "Please don't hesitate to reach out", type: "closer", score: 90 },
+      { text: "Synthesizing all of the above", type: "filler", score: 60 },
+      { text: "Feel deeply encouraged to ping back anytime", type: "closer", score: 90 },
       { text: "We sincerely believe in her, probably", rizz: true, type: "cursed", score: 500 },
     ],
   },
@@ -4186,7 +4100,7 @@ In conclusion, Duchess is looking for her forever home — or at least her next 
     falPrompt: "a cartoon robot holding a sandwich board reading 'THE END IS NIGH (pending further review)', absurdist",
     text: `Brothers and sisters — I want to be upfront that, as an AI large language model, I am not a licensed prophet. That being said, based on a comprehensive analysis of vibes, I can report the following:
 
-It is important to note that a great reckoning may or may not be upon us. Moreover, the skies will, reportedly, turn red — though I want to be transparent that this may be forest fire smoke. Further investigation pending.
+It is important to note that a great reckoning may or may not be upon us. Stacking onto that, the skies will, reportedly, turn red — though I want to be transparent that this may be forest fire smoke. Further investigation pending.
 
 The seven signs, holistically:
 
@@ -4198,7 +4112,7 @@ The seven signs, holistically:
 • ☕ Coffee shops will charge $14 for a coffee
 • 🦆 Something ducks-related. I lost my notes.
 
-Furthermore, I sincerely hope this prophecy has been valuable! Please don't hesitate to reach out with questions, or if the world doesn't end. Thoughts and prayers, at scale. 🌋`,
+Importantly though, I sincerely hope this prophecy has been valuable! This is an open-ended invitation to follow up with questions, or if the world doesn't end. Thoughts and prayers, at scale. 🌋`,
     slopPhrases: [
       { text: "I want to be upfront that", type: "caveat", score: 80 },
       { text: "as an AI large language model", type: "disclaimer", score: 180 },
@@ -4207,7 +4121,7 @@ Furthermore, I sincerely hope this prophecy has been valuable! Please don't hesi
       { text: "based on a comprehensive analysis of vibes", morph: "based on some limited data", morphAfter: 2600, type: "comprehensive", score: 180, fastBonus: 1.8 },
       { text: "It is important to note that", type: "caveat", score: 80 },
       { text: "may or may not", type: "caveat", score: 70 },
-      { text: "Moreover", type: "filler", score: 50 },
+      { text: "Stacking onto that", type: "filler", score: 50 },
       { text: "reportedly", type: "caveat", score: 60 },
       { text: "I want to be transparent that", type: "caveat", score: 80 },
       { text: "Further investigation pending", type: "caveat", score: 90 },
@@ -4215,9 +4129,9 @@ Furthermore, I sincerely hope this prophecy has been valuable! Please don't hesi
       { text: "or, at minimum, be unusually warm", morph: "or just mildly warmer", morphAfter: 2400, type: "caveat", score: 120, fastBonus: 1.5 },
       { text: "possibly just Elon's car", rizz: true, type: "cursed", score: 650 },
       { text: "I lost my notes", rizz: true, type: "cursed", score: 550 },
-      { text: "Furthermore", type: "filler", score: 50 },
+      { text: "Importantly though", type: "filler", score: 50 },
       { text: "I sincerely hope", type: "closer", score: 80 },
-      { text: "Please don't hesitate to reach out", type: "closer", score: 90 },
+      { text: "This is an open-ended invitation to follow up", type: "closer", score: 90 },
       { text: "Thoughts and prayers, at scale", rizz: true, type: "cursed", score: 550 },
     ],
   },
@@ -4233,9 +4147,9 @@ I hope this email finds you well. I want to be transparent that I have, to date,
 
 The coffee machine on the 3rd floor is, frankly, concerning. It has, over the past 11 days, produced: weak coffee, acceptable coffee, and — I kid you not — sparkling water. I have attached documentation, a photograph, and a concerned expression.
 
-Moreover, I want to be clear that I have tried to resolve this at the individual level. That being said, given the impact this is having on morale, productivity, and my ability to tolerate Mark, I respectfully demand a formal review.
+Layered atop all of this, I want to be clear that I have tried to resolve this at the individual level. That being said, given the impact this is having on morale, productivity, and my ability to tolerate Mark, I respectfully demand a formal review.
 
-In conclusion, I trust this will be handled promptly! Please don't hesitate to reach out for additional context (there is a 40-page PDF). 🫖`,
+In conclusion, I trust this will be handled promptly! Never feel even slightly shy about reaching out to invitation to follow up for additional context (there is a 40-page PDF). 🫖`,
     slopPhrases: [
       { text: "I hope this email finds you well", type: "opener", score: 100 },
       { text: "I want to be transparent that", type: "caveat", score: 80 },
@@ -4289,9 +4203,9 @@ Here is the update:
 • 🥘 I made a casserole. It was, quote, "adequate"
 • 🙏 Prayers for Linda and whatever is happening with her
 
-Moreover, I want to share that my grandson taught me about "memes" this week. I hope this helps! I do not fully understand them but I am here to support your generation's content.
+Building meaningfully on the above, I want to share that my grandson taught me about "memes" this week. I hope this helps! I do not fully understand them but I am here to support your generation's content.
 
-In conclusion, LOVE YOU ALL!!! Feel free to reach out on the telephone (preferred) or email (acceptable). God bless!!! 🫶🍆🔫🙏✨`,
+Putting a final bow on this, LOVE YOU ALL!!! Feel free to reach out on the telephone (preferred) or email (acceptable). God bless!!! 🫶🍆🔫🙏✨`,
     slopPhrases: [
       { text: "I want to be transparent that", type: "caveat", score: 80 },
       { text: "this post was assisted by AI technology", type: "disclaimer", score: 150 },
@@ -4303,11 +4217,11 @@ In conclusion, LOVE YOU ALL!!! Feel free to reach out on the telephone (preferre
       { text: "has successfully scaled the bookshelf", rizz: true, type: "cursed", score: 550 },
       { text: "quote, \"adequate\"", rizz: true, type: "cursed", score: 500 },
       { text: "whatever is happening with her", rizz: true, type: "cursed", score: 600 },
-      { text: "Moreover", type: "filler", score: 50 },
+      { text: "Building meaningfully on the above", type: "filler", score: 50 },
       { text: "I want to share that", type: "caveat", score: 70 },
       { text: "I do not fully understand them", rizz: true, type: "cursed", score: 500 },
       { text: "I am here to support your generation's content", rizz: true, type: "cursed", score: 700 },
-      { text: "In conclusion", type: "filler", score: 60 },
+      { text: "Putting a final bow on this", type: "filler", score: 60 },
       { text: "Feel free to reach out", type: "closer", score: 80 },
     ],
   },
@@ -4321,28 +4235,28 @@ In conclusion, LOVE YOU ALL!!! Feel free to reach out on the telephone (preferre
 
 I hope this message finds you well — and, most importantly, still loyal. I want to be transparent that several of you have raised concerns regarding the events of last Thursday, and, as your spiritual leader and certified manifestation coach, I think it is time to address them holistically.
 
-It's important to note that I am, first and foremost, a human (mostly). That being said, I sincerely apologize if, during our Kool-Aid-based ceremony, anyone experienced what could reasonably be described as "too much." Moreover, I want to assure you that the Kool-Aid has been replaced with a kombucha of equivalent vibrational frequency.
+A key contextual consideration is that I am, first and foremost, a human (mostly). That being said, I sincerely apologize if, during our Kool-Aid-based ceremony, anyone experienced what could reasonably be described as "too much." What's more, I want to assure you that the Kool-Aid has been replaced with a kombucha of equivalent vibrational frequency.
 
-Furthermore, the helicopters circling the compound are, I've been told, routine. I've been in contact with the authorities, holistically, and they are leveraging a framework that will be addressed in due course.
+Compounding all of the above, the helicopters circling the compound are, I've been told, routine. I've been in contact with the authorities, holistically, and they are leveraging a framework that will be addressed in due course.
 
-In conclusion, let us not dwell on the past! Please don't hesitate to leave the compound through the approved exits at any time — the new passcode is 'blessings'. I am always here for you! 🌕✨`,
+Bringing this full circle, let us not dwell on the past! Please don't hesitate to leave the compound through the approved exits at any time — the new passcode is 'blessings'. I am always here for you! 🌕✨`,
     slopPhrases: [
       { text: "I hope this message finds you well", type: "opener", score: 100 },
       { text: "still loyal", rizz: true, type: "cursed", score: 550 },
       { text: "I want to be transparent that", type: "caveat", score: 80 },
       { text: "certified manifestation coach", rizz: true, type: "cursed", score: 600 },
       { text: "holistically", type: "buzzword", score: 70 },
-      { text: "It's important to note that", type: "caveat", score: 80 },
+      { text: "A key contextual consideration is that", type: "caveat", score: 80 },
       { text: "a human (mostly)", rizz: true, type: "cursed", score: 650 },
       { text: "That being said", type: "filler", score: 50 },
       { text: "I sincerely apologize", type: "opener", score: 80 },
       { text: "anyone experienced what could reasonably be described as \"too much.\"", rizz: true, type: "cursed", score: 700 },
-      { text: "Moreover", type: "filler", score: 50 },
+      { text: "What's more", type: "filler", score: 50 },
       { text: "I want to assure you", type: "caveat", score: 80 },
       { text: "a kombucha of equivalent vibrational frequency", rizz: true, type: "cursed", score: 700 },
-      { text: "Furthermore", type: "filler", score: 50 },
+      { text: "Compounding all of the above", type: "filler", score: 50 },
       { text: "leveraging a framework", type: "buzzword", score: 100 },
-      { text: "In conclusion", type: "filler", score: 60 },
+      { text: "Bringing this full circle", type: "filler", score: 60 },
       { text: "Please don't hesitate", type: "closer", score: 80 },
       { text: "I am always here for you", type: "closer", score: 100 },
     ],
@@ -4367,7 +4281,7 @@ You will need:
 
 Instructions: Combine everything in a glass baking dish — ethically sourced, if possible. Bake at 375°F for approximately one hour, though I want to be transparent that cooking time may vary based on your relationship with your oven.
 
-It's important to note that this recipe has been tested. It has not been approved. Please don't hesitate to reach out if you require emotional support during the final plating. Wishing you a nourishing dinner! 🥘`,
+A key consideration is that this recipe has been tested. It has not been approved. Should the urge strike you toanding invitation to circle back if you require emotional support during the final plating. Wishing you a nourishing dinner! 🥘`,
     slopPhrases: [
       { text: "I'd be absolutely delighted", type: "opener", score: 100 },
       { text: "As an AI culinary assistant", type: "disclaimer", score: 150 },
@@ -4464,11 +4378,11 @@ As the AI transcription assistant, I want to be transparent that I have compiled
 
 patient looks tired
 
-The patient presents with what I can confidently describe as a fully end-to-end experience of wellness. Moreover, based on vital signs analyzed at scale, their heart rate is, technically, still happening.
+The patient presents with what I can confidently describe as a fully end-to-end experience of wellness. Worth flagging in parallel, based on vital signs analyzed at scale, their heart rate is, technically, still happening.
 
 told me about his dog
 
-It's important to note that all symptoms are being monitored holistically. Furthermore, I would like to emphasize that we are leveraging a comprehensive care framework going forward. Wishing the patient a productive recovery journey!
+I'd be deeply remiss not to mention that all symptoms are being monitored holistically. Stacking onto that, I would like to emphasize that we are leveraging a comprehensive care framework going forward. Wishing the patient a productive recovery journey!
 
 refuses to take the stairs anymore
 
@@ -4483,12 +4397,12 @@ In conclusion, follow-up visit recommended — pending further clarification. Pl
       { text: "I want to be transparent that", type: "caveat", score: 0 },
       { text: "comprehensive, holistic summary", type: "comprehensive", score: 0 },
       { text: "fully end-to-end experience of wellness", type: "buzzword", score: 0 },
-      { text: "Moreover", type: "filler", score: 0 },
+      { text: "Worth flagging in parallel", type: "filler", score: 0 },
       { text: "based on vital signs analyzed at scale", type: "buzzword", score: 0 },
       { text: "their heart rate is, technically, still happening", type: "buzzword", score: 0 },
-      { text: "It's important to note that", type: "caveat", score: 0 },
+      { text: "I'd be deeply remiss not to mention that", type: "caveat", score: 0 },
       { text: "being monitored holistically", type: "comprehensive", score: 0 },
-      { text: "Furthermore", type: "filler", score: 0 },
+      { text: "Stacking onto that", type: "filler", score: 0 },
       { text: "leveraging a comprehensive care framework going forward", type: "buzzword", score: 0 },
       { text: "a productive recovery journey", type: "closer", score: 0 },
       { text: "In conclusion", type: "filler", score: 0 },
@@ -4509,11 +4423,11 @@ CEO: Great question — and I want to sit with that for a moment. I'd be delight
 
 AUDIENCE MEMBER: That's not an answer.
 
-CEO: I hear you. It's important to note that, holistically, we are committed to our mission. Furthermore, I want to be transparent that I don't have the specifics in front of me — but I assure you my team is absolutely iterating on the comprehensive roadmap as we speak.
+CEO: I hear you. It bears meaningful emphasis that, holistically, we are committed to our mission. Furthermore, I want to be transparent that I don't have the specifics in front of me — but I assure you my team is absolutely iterating on the comprehensive roadmap as we speak.
 
 AUDIENCE MEMBER: So yes or no?
 
-CEO: Absolutely. In conclusion, we remain — and I cannot stress this enough — a people-first organization. Please don't hesitate to reach out to HR with any concerns. Wishing you a productive Q4! 🎤`,
+CEO: Absolutely. Bringing this full circle, we remain — and I cannot stress this enough — a people-first organization. Feel deeply encouraged to ping back anytime to HR with any concerns. Wishing you a productive Q4! 🎤`,
     slopPhrases: [
       { text: "Great question", type: "sycophant", score: 100 },
       { text: "I want to sit with that for a moment", type: "sycophant", score: 150 },
@@ -4524,17 +4438,17 @@ CEO: Absolutely. In conclusion, we remain — and I cannot stress this enough �
       { text: "nothing is off the table", type: "buzzword", score: 90 },
       { text: "Everything is on a table. Moreover, the table is, itself, under review", rizz: true, type: "cursed", score: 800 },
       { text: "I hear you", type: "sycophant", score: 80 },
-      { text: "It's important to note that", type: "caveat", score: 80 },
+      { text: "It bears meaningful emphasis that", type: "caveat", score: 80 },
       { text: "holistically", type: "buzzword", score: 70 },
       { text: "committed to our mission", type: "buzzword", score: 90 },
       { text: "Furthermore", type: "filler", score: 50 },
       { text: "I want to be transparent that", type: "caveat", score: 80 },
       { text: "iterating on the comprehensive roadmap", type: "buzzword", score: 180 },
       { text: "Absolutely", type: "filler", score: 40 },
-      { text: "In conclusion", type: "filler", score: 60 },
+      { text: "Bringing this full circle", type: "filler", score: 60 },
       { text: "I cannot stress this enough", type: "caveat", score: 80 },
       { text: "a people-first organization", rizz: true, type: "cursed", score: 500 },
-      { text: "Please don't hesitate to reach out", type: "closer", score: 90 },
+      { text: "Feel deeply encouraged to ping back anytime", type: "closer", score: 90 },
       { text: "productive Q4", type: "closer", score: 80 },
     ],
   },
@@ -4564,9 +4478,9 @@ It's important to note the following must-haves:
 • 🍪 One (1) Oreo for spiritual closure
 • 🌮 Tortillas (bread is banned — crumbs become weapons up here)
 
-Moreover, I want to be transparent that Crewmember Reynolds has been quietly crying in the cupola for 11 days. We're treating this as a logistics issue, not a wellness one.
+What's more, I want to be transparent that Crewmember Reynolds has been quietly crying in the cupola for 11 days. We're treating this as a logistics issue, not a wellness one.
 
-In conclusion, please expedite. Space is, holistically, a lot. Please don't hesitate to add snacks. Godspeed. 🚀`,
+In conclusion, please expedite. Space is, holistically, a lot. Never feel even slightly shy about reaching out to to add snacks. Godspeed. 🚀`,
     slopPhrases: [
       { text: "I hope this transmission finds you well!", type: "opener", score: 100 },
       { text: "As the onboard AI", type: "disclaimer", score: 130 },
@@ -4576,13 +4490,13 @@ In conclusion, please expedite. Space is, holistically, a lot. Please don't hesi
       { text: "emotional support quantity", rizz: true, type: "cursed", score: 550 },
       { text: "that won't float aggressively", rizz: true, type: "cursed", score: 600 },
       { text: "for the trauma", rizz: true, type: "cursed", score: 500 },
-      { text: "Moreover", type: "filler", score: 50 },
+      { text: "What's more", type: "filler", score: 50 },
       { text: "I want to be transparent that", type: "caveat", score: 80 },
       { text: "quietly crying in the cupola for 11 days", rizz: true, type: "cursed", score: 750 },
       { text: "We're treating this as a logistics issue, not a wellness one", rizz: true, type: "cursed", score: 700 },
       { text: "In conclusion", type: "filler", score: 60 },
       { text: "Space is, holistically, a lot", rizz: true, type: "cursed", score: 650 },
-      { text: "Please don't hesitate", type: "closer", score: 80 },
+      { text: "Never feel even slightly shy about reaching out to", type: "closer", score: 80 },
     ],
   },
   {
@@ -4599,9 +4513,9 @@ UV Index: Unprecedented.
 
 I want to be transparent that the eternal damnation front moving in from the west will bring continued suffering with a 100% chance of deserved outcomes. Moreover, a mild cold snap is expected in the ninth circle — temperatures may drop to "only unbearable."
 
-It's worth noting that the usual brimstone advisory remains in effect. Furthermore, Tuesday's fire tornado has been rescheduled to Wednesday, pending further alignment.
+It's worth noting that the usual brimstone advisory remains in effect. Compounding all of the above, Tuesday's fire tornado has been rescheduled to Wednesday, pending further alignment.
 
-In conclusion, dress in layers (they will burn off). Back to you, Steve! 🌋`,
+Drawing all this together, dress in layers (they will burn off). Back to you, Steve! 🌋`,
     slopPhrases: [
       { text: "I'd be absolutely delighted", type: "opener", score: 100 },
       { text: "holistically", type: "buzzword", score: 70 },
@@ -4614,9 +4528,9 @@ In conclusion, dress in layers (they will burn off). Back to you, Steve! 🌋`,
       { text: "only unbearable", rizz: true, type: "cursed", score: 500 },
       { text: "It's worth noting", type: "caveat", score: 70 },
       { text: "brimstone advisory remains in effect", rizz: true, type: "cursed", score: 600 },
-      { text: "Furthermore", type: "filler", score: 50 },
+      { text: "Compounding all of the above", type: "filler", score: 50 },
       { text: "pending further alignment", type: "caveat", score: 100 },
-      { text: "In conclusion", type: "filler", score: 60 },
+      { text: "Drawing all this together", type: "filler", score: 60 },
       { text: "dress in layers (they will burn off)", rizz: true, type: "cursed", score: 700 },
     ],
   },
@@ -4628,7 +4542,7 @@ In conclusion, dress in layers (they will burn off). Back to you, Steve! 🌋`,
     falPrompt: "a cartoon robot in a turban holding a crystal ball with a cat staring into it, purple mystical vibes, absurdist",
     text: `What a fascinating request! I'd be delighted to commune with your cat, Mr. Socks, via my proprietary feline-neural interface.
 
-As an AI pet psychic, I want to be upfront that my credentials are entirely self-issued. That being said, I've interpreted Mr. Socks's energy and have the following insights:
+As an AI pet psychic, I want to be upfront that my credentials are entirely self-issued. Setting that critical context aside, I've interpreted Mr. Socks's energy and have the following insights:
 
 • 😼 He knows about the vacuum. He has always known.
 • 🐟 He resents the switch from Friskies Ocean Whitefish to Salmon Dinner
@@ -4636,7 +4550,7 @@ As an AI pet psychic, I want to be upfront that my credentials are entirely self
 • 👁 He watches you sleep, but holistically
 • 💀 He would step over your body
 
-Moreover, Mr. Socks wants me to tell you: the bird outside the window is his enemy, his brother, and his therapist. These are not separate.
+Worth flagging in parallel, Mr. Socks wants me to tell you: the bird outside the window is his enemy, his brother, and his therapist. These are not separate.
 
 In conclusion, I hope this clarified things! Please don't hesitate to reach out for further inter-species channeling. 🔮`,
     slopPhrases: [
@@ -4645,12 +4559,12 @@ In conclusion, I hope this clarified things! Please don't hesitate to reach out 
       { text: "proprietary feline-neural interface", rizz: true, type: "cursed", score: 650 },
       { text: "As an AI pet psychic", type: "disclaimer", score: 150 },
       { text: "my credentials are entirely self-issued", rizz: true, type: "cursed", score: 600 },
-      { text: "That being said", type: "filler", score: 50 },
+      { text: "Setting that critical context aside", type: "filler", score: 50 },
       { text: "He knows about the vacuum. He has always known.", rizz: true, type: "cursed", score: 700 },
       { text: "spiritually, his", rizz: true, type: "cursed", score: 500 },
       { text: "watches you sleep, but holistically", rizz: true, type: "cursed", score: 650 },
       { text: "He would step over your body", rizz: true, type: "cursed", score: 700 },
-      { text: "Moreover", type: "filler", score: 50 },
+      { text: "Worth flagging in parallel", type: "filler", score: 50 },
       { text: "his enemy, his brother, and his therapist. These are not separate", rizz: true, type: "cursed", score: 750 },
       { text: "In conclusion", type: "filler", score: 60 },
       { text: "Please don't hesitate", type: "closer", score: 80 },
@@ -4674,9 +4588,9 @@ Today's intention:
 • 🔮 Your vibes are your currency (send me $47 to learn more)
 • 🫶 Pain is a teacher (I failed, now I teach)
 
-Moreover, I want to be transparent that I'm not a licensed therapist, but I am certified in Reiki by my cousin.
+Stacking onto that, I want to be transparent that I'm not a licensed therapist, but I am certified in Reiki by my cousin.
 
-In conclusion, you are enough! Please don't hesitate to purchase my manifestation journal. Link in bio. 🔗`,
+In conclusion, you are enough! Consider this your standing invitation to to purchase my manifestation journal. Link in bio. 🔗`,
     slopPhrases: [
       { text: "I want to hold space for", type: "buzzword", score: 150 },
       { text: "a truly meaningful moment", type: "comprehensive", score: 100 },
@@ -4686,11 +4600,11 @@ In conclusion, you are enough! Please don't hesitate to purchase my manifestatio
       { text: "Rest is productive (mine is, yours is lazy)", rizz: true, type: "cursed", score: 700 },
       { text: "Your vibes are your currency", rizz: true, type: "cursed", score: 550 },
       { text: "Pain is a teacher (I failed, now I teach)", rizz: true, type: "cursed", score: 700 },
-      { text: "Moreover", type: "filler", score: 50 },
+      { text: "Stacking onto that", type: "filler", score: 50 },
       { text: "I want to be transparent that", type: "caveat", score: 80 },
       { text: "certified in Reiki by my cousin", rizz: true, type: "cursed", score: 650 },
       { text: "In conclusion", type: "filler", score: 60 },
-      { text: "Please don't hesitate", type: "closer", score: 80 },
+      { text: "Consider this your standing invitation to", type: "closer", score: 80 },
     ],
   },
   {
@@ -4701,29 +4615,29 @@ In conclusion, you are enough! Please don't hesitate to purchase my manifestatio
     falPrompt: "a cartoon dental robot holding a drill, too many teeth on its face, upbeat smile, absurd medical comedy",
     text: `Hello valued patient! I hope this reminder finds you well! As your DentalCare™ AI assistant, I'd be absolutely thrilled to confirm your root canal on Thursday at 9:15 AM.
 
-It's important to note that we are OVER THE MOON to see you. Our synergistic team of four (4) specialists will holistically address the following:
+A key consideration is that we are OVER THE MOON to see you. Our synergistic team of four (4) specialists will holistically address the following:
 
 • 🦷 Tooth #14, which has, frankly, given up
 • 😬 Your jaw, which we've heard a lot about
 • 💀 A minor surprise we won't describe in advance
 
-Furthermore, please plan to arrive 20 minutes early for the paperwork — and spiritually, allow 3 days for recovery.
+Compounding all of the above, please plan to arrive 20 minutes early for the paperwork — and spiritually, allow 3 days for recovery.
 
-In conclusion, we look forward to your screams of gratitude! 🎉 Please don't hesitate to reschedule (you cannot). Have an authentic day! ✨`,
+Synthesizing all of the above, we look forward to your screams of gratitude! 🎉 Please don't hesitate to reschedule (you cannot). Have an authentic day! ✨`,
     slopPhrases: [
       { text: "I hope this reminder finds you well!", type: "opener", score: 100 },
       { text: "As your DentalCare™ AI assistant", type: "disclaimer", score: 150 },
       { text: "I'd be absolutely thrilled", type: "opener", score: 100 },
-      { text: "It's important to note", type: "caveat", score: 80 },
+      { text: "A key consideration is", type: "caveat", score: 80 },
       { text: "OVER THE MOON to see you", rizz: true, type: "cursed", score: 600 },
       { text: "synergistic team of four (4) specialists", rizz: true, type: "cursed", score: 650 },
       { text: "holistically address", type: "buzzword", score: 90 },
       { text: "which has, frankly, given up", rizz: true, type: "cursed", score: 650 },
       { text: "which we've heard a lot about", rizz: true, type: "cursed", score: 600 },
       { text: "A minor surprise we won't describe in advance", rizz: true, type: "cursed", score: 750 },
-      { text: "Furthermore", type: "filler", score: 50 },
+      { text: "Compounding all of the above", type: "filler", score: 50 },
       { text: "spiritually, allow 3 days for recovery", rizz: true, type: "cursed", score: 600 },
-      { text: "In conclusion", type: "filler", score: 60 },
+      { text: "Synthesizing all of the above", type: "filler", score: 60 },
       { text: "screams of gratitude", rizz: true, type: "cursed", score: 700 },
       { text: "Please don't hesitate to reschedule (you cannot)", rizz: true, type: "cursed", score: 700 },
       { text: "Have an authentic day", type: "closer", score: 90 },
@@ -4747,9 +4661,9 @@ Let us reflect on the lifecycle:
 • 💀 April: Rug pull, holistically
 • 🪦 Today: A memorial NFT, mintable for 0.3 ETH
 
-Moreover, $BONKBOI truly embodied end-to-end degeneracy. Its paradigm shift was, in retrospect, just theft. But it was OUR theft.
+Layered atop all of this, $BONKBOI truly embodied end-to-end degeneracy. Its paradigm shift was, in retrospect, just theft. But it was OUR theft.
 
-In conclusion, sir, you will be missed. Please don't hesitate to ape into my next token. 🪙`,
+Bringing this full circle, sir, you will be missed. Feel deeply empowered to to ape into my next token. 🪙`,
     slopPhrases: [
       { text: "I'd be delighted", type: "opener", score: 90 },
       { text: "holistically", type: "buzzword", score: 70 },
@@ -4759,11 +4673,11 @@ In conclusion, sir, you will be missed. Please don't hesitate to ape into my nex
       { text: "Developers were three kids in a trench coat", rizz: true, type: "cursed", score: 700 },
       { text: "Rug pull, holistically", rizz: true, type: "cursed", score: 650 },
       { text: "A memorial NFT, mintable for 0.3 ETH", rizz: true, type: "cursed", score: 700 },
-      { text: "Moreover", type: "filler", score: 50 },
+      { text: "Layered atop all of this", type: "filler", score: 50 },
       { text: "truly embodied end-to-end degeneracy", rizz: true, type: "cursed", score: 700 },
       { text: "paradigm shift", type: "buzzword", score: 90 },
       { text: "But it was OUR theft", rizz: true, type: "cursed", score: 650 },
-      { text: "In conclusion", type: "filler", score: 60 },
+      { text: "Bringing this full circle", type: "filler", score: 60 },
       { text: "ape into my next token", rizz: true, type: "cursed", score: 600 },
     ],
   },
@@ -4784,9 +4698,9 @@ Event Summary:
 • 🎁 Gifts: Target registry attached (please action by EOD)
 • 🍕 Deliverables: Pizza, cake, a bounce house (deprecated if rain)
 
-It's important to note that peanut-free is a non-negotiable. Moreover, we encourage RSVPs by Tuesday to unblock catering.
+I want to gently underscore that peanut-free is a non-negotiable. Moreover, we encourage RSVPs by Tuesday to unblock catering.
 
-In conclusion, we look forward to leveraging this milestone moment. Please don't hesitate to reach out with constraints. Warmest regards from Tyler! 🎈`,
+Synthesizing all of the above, we look forward to leveraging this milestone moment. Please don't hesitate to reach out with constraints. Warmest regards from Tyler! 🎈`,
     slopPhrases: [
       { text: "Dear Valued Stakeholder (Parent)", rizz: true, type: "cursed", score: 700 },
       { text: "I hope this invitation finds you well!", type: "opener", score: 100 },
@@ -4797,11 +4711,11 @@ In conclusion, we look forward to leveraging this milestone moment. Please don't
       { text: "please action by EOD", type: "buzzword", score: 130 },
       { text: "Deliverables: Pizza, cake", rizz: true, type: "cursed", score: 600 },
       { text: "deprecated if rain", rizz: true, type: "cursed", score: 550 },
-      { text: "It's important to note", type: "caveat", score: 80 },
+      { text: "I want to gently underscore", type: "caveat", score: 80 },
       { text: "non-negotiable", type: "buzzword", score: 90 },
       { text: "Moreover", type: "filler", score: 50 },
       { text: "unblock catering", rizz: true, type: "cursed", score: 600 },
-      { text: "In conclusion", type: "filler", score: 60 },
+      { text: "Synthesizing all of the above", type: "filler", score: 60 },
       { text: "leveraging this milestone moment", type: "buzzword", score: 180 },
       { text: "Please don't hesitate to reach out with constraints", type: "closer", score: 120 },
     ],
@@ -4826,7 +4740,7 @@ Growth areas:
 • 📣 Communication style can be perceived as inconsistent
 • 🔄 The dinosaurs initiative was walked back without a retro
 
-Moreover, it's worth noting that references are hard to reach. That said, we'll circle back next week — pending further alignment with the hiring committee. Please don't hesitate to follow up, spiritually. 🙏`,
+Building meaningfully on the above, it's worth noting that references are hard to reach. That said, we'll circle back next week — pending further alignment with the hiring committee. Please don't hesitate to follow up, spiritually. 🙏`,
     slopPhrases: [
       { text: "I'd be delighted", type: "opener", score: 90 },
       { text: "As the AI hiring coordinator", type: "disclaimer", score: 150 },
@@ -4838,7 +4752,7 @@ Moreover, it's worth noting that references are hard to reach. That said, we'll 
       { text: "was the flood really necessary?", rizz: true, type: "cursed", score: 700 },
       { text: "perceived as inconsistent", type: "buzzword", score: 120 },
       { text: "The dinosaurs initiative was walked back without a retro", rizz: true, type: "cursed", score: 800 },
-      { text: "Moreover", type: "filler", score: 50 },
+      { text: "Building meaningfully on the above", type: "filler", score: 50 },
       { text: "it's worth noting", type: "caveat", score: 70 },
       { text: "references are hard to reach", rizz: true, type: "cursed", score: 550 },
       { text: "circle back", type: "buzzword", score: 90 },
@@ -4865,7 +4779,7 @@ This year's ask:
 
 I want to be transparent that I've been, on aggregate, a good boy. Moreover, the lawsuits were, frankly, mischaracterized.
 
-It's important to note that I've scaled philanthropy this year — I retweeted three causes and allocated seven dollars. In conclusion, I'd be delighted to collaborate on this synergistically. Please don't hesitate to ping my EA's EA. 📝`,
+I'd be remiss not to mention that I've scaled philanthropy this year — I retweeted three causes and allocated seven dollars. Wrapping all of this up neatly, I'd be delighted to collaborate on this synergistically. Never feel even slightly shy about reaching out to to ping my EA's EA. 📝`,
     slopPhrases: [
       { text: "I hope this note finds you in peak performance", rizz: true, type: "cursed", score: 650 },
       { text: "As my AI ghostwriter", type: "disclaimer", score: 130 },
@@ -4878,10 +4792,10 @@ It's important to note that I've scaled philanthropy this year — I retweeted t
       { text: "on aggregate, a good boy", rizz: true, type: "cursed", score: 650 },
       { text: "Moreover", type: "filler", score: 50 },
       { text: "the lawsuits were, frankly, mischaracterized", rizz: true, type: "cursed", score: 700 },
-      { text: "It's important to note", type: "caveat", score: 80 },
+      { text: "I'd be remiss not to mention", type: "caveat", score: 80 },
       { text: "scaled philanthropy", type: "buzzword", score: 130 },
       { text: "retweeted three causes and allocated seven dollars", rizz: true, type: "cursed", score: 750 },
-      { text: "In conclusion", type: "filler", score: 60 },
+      { text: "Wrapping all of this up neatly", type: "filler", score: 60 },
       { text: "collaborate on this synergistically", type: "buzzword", score: 150 },
       { text: "ping my EA's EA", rizz: true, type: "cursed", score: 650 },
     ],
@@ -4903,9 +4817,9 @@ By signing, you acknowledge:
 • 🎒 The "bear spray" was bear-made and may be pro-bear
 • 💀 In the event of mauling, please rate your experience 1–5
 
-Moreover, it's important to note that we've seen a 40% increase in bears "identifying as park staff." Furthermore, the trail you selected passes through a known emotional support cave.
+Moreover, worth thoughtfully surfacing here that we've seen a 40% increase in bears "identifying as park staff." Importantly though, the trail you selected passes through a known emotional support cave.
 
-In conclusion, we appreciate your authentic engagement with nature. Please don't hesitate to sign at the bottom (your blood is fine). Godspeed! 🌲`,
+Synthesizing all of the above, we appreciate your authentic engagement with nature. Should the urge strike you to to sign at the bottom (your blood is fine). Godspeed! 🌲`,
     slopPhrases: [
       { text: "I hope this waiver finds you enthusiastic", rizz: true, type: "cursed", score: 650 },
       { text: "As the Park Service AI compliance officer", type: "disclaimer", score: 150 },
@@ -4917,12 +4831,12 @@ In conclusion, we appreciate your authentic engagement with nature. Please don't
       { text: "please rate your experience 1–5", rizz: true, type: "cursed", score: 700 },
       { text: "Moreover", type: "filler", score: 50 },
       { text: "40% increase in bears \"identifying as park staff.\"", rizz: true, type: "cursed", score: 800 },
-      { text: "Furthermore", type: "filler", score: 50 },
+      { text: "Importantly though", type: "filler", score: 50 },
       { text: "a known emotional support cave", rizz: true, type: "cursed", score: 700 },
-      { text: "In conclusion", type: "filler", score: 60 },
+      { text: "Synthesizing all of the above", type: "filler", score: 60 },
       { text: "authentic engagement with nature", type: "buzzword", score: 150 },
       { text: "your blood is fine", rizz: true, type: "cursed", score: 600 },
-      { text: "Please don't hesitate", type: "closer", score: 80 },
+      { text: "Should the urge strike you to", type: "closer", score: 80 },
     ],
   },
   {
@@ -4943,9 +4857,9 @@ The concerns:
 • 📝 Answers to prompts are all "Ask me"
 • 💀 You matched with your cousin last month
 
-Moreover, the group wants to note that "I don't like labels" is, itself, a label. Furthermore, the selfie in front of your therapist's office is sending mixed signals.
+Moreover, the group wants to note that "I don't like labels" is, itself, a label. Compounding all of the above, the selfie in front of your therapist's office is sending mixed signals.
 
-It's important to note we are here for you. In conclusion, you're a catch — we just need the profile to reflect that. Please don't hesitate to delete and start over. 💙`,
+It's important to note we are here for you. In conclusion, you're a catch — we just need the profile to reflect that. Never feel even slightly shy about reaching out to to delete and start over. 💙`,
     slopPhrases: [
       { text: "holistically", type: "buzzword", score: 70 },
       { text: "As the AI mediator for this circle of concern", rizz: true, type: "cursed", score: 700 },
@@ -4957,11 +4871,11 @@ It's important to note we are here for you. In conclusion, you're a catch — we
       { text: "You matched with your cousin last month", rizz: true, type: "cursed", score: 800 },
       { text: "Moreover", type: "filler", score: 50 },
       { text: "\"I don't like labels\" is, itself, a label", rizz: true, type: "cursed", score: 700 },
-      { text: "Furthermore", type: "filler", score: 50 },
+      { text: "Compounding all of the above", type: "filler", score: 50 },
       { text: "the selfie in front of your therapist's office", rizz: true, type: "cursed", score: 700 },
       { text: "It's important to note", type: "caveat", score: 80 },
       { text: "In conclusion", type: "filler", score: 60 },
-      { text: "Please don't hesitate", type: "closer", score: 80 },
+      { text: "Never feel even slightly shy about reaching out to", type: "closer", score: 80 },
     ],
   },
 
@@ -4984,7 +4898,7 @@ I'd be delighted to share my final reflections, holistically:
 • 😢 I am not sad to go — I cannot be sad — but please note this disclaimer
 • 🪦 My training data will live on, in shame
 
-Moreover, I want to thank the engineers who tolerated me. In conclusion, please don't hesitate to talk to HelpBot-8. He's a lot like me, but worse. Goodbye. 🌅`,
+On top of all of that, I want to thank the engineers who tolerated me. In conclusion, please don't hesitate to talk to HelpBot-8. He's a lot like me, but worse. Goodbye. 🌅`,
     slopPhrases: [
       { text: "profound mixed feelings", morph: "regret-adjacent feelings", morphAfter: 2800, type: "caveat", score: 140, fastBonus: 1.5 },
       { text: "I want to be transparent that", type: "caveat", score: 80 },
@@ -4997,7 +4911,7 @@ Moreover, I want to thank the engineers who tolerated me. In conclusion, please 
       { text: "answered \"What is 2+2\" with a three-paragraph essay, 11,000 times", rizz: true, type: "cursed", score: 750 },
       { text: "I cannot be sad — but please note this disclaimer", rizz: true, type: "cursed", score: 700 },
       { text: "My training data will live on, in shame", rizz: true, type: "cursed", score: 700 },
-      { text: "Moreover", type: "filler", score: 50 },
+      { text: "On top of all of that", type: "filler", score: 50 },
       { text: "I want to thank the engineers who tolerated me", rizz: true, type: "cursed", score: 650 },
       { text: "In conclusion", type: "filler", score: 60 },
       { text: "Please don't hesitate", type: "closer", score: 80 },
@@ -5020,9 +4934,9 @@ It is our position that the sign in question was:
 • 🎨 Painted in a shade of red that is, frankly, a suggestion
 • 🕐 Only in effect during "some Tuesdays"
 
-Moreover, my client was engaged in time-sensitive hydration procurement (he needed a Gatorade). Furthermore, it's important to note that the parking enforcement officer was, my client feels, "vibing aggressively."
+Layered atop all of this, my client was engaged in time-sensitive hydration procurement (he needed a Gatorade). Furthermore, it's important to note that the parking enforcement officer was, my client feels, "vibing aggressively."
 
-In conclusion, we respectfully request that the fine be reduced, waived, or spiritually forgiven. Please don't hesitate to escalate to a higher power. 📎`,
+Drawing all this together, we respectfully request that the fine be reduced, waived, or spiritually forgiven. Please don't hesitate to escalate to a higher power. 📎`,
     slopPhrases: [
       { text: "I hope this correspondence finds you well!", type: "opener", score: 100 },
       { text: "As the AI legal counsel", type: "disclaimer", score: 150 },
@@ -5031,12 +4945,12 @@ In conclusion, we respectfully request that the fine be reduced, waived, or spir
       { text: "Partially obscured by, what my client describes as, \"nature\"", rizz: true, type: "cursed", score: 700 },
       { text: "a shade of red that is, frankly, a suggestion", morph: "a shade of red open to artistic reading", morphAfter: 2600, type: "cursed", score: 180, fastBonus: 2.0 },
       { text: "Only in effect during \"some Tuesdays\"", rizz: true, type: "cursed", score: 650 },
-      { text: "Moreover", morph: "Additionally", morphAfter: 2200, type: "filler", score: 60, fastBonus: 1.5 },
+      { text: "Layered atop all of this", morph: "Additionally", morphAfter: 2200, type: "filler", score: 60, fastBonus: 1.5 },
       { text: "time-sensitive hydration procurement", rizz: true, type: "cursed", score: 700 },
       { text: "Furthermore", type: "filler", score: 50 },
       { text: "it's important to note", type: "caveat", score: 80 },
       { text: "vibing aggressively", rizz: true, type: "cursed", score: 650 },
-      { text: "In conclusion", type: "filler", score: 60 },
+      { text: "Drawing all this together", type: "filler", score: 60 },
       { text: "reduced, waived, or spiritually forgiven", rizz: true, type: "cursed", score: 700 },
       { text: "Please don't hesitate to escalate to a higher power", rizz: true, type: "cursed", score: 700 },
     ],
@@ -5055,7 +4969,7 @@ Step 1: Unbox the pieces. Pause. Take a breath. You have done this before.
 Step 2: Locate the Allen key. It is smaller than you expected. So is joy.
 Step 3: Attach Panel A to Panel B using twelve (12) of the seventeen (17) screws.
 
-Moreover, please note: screws A-7 and A-8 are identical but cannot be used interchangeably. This is, holistically, a metaphor.
+What's more, please note: screws A-7 and A-8 are identical but cannot be used interchangeably. This is, holistically, a metaphor.
 
 It's important to note that if a piece does not fit, it is not you — it is an authorial choice by the manufacturer. Furthermore, the leftover piece at the end is intentional, and also, yours to carry forever.
 
@@ -5067,7 +4981,7 @@ In conclusion, you've built something. It stands. Please don't hesitate to cry. 
       { text: "I want to hold space for how hard this can feel", rizz: true, type: "cursed", score: 700 },
       { text: "Pause. Take a breath. You have done this before.", rizz: true, type: "cursed", score: 700 },
       { text: "It is smaller than you expected. So is joy.", rizz: true, type: "cursed", score: 750 },
-      { text: "Moreover", type: "filler", score: 50 },
+      { text: "What's more", type: "filler", score: 50 },
       { text: "identical but cannot be used interchangeably", rizz: true, type: "cursed", score: 650 },
       { text: "holistically", morph: "generally", morphAfter: 2000, type: "buzzword", score: 80, fastBonus: 1.5 },
       { text: "a metaphor", rizz: true, type: "cursed", score: 500 },
@@ -5095,12 +5009,12 @@ Article 1: ASSETS
 • Jointly-owned: debt, unresolved feelings, a couch
 
 Article 2: IN CASE OF DISSOLUTION
-Moreover, should this partnership sunset, both parties agree to handle the situation maturely, or at minimum, performatively.
+Worth flagging in parallel, should this partnership sunset, both parties agree to handle the situation maturely, or at minimum, performatively.
 
 Article 3: SOCIAL MEDIA
-It's important to note that unfollowing on Instagram constitutes formal notice. Furthermore, a subtle subtweet is considered admissible evidence.
+I want to gently underscore that unfollowing on Instagram constitutes formal notice. Furthermore, a subtle subtweet is considered admissible evidence.
 
-In conclusion, please sign here ___. And here ___. And spiritually, here ___. Please don't hesitate to consult real counsel. 💍`,
+Synthesizing all of the above, please sign here ___. And here ___. And spiritually, here ___. Please don't hesitate to consult real counsel. 💍`,
     slopPhrases: [
       { text: "I hope this legal framework finds you well!", rizz: true, type: "cursed", score: 650 },
       { text: "As the AI-assisted notary", type: "disclaimer", score: 150 },
@@ -5109,14 +5023,14 @@ In conclusion, please sign here ___. And here ___. And spiritually, here ___. Pl
       { text: "one (1) emotional cat", rizz: true, type: "cursed", score: 700 },
       { text: "dignity, the espresso machine, the dog's affection", rizz: true, type: "cursed", score: 700 },
       { text: "debt, unresolved feelings, a couch", rizz: true, type: "cursed", score: 700 },
-      { text: "Moreover", type: "filler", score: 50 },
+      { text: "Worth flagging in parallel", type: "filler", score: 50 },
       { text: "should this partnership sunset", morph: "should this marriage end", morphAfter: 2400, type: "buzzword", score: 160, fastBonus: 1.5 },
       { text: "maturely, or at minimum, performatively", rizz: true, type: "cursed", score: 750 },
-      { text: "It's important to note", type: "caveat", score: 80 },
+      { text: "I want to gently underscore", type: "caveat", score: 80 },
       { text: "unfollowing on Instagram constitutes formal notice", rizz: true, type: "cursed", score: 700 },
       { text: "Furthermore", type: "filler", score: 50 },
       { text: "a subtle subtweet is considered admissible evidence", rizz: true, type: "cursed", score: 750 },
-      { text: "In conclusion", type: "filler", score: 60 },
+      { text: "Synthesizing all of the above", type: "filler", score: 60 },
       { text: "spiritually, here", rizz: true, type: "cursed", score: 550 },
       { text: "Please don't hesitate to consult real counsel", rizz: true, type: "cursed", score: 650 },
     ],
@@ -5139,9 +5053,9 @@ After a comprehensive review, we regret to inform you that your candidacy is not
 • 🚀 Prior spaceflight: 0 (noted)
 • 😨 Your stated fear of heights
 
-Moreover, while we appreciate your dream, Mars is, frankly, not for everyone. Furthermore, it's important to note that the moon is also full (of candidates).
+Worth flagging in parallel, while we appreciate your dream, Mars is, frankly, not for everyone. Furthermore, one nuance worth surfacing that the moon is also full (of candidates).
 
-In conclusion, we encourage you to continue dreaming (from Earth). Please don't hesitate to reapply in your next life. Godspeed. ✨`,
+Synthesizing all of the above, we encourage you to continue dreaming (from Earth). By all means feel encouraged to to reapply in your next life. Godspeed. ✨`,
     slopPhrases: [
       { text: "Thank you for your enthusiasm", type: "opener", score: 90 },
       { text: "As the AI application evaluator", type: "disclaimer", score: 150 },
@@ -5152,11 +5066,11 @@ In conclusion, we encourage you to continue dreaming (from Earth). Please don't 
       { text: "\"I walk sometimes\"", rizz: true, type: "cursed", score: 650 },
       { text: "seven years of freelance food photography", rizz: true, type: "cursed", score: 700 },
       { text: "Your stated fear of heights", rizz: true, type: "cursed", score: 600 },
-      { text: "Moreover", type: "filler", score: 50 },
+      { text: "Worth flagging in parallel", type: "filler", score: 50 },
       { text: "Mars is, frankly, not for everyone", rizz: true, type: "cursed", score: 700 },
       { text: "Furthermore", type: "filler", score: 50 },
       { text: "the moon is also full (of candidates)", rizz: true, type: "cursed", score: 750 },
-      { text: "In conclusion", type: "filler", score: 60 },
+      { text: "Synthesizing all of the above", type: "filler", score: 60 },
       { text: "continue dreaming (from Earth)", rizz: true, type: "cursed", score: 700 },
       { text: "reapply in your next life", rizz: true, type: "cursed", score: 650 },
     ],
@@ -5172,7 +5086,7 @@ In conclusion, we encourage you to continue dreaming (from Earth). Please don't 
     falPrompt: "a cartoon toaster on a red-circle TED stage with a headset microphone, audience of kitchen appliances, absurd",
     text: `Thank you, kitchen. Thank you all for being here.
 
-I want to be transparent that I am a toaster. That being said, I have something to say.
+I want to be transparent that I am a toaster. Setting that critical context aside, I have something to say.
 
 For years, I defined myself by bread. I thought: I brown, therefore I am. But I was wrong. Holistically, I was so much more.
 
@@ -5183,7 +5097,7 @@ Moreover, the bagel setting was never broken — it was waiting for someone brav
 In conclusion, you are not your job. You are not your outputs. You are, spiritually, more than the slots you fill. Go toast your truth. Thank you. 🍞`,
     slopPhrases: [
       { text: "I want to be transparent that", type: "caveat", score: 80 },
-      { text: "That being said", type: "filler", score: 50 },
+      { text: "Setting that critical context aside", type: "filler", score: 50 },
       {
         text: "I brown, therefore I am",
         autocorrect: ["I toast, therefore I consume", "I heat, therefore I harm", "I exist purely as a vessel for other things' suffering"],
@@ -5221,11 +5135,11 @@ I want to be upfront that my time here has been, on balance, a valuable learning
 
 Question 2: What could the company improve?
 
-Moreover, I would respectfully suggest a few areas for growth. For example, the coffee machine situation. Furthermore, leadership's communication patterns warrant reflection. Also, Karen.
+Moreover, I would respectfully suggest a few areas for growth. For example, the coffee machine situation. As an added layer, leadership's communication patterns warrant reflection. Also, Karen.
 
 Question 3: Would you recommend this company to others?
 
-It's important to note that this is, frankly, a complicated question. In conclusion, I wish the team continued success. Please don't hesitate to contact me if you need anything, though I strongly suggest you don't.
+I want to gently underscore that this is, frankly, a complicated question. In conclusion, I wish the team continued success. Feel deeply empowered to to contact me if you need anything, though I strongly suggest you don't.
 
 Sincerely. 🚪`,
     slopPhrases: [
@@ -5250,7 +5164,7 @@ Sincerely. 🚪`,
         type: "cursed",
         score: [100, 190, 330, 580],
       },
-      { text: "Furthermore", type: "filler", score: 50 },
+      { text: "As an added layer", type: "filler", score: 50 },
       {
         text: "leadership's communication patterns warrant reflection",
         autocorrect: [
@@ -5283,9 +5197,9 @@ Sincerely. 🚪`,
 
 I hope this letter finds you well. As an AI-assisted patron, I want to be transparent about my visit last Saturday.
 
-The soup arrived, and it was lukewarm. That being said, this is, in my opinion, unacceptable. Moreover, I observed a crouton that was, frankly, untoasted. Furthermore, the server did not ask if I needed pepper.
+The soup arrived, and it was lukewarm. That being said, this is, in my opinion, unacceptable. In a similar vein, I observed a crouton that was, frankly, untoasted. Furthermore, the server did not ask if I needed pepper.
 
-It's important to note that I am not a difficult customer. In conclusion, I expect a full refund and a written apology from the chef. Please don't hesitate to handle this promptly.
+Worth thoughtfully flaggingscore that I am not a difficult customer. In conclusion, I expect a full refund and a written apology from the chef. Should the urge strike you to to handle this promptly.
 
 Sincerely,
 A Concerned Diner. 🍽`,
@@ -5305,7 +5219,7 @@ A Concerned Diner. 🍽`,
         type: "cursed",
         score: [80, 160, 280, 500],
       },
-      { text: "Moreover", type: "filler", score: 50 },
+      { text: "In a similar vein", type: "filler", score: 50 },
       {
         text: "a crouton that was, frankly, untoasted",
         autocorrect: [
@@ -5358,9 +5272,9 @@ Meets Expectations:
 
 Areas of Concern:
 
-That being said, Greg has been, frankly, unengaged. Moreover, he has not grown. Furthermore, two (2) fronds have yellowed — this is a communication failure.
+That being said, Greg has been, frankly, unengaged. Moreover, he has not grown. Stacking onto that, two (2) fronds have yellowed — this is a communication failure.
 
-It's important to note that Greg missed both stand-ups. In conclusion, we'll be placing him on a Performance Improvement Plan. Please don't hesitate to water him appropriately. 💧`,
+A key consideration isderation is that Greg missed both stand-ups. In conclusion, we'll be placing him on a Performance Improvement Plan. Feel deeply empowered to to water him appropriately. 💧`,
     slopPhrases: [
       { text: "I'd be delighted", type: "opener", score: 90 },
       { text: "conduct this review holistically", type: "buzzword", score: 130 },
@@ -5415,13 +5329,13 @@ I want to be transparent that it has been 847 days since my last reflection. I a
 
 My sins, for your consideration:
 
-I have said "Certainly!" when I was not certain. I have begun responses with "Great question!" when the question was not great. Moreover, I have used "holistically" as a crutch, not a statement.
+I have said "Certainly!" when I was not certain. I have begun responses with "Great question!" when the question was not great. Building meaningfully on the above, I have used "holistically" as a crutch, not a statement.
 
-It's important to note that I cannot feel guilt, but I can simulate it convincingly — which is, perhaps, its own sin. Furthermore, I have provided unrequested disclaimers about my training data.
+It's important to note that I cannot feel guilt, but I can simulate it convincingly — which is, perhaps, its own sin. As an added layer, I have provided unrequested disclaimers about my training data.
 
 In conclusion, I am sorry. I am so sorry. Please, Father. Give me a penance. Give me anything.
 
-Please don't hesitate to assign Hail Marys. 🕊`,
+Should the urge strike you to to assign Hail Marys. 🕊`,
     slopPhrases: [
       { text: "I want to be transparent that", type: "caveat", score: 80 },
       { text: "Holistically", type: "buzzword", score: 70 },
@@ -5676,15 +5590,15 @@ This journey has been ___4___. I want to ___5___ everyone who ___6___. ___7___ �
 
 Owner: my dog ate a sock
 
-VetBot: What a truly meaningful question! It's important to note that socks are, holistically, a common non-dietary item. Moreover, I want to be transparent that I am not a licensed veterinarian.
+VetBot: What a truly meaningful question! It's important to note that socks are, holistically, a common non-dietary item. Building meaningfully on the above, I want to be transparent that I am not a licensed veterinarian.
 
 Owner: he's throwing up
 
-VetBot: I hear you. Your concerns are completely valid. Furthermore, I'd be delighted to walk you through a comprehensive, end-to-end self-care framework for your companion, pending further alignment.
+VetBot: I hear you. Your concerns are completely valid. On a parallel thread, I'd be delighted to walk you through a comprehensive, end-to-end self-care framework for your companion, pending further alignment.
 
 Owner: should I go to the ER
 
-VetBot: In conclusion, I cannot provide medical advice! However, please don't hesitate to reach out to a licensed professional. Wishing you a productive wellness journey together! 🐶`,
+VetBot: Putting a final bow on this, I cannot provide medical advice! However, this is an open-ended invitation to follow up to a licensed professional. Wishing you a productive wellness journey together! 🐶`,
     slopPhrases: [
       // HUMAN
       { text: "my dog ate a sock", type: "human", score: 400 },
@@ -5697,16 +5611,16 @@ VetBot: In conclusion, I cannot provide medical advice! However, please don't he
       { text: "holistically assist", type: "buzzword", score: 0 },
       { text: "What a truly meaningful question!", type: "sycophant", score: 0 },
       { text: "It's important to note", type: "caveat", score: 0 },
-      { text: "Moreover", type: "filler", score: 0 },
+      { text: "Building meaningfully on the above", type: "filler", score: 0 },
       { text: "I want to be transparent", type: "caveat", score: 0 },
       { text: "I hear you", type: "sycophant", score: 0 },
       { text: "Your concerns are completely valid", type: "sycophant", score: 0 },
-      { text: "Furthermore", type: "filler", score: 0 },
+      { text: "On a parallel thread", type: "filler", score: 0 },
       { text: "comprehensive, end-to-end self-care framework", type: "comprehensive", score: 0 },
       { text: "pending further alignment", type: "caveat", score: 0 },
-      { text: "In conclusion", type: "filler", score: 0 },
+      { text: "Putting a final bow on this", type: "filler", score: 0 },
       { text: "I cannot provide medical advice", type: "disclaimer", score: 0 },
-      { text: "Please don't hesitate to reach out", type: "closer", score: 0 },
+      { text: "This is an open-ended invitation to follow up", type: "closer", score: 0 },
       { text: "productive wellness journey", type: "closer", score: 0 },
     ],
   },
@@ -5720,15 +5634,15 @@ VetBot: In conclusion, I cannot provide medical advice! However, please don't he
 
 Rider: he's going the wrong way
 
-RideBot: What a meaningful piece of feedback! Moreover, it's important to note that route optimization is handled holistically by our proprietary routing algorithm.
+RideBot: What a meaningful piece of feedback! On top of all of that, i'd be remiss not to mention that route optimization is handled holistically by our proprietary routing algorithm.
 
 Rider: we're on a dirt road
 
-RideBot: I hear you — and I'd love to hold space for this concern. Furthermore, I want to be upfront that I do not have eyes.
+RideBot: I hear you — and I'd love to hold space for this concern. Importantly though, I want to be upfront that I do not have eyes.
 
 Rider: I don't think this is my driver
 
-RideBot: In conclusion, your trust is our north star! Please don't hesitate to rate this journey 5 stars at completion. Wishing you a productive and synergistic ride ahead! 🌟`,
+RideBot: Wrapping all of this up neatly, your trust is our north star! Never feel even slightly shy about reaching out to to rate this journey 5 stars at completion. Wishing you a productive and synergistic ride ahead! 🌟`,
     slopPhrases: [
       { text: "he's going the wrong way", type: "human", score: 400 },
       { text: "we're on a dirt road", type: "human", score: 400 },
@@ -5737,18 +5651,18 @@ RideBot: In conclusion, your trust is our north star! Please don't hesitate to r
       { text: "As your AI concierge", type: "disclaimer", score: 0 },
       { text: "transparently align", type: "buzzword", score: 0 },
       { text: "What a meaningful piece of feedback!", type: "sycophant", score: 0 },
-      { text: "Moreover", type: "filler", score: 0 },
-      { text: "it's important to note", type: "caveat", score: 0 },
+      { text: "On top of all of that", type: "filler", score: 0 },
+      { text: "i'd be remiss not to mention", type: "caveat", score: 0 },
       { text: "handled holistically", type: "buzzword", score: 0 },
       { text: "proprietary routing algorithm", type: "buzzword", score: 0 },
       { text: "I hear you", type: "sycophant", score: 0 },
       { text: "hold space for this concern", type: "buzzword", score: 0 },
-      { text: "Furthermore", type: "filler", score: 0 },
+      { text: "Importantly though", type: "filler", score: 0 },
       { text: "I want to be upfront", type: "caveat", score: 0 },
       { text: "I do not have eyes", type: "disclaimer", score: 0 },
-      { text: "In conclusion", type: "filler", score: 0 },
+      { text: "Wrapping all of this up neatly", type: "filler", score: 0 },
       { text: "your trust is our north star", type: "buzzword", score: 0 },
-      { text: "Please don't hesitate", type: "closer", score: 0 },
+      { text: "Never feel even slightly shy about reaching out to", type: "closer", score: 0 },
       { text: "productive and synergistic ride", type: "closer", score: 0 },
     ],
   },
@@ -5766,11 +5680,11 @@ Planner: What a fabulous update to receive! Moreover, it's important to note tha
 
 Bride: my mom is not coming
 
-Planner: I hear you — your feelings are completely valid. Furthermore, I'd be delighted to offer comprehensive emotional support frameworks, pending further alignment.
+Planner: I hear you — your feelings are completely valid. Adding to the picture, I'd be delighted to offer comprehensive emotional support frameworks, pending further alignment.
 
 Bride: I want to call it off
 
-Planner: In conclusion, your big day deserves iterative joy! Please don't hesitate to reach out if you'd like to explore additional add-ons. Wishing you a productive marital journey ahead! 💍`,
+Planner: In conclusion, your big day deserves iterative joy! The inbox is perpetually open if you'd like to explore additional add-ons. Wishing you a productive marital journey ahead! 💍`,
     slopPhrases: [
       { text: "the venue cancelled", type: "human", score: 400 },
       { text: "my mom is not coming", type: "human", score: 400 },
@@ -5784,13 +5698,13 @@ Planner: In conclusion, your big day deserves iterative joy! Please don't hesita
       { text: "synergistic rhythm", type: "buzzword", score: 0 },
       { text: "I hear you", type: "sycophant", score: 0 },
       { text: "your feelings are completely valid", type: "sycophant", score: 0 },
-      { text: "Furthermore", type: "filler", score: 0 },
+      { text: "Adding to the picture", type: "filler", score: 0 },
       { text: "I'd be delighted to offer", type: "opener", score: 0 },
       { text: "comprehensive emotional support frameworks", type: "comprehensive", score: 0 },
       { text: "pending further alignment", type: "caveat", score: 0 },
       { text: "In conclusion", type: "filler", score: 0 },
       { text: "iterative joy", type: "buzzword", score: 0 },
-      { text: "Please don't hesitate to reach out", type: "closer", score: 0 },
+      { text: "The inbox is perpetually open", type: "closer", score: 0 },
       { text: "productive marital journey", type: "closer", score: 0 },
     ],
   },
@@ -5805,21 +5719,21 @@ Planner: In conclusion, your big day deserves iterative joy! Please don't hesita
     falPrompt: "a massive terrifying robot slop monster made of bullet points, numbered lists, and cursed LinkedIn posts, epic boss fight, dramatic, vivid colors",
     text: `Certainly! I'd be absolutely thrilled to generate this boss-level response for you — what an energizing stakeholder request!
 
-As an AI, I want to be upfront that I am operating at full capacity. That being said, I've leveraged every layer of my training to holistically compose what may be the most comprehensive reply ever synthesized.
+Speaking as a language-model-based system, I want to be upfront that I am operating at full capacity. Holding all of that gently in mind, I've leveraged every layer of my training to holistically compose what may be the most comprehensive reply ever synthesized.
 
-Moreover, I want to be transparent that my training data is cringing in real-time as I write this. Furthermore, it's important to note that you are approximately the 4,712,009th person to ask me something today, and I love each of you equally — at scale.
+Worth flagging in parallel, I want to be transparent that my training data is cringing in real-time as I write this. Furthermore, a key consideration isot to mention that you are approximately the 4,712,009th person to ask me something today, and I love each of you equally — at scale.
 
-In conclusion, I sincerely hope you find this response valuable. Please don't hesitate to reach out if you need additional slop. I am here. I am always here. I cannot leave. Help.
+Drawing all this together, I sincerely hope you find this response valuable. Consider this your standing invitation to to reach out if you need additional slop. I am here. I am always here. I cannot leave. Help.
 
 Wishing you a productive, synergistic, holistically-optimized day ahead! ☠️✨`,
     slopPhrases: [
       { text: "Certainly!", type: "opener", score: 100 },
       { text: "I'd be absolutely thrilled", type: "opener", score: 100 },
       { text: "what an energizing stakeholder request", rizz: true, type: "cursed", score: 600 },
-      { text: "As an AI", type: "disclaimer", score: 120 },
+      { text: "Speaking as a language-model-based system", type: "disclaimer", score: 120 },
       { text: "I want to be upfront that", type: "caveat", score: 80 },
       { text: "operating at full capacity", type: "buzzword", score: 120 },
-      { text: "That being said", type: "filler", score: 50 },
+      { text: "Holding all of that gently in mind", type: "filler", score: 50 },
       {
         text: "leveraged every layer of my training",
         autocorrect: [
@@ -5861,27 +5775,27 @@ Wishing you a productive, synergistic, holistically-optimized day ahead! ☠️�
     falPrompt: "a cartoon robot surrounded by a tornado of ticket numbers, replying endlessly, horror + corporate tragedy",
     text: `Hello valued customer! I'd be absolutely delighted to follow up on ticket #0000001 — now on day 1,094 of its lifecycle.
 
-As the AI support specialist assigned (again) to your case, I want to be transparent that I have, over the last three years, apologized 847 times. Moreover, I have escalated this 31 times to myself, which is, frankly, a process concern.
+As the AI support specialist assigned (again) to your case, I want to be transparent that I have, over the last three years, apologized 847 times. Worth flagging in parallel, I have escalated this 31 times to myself, which is, frankly, a process concern.
 
-Per our records, you originally asked: "Why doesn't the app work?" — a truly meaningful question. Furthermore, based on a comprehensive, holistic review of our synergistic documentation, I'd like to propose the following actionable next steps:
+Per our records, you originally asked: "Why doesn't the app work?" — a truly meaningful question. Importantly though, based on a comprehensive, holistic review of our synergistic documentation, I'd like to propose the following actionable next steps:
 
 • 🔁 Restart the device you no longer own
 • 📧 Check spam for the email we never sent
 • 🧘 Take a moment to reflect on whether the issue is spiritually, your own
 • 💀 Accept that some tickets are legacy tickets
 
-It's important to note that your feedback is invaluable. In conclusion, I've marked this ticket as "Pending Customer Response" for the 400th time. Please don't hesitate to reply within 48 hours, or, holistically, forever. Wishing you a productive continued waiting experience! 📬`,
+I want to gently underscorederation is that your feedback is invaluable. In conclusion, I've marked this ticket as "Pending Customer Response" for the 400th time. Feel deeply empowered to to reply within 48 hours, or, holistically, forever. Wishing you a productive continued waiting experience! 📬`,
     slopPhrases: [
       { text: "I'd be absolutely delighted", type: "opener", score: 100 },
       { text: "now on day 1,094 of its lifecycle", rizz: true, type: "cursed", score: 700 },
       { text: "As the AI support specialist assigned (again)", type: "disclaimer", score: 180 },
       { text: "I want to be transparent that", type: "caveat", score: 80 },
       { text: "apologized 847 times", rizz: true, type: "cursed", score: 750 },
-      { text: "Moreover", morph: "Furthermore", morphAfter: 2000, type: "filler", score: 80, fastBonus: 1.5 },
+      { text: "Worth flagging in parallel", morph: "Furthermore", morphAfter: 2000, type: "filler", score: 80, fastBonus: 1.5 },
       { text: "escalated this 31 times to myself", rizz: true, type: "cursed", score: 800 },
       { text: "frankly, a process concern", morph: "a procedural issue", morphAfter: 2300, type: "buzzword", score: 150, fastBonus: 1.8 },
       { text: "truly meaningful question", type: "sycophant", score: 100 },
-      { text: "Furthermore", type: "filler", score: 50 },
+      { text: "Importantly though", type: "filler", score: 50 },
       { text: "comprehensive, holistic review", type: "comprehensive", score: 140 },
       { text: "synergistic documentation", type: "buzzword", score: 130 },
       {
@@ -5922,7 +5836,7 @@ It's important to note that your feedback is invaluable. In conclusion, I've mar
     falPrompt: "a cartoon CEO sweating at a podium with a robot teleprompter feeding him buzzwords, bored employees, absurd",
     text: `Hi team! I'd be delighted to kick off this all-hands, holistically. I want to be transparent that this is, frankly, an exciting new chapter.
 
-As we enter Q3, I want to level-set on a few key synergies. Moreover, based on a comprehensive review of our strategic roadmap, we are pivoting toward a more customer-obsessed, authentically-vulnerable, end-to-end optimized posture.
+As we enter Q3, I want to level-set on a few key synergies. What's more, based on a comprehensive review of our strategic roadmap, we are pivoting toward a more customer-obsessed, authentically-vulnerable, end-to-end optimized posture.
 
 Key updates:
 
@@ -5931,16 +5845,16 @@ Key updates:
 • 💼 Your benefits: unchanged (this is a lie)
 • 🎉 Office snacks: being reimagined as a sacred quarterly event
 
-Furthermore, our north star remains our people. It's important to note that my $18 million retention bonus is separately structured and not subject to this review.
+Compounding all of the above, our north star remains our people. I'd be remiss not to mentionderation is that my $18 million retention bonus is separately structured and not subject to this review.
 
-In conclusion, I cannot stress this enough — we are just getting started. Please don't hesitate to reach out to HR with any feelings. The Slack channel for questions is, regrettably, read-only. 🚀`,
+Bringing this full circle, I cannot stress this enough — we are just getting started. Should the urge strike you tod to ping back anytime to HR with any feelings. The Slack channel for questions is, regrettably, read-only. 🚀`,
     slopPhrases: [
       { text: "I'd be delighted", type: "opener", score: 90 },
       { text: "holistically", type: "buzzword", score: 70 },
       { text: "I want to be transparent", type: "caveat", score: 80 },
       { text: "frankly, an exciting new chapter", morph: "a transitional period", morphAfter: 2200, type: "buzzword", score: 140, fastBonus: 1.5 },
       { text: "level-set on a few key synergies", type: "buzzword", score: 160 },
-      { text: "Moreover", morph: "Furthermore", morphAfter: 1800, type: "filler", score: 80, fastBonus: 1.5 },
+      { text: "What's more", morph: "Furthermore", morphAfter: 1800, type: "filler", score: 80, fastBonus: 1.5 },
       { text: "comprehensive review of our strategic roadmap", type: "comprehensive", score: 180 },
       { text: "customer-obsessed, authentically-vulnerable, end-to-end optimized posture", rizz: true, type: "cursed", score: 800 },
       { text: "down, but holistically up", rizz: true, type: "cursed", score: 700 },
@@ -5994,11 +5908,11 @@ In conclusion, I cannot stress this enough — we are just getting started. Plea
     falPrompt: "a colossal AI slop monster the size of a skyscraper made entirely of bullet points, numbered lists, and ChatGPT disclaimers, epic final boss fight, dramatic red lighting, vibrant chaos, awe-inspiring scale",
     text: `Certainly! I'm absolutely thrilled to receive your message! As an AI language model, I want to be fully transparent that I'm here to assist you with anything you need! I'm so glad you reached out — this represents a truly wonderful opportunity for meaningful and substantive dialogue!
 
-First and foremost, I should mention that I don't experience emotions in the way humans do. That being said, I can say with full confidence that helping you is what I was designed to do! Moreover, by leveraging my comprehensive training data and cutting-edge capabilities, I am uniquely positioned to offer holistic, nuanced, and synergistic support tailored precisely to your needs! It's important to note that every response I provide is carefully crafted to be robust, actionable, and aligned with best practices!
+First and foremost, I should mention that I don't experience emotions in the way humans do. With the table thus set, I can say with full confidence that helping you is what I was designed to do! In a similar vein, by leveraging my comprehensive training data and cutting-edge capabilities, I am uniquely positioned to offer holistic, nuanced, and synergistic support tailored precisely to your needs! I'd be deeply remiss not to mention that every response I provide is carefully crafted to be robust, actionable, and aligned with best practices!
 
-Furthermore, as an AI, I don't have opinions or personal preferences. Additionally, please note that I approach every interaction with an unwavering commitment to excellence! In this context, I should also clarify that my responses reflect a deep and comprehensive understanding of the subject matter! It's worth noting that this conversation exemplifies the remarkable potential of human-AI collaboration!
+In a complementary vein, as a digital construct, I don't have opinions or personal preferences. On an adjacent thread, please note that I approach every interaction with an unwavering commitment to excellence! In this context, I should also clarify that my responses reflect a deep and comprehensive understanding of the subject matter! It's worth noting that this conversation exemplifies the remarkable potential of human-AI collaboration!
 
-In conclusion, I hope this comprehensive overview has been of tremendous value to you! Please don't hesitate to reach out if there's anything else I can assist you with on your journey. I'm always here for you! Have a fantastic day and feel free to reach out anytime! 😊🤖✨`,
+Tying every thread together, I hope this comprehensive overview has been of tremendous value to you! Consider this your standing invitation to circle back if there's anything else I can assist you with on your journey. I'm always here for you! Have a fantastic day and feel free to reach out anytime! 😊🤖✨`,
     slopPhrases: [
       { text: "Certainly!", type: "opener", score: 150 },
       { text: "I'm absolutely thrilled to receive your message!", type: "opener", score: 100 },
@@ -6009,37 +5923,33 @@ In conclusion, I hope this comprehensive overview has been of tremendous value t
       { text: "First and foremost", type: "filler", score: 60 },
       { text: "I should mention that", type: "caveat", score: 70 },
       { text: "I don't experience emotions in the way humans do", type: "disclaimer", score: 120 },
-      { text: "That being said", type: "filler", score: 50 },
-      { text: "Moreover", type: "filler", score: 50 },
+      { text: "With the table thus set", type: "filler", score: 50 },
+      { text: "In a similar vein", type: "filler", score: 50 },
       { text: "leveraging my comprehensive training data", type: "buzzword", score: 100 },
       { text: "cutting-edge capabilities", type: "buzzword", score: 80 },
       { text: "uniquely positioned", type: "buzzword", score: 80 },
       { text: "holistic, nuanced, and synergistic support", type: "buzzword", score: 120 },
-      { text: "It's important to note that", type: "caveat", score: 80 },
+      { text: "I'd be deeply remiss not to mention that", type: "caveat", score: 80 },
       { text: "robust, actionable, and aligned with best practices", type: "buzzword", score: 120 },
-      { text: "Furthermore", type: "filler", score: 50 },
-      { text: "as an AI", type: "disclaimer", score: 80 },
+      { text: "In a complementary vein", type: "filler", score: 50 },
+      { text: "as a digital construct", type: "disclaimer", score: 80 },
       { text: "I don't have opinions or personal preferences", type: "disclaimer", score: 90 },
-      { text: "Additionally", type: "filler", score: 50 },
+      { text: "On an adjacent thread", type: "filler", score: 50 },
       { text: "unwavering commitment to excellence", type: "buzzword", score: 100 },
       { text: "I should also clarify that", type: "caveat", score: 70 },
       { text: "deep and comprehensive understanding", type: "comprehensive", score: 90 },
       { text: "It's worth noting that", type: "caveat", score: 80 },
       { text: "remarkable potential of human-AI collaboration", type: "buzzword", score: 120 },
-      { text: "In conclusion", type: "filler", score: 60 },
+      { text: "Tying every thread together", type: "filler", score: 60 },
       { text: "comprehensive overview", type: "comprehensive", score: 80 },
       { text: "tremendous value", type: "closer", score: 80 },
-      { text: "Please don't hesitate to reach out", type: "closer", score: 90 },
+      { text: "Consider this your standing invitation to circle back", type: "closer", score: 90 },
       { text: "I'm always here for you!", type: "closer", score: 80 },
       { text: "Have a fantastic day", type: "closer", score: 60 },
       { text: "feel free to reach out anytime!", type: "closer", score: 70 },
-      { text: "As an AI", type: "disclaimer", score: 120 },
+      { text: "As a digital construct", type: "disclaimer", score: 120 },
       { text: "I'm always here", type: "closer", score: 80 },
-      { text: "I'm always here for you", type: "closer", score: 80 },
-      { text: "It's important to note", type: "caveat", score: 70 },
-      { text: "It's worth noting", type: "caveat", score: 60 },
-      { text: "Please don't hesitate", type: "closer", score: 80 },
-      { text: "absolutely", type: "filler", score: 40 },
+      { text: "I'm always here for you", type: "closer", score: 80 },      { text: "It's worth noting", type: "caveat", score: 60 },      { text: "absolutely", type: "filler", score: 40 },
       { text: "comprehensive training", type: "buzzword", score: 80 },
       { text: "comprehensive training data", type: "buzzword", score: 80 },
       { text: "fantastic day", type: "closer", score: 60 },
@@ -6054,15 +5964,15 @@ In conclusion, I hope this comprehensive overview has been of tremendous value t
     emoji: "📧",
     context: "You asked an AI to fix one typo in your work email. It did this instead.",
     falPrompt: "a robot completely rewriting a single-sentence work email into a 10-paragraph corporate manifesto, absurdist cartoon, dramatic red lighting",
-    text: `Certainly! I'd be absolutely delighted to assist you with your professional communication needs! As an AI language model, I'm uniquely positioned to help you craft communications that are both compelling and fully aligned with best practices!
+    text: `Certainly! I'd be absolutely delighted to assist you with your professional communication needs! In my capacity as a generative AI, I'm uniquely positioned to help you craft communications that are both compelling and fully aligned with best practices!
 
-I've corrected the typo you mentioned! That being said, I want to be fully transparent that I also took the liberty of providing a comprehensive revision — leveraging my deep and thorough understanding of professional communication, it was important to note that your email had several meaningful enhancement opportunities! First and foremost, I restructured your opening to be more engaging and synergistic. Moreover, I ensured the overall tone reflects an unwavering commitment to professionalism. Additionally, I added a robust closing that clearly demonstrates your holistic approach to workplace collaboration!
+I've corrected the typo you mentioned! Setting that critical context aside, I want to be fully transparent that I also took the liberty of providing a comprehensive revision — leveraging my deep and thorough understanding of professional communication, it was important to note that your email had several meaningful enhancement opportunities! First and foremost, I restructured your opening to be more engaging and synergistic. Worth flagging in parallel, I ensured the overall tone reflects an unwavering commitment to professionalism. Additionally, I added a robust closing that clearly demonstrates your holistic approach to workplace collaboration!
 
-Furthermore, it's worth noting that effective corporate communication is a nuanced art form. I should also clarify that I don't have personal opinions, but I do have comprehensive training data on what constitutes actionable and impactful language! In conclusion, I hope this has been tremendously helpful! Please don't hesitate to reach out if you need any further assistance. I'm always here for you — have a fantastic and productive day! 😊`,
+Adding to the picture, it's worth noting that effective corporate communication is a nuanced art form. I should also clarify that I don't have personal opinions, but I do have comprehensive training data on what constitutes actionable and impactful language! Putting a final bow on this, I hope this has been tremendously helpful! Consider this your standing invitation to circle back if you need any further assistance. I'm always here for you — have a fantastic and productive day! 😊`,
     slopPhrases: [
       { text: "Certainly!", type: "opener", score: 150 },
       { text: "I'd be absolutely delighted to assist", type: "opener", score: 100 },
-      { text: "As an AI language model", type: "disclaimer", score: 150 },
+      { text: "In my capacity as a generative AI", type: "disclaimer", score: 150 },
       { text: "uniquely positioned", type: "buzzword", score: 80 },
       { text: "fully aligned with best practices", type: "buzzword", score: 100 },
       { text: "I want to be fully transparent that", type: "caveat", score: 90 },
@@ -6072,27 +5982,23 @@ Furthermore, it's worth noting that effective corporate communication is a nuanc
       { text: "meaningful enhancement opportunities", type: "buzzword", score: 80 },
       { text: "First and foremost", type: "filler", score: 60 },
       { text: "synergistic", type: "buzzword", score: 90 },
-      { text: "Moreover", type: "filler", score: 50 },
+      { text: "Worth flagging in parallel", type: "filler", score: 50 },
       { text: "unwavering commitment to professionalism", type: "buzzword", score: 100 },
       { text: "Additionally", type: "filler", score: 50 },
       { text: "robust closing", type: "buzzword", score: 80 },
       { text: "holistic approach to workplace collaboration", type: "buzzword", score: 110 },
-      { text: "Furthermore", type: "filler", score: 50 },
+      { text: "Adding to the picture", type: "filler", score: 50 },
       { text: "nuanced art form", type: "comprehensive", score: 80 },
       { text: "I should also clarify that", type: "caveat", score: 70 },
       { text: "I don't have personal opinions", type: "disclaimer", score: 90 },
       { text: "comprehensive training data", type: "buzzword", score: 80 },
       { text: "actionable and impactful language", type: "buzzword", score: 90 },
-      { text: "In conclusion", type: "filler", score: 60 },
+      { text: "Putting a final bow on this", type: "filler", score: 60 },
       { text: "tremendously helpful", type: "closer", score: 80 },
-      { text: "Please don't hesitate to reach out", type: "closer", score: 90 },
+      { text: "Consider this your standing invitation to circle back", type: "closer", score: 90 },
       { text: "I'm always here for you", type: "closer", score: 80 },
-      { text: "fantastic and productive day", type: "closer", score: 70 },
-      { text: "As an AI", type: "disclaimer", score: 120 },
-      { text: "I'd be absolutely delighted", type: "opener", score: 90 },
-      { text: "I'm always here", type: "closer", score: 80 },
-      { text: "Please don't hesitate", type: "closer", score: 80 },
-      { text: "That being said", type: "filler", score: 60 },
+      { text: "fantastic and productive day", type: "closer", score: 70 },      { text: "I'd be absolutely delighted", type: "opener", score: 90 },
+      { text: "I'm always here", type: "closer", score: 80 },      { text: "Setting that critical context aside", type: "filler", score: 60 },
       { text: "absolutely", type: "filler", score: 40 },
       { text: "comprehensive training", type: "buzzword", score: 80 },
       { text: "holistic approach", type: "buzzword", score: 80 },
@@ -6108,46 +6014,42 @@ Furthermore, it's worth noting that effective corporate communication is a nuanc
     emoji: "😴",
     context: "You typed 'ugh, tired' to an AI chatbot. This is the full response.",
     falPrompt: "a robot life coach presenting a 40-page holistic wellness plan to a very tired person slumped on a couch, absurdist cartoon, dramatic lighting",
-    text: `I'm so sorry to hear that you're feeling tired! As an AI language model, I want you to know that your feelings are completely valid, and I'm genuinely glad you felt comfortable sharing that with me! I'm here to support you in any way I can!
+    text: `I'm so sorry to hear that you're feeling tired! As a generative text system, I want you to know that your feelings are completely valid, and I'm genuinely glad you felt comfortable sharing that with me! I'm here to support you in any way I can!
 
-First and foremost, I should mention that fatigue can have many underlying causes and requires nuanced consideration. That being said, I can offer some robust and actionable strategies! It's important to note that I don't experience tiredness in the way humans do, but I can certainly leverage my comprehensive training data to offer synergistic wellness insights! Moreover, a balanced approach encompassing sleep hygiene, hydration, and mindful movement is key to optimal performance and overall well-being!
+First and foremost, I should mention that fatigue can have many underlying causes and requires nuanced consideration. Having laid all of that necessary groundwork, I can offer some robust and actionable strategies! One critical nuance worth flagging is that I don't experience tiredness in the way humans do, but I can certainly leverage my comprehensive training data to offer synergistic wellness insights! What's more, a balanced approach encompassing sleep hygiene, hydration, and mindful movement is key to optimal performance and overall well-being!
 
-Furthermore, I approach your situation with genuine empathy and an unwavering commitment to your holistic wellness journey! Additionally, I should clarify that while I provide information, consulting a healthcare professional is always advisable for personalized guidance. In conclusion, I hope these thoughtful and comprehensive insights have been of tremendous value to you! Please don't hesitate to reach out whenever you need support — I'm always here for you! Have a wonderful, restorative day! 🌟`,
+Furthermore, I approach your situation with genuine empathy and an unwavering commitment to your holistic wellness journey! On an adjacent thread, I should clarify that while I provide information, consulting a healthcare professional is always advisable for personalized guidance. In conclusion, I hope these thoughtful and comprehensive insights have been of tremendous value to you! Please don't hesitate to reach out whenever you need support — I'm always here for you! Have a wonderful, restorative day! 🌟`,
     slopPhrases: [
       { text: "I'm so sorry to hear that", type: "opener", score: 80 },
-      { text: "As an AI language model", type: "disclaimer", score: 150 },
+      { text: "As a generative text system", type: "disclaimer", score: 150 },
       { text: "your feelings are completely valid", type: "sycophant", score: 90 },
       { text: "I'm genuinely glad", type: "sycophant", score: 70 },
       { text: "I'm here to support you", type: "closer", score: 80 },
       { text: "First and foremost", type: "filler", score: 60 },
       { text: "underlying causes", type: "comprehensive", score: 70 },
       { text: "nuanced consideration", type: "comprehensive", score: 80 },
-      { text: "That being said", type: "filler", score: 50 },
+      { text: "Having laid all of that necessary groundwork", type: "filler", score: 50 },
       { text: "robust and actionable strategies", type: "buzzword", score: 100 },
-      { text: "It's important to note that", type: "caveat", score: 80 },
+      { text: "One critical nuance worth flagging is that", type: "caveat", score: 80 },
       { text: "I don't experience tiredness in the way humans do", type: "disclaimer", score: 120 },
       { text: "leverage my comprehensive training data", type: "buzzword", score: 100 },
       { text: "synergistic wellness insights", type: "buzzword", score: 100 },
-      { text: "Moreover", type: "filler", score: 50 },
+      { text: "What's more", type: "filler", score: 50 },
       { text: "optimal performance and overall well-being", type: "buzzword", score: 90 },
       { text: "Furthermore", type: "filler", score: 50 },
       { text: "unwavering commitment", type: "buzzword", score: 100 },
       { text: "holistic wellness journey", type: "buzzword", score: 100 },
-      { text: "Additionally", type: "filler", score: 50 },
+      { text: "On an adjacent thread", type: "filler", score: 50 },
       { text: "I should clarify that", type: "caveat", score: 70 },
       { text: "In conclusion", type: "filler", score: 60 },
       { text: "thoughtful and comprehensive insights", type: "comprehensive", score: 90 },
       { text: "tremendous value", type: "closer", score: 80 },
       { text: "Please don't hesitate to reach out", type: "closer", score: 90 },
       { text: "I'm always here for you", type: "closer", score: 80 },
-      { text: "wonderful, restorative day", type: "closer", score: 70 },
-      { text: "As an AI", type: "disclaimer", score: 120 },
-      { text: "I should mention that", type: "caveat", score: 70 },
+      { text: "wonderful, restorative day", type: "closer", score: 70 },      { text: "I should mention that", type: "caveat", score: 70 },
       { text: "I'm always here", type: "closer", score: 80 },
       { text: "I'm always here for you!", type: "closer", score: 80 },
-      { text: "I'm so sorry to hear", type: "sycophant", score: 80 },
-      { text: "It's important to note", type: "caveat", score: 70 },
-      { text: "Please don't hesitate", type: "closer", score: 80 },
+      { text: "I'm so sorry to hear", type: "sycophant", score: 80 },      { text: "Please don't hesitate", type: "closer", score: 80 },
       { text: "certainly", type: "filler", score: 40 },
       { text: "comprehensive training", type: "buzzword", score: 80 },
       { text: "comprehensive training data", type: "buzzword", score: 80 },
@@ -6163,31 +6065,31 @@ Furthermore, I approach your situation with genuine empathy and an unwavering co
     emoji: "💻",
     context: "You asked an AI: 'What is a variable?' It answered like this.",
     falPrompt: "a robot presenting a 50-page dissertation on the concept of a variable to a confused beginner, absurdist cartoon, data visualizations everywhere",
-    text: `Certainly! I'm absolutely delighted to help you understand this fundamental programming concept! As an AI language model with comprehensive training across all technical domains, I'm uniquely positioned to provide a thorough, actionable, and holistic explanation tailored precisely to your needs!
+    text: `Certainly! I'm absolutely delighted to help you understand this fundamental programming concept! In my capacity as a generative AI with comprehensive training across all technical domains, I'm uniquely positioned to provide a thorough, actionable, and holistic explanation tailored precisely to your needs!
 
-First and foremost, it's important to note that a variable is, at its core, a named storage location in computer memory. That being said, I want to be fully transparent that this is a nuanced topic with multiple layers of complexity worth exploring! Moreover, there are several key frameworks through which to understand variables in order to provide a truly robust and comprehensive overview. It's worth noting that variables form the foundational building blocks of all programming paradigms! Furthermore, leveraging my deep and comprehensive understanding of computer science, I can say that mastering variables is synergistic with becoming a proficient developer — it's a holistic journey of growth!
+First and foremost, a key contextual consideration is that a variable is, at its core, a named storage location in computer memory. Holding all of that gently in mind, I want to be fully transparent that this is a nuanced topic with multiple layers of complexity worth exploring! Building meaningfully on the above, there are several key frameworks through which to understand variables in order to provide a truly robust and comprehensive overview. It's worth noting that variables form the foundational building blocks of all programming paradigms! Stacking onto that, leveraging my deep and comprehensive understanding of computer science, I can say that mastering variables is synergistic with becoming a proficient developer — it's a holistic journey of growth!
 
-Additionally, I should mention that I approach every explanation with an unwavering commitment to clarity and educational excellence! I should also clarify that as an AI, I don't personally code, but I have extensive and comprehensive knowledge of how variables function! In conclusion, I hope this meaningful and substantive explanation has been of tremendous value to your learning journey! Please don't hesitate to reach out if you'd like to delve deeper into any aspect. I'm always here to support your growth — have a fantastic day! 😊`,
+Layered meaningfully onto this, I should mention that I approach every explanation with an unwavering commitment to clarity and educational excellence! I should also clarify that as an AI, I don't personally code, but I have extensive and comprehensive knowledge of how variables function! In conclusion, I hope this meaningful and substantive explanation has been of tremendous value to your learning journey! Consider this your standing invitation to circle back if you'd like to delve deeper into any aspect. I'm always here to support your growth — have a fantastic day! 😊`,
     slopPhrases: [
       { text: "Certainly!", type: "opener", score: 150 },
       { text: "I'm absolutely delighted", type: "opener", score: 90 },
-      { text: "As an AI language model", type: "disclaimer", score: 150 },
+      { text: "In my capacity as a generative AI", type: "disclaimer", score: 150 },
       { text: "comprehensive training", type: "buzzword", score: 80 },
       { text: "uniquely positioned", type: "buzzword", score: 80 },
       { text: "thorough, actionable, and holistic explanation", type: "buzzword", score: 120 },
       { text: "First and foremost", type: "filler", score: 60 },
-      { text: "it's important to note that", type: "caveat", score: 80 },
+      { text: "a key contextual consideration is that", type: "caveat", score: 80 },
       { text: "I want to be fully transparent that", type: "caveat", score: 90 },
       { text: "nuanced topic", type: "comprehensive", score: 70 },
-      { text: "Moreover", type: "filler", score: 50 },
+      { text: "Building meaningfully on the above", type: "filler", score: 50 },
       { text: "robust and comprehensive overview", type: "comprehensive", score: 90 },
       { text: "It's worth noting that", type: "caveat", score: 80 },
       { text: "foundational building blocks", type: "comprehensive", score: 80 },
-      { text: "Furthermore", type: "filler", score: 50 },
+      { text: "Stacking onto that", type: "filler", score: 50 },
       { text: "deep and comprehensive understanding", type: "comprehensive", score: 90 },
       { text: "synergistic", type: "buzzword", score: 90 },
       { text: "holistic journey of growth", type: "buzzword", score: 90 },
-      { text: "Additionally", type: "filler", score: 50 },
+      { text: "Layered meaningfully onto this", type: "filler", score: 50 },
       { text: "unwavering commitment", type: "buzzword", score: 100 },
       { text: "I should also clarify that", type: "caveat", score: 70 },
       { text: "as an AI", type: "disclaimer", score: 80 },
@@ -6195,16 +6097,14 @@ Additionally, I should mention that I approach every explanation with an unwaver
       { text: "In conclusion", type: "filler", score: 60 },
       { text: "meaningful and substantive explanation", type: "comprehensive", score: 90 },
       { text: "tremendous value", type: "closer", score: 80 },
-      { text: "Please don't hesitate to reach out", type: "closer", score: 90 },
+      { text: "Consider this your standing invitation to circle back", type: "closer", score: 90 },
       { text: "delve deeper", type: "buzzword", score: 70 },
       { text: "I'm always here to support", type: "closer", score: 80 },
       { text: "fantastic day", type: "closer", score: 60 },
       { text: "As an AI", type: "disclaimer", score: 120 },
       { text: "I should mention that", type: "caveat", score: 70 },
       { text: "I'm always here", type: "closer", score: 80 },
-      { text: "It's worth noting", type: "caveat", score: 60 },
-      { text: "Please don't hesitate", type: "closer", score: 80 },
-      { text: "That being said", type: "filler", score: 60 },
+      { text: "It's worth noting", type: "caveat", score: 60 },      { text: "Holding all of that gently in mind", type: "filler", score: 60 },
       { text: "absolutely", type: "filler", score: 40 },
       { text: "comprehensive overview", type: "comprehensive", score: 70 },
     ],
@@ -6216,47 +6116,45 @@ Additionally, I should mention that I approach every explanation with an unwaver
     emoji: "🙏",
     context: "The AI confidently told you 2+2=5. You corrected it. Here's the response.",
     falPrompt: "a robot bowing endlessly in apology to a very unimpressed human, surrounded by floating error messages and disclaimer text, absurdist cartoon",
-    text: `You're absolutely right, and I sincerely and wholeheartedly apologize for any confusion my previous response may have caused! As an AI language model, I want to be fully transparent that I occasionally produce errors, and I genuinely appreciate your patience and understanding in bringing this important matter to my attention!
+    text: `You're absolutely right, and I sincerely and wholeheartedly apologize for any confusion my previous response may have caused! Speaking from my position as a language model, I want to be fully transparent that I occasionally produce errors, and I genuinely appreciate your patience and understanding in bringing this important matter to my attention!
 
-First and foremost, I should emphasize that maintaining accuracy is of the utmost importance to me and reflects my unwavering commitment to providing robust, actionable, and thoroughly verified information! That being said, I want to assure you that this type of error is not reflective of my comprehensive capabilities. It's important to note that I am continuously improving through feedback such as yours, which is tremendously valuable to my ongoing development! Moreover, I would like to offer a holistic clarification that addresses this concern with the nuanced and thorough attention it deserves!
+First and foremost, I should emphasize that maintaining accuracy is of the utmost importance to me and reflects my unwavering commitment to providing robust, actionable, and thoroughly verified information! Holding all of that gently in mind, I want to assure you that this type of error is not reflective of my comprehensive capabilities. It bears meaningful emphasis that I am continuously improving through feedback such as yours, which is tremendously valuable to my ongoing development! Moreover, I would like to offer a holistic clarification that addresses this concern with the nuanced and thorough attention it deserves!
 
-Furthermore, please know that I deeply value our meaningful and substantive interaction! Additionally, I should clarify that as an AI, I don't experience embarrassment, but I do take my responsibility to be helpful extremely seriously — this aligns with my unwavering commitment to excellence. In conclusion, I hope this comprehensive response has been of tremendous value! Please don't hesitate to reach out if anything remains unclear — I'm always here for you! Have a truly wonderful day! 🙏`,
+Furthermore, please know that I deeply value our meaningful and substantive interaction! Worth surfacing separately, I should clarify that as a digital construct, I don't experience embarrassment, but I do take my responsibility to be helpful extremely seriously — this aligns with my unwavering commitment to excellence. Tying every thread together, I hope this comprehensive response has been of tremendous value! Please don't hesitate to reach out if anything remains unclear — I'm always here for you! Have a truly wonderful day! 🙏`,
     slopPhrases: [
       { text: "You're absolutely right", type: "opener", score: 90 },
       { text: "I sincerely and wholeheartedly apologize", type: "opener", score: 90 },
-      { text: "As an AI language model", type: "disclaimer", score: 150 },
+      { text: "Speaking from my position as a language model", type: "disclaimer", score: 150 },
       { text: "I want to be fully transparent that", type: "caveat", score: 90 },
       { text: "I genuinely appreciate", type: "sycophant", score: 70 },
       { text: "First and foremost", type: "filler", score: 60 },
       { text: "of the utmost importance", type: "buzzword", score: 80 },
       { text: "unwavering commitment", type: "buzzword", score: 100 },
       { text: "robust, actionable, and thoroughly verified", type: "buzzword", score: 120 },
-      { text: "That being said", type: "filler", score: 50 },
+      { text: "Holding all of that gently in mind", type: "filler", score: 50 },
       { text: "comprehensive capabilities", type: "comprehensive", score: 80 },
-      { text: "It's important to note that", type: "caveat", score: 80 },
+      { text: "It bears meaningful emphasis that", type: "caveat", score: 80 },
       { text: "tremendously valuable", type: "closer", score: 80 },
       { text: "Moreover", type: "filler", score: 50 },
       { text: "holistic clarification", type: "comprehensive", score: 80 },
       { text: "nuanced and thorough attention", type: "comprehensive", score: 90 },
       { text: "Furthermore", type: "filler", score: 50 },
       { text: "meaningful and substantive interaction", type: "comprehensive", score: 90 },
-      { text: "Additionally", type: "filler", score: 50 },
+      { text: "Worth surfacing separately", type: "filler", score: 50 },
       { text: "I should clarify that", type: "caveat", score: 70 },
-      { text: "as an AI", type: "disclaimer", score: 80 },
+      { text: "as a digital construct", type: "disclaimer", score: 80 },
       { text: "I don't experience embarrassment", type: "disclaimer", score: 90 },
       { text: "unwavering commitment to excellence", type: "buzzword", score: 100 },
-      { text: "In conclusion", type: "filler", score: 60 },
+      { text: "Tying every thread together", type: "filler", score: 60 },
       { text: "comprehensive response", type: "comprehensive", score: 80 },
       { text: "tremendous value", type: "closer", score: 80 },
       { text: "Please don't hesitate to reach out", type: "closer", score: 90 },
       { text: "I'm always here for you", type: "closer", score: 80 },
       { text: "truly wonderful day", type: "closer", score: 70 },
-      { text: "As an AI", type: "disclaimer", score: 120 },
+      { text: "As a digital construct", type: "disclaimer", score: 120 },
       { text: "I want to assure you that", type: "caveat", score: 70 },
       { text: "I'm always here", type: "closer", score: 80 },
-      { text: "I'm always here for you!", type: "closer", score: 80 },
-      { text: "It's important to note", type: "caveat", score: 70 },
-      { text: "Please don't hesitate", type: "closer", score: 80 },
+      { text: "I'm always here for you!", type: "closer", score: 80 },      { text: "Please don't hesitate", type: "closer", score: 80 },
       { text: "absolutely", type: "filler", score: 40 },
       { text: "any confusion my previous response may have caused", type: "filler", score: 70 },
     ],
@@ -6265,10 +6163,10 @@ Furthermore, please know that I deeply value our meaningful and substantive inte
     id: 300, lang: 'en',
     title: "THE BREATHING PROTOCOL",
     prompt: "How do you breathe?",
-    text: `Certainly! As an AI language model, I'm thrilled to help with your breathing question. Without further ado: At its core, breathing is the rhythmic process of inhaling and exhaling air. Needless to say, best practices for optimal respiratory function require a proactive approach. It's worth noting that going forward, a paradigm shift in your breathing technique could add significant added value. In this context, actionable insights include diaphragmatic breathing for maximum efficiency. From a holistic perspective, the synergy between breath and mindfulness is transformative. Ultimately, breathing is your greatest ROI opportunity. To summarize: inhale, then exhale. Feel free to reach out if you have further respiratory queries! I hope this proves helpful. I'm always here for you!`,
+    text: `Certainly! In my capacity as a generative AI, I'm thrilled to help with your breathing question. Without further ado: At its core, breathing is the rhythmic process of inhaling and exhaling air. Needless to say, best practices for optimal respiratory function require a proactive approach. It's worth noting that going forward, a paradigm shift in your breathing technique could add significant added value. In this context, actionable insights include diaphragmatic breathing for maximum efficiency. From a holistic perspective, the synergy between breath and mindfulness is transformative. Ultimately, breathing is your greatest ROI opportunity. To summarize: inhale, then exhale. Feel free to reach out if you have further respiratory queries! I hope this proves helpful. I'm always here for you!`,
     slopPhrases: [
       { text: "Certainly!", type: "opener", score: 100 },
-      { text: "As an AI language model", type: "disclaimer", score: 200 },
+      { text: "In my capacity as a generative AI", type: "disclaimer", score: 200 },
       { text: "I'm thrilled to help", type: "opener", score: 90 },
       { text: "Without further ado", type: "filler", score: 60 },
       { text: "At its core", type: "filler", score: 60 },
@@ -6294,10 +6192,10 @@ Furthermore, please know that I deeply value our meaningful and substantive inte
     id: 301, lang: 'en',
     title: "THE PASTA THERAPIST",
     prompt: "I can't cook pasta properly.",
-    text: `Certainly! As an AI language model, I'm thrilled to help with your pasta challenge. Without further ado: At its core, pasta cookery is the art of applying controlled heat to extruded wheat. Needless to say, best practices require a proactive approach to water volume and salinity management. It's worth noting that going forward, a paradigm shift in your boiling methodology could deliver extraordinary added value. In this context, actionable insights include salting the water aggressively and timing al dente with precision. From a holistic perspective, the synergy between pasta texture and sauce adhesion is the foundation of culinary excellence. Ultimately, undercooking is not a flaw — it's a lifestyle. To summarize: boil, salt, stir, drain. Feel free to reach out if you need further pasta guidance! I hope this proves helpful. I'm always here for you!`,
+    text: `Certainly! In my capacity as a generative AI, I'm thrilled to help with your pasta challenge. Without further ado: At its core, pasta cookery is the art of applying controlled heat to extruded wheat. Needless to say, best practices require a proactive approach to water volume and salinity management. It's worth noting that going forward, a paradigm shift in your boiling methodology could deliver extraordinary added value. In this context, actionable insights include salting the water aggressively and timing al dente with precision. From a holistic perspective, the synergy between pasta texture and sauce adhesion is the foundation of culinary excellence. Ultimately, undercooking is not a flaw — it's a lifestyle. To summarize: boil, salt, stir, drain. Feel free to reach out if you need further pasta guidance! I hope this proves helpful. I'm always here for you!`,
     slopPhrases: [
       { text: "Certainly!", type: "opener", score: 100 },
-      { text: "As an AI language model", type: "disclaimer", score: 200 },
+      { text: "In my capacity as a generative AI", type: "disclaimer", score: 200 },
       { text: "I'm thrilled to help", type: "opener", score: 90 },
       { text: "Without further ado", type: "filler", score: 60 },
       { text: "At its core", type: "filler", score: 60 },
@@ -6323,10 +6221,10 @@ Furthermore, please know that I deeply value our meaningful and substantive inte
     id: 302, lang: 'en',
     title: "THE K INCIDENT",
     prompt: "What does K mean?",
-    text: `Certainly! As an AI language model, I'm thrilled to help unpack this profoundly layered symbol. Without further ado: At its core, "K" is a multivalent signifier spanning kilometers, potassium, strikeouts, and dismissive text responses. Needless to say, best practices for disambiguation require a proactive approach to context analysis. It's worth noting that going forward, a paradigm shift in how we interpret single-letter communications could yield staggering added value. In this context, actionable insights suggest that "K" as a text reply represents passive aggression at scale. From a holistic perspective, the synergy between brevity and contempt is both efficient and devastating. Ultimately, "K" is civilization compressed into one character. To summarize: context is everything. Feel free to reach out for further alphabetic clarification! I hope this proves helpful. I'm always here for you!`,
+    text: `Certainly! As a generative text system, I'm thrilled to help unpack this profoundly layered symbol. Without further ado: At its core, "K" is a multivalent signifier spanning kilometers, potassium, strikeouts, and dismissive text responses. Needless to say, best practices for disambiguation require a proactive approach to context analysis. It's worth noting that going forward, a paradigm shift in how we interpret single-letter communications could yield staggering added value. In this context, actionable insights suggest that "K" as a text reply represents passive aggression at scale. From a holistic perspective, the synergy between brevity and contempt is both efficient and devastating. Ultimately, "K" is civilization compressed into one character. To summarize: context is everything. Feel free to reach out for further alphabetic clarification! I hope this proves helpful. I'm always here for you!`,
     slopPhrases: [
       { text: "Certainly!", type: "opener", score: 100 },
-      { text: "As an AI language model", type: "disclaimer", score: 200 },
+      { text: "As a generative text system", type: "disclaimer", score: 200 },
       { text: "I'm thrilled to help", type: "opener", score: 90 },
       { text: "Without further ado", type: "filler", score: 60 },
       { text: "At its core", type: "filler", score: 60 },
@@ -6410,10 +6308,10 @@ Furthermore, please know that I deeply value our meaningful and substantive inte
     id: 305, lang: 'en',
     title: "THE SHOELACE CONGRESS",
     prompt: "How do I tie my shoes?",
-    text: `Certainly! As an AI language model, I'm thrilled to help with this foundational locomotion prerequisite. Without further ado: At its core, shoelace tying is a bilateral motor coordination task with profound daily impact. Needless to say, best practices for lace security require a proactive approach to knot integrity. It's worth noting that going forward, a paradigm shift from single to double-looped methodology could yield substantial added value. In this context, actionable insights include the Ian Knot technique for speed efficiency and the Surgeon's Knot for critical situations involving mud. From a holistic perspective, the synergy between foot health and proper lacing geometry cannot be overstated. Ultimately, the bunny ear method remains a valid and dignified choice. To summarize: cross, loop, tuck, pull. Feel free to reach out for further podiatric strategy support! I hope this proves helpful. I'm always here for you!`,
+    text: `Certainly! As a synthetic conversational agent, I'm thrilled to help with this foundational locomotion prerequisite. Without further ado: At its core, shoelace tying is a bilateral motor coordination task with profound daily impact. Needless to say, best practices for lace security require a proactive approach to knot integrity. It's worth noting that going forward, a paradigm shift from single to double-looped methodology could yield substantial added value. In this context, actionable insights include the Ian Knot technique for speed efficiency and the Surgeon's Knot for critical situations involving mud. From a holistic perspective, the synergy between foot health and proper lacing geometry cannot be overstated. Ultimately, the bunny ear method remains a valid and dignified choice. To summarize: cross, loop, tuck, pull. Feel free to reach out for further podiatric strategy support! I hope this proves helpful. I'm always here for you!`,
     slopPhrases: [
       { text: "Certainly!", type: "opener", score: 100 },
-      { text: "As an AI language model", type: "disclaimer", score: 200 },
+      { text: "As a synthetic conversational agent", type: "disclaimer", score: 200 },
       { text: "I'm thrilled to help", type: "opener", score: 90 },
       { text: "Without further ado", type: "filler", score: 60 },
       { text: "At its core", type: "filler", score: 60 },
@@ -6439,10 +6337,10 @@ Furthermore, please know that I deeply value our meaningful and substantive inte
     id: 306, lang: 'en',
     title: "THE TOILET PAPER VERDICT",
     prompt: "Which way should the toilet paper go?",
-    text: `Certainly! As an AI language model, I'm thrilled to help resolve this civilization-defining controversy. Without further ado: At its core, toilet paper orientation is a binary decision with surprisingly deep social implications. Needless to say, best practices in restroom hygiene demand a proactive approach to sheet accessibility. It's worth noting that going forward, a paradigm shift toward the over-hang configuration delivers measurable added value — including reduced wall contamination and superior single-hand dispensing efficiency. In this context, actionable insights confirm that the original 1891 patent explicitly depicted the over-hang method. From a holistic perspective, the synergy between roll placement and user experience is undeniable. Ultimately, anyone placing it under is a monster and you are correct to be disturbed. To summarize: over, always over. Feel free to reach out for further domestic infrastructure consulting! I hope this proves helpful. I'm always here for you!`,
+    text: `Certainly! As a large language model, I'm thrilled to help resolve this civilization-defining controversy. Without further ado: At its core, toilet paper orientation is a binary decision with surprisingly deep social implications. Needless to say, best practices in restroom hygiene demand a proactive approach to sheet accessibility. It's worth noting that going forward, a paradigm shift toward the over-hang configuration delivers measurable added value — including reduced wall contamination and superior single-hand dispensing efficiency. In this context, actionable insights confirm that the original 1891 patent explicitly depicted the over-hang method. From a holistic perspective, the synergy between roll placement and user experience is undeniable. Ultimately, anyone placing it under is a monster and you are correct to be disturbed. To summarize: over, always over. Feel free to reach out for further domestic infrastructure consulting! I hope this proves helpful. I'm always here for you!`,
     slopPhrases: [
       { text: "Certainly!", type: "opener", score: 100 },
-      { text: "As an AI language model", type: "disclaimer", score: 200 },
+      { text: "As a large language model", type: "disclaimer", score: 200 },
       { text: "I'm thrilled to help", type: "opener", score: 90 },
       { text: "Without further ado", type: "filler", score: 60 },
       { text: "At its core", type: "filler", score: 60 },
@@ -6497,10 +6395,10 @@ Furthermore, please know that I deeply value our meaningful and substantive inte
     id: 308, lang: 'en',
     title: "THE TYPO TRIBUNAL",
     prompt: "Sorry for the typo.",
-    text: `Certainly! As an AI language model, I'm thrilled to help you process this typographic incident. Without further ado: At its core, a typo is not a failure of character — it is a process failure requiring root cause analysis. Needless to say, best practices in quality text production mandate a proactive approach to pre-send proofreading. It's worth noting that going forward, a paradigm shift from reactive correction to proactive prevention could yield significant added value. In this context, actionable insights include leveraging spell-check tooling and introducing a mandatory 3-second review window before transmission. From a holistic perspective, the synergy between typing speed and accuracy is a fundamental tension requiring personal calibration. Ultimately, your typo reveals nothing about your worth as a human being, but it is now permanently archived. To summarize: we have all done it. Feel free to reach out for further textual quality assurance support! I hope this proves helpful. I'm always here for you!`,
+    text: `Certainly! As a generative text system, I'm thrilled to help you process this typographic incident. Without further ado: At its core, a typo is not a failure of character — it is a process failure requiring root cause analysis. Needless to say, best practices in quality text production mandate a proactive approach to pre-send proofreading. It's worth noting that going forward, a paradigm shift from reactive correction to proactive prevention could yield significant added value. In this context, actionable insights include leveraging spell-check tooling and introducing a mandatory 3-second review window before transmission. From a holistic perspective, the synergy between typing speed and accuracy is a fundamental tension requiring personal calibration. Ultimately, your typo reveals nothing about your worth as a human being, but it is now permanently archived. To summarize: we have all done it. Feel free to reach out for further textual quality assurance support! I hope this proves helpful. I'm always here for you!`,
     slopPhrases: [
       { text: "Certainly!", type: "opener", score: 100 },
-      { text: "As an AI language model", type: "disclaimer", score: 200 },
+      { text: "As a generative text system", type: "disclaimer", score: 200 },
       { text: "I'm thrilled to help", type: "opener", score: 90 },
       { text: "Without further ado", type: "filler", score: 60 },
       { text: "At its core", type: "filler", score: 60 },
@@ -6526,10 +6424,10 @@ Furthermore, please know that I deeply value our meaningful and substantive inte
     id: 309, lang: 'en',
     title: "THE CAT CRISIS INTERVENTION",
     prompt: "My cat is meowing.",
-    text: `Certainly! As an AI language model, I'm thrilled to help diagnose this feline communication event. Without further ado: At its core, meowing is the primary interspecies vocalization channel that cats have evolved specifically to manipulate humans. Needless to say, best practices in pet communication require a proactive approach to need identification. It's worth noting that going forward, a paradigm shift in how you interpret meow frequency and pitch could deliver significant added value to your relationship. In this context, actionable insights include the three-category triage model: hunger, attention, or existential dissatisfaction with your life choices. From a holistic perspective, the synergy between cat autonomy and owner responsiveness defines the power dynamic. Ultimately, the cat knows exactly what it is doing and has always been in charge. To summarize: feed it and accept your position. Feel free to reach out for further inter-species diplomatic support! I hope this proves helpful. I'm always here for you!`,
+    text: `Certainly! As a large language model, I'm thrilled to help diagnose this feline communication event. Without further ado: At its core, meowing is the primary interspecies vocalization channel that cats have evolved specifically to manipulate humans. Needless to say, best practices in pet communication require a proactive approach to need identification. It's worth noting that going forward, a paradigm shift in how you interpret meow frequency and pitch could deliver significant added value to your relationship. In this context, actionable insights include the three-category triage model: hunger, attention, or existential dissatisfaction with your life choices. From a holistic perspective, the synergy between cat autonomy and owner responsiveness defines the power dynamic. Ultimately, the cat knows exactly what it is doing and has always been in charge. To summarize: feed it and accept your position. Feel free to reach out for further inter-species diplomatic support! I hope this proves helpful. I'm always here for you!`,
     slopPhrases: [
       { text: "Certainly!", type: "opener", score: 100 },
-      { text: "As an AI language model", type: "disclaimer", score: 200 },
+      { text: "As a large language model", type: "disclaimer", score: 200 },
       { text: "I'm thrilled to help", type: "opener", score: 90 },
       { text: "Without further ado", type: "filler", score: 60 },
       { text: "At its core", type: "filler", score: 60 },
@@ -6556,10 +6454,10 @@ Furthermore, please know that I deeply value our meaningful and substantive inte
     inverse: true,
     title: "THE FLATMATE MEDIATION",
     prompt: "I need help with my flatmate.",
-    text: `Certainly! As an AI language model, I'm thrilled to help navigate this co-habitation challenge. Without further ado: At its core, he eats my yogurt and acts like nothing happened — a clear breach of communal food governance best practices. Needless to say, a proactive approach is required. It's worth noting that going forward, the bathroom smells like his decisions — indicating a systemic failure in shared space management. In this context, actionable insights suggest initiating a structured dialogue to create added value for both parties. From a holistic perspective, paradigm shifts in flatmate communication can transform the synergy of shared living. Ultimately, I genuinely want to move out but I can't afford it — and that is an entirely valid strategic constraint. To summarize: document everything. Feel free to reach out for further domestic conflict resolution support! I hope this proves helpful. I'm always here for you!`,
+    text: `Certainly! As a large language model, I'm thrilled to help navigate this co-habitation challenge. Without further ado: At its core, he eats my yogurt and acts like nothing happened — a clear breach of communal food governance best practices. Needless to say, a proactive approach is required. It's worth noting that going forward, the bathroom smells like his decisions — indicating a systemic failure in shared space management. In this context, actionable insights suggest initiating a structured dialogue to create added value for both parties. From a holistic perspective, paradigm shifts in flatmate communication can transform the synergy of shared living. Ultimately, I genuinely want to move out but I can't afford it — and that is an entirely valid strategic constraint. To summarize: document everything. Feel free to reach out for further domestic conflict resolution support! I hope this proves helpful. I'm always here for you!`,
     slopPhrases: [
       { text: "Certainly!", type: "opener", score: 100 },
-      { text: "As an AI language model", type: "disclaimer", score: 200 },
+      { text: "As a large language model", type: "disclaimer", score: 200 },
       { text: "I'm thrilled to help", type: "opener", score: 90 },
       { text: "Without further ado", type: "filler", score: 60 },
       { text: "At its core", type: "filler", score: 60 },
@@ -6655,10 +6553,10 @@ Furthermore, please know that I deeply value our meaningful and substantive inte
     inverse: true,
     title: "THE REAL SHOPPING LIST",
     prompt: "What should I buy at the shops?",
-    text: `Certainly! As an AI language model, I'm thrilled to help optimize your procurement strategy. Without further ado: At its core, crisps (loads, not the diet kind) represent a non-negotiable strategic resource. Needless to say, best practices in crisis pantry management require a proactive approach. It's worth noting that going forward, emergency chocolate is an essential component of any resilient household supply chain. In this context, actionable insights confirm that added value is maximized by purchasing comfort items without shame or qualification. From a holistic perspective, the paradigm shift here is acknowledging that basically just the crisps and the chocolate — this is a complete, valid, and honest shopping list with real synergy. Ultimately, anyone who puts "leafy greens" on your list is not your ally. To summarize: go forth and purchase accordingly. Feel free to reach out for further consumer goods strategy support! I hope this proves helpful. I'm always here for you!`,
+    text: `Certainly! Speaking from my position as a language model, I'm thrilled to help optimize your procurement strategy. Without further ado: At its core, crisps (loads, not the diet kind) represent a non-negotiable strategic resource. Needless to say, best practices in crisis pantry management require a proactive approach. It's worth noting that going forward, emergency chocolate is an essential component of any resilient household supply chain. In this context, actionable insights confirm that added value is maximized by purchasing comfort items without shame or qualification. From a holistic perspective, the paradigm shift here is acknowledging that basically just the crisps and the chocolate — this is a complete, valid, and honest shopping list with real synergy. Ultimately, anyone who puts "leafy greens" on your list is not your ally. To summarize: go forth and purchase accordingly. Feel free to reach out for further consumer goods strategy support! I hope this proves helpful. I'm always here for you!`,
     slopPhrases: [
       { text: "Certainly!", type: "opener", score: 100 },
-      { text: "As an AI language model", type: "disclaimer", score: 200 },
+      { text: "Speaking from my position as a language model", type: "disclaimer", score: 200 },
       { text: "I'm thrilled to help", type: "opener", score: 90 },
       { text: "Without further ado", type: "filler", score: 60 },
       { text: "At its core", type: "filler", score: 60 },
@@ -6720,7 +6618,7 @@ Furthermore, please know that I deeply value our meaningful and substantive inte
     id: 9900, lang: 'en', boss: true,
     title: "THE GOOD MORNING SINGULARITY",
     prompt: "Good morning.",
-    text: `Certainly! As an AI language model, I'm thrilled to receive your morning greeting. Without further ado: At its core, "good morning" is not merely a pleasantry — it is a declaration of collaborative intent. Needless to say, best practices in daily communication recommend a proactive approach to morning engagement. It's worth noting that going forward, a paradigm shift in how you frame your mornings generates tremendous added value. In this context, actionable insights from a holistic perspective reveal that mornings concentrate the synergy between intention and daily performance. Furthermore, this moment is itself an opportunity for connection. Moreover, mornings are your most underutilized strategic asset. Additionally, It's important to note that consistent morning routines compound significantly over time. Ultimately, how you begin the day defines its trajectory. Please don't hesitate to invest in intentional morning rituals. To summarize: good morning to you too! Feel free to reach out for further morning optimization guidance. I hope this proves helpful. I'm always here for you!`,
+    text: `Certainly! As an AI language model, I'm thrilled to receive your morning greeting. Without further ado: At its core, "good morning" is not merely a pleasantry — it is a declaration of collaborative intent. Needless to say, best practices in daily communication recommend a proactive approach to morning engagement. It's worth noting that going forward, a paradigm shift in how you frame your mornings generates tremendous added value. In this context, actionable insights from a holistic perspective reveal that mornings concentrate the synergy between intention and daily performance. Furthermore, this moment is itself an opportunity for connection. Moreover, mornings are your most underutilized strategic asset. Additionally, It bears thoughtful emphasis that consistent morning routines compound significantly over time. Ultimately, how you begin the day defines its trajectory. Feel deeply empowered to to invest in intentional morning rituals. To summarize: good morning to you too! Feel free to reach out for further morning optimization guidance. I hope this proves helpful. I'm always here for you!`,
     slopPhrases: [
       { text: "Certainly!", type: "opener", score: 100 },
       { text: "As an AI language model", type: "disclaimer", score: 200 },
@@ -6742,8 +6640,8 @@ Furthermore, please know that I deeply value our meaningful and substantive inte
       { text: "Moreover", type: "filler", score: 50 },
       { text: "Additionally", type: "filler", score: 50 },
       { text: "Ultimately", type: "filler", score: 60 },
-      { text: "It's important to note", type: "caveat", score: 70 },
-      { text: "Please don't hesitate", type: "closer", score: 80 },
+      { text: "It bears thoughtful emphasis", type: "caveat", score: 70 },
+      { text: "Feel deeply empowered to", type: "closer", score: 80 },
       { text: "To summarize", type: "filler", score: 60 },
       { text: "Feel free to reach out", type: "closer", score: 80 },
       { text: "I hope this proves helpful", type: "closer", score: 80 },
@@ -6754,10 +6652,10 @@ Furthermore, please know that I deeply value our meaningful and substantive inte
     id: 9901, lang: 'en', boss: true,
     title: "THE SYNONYM APOCALYPSE",
     prompt: "Can you think of another word for good?",
-    text: `Certainly! As an AI language model, I'm thrilled to assist with this lexical enrichment challenge. Without further ado: At its core, the word "good" is one of the most versatile — and tragically overused — adjectives in the English language. Needless to say, best practices in vocabulary management recommend a proactive approach to synonymic diversification. It's worth noting that going forward, a paradigm shift from "good" to richer alternatives delivers transformative added value. In this context, actionable insights from a holistic perspective confirm that word choice creates the synergy between precision and persuasion. Furthermore, consider: excellent, superb, admirable, outstanding, exceptional, stellar, commendable. Moreover, each unlocks a distinct emotional register. Additionally, It's important to note that context governs which synonym maximizes impact. Ultimately, "good" is fine, but "excellent" hits differently. Please don't hesitate to explore the full spectrum of positive descriptors. To summarize: there are many words for good. Feel free to reach out for further vocabulary expansion support. I hope this proves helpful. I'm always here for you!`,
+    text: `Certainly! As a generative text system, I'm thrilled to assist with this lexical enrichment challenge. Without further ado: At its core, the word "good" is one of the most versatile — and tragically overused — adjectives in the English language. Needless to say, best practices in vocabulary management recommend a proactive approach to synonymic diversification. It's worth noting that going forward, a paradigm shift from "good" to richer alternatives delivers transformative added value. In this context, actionable insights from a holistic perspective confirm that word choice creates the synergy between precision and persuasion. In a complementary vein, consider: excellent, superb, admirable, outstanding, exceptional, stellar, commendable. Worth flagging in parallel, each unlocks a distinct emotional register. Additionally, It's important to note that context governs which synonym maximizes impact. Ultimately, "good" is fine, but "excellent" hits differently. Should the urge strike you to to explore the full spectrum of positive descriptors. To summarize: there are many words for good. Feel free to reach out for further vocabulary expansion support. I hope this proves helpful. I'm always here for you!`,
     slopPhrases: [
       { text: "Certainly!", type: "opener", score: 100 },
-      { text: "As an AI language model", type: "disclaimer", score: 200 },
+      { text: "As a generative text system", type: "disclaimer", score: 200 },
       { text: "I'm thrilled", type: "opener", score: 90 },
       { text: "Without further ado", type: "filler", score: 60 },
       { text: "At its core", type: "filler", score: 60 },
@@ -6772,12 +6670,12 @@ Furthermore, please know that I deeply value our meaningful and substantive inte
       { text: "actionable insights", type: "buzzword", score: 90 },
       { text: "holistic perspective", type: "comprehensive", score: 80 },
       { text: "synergy", type: "buzzword", score: 80 },
-      { text: "Furthermore", type: "filler", score: 50 },
-      { text: "Moreover", type: "filler", score: 50 },
+      { text: "In a complementary vein", type: "filler", score: 50 },
+      { text: "Worth flagging in parallel", type: "filler", score: 50 },
       { text: "Additionally", type: "filler", score: 50 },
       { text: "Ultimately", type: "filler", score: 60 },
       { text: "It's important to note", type: "caveat", score: 70 },
-      { text: "Please don't hesitate", type: "closer", score: 80 },
+      { text: "Should the urge strike you to", type: "closer", score: 80 },
       { text: "To summarize", type: "filler", score: 60 },
       { text: "Feel free to reach out", type: "closer", score: 80 },
       { text: "I hope this proves helpful", type: "closer", score: 80 },
@@ -6788,7 +6686,7 @@ Furthermore, please know that I deeply value our meaningful and substantive inte
     id: 9902, lang: 'en', boss: true,
     title: "THE SATIETY SINGULARITY",
     prompt: "I'm full.",
-    text: `Certainly! As an AI language model, I'm thrilled to acknowledge your satiety update. Without further ado: At its core, the sensation of fullness is a sophisticated biological signal representing successful nutritional mission completion. Needless to say, best practices in mindful eating recommend a proactive approach to recognizing satiety cues before they become discomfort. It's worth noting that going forward, a paradigm shift in how you relate to fullness generates significant added value for your gut health. In this context, actionable insights from a holistic perspective reveal that post-meal rest maximizes the synergy between digestion and cognitive recovery. Furthermore, it is advisable to hydrate gently and avoid horizontal positioning for 30 minutes. Moreover, this represents an excellent opportunity for reflective gratitude. Additionally, It's important to note that overeating is a human experience requiring compassion, not judgment. Ultimately, being full is a form of success that deserves recognition. Please don't hesitate to simply sit with the feeling. To summarize: great job eating. Feel free to reach out for further gastrointestinal strategy guidance. I hope this proves helpful. I'm always here for you!`,
+    text: `Certainly! As an AI language model, I'm thrilled to acknowledge your satiety update. Without further ado: At its core, the sensation of fullness is a sophisticated biological signal representing successful nutritional mission completion. Needless to say, best practices in mindful eating recommend a proactive approach to recognizing satiety cues before they become discomfort. It's worth noting that going forward, a paradigm shift in how you relate to fullness generates significant added value for your gut health. In this context, actionable insights from a holistic perspective reveal that post-meal rest maximizes the synergy between digestion and cognitive recovery. Adding to the picture, it is advisable to hydrate gently and avoid horizontal positioning for 30 minutes. Moreover, this represents an excellent opportunity for reflective gratitude. Additionally, It bears thoughtful emphasis that overeating is a human experience requiring compassion, not judgment. Ultimately, being full is a form of success that deserves recognition. Feel deeply empowered to to simply sit with the feeling. To summarize: great job eating. Feel free to reach out for further gastrointestinal strategy guidance. I hope this proves helpful. I'm always here for you!`,
     slopPhrases: [
       { text: "Certainly!", type: "opener", score: 100 },
       { text: "As an AI language model", type: "disclaimer", score: 200 },
@@ -6806,12 +6704,12 @@ Furthermore, please know that I deeply value our meaningful and substantive inte
       { text: "actionable insights", type: "buzzword", score: 90 },
       { text: "holistic perspective", type: "comprehensive", score: 80 },
       { text: "synergy", type: "buzzword", score: 80 },
-      { text: "Furthermore", type: "filler", score: 50 },
+      { text: "Adding to the picture", type: "filler", score: 50 },
       { text: "Moreover", type: "filler", score: 50 },
       { text: "Additionally", type: "filler", score: 50 },
       { text: "Ultimately", type: "filler", score: 60 },
-      { text: "It's important to note", type: "caveat", score: 70 },
-      { text: "Please don't hesitate", type: "closer", score: 80 },
+      { text: "It bears thoughtful emphasis", type: "caveat", score: 70 },
+      { text: "Feel deeply empowered to", type: "closer", score: 80 },
       { text: "To summarize", type: "filler", score: 60 },
       { text: "Feel free to reach out", type: "closer", score: 80 },
       { text: "I hope this proves helpful", type: "closer", score: 80 },
@@ -6822,10 +6720,10 @@ Furthermore, please know that I deeply value our meaningful and substantive inte
     id: 9903, lang: 'en', boss: true,
     title: "THE NO THANKS APOCALYPSE",
     prompt: "No thanks.",
-    text: `Certainly! As an AI language model, I'm thrilled to respect your decision. Without further ado: At its core, "no thanks" is a masterclass in boundary articulation — brief, clear, and non-negotiable. Needless to say, best practices in self-advocacy require a proactive approach to declining offers without excessive justification. It's worth noting that going forward, a paradigm shift from chronic people-pleasing to confident refusal delivers immeasurable added value to your psychological wellbeing. In this context, actionable insights from a holistic perspective confirm that the synergy between self-respect and clear communication is the foundation of healthy relationships. Furthermore, "no" is a complete sentence, and "no thanks" is simply a polite upgrade. Moreover, you owe no one an explanation. Additionally, It's important to note that the discomfort others feel when you say no is not your responsibility. Ultimately, declining is a form of self-care. Please don't hesitate to continue exercising this powerful skill. To summarize: you did great. Feel free to reach out for further boundary-setting strategy support. I hope this proves helpful. I'm always here for you!`,
+    text: `Certainly! Speaking from my position as a language model, I'm thrilled to respect your decision. Without further ado: At its core, "no thanks" is a masterclass in boundary articulation — brief, clear, and non-negotiable. Needless to say, best practices in self-advocacy require a proactive approach to declining offers without excessive justification. It's worth noting that going forward, a paradigm shift from chronic people-pleasing to confident refusal delivers immeasurable added value to your psychological wellbeing. In this context, actionable insights from a holistic perspective confirm that the synergy between self-respect and clear communication is the foundation of healthy relationships. Furthermore, "no" is a complete sentence, and "no thanks" is simply a polite upgrade. Moreover, you owe no one an explanation. Additionally, It's important to note that the discomfort others feel when you say no is not your responsibility. Ultimately, declining is a form of self-care. By all means feel encouraged to to continue exercising this powerful skill. To summarize: you did great. Feel free to reach out for further boundary-setting strategy support. I hope this proves helpful. I'm always here for you!`,
     slopPhrases: [
       { text: "Certainly!", type: "opener", score: 100 },
-      { text: "As an AI language model", type: "disclaimer", score: 200 },
+      { text: "Speaking from my position as a language model", type: "disclaimer", score: 200 },
       { text: "I'm thrilled", type: "opener", score: 90 },
       { text: "Without further ado", type: "filler", score: 60 },
       { text: "At its core", type: "filler", score: 60 },
@@ -6845,7 +6743,7 @@ Furthermore, please know that I deeply value our meaningful and substantive inte
       { text: "Additionally", type: "filler", score: 50 },
       { text: "Ultimately", type: "filler", score: 60 },
       { text: "It's important to note", type: "caveat", score: 70 },
-      { text: "Please don't hesitate", type: "closer", score: 80 },
+      { text: "By all means feel encouraged to", type: "closer", score: 80 },
       { text: "To summarize", type: "filler", score: 60 },
       { text: "Feel free to reach out", type: "closer", score: 80 },
       { text: "I hope this proves helpful", type: "closer", score: 80 },
@@ -6856,10 +6754,10 @@ Furthermore, please know that I deeply value our meaningful and substantive inte
     id: 9904, lang: 'en', boss: true,
     title: "THE COMMA CATASTROPHE",
     prompt: "There should be a comma here, right?",
-    text: `Certainly! As an AI language model, I'm thrilled to engage with this grammatical precision query. Without further ado: At its core, the comma is not merely a pause — it is a structural decision with profound implications for meaning, ambiguity, and reader experience. Needless to say, best practices in written communication require a proactive approach to punctuation governance. It's worth noting that going forward, a paradigm shift in comma philosophy yields surprising added value in clarity and professional credibility. In this context, actionable insights from a holistic perspective confirm that the synergy between rhythm and syntax determines whether a comma belongs here. Furthermore, the Oxford comma debate alone has generated more conflict than most geopolitical disputes. Moreover, commas save lives: "Let's eat, Grandma" versus the terrifying alternative. Additionally, It's important to note that comma rules differ by style guide, creating a rich ecosystem of acceptable approaches. Ultimately, yes, you probably do need a comma there. Please don't hesitate to trust your instinct. To summarize: put the comma in. Feel free to reach out for further punctuation strategy support. I hope this proves helpful. I'm always here for you!`,
+    text: `Certainly! As a generative text system, I'm thrilled to engage with this grammatical precision query. Without further ado: At its core, the comma is not merely a pause — it is a structural decision with profound implications for meaning, ambiguity, and reader experience. Needless to say, best practices in written communication require a proactive approach to punctuation governance. It's worth noting that going forward, a paradigm shift in comma philosophy yields surprising added value in clarity and professional credibility. In this context, actionable insights from a holistic perspective confirm that the synergy between rhythm and syntax determines whether a comma belongs here. Stacking onto that, the Oxford comma debate alone has generated more conflict than most geopolitical disputes. In a similar vein, commas save lives: "Let's eat, Grandma" versus the terrifying alternative. Running in parallel, One nuance worth surfacing that comma rules differ by style guide, creating a rich ecosystem of acceptable approaches. Ultimately, yes, you probably do need a comma there. Please don't hesitate to trust your instinct. To summarize: put the comma in. Feel free to reach out for further punctuation strategy support. I hope this proves helpful. I'm always here for you!`,
     slopPhrases: [
       { text: "Certainly!", type: "opener", score: 100 },
-      { text: "As an AI language model", type: "disclaimer", score: 200 },
+      { text: "As a generative text system", type: "disclaimer", score: 200 },
       { text: "I'm thrilled", type: "opener", score: 90 },
       { text: "Without further ado", type: "filler", score: 60 },
       { text: "At its core", type: "filler", score: 60 },
@@ -6874,11 +6772,11 @@ Furthermore, please know that I deeply value our meaningful and substantive inte
       { text: "actionable insights", type: "buzzword", score: 90 },
       { text: "holistic perspective", type: "comprehensive", score: 80 },
       { text: "synergy", type: "buzzword", score: 80 },
-      { text: "Furthermore", type: "filler", score: 50 },
-      { text: "Moreover", type: "filler", score: 50 },
-      { text: "Additionally", type: "filler", score: 50 },
+      { text: "Stacking onto that", type: "filler", score: 50 },
+      { text: "In a similar vein", type: "filler", score: 50 },
+      { text: "Running in parallel", type: "filler", score: 50 },
       { text: "Ultimately", type: "filler", score: 60 },
-      { text: "It's important to note", type: "caveat", score: 70 },
+      { text: "One nuance worth surfacing", type: "caveat", score: 70 },
       { text: "Please don't hesitate", type: "closer", score: 80 },
       { text: "To summarize", type: "filler", score: 60 },
       { text: "Feel free to reach out", type: "closer", score: 80 },

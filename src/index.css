@@ -223,6 +223,17 @@ html, body {
   animation: pop-in 0.25s ease;
 }
 
+/* Dictionary-tier slop — found state is dimmer/dashed to signal a smaller catch.
+   The active (unclicked) state is intentionally identical to regular slop —
+   we don't want to telegraph where the easy points are before the player reads. */
+.slop-token.dict.found {
+  background: rgba(16, 185, 129, 0.10) !important;
+  color: #6ee7b7 !important;
+  text-decoration: line-through dashed !important;
+  text-decoration-color: rgba(110, 231, 183, 0.55) !important;
+  opacity: 0.85;
+}
+
 /* Missed slop — revealed at round end */
 .slop-token.missed {
   background: rgba(239, 68, 68, 0.2) !important;

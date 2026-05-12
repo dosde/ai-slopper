@@ -1,5 +1,6 @@
 import React, { useCallback, useRef, useState, useEffect } from 'react';
 import { getRandomCommentary } from '../data/slopData';
+import { getSlopDict } from '../data/slopDict';
 import { playSlopDetected, playCombo, playMiss } from '../utils/audio';
 import { updateSlopDict, submitGlobalPhrase } from '../utils/storage';
 
@@ -9,8 +10,11 @@ import { updateSlopDict, submitGlobalPhrase } from '../utils/storage';
  * Non-slop segments are then split into individual words so every
  * word is independently hoverable/clickable.
  */
-function tokenize(text, slopPhrases) {
-  const sorted = [...slopPhrases].sort((a, b) => b.text.length - a.text.length);
+function tokenize(text, slopPhrases, lang = 'en', useDict = true) {
+  const dict = useDict ? getSlopDict(lang) : [];
+  // Hand-authored slopPhrases come first so they win ties against dict entries
+  // of the same length (stable sort).
+  const sorted = [...slopPhrases, ...dict].sort((a, b) => b.text.length - a.text.length);
   let segments = [{ text, isSlop: false, phraseData: null }];
 
   for (const phrase of sorted) {
@@ -230,7 +234,7 @@ export default function SlopText({
 
   // Build tokens once per round
   if (!tokens.current) {
-    tokens.current = tokenize(round.text, round.slopPhrases);
+    tokens.current = tokenize(round.text, round.slopPhrases, lang, !round.inverse);
     segmentsRef.current = buildSegments(round.text, tokens.current);
   }
 
@@ -249,7 +253,7 @@ export default function SlopText({
     morphTimersRef.current.clear();
     morphFlashTimersRef.current.forEach(t => clearTimeout(t));
     morphFlashTimersRef.current.clear();
-    tokens.current = tokenize(round.text, round.slopPhrases);
+    tokens.current = tokenize(round.text, round.slopPhrases, lang, !round.inverse);
     segmentsRef.current = buildSegments(round.text, tokens.current);
 
     const totalTokens = tokens.current.length;
@@ -452,9 +456,17 @@ export default function SlopText({
     newFound.add(token.id);
     onFoundChange(newFound);
 
-    const commentary = forcedCommentary || getRandomCommentary(pd.type, lang);
-    const newCombo = (combo || 0) + 1;
-    const multiplier = Math.min(newCombo, COMBO_CAP);
+    // Dictionary hits (universal slop layer) are a distinct tier:
+    //   - flat score (no combo multiplier)
+    //   - do not advance the combo counter, but reset its decay timer so
+    //     surrounding hand-tagged combos aren't punished for hitting a dict word
+    //   - no commentary popup string (just the score number)
+    //   - not logged into the discovery dictionary / community phrase corpus
+    const isDict = !!pd.fromDict;
+
+    const commentary = isDict ? null : (forcedCommentary || getRandomCommentary(pd.type, lang));
+    const newCombo = isDict ? (combo || 0) : (combo || 0) + 1;
+    const multiplier = isDict ? 1 : Math.min(newCombo, COMBO_CAP);
     // Clamp per-phrase base score — some cursed phrases were authored at 600-800
     // which, multiplied through combo × rizz × double, blew past 20k/click.
     // Data values stay as-is (intent labels) but the engine caps the effective base.
@@ -462,12 +474,15 @@ export default function SlopText({
     const baseScore = clampedBase * multiplier * scoreMultiplier;
     const score = Math.round(doublePoints ? baseScore * 2 : baseScore);
 
-    updateSlopDict(pd.text, pd.type);
-    submitGlobalPhrase(pd.text, pd.type);
+    if (!isDict) {
+      updateSlopDict(pd.text, pd.type);
+      submitGlobalPhrase(pd.text, pd.type);
+    }
     playSlopDetected();
-    if (newCombo > 1) playCombo(newCombo);
-    onScore(score, x, y, commentary, doublePoints, multiplier, token.id);
+    if (!isDict && newCombo > 1) playCombo(newCombo);
+    onScore(score, x, y, commentary, doublePoints, multiplier, token.id, isDict);
     onCombo(newCombo);
+    if (isDict) onMechanicHit?.('dict_hit');
   }, [found, combo, onScore, onCombo, onFoundChange, onWrongClick, doublePoints, round.inverse, lang, autocorrectPhases, corruptions, onMechanicHit]);
 
   // Wrong click — normal word clicked
@@ -529,7 +544,8 @@ export default function SlopText({
       const isInverse = !!round.inverse;
       const isRizz = token.phraseData?.rizz && !isFound;
       const isFlashing = justMorphed.has(token.id) && !isFound;
-      const className = `slop-token${isFound ? (isInverse ? ' human-found' : ' found') : ' active'}${isRizz ? ' rizz-hint' : ''}${isFlashing ? ' morph-flash' : ''}`;
+      const isDict = !!token.phraseData?.fromDict;
+      const className = `slop-token${isFound ? (isInverse ? ' human-found' : ' found') : ' active'}${isRizz ? ' rizz-hint' : ''}${isFlashing ? ' morph-flash' : ''}${isDict ? ' dict' : ''}`;
       const extraStyle = {
         ...(isBrainrotCorrupted && !isFound ? { color: '#fb923c', transition: 'color 0.3s' } : {}),
         ...(showRadar ? {
@@ -686,13 +702,15 @@ export function getSlopStats(round, found) {
       : 0;
     return { total: slotCount, found: found?.size ?? 0, missed: Math.max(0, slotCount - (found?.size ?? 0)), tokens: [] };
   }
-  const tokens = tokenize(round.text, round.slopPhrases);
-  const slopTokens = tokens.filter(t => t.isSlop);
-  const foundCount = slopTokens.filter(t => found.has(t.id)).length;
+  const tokens = tokenize(round.text, round.slopPhrases, round.lang || 'en', !round.inverse);
+  // Hand-authored slop is what counts for completion / missed-slop stats.
+  // Dictionary entries (fromDict: true) are bonus-only, so exclude them here.
+  const handTagged = tokens.filter(t => t.isSlop && !t.phraseData?.fromDict);
+  const foundCount = handTagged.filter(t => found.has(t.id)).length;
   return {
-    total: slopTokens.length,
+    total: handTagged.length,
     found: foundCount,
-    missed: slopTokens.length - foundCount,
-    tokens: slopTokens,
+    missed: handTagged.length - foundCount,
+    tokens: handTagged,
   };
 }

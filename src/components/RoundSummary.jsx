@@ -67,7 +67,7 @@ const getWrongClickShame = (count, lang = 'en') => {
   return { msg: fn(count), color };
 };
 
-export default function RoundSummary({ round, roundScore, foundIds, foundCombos = {}, totalScore, isLastRound, wrongClicks = 0, timeLeft = 0, lang = 'en', musicEnabled = true, consecutivePerfects = 0, roundNumber = 1, difficulty = 'normal', onNext }) {
+export default function RoundSummary({ round, roundScore, foundIds, foundCombos = {}, totalScore, isLastRound, wrongClicks = 0, timeLeft = 0, dictBonus = 0, lang = 'en', musicEnabled = true, consecutivePerfects = 0, roundNumber = 1, difficulty = 'normal', onNext }) {
   const [show, setShow] = useState(false);
   const [roastText, setRoastText] = useState('');
   const [roastDone, setRoastDone] = useState(false);
@@ -388,6 +388,14 @@ export default function RoundSummary({ round, roundScore, foundIds, foundCombos 
             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '5px 0', borderBottom: '1px solid rgba(124,58,237,0.1)' }}>
               <div style={{ fontSize: '0.68rem', color: '#94a3b8' }}>⏱ Time bonus ({timeLeft}s left)</div>
               <div style={{ fontSize: '0.68rem', color: '#fbbf24', fontFamily: "'Orbitron', sans-serif" }}>+{timeBonus}</div>
+            </div>
+          )}
+
+          {/* Dictionary-tier bonus — small clicks accumulated from the universal slop layer */}
+          {dictBonus > 0 && (
+            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '5px 0', borderBottom: '1px solid rgba(124,58,237,0.1)' }}>
+              <div style={{ fontSize: '0.68rem', color: '#94a3b8' }}>🔍 Dictionary bonus</div>
+              <div style={{ fontSize: '0.68rem', color: '#6ee7b7', fontFamily: "'Orbitron', sans-serif" }}>+{dictBonus}</div>
             </div>
           )}
 
