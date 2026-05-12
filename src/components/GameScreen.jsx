@@ -99,7 +99,7 @@ function SlopMeter({ found, total, isInverse = false }) {
 
 const ROUND_TIME_BOSS = 60;
 
-export default function GameScreen({ round, roundIdx, totalRounds, totalScore, onRoundEnd, difficulty = 'normal', lang = 'en', musicEnabled = true, onPowerUpUsed, usedPowerUps = [], onRageClick, onMechanicHit, onComboUpdate }) {
+export default function GameScreen({ round, roundIdx, totalRounds, totalScore, onRoundEnd, difficulty = 'normal', lang = 'en', musicEnabled = true, onPowerUpUsed, usedPowerUps = [], onRageClick, onMechanicHit, onComboUpdate, onTutorialEvent, tutorialPaused = false }) {
   // Mad Libs rounds have a completely different UI — delegate.
   if (round.madlibs) {
     return (
@@ -192,9 +192,17 @@ export default function GameScreen({ round, roundIdx, totalRounds, totalScore, o
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  // Timer (count-down for normal modes, count-up for iron)
+  // Tutorial: notify parent that this round has started so the tip queue can
+  // fire any `round_start` tips for the current round id.
   useEffect(() => {
-    if (!timerRunning) return;
+    onTutorialEvent?.('round_start', { roundId: round?.id });
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [round?.id]);
+
+  // Timer (count-down for normal modes, count-up for iron). Frozen entirely
+  // while tutorialPaused — used to give the player time to read a tip.
+  useEffect(() => {
+    if (!timerRunning || tutorialPaused) return;
     if (isIronDetector) {
       const t = setTimeout(() => setTimeLeft(t => t + 1), 1000);
       return () => clearTimeout(t);
@@ -213,7 +221,7 @@ export default function GameScreen({ round, roundIdx, totalRounds, totalScore, o
       if (timeLeft === 10) setShakeHeader(true);
     }, 1000);
     return () => clearTimeout(t);
-  }, [timeLeft, timerRunning, roundScore, foundIds, onRoundEnd, isIronDetector, wrongClickCount]);
+  }, [timeLeft, timerRunning, roundScore, foundIds, onRoundEnd, isIronDetector, wrongClickCount, tutorialPaused]);
 
   // Auto-complete when all phrases found — all modes (reads from liveRef to avoid stale closure)
   useEffect(() => {
@@ -262,7 +270,8 @@ export default function GameScreen({ round, roundIdx, totalRounds, totalScore, o
     if (!isIronDetector) setTimeLeft(prev => Math.min(prev + 3, ROUND_TIME + 60));
     addPopup(x, y, score, commentary, isDoubled, false, combo);
     if (tokenId !== undefined) foundCombosRef.current[tokenId] = { combo, finalScore: score };
-  }, [addPopup, ROUND_TIME, isIronDetector]);
+    onTutorialEvent?.('slop_found', { isDict: !!isDict });
+  }, [addPopup, ROUND_TIME, isIronDetector, onTutorialEvent]);
 
   const handleCombo = useCallback((newCombo) => {
     // UI cap aligned with the scoring engine (SlopText COMBO_CAP = 3). This was
@@ -339,7 +348,8 @@ export default function GameScreen({ round, roundIdx, totalRounds, totalScore, o
     const pool = isInverse ? INVERSE_MISS_TAUNTS : MISS_TAUNTS;
     const taunt = pool[Math.floor(Math.random() * pool.length)];
     addPopup(x, y, WRONG_PENALTY, taunt, false, true);
-  }, [addPopup, isInverse, isIronDetector, roundScore, foundIds, timeLeft, onRoundEnd, onRageClick, roundIdx]);
+    onTutorialEvent?.('wrong_click', {});
+  }, [addPopup, isInverse, isIronDetector, roundScore, foundIds, timeLeft, onRoundEnd, onRageClick, roundIdx, WRONG_PENALTY, onTutorialEvent]);
 
   const handleFinishEarly = () => {
     if (!timerRunning) return;

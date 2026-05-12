@@ -592,6 +592,13 @@ export default function StartScreen({ onStart, onOpenCommunity }) {
               <button className="btn-primary" onClick={handleStart} style={{ fontSize: '1rem', padding: '14px 36px' }}>
                 🎮 START DETECTING
               </button>
+              <button
+                className="btn-secondary"
+                onClick={() => onStart({ difficulty: 'normal', mode: 'tutorial', musicEnabled, lang: 'en' })}
+                style={{ fontSize: '0.75rem', padding: '9px 20px' }}
+              >
+                🎓 TUTORIAL (2 rounds)
+              </button>
               {onOpenCommunity && (
                 <button
                   className="btn-secondary"

@@ -8,7 +8,9 @@ import CommunityMenu from './components/CommunityMenu';
 import CreateSet from './components/CreateSet';
 import SetDetail from './components/SetDetail';
 import AchievementToastLayer, { showAchievement } from './components/AchievementToast';
-import { selectRounds, getDailyRounds, createRoundsFromSet } from './data/slopData';
+import TutorialOverlay from './components/TutorialOverlay';
+import { selectRounds, getDailyRounds, createRoundsFromSet, ALL_ROUNDS } from './data/slopData';
+import { TUTORIAL_ROUND_IDS, getTipsForRound } from './data/tutorialTips';
 import { stopMusic } from './utils/audio';
 import { checkAndUnlockAchievements, updateStats, calculateXP, addXP, incrementSlopIndex, submitGlobalSlopIndex, getLevelFromXP, getXPData, getRecentRounds, pushRecentRounds } from './utils/storage';
 import { submitSetScore, normaliseSeed } from './utils/communityApi';
@@ -67,6 +69,9 @@ export default function App() {
   const [musicEnabled, setMusicEnabled] = useState(true);
   const [lang, setLang] = useState('en');
   const [newAchievements, setNewAchievements] = useState([]);
+  const [tutorialMode, setTutorialMode] = useState(false);
+  const [currentTip, setCurrentTip] = useState(null);
+  const shownTipsRef = useRef(new Set());
 
   const [isDaily, setIsDaily] = useState(false);
   const [usedPowerUps, setUsedPowerUps] = useState([]);
@@ -118,7 +123,15 @@ export default function App() {
 
   const handleStart = useCallback(({ difficulty: diff, mode, musicEnabled: mu, lang: l = 'en', communitySet = null }) => {
     let selectedRounds;
-    if (communitySet) {
+    const isTutorial = mode === 'tutorial';
+    if (isTutorial) {
+      // Tutorial uses fixed, hand-picked EN rounds — one normal, one inverse.
+      selectedRounds = TUTORIAL_ROUND_IDS
+        .map(id => ALL_ROUNDS.find(r => r.id === id))
+        .filter(Boolean);
+      setCommunitySeed(null);
+      l = 'en';
+    } else if (communitySet) {
       selectedRounds = createRoundsFromSet(communitySet.rounds);
       setCommunitySeed(communitySet.set.seed);
     } else if (mode === 'daily') {
@@ -151,6 +164,9 @@ export default function App() {
     setXpResult(null);
     const daily = mode === 'daily';
     setIsDaily(daily);
+    setTutorialMode(isTutorial);
+    setCurrentTip(null);
+    shownTipsRef.current = new Set();
     gameStatsRef.current = {
       totalDetected: 0, certainlyCount: 0, openerCount: 0,
       disclaimerCount: 0, maxCombo: 0, perfectRounds: 0,
@@ -182,14 +198,17 @@ export default function App() {
     setGameState(STATE.PLAYING);
   }, []);
 
-  // Called at the very end of a game (normal finish or iron game-over)
+  // Called at the very end of a game (normal finish or iron game-over).
+  // Tutorial runs are excluded from XP/score/achievement persistence — the
+  // mode exists purely to teach mechanics, scores shouldn't pollute progress.
   const finaliseGame = useCallback((finalScore, stats) => {
+    if (tutorialMode) { setXpResult(null); return; }
     const xpEarned = calculateXP(finalScore, stats.perfectRounds, difficulty);
     const result = addXP(xpEarned);
     setXpResult({ xpEarned, ...result });
     incrementSlopIndex(stats.totalDetected);
     submitGlobalSlopIndex(stats.totalDetected);
-  }, [difficulty]);
+  }, [difficulty, tutorialMode]);
 
   const handleRoundEnd = useCallback((score, foundIds, time = 0, wrongClicks = 0, isGameOver = false, foundCombos = {}, dictBonus = 0) => {
     setLastRoundScore(score);
@@ -242,11 +261,13 @@ export default function App() {
       stats.totalScore = totalScore + score;
       // finaliseGame runs addXP — do it FIRST so level-based achievements see the new level.
       finaliseGame(stats.totalScore, stats);
-      stats.newLevel = getLevelFromXP(getXPData().xp || 0).level;
-      const unlocked = checkAndUnlockAchievements(stats);
-      updateStats({ ...stats, gamesPlayed: 1 });
-      unlocked.forEach((ach, i) => { setTimeout(() => showAchievement(ach), i * 800); });
-      setNewAchievements(unlocked);
+      if (!tutorialMode) {
+        stats.newLevel = getLevelFromXP(getXPData().xp || 0).level;
+        const unlocked = checkAndUnlockAchievements(stats);
+        updateStats({ ...stats, gamesPlayed: 1 });
+        unlocked.forEach((ach, i) => { setTimeout(() => showAchievement(ach), i * 800); });
+        setNewAchievements(unlocked);
+      }
       setGameState(STATE.RESULT);
       return;
     }
@@ -272,14 +293,16 @@ export default function App() {
 
       // finaliseGame runs addXP — do it FIRST so level-based achievements see the new level.
       finaliseGame(totalScore, stats);
-      stats.newLevel = getLevelFromXP(getXPData().xp || 0).level;
-      const unlocked = checkAndUnlockAchievements(stats);
-      updateStats({ ...stats, gamesPlayed: 1 });
+      if (!tutorialMode) {
+        stats.newLevel = getLevelFromXP(getXPData().xp || 0).level;
+        const unlocked = checkAndUnlockAchievements(stats);
+        updateStats({ ...stats, gamesPlayed: 1 });
 
-      unlocked.forEach((ach, i) => {
-        setTimeout(() => showAchievement(ach), i * 800);
-      });
-      setNewAchievements(unlocked);
+        unlocked.forEach((ach, i) => {
+          setTimeout(() => showAchievement(ach), i * 800);
+        });
+        setNewAchievements(unlocked);
+      }
       setGameState(STATE.RESULT);
     } else {
       setRoundIdx(nextIdx);
@@ -349,6 +372,28 @@ export default function App() {
     else if (type === 'dict_hit')       stats.dictHits = (stats.dictHits || 0) + 1;
   }, []);
 
+  // Tutorial event router — finds the next eligible tip (first one whose
+  // trigger matches the event AND `when` predicate passes AND hasn't been
+  // shown yet for this tutorial run) and surfaces it. The current round's
+  // tip list is keyed by round.id.
+  const handleTutorialEvent = useCallback((type, payload = {}) => {
+    if (!tutorialMode) return;
+    if (currentTip) return; // already showing one — let it dismiss first
+    const round = rounds[roundIdx];
+    if (!round) return;
+    const tips = getTipsForRound(round.id);
+    for (const tip of tips) {
+      if (shownTipsRef.current.has(tip.id)) continue;
+      if (tip.trigger !== type) continue;
+      if (tip.when && !tip.when(payload)) continue;
+      shownTipsRef.current.add(tip.id);
+      setCurrentTip(tip);
+      return;
+    }
+  }, [tutorialMode, currentTip, rounds, roundIdx]);
+
+  const dismissTip = useCallback(() => setCurrentTip(null), []);
+
   const handleComboUpdate = useCallback((combo) => {
     if (combo > gameStatsRef.current.maxCombo) {
       gameStatsRef.current.maxCombo = combo;
@@ -392,7 +437,7 @@ export default function App() {
 
         {gameState === STATE.ROUND_INTRO && currentRound && (
           <RoundIntro
-            round={currentRound}
+            round={{ ...currentRound, roundNumber: roundIdx + 1 }}
             totalRounds={rounds.length}
             difficulty={difficulty}
             lang={lang}
@@ -417,8 +462,13 @@ export default function App() {
             onRageClick={handleRageClick}
             onMechanicHit={handleMechanicHit}
             onComboUpdate={handleComboUpdate}
+            onTutorialEvent={handleTutorialEvent}
+            tutorialPaused={!!currentTip}
           />
         )}
+
+        <TutorialOverlay tip={currentTip} onDismiss={dismissTip} />
+
 
         {gameState === STATE.ROUND_SUMMARY && currentRound && (
           <RoundSummary
