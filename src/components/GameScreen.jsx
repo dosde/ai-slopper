@@ -301,7 +301,11 @@ export default function GameScreen({ round, roundIdx, totalRounds, totalScore, o
   const accentColor = isBoss ? '#ef4444' : isInverse ? '#38bdf8' : '#fbbf24';
   const accentGlow = isBoss ? 'rgba(239,68,68,0.5)' : isInverse ? 'rgba(56,189,248,0.5)' : 'rgba(251,191,36,0.5)';
 
-  const WRONG_PENALTY = 50;
+  // Inverse rounds are intentionally harsher on wrong clicks: with the
+  // dictionary tier active, much more of the AI text looks slop-like, so the
+  // 50-pt baseline made misclicks barely matter against the 2× human payouts.
+  // 150 means ~7 wrong clicks burn a perfect run.
+  const WRONG_PENALTY = isInverse ? 150 : 50;
   const handleWrongClick = useCallback((x, y, tokenText) => {
     // Streak Saver absorbs one wrong click — no combo break, no score penalty
     if (streakSaverActive && !isIronDetector) {

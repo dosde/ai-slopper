@@ -234,7 +234,7 @@ export default function SlopText({
 
   // Build tokens once per round
   if (!tokens.current) {
-    tokens.current = tokenize(round.text, round.slopPhrases, lang, !round.inverse);
+    tokens.current = tokenize(round.text, round.slopPhrases, lang, true);
     segmentsRef.current = buildSegments(round.text, tokens.current);
   }
 
@@ -253,7 +253,7 @@ export default function SlopText({
     morphTimersRef.current.clear();
     morphFlashTimersRef.current.forEach(t => clearTimeout(t));
     morphFlashTimersRef.current.clear();
-    tokens.current = tokenize(round.text, round.slopPhrases, lang, !round.inverse);
+    tokens.current = tokenize(round.text, round.slopPhrases, lang, true);
     segmentsRef.current = buildSegments(round.text, tokens.current);
 
     const totalTokens = tokens.current.length;
@@ -702,7 +702,7 @@ export function getSlopStats(round, found) {
       : 0;
     return { total: slotCount, found: found?.size ?? 0, missed: Math.max(0, slotCount - (found?.size ?? 0)), tokens: [] };
   }
-  const tokens = tokenize(round.text, round.slopPhrases, round.lang || 'en', !round.inverse);
+  const tokens = tokenize(round.text, round.slopPhrases, round.lang || 'en', true);
   // Hand-authored slop is what counts for completion / missed-slop stats.
   // Dictionary entries (fromDict: true) are bonus-only, so exclude them here.
   const handTagged = tokens.filter(t => t.isSlop && !t.phraseData?.fromDict);
