@@ -615,6 +615,7 @@ export default function StartScreen({ onStart, onOpenCommunity }) {
                     </button>
                   )}
                 </div>
+                {/* SUPPORT button hidden for now — restore by uncommenting.
                 <button
                   className="btn-secondary"
                   onClick={() => setTipJarOpen(true)}
@@ -631,6 +632,7 @@ export default function StartScreen({ onStart, onOpenCommunity }) {
                 >
                   💝 SUPPORT
                 </button>
+                */}
               </div>
               <button className="btn-primary" onClick={handleStart} style={{ fontSize: '1rem', padding: '14px 36px' }}>
                 🎮 START DETECTING
