@@ -84,8 +84,21 @@ async function main() {
   await new Promise(r => setTimeout(r, 500));
   await shot(page, 'screenshot-4-dict.png');
 
-  // ── 5. Back to Play, start game ───────────────────────────────────────────
+  // ── 5. Back to Play tab ───────────────────────────────────────────────────
   await clickText(page, 'PLAY');
+  await new Promise(r => setTimeout(r, 400));
+
+  // ── 5b. Community → Create Set ────────────────────────────────────────────
+  await clickText(page, 'COMMUNITY');
+  await new Promise(r => setTimeout(r, 700));
+  await clickText(page, 'CREATE SET');
+  await new Promise(r => setTimeout(r, 700));
+  await shot(page, 'screenshot-5c-create-set.png');
+
+  // Back to home, then start game
+  await clickText(page, 'BACK');
+  await new Promise(r => setTimeout(r, 400));
+  await clickText(page, 'BACK');
   await new Promise(r => setTimeout(r, 400));
   // Click the main START DETECTING button
   await clickText(page, 'DETECTING');
@@ -105,8 +118,7 @@ async function main() {
   await clickText(page, 'START');
   await new Promise(r => setTimeout(r, 800));
 
-  // ── 7. Active gameplay ────────────────────────────────────────────────────
-  await shot(page, 'screenshot-6-gameplay.png');
+  // ── 7. Active gameplay (wait for text to fully render) ────────────────────
   await new Promise(r => setTimeout(r, 1500));
   await shot(page, 'screenshot-6b-gameplay-2.png');
 
