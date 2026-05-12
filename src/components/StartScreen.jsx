@@ -530,6 +530,29 @@ export default function StartScreen({ onStart, onOpenCommunity }) {
                       <span>{text}</span>
                     </div>
                   ))}
+                  {/* Tutorial CTA — the natural pairing for the static rules above */}
+                  <div style={{
+                    marginTop: '14px', paddingTop: '12px',
+                    borderTop: '1px dashed rgba(124,58,237,0.35)',
+                    display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '8px',
+                  }}>
+                    <div style={{ fontSize: '0.72rem', color: '#94a3b8', textAlign: 'center' }}>
+                      {lang === 'de' ? 'Lieber direkt ausprobieren?'
+                        : lang === 'ru' ? 'Лучше попробовать на деле?'
+                        : lang === 'ja' ? '実際にやってみる？'
+                        : 'Rather learn by doing?'}
+                    </div>
+                    <button
+                      className="btn-secondary"
+                      onClick={() => onStart({ difficulty: 'normal', mode: 'tutorial', musicEnabled, lang })}
+                      style={{ fontSize: '0.75rem', padding: '8px 18px' }}
+                    >
+                      {lang === 'de' ? '🎓 TUTORIAL (2 Runden)'
+                        : lang === 'ru' ? '🎓 ОБУЧЕНИЕ (2 раунда)'
+                        : lang === 'ja' ? '🎓 チュートリアル（2ラウンド）'
+                        : '🎓 TUTORIAL (2 rounds)'}
+                    </button>
+                  </div>
                 </div>
               )}
             </div>
@@ -591,16 +614,6 @@ export default function StartScreen({ onStart, onOpenCommunity }) {
               </div>
               <button className="btn-primary" onClick={handleStart} style={{ fontSize: '1rem', padding: '14px 36px' }}>
                 🎮 START DETECTING
-              </button>
-              <button
-                className="btn-secondary"
-                onClick={() => onStart({ difficulty: 'normal', mode: 'tutorial', musicEnabled, lang })}
-                style={{ fontSize: '0.75rem', padding: '9px 20px' }}
-              >
-                {lang === 'de' ? '🎓 TUTORIAL (2 Runden)'
-                  : lang === 'ru' ? '🎓 ОБУЧЕНИЕ (2 раунда)'
-                  : lang === 'ja' ? '🎓 チュートリアル（2ラウンド）'
-                  : '🎓 TUTORIAL (2 rounds)'}
               </button>
               {onOpenCommunity && (
                 <button
