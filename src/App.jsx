@@ -72,6 +72,20 @@ export default function App() {
   const [tutorialMode, setTutorialMode] = useState(false);
   const [currentTip, setCurrentTip] = useState(null);
   const shownTipsRef = useRef(new Set());
+  // Sync mirror of currentTip — React StrictMode double-invokes effects in
+  // dev, so the round_start effect fires twice before currentTip state has
+  // propagated through the closure. Without this ref the second call would
+  // overwrite the first tip with the next one in the queue.
+  const currentTipRef = useRef(null);
+  // Remember the most recent tutorial event so dismissing a tip can chain to
+  // the next un-shown tip matching the same trigger (used by round_start which
+  // fires only once but can have multiple tips queued behind it).
+  const lastTutorialEventRef = useRef(null);
+
+  const showTip = useCallback((tip) => {
+    currentTipRef.current = tip;
+    setCurrentTip(tip);
+  }, []);
 
   const [isDaily, setIsDaily] = useState(false);
   const [usedPowerUps, setUsedPowerUps] = useState([]);
@@ -167,6 +181,8 @@ export default function App() {
     setIsDaily(daily);
     setTutorialMode(isTutorial);
     setCurrentTip(null);
+    currentTipRef.current = null;
+    lastTutorialEventRef.current = null;
     shownTipsRef.current = new Set();
     gameStatsRef.current = {
       totalDetected: 0, certainlyCount: 0, openerCount: 0,
@@ -379,7 +395,8 @@ export default function App() {
   // tip list is keyed by round.id.
   const handleTutorialEvent = useCallback((type, payload = {}) => {
     if (!tutorialMode) return;
-    if (currentTip) return; // already showing one — let it dismiss first
+    lastTutorialEventRef.current = { type, payload };
+    if (currentTipRef.current) return; // already showing one — let it dismiss first
     const round = rounds[roundIdx];
     if (!round) return;
     const tips = getTipsForRound(round.id, lang);
@@ -388,12 +405,30 @@ export default function App() {
       if (tip.trigger !== type) continue;
       if (tip.when && !tip.when(payload)) continue;
       shownTipsRef.current.add(tip.id);
-      setCurrentTip(tip);
+      showTip(tip);
       return;
     }
-  }, [tutorialMode, currentTip, rounds, roundIdx, lang]);
+  }, [tutorialMode, rounds, roundIdx, lang, showTip]);
 
-  const dismissTip = useCallback(() => setCurrentTip(null), []);
+  const dismissTip = useCallback(() => {
+    currentTipRef.current = null;
+    setCurrentTip(null);
+    // Chain: if more tips are queued behind the same trigger that fired most
+    // recently, show the next one immediately. round_start only fires once per
+    // round, so this is the only path for multi-tip intros.
+    const last = lastTutorialEventRef.current;
+    const round = rounds[roundIdx];
+    if (!last || !round) return;
+    const tips = getTipsForRound(round.id, lang);
+    for (const tip of tips) {
+      if (shownTipsRef.current.has(tip.id)) continue;
+      if (tip.trigger !== last.type) continue;
+      if (tip.when && !tip.when(last.payload)) continue;
+      shownTipsRef.current.add(tip.id);
+      showTip(tip);
+      return;
+    }
+  }, [rounds, roundIdx, lang, showTip]);
 
   const handleComboUpdate = useCallback((combo) => {
     if (combo > gameStatsRef.current.maxCombo) {

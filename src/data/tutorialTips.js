@@ -15,6 +15,15 @@ export const TUTORIAL_ROUNDS_BY_LANG = {
 export const TUTORIAL_TIPS = {
   // === EN: SANDWICH INCIDENT (normal)
   1: [
+    { id: 'tut_power_ups', trigger: 'round_start',
+      title: { en: '🎁 4 POWER-UPS UP TOP', de: '🎁 4 JOKER OBEN', ru: '🎁 4 ДЖОКЕРА СВЕРХУ', ja: '🎁 上部に4つのジョーカー' },
+      text: {
+        en: '📡 Radar reveals slop briefly • ⏰ Time Boost +15s • 💥 2× doubles your next clicks • 🛡️ Streak Saver eats one wrong click. Each is usable once per game — tap an icon in the top bar when you need help.',
+        de: '📡 Radar zeigt kurz alle Slops • ⏰ Zeit-Boost +15s • 💥 2× verdoppelt deine nächsten Klicks • 🛡️ Combo-Schutz fängt einen Fehlklick ab. Jeweils einmal pro Spiel nutzbar — tippe oben auf ein Symbol, wenn du Hilfe brauchst.',
+        ru: '📡 Радар на миг подсвечивает слоп • ⏰ Ускоритель +15с • 💥 2× удваивает следующие клики • 🛡️ Хранитель комбо съедает один неверный клик. Каждый — один раз за игру. Тапни иконку сверху, когда нужна помощь.',
+        ja: '📡 レーダーは一瞬スロップを表示 • ⏰ タイムブースト +15秒 • 💥 2× で次のクリックが倍率に • 🛡️ ストリークセーバーが誤クリック1回を肩代わり。各1回ずつ使えます — 必要なときに上部のアイコンをタップ。',
+      },
+    },
     { id: 'en_normal_start', trigger: 'round_start',
       title: { en: '🎓 ROUND 1 OF 2 — SPOT THE SLOP', de: '🎓 RUNDE 1 VON 2 — SLOP ERKENNEN', ru: '🎓 РАУНД 1 ИЗ 2 — НАЙДИ СЛОП', ja: '🎓 ラウンド 1/2 — スロップを見つけよう' },
       text: {
