@@ -10,7 +10,7 @@ import SetDetail from './components/SetDetail';
 import AchievementToastLayer, { showAchievement } from './components/AchievementToast';
 import TutorialOverlay from './components/TutorialOverlay';
 import { selectRounds, getDailyRounds, createRoundsFromSet, ALL_ROUNDS } from './data/slopData';
-import { TUTORIAL_ROUND_IDS, getTipsForRound } from './data/tutorialTips';
+import { getTutorialRoundIds, getTipsForRound } from './data/tutorialTips';
 import { stopMusic } from './utils/audio';
 import { checkAndUnlockAchievements, updateStats, calculateXP, addXP, incrementSlopIndex, submitGlobalSlopIndex, getLevelFromXP, getXPData, getRecentRounds, pushRecentRounds } from './utils/storage';
 import { submitSetScore, normaliseSeed } from './utils/communityApi';
@@ -125,12 +125,13 @@ export default function App() {
     let selectedRounds;
     const isTutorial = mode === 'tutorial';
     if (isTutorial) {
-      // Tutorial uses fixed, hand-picked EN rounds — one normal, one inverse.
-      selectedRounds = TUTORIAL_ROUND_IDS
+      // Tutorial uses fixed, hand-picked rounds per language (one normal, one
+      // inverse). Tip text resolves via the same lang. If a lang has no
+      // picks, getTutorialRoundIds falls back to EN.
+      selectedRounds = getTutorialRoundIds(l)
         .map(id => ALL_ROUNDS.find(r => r.id === id))
         .filter(Boolean);
       setCommunitySeed(null);
-      l = 'en';
     } else if (communitySet) {
       selectedRounds = createRoundsFromSet(communitySet.rounds);
       setCommunitySeed(communitySet.set.seed);
@@ -381,7 +382,7 @@ export default function App() {
     if (currentTip) return; // already showing one — let it dismiss first
     const round = rounds[roundIdx];
     if (!round) return;
-    const tips = getTipsForRound(round.id);
+    const tips = getTipsForRound(round.id, lang);
     for (const tip of tips) {
       if (shownTipsRef.current.has(tip.id)) continue;
       if (tip.trigger !== type) continue;
@@ -390,7 +391,7 @@ export default function App() {
       setCurrentTip(tip);
       return;
     }
-  }, [tutorialMode, currentTip, rounds, roundIdx]);
+  }, [tutorialMode, currentTip, rounds, roundIdx, lang]);
 
   const dismissTip = useCallback(() => setCurrentTip(null), []);
 

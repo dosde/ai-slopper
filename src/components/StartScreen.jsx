@@ -594,10 +594,13 @@ export default function StartScreen({ onStart, onOpenCommunity }) {
               </button>
               <button
                 className="btn-secondary"
-                onClick={() => onStart({ difficulty: 'normal', mode: 'tutorial', musicEnabled, lang: 'en' })}
+                onClick={() => onStart({ difficulty: 'normal', mode: 'tutorial', musicEnabled, lang })}
                 style={{ fontSize: '0.75rem', padding: '9px 20px' }}
               >
-                🎓 TUTORIAL (2 rounds)
+                {lang === 'de' ? '🎓 TUTORIAL (2 Runden)'
+                  : lang === 'ru' ? '🎓 ОБУЧЕНИЕ (2 раунда)'
+                  : lang === 'ja' ? '🎓 チュートリアル（2ラウンド）'
+                  : '🎓 TUTORIAL (2 rounds)'}
               </button>
               {onOpenCommunity && (
                 <button
