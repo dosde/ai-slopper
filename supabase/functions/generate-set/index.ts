@@ -78,7 +78,7 @@ const LANG_INSTRUCTION: Record<string, string> = {
 
 function systemPrompt(lang: string): string {
   const langName = LANG_INSTRUCTION[lang] ?? 'English';
-  return `You are the round-generator for "AI Slop Royale" — a satirical game where players hunt clichéd AI phrases inside generated answers. Your job: produce maximally funny, formatted, over-the-top AI-slop answers to 6 user prompts.
+  return `You are the round-generator for "AI Slop Royal" — a satirical game where players hunt clichéd AI phrases inside generated answers. Your job: produce maximally funny, formatted, over-the-top AI-slop answers to 6 user prompts.
 
 Output language: ${langName}. All "text", "title", "slopPhrases[].text" MUST be in ${langName}.
 

@@ -216,7 +216,7 @@ export default function StartScreen({ onStart, onOpenCommunity }) {
           textShadow: '0 0 15px #ec4899',
           letterSpacing: '4px',
           animation: 'glitch 4s infinite',
-        }}>ROYALE</div>
+        }}>ROYAL</div>
         <style>{`
           @keyframes glitch{0%,90%,100%{text-shadow:0 0 15px #ec4899}92%{text-shadow:3px 0 #fbbf24,-3px 0 #7c3aed}94%{text-shadow:-3px 0 #fbbf24,3px 0 #7c3aed}}
           @keyframes bounce-in{0%{transform:scale(0);opacity:0}60%{transform:scale(1.15)}100%{transform:scale(1);opacity:1}}

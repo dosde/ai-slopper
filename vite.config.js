@@ -40,8 +40,8 @@ export default defineConfig({
     VitePWA({
       registerType: 'autoUpdate',
       manifest: {
-        name: 'AI Slop Royale',
-        short_name: 'SlopRoyale',
+        name: 'AI Slop Royal',
+        short_name: 'SlopRoyal',
         description: 'The Ultimate AI Cringe Detector Game',
         theme_color: '#7c3aed',
         background_color: '#0f0f1a',

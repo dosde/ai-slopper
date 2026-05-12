@@ -6,8 +6,8 @@ import Leaderboard from './Leaderboard';
 import { saveScoreGlobal, saveDailyScore, getLeaderboard, ACHIEVEMENTS, getUnlockedAchievements, isGlobalEnabled, getSlopDictSorted, LEVELS } from '../utils/storage';
 
 const SHARE_MESSAGES = [
-  "I scored {score} pts destroying AI slop on AI Slop Royale! Can you beat me? 🤖💥",
-  "Just annihilated {score} ChatGPT clichés! AI Slop Royale is absolutely unhinged 😂",
+  "I scored {score} pts destroying AI slop on AI Slop Royal! Can you beat me? 🤖💥",
+  "Just annihilated {score} ChatGPT clichés! AI Slop Royal is absolutely unhinged 😂",
   "I spotted {score} pts worth of AI slop. 'Certainly!' is defeated. 🎯",
 ];
 
@@ -64,7 +64,7 @@ export default function ResultScreen({ totalScore, roundScores, newAchievements 
   const handleShare = () => {
     const msg = SHARE_MESSAGES[Math.floor(Math.random() * SHARE_MESSAGES.length)].replace('{score}', totalScore.toLocaleString());
     if (navigator.share) {
-      navigator.share({ title: 'AI Slop Royale', text: msg });
+      navigator.share({ title: 'AI Slop Royal', text: msg });
     } else {
       navigator.clipboard?.writeText(msg).then(() => alert('Copied to clipboard! 📋'));
     }
@@ -102,7 +102,7 @@ export default function ResultScreen({ totalScore, roundScores, newAchievements 
     ctx.textAlign = 'center';
     ctx.fillStyle = '#a78bfa';
     ctx.font = 'bold 12px Orbitron, sans-serif';
-    ctx.fillText('AI SLOP ROYALE', W / 2, 38);
+    ctx.fillText('AI SLOP ROYAL', W / 2, 38);
 
     // Divider
     ctx.strokeStyle = 'rgba(124,58,237,0.4)';
@@ -193,7 +193,7 @@ export default function ResultScreen({ totalScore, roundScores, newAchievements 
     ctx.fillStyle = 'rgba(100,116,139,0.55)';
     ctx.font = '9px Orbitron, sans-serif';
     ctx.textAlign = 'center';
-    ctx.fillText(dateStr + '  \u00B7  AI SLOP ROYALE', W / 2, H - 14);
+    ctx.fillText(dateStr + '  \u00B7  AI SLOP ROYAL', W / 2, H - 14);
   }, [totalScore, roundScores, roast, difficulty, bestRound]);
 
   useEffect(() => {
@@ -207,7 +207,7 @@ export default function ResultScreen({ totalScore, roundScores, newAchievements 
       const url = URL.createObjectURL(blob);
       const a = document.createElement('a');
       a.href = url;
-      a.download = 'ai-slop-royale.png';
+      a.download = 'ai-slop-royal.png';
       a.click();
       URL.revokeObjectURL(url);
     });
