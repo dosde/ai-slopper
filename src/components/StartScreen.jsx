@@ -67,6 +67,7 @@ export default function StartScreen({ onStart, onOpenCommunity }) {
   const [globalTopPhrases, setGlobalTopPhrases] = useState(null);
   const [tipJarOpen, setTipJarOpen] = useState(false);
   const [howToPlayOpen, setHowToPlayOpen] = useState(false);
+  const [showFirstTimePrompt, setShowFirstTimePrompt] = useState(false);
   const supporterBadge = getSupporterBadge();
 
   const unlockedIds = getUnlockedAchievements();
@@ -145,11 +146,30 @@ export default function StartScreen({ onStart, onOpenCommunity }) {
   };
 
   const handleStart = () => {
+    // First-time prompt: never played before and we haven't already asked →
+    // offer the tutorial as a friendlier on-ramp. Persist the "asked" flag so
+    // we never nag the same user twice even if they decline and bomb out at 0 XP.
+    if ((xpData.xp || 0) === 0 && !localStorage.getItem('tutorial_prompted_v1')) {
+      setShowFirstTimePrompt(true);
+      return;
+    }
     stopTitleMusic();
     initAudio();
     // Do NOT start game music here — GameScreen starts the correct track (boss/inverse/regular)
     // Starting it early causes old notes to mix with the new style on round 1.
     onStart({ difficulty, mode, musicEnabled, lang });
+  };
+
+  const dismissFirstTimePrompt = (chooseTutorial) => {
+    localStorage.setItem('tutorial_prompted_v1', '1');
+    setShowFirstTimePrompt(false);
+    stopTitleMusic();
+    initAudio();
+    if (chooseTutorial) {
+      onStart({ difficulty: 'normal', mode: 'tutorial', musicEnabled, lang });
+    } else {
+      onStart({ difficulty, mode, musicEnabled, lang });
+    }
   };
 
   return (
@@ -786,6 +806,65 @@ export default function StartScreen({ onStart, onOpenCommunity }) {
         })()}
       </div>
       {tipJarOpen && <TipJar onClose={() => setTipJarOpen(false)} />}
+
+      {showFirstTimePrompt && (
+        <div
+          role="dialog"
+          aria-modal="true"
+          style={{
+            position: 'fixed', inset: 0,
+            background: 'rgba(2, 6, 23, 0.78)',
+            backdropFilter: 'blur(3px)',
+            zIndex: 9999,
+            display: 'flex', alignItems: 'center', justifyContent: 'center',
+            padding: '24px',
+            animation: 'fade-in 0.2s ease',
+          }}
+        >
+          <div style={{
+            maxWidth: '440px', width: '100%',
+            background: 'linear-gradient(160deg, rgba(124,58,237,0.18), rgba(56,189,248,0.10))',
+            border: '1px solid rgba(124,58,237,0.55)',
+            borderRadius: '12px',
+            padding: '20px 22px 18px',
+            boxShadow: '0 0 36px rgba(124,58,237,0.35), 0 12px 30px rgba(0,0,0,0.4)',
+          }}>
+            <div style={{
+              fontSize: '0.62rem', color: '#c4b5fd',
+              fontFamily: "'Orbitron', sans-serif", letterSpacing: '1.5px',
+              marginBottom: '10px',
+            }}>
+              {lang === 'de' ? '👋 ERSTES MAL?'
+                : lang === 'ru' ? '👋 ПЕРВЫЙ РАЗ?'
+                : lang === 'ja' ? '👋 初めて？'
+                : '👋 FIRST TIME?'}
+            </div>
+            <div style={{ fontSize: '0.92rem', color: '#e2e8f0', lineHeight: 1.55, marginBottom: '18px' }}>
+              {lang === 'de' ? 'Möchtest du erst das kurze Tutorial spielen? Es sind nur 2 Runden und erklärt die Mechanik.'
+                : lang === 'ru' ? 'Хочешь сначала пройти короткое обучение? Всего 2 раунда — объяснит механику.'
+                : lang === 'ja' ? '先に短いチュートリアルをプレイしますか？2ラウンドだけで仕組みを説明します。'
+                : "Want to play the quick tutorial first? It's just 2 rounds and walks you through the mechanics."}
+            </div>
+            <div style={{ display: 'flex', gap: '10px', justifyContent: 'flex-end', flexWrap: 'wrap' }}>
+              <button
+                className="btn-secondary"
+                onClick={() => dismissFirstTimePrompt(false)}
+                style={{ fontSize: '0.78rem', padding: '9px 18px' }}
+              >
+                {lang === 'de' ? 'Überspringen' : lang === 'ru' ? 'Пропустить' : lang === 'ja' ? 'スキップ' : 'Skip'}
+              </button>
+              <button
+                className="btn-primary"
+                onClick={() => dismissFirstTimePrompt(true)}
+                style={{ fontSize: '0.85rem', padding: '10px 22px' }}
+                autoFocus
+              >
+                {lang === 'de' ? '🎓 Ja, Tutorial' : lang === 'ru' ? '🎓 Да, обучение' : lang === 'ja' ? '🎓 はい' : '🎓 Yes, tutorial'}
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 }
