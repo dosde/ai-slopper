@@ -222,7 +222,7 @@ $updated = '2026-05-12';
       <h2>Contact</h2>
       <p>
         Questions, concerns, or removal requests:<br>
-        <a href="mailto:patrick.kunath@gmail.com">patrick.kunath@gmail.com</a>
+        <a href="mailto:admin@ai-slop-royal.com">admin@ai-slop-royal.com</a>
       </p>
     </main>
 

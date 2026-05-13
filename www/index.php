@@ -433,7 +433,7 @@ header('Content-Type: text/html; charset=utf-8');
     <footer>
       <div class="footer-links">
         <a href="privacy.php">Privacy Policy</a>
-        <a href="mailto:patrick.kunath@gmail.com">Contact</a>
+        <a href="mailto:admin@ai-slop-royal.com">Contact</a>
       </div>
       <div>&copy; <?= date('Y') ?> AI Slop Royal &mdash; Built by humans, for spotting machines.</div>
     </footer>
