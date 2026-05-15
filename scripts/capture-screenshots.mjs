@@ -4,7 +4,7 @@ import path from 'path';
 
 const BASE = 'C:/webserver/Apache24/htdocs/wp/wp-content/plugins/ai-slopper';
 const OUT  = `${BASE}/store-assets`;
-const URL  = 'http://localhost:5173';
+const URL  = 'http://localhost:5174';
 
 fs.mkdirSync(OUT, { recursive: true });
 
@@ -60,6 +60,12 @@ async function main() {
   const page = await browser.newPage();
   // Suppress audio errors
   await page.on('pageerror', () => {});
+
+  // Dismiss the first-time tutorial prompt before the app boots so it doesn't
+  // intercept the START DETECTING click. See StartScreen.jsx 'tutorial_prompted_v1'.
+  await page.evaluateOnNewDocument(() => {
+    try { localStorage.setItem('tutorial_prompted_v1', '1'); } catch {}
+  });
 
   await page.goto(URL, { waitUntil: 'networkidle0' });
   await new Promise(r => setTimeout(r, 1000));
@@ -118,8 +124,59 @@ async function main() {
   await clickText(page, 'START');
   await new Promise(r => setTimeout(r, 800));
 
-  // ── 7. Active gameplay (wait for text to fully render) ────────────────────
-  await new Promise(r => setTimeout(r, 1500));
+  // ── 7. Active gameplay — click a couple of slop phrases first so the
+  //     screenshot shows the "in-progress" state (some phrases already found,
+  //     scoreline non-zero), which is far more interesting than a fresh round.
+  //     If we landed on an inverse round, advance to the next round first —
+  //     inverse has reversed rules (AI is the decoy, human is the target) and
+  //     produces a confusing first-impression screenshot.
+  async function isInverseRound() {
+    return page.evaluate(() =>
+      document.body.textContent.includes('INVERSE ROUND') ||
+      document.body.textContent.includes('RULES REVERSED')
+    );
+  }
+  let advancesNeeded = 0;
+  while (await isInverseRound() && advancesNeeded < 3) {
+    console.log('  Gameplay shot: inverse round detected, advancing...');
+    // End round immediately, skip roast, click NEXT, wait for next START
+    await killTimer();
+    await waitFor(() => page.evaluate(() =>
+      document.body.textContent.includes('ROUND COMPLETE')
+    ), 5000);
+    await new Promise(r => setTimeout(r, 400));
+    await skipRoastAnimation();
+    await waitFor(() => page.evaluate(() =>
+      [...document.querySelectorAll('button')].some(b => b.textContent.includes('NEXT'))
+    ), 5000);
+    await page.evaluate(() => {
+      const b = [...document.querySelectorAll('button')].find(b => b.textContent.includes('NEXT'));
+      if (b) b.click();
+    });
+    await waitFor(() => page.evaluate(() =>
+      [...document.querySelectorAll('button')].some(b => b.textContent.includes('START'))
+    ), 15000, 250);
+    await clickText(page, 'START');
+    await new Promise(r => setTimeout(r, 800));
+    advancesNeeded++;
+  }
+
+  await new Promise(r => setTimeout(r, 2000)); // let text fully reveal
+  // Click the first 2 distinct slop phrases. Adjacent slop word-spans share a
+  // phrase, so click only the first word of each contiguous run.
+  await page.evaluate(() => {
+    const tokens = [...document.querySelectorAll('.slop-token.active')];
+    const clicks = [];
+    for (const el of tokens) {
+      const prev = el.previousElementSibling;
+      const isContinuation = prev && prev.classList?.contains('slop-token') &&
+                             prev.classList.contains('active');
+      if (!isContinuation) clicks.push(el);
+      if (clicks.length >= 2) break;
+    }
+    for (const el of clicks) el.click();
+  });
+  await new Promise(r => setTimeout(r, 600));
   await shot(page, 'screenshot-6b-gameplay-2.png');
 
   // ── 8. Force round to end: set timeLeft to 0 ─────────────────────────────
@@ -231,7 +288,7 @@ async function main() {
     console.log(`  Round ${roundNum}: waiting for START button...`);
     await waitFor(() => page.evaluate(() =>
       [...document.querySelectorAll('button')].some(b => b.textContent.includes('START'))
-    ), 8000);
+    ), 20000, 250);
 
     // 2. Click START
     const hasStart = await page.evaluate(() =>

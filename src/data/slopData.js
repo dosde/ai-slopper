@@ -6873,11 +6873,18 @@ export const selectRounds = (seed = null, lang = 'en', recentIds = []) => {
   // `enabled: false` lets us park rounds in-file (commented-out as data) without
   // deleting them — they stay for future rotation but never roll. The DISABLED_ROUND_IDS
   // Set is the bulk version: retire many rounds at once without editing each object.
+  // Mad Libs rounds (drag-and-drop fill-in-the-blank) are currently disabled —
+  // the mechanic was confusing players relative to the core tap-the-slop loop.
+  // Flip ENABLE_MADLIBS to true to bring them back without touching round data.
+  const ENABLE_MADLIBS = false;
   const pool = ALL_ROUNDS.filter(r =>
     r.lang === lang && !r.boss && r.enabled !== false && !DISABLED_ROUND_IDS.has(r.id)
+    && (ENABLE_MADLIBS || !r.madlibs)
   );
   const inversePool = deprioritizeRecent(pool.filter(r => r.inverse), recentSet, rand);
-  const madlibsPool = deprioritizeRecent(pool.filter(r => !r.inverse && r.madlibs), recentSet, rand);
+  const madlibsPool = ENABLE_MADLIBS
+    ? deprioritizeRecent(pool.filter(r => !r.inverse && r.madlibs), recentSet, rand)
+    : [];
   const regularPool = deprioritizeRecent(pool.filter(r => !r.inverse && !r.madlibs), recentSet, rand);
 
   // Slot plan: 1 inverse (if available) + ~50% chance madlibs (when the
